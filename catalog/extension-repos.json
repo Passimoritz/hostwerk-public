@@ -6,5 +6,8 @@
   "Passimoritz/hostwerk-ext-server-card",
   "Passimoritz/hostwerk-ext-port-map",
   "Passimoritz/hostwerk-ext-player-leaderboard",
-  "Passimoritz/hostwerk-ext-quick-tasks"
+  "Passimoritz/hostwerk-ext-quick-tasks",
+  "Passimoritz/hostwerk-ext-motd-studio",
+  "Passimoritz/hostwerk-ext-service-notes",
+  "Passimoritz/hostwerk-ext-knowledge-graph"
 ]
