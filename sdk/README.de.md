@@ -132,6 +132,7 @@ Hostwerk.on('settings' | 'lang' | 'theme', …);
 Hostwerk.toast('Fertig', { kind: 'success' });
 Hostwerk.navigate('/mc/mein-server'); // einen Hostwerk-Bereich öffnen
 Hostwerk.openUrl('https://…');        // im Browser öffnen, nach Rückfrage
+Hostwerk.copy(text);                  // in die Zwischenablage kopieren (SDK 2.1)
 Hostwerk.get('/system/health');       // direkter Lesezugriff (gegen die Rechte geprüft)
 ```
 

@@ -10,7 +10,7 @@
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '2.0.0';
+  const VERSION = '2.1.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
@@ -166,6 +166,8 @@
     navigate: (route) => call('NAVIGATE', '', { route: String(route) }),
     /** Open a web page in the browser (Hostwerk asks first). */
     openUrl: (url) => call('OPEN_URL', '', { url: String(url) }),
+    /** Copy text to the clipboard (through Hostwerk – the sandboxed frame cannot do it itself). Since SDK 2.1. */
+    copy: (text) => call('COPY', '', { text: String(text) }),
   };
   window.Hostwerk = api;
 

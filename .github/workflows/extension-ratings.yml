@@ -1,0 +1,35 @@
+name: Extension ratings
+
+# Counts the reactions on the "Rating: <id>" issues and writes catalog/ratings.json (stars in the marketplace).
+# Creates the rating issue for new extensions automatically. Daily and on demand.
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  ratings:
+    runs-on: ubuntu-latest
+    concurrency: catalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Label "rating"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh label create rating --color "f5b84a" --description "Extension rating (react to vote)" 2>/dev/null || true
+      - name: Count reactions
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/build-ratings.js
+      - name: Commit
+        run: |
+          git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
+          git add catalog/ratings.json
+          git diff --cached --quiet || (git commit -m "Extension ratings updated" && git push)

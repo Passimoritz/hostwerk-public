@@ -1,4 +1,10 @@
 [
   "Passimoritz/hostwerk-ext-player-ticker",
-  "Passimoritz/hostwerk-ext-status-wall"
+  "Passimoritz/hostwerk-ext-status-wall",
+  "Passimoritz/hostwerk-ext-backup-calendar",
+  "Passimoritz/hostwerk-ext-mail-stats",
+  "Passimoritz/hostwerk-ext-server-card",
+  "Passimoritz/hostwerk-ext-port-map",
+  "Passimoritz/hostwerk-ext-player-leaderboard",
+  "Passimoritz/hostwerk-ext-quick-tasks"
 ]

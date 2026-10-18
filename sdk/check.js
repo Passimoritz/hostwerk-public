@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '2.0.0';
+const SDK_VERSION = '2.1.0';
 /** Permission scopes and what they allow (GET = read, POST = change after confirmation). */
 const PERMISSIONS = {
   'read:services': { de: 'Dienste und ihren Zustand sehen', en: 'See services and their state', read: [/^\/overview$/] },
@@ -38,6 +38,13 @@ const LEGACY = { read: Object.keys(PERMISSIONS).filter((k) => k.startsWith('read
 const ID_RE = /^[a-z0-9][a-z0-9-]{1,39}$/;
 /** Line icons for the sidebar (same style as Hostwerk's own areas) – ui/src/extIcons.js */
 const SIDEBAR_ICONS = ['puzzle', 'users', 'monitor', 'gauge', 'activity', 'chart', 'bar-chart', 'bell', 'book', 'bot', 'box', 'calendar', 'camera', 'clock', 'cloud', 'code', 'coffee', 'cpu', 'database', 'download', 'file', 'flag', 'gamepad', 'gift', 'globe', 'heart', 'home', 'image', 'inbox', 'key', 'dashboard', 'grid', 'leaf', 'line-chart', 'list', 'lock', 'mail', 'map', 'message', 'music', 'network', 'news', 'package', 'pie-chart', 'radio', 'rocket', 'server', 'settings', 'shield', 'cart', 'sparkles', 'star', 'sun', 'swords', 'table', 'tag', 'terminal', 'timer', 'trophy', 'tv', 'wand', 'wifi', 'wrench', 'zap'];
+/** Everything the SDK offers (window.Hostwerk) – calls to anything else fail at runtime. Kept in sync by scripts/ext-catalog-test.js. */
+const SDK_MEMBERS = {
+  sdk: null, ready: null, info: null, lang: null, theme: null, embed: null, t: null, esc: null, html: null, render: null, raw: null,
+  fmt: ['bytes', 'duration', 'number', 'time'], get: null, post: null, services: null, service: null,
+  minecraft: ['servers', 'players', 'stats', 'command'], storage: ['get', 'set', 'remove', 'all'], settings: ['get', 'open'],
+  on: null, toast: null, navigate: null, openUrl: null, copy: null,
+};
 const SEMVER = /^\d+\.\d+\.\d+(-[\w.]+)?$/;
 const MAX_SIZE = 10 * 1048576;
 const TEXT_EXT = /\.(html?|js|mjs|css|json|svg|md|txt)$/i;
@@ -67,6 +74,38 @@ function walk(dir, base = dir) {
     if (e.isDirectory()) out = out.concat(walk(p, base)); else out.push(path.relative(base, p).replace(/\\/g, '/'));
   }
   return out;
+}
+
+/**
+ * Symbol prüfen – dieselbe Idee wie beim Plugin-Symbol in Minecraft-JARs: Format, Größe, quadratisch, sicher,
+ * und auf hellem wie dunklem Hintergrund sichtbar (Marktplatz und Seitenleiste gibt es in beiden Designs).
+ */
+function checkIcon(file, rel, err, warn) {
+  const ext = path.extname(file).toLowerCase();
+  if (!['.svg', '.png', '.webp'].includes(ext)) { err('icon', `"icon" must be .svg, .png or .webp – got ${rel}.`); return; }
+  const buf = fs.readFileSync(file);
+  if (buf.length > 256 * 1024) warn('icon', `${rel} is ${Math.round(buf.length / 1024)} KB – keep icons under 256 KB.`);
+  if (ext === '.png') {
+    if (buf.readUInt32BE(0) !== 0x89504e47) { err('icon', `${rel} is not a PNG file.`); return; }
+    const w = buf.readUInt32BE(16), h = buf.readUInt32BE(20);
+    if (w !== h) warn('icon', `${rel} is ${w}×${h} – icons should be square.`);
+    if (w < 64) warn('icon', `${rel} is only ${w} px – use at least 128 px (or SVG).`);
+    return;
+  }
+  if (ext !== '.svg') return;
+  const svg = buf.toString('utf8');
+  if (/<script|\son[a-z]+\s*=|javascript:/i.test(svg)) err('icon', `${rel} contains scripts or event handlers – not allowed in icons.`);
+  if (/(?:xlink:)?href\s*=\s*["']\s*https?:/i.test(svg)) err('icon', `${rel} loads external files – embed everything in the SVG.`);
+  const vb = (svg.match(/viewBox\s*=\s*["']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i) || []).slice(1).map(Number);
+  if (vb.length === 2 && Math.abs(vb[0] - vb[1]) > Math.max(vb[0], vb[1]) * 0.05) warn('icon', `${rel} is not square (viewBox ${vb[0]}×${vb[1]}).`);
+  // Sichtbarkeit: Farben einsammeln; nur sehr dunkle bzw. nur sehr helle Farben ohne Hintergrundfläche fallen in einem Design weg
+  const cols = [...svg.matchAll(/(?:fill|stroke|stop-color)\s*[:=]\s*["']?\s*(#[0-9a-f]{3,8}|white|black|currentColor)/gi)].map((x) => x[1].toLowerCase());
+  if (!cols.length || cols.includes('currentcolor')) return; // currentColor passt sich an
+  const lum = (c) => { if (c === 'white') return 1; if (c === 'black') return 0; let h = c.slice(1); if (h.length <= 4) h = h.split('').map((x) => x + x).join(''); const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const ls = cols.map(lum);
+  const hasBackdrop = /<(rect|circle)\b[^>]*(width\s*=\s*["'](100%|\d{2,})|r\s*=\s*["']\d{2,})/i.test(svg);
+  if (!hasBackdrop && ls.every((l) => l < 0.04)) warn('icon', `${rel} only uses very dark colors – nearly invisible in the dark design. Add a light tile or use currentColor.`);
+  if (!hasBackdrop && ls.every((l) => l > 0.85)) warn('icon', `${rel} only uses very light colors – nearly invisible in the light design. Add a colored tile or use currentColor.`);
 }
 
 function checkPackage(dir, { strict = false } = {}) {
@@ -102,6 +141,7 @@ function checkPackage(dir, { strict = false } = {}) {
   if (m.hostwerk && !/^>=\s*\d+\.\d+\.\d+$/.test(m.hostwerk)) warn('hostwerk', '"hostwerk" should be a minimum version like ">=2.9.0".');
   if (m.icon && !/^[\w-]+$/.test(m.icon) && !fs.existsSync(path.join(dir, m.icon))) err('icon', `"icon" points to a missing file: ${m.icon}`);
   if (!m.icon) warn('icon', 'No icon – add icon.svg (square, works on light and dark) and "icon": "icon.svg".');
+  else if (!/^[\w-]+$/.test(m.icon) && fs.existsSync(path.join(dir, m.icon))) checkIcon(path.join(dir, m.icon), m.icon, err, warn);
   for (const s of Array.isArray(m.settings) ? m.settings : []) {
     if (!/^[a-zA-Z][\w-]{0,39}$/.test(s.key || '')) err('settings', `Setting without a valid "key": ${JSON.stringify(s).slice(0, 80)}`);
     if (!['text', 'number', 'switch', 'select'].includes(s.type)) err('settings', `Setting "${s.key}": type must be text, number, switch or select.`);
@@ -136,6 +176,12 @@ function checkPackage(dir, { strict = false } = {}) {
     if (/\.(html?|js|mjs)$/i.test(f)) {
       for (const mm of src.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)) if (/^(https?:)?\/\//i.test(mm[1])) err('remote-script', `${f}: loads a script from the internet (${mm[1]}) – bundle it into the package.`);
       if (/\beval\s*\(|new\s+Function\s*\(/.test(src)) err('eval', `${f}: eval/new Function is not allowed.`);
+      // Unknown SDK functions (typos, invented APIs) – found before the page breaks at runtime
+      for (const mm of src.matchAll(/\bHostwerk\.([A-Za-z_$]+)(?:\.([A-Za-z_$]+))?/g)) {
+        const [, top, sub] = mm;
+        if (!Object.prototype.hasOwnProperty.call(SDK_MEMBERS, top)) { err('sdk-api', `${f}: Hostwerk.${top} does not exist – see the SDK guide (e.g. Hostwerk.get(path), Hostwerk.services()).`); continue; }
+        if (sub && Array.isArray(SDK_MEMBERS[top]) && !SDK_MEMBERS[top].includes(sub)) err('sdk-api', `${f}: Hostwerk.${top}.${sub} does not exist – available: ${SDK_MEMBERS[top].join(', ')}.`);
+      }
       if (/document\.cookie/.test(src)) err('cookie', `${f}: document.cookie is not available – use Hostwerk.storage.`);
       if (/\b(localStorage|sessionStorage|indexedDB)\b/.test(src)) warn('storage', `${f}: browser storage does not work in the sandbox – use Hostwerk.storage.`);
       if (/\.innerHTML\s*=\s*`[^`]*\$\{/.test(src) || /\.innerHTML\s*=\s*[^;`]*\+/.test(src)) warn('xss', `${f}: innerHTML with inserted values – use Hostwerk.render(el, Hostwerk.html\`…\`) so names and texts are escaped.`);
@@ -163,7 +209,7 @@ function checkPackage(dir, { strict = false } = {}) {
   return { ok: errors.length === 0, errors, warnings, info, manifest: m, score, size, sdk: SDK_VERSION };
 }
 
-module.exports = { checkPackage, PERMISSIONS, LEGACY, scopes, allows, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS };
+module.exports = { checkPackage, PERMISSIONS, LEGACY, scopes, allows, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS };
 
 if (require.main === module) {
   const dir = process.argv[2];
