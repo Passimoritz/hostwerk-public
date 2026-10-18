@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '2.1.0';
+const SDK_VERSION = '2.3.0';
 /** Permission scopes and what they allow (GET = read, POST = change after confirmation). */
 const PERMISSIONS = {
   'read:services': { de: 'Dienste und ihren Zustand sehen', en: 'See services and their state', read: [/^\/overview$/] },
@@ -30,6 +30,15 @@ const PERMISSIONS = {
   'control:services': { de: 'Dienste starten, stoppen, neu starten (mit Rückfrage)', en: 'Start, stop, restart services (asks first)', write: [/^\/(web|dbs|apps|mail|mc\/servers)\/[\w-]+\/(start|stop|restart)$/] },
   'command:minecraft': { de: 'Befehle an Minecraft-Server senden (mit Rückfrage)', en: 'Send commands to Minecraft servers (asks first)', write: [/^\/mc\/servers\/[\w-]+\/command$/] },
   'run:tasks': { de: 'Aufgaben ausführen (mit Rückfrage)', en: 'Run scheduled tasks (asks first)', write: [/^\/tasks\/[\w-]+\/run$/] },
+  // Seit SDK 2.2: Hostwerk-Funktionen ändern – jede Änderung bestätigt der Nutzer einzeln
+  'change:minecraft': { de: 'Minecraft-Einstellungen ändern: server.properties, Spielregeln, Symbol, Plugins an/aus, Sicherung anlegen (mit Rückfrage)', en: 'Change Minecraft settings: server.properties, game rules, icon, plugins on/off, create backups (asks first)', write: [/^\/mc\/servers\/[\w-]+\/(properties|gamerules|icon|backups|plugins\/toggle)$/] },
+  'change:databases': { de: 'Datenbank-Sicherungen anlegen (mit Rückfrage)', en: 'Create database backups (asks first)', write: [/^\/dbs\/[\w-]+\/backups$/] },
+  'change:mail': { de: 'Test-Mails in den Mail-Fänger schicken, Mails als gelesen markieren (mit Rückfrage)', en: 'Send test mails to the mail catcher, mark mails as read (asks first)', write: [/^\/mail\/(compose|read-all)$/] },
+  // Seit SDK 2.3: Wissensgraph (Motor in Hostwerk, Oberfläche als Erweiterung). quiet = ohne Rückfrage je Aufruf (nur Daten
+  // des Wissensgraphen selbst); alles, was Dateien in Projekten oder Claudes Anbindung ändert, fragt immer.
+  'read:knowledge': { de: 'Wissensgraph lesen: Projekte, Graph, Bericht, Fragenverlauf, Gedächtnis, Claude-Status', en: 'Read the knowledge graph: projects, graph, report, question history, memory, Claude status', read: [/^\/knowledge$/, /^\/knowledge\/[\w.-]+\/(graph|report|questions|memory|claude)$/, /^\/claude\/(status|connect\/code)$/] },
+  'change:knowledge': { de: 'Wissensgraph bauen und abfragen, Ordner aufnehmen, Gedächtnis pflegen, Obsidian-Export', en: 'Build and query the knowledge graph, add folders, edit memory, Obsidian export', quiet: true, write: [/^\/knowledge$/, /^\/knowledge\/folders(\/[\w.-]+)?$/, /^\/knowledge\/[\w.-]+\/(build|options|query|explain|path|memory(\/[\w-]+)?|obsidian\/(export|sync|notes|import))$/] },
+  'connect:claude': { de: 'Claude einbinden und wieder vergessen (schreibt markierte Abschnitte in Projekte – mit Rückfrage)', en: 'Connect Claude and forget it again (writes marked sections into projects – asks first)', write: [/^\/knowledge\/[\w.-]+\/claude\/(connect|repair|forget)$/, /^\/knowledge\/forget-all$/, /^\/claude\/connect\/desktop$/] },
   storage: { de: 'Eigene Daten speichern (max. 256 KB)', en: 'Store own data (max. 256 KB)' },
   network: { de: 'Mit den im Paket genannten Webadressen sprechen', en: 'Talk to the web addresses named in the package' },
 };
@@ -41,7 +50,7 @@ const SIDEBAR_ICONS = ['puzzle', 'users', 'monitor', 'gauge', 'activity', 'chart
 /** Everything the SDK offers (window.Hostwerk) – calls to anything else fail at runtime. Kept in sync by scripts/ext-catalog-test.js. */
 const SDK_MEMBERS = {
   sdk: null, ready: null, info: null, lang: null, theme: null, embed: null, t: null, esc: null, html: null, render: null, raw: null,
-  fmt: ['bytes', 'duration', 'number', 'time'], get: null, post: null, services: null, service: null,
+  fmt: ['bytes', 'duration', 'number', 'time'], get: null, post: null, put: null, del: null, pickFolder: null, services: null, service: null, tab: null, setTab: null, context: null,
   minecraft: ['servers', 'players', 'stats', 'command'], storage: ['get', 'set', 'remove', 'all'], settings: ['get', 'open'],
   on: null, toast: null, navigate: null, openUrl: null, copy: null,
 };
@@ -61,8 +70,15 @@ function scopes(list) {
 /** May an extension with these scopes call METHOD PATH? */
 function allows(list, method, p) {
   const clean = String(p || '').split('?')[0];
-  const key = method === 'POST' ? 'write' : 'read';
+  const key = method === 'GET' ? 'read' : 'write'; // POST, PUT und DELETE sind Änderungen
   return scopes(list).some((s) => (PERMISSIONS[s][key] || []).some((re) => re.test(clean)));
+}
+/** Änderung ohne Rückfrage je Aufruf? Nur wenn ausschließlich „quiet“-Rechte sie abdecken (z. B. Graph neu bauen). */
+function quiet(list, method, p) {
+  if (method === 'GET') return true;
+  const clean = String(p || '').split('?')[0];
+  const hits = scopes(list).filter((s) => (PERMISSIONS[s].write || []).some((re) => re.test(clean)));
+  return hits.length > 0 && hits.every((s) => PERMISSIONS[s].quiet);
 }
 const text = (v, lang) => (v && typeof v === 'object' ? v[lang] || v.en || v.de || '' : String(v || ''));
 
@@ -130,6 +146,25 @@ function checkPackage(dir, { strict = false } = {}) {
     if (!e.file || /\.\.|^\/|\\/.test(e.file)) err(`${k}.file`, `"${k}.file" is missing or invalid.`);
     else if (!fs.existsSync(path.join(dir, e.file))) err(`${k}.file`, `"${k}.file" points to a missing file: ${e.file}`);
   }
+  // Seit SDK 2.2: Hostwerk zeichnet Kopf und Reiter selbst (page.description, page.tabs)
+  if (m.page && m.page.tabs !== undefined) {
+    if (!Array.isArray(m.page.tabs) || m.page.tabs.length > 8) err('page.tabs', '"page.tabs" must be a list of up to 8 tabs: [{ "id": "overview", "title": { "en": "Overview", "de": "Übersicht" }, "icon": "gauge" }].');
+    else for (const tb of m.page.tabs) { if (!tb || !/^[a-z0-9-]{1,30}$/.test(tb.id || '')) err('page.tabs', 'Every tab needs an "id" (a–z, 0–9, -).'); else if (!tb.title) err('page.tabs', `Tab "${tb.id}" needs a "title".`); if (tb && tb.icon && !SIDEBAR_ICONS.includes(tb.icon)) warn('page.tabs', `Tab icon "${tb.icon}" is not a sidebar icon.`); }
+  }
+  if (m.page && !m.page.description && !m.description) warn('page.description', 'Add "page.description" – Hostwerk shows it under the page title like on its own pages.');
+  // Beiträge zu Hostwerk-Bereichen: eigener Reiter auf Detailseiten, Aktionen in Schnellsuche und Rechtsklick-Menüs
+  const PLACES = ['minecraft', 'web', 'db', 'app', 'game'];
+  const co = m.contributes || {};
+  for (const tb of Array.isArray(co.tabs) ? co.tabs : []) {
+    if (!tb || !/^[a-z0-9-]{1,30}$/.test(tb.id || '') || !tb.title) err('contributes.tabs', 'Every contributed tab needs "id" and "title".');
+    else if (!PLACES.includes(tb.on)) err('contributes.tabs', `Tab "${tb.id}": "on" must be one of ${PLACES.join(', ')}.`);
+    else if (!tb.file || /\.\.|^\/|\\/.test(tb.file) || !fs.existsSync(path.join(dir, tb.file))) err('contributes.tabs', `Tab "${tb.id}": "file" is missing or points to a missing file.`);
+  }
+  for (const a of Array.isArray(co.actions) ? co.actions : []) {
+    if (!a || !/^[a-z0-9-]{1,30}$/.test(a.id || '') || !a.title) err('contributes.actions', 'Every action needs "id" and "title".');
+    else if (!(Array.isArray(a.on) && a.on.length && a.on.every((x) => x === 'palette' || PLACES.includes(x)))) err('contributes.actions', `Action "${a.id}": "on" must list "palette" and/or ${PLACES.join(', ')}.`);
+    else if (!m.page) err('contributes.actions', `Action "${a.id}" opens the extension page – the extension needs a "page".`);
+  }
   if (m.page && m.page.icon && !SIDEBAR_ICONS.includes(m.page.icon)) warn('icon', `"page.icon" "${m.page.icon}" is not a sidebar icon – choose one of: ${SIDEBAR_ICONS.join(', ')}.`);
   if (m.widget && m.widget.size && !['third', 'half', 'full'].includes(m.widget.size)) warn('widget.size', '"widget.size" should be third, half or full.');
   const perms = Array.isArray(m.permissions) ? m.permissions : [];
@@ -169,7 +204,7 @@ function checkPackage(dir, { strict = false } = {}) {
   const size = files.reduce((n, f) => n + fs.statSync(path.join(dir, f)).size, 0);
   if (size > MAX_SIZE) err('size', `The package is ${(size / 1048576).toFixed(1)} MB – at most 10 MB.`);
   if (files.some((f) => /\.(exe|dll|bat|cmd|ps1|sh|scr|msi)$/i.test(f)) && !m.command) err('binary', 'Programs/scripts in a page-only package are not allowed.');
-  const pages = [m.page && m.page.file, m.widget && m.widget.file].filter(Boolean);
+  const pages = [m.page && m.page.file, m.widget && m.widget.file, ...((m.contributes && Array.isArray(m.contributes.tabs)) ? m.contributes.tabs.map((x) => x && x.file) : [])].filter(Boolean);
   let hardColors = 0; let fontHits = 0;
   for (const f of files.filter((x) => TEXT_EXT.test(x))) {
     const src = fs.readFileSync(path.join(dir, f), 'utf8');
@@ -191,8 +226,14 @@ function checkPackage(dir, { strict = false } = {}) {
       // Colours outside var(--hw-…): fallbacks inside var() are fine
       const noVars = src.replace(/var\([^)]*\)/g, '').replace(/<script[\s\S]*?<\/script>/gi, '');
       const css = /\.css$/i.test(f) ? noVars : [...noVars.matchAll(/<style[^>]*>([\s\S]*?)<\/style>|style="([^"]*)"/gi)].map((x) => x[1] || x[2] || '').join('\n');
-      hardColors += (css.match(/#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/gi) || []).length;
-      fontHits += (css.match(/font-family\s*:\s*(?!inherit|var\()/gi) || []).length;
+      // Bewusste Ausnahme je Datei, mit Begründung: /* hostwerk-allow: colors, fonts – Vorschau wie im Spiel */
+      // (z. B. eine Nachbildung der Minecraft-Serverliste, die in Hell und Dunkel gleich aussehen muss)
+      const allow = (src.match(/hostwerk-allow:\s*([a-z, ]+)[–-]\s*(.{10,})/i) || [])[1] || '';
+      if (allow) info.push({ code: 'allow', msg: `${f}: intentional exception (${allow.trim()}) – ${(src.match(/hostwerk-allow:[^*\n]*/i) || [''])[0].trim()}` });
+      if (!/colors/.test(allow)) hardColors += (css.match(/#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/gi) || []).length;
+      // Schriften auf dem Text MIT var() prüfen (font-family: var(--mono) ist Hostwerks eigene Schrift und erlaubt)
+      const rawCss = /\.css$/i.test(f) ? src : [...src.replace(/<script[\s\S]*?<\/script>/gi, '').matchAll(/<style[^>]*>([\s\S]*?)<\/style>|style="([^"]*)"/gi)].map((x) => x[1] || x[2] || '').join('\n');
+      if (!/fonts/.test(allow)) fontHits += (rawCss.match(/font-family\s*:(?!\s*(inherit|var\())/gi) || []).length;
       if (/position\s*:\s*fixed/i.test(css)) warn('overlay', `${f}: position: fixed – extensions should not lay anything over Hostwerk.`);
       if (/z-index\s*:\s*\d{4,}/i.test(css)) warn('overlay', `${f}: very high z-index.`);
     }
@@ -209,7 +250,7 @@ function checkPackage(dir, { strict = false } = {}) {
   return { ok: errors.length === 0, errors, warnings, info, manifest: m, score, size, sdk: SDK_VERSION };
 }
 
-module.exports = { checkPackage, PERMISSIONS, LEGACY, scopes, allows, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS };
+module.exports = { checkPackage, PERMISSIONS, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS };
 
 if (require.main === module) {
   const dir = process.argv[2];

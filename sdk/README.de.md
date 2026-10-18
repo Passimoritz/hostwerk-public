@@ -106,57 +106,69 @@ Mit der `$schema`-Zeile gibt es in VS Code Vorschläge beim Tippen.
 
 ## 4. Das SDK – `Hostwerk.*`
 
-Als Erstes laden: `<script src="/ext-sdk.js"></script>`. Es lädt auch den Design-Baukasten.
+Zuerst laden: `<script src="/ext-sdk.js"></script>`. Das lädt auch den Design-Baukasten (siehe 5).
 
 ```js
-await Hostwerk.ready();                        // Farben, Sprache und Einstellungen sind da
-const list = await Hostwerk.services();        // [{ id, kind, name, state, port, cpu, memory, startedAt, extra }]
+const info = await Hostwerk.ready();           // Farben, Sprache, Einstellungen, Reiter, Kontext, Aktion sind da
+const list = await Hostwerk.services();       // [{ id, kind, name, state, port, cpu, memory, startedAt, extra }]
 const mc = await Hostwerk.minecraft.servers(); // nur Minecraft; extra.players, extra.tps
 const stats = await Hostwerk.minecraft.stats(id);
 
-Hostwerk.render('#list', Hostwerk.html`<b>${name}</b>`);   // jedes ${…} wird maskiert – sicher für Spielernamen
+Hostwerk.render('#list', Hostwerk.html`<b>${name}</b>`);   // jeder ${wert} wird maskiert – sicher für Spielernamen
 Hostwerk.t('summary', { n: 3 });                            // Text aus locales/<sprache>.json, {n} eingesetzt
 Hostwerk.fmt.bytes(123456); Hostwerk.fmt.duration(ms); Hostwerk.fmt.time(Date.now());
 
-await Hostwerk.service('web', 'apache').restart();  // fragt vorher nach (braucht control:services)
+await Hostwerk.service('web', 'apache').restart();  // fragt vorher (braucht control:services)
 await Hostwerk.minecraft.command(id, 'say Hi');     // fragt vorher (braucht command:minecraft)
+await Hostwerk.put('/mc/servers/' + id + '/properties', { motd: '§aHi' }); // Einstellung ändern (change:minecraft, fragt vorher) – SDK 2.2
+await Hostwerk.del('/knowledge/' + id + '/memory/' + eintrag);             // löschen (SDK 2.3)
+const ordner = await Hostwerk.pickFolder('Tresor wählen');                 // Ordner-Dialog, Pfad oder null (SDK 2.3)
 
-await Hostwerk.storage.set('pinned', 'srv1');       // speichert Hostwerk (braucht storage)
+await Hostwerk.storage.set('pinned', 'srv1');       // von Hostwerk gespeichert (braucht storage)
 const s = await Hostwerk.settings.get();            // Werte aus manifest.settings
-Hostwerk.settings.open();                           // öffnet den Einstellungen-Dialog
+Hostwerk.settings.open();                           // öffnet den Einstellungsdialog
 
-Hostwerk.on('service', (s) => …);    // ein Dienst hat seinen Zustand geändert
-Hostwerk.on('minecraft', (s) => …);  // Spieler kamen oder gingen
+Hostwerk.tab;                         // aktueller Reiter aus page.tabs (SDK 2.2); Hostwerk.setTab('codes') wechselt
+Hostwerk.context;                     // { kind, id }, wenn als Reiter auf einer Dienstseite gezeigt (contributes.tabs)
+Hostwerk.on('tab', (id) => …);        // anderer Reiter gewählt
+Hostwerk.on('action', (a) => …);      // { id, target } – deine contributes.action wurde gewählt
+Hostwerk.on('service', (s) => …);     // ein Dienst hat seinen Zustand geändert
+Hostwerk.on('minecraft', (s) => …);   // Spieler kamen/gingen
 Hostwerk.on('settings' | 'lang' | 'theme', …);
 
 Hostwerk.toast('Fertig', { kind: 'success' });
 Hostwerk.navigate('/mc/mein-server'); // einen Hostwerk-Bereich öffnen
-Hostwerk.openUrl('https://…');        // im Browser öffnen, nach Rückfrage
-Hostwerk.copy(text);                  // in die Zwischenablage kopieren (SDK 2.1)
+Hostwerk.openUrl('https://…');        // öffnet nach Rückfrage im Browser (seit SDK 2.3 auch obsidian://)
+Hostwerk.copy(text);                  // in die Zwischenablage (SDK 2.1)
 Hostwerk.get('/system/health');       // direkter Lesezugriff (gegen die Rechte geprüft)
 ```
 
-`Hostwerk.lang` (`de`/`en`), `Hostwerk.theme` (`dark`/`light`) und `Hostwerk.embed` (`page`/`widget`) sagen dir, wo
-du bist.
+`Hostwerk.lang` (`de`/`en`), `Hostwerk.theme` (`dark`/`light`) und `Hostwerk.embed` (`page`/`widget`) sagen dir, wo du
+gerade bist.
 
-## 5. Design-Baukasten
+## 5. Design-Baukasten – Hostwerks eigene Klassen
 
-Alle Klassen beginnen mit `hw-`, alle Farben sind CSS-Variablen, die Hostwerks Farbschema folgen:
+**Grundanforderung:** Eine Erweiterung sieht genauso aus wie Hostwerks eingebaute Bereiche. Deshalb liefert
+`/ext-sdk.css` Hostwerks **eigene** Klassen, erzeugt aus dem aktuellen Stylesheet der App. Künftige Design-Änderungen
+kommen von selbst in deiner Erweiterung an. Seitentitel, Beschreibung und Reiter (`page.tabs`) zeichnet Hostwerk selbst.
+Deine Seite beginnt direkt mit dem Inhalt.
 
 | Klassen | |
 |---|---|
-| Aufbau | `hw-row`, `hw-stack`, `hw-grid` (`--hw-min` setzen), `hw-grow`, `hw-sub`, `hw-muted`, `hw-small`, `hw-ellipsis` |
-| Karten | `hw-card`, `hw-card hw-flat`, `hw-card-head`, `hw-stat` mit `hw-k` / `hw-v` / `hw-s` |
-| Bedienung | `hw-btn` (+ `hw-primary`, `hw-danger`, `hw-ghost`, `hw-sm`), `hw-input`, `hw-select`, `hw-textarea`, `hw-label` |
-| Zustand | `hw-badge` (+ `hw-ok`, `hw-warn`, `hw-err`, `hw-info`, `hw-accent`), `hw-dot`, `hw-pill`, `hw-avatar`, `hw-bar` |
-| Listen | `hw-table`, `hw-list` |
-| Leer / Laden | `hw-empty`, `hw-skeleton`, `hw-spinner` |
+| Aufbau | `row`, `row-tight`, `stack`, `grid grid-2` / `grid-3` / `grid-4`, `grow`, `right`, `muted`, `small`, `tiny`, `ellipsis`, `mono` |
+| Karten | `card`, `card-pad`, `card-head` (mit `h3`), `card-body`, `stat` mit `k` / `v` / `s` |
+| Bedienung | `btn` (+ `primary`, `ghost`, `danger`, `sm`, `xs`), `input`, `select`, `label`, `seg` (Segment-Knöpfe), `switch` (`<label class="switch"><input type="checkbox"><span class="track"></span><span class="thumb"></span></label>`) |
+| Zustand | `badge` (+ `ok`, `warn`, `err`, `accent`), `callout` (+ `ok`/`warn`/`err`) mit `callout-body`, `callout-title`, `progress` |
+| Listen | `table`, `list-item`, `setting-row` (mit `txt`) |
+| Leer / Laden | `empty` (+ `h3`, `p`, `empty-action`), `hw-skeleton`, `spinner` |
 
-Farben: `--hw-bg`, `--hw-surface`, `--hw-surface-2/3`, `--hw-line`, `--hw-text`, `--hw-text-2`, `--hw-muted`,
-`--hw-accent`, `--hw-accent-soft`, `--hw-ok`, `--hw-warn`, `--hw-err`, `--hw-info` (+ `-soft`), `--hw-grad`, `--hw-font`.
+Farben: `--bg`, `--surface`, `--surface-2`, `--line`, `--line-2`, `--text`, `--text-2`, `--muted`, `--accent`,
+`--accent-soft`, `--accent-text`, `--ok`, `--warn`, `--err`, `--mono`. Die älteren `hw-…`-Klassen und `--hw-…`-Variablen
+funktionieren weiter – bestehende Erweiterungen gehen nicht kaputt.
 
-Regeln der Prüfung (Hinweise – im Katalog Fehler): keine festen Farben, keine eigenen Schriften, nichts über Hostwerk
-legen (`position: fixed`, riesiger `z-index`).
+Regeln der Prüfung (Hinweise – im Katalog Fehler): keine festen Farben, keine eigenen Schriften (`var(--mono)` ist in
+Ordnung), nichts über Hostwerk legen (`position: fixed`, riesiger `z-index`). Eine bewusste Ausnahme je Datei, mit
+Begründung: `/* hostwerk-allow: colors, fonts – Vorschau wie im Spiel */`.
 
 ## 6. Übersetzungen (Deutsch + Englisch)
 
@@ -186,11 +198,18 @@ Die Prüfung meldet fehlende Schlüssel und englische Texte, die noch deutsch au
 | `control:services` | Starten, stoppen, neu starten – **Hostwerk fragt jedes Mal** |
 | `command:minecraft` | Konsolenbefehle senden – fragt jedes Mal |
 | `run:tasks` | Aufgaben ausführen – fragt jedes Mal |
+| `change:minecraft` | server.properties, Spielregeln, Symbol, Plugins an/aus, Sicherungen – fragt jedes Mal (SDK 2.2) |
+| `change:databases` | Datenbank-Sicherungen anlegen – fragt jedes Mal (SDK 2.2) |
+| `change:mail` | Test-Mails in den Mail-Fänger, Mails als gelesen markieren – fragt jedes Mal (SDK 2.2) |
+| `read:knowledge` | Wissensgraph: Projekte, Graph, Bericht, Fragen, Gedächtnis, Claude-Status (SDK 2.3) |
+| `change:knowledge` | Wissensgraph bauen und abfragen, Ordner, Gedächtnis, Obsidian-Export – **ohne Rückfrage je Aufruf**, weil nur die eigenen Daten des Graphen betroffen sind (SDK 2.3) |
+| `connect:claude` | Markierten Claude-Abschnitt und Skill in Projekte schreiben/entfernen – fragt jedes Mal (SDK 2.3) |
 | `storage` | `Hostwerk.storage` (256 KB) |
 | `network` | `fetch` zu den Adressen in `network` |
 
-Nie möglich: Einstellungen, Passwörter, Dateien, Herunterfahren und alles, was nicht in der Liste steht. Nur anfordern,
-was du brauchst – Nutzer sehen die Liste vor der Installation.
+Nie möglich: Hostwerk-Einstellungen, Passwörter, beliebige Dateien, Herunterfahren und alles, was nicht in der Liste
+steht. Nur anfordern, was du brauchst – Nutzer sehen die Liste vor der Installation. Jeder Aufruf landet im
+Zugriffsprotokoll der Erweiterung (auch Ablehnungen).
 
 ## 8. Einstellungen, Speicher, Ereignisse
 
@@ -267,5 +286,8 @@ Abzeichen kann entzogen werden, wenn eine Erweiterung Code versteckt oder ohne H
 | [hostwerk-ext-player-ticker](https://github.com/Passimoritz/hostwerk-ext-player-ticker) | Minecraft-Daten, Köpfe, Rangliste, Speicher (Anheften), Einstellungen, Kachel, Live-Ereignisse |
 | [hostwerk-ext-status-wall](https://github.com/Passimoritz/hostwerk-ext-status-wall) | Alle Dienste, Starten/Neustart mit Rückfrage, Gruppen, Kachel mit Ring |
 | [hostwerk-ext-template](https://github.com/Passimoritz/hostwerk-ext-template) | Minimaler Start: Seite, Kachel, Einstellungen, Speicher, Übersetzungen, CI + Releases |
+| [hostwerk-ext-motd-studio](https://github.com/Passimoritz/hostwerk-ext-motd-studio) | Ändert Hostwerk selbst: eigener Reiter auf jeder Minecraft-Seite, Rechtsklick-Aktion, `change:minecraft` |
+| [hostwerk-ext-service-notes](https://github.com/Passimoritz/hostwerk-ext-service-notes) | Reiter auf allen Dienstseiten, Aktionen in der Schnellsuche, Speicher |
+| [hostwerk-ext-knowledge-graph](https://github.com/Passimoritz/hostwerk-ext-knowledge-graph) | Große Seite mit 6 Reitern, Zeichenfläche mit Listen-Alternative, Rechte mit und ohne Rückfrage (SDK 2.3) |
 
 ![Status-Wand in Hostwerk](img/status-wall-in-hostwerk.png)

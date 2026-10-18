@@ -4,18 +4,20 @@
  *
  * The page runs in a sandbox (own opaque origin, no access to Hostwerk's login). Everything goes through
  * postMessage to Hostwerk, which checks the extension's permissions and asks the user before anything changes.
- * The SDK also loads the Hostwerk design kit (/ext-sdk.css) and keeps colours, light/dark mode and language in sync –
- * so an extension looks like a part of Hostwerk without copying any colours.
+ * The SDK also loads the Hostwerk design kit (/ext-sdk.css) and keeps colours, light/dark mode and language in sync.
+ * Since 2.2 the kit is generated from Hostwerk's own stylesheet: use the same classes as Hostwerk (card, card-head,
+ * btn primary, tabs/tab, seg, callout, setting-row, switch, badge, list-item, empty, grid-2 …) and the page looks
+ * exactly like a built-in area. Hostwerk draws the page header and the tabs (manifest page.tabs) itself.
  */
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '2.1.0';
+  const VERSION = '2.3.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
   let messages = {};
-  const state = { lang: document.documentElement.lang || 'en', theme: 'dark', ext: null, app: null, settings: {}, embed: 'page' };
+  const state = { lang: document.documentElement.lang || 'en', theme: 'dark', ext: null, app: null, settings: {}, embed: 'page', tab: null, context: null, action: null };
 
   // Design kit first, so the page never flashes unstyled
   if (!document.querySelector('link[data-hostwerk-kit]')) {
@@ -39,7 +41,8 @@
     const root = document.documentElement;
     root.dataset.theme = state.theme;
     root.style.colorScheme = state.theme;
-    for (const [k, v] of Object.entries(t.vars || {})) if (/^--[\w-]+$/.test(k)) root.style.setProperty(`--hw-${k.slice(2)}`, String(v));
+    // Same variables as Hostwerk (for the generated kit) and the older --hw-* names (SDK 2.0/2.1 pages)
+    for (const [k, v] of Object.entries(t.vars || {})) if (/^--[\w-]+$/.test(k)) { root.style.setProperty(k, String(v)); root.style.setProperty(`--hw-${k.slice(2)}`, String(v)); }
     if (t.font) root.style.setProperty('--hw-font', t.font);
     if (t.mono) root.style.setProperty('--hw-mono', t.mono);
   }
@@ -63,14 +66,17 @@
     if (!m.hostwerk) return;
     if (m.id && pending.has(m.id)) { const p = pending.get(m.id); pending.delete(m.id); return m.error ? p.reject(new Error(m.error)) : p.resolve(m.data); }
     if (m.type === 'init') {
-      Object.assign(state, { ext: m.ext, app: m.app, settings: m.settings || {}, embed: m.embed || 'page' });
+      Object.assign(state, { ext: m.ext, app: m.app, settings: m.settings || {}, embed: m.embed || 'page', tab: m.tab || null, context: m.context || null, action: m.action || null });
       applyTheme(m.theme); applyLang(m.lang, m.messages);
       document.documentElement.dataset.embed = state.embed;
+      if (state.tab) document.documentElement.dataset.tab = state.tab;
       readyResolve(api.info());
     } else if (m.type === 'theme') { applyTheme(m.theme); emit('theme', state.theme); }
     else if (m.type === 'lang') { applyLang(m.lang, m.messages); emit('lang', state.lang); }
     else if (m.type === 'settings') { state.settings = m.settings || {}; emit('settings', state.settings); }
     else if (m.type === 'event') emit(m.event, m.data);
+    else if (m.type === 'tab') { state.tab = m.tab || null; document.documentElement.dataset.tab = state.tab || ''; emit('tab', state.tab); }
+    else if (m.type === 'action') { state.action = m.action || null; emit('action', state.action); }
   });
 
   let readyResolve;
@@ -129,15 +135,27 @@
     sdk: VERSION,
     /** Resolves once Hostwerk has sent theme, language and settings. */
     ready: () => ready,
-    info: () => ({ lang: state.lang, theme: state.theme, ext: state.ext, app: state.app, settings: state.settings, embed: state.embed }),
+    info: () => ({ lang: state.lang, theme: state.theme, ext: state.ext, app: state.app, settings: state.settings, embed: state.embed, tab: state.tab, context: state.context, action: state.action }),
     get lang() { return state.lang; },
     get theme() { return state.theme; },
     get embed() { return state.embed; },
+    /** Active tab (manifest page.tabs – Hostwerk draws the tab bar). Since SDK 2.2. */
+    get tab() { return state.tab; },
+    /** Switch the tab from inside the page. Since SDK 2.2. */
+    setTab: (id) => call('SET_TAB', '', { tab: String(id) }),
+    /** Where a contributed tab is shown: { kind: 'minecraft' | 'web' | 'db' | 'app' | 'game', id }. Since SDK 2.2. */
+    get context() { return state.context; },
     t, esc, html, render, raw: (s) => new Raw(String(s)), fmt,
     /** Read (GET) – only areas covered by the extension's read permissions. */
     get: (path) => call('GET', path),
-    /** Change (POST) – needs a control/command permission and the user's confirmation. */
+    /** Change (POST) – needs a control/command/change permission and the user's confirmation. */
     post: (path, body) => call('POST', path, body),
+    /** Change settings (PUT), e.g. server.properties – needs a change:… permission and the user's confirmation. Since SDK 2.2. */
+    put: (path, body) => call('PUT', path, body),
+    /** Delete (DELETE) – like post/put. Since SDK 2.3. */
+    del: (path) => call('DELETE', path),
+    /** Let the user choose a folder (native dialog in the desktop app). Resolves to the path or null. Since SDK 2.3. */
+    pickFolder: (title) => call('PICK_FOLDER', '', { title: title ? String(title) : '' }),
     services, service,
     minecraft: {
       servers: async () => (await services()).filter((s) => s.kind === 'minecraft'),
@@ -154,11 +172,11 @@
     },
     /** Values of the settings declared in manifest.settings (the form is drawn by Hostwerk). */
     settings: { get: () => Promise.resolve(state.settings), open: () => call('OPEN_SETTINGS') },
-    /** Events: 'service' (state change), 'minecraft' (players), 'theme', 'lang', 'settings'. Returns an unsubscribe function. */
+    /** Events: 'service' (state change), 'minecraft' (players), 'theme', 'lang', 'settings', 'tab', 'action'. Returns an unsubscribe function. */
     on(type, cb) {
       if (!listeners.has(type)) listeners.set(type, new Set());
       listeners.get(type).add(cb);
-      if (!['theme', 'lang', 'settings'].includes(type)) send({ method: 'SUBSCRIBE', body: { event: type } });
+      if (!['theme', 'lang', 'settings', 'tab', 'action'].includes(type)) send({ method: 'SUBSCRIBE', body: { event: type } });
       return () => listeners.get(type).delete(cb);
     },
     toast: (text, opts = {}) => call('TOAST', '', { text: String(text), kind: opts.kind || 'info' }),

@@ -106,10 +106,10 @@ The `$schema` line gives you auto-completion in VS Code.
 
 ## 4. The SDK – `Hostwerk.*`
 
-Load it first: `<script src="/ext-sdk.js"></script>`. It also loads the design kit.
+Load it first: `<script src="/ext-sdk.js"></script>`. It also loads the design kit (see 5).
 
 ```js
-await Hostwerk.ready();                       // colours, language and settings have arrived
+const info = await Hostwerk.ready();           // colours, language, settings, tab, context, action have arrived
 const list = await Hostwerk.services();       // [{ id, kind, name, state, port, cpu, memory, startedAt, extra }]
 const mc = await Hostwerk.minecraft.servers(); // Minecraft only; extra.players, extra.tps
 const stats = await Hostwerk.minecraft.stats(id);
@@ -120,18 +120,25 @@ Hostwerk.fmt.bytes(123456); Hostwerk.fmt.duration(ms); Hostwerk.fmt.time(Date.no
 
 await Hostwerk.service('web', 'apache').restart();  // asks the user first (needs control:services)
 await Hostwerk.minecraft.command(id, 'say Hi');     // asks first (needs command:minecraft)
+await Hostwerk.put('/mc/servers/' + id + '/properties', { motd: '§aHi' }); // change a setting (change:minecraft, asks first) – SDK 2.2
+await Hostwerk.del('/knowledge/' + id + '/memory/' + entry);               // delete (SDK 2.3)
+const dir = await Hostwerk.pickFolder('Choose vault');                     // native folder dialog, path or null (SDK 2.3)
 
 await Hostwerk.storage.set('pinned', 'srv1');       // kept by Hostwerk (needs storage)
 const s = await Hostwerk.settings.get();            // values of manifest.settings
 Hostwerk.settings.open();                           // opens the settings dialog
 
-Hostwerk.on('service', (s) => …);    // a service changed state
-Hostwerk.on('minecraft', (s) => …);  // players joined/left
+Hostwerk.tab;                         // current tab from page.tabs (SDK 2.2); Hostwerk.setTab('codes') switches it
+Hostwerk.context;                     // { kind, id } when shown as a tab on a service page (contributes.tabs)
+Hostwerk.on('tab', (id) => …);        // the user picked another tab
+Hostwerk.on('action', (a) => …);      // { id, target } – your contributes.action was chosen
+Hostwerk.on('service', (s) => …);     // a service changed state
+Hostwerk.on('minecraft', (s) => …);   // players joined/left
 Hostwerk.on('settings' | 'lang' | 'theme', …);
 
 Hostwerk.toast('Done', { kind: 'success' });
 Hostwerk.navigate('/mc/my-server');  // open a Hostwerk area
-Hostwerk.openUrl('https://…');       // opens in the browser after asking
+Hostwerk.openUrl('https://…');       // opens in the browser after asking (also obsidian:// since SDK 2.3)
 Hostwerk.copy(text);                 // copies to the clipboard (SDK 2.1)
 Hostwerk.get('/system/health');      // raw read access (checked against permissions)
 ```
@@ -139,24 +146,29 @@ Hostwerk.get('/system/health');      // raw read access (checked against permiss
 `Hostwerk.lang` (`de`/`en`), `Hostwerk.theme` (`dark`/`light`) and `Hostwerk.embed` (`page`/`widget`) tell you where
 you are.
 
-## 5. Design kit
+## 5. Design kit – Hostwerk's own classes
 
-All classes start with `hw-`, all colours are CSS variables that follow Hostwerk's theme:
+**Basic requirement:** an extension looks exactly like Hostwerk's built-in areas. That's why `/ext-sdk.css` delivers
+Hostwerk's **own** classes, generated from the current app stylesheet. Future design changes reach your extension
+automatically. Hostwerk draws the page title, the description and the tabs (`page.tabs`) itself. Your page starts
+directly with the content.
 
 | Classes | |
 |---|---|
-| Layout | `hw-row`, `hw-stack`, `hw-grid` (set `--hw-min`), `hw-grow`, `hw-sub`, `hw-muted`, `hw-small`, `hw-ellipsis` |
-| Cards | `hw-card`, `hw-card hw-flat`, `hw-card-head`, `hw-stat` with `hw-k` / `hw-v` / `hw-s` |
-| Controls | `hw-btn` (+ `hw-primary`, `hw-danger`, `hw-ghost`, `hw-sm`), `hw-input`, `hw-select`, `hw-textarea`, `hw-label` |
-| State | `hw-badge` (+ `hw-ok`, `hw-warn`, `hw-err`, `hw-info`, `hw-accent`), `hw-dot`, `hw-pill`, `hw-avatar`, `hw-bar` |
-| Lists | `hw-table`, `hw-list` |
-| Empty / loading | `hw-empty`, `hw-skeleton`, `hw-spinner` |
+| Layout | `row`, `row-tight`, `stack`, `grid grid-2` / `grid-3` / `grid-4`, `grow`, `right`, `muted`, `small`, `tiny`, `ellipsis`, `mono` |
+| Cards | `card`, `card-pad`, `card-head` (with `h3`), `card-body`, `stat` with `k` / `v` / `s` |
+| Controls | `btn` (+ `primary`, `ghost`, `danger`, `sm`, `xs`), `input`, `select`, `label`, `seg` (segment buttons), `switch` (`<label class="switch"><input type="checkbox"><span class="track"></span><span class="thumb"></span></label>`) |
+| State | `badge` (+ `ok`, `warn`, `err`, `accent`), `callout` (+ `ok`/`warn`/`err`) with `callout-body`, `callout-title`, `progress` |
+| Lists | `table`, `list-item`, `setting-row` (with `txt`) |
+| Empty / loading | `empty` (+ `h3`, `p`, `empty-action`), `hw-skeleton`, `spinner` |
 
-Colours: `--hw-bg`, `--hw-surface`, `--hw-surface-2/3`, `--hw-line`, `--hw-text`, `--hw-text-2`, `--hw-muted`,
-`--hw-accent`, `--hw-accent-soft`, `--hw-ok`, `--hw-warn`, `--hw-err`, `--hw-info` (+ `-soft`), `--hw-grad`, `--hw-font`.
+Colours: `--bg`, `--surface`, `--surface-2`, `--line`, `--line-2`, `--text`, `--text-2`, `--muted`, `--accent`,
+`--accent-soft`, `--accent-text`, `--ok`, `--warn`, `--err`, `--mono`. The older `hw-…` classes and `--hw-…`
+variables still work, so existing extensions don't break.
 
-Rules the check enforces (warnings – errors in the catalog): no fixed colours, no own fonts, nothing laid over
-Hostwerk (`position: fixed`, huge `z-index`).
+Rules the check enforces (warnings – errors in the catalog): no fixed colours, no own fonts (`var(--mono)` is fine),
+nothing laid over Hostwerk (`position: fixed`, huge `z-index`). A deliberate exception per file, with a reason:
+`/* hostwerk-allow: colors, fonts – preview like in the game */`.
 
 ## 6. Translations (German + English)
 
@@ -186,11 +198,17 @@ The check reports missing keys and English texts that still look German. Manifes
 | `control:services` | Start, stop, restart – **Hostwerk asks every time** |
 | `command:minecraft` | Send console commands – asks every time |
 | `run:tasks` | Run scheduled tasks – asks every time |
+| `change:minecraft` | server.properties, game rules, icon, plugins on/off, backups – asks every time (SDK 2.2) |
+| `change:databases` | Create database backups – asks every time (SDK 2.2) |
+| `change:mail` | Send test mails to the mail catcher, mark mails as read – asks every time (SDK 2.2) |
+| `read:knowledge` | Knowledge graph: projects, graph, report, questions, memory, Claude status (SDK 2.3) |
+| `change:knowledge` | Build and query the knowledge graph, folders, memory, Obsidian export – **no prompt per call**, because it only touches the graph's own data (SDK 2.3) |
+| `connect:claude` | Write/remove the marked Claude section and skill in projects – asks every time (SDK 2.3) |
 | `storage` | `Hostwerk.storage` (256 KB) |
 | `network` | `fetch` to the origins in `network` |
 
-Never possible: settings, passwords, files, shutdown, anything not listed. Ask only for what you need – users see the
-list before they install.
+Never possible: Hostwerk settings, passwords, arbitrary files, shutdown, anything not listed. Ask only for what you
+need – users see the list before they install. Every call is recorded in the extension's access log (also refusals).
 
 ## 8. Settings, storage, events
 
@@ -264,5 +282,8 @@ extension hides code or collects data without saying so.
 | [hostwerk-ext-player-ticker](https://github.com/Passimoritz/hostwerk-ext-player-ticker) | Minecraft data, heads, ranking, storage (pin), settings, tile, live events |
 | [hostwerk-ext-status-wall](https://github.com/Passimoritz/hostwerk-ext-status-wall) | All services, start/restart with confirmation, grouping, tile with ring |
 | [hostwerk-ext-template](https://github.com/Passimoritz/hostwerk-ext-template) | Minimal start: page, tile, settings, storage, translations, CI + releases |
+| [hostwerk-ext-motd-studio](https://github.com/Passimoritz/hostwerk-ext-motd-studio) | Changes Hostwerk itself: own tab on every Minecraft page, right-click action, `change:minecraft` |
+| [hostwerk-ext-service-notes](https://github.com/Passimoritz/hostwerk-ext-service-notes) | Tabs on all service pages, actions in the quick search, storage |
+| [hostwerk-ext-knowledge-graph](https://github.com/Passimoritz/hostwerk-ext-knowledge-graph) | Large page with 6 tabs, canvas drawing with list alternative, quiet and confirmed permissions (SDK 2.3) |
 
 ![Status Wall inside Hostwerk](img/status-wall-in-hostwerk.png)
