@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "id": "player-ticker",
+    "name": {
+      "de": "Spieler-Ticker",
+      "en": "Player Ticker"
+    },
+    "description": {
+      "de": "Wer ist gerade auf deinen Minecraft-Servern? Live-Liste mit Köpfen, TPS und Spielzeit-Rangliste – schön für Streams und Discord-Bildschirme.",
+      "en": "Who is on your Minecraft servers right now? Live list with heads, TPS and a playtime ranking – great for streams and Discord screens."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": true,
+    "service": false,
+    "permissions": [
+      "read:services",
+      "read:minecraft",
+      "storage"
+    ],
+    "hostwerk": ">=2.9.0",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-player-ticker",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-ticker/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-player-ticker/releases/download/v1.0.0/player-ticker-1.0.0.zip",
+    "sha256": "d77eab33c1f78f3c6e580220e1f412619268227f1166dd545a07b07446d2a12b",
+    "score": 100,
+    "released": "2026-10-18"
+  },
+  {
+    "id": "status-wall",
+    "name": {
+      "de": "Status-Wand",
+      "en": "Status Wall"
+    },
+    "description": {
+      "de": "Alle Dienste groß und farbig auf einen Blick – ideal für einen zweiten Bildschirm oder das Tablet an der Wand. Ein Klick startet Gestopptes neu (mit Rückfrage).",
+      "en": "All services big and colourful at a glance – ideal for a second screen or a tablet on the wall. One click restarts what stopped (asks first)."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": true,
+    "service": false,
+    "permissions": [
+      "read:services",
+      "control:services"
+    ],
+    "hostwerk": ">=2.9.0",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-status-wall",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-status-wall/releases/download/v1.0.0/status-wall-1.0.0.zip",
+    "sha256": "e24854cfd200d5670d963b70cbbffedb49e81da1e5d34bec65af0b94a37151c8",
+    "score": 100,
+    "released": "2026-10-18"
+  }
+]
