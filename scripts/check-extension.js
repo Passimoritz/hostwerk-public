@@ -61,7 +61,8 @@ const field = (body, ...labels) => {
   const r = checkPackage(root, { strict: true });
   const m = r.manifest || {};
   if (!r.ok) out({ ok: false, id: m.id, message: `The check found ${r.errors.length} problem(s):\n${r.errors.map((e) => `- [${e.code}] ${e.msg}`).join('\n')}`, errors: r.errors });
-  if (RESERVED.has(m.id)) out({ ok: false, message: `The id "${m.id}" is reserved for an official extension.` });
+  const reserved = RESERVED.has(m.id);
+  if (reserved && !DRY) out({ ok: false, message: `The id "${m.id}" is reserved for an official extension.` });
   const catalogFile = path.join('catalog', 'community.json');
   const list = fs.existsSync(catalogFile) ? JSON.parse(fs.readFileSync(catalogFile, 'utf8')) : [];
   const prev = list.find((x) => x.id === m.id);
@@ -73,7 +74,7 @@ const field = (body, ...labels) => {
   const bad = files.filter((f) => BAD.test(f));
   const base = { id: m.id, version, score: r.score, warnings: r.warnings };
   if (m.command || bad.length) out({ ok: true, auto: false, ...base, message: `Needs a review by a person: ${m.command ? 'the extension starts a service (a program on the PC)' : ''}${m.command && bad.length ? ' and ' : ''}${bad.length ? `contains executable files (${bad.slice(0, 5).join(', ')})` : ''}.` });
-  if (DRY) out({ ok: true, auto: true, dryRun: true, ...base, message: `Check passed (${r.score}/100) – would be added as "${text(m.name, 'en')}" ${version}.` });
+  if (DRY) out({ ok: true, auto: true, dryRun: true, ...base, message: `Check passed (${r.score}/100) – would be added as "${text(m.name, 'en')}" ${version}.${reserved ? ` Note: the id "${m.id}" is reserved – choose your own id before submitting.` : ''}` });
 
   // Add: keep a checked copy in this repository (the original link need not stay online)
   fs.mkdirSync('packages', { recursive: true });
