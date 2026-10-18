@@ -23,7 +23,13 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar/releases/download/v1.0.0/backup-calendar-1.0.0.zip",
     "sha256": "317434f860d52452703488d94d7c20390740fb262573538f08b20fa1ce327a28",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   },
   {
     "id": "mail-stats",
@@ -49,7 +55,13 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-mail-stats/releases/download/v1.0.0/mail-stats-1.0.0.zip",
     "sha256": "663b17a00d5cbc9f8e6c56559e7631a7d40013c1540a5195d91d612ba9429943",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   },
   {
     "id": "player-leaderboard",
@@ -75,7 +87,13 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-player-leaderboard/releases/download/v1.0.0/player-leaderboard-1.0.0.zip",
     "sha256": "2a3eab0f9c5b5b66caf5a5dee614d03ce6b28bb574bef68033c709ad9dfbf7b7",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   },
   {
     "id": "player-ticker",
@@ -103,7 +121,13 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-player-ticker/releases/download/v1.0.1/player-ticker-1.0.1.zip",
     "sha256": "74326fc1e3a9205716159d64b03d78e4f725ece5db767ec6a5ceffcf38807717",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   },
   {
     "id": "port-map",
@@ -129,7 +153,13 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-port-map/releases/download/v1.0.0/port-map-1.0.0.zip",
     "sha256": "3f96bcca3219e1164f44c7fdc81dc24a52963ac621adb2b1ce48f17e2fddf924",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   },
   {
     "id": "quick-tasks",
@@ -157,7 +187,13 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-quick-tasks/releases/download/v1.0.0/quick-tasks-1.0.0.zip",
     "sha256": "6874a3111ce025379eb09ed2b456f838c8808604e46078fdf614c0006b5e7d95",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   },
   {
     "id": "server-card",
@@ -184,7 +220,13 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-server-card/releases/download/v1.0.0/server-card-1.0.0.zip",
     "sha256": "fc294d0be820bc5cda238973e5c7df500131afd8bd7bc563b1aa9add13d4b612",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   },
   {
     "id": "status-wall",
@@ -211,6 +253,12 @@
     "download": "https://github.com/Passimoritz/hostwerk-ext-status-wall/releases/download/v1.0.1/status-wall-1.0.1.zip",
     "sha256": "c9bac124f637a992f2559dce1375604892c6e25e81cd79250c78da0b2f65070f",
     "score": 100,
-    "released": "2026-10-18"
+    "released": "2026-10-18",
+    "compat": {
+      "ok": true,
+      "checked": "2026-10-18",
+      "sdk": "2.3.0",
+      "problems": []
+    }
   }
 ]
