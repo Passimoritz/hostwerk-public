@@ -1,0 +1,41 @@
+name: Extension runtime
+
+# Every 5 days (and when the catalog or the SDK changes): open every page, tile and tab of every catalog extension in a
+# real browser – inside a host that speaks Hostwerk's bridge protocol – in German/dark and English/light. Catches what
+# the static check can't see: script errors, empty pages, missing files, requests without permission.
+# Problems go into one issue labelled "runtime".
+on:
+  schedule:
+    - cron: '17 6 */5 * *'
+  push:
+    branches: [main]
+    paths: ['sdk/**', 'catalog/extensions.json', 'catalog/community.json', 'scripts/check-extension-runtime.js']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Browser driver
+        run: npm install --no-save --no-audit --no-fund puppeteer-core@25.14.0
+      - name: Open every extension
+        id: check
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/check-extension-runtime.js
+      - name: Report problems as an issue
+        if: always() && steps.check.outputs.failing != '' && steps.check.outputs.failing != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create runtime --color B60205 --description "Extension breaks when opened" 2>/dev/null || true
+          num=$(gh issue list --label runtime --state open --json number --jq '.[0].number')
+          if [ -n "$num" ]; then gh issue comment "$num" --body-file runtime-report.md; else gh issue create --title "Extensions break when opened" --label runtime --body-file runtime-report.md; fi
