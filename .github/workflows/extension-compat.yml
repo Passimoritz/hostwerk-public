@@ -1,0 +1,42 @@
+name: Extension compatibility
+
+# Every 5 days: check every catalog extension (official + community) against the current SDK.
+# Incompatible entries are marked (compat.ok = false) – Hostwerk then shows "doesn't fit the current version"
+# instead of installing something broken – and one issue labelled "compat" lists the problems.
+on:
+  schedule:
+    - cron: '41 5 */5 * *'
+  push:
+    branches: [main]
+    paths: ['sdk/**', 'scripts/check-extension-compat.js']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  compat:
+    runs-on: ubuntu-latest
+    concurrency: catalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Check all catalog extensions
+        id: check
+        run: node scripts/check-extension-compat.js
+      - name: Commit results
+        run: |
+          git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
+          git add catalog/extensions.json catalog/community.json
+          git diff --cached --quiet || (git commit -m "Extension compatibility checked" && git push)
+      - name: Report problems as an issue
+        if: steps.check.outputs.failing != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create compat --color D93F0B --description "Extension no longer fits the SDK" 2>/dev/null || true
+          num=$(gh issue list --label compat --state open --json number --jq '.[0].number')
+          if [ -n "$num" ]; then gh issue comment "$num" --body-file compat-report.md; else gh issue create --title "Extensions incompatible with the current SDK" --label compat --body-file compat-report.md; fi
