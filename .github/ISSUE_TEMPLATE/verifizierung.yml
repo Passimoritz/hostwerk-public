@@ -1,0 +1,38 @@
+name: Als Entwickler verifizieren lassen
+description: Für Leute, die schon eine Erweiterung im Community-Katalog haben und das Abzeichen „Verifizierter Entwickler“ möchten.
+title: "Verifizierung: @"
+labels: ["verifizierung"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Verifizierte Entwickler bekommen im Hostwerk-Marktplatz ein eigenes Abzeichen an allen ihren Erweiterungen.
+        Das Projekt prüft dafür von Hand, wer hinter dem Konto steht. Die automatische Prüfung jedes Pakets bleibt trotzdem bestehen.
+  - type: input
+    id: erweiterungen
+    attributes:
+      label: Deine Erweiterungen im Katalog
+      description: Kennungen, kommagetrennt (z. B. „status-wand, spieler-ticker“). Mindestens eine muss schon aufgenommen sein.
+    validations:
+      required: true
+  - type: textarea
+    id: wer
+    attributes:
+      label: Wer bist du?
+      description: Ein, zwei Sätze – Name oder Projekt, Webseite, wofür du Hostwerk nutzt. Kein Ausweis nötig.
+    validations:
+      required: true
+  - type: input
+    id: kontakt
+    attributes:
+      label: Kontakt für Rückfragen (optional)
+      description: E-Mail oder Discord – wird nicht veröffentlicht, wenn du es nicht hier hineinschreibst. Lieber leer lassen und Rückfragen hier im Issue beantworten.
+  - type: checkboxes
+    id: regeln
+    attributes:
+      label: Regeln
+      options:
+        - label: Meine Erweiterungen enthalten keinen versteckten oder nachgeladenen Code und sammeln keine Daten ohne Hinweis.
+          required: true
+        - label: Ich weiß, dass das Abzeichen entzogen werden kann, wenn eine Erweiterung gegen diese Regeln verstößt.
+          required: true

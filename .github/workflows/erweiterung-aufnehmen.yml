@@ -1,0 +1,62 @@
+name: Erweiterung aufnehmen
+
+# Eingereichte Erweiterungen (Issue mit dem Formular „Erweiterung einreichen“) automatisch prüfen und in den
+# Community-Katalog aufnehmen. Reine Seiten werden sofort aufgenommen; Dienste und ausführbare Dateien bekommen das
+# Label „braucht-pruefung“ und warten auf eine Freigabe von Hand (Label „freigegeben“ setzen → wird aufgenommen).
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  pruefen:
+    if: contains(github.event.issue.labels.*.name, 'erweiterung')
+    runs-on: ubuntu-latest
+    concurrency: katalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Paket prüfen
+        id: check
+        env:
+          BODY: ${{ github.event.issue.body }}
+          WHO: ${{ github.event.issue.user.login }}
+        run: |
+          printf '%s' "$BODY" > /tmp/body.md
+          node scripts/erweiterung-pruefen.js /tmp/body.md "$WHO" > /tmp/ergebnis.json
+          cat /tmp/ergebnis.json
+      - name: Aufnehmen oder Rückmeldung
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NR: ${{ github.event.issue.number }}
+          FREIGEGEBEN: ${{ contains(github.event.issue.labels.*.name, 'freigegeben') }}
+        run: |
+          OK=$(node -e "console.log(require('/tmp/ergebnis.json').ok)")
+          AUTO=$(node -e "console.log(require('/tmp/ergebnis.json').auto)")
+          MSG=$(node -e "console.log(require('/tmp/ergebnis.json').message)")
+          if [ "$OK" != "true" ]; then
+            gh issue comment "$NR" --body "❌ $MSG"$'\n\n'"Bitte das Issue bearbeiten (Link oder Paket korrigieren) – die Prüfung läuft dann erneut."
+            gh issue edit "$NR" --add-label abgelehnt || true
+            exit 0
+          fi
+          if [ "$AUTO" != "true" ] && [ "$FREIGEGEBEN" != "true" ]; then
+            gh label create braucht-pruefung --color FBCA04 2>/dev/null || true
+            gh issue edit "$NR" --add-label braucht-pruefung
+            gh issue comment "$NR" --body "⏳ $MSG Sobald jemand das Paket angesehen hat, wird es mit dem Label „freigegeben“ aufgenommen."
+            exit 0
+          fi
+          # Von Hand freigegeben → im Katalog als „von Hand geprüft“ markieren
+          if [ "$FREIGEGEBEN" = "true" ]; then
+            node -e 'const fs=require("fs");const f="katalog/community.json";const d=JSON.parse(fs.readFileSync(f,"utf8"));const id=require("/tmp/ergebnis.json").id;const list=Array.isArray(d)?d:d.items;for(const x of list) if(x.id===id) x.reviewed=true;fs.writeFileSync(f,JSON.stringify(d,null,2));'
+          fi
+          git config user.name "hostwerk-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A katalog pakete
+          git diff --cached --quiet || (git commit -m "Katalog: $(node -e "const r=require('/tmp/ergebnis.json');console.log(r.id+' '+r.version)")" && git push)
+          gh issue comment "$NR" --body "✅ $MSG"
+          gh issue close "$NR"
