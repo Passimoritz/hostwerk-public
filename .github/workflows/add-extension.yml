@@ -1,0 +1,83 @@
+name: Add extension
+
+# Submitted extensions (issue form "Submit an extension") are checked with sdk/check.js --strict and added to the
+# community catalog. Pages/tiles are added at once; services and executables get the label "needs-review" and wait
+# for a person (label "approved" → added as "reviewed").
+# workflow_dispatch: test any package without changing anything (dry run).
+on:
+  issues:
+    types: [opened, edited, labeled]
+  workflow_dispatch:
+    inputs:
+      url:
+        description: https link to a package ZIP (dry run – nothing is committed)
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  dry-run:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Check package (dry run)
+        env:
+          URL: ${{ inputs.url }}
+        run: |
+          node scripts/check-extension.js --url "$URL" --dry-run > /tmp/result.json
+          cat /tmp/result.json
+          node -e "const r=require('/tmp/result.json'); console.log('\n' + r.message); process.exit(r.ok ? 0 : 1)"
+
+  check:
+    if: github.event_name == 'issues' && (contains(github.event.issue.labels.*.name, 'extension') || contains(github.event.issue.labels.*.name, 'erweiterung'))
+    runs-on: ubuntu-latest
+    concurrency: catalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Check package
+        env:
+          BODY: ${{ github.event.issue.body }}
+          WHO: ${{ github.event.issue.user.login }}
+        run: |
+          printf '%s' "$BODY" > /tmp/body.md
+          node scripts/check-extension.js /tmp/body.md "$WHO" > /tmp/result.json
+          cat /tmp/result.json
+      - name: Add or answer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NR: ${{ github.event.issue.number }}
+          APPROVED: ${{ contains(github.event.issue.labels.*.name, 'approved') }}
+        run: |
+          OK=$(node -e "console.log(require('/tmp/result.json').ok)")
+          AUTO=$(node -e "console.log(require('/tmp/result.json').auto)")
+          MSG=$(node -e "console.log(require('/tmp/result.json').message)")
+          if [ "$OK" != "true" ]; then
+            gh label create rejected --color D73A4A 2>/dev/null || true
+            gh issue comment "$NR" --body "❌ $MSG"$'\n\n'"Please edit the issue (fix the link or the package) – the check runs again. Run it yourself first: \`node check.js . --strict\` (sdk/check.js)."
+            gh issue edit "$NR" --add-label rejected || true
+            exit 0
+          fi
+          if [ "$AUTO" != "true" ] && [ "$APPROVED" != "true" ]; then
+            gh label create needs-review --color FBCA04 2>/dev/null || true
+            gh issue edit "$NR" --add-label needs-review
+            gh issue comment "$NR" --body "⏳ $MSG As soon as someone has looked at the package, it is added with the label \"approved\"."
+            exit 0
+          fi
+          if [ "$APPROVED" = "true" ]; then
+            node -e 'const fs=require("fs");const f="catalog/community.json";const d=JSON.parse(fs.readFileSync(f,"utf8"));const id=require("/tmp/result.json").id;for(const x of d) if(x.id===id){x.reviewed=true;x.service=x.service||false;}fs.writeFileSync(f,JSON.stringify(d,null,2)+"\n");fs.writeFileSync("katalog/community.json",JSON.stringify(d,null,2)+"\n");'
+          fi
+          git config user.name "hostwerk-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A catalog packages katalog
+          git diff --cached --quiet || (git commit -m "Catalog: $(node -e "const r=require('/tmp/result.json');console.log(r.id+' '+r.version)")" && git push)
+          gh issue comment "$NR" --body "✅ $MSG"
+          gh issue close "$NR"

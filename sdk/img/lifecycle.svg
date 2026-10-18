@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" font-family="Segoe UI, system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b6cff"/><stop offset=".5" stop-color="#5f7bff"/><stop offset="1" stop-color="#19c7a8"/></linearGradient>
+  </defs>
+  <rect width="960" height="250" rx="22" fill="#0a0c11"/>
+  <text x="34" y="46" fill="#e7e9f0" font-size="21" font-weight="700">From idea to the marketplace</text>
+  <text x="34" y="70" fill="#7d859b" font-size="13.5">The same check runs on your PC, in your repository and in the catalog – no surprises at the end.</text>
+  <rect x="70" y="140" width="820" height="6" rx="3" fill="url(#acc)" opacity=".55"/>
+  <g font-size="13" text-anchor="middle">
+    <g transform="translate(90 0)"><circle cx="0" cy="143" r="26" fill="#12151d" stroke="#8b6cff" stroke-width="2.5"/><text y="149" fill="#e7e9f0" font-size="17" font-weight="700">1</text><text y="196" fill="#e7e9f0" font-weight="700">Build</text><text y="216" fill="#7d859b" font-size="12">template or “Build own”</text></g>
+    <g transform="translate(254 0)"><circle cx="0" cy="143" r="26" fill="#12151d" stroke="#7a72ff" stroke-width="2.5"/><text y="149" fill="#e7e9f0" font-size="17" font-weight="700">2</text><text y="196" fill="#e7e9f0" font-weight="700">Try it</text><text y="216" fill="#7d859b" font-size="12">shows up in Hostwerk</text></g>
+    <g transform="translate(418 0)"><circle cx="0" cy="143" r="26" fill="#12151d" stroke="#6680ff" stroke-width="2.5"/><text y="149" fill="#e7e9f0" font-size="17" font-weight="700">3</text><text y="196" fill="#e7e9f0" font-weight="700">Check</text><text y="216" fill="#7d859b" font-size="12">node check.js . --strict</text></g>
+    <g transform="translate(582 0)"><circle cx="0" cy="143" r="26" fill="#12151d" stroke="#3f9bd8" stroke-width="2.5"/><text y="149" fill="#e7e9f0" font-size="17" font-weight="700">4</text><text y="196" fill="#e7e9f0" font-weight="700">Release</text><text y="216" fill="#7d859b" font-size="12">tag v1.0.0 → ZIP + SHA-256</text></g>
+    <g transform="translate(746 0)"><circle cx="0" cy="143" r="26" fill="#12151d" stroke="#22b5ad" stroke-width="2.5"/><text y="149" fill="#e7e9f0" font-size="17" font-weight="700">5</text><text y="196" fill="#e7e9f0" font-weight="700">Submit</text><text y="216" fill="#7d859b" font-size="12">form → automatic check</text></g>
+    <g transform="translate(890 0)"><circle cx="0" cy="143" r="26" fill="#19c7a8"/><text y="149" fill="#0a0c11" font-size="17" font-weight="700">✓</text><text y="196" fill="#e7e9f0" font-weight="700">Marketplace</text><text y="216" fill="#7d859b" font-size="12">install with one click</text></g>
+  </g>
+</svg>

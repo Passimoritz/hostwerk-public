@@ -1,0 +1,34 @@
+name: Extension catalog
+
+# Builds catalog/extensions.json (official extensions) from the latest release of every repository in
+# catalog/extension-repos.json – daily and on demand. New releases reach every Hostwerk without a manual step;
+# a release that fails the check keeps the previous entry.
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  push:
+    branches: [main]
+    paths: ['catalog/extension-repos.json', 'sdk/check.js', 'scripts/build-extension-catalog.js']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    concurrency: catalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Build catalog from releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/build-extension-catalog.js
+      - name: Commit
+        run: |
+          git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
+          git add catalog/extensions.json
+          git diff --cached --quiet || (git commit -m "Extension catalog updated" && git push)

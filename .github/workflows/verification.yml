@@ -1,0 +1,84 @@
+name: Verify developers
+
+# Requests "Get verified as a developer" (label "verification"). A person decides:
+#   label "verified" → the requester is added to catalog/verified.json, issue closed
+#   label "declined" → friendly answer, issue closed
+#   label "revoked"  → (on any issue about the person) the entry is removed
+# When opened, the action only checks that the named extensions really were submitted by this account.
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  verification:
+    if: contains(github.event.issue.labels.*.name, 'verification') || contains(github.event.issue.labels.*.name, 'verifizierung')
+    runs-on: ubuntu-latest
+    concurrency: catalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Pre-check request or apply decision
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NR: ${{ github.event.issue.number }}
+          WHO: ${{ github.event.issue.user.login }}
+          ACTION: ${{ github.event.action }}
+          LABEL: ${{ github.event.label.name }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            const who = process.env.WHO.toLowerCase();
+            const community = JSON.parse(fs.readFileSync("catalog/community.json", "utf8"));
+            const mine = community.filter((x) => String(x.submitter || "").toLowerCase() === who);
+            fs.writeFileSync("/tmp/mine.txt", mine.map((x) => x.id).join(", "));
+          '
+          MINE=$(cat /tmp/mine.txt)
+          git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
+          save() {
+            cp catalog/verified.json katalog/verifiziert.json 2>/dev/null || true
+            git add catalog/verified.json katalog
+            git diff --cached --quiet || (git commit -m "$1" && git push)
+          }
+          if [ "$ACTION" = "opened" ]; then
+            if [ -z "$MINE" ]; then
+              gh issue comment "$NR" --body "Thanks! There is no extension by @$WHO in the community catalog yet. Please submit one first – then you can apply again."
+              gh issue close "$NR"
+            else
+              gh label create needs-review --color FBCA04 2>/dev/null || true
+              gh issue edit "$NR" --add-label needs-review
+              gh issue comment "$NR" --body "Thanks! Extensions by @$WHO found: $MINE. The project will look at the request and answer here."
+            fi
+            exit 0
+          fi
+          if [ "$LABEL" = "verified" ]; then
+            node -e '
+              const fs = require("fs"); const f = "catalog/verified.json";
+              const d = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : {};
+              d.developers = d.developers || d.entwickler || []; delete d.entwickler;
+              const who = process.env.WHO;
+              if (!d.developers.some((x) => String(x.login).toLowerCase() === who.toLowerCase())) d.developers.push({ login: who, since: new Date().toISOString().slice(0, 10), issue: Number(process.env.NR) });
+              fs.writeFileSync(f, JSON.stringify(d, null, 2) + "\n");
+            '
+            save "Verified: @$WHO"
+            gh issue comment "$NR" --body "✅ @$WHO is now a **verified developer** – the badge shows in Hostwerk the next time the marketplace loads."
+            gh issue close "$NR"
+          elif [ "$LABEL" = "declined" ]; then
+            gh issue comment "$NR" --body "Thanks for the request – not this time. The reasons are in the comment above; you can apply again later."
+            gh issue close "$NR"
+          elif [ "$LABEL" = "revoked" ]; then
+            node -e '
+              const fs = require("fs"); const f = "catalog/verified.json";
+              if (!fs.existsSync(f)) process.exit(0);
+              const d = JSON.parse(fs.readFileSync(f, "utf8"));
+              d.developers = (d.developers || d.entwickler || []).filter((x) => String(x.login).toLowerCase() !== process.env.WHO.toLowerCase()); delete d.entwickler;
+              fs.writeFileSync(f, JSON.stringify(d, null, 2) + "\n");
+            '
+            save "Revoked: @$WHO"
+            gh issue comment "$NR" --body "The badge of @$WHO was revoked."
+          fi

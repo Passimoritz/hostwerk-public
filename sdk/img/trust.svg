@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 270" font-family="Segoe UI, system-ui, -apple-system, sans-serif">
+  <rect width="960" height="270" rx="22" fill="#0a0c11"/>
+  <text x="34" y="46" fill="#e7e9f0" font-size="21" font-weight="700">Trust levels in the marketplace</text>
+  <text x="34" y="70" fill="#7d859b" font-size="13.5">Every package is checked and pinned by checksum. The badge says who stands behind it.</text>
+  <g font-size="13">
+    <g transform="translate(34 94)">
+      <rect width="168" height="150" rx="14" fill="#12151d" stroke="#7c5cff" stroke-opacity=".6"/>
+      <rect x="16" y="16" width="30" height="30" rx="9" fill="#7c5cff"/><text x="31" y="37" fill="#fff" font-size="16" text-anchor="middle">★</text>
+      <text x="16" y="72" fill="#e7e9f0" font-weight="700">Official</text>
+      <g fill="#7c5cff"><rect x="16" y="82" width="22" height="5" rx="2.5"/><rect x="42" y="82" width="22" height="5" rx="2.5"/><rect x="68" y="82" width="22" height="5" rx="2.5"/><rect x="94" y="82" width="22" height="5" rx="2.5"/><rect x="120" y="82" width="22" height="5" rx="2.5"/></g>
+      <text x="16" y="110" fill="#7d859b" font-size="12">By Hostwerk, own</text><text x="16" y="126" fill="#7d859b" font-size="12">repository, checksum</text>
+    </g>
+    <g transform="translate(218 94)">
+      <rect width="168" height="150" rx="14" fill="#12151d" stroke="#0ea5e9" stroke-opacity=".6"/>
+      <rect x="16" y="16" width="30" height="30" rx="9" fill="#0ea5e9"/><text x="31" y="37" fill="#fff" font-size="16" text-anchor="middle">✓</text>
+      <text x="16" y="72" fill="#e7e9f0" font-weight="700">Verified developer</text>
+      <g fill="#0ea5e9"><rect x="16" y="82" width="22" height="5" rx="2.5"/><rect x="42" y="82" width="22" height="5" rx="2.5"/><rect x="68" y="82" width="22" height="5" rx="2.5"/><rect x="94" y="82" width="22" height="5" rx="2.5"/></g><rect x="120" y="82" width="22" height="5" rx="2.5" fill="#232838"/>
+      <text x="16" y="110" fill="#7d859b" font-size="12">Person checked by</text><text x="16" y="126" fill="#7d859b" font-size="12">the project</text>
+    </g>
+    <g transform="translate(402 94)">
+      <rect width="168" height="150" rx="14" fill="#12151d" stroke="#22c55e" stroke-opacity=".6"/>
+      <rect x="16" y="16" width="30" height="30" rx="9" fill="#22c55e"/><text x="31" y="37" fill="#fff" font-size="16" text-anchor="middle">👁</text>
+      <text x="16" y="72" fill="#e7e9f0" font-weight="700">Reviewed</text>
+      <g fill="#22c55e"><rect x="16" y="82" width="22" height="5" rx="2.5"/><rect x="42" y="82" width="22" height="5" rx="2.5"/><rect x="68" y="82" width="22" height="5" rx="2.5"/><rect x="94" y="82" width="22" height="5" rx="2.5"/></g><rect x="120" y="82" width="22" height="5" rx="2.5" fill="#232838"/>
+      <text x="16" y="110" fill="#7d859b" font-size="12">A person looked at</text><text x="16" y="126" fill="#7d859b" font-size="12">the code (services)</text>
+    </g>
+    <g transform="translate(586 94)">
+      <rect width="168" height="150" rx="14" fill="#12151d" stroke="#94a3b8" stroke-opacity=".6"/>
+      <rect x="16" y="16" width="30" height="30" rx="9" fill="#94a3b8"/><text x="31" y="37" fill="#fff" font-size="16" text-anchor="middle">⌕</text>
+      <text x="16" y="72" fill="#e7e9f0" font-weight="700">Checked</text>
+      <g fill="#94a3b8"><rect x="16" y="82" width="22" height="5" rx="2.5"/><rect x="42" y="82" width="22" height="5" rx="2.5"/></g><g fill="#232838"><rect x="68" y="82" width="22" height="5" rx="2.5"/><rect x="94" y="82" width="22" height="5" rx="2.5"/><rect x="120" y="82" width="22" height="5" rx="2.5"/></g>
+      <text x="16" y="110" fill="#7d859b" font-size="12">Automatic check,</text><text x="16" y="126" fill="#7d859b" font-size="12">runs sandboxed</text>
+    </g>
+    <g transform="translate(770 94)">
+      <rect width="156" height="150" rx="14" fill="#12151d" stroke="#f59e0b" stroke-opacity=".6"/>
+      <rect x="16" y="16" width="30" height="30" rx="9" fill="#f59e0b"/><text x="31" y="37" fill="#fff" font-size="16" text-anchor="middle">!</text>
+      <text x="16" y="72" fill="#e7e9f0" font-weight="700">External</text>
+      <rect x="16" y="82" width="22" height="5" rx="2.5" fill="#f59e0b"/><g fill="#232838"><rect x="42" y="82" width="22" height="5" rx="2.5"/><rect x="68" y="82" width="22" height="5" rx="2.5"/><rect x="94" y="82" width="22" height="5" rx="2.5"/><rect x="120" y="82" width="22" height="5" rx="2.5"/></g>
+      <text x="16" y="110" fill="#7d859b" font-size="12">Your own source –</text><text x="16" y="126" fill="#7d859b" font-size="12">checked on install</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,40 @@
+name: Get verified as a developer / Als Entwickler verifizieren lassen
+description: For people who already have an extension in the community catalog and want the "Verified developer" badge.
+title: "Verification: @"
+labels: [verification]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Verified developers get their own badge on all their extensions in the Hostwerk marketplace.
+        The project checks by hand who is behind the account. Every package is still checked automatically.
+
+        *Verifizierte Entwickler bekommen ein eigenes Abzeichen an allen ihren Erweiterungen. Das Projekt prüft von Hand, wer hinter dem Konto steht.*
+  - type: input
+    id: extensions
+    attributes:
+      label: Your extensions in the catalog
+      description: IDs, comma-separated. At least one must already be in the community catalog.
+    validations:
+      required: true
+  - type: textarea
+    id: who
+    attributes:
+      label: Who are you?
+      description: One or two sentences – name or project, website, what you use Hostwerk for. No ID document needed.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact for questions (optional)
+      description: Better leave it empty and answer questions here in the issue – everything here is public.
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Rules
+      options:
+        - label: My extensions contain no hidden or downloaded code and collect no data without saying so.
+          required: true
+        - label: I know the badge can be revoked if an extension breaks these rules.
+          required: true

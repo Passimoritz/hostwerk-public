@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "updated": "2026-10-14",
+  "info": "Hostwerk-KI-Katalog: wird von jeder Hostwerk-Installation täglich geladen (Einstellungen → KI-Helfer → Immer aktuell). Neue Einträge hier erscheinen ohne App-Update. media = lokale Bild-/Video-Modelle für stable-diffusion.cpp (Dateien nur von huggingface.co/github.com; Platzhalter {datei} in args, {image} für das Eingabebild, {neg:wan} = Wan-Negativ-Prompt). ollama = Sprachmodelle mit eigener Beschreibung/Empfehlung (Vorrang vor ollama.com). hide = Modell-IDs, die nicht mehr angeboten werden.",
+  "media": [
+    {
+      "id": "flux2-klein-9b",
+      "kind": "image",
+      "label": "FLUX.2 klein (9B)",
+      "q": 5,
+      "gb": 14.2,
+      "vram": 16,
+      "best": "Höchste Bildqualität",
+      "note": "Die große Fassung von FLUX.2 klein: noch genauere Details, Hände und Schrift – für Grafikkarten ab 16 GB. Bearbeitet auch Bilder.",
+      "files": {
+        "diffusion": "https://huggingface.co/leejet/FLUX.2-klein-9B-GGUF/resolve/main/flux-2-klein-9b-Q8_0.gguf",
+        "vae": "https://huggingface.co/Comfy-Org/vae-text-encorder-for-flux-klein-4b/resolve/main/split_files/vae/flux2-vae.safetensors",
+        "llm": "https://huggingface.co/unsloth/Qwen3-8B-GGUF/resolve/main/Qwen3-8B-Q4_K_M.gguf"
+      },
+      "dims": { "square": [1024, 1024], "wide": [1216, 832], "tall": [832, 1216] },
+      "args": ["--diffusion-model", "{diffusion}", "--vae", "{vae}", "--llm", "{llm}", "--cfg-scale", "1.0", "--steps", "4", "--sampling-method", "euler", "--vae-tiling", "--offload-to-cpu"],
+      "edit": ["-r", "{image}"]
+    }
+  ],
+  "ollama": [],
+  "hide": []
+}

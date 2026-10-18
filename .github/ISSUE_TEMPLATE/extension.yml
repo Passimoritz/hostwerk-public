@@ -1,0 +1,45 @@
+name: Submit an extension / Erweiterung einreichen
+description: Add your Hostwerk extension to the public community catalog – checked automatically.
+title: "Extension: "
+labels: [extension]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing! In Hostwerk, **Apps → Extensions → Marketplace → Submit** fills in this form for you.
+        The check uses the same rules as Hostwerk itself (`sdk/check.js --strict`): manifest, security, design and **German + English** texts.
+        Pages and tiles are added right away. Extensions with a **service** (they start programs on the PC) are reviewed by a person.
+
+        *Danke fürs Teilen! In Hostwerk füllt „Einreichen“ dieses Formular aus. Geprüft wird wie in Hostwerk: Manifest, Sicherheit, Design und Texte auf Deutsch und Englisch.*
+  - type: input
+    id: id
+    attributes:
+      label: Extension ID
+      description: The "id" from manifest.json (a–z, 0–9, -)
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What does it do? One or two sentences.
+  - type: input
+    id: link
+    attributes:
+      label: Package link
+      description: https link to the ZIP – best a GitHub release (template with automatic releases - https://github.com/Passimoritz/hostwerk-ext-template). It only has to be reachable until the check is done.
+    validations:
+      required: true
+  - type: checkboxes
+    id: ok
+    attributes:
+      label: Confirmation
+      options:
+        - label: I may publish this package, and it contains no credentials of anyone.
+          required: true

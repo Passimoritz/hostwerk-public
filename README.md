@@ -1,37 +1,56 @@
-# Hostwerk – öffentliche Dateien
+# Hostwerk – public files
 
-Dieses Repository liefert, was Hostwerk-Installationen **ohne Zugangsdaten** abrufen:
+**English** · [Deutsch](README.de.md)
 
-- **Releases** – Updates der App und die Installationsdateien (gespiegelt vom Hauptprojekt). Fürs Handy gibt es die Web-App direkt aus Hostwerk.
-- **`katalog/`** – KI-Modellkatalog, Hostwerk-Erweiterungen und der **Community-Katalog** (`community.json`).
-- **`pakete/`** – geprüfte Kopien der Community-Erweiterungen.
+This repository holds what Hostwerk installations fetch **without credentials**:
 
-## Eigene Erweiterung einreichen
-
-1. In Hostwerk unter **Apps → Erweiterungen → Marktplatz** eine Erweiterung bauen (oder „Eigene bauen“).
-2. Bei der Erweiterung **„Einreichen“** tippen – das öffnet hier ein vorausgefülltes Formular.
-3. Eine GitHub-Action prüft das Paket: Aufbau, Größe (bis 10 MB), keine ausführbaren Dateien.
-   - **Reine Seiten** (laufen in Hostwerk abgeschottet, ändern nur nach Rückfrage) werden sofort aufgenommen.
-   - **Dienste** (starten Programme auf dem PC) werden von Hand geprüft und mit dem Label „freigegeben“ aufgenommen.
-4. Hostwerk zeigt die Erweiterung danach im Marktplatz unter der Quelle „Community“ – mit Prüfsumme, sodass genau das geprüfte Paket installiert wird.
-
-Updates: einfach erneut einreichen (gleiche Kennung, höhere Version). Eine Kennung gehört dem, der sie zuerst eingereicht hat.
-
-## Abzeichen im Marktplatz
-
-| Abzeichen | Bedeutung |
+| Folder | Contents |
 |---|---|
-| **Offiziell** | Von Hostwerk selbst – mitgeliefert oder aus `katalog/erweiterungen.json`. |
-| **Verifizierter Entwickler** | Von jemandem, den das Projekt persönlich verifiziert hat (`katalog/verifiziert.json`). Jedes Paket wird trotzdem automatisch geprüft und per Prüfsumme festgelegt. |
-| **Von Hand geprüft** | Automatisch geprüft und zusätzlich von einem Menschen angesehen – Pflicht für Erweiterungen mit Dienst. |
-| **Automatisch geprüft** | Aufbau, Größe und Inhalt automatisch geprüft (reine Seiten, laufen abgeschottet). |
-| **Fremde Quelle** | Aus einer eigenen Quelle, die jemand in Hostwerk eingetragen hat – nicht geprüft. |
+| **Releases** | App updates and installers (mirrored from the main project) and the explainer videos (release `videos`). |
+| [`catalog/`](catalog) | AI model catalog, project templates, advisor rules, password-manager catalog and the extension catalogs: `extensions.json` (official, built daily from the extension repositories), `community.json`, `verified.json`. |
+| [`sdk/`](sdk) | **Extension SDK** – `hostwerk-sdk.js`, design kit, manifest schema, `check.js` and the [developer guide](sdk/README.md). |
+| [`packages/`](packages) | Checked copies of community extensions (pinned by SHA-256). |
+| `katalog/` | Old file names for Hostwerk versions before 2.9 – kept up to date automatically. |
 
-## Verifizierter Entwickler werden
+## Build an extension
 
-1. Mindestens eine Erweiterung muss schon im Community-Katalog stehen (Abschnitt oben).
-2. Ein Issue mit dem Formular **„Als Entwickler verifizieren lassen“** öffnen – kurz, wer du bist, und welche Erweiterungen von dir sind.
-3. Eine Action prüft, ob die genannten Erweiterungen wirklich von deinem Konto eingereicht wurden.
-4. Das Projekt schaut sich den Antrag an und setzt das Label **„verifiziert“** – damit stehst du in `katalog/verifiziert.json`, und alle deine Erweiterungen tragen das Abzeichen.
+Everything – package, SDK, design kit, translations, permissions, checking, releasing and getting verified – is in
+the **[developer guide](sdk/README.md)** ([Deutsch](sdk/README.de.md)).
 
-Verstößt eine Erweiterung gegen die Regeln (versteckter Code, Datensammeln ohne Hinweis), wird das Abzeichen entzogen.
+![How an extension runs](sdk/img/architecture.svg)
+
+Quick start: [hostwerk-ext-template](https://github.com/Passimoritz/hostwerk-ext-template) → *Use this template*.
+Examples: [Player Ticker](https://github.com/Passimoritz/hostwerk-ext-player-ticker) ·
+[Status Wall](https://github.com/Passimoritz/hostwerk-ext-status-wall).
+
+## Submit an extension
+
+1. Put it in its own repository and create a release (the template does this on every tag).
+2. In Hostwerk: **Apps → Extensions → Submit** – or open [Submit an extension](../../issues/new?template=extension.yml).
+3. A GitHub Action runs `sdk/check.js --strict` (manifest, security, design, German + English):
+   - **Pages and tiles** (sandboxed, change things only after asking) are added at once.
+   - **Services** (start programs on the PC) are reviewed by a person and added with the label *approved*.
+4. Hostwerk shows it in the marketplace under **Community** – pinned by checksum, so exactly the checked file is installed.
+
+Updates: submit again with a higher version. An id belongs to whoever submitted it first.
+Test a package without submitting: *Actions → Add extension → Run workflow* (dry run).
+
+## Badges in the marketplace
+
+![Trust levels](sdk/img/trust.svg)
+
+| Badge | Meaning |
+|---|---|
+| **Official** | By Hostwerk – own repository, in `catalog/extensions.json`. |
+| **Verified developer** | The project has verified the person (`catalog/verified.json`). Every package is still checked and pinned. |
+| **Reviewed** | Additionally looked at by a person – required for services. |
+| **Checked** | Passed the automatic check, runs sandboxed. |
+| **External** | From a source the user added – checked on install only. |
+
+## Get verified as a developer
+
+1. Have at least one extension in the community catalog.
+2. Open [Get verified](../../issues/new?template=verification.yml) – who you are and which extensions are yours.
+3. An action confirms the extensions were submitted by your account.
+4. The project looks at the request and sets the label **verified** – you are added to `catalog/verified.json`, and
+   all your extensions carry the badge. Breaking the rules (hidden code, collecting data without saying so) revokes it.

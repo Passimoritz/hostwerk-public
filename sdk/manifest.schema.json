@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/Passimoritz/hostwerk-public/main/sdk/manifest.schema.json",
+  "title": "Hostwerk extension manifest",
+  "type": "object",
+  "required": ["id", "name", "version"],
+  "definitions": {
+    "text": {
+      "description": "Plain text or one text per language (German and English are expected in the catalog).",
+      "oneOf": [
+        { "type": "string" },
+        { "type": "object", "properties": { "de": { "type": "string" }, "en": { "type": "string" } }, "required": ["de", "en"], "additionalProperties": false }
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "required": ["file"],
+      "properties": {
+        "title": { "$ref": "#/definitions/text" },
+        "file": { "type": "string", "pattern": "^[^/\\\\.][^\\\\]*\\.html$" },
+        "icon": { "enum": ["puzzle", "users", "monitor", "gauge", "activity", "chart", "bar-chart", "bell", "book", "bot", "box", "calendar", "camera", "clock", "cloud", "code", "coffee", "cpu", "database", "download", "file", "flag", "gamepad", "gift", "globe", "heart", "home", "image", "inbox", "key", "dashboard", "grid", "leaf", "line-chart", "list", "lock", "mail", "map", "message", "music", "network", "news", "package", "pie-chart", "radio", "rocket", "server", "settings", "shield", "cart", "sparkles", "star", "sun", "swords", "table", "tag", "terminal", "timer", "trophy", "tv", "wand", "wifi", "wrench", "zap"], "description": "Line icon for the sidebar (same style as Hostwerk's own areas)." },
+        "size": { "enum": ["third", "half", "full"], "description": "Widget width on the dashboard." }
+      }
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,39}$" },
+    "name": { "$ref": "#/definitions/text" },
+    "description": { "$ref": "#/definitions/text" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[\\w.]+)?$" },
+    "author": { "type": "string" },
+    "homepage": { "type": "string", "format": "uri" },
+    "repository": { "type": "string", "format": "uri" },
+    "license": { "type": "string" },
+    "icon": { "type": "string", "description": "Path to icon.svg/png in the package (square)." },
+    "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "hostwerk": { "type": "string", "pattern": "^>=\\s*\\d+\\.\\d+\\.\\d+$", "description": "Minimum Hostwerk version, e.g. >=2.9.0" },
+    "permissions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["read:services", "read:web", "read:databases", "read:minecraft", "read:apps", "read:tasks", "read:mail", "read:system", "read:network", "control:services", "command:minecraft", "run:tasks", "storage", "network", "read", "write"] }
+    },
+    "network": { "type": "array", "items": { "type": "string", "pattern": "^https://[a-z0-9.-]+(:\\d+)?$" }, "description": "Web origins the page may fetch (needs the network permission)." },
+    "page": { "$ref": "#/definitions/entry" },
+    "widget": { "$ref": "#/definitions/entry" },
+    "settings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "type", "label"],
+        "properties": {
+          "key": { "type": "string", "pattern": "^[a-zA-Z][\\w-]{0,39}$" },
+          "type": { "enum": ["text", "number", "switch", "select"] },
+          "label": { "$ref": "#/definitions/text" },
+          "hint": { "$ref": "#/definitions/text" },
+          "default": {},
+          "min": { "type": "number" },
+          "max": { "type": "number" },
+          "options": { "type": "array", "items": { "type": "object", "properties": { "value": {}, "label": { "$ref": "#/definitions/text" } }, "required": ["value", "label"] } }
+        }
+      }
+    },
+    "command": { "type": "string", "description": "Optional own service (program) – see the developer guide." }
+  }
+}
