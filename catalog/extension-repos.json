@@ -25,5 +25,11 @@
   "Passimoritz/hostwerk-ext-router",
   "Passimoritz/hostwerk-ext-schematics-3d",
   "Passimoritz/hostwerk-ext-bedrock-bridge",
-  "Passimoritz/hostwerk-ext-ai-media"
+  "Passimoritz/hostwerk-ext-ai-media",
+  "Passimoritz/hostwerk-ext-api-tester",
+  "Passimoritz/hostwerk-ext-webhook-inbox",
+  "Passimoritz/hostwerk-ext-page-check",
+  "Passimoritz/hostwerk-ext-cloud-backup",
+  "Passimoritz/hostwerk-ext-static-publish",
+  "Passimoritz/hostwerk-ext-file-share"
 ]
