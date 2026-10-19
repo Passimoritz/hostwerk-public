@@ -55,70 +55,70 @@ was gebraucht wird, und warnt, bevor du etwas entfernst, das noch genutzt wird.
 
 **Spiele & Minecraft**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-schematics-3d/main/icon.svg" width="28" alt=""> | [Bauwerke in 3D](https://github.com/Passimoritz/hostwerk-ext-schematics-3d) · *Teil von Hostwerk* | Minecraft-Bauwerke in 3D ansehen, bevor du sie setzt |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-bedrock-bridge/main/icon.svg" width="28" alt=""> | [Bedrock-Brücke](https://github.com/Passimoritz/hostwerk-ext-bedrock-bridge) · *Teil von Hostwerk* | Freunde auf Handy, Konsole und der Windows-Edition spielen auf deinen Java-Servern mit |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/main/icon.svg" width="28" alt=""> | [MOTD-Studio](https://github.com/Passimoritz/hostwerk-ext-motd-studio) | Die Beschreibung deines Minecraft-Servers in der Serverliste mit Farben und Formaten gestalten |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/main/icon.svg" width="28" alt=""> | [Spiele-Server](https://github.com/Passimoritz/hostwerk-ext-game-servers) · *Teil von Hostwerk* | Valheim, Palworld, Rust, Terraria, Satisfactory und über 100 weitere Spiele über LinuxGSM – nativ auf Linux, unter Windows als Docker-Container |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-network/main/icon.svg" width="28" alt=""> | [Spiele-Server-Verbund](https://github.com/Passimoritz/hostwerk-ext-game-network) · *Teil von Hostwerk* | Spiele- und Minecraft-Server als Verbund |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/main/icon.svg" width="28" alt=""> | [Spieler-Bestenliste](https://github.com/Passimoritz/hostwerk-ext-player-leaderboard) | Wer am meisten spielt, abbaut oder stirbt |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-ticker/main/icon.svg" width="28" alt=""> | [Spieler-Ticker](https://github.com/Passimoritz/hostwerk-ext-player-ticker) | Wer ist gerade auf deinen Minecraft-Servern? Live-Liste mit Köpfen, TPS und Spielzeit-Rangliste |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-schematics-3d/main/icon.svg" width="28" height="28" alt=""> | [Bauwerke in 3D](https://github.com/Passimoritz/hostwerk-ext-schematics-3d) · *Teil von Hostwerk* | Minecraft-Bauwerke in 3D ansehen, bevor du sie setzt |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-bedrock-bridge/main/icon.svg" width="28" height="28" alt=""> | [Bedrock-Brücke](https://github.com/Passimoritz/hostwerk-ext-bedrock-bridge) · *Teil von Hostwerk* | Freunde auf Handy, Konsole und der Windows-Edition spielen auf deinen Java-Servern mit |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/main/icon.svg" width="28" height="28" alt=""> | [MOTD-Studio](https://github.com/Passimoritz/hostwerk-ext-motd-studio) | Die Beschreibung deines Minecraft-Servers in der Serverliste mit Farben und Formaten gestalten |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/main/icon.svg" width="28" height="28" alt=""> | [Spiele-Server](https://github.com/Passimoritz/hostwerk-ext-game-servers) · *Teil von Hostwerk* | Valheim, Palworld, Rust, Terraria, Satisfactory und über 100 weitere Spiele über LinuxGSM – nativ auf Linux, unter Windows als Docker-Container |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-network/main/icon.svg" width="28" height="28" alt=""> | [Spiele-Server-Verbund](https://github.com/Passimoritz/hostwerk-ext-game-network) · *Teil von Hostwerk* | Spiele- und Minecraft-Server als Verbund |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/main/icon.svg" width="28" height="28" alt=""> | [Spieler-Bestenliste](https://github.com/Passimoritz/hostwerk-ext-player-leaderboard) | Wer am meisten spielt, abbaut oder stirbt |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-ticker/main/icon.svg" width="28" height="28" alt=""> | [Spieler-Ticker](https://github.com/Passimoritz/hostwerk-ext-player-ticker) | Wer ist gerade auf deinen Minecraft-Servern? Live-Liste mit Köpfen, TPS und Spielzeit-Rangliste |
 
 **Netzwerk & Rechner**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/main/icon.svg" width="28" alt=""> | [Hostwerk-Verbund](https://github.com/Passimoritz/hostwerk-ext-hostwerk-network) · *Teil von Hostwerk* | Mehrere Rechner als ein Verbund |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-port-map/main/icon.svg" width="28" alt=""> | [Port-Übersicht](https://github.com/Passimoritz/hostwerk-ext-port-map) | Alle Ports deiner Dienste in einer Liste |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/main/icon.svg" width="28" alt=""> | [Router & Portfreigaben](https://github.com/Passimoritz/hostwerk-ext-router) · *Teil von Hostwerk* | Macht deine Server aus dem Internet erreichbar |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/main/icon.svg" width="28" height="28" alt=""> | [Hostwerk-Verbund](https://github.com/Passimoritz/hostwerk-ext-hostwerk-network) · *Teil von Hostwerk* | Mehrere Rechner als ein Verbund |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-port-map/main/icon.svg" width="28" height="28" alt=""> | [Port-Übersicht](https://github.com/Passimoritz/hostwerk-ext-port-map) | Alle Ports deiner Dienste in einer Liste |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/main/icon.svg" width="28" height="28" alt=""> | [Router & Portfreigaben](https://github.com/Passimoritz/hostwerk-ext-router) · *Teil von Hostwerk* | Macht deine Server aus dem Internet erreichbar |
 
 **Sicherheit & Zugang**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/main/icon.svg" width="28" alt=""> | [Passwort-Manager](https://github.com/Passimoritz/hostwerk-ext-passwords) · *Teil von Hostwerk* | Eigener verschlüsselter Tresor oder Bitwarden/Vaultwarden, 1Password, KeePass, pass und LastPass |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/main/icon.svg" width="28" alt=""> | [Team & Rollen](https://github.com/Passimoritz/hostwerk-ext-team) · *Teil von Hostwerk* | Freunde und Kollegen mit eigener Anmeldung im Fernzugriff |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/main/icon.svg" width="28" alt=""> | [Zertifikats-Wache](https://github.com/Passimoritz/hostwerk-ext-cert-watch) | Alle Zertifikate auf einen Blick |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/main/icon.svg" width="28" height="28" alt=""> | [Passwort-Manager](https://github.com/Passimoritz/hostwerk-ext-passwords) · *Teil von Hostwerk* | Eigener verschlüsselter Tresor oder Bitwarden/Vaultwarden, 1Password, KeePass, pass und LastPass |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/main/icon.svg" width="28" height="28" alt=""> | [Team & Rollen](https://github.com/Passimoritz/hostwerk-ext-team) · *Teil von Hostwerk* | Freunde und Kollegen mit eigener Anmeldung im Fernzugriff |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/main/icon.svg" width="28" height="28" alt=""> | [Zertifikats-Wache](https://github.com/Passimoritz/hostwerk-ext-cert-watch) | Alle Zertifikate auf einen Blick |
 
 **Überwachung & Status**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/main/icon.svg" width="28" alt=""> | [Backup-Kalender](https://github.com/Passimoritz/hostwerk-ext-backup-calendar) | Alle geplanten Sicherungen der nächsten Tage als Kalender |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/main/icon.svg" width="28" alt=""> | [Server-Steckbrief](https://github.com/Passimoritz/hostwerk-ext-server-card) | Alles Wichtige über diesen PC und seine Dienste auf einer Seite |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-usage/main/icon.svg" width="28" alt=""> | [Speicher je Dienst](https://github.com/Passimoritz/hostwerk-ext-disk-usage) | Wie viel Platz jeder Dienst belegt |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/main/icon.svg" width="28" alt=""> | [Status-Wand](https://github.com/Passimoritz/hostwerk-ext-status-wall) | Alle Dienste groß und farbig auf einen Blick |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-uptime-wall/main/icon.svg" width="28" alt=""> | [Uptime-Wand](https://github.com/Passimoritz/hostwerk-ext-uptime-wall) | Alle Erreichbarkeits-Prüfungen groß und farbig |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/main/icon.svg" width="28" height="28" alt=""> | [Backup-Kalender](https://github.com/Passimoritz/hostwerk-ext-backup-calendar) | Alle geplanten Sicherungen der nächsten Tage als Kalender |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/main/icon.svg" width="28" height="28" alt=""> | [Server-Steckbrief](https://github.com/Passimoritz/hostwerk-ext-server-card) | Alles Wichtige über diesen PC und seine Dienste auf einer Seite |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-usage/main/icon.svg" width="28" height="28" alt=""> | [Speicher je Dienst](https://github.com/Passimoritz/hostwerk-ext-disk-usage) | Wie viel Platz jeder Dienst belegt |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/main/icon.svg" width="28" height="28" alt=""> | [Status-Wand](https://github.com/Passimoritz/hostwerk-ext-status-wall) | Alle Dienste groß und farbig auf einen Blick |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-uptime-wall/main/icon.svg" width="28" height="28" alt=""> | [Uptime-Wand](https://github.com/Passimoritz/hostwerk-ext-uptime-wall) | Alle Erreichbarkeits-Prüfungen groß und farbig |
 
 **Entwickler-Werkzeuge**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-profiler/main/icon.svg" width="28" alt=""> | [Leistungs-Messung](https://github.com/Passimoritz/hostwerk-ext-profiler) · *Teil von Hostwerk* | Findet heraus, warum eine Seite oder App langsam ist |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-quick-tasks/main/icon.svg" width="28" alt=""> | [Schnell-Aufgaben](https://github.com/Passimoritz/hostwerk-ext-quick-tasks) | Deine Aufgaben als große Knöpfe |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-profiler/main/icon.svg" width="28" height="28" alt=""> | [Leistungs-Messung](https://github.com/Passimoritz/hostwerk-ext-profiler) · *Teil von Hostwerk* | Findet heraus, warum eine Seite oder App langsam ist |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-quick-tasks/main/icon.svg" width="28" height="28" alt=""> | [Schnell-Aufgaben](https://github.com/Passimoritz/hostwerk-ext-quick-tasks) | Deine Aufgaben als große Knöpfe |
 
 **KI & Medien**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/main/icon.svg" width="28" alt=""> | [Bild- & Video-Studio](https://github.com/Passimoritz/hostwerk-ext-ai-media) · *Teil von Hostwerk* | Bilder und kurze Videos aus einer Beschreibung erzeugen |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/main/icon.svg" width="28" alt=""> | [KI-Anbindung](https://github.com/Passimoritz/hostwerk-ext-claude) | Deine KIs mit Hostwerk verbinden |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/main/icon.svg" width="28" alt=""> | [Wissensgraph](https://github.com/Passimoritz/hostwerk-ext-knowledge-graph) | Macht aus deinen Projekten (Code, Doku, Obsidian-Notizen) einen durchsuchbaren Wissensgraphen |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/main/icon.svg" width="28" height="28" alt=""> | [Bild- & Video-Studio](https://github.com/Passimoritz/hostwerk-ext-ai-media) · *Teil von Hostwerk* | Bilder und kurze Videos aus einer Beschreibung erzeugen |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/main/icon.svg" width="28" height="28" alt=""> | [KI-Anbindung](https://github.com/Passimoritz/hostwerk-ext-claude) | Deine KIs mit Hostwerk verbinden |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/main/icon.svg" width="28" height="28" alt=""> | [Wissensgraph](https://github.com/Passimoritz/hostwerk-ext-knowledge-graph) | Macht aus deinen Projekten (Code, Doku, Obsidian-Notizen) einen durchsuchbaren Wissensgraphen |
 
 **Mail & Kommunikation**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-status/main/icon.svg" width="28" alt=""> | [Discord-Status](https://github.com/Passimoritz/hostwerk-ext-discord-status) · *Teil von Hostwerk* | Zeigt in deinem Discord-Profil „Spielt Hostwerk“ – mit den laufenden Dienstarten, nie mit Projekt- oder Servernamen |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-stats/main/icon.svg" width="28" alt=""> | [Mail-Statistik](https://github.com/Passimoritz/hostwerk-ext-mail-stats) | Wie viele Mails deine Projekte verschicken |
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-server/main/icon.svg" width="28" alt=""> | [Mailserver](https://github.com/Passimoritz/hostwerk-ext-mail-server) · *Teil von Hostwerk* | Echte Postfächer mit eigener Domain |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-status/main/icon.svg" width="28" height="28" alt=""> | [Discord-Status](https://github.com/Passimoritz/hostwerk-ext-discord-status) · *Teil von Hostwerk* | Zeigt in deinem Discord-Profil „Spielt Hostwerk“ – mit den laufenden Dienstarten, nie mit Projekt- oder Servernamen |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-stats/main/icon.svg" width="28" height="28" alt=""> | [Mail-Statistik](https://github.com/Passimoritz/hostwerk-ext-mail-stats) | Wie viele Mails deine Projekte verschicken |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-server/main/icon.svg" width="28" height="28" alt=""> | [Mailserver](https://github.com/Passimoritz/hostwerk-ext-mail-server) · *Teil von Hostwerk* | Echte Postfächer mit eigener Domain |
 
 **Sonstiges**
 
-| | Erweiterung | Was sie kann |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Erweiterung | Was sie kann |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-service-notes/main/icon.svg" width="28" alt=""> | [Dienst-Notizen](https://github.com/Passimoritz/hostwerk-ext-service-notes) | Notizen und Checklisten zu jedem Dienst |
+| <img src="https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-service-notes/main/icon.svg" width="28" height="28" alt=""> | [Dienst-Notizen](https://github.com/Passimoritz/hostwerk-ext-service-notes) | Notizen und Checklisten zu jedem Dienst |
 
 *Teil von Hostwerk* = native Erweiterung: war früher fest eingebaut, läuft als Teil von Hostwerk und kommt deshalb nur
 aus diesem Katalog (per Prüfsumme festgelegt). Wer die Funktion schon genutzt hat, bekommt sie beim Update automatisch –
