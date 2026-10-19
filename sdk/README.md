@@ -197,6 +197,7 @@ The check reports missing keys and English texts that still look German. Manifes
 | `read:system` | Health, load, ports, storage per service |
 | `read:network` | Router, machines, security status |
 | `read:live` | Certificates with days left, uptime checks with history (SDK 2.4) |
+| `share:status` | Public status page (`/live/statuspage`): switch on/off, title, which checks, renew the secret link, place it into a website folder – asks every time. Visitors only see names, state, availability and history (SDK 2.6) |
 | `control:services` | Start, stop, restart – **Hostwerk asks every time** |
 | `command:minecraft` | Send console commands – asks every time |
 | `run:tasks` | Run scheduled tasks – asks every time |

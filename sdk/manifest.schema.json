@@ -280,6 +280,7 @@
           "read:system",
           "read:network",
           "read:live",
+          "share:status",
           "control:services",
           "command:minecraft",
           "run:tasks",

@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '2.5.0';
+const SDK_VERSION = '2.6.0';
 /** Permission scopes and what they allow (GET = read, POST = change after confirmation). */
 const PERMISSIONS = {
   'read:services': { de: 'Dienste und ihren Zustand sehen', en: 'See services and their state', read: [/^\/overview$/] },
@@ -44,6 +44,8 @@ const PERMISSIONS = {
   // Seit SDK 2.5: Claude-Bereich als Erweiterung (Status, Anbindung, Spar-Werkzeuge, Projekte) und Terminal
   'read:claude': { de: 'Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen', en: 'Read Claude status, projects, memory context, token-saving tools and usage', read: [/^\/claude\/(status|connect\/code|tools|tools\/discover|tools\/usage|targets\/[\w.-]+)$/, /^\/mind(\/activity|\/context)?$/, /^\/projects(\/[\w-]+)?$/] },
   'change:claude': { de: 'Claude einrichten: Kontext in Projekt-Dateien schreiben, Spar-Werkzeuge installieren/entfernen, Einstellungen (mit Rückfrage)', en: 'Set up Claude: write context into project files, install/remove token-saving tools, settings (asks first)', write: [/^\/claude\/write\/[\w.-]+$/, /^\/claude\/tools$/, /^\/claude\/tools\/[\w.-]+\/(install|update|remove)$/, /^\/claude\/connect\/desktop$/] },
+  // Seit SDK 2.6: öffentliche Statusseite (nur Namen, Zustand, Verfügbarkeit – keine Adressen, Fehler oder Alarm-Ziele)
+  'share:status': { de: 'Öffentliche Statusseite einrichten: an/aus, Titel, angezeigte Prüfungen, Link erneuern, in eine Website legen (mit Rückfrage)', en: 'Set up the public status page: on/off, title, shown checks, renew link, place it into a website (asks first)', read: [/^\/live\/statuspage$/], write: [/^\/live\/statuspage(\/(rotate|publish))?$/] },
   'run:terminal': { de: 'Befehle ins Hostwerk-Terminal tippen (du bestätigst mit Enter bzw. vorher im Dialog)', en: 'Type commands into the Hostwerk terminal (you confirm with Enter or in a dialog first)' },
   storage: { de: 'Eigene Daten speichern (max. 256 KB)', en: 'Store own data (max. 256 KB)' },
   network: { de: 'Mit den im Paket genannten Webadressen sprechen', en: 'Talk to the web addresses named in the package' },

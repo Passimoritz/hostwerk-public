@@ -35,6 +35,22 @@ const field = (body, ...labels) => {
   return '';
 };
 
+/**
+ * Runtime check of one unpacked package (scripts/check-extension-runtime.js --dir). null = not possible here
+ * (no browser driver installed – e.g. a local dry run); the workflow installs it, so submissions are always checked.
+ */
+function runtime(dir) {
+  const { spawnSync } = require('child_process');
+  const report = path.join(__dirname, '..', 'runtime-report.md');
+  try { fs.rmSync(report, { force: true }); } catch { /* egal */ }
+  const r = spawnSync(process.execPath, [path.join(__dirname, 'check-extension-runtime.js'), '--dir', dir], { encoding: 'utf8', timeout: 240000, env: { ...process.env, GITHUB_OUTPUT: '' } });
+  if (r.status === 2) return null;
+  const md = fs.existsSync(report) ? fs.readFileSync(report, 'utf8') : '';
+  const problems = md.split('\n').filter((l) => l.startsWith('- ')).map((l) => l.slice(2)).slice(0, 25);
+  if (r.status !== 0 && !problems.length) problems.push(`Runtime check could not finish: ${String(r.stderr || r.error || '').split('\n')[0].slice(0, 200)}`);
+  return { ok: r.status === 0, problems };
+}
+
 (async () => {
   let link; let submitter = ''; let body = '';
   if (args[0] === '--url') { link = args[1]; submitter = 'dry-run'; } else {
@@ -61,6 +77,10 @@ const field = (body, ...labels) => {
   const r = checkPackage(root, { strict: true });
   const m = r.manifest || {};
   if (!r.ok) out({ ok: false, id: m.id, message: `The check found ${r.errors.length} problem(s):\n${r.errors.map((e) => `- [${e.code}] ${e.msg}`).join('\n')}`, errors: r.errors });
+  // Runtime: open every page, tile and tab in a real browser (German/dark + English/light) – catches script errors,
+  // empty pages, missing files and requests without permission before the package reaches anyone.
+  const rt = runtime(root);
+  if (rt && !rt.ok) out({ ok: false, id: m.id, message: `The package passes the static check (${r.score}/100) but breaks when opened:\n${rt.problems.map((p) => `- ${p}`).join('\n')}\n\nTry it locally: node scripts/check-extension-runtime.js --dir <your folder>`, runtime: rt.problems });
   const reserved = RESERVED.has(m.id);
   if (reserved && !DRY) out({ ok: false, message: `The id "${m.id}" is reserved for an official extension.` });
   const catalogFile = path.join('catalog', 'community.json');
@@ -72,7 +92,7 @@ const field = (body, ...labels) => {
   const walk = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else files.push(path.relative(root, f)); } };
   walk(root);
   const bad = files.filter((f) => BAD.test(f));
-  const base = { id: m.id, version, score: r.score, warnings: r.warnings };
+  const base = { id: m.id, version, score: r.score, warnings: r.warnings, runtime: rt ? 'passed' : 'skipped' };
   if (m.command || bad.length) out({ ok: true, auto: false, ...base, message: `Needs a review by a person: ${m.command ? 'the extension starts a service (a program on the PC)' : ''}${m.command && bad.length ? ' and ' : ''}${bad.length ? `contains executable files (${bad.slice(0, 5).join(', ')})` : ''}.` });
   if (DRY) out({ ok: true, auto: true, dryRun: true, ...base, message: `Check passed (${r.score}/100) – would be added as "${text(m.name, 'en')}" ${version}.${reserved ? ` Note: the id "${m.id}" is reserved – choose your own id before submitting.` : ''}` });
 

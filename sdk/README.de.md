@@ -197,6 +197,7 @@ Die Prüfung meldet fehlende Schlüssel und englische Texte, die noch deutsch au
 | `read:system` | Gesundheit, Auslastung, Ports, Speicher je Dienst |
 | `read:network` | Router, Rechner, Sicherheitslage |
 | `read:live` | Zertifikate mit Restlaufzeit, Erreichbarkeit mit Verlauf (SDK 2.4) |
+| `share:status` | Öffentliche Statusseite (`/live/statuspage`): an/aus, Titel, welche Prüfungen, geheimen Link erneuern, in einen Website-Ordner legen – fragt jedes Mal. Besucher sehen nur Namen, Zustand, Verfügbarkeit und Verlauf (SDK 2.6) |
 | `control:services` | Starten, stoppen, neu starten – **Hostwerk fragt jedes Mal** |
 | `command:minecraft` | Konsolenbefehle senden – fragt jedes Mal |
 | `run:tasks` | Aufgaben ausführen – fragt jedes Mal |

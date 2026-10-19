@@ -1,6 +1,7 @@
 name: Add extension
 
-# Submitted extensions (issue form "Submit an extension") are checked with sdk/check.js --strict and added to the
+# Submitted extensions (issue form "Submit an extension") are checked with sdk/check.js --strict, then opened in a real
+# browser (scripts/check-extension-runtime.js: every page, tile and tab, German/dark + English/light) and added to the
 # community catalog. Pages/tiles are added at once; services and executables get the label "needs-review" and wait
 # for a person (label "approved" → added as "reviewed").
 # workflow_dispatch: test any package without changing anything (dry run).
@@ -26,8 +27,11 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
+      - name: Browser driver
+        run: npm install --no-save --no-audit --no-fund puppeteer-core@25.14.0
       - name: Check package (dry run)
         env:
+          CHROME_PATH: /usr/bin/google-chrome
           URL: ${{ inputs.url }}
         run: |
           node scripts/check-extension.js --url "$URL" --dry-run > /tmp/result.json
@@ -43,8 +47,11 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
+      - name: Browser driver
+        run: npm install --no-save --no-audit --no-fund puppeteer-core@25.14.0
       - name: Check package
         env:
+          CHROME_PATH: /usr/bin/google-chrome
           BODY: ${{ github.event.issue.body }}
           WHO: ${{ github.event.issue.user.login }}
         run: |
