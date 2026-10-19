@@ -43,11 +43,18 @@ const get = async (url, raw = false) => { const r = await fetch(url, { headers: 
       const r = checkPackage(path.join(tmp, 'x'), { strict: true });
       if (!r.ok) throw new Error(`check failed: ${r.errors.map((e) => e.msg).join(' · ')}`);
       const m = r.manifest;
+      const raw = (f) => `https://raw.githubusercontent.com/${name}/${rel.tag_name}/${f}`;
       next.push({
         id: m.id, name: m.name, description: m.description, author: m.author || name.split('/')[0], version: m.version,
         page: !!m.page, widget: !!m.widget, service: !!m.command, permissions: scopes(m.permissions), hostwerk: m.hostwerk || null,
-        homepage: `https://github.com/${name}`, icon: m.icon ? `https://raw.githubusercontent.com/${name}/${rel.tag_name}/${m.icon}` : null,
+        homepage: `https://github.com/${name}`, icon: m.icon ? raw(m.icon) : null,
         download: zip.browser_download_url, sha256: sha, score: r.score, released: (rel.published_at || '').slice(0, 10),
+        // SDK 2.7: category, colour, banner, screenshots, dependencies on other extensions, native code, changelog
+        category: m.category || 'other', color: m.color || null, banner: m.banner ? raw(m.banner) : null,
+        screenshots: (Array.isArray(m.screenshots) ? m.screenshots : []).slice(0, 6).map(raw),
+        requires: m.requires && typeof m.requires === 'object' ? m.requires : {},
+        native: (m.permissions || []).includes('native') && !!(m.backend || m.ui),
+        changelog: fs.existsSync(path.join(tmp, 'x', 'CHANGELOG.md')) ? raw('CHANGELOG.md') : null,
       });
       log.push(`✓ ${name} ${m.version} (${r.score}/100)`);
     } catch (e) {

@@ -34,6 +34,7 @@ check warns about hard-coded colours and fonts.
 12. [Trust levels and getting verified](#12-trust-levels-and-getting-verified)
 13. [Security model](#13-security-model)
 14. [Examples](#14-examples)
+15. [SDK 2.7: look, dependencies and native extensions](#15-sdk-27-look-dependencies-and-native-extensions)
 
 ![From idea to the marketplace](img/lifecycle.svg)
 
@@ -293,6 +294,41 @@ extension hides code or collects data without saying so.
 | [hostwerk-ext-knowledge-graph](https://github.com/Passimoritz/hostwerk-ext-knowledge-graph) | Large page with 6 tabs, canvas drawing with list alternative, quiet and confirmed permissions (SDK 2.3) |
 
 ![Status Wall inside Hostwerk](img/status-wall-in-hostwerk.png)
+
+## 15. SDK 2.7: look, dependencies and native extensions
+
+**Look on the extension page.** Hostwerk shows every extension with its icon, a banner and its category.
+
+| Field | Meaning |
+|---|---|
+| `category` | One of `games`, `network`, `security`, `monitoring`, `developer`, `ai`, `communication`, `other` – the chips on the extension page. |
+| `color` | Accent colour `#rrggbb` for card and banner. |
+| `banner` | Wide picture (SVG/PNG, about 1280×400) for the detail view and featured cards. |
+| `screenshots` | Up to 6 pictures (`docs/screenshot.png` …) for the detail view. |
+
+Animated icons and banners are welcome – but every animation has to stop under `@media (prefers-reduced-motion: reduce)`
+(the check fails otherwise).
+
+**Dependencies.** `"requires": { "game-servers": ">=1.0.0" }` – Hostwerk installs what is missing first (from the
+catalogue), refuses circles and does not remove an extension others still need (unless the user forces it).
+Ranges: `*`, `1.2.3`, `>=1.2.0`, `^1.2.0`, `~1.2.0`.
+
+**Native extensions** run as part of Hostwerk – this is how features that used to be built in (password manager, game
+servers, mail server, router …) became extensions. They need the permission `native` and bring:
+
+- `backend`: `server/index.js` with `activate(host)` – own API routes (`host.router`, same sign-in as Hostwerk;
+  `host.publicRouter` without), `host.provide(name, service)` for Hostwerk and other extensions, hooks
+  `host.on('autostart' | 'shutdown' | 'upgrade')`, Hostwerk's building blocks `host.core(name)`, `host.service(name)`,
+  `host.lib(name)`, texts `host.t(text, vars)`, `host.error(status, text)`, `host.broadcast(msg)`.
+- `ui`: `ui/index.js`, built with `node sdk/build-native.js .` from `ui/src/index.jsx` (React, `@hostwerk/api`,
+  `@hostwerk/ui`, `@hostwerk/kit`, `@hostwerk/i18n` …). Export `{ pages: { main }, slots: { … } }` – slots place
+  tabs and buttons inside Hostwerk (`project.tabs`, `live.tabs`, `mc.connect`, `files.preview`, `mail.tabs`,
+  `titlebar`, `machines.board`).
+- Texts in the code are English; `locales/de.json` maps the English text to German (`$patterns` for texts with parts).
+- Data stays where Hostwerk always kept it – removing the extension deletes nothing.
+
+Native code does not run in the sandbox. Hostwerk therefore installs native extensions **only from the official
+catalogue** (pinned by SHA-256) or in **developer mode** (Extensions → Developers), which is meant for your own folders.
 
 ### Language packs
 

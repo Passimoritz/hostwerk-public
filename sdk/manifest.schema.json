@@ -291,6 +291,52 @@
       "pattern": "^>=\\s*\\d+\\.\\d+\\.\\d+$",
       "description": "Minimum Hostwerk version, e.g. >=2.9.0"
     },
+    "category": {
+      "enum": [
+        "games",
+        "network",
+        "security",
+        "monitoring",
+        "developer",
+        "ai",
+        "communication",
+        "other"
+      ],
+      "description": "Category on the extension page (SDK 2.7)."
+    },
+    "banner": {
+      "type": "string",
+      "description": "Wide banner (SVG/PNG/WebP, about 16:5, e.g. 1280×400) for the detail view and catalog card (SDK 2.7). Animations must stop under prefers-reduced-motion."
+    },
+    "screenshots": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "string"
+      },
+      "description": "Up to 6 screenshots in the package (e.g. docs/screenshot-1.png), shown in the detail view (SDK 2.7)."
+    },
+    "requires": {
+      "type": "object",
+      "description": "Other extensions this one needs, with a version range (SDK 2.7). Hostwerk installs them first and warns before removing one that others need.",
+      "propertyNames": {
+        "pattern": "^[a-z0-9][a-z0-9-]{1,39}$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^(\\*|(>=|\\^|~)?\\s*\\d+\\.\\d+\\.\\d+)$"
+      }
+    },
+    "backend": {
+      "type": "string",
+      "pattern": "^[^/\\\\.][^\\\\]*\\.(c?js|mjs)$",
+      "description": "Native server module (SDK 2.7): exports activate(host) and optionally deactivate(). Needs the native permission; only from the Hostwerk catalog or in developer mode."
+    },
+    "ui": {
+      "type": "string",
+      "pattern": "^[^/\\\\.][^\\\\]*\\.(c?js|mjs)$",
+      "description": "Native interface module (SDK 2.7): an ES module exporting default { pages, slots }, built with sdk/build-native.js. Needs the native permission."
+    },
     "permissions": {
       "type": "array",
       "uniqueItems": true,
@@ -319,6 +365,7 @@
           "read:claude",
           "change:claude",
           "run:terminal",
+          "native",
           "storage",
           "network",
           "read",

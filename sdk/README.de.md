@@ -34,6 +34,7 @@ die Prüfung warnt bei festen Farben und eigenen Schriften.
 12. [Vertrauensstufen und Verifizierung](#12-vertrauensstufen-und-verifizierung)
 13. [Sicherheit](#13-sicherheit)
 14. [Beispiele](#14-beispiele)
+15. [SDK 2.7: Aussehen, Abhängigkeiten und native Erweiterungen](#15-sdk-27-aussehen-abhängigkeiten-und-native-erweiterungen)
 
 ![Von der Idee in den Marktplatz](img/lifecycle.svg)
 
@@ -297,6 +298,41 @@ Abzeichen kann entzogen werden, wenn eine Erweiterung Code versteckt oder ohne H
 | [hostwerk-ext-knowledge-graph](https://github.com/Passimoritz/hostwerk-ext-knowledge-graph) | Große Seite mit 6 Reitern, Zeichenfläche mit Listen-Alternative, Rechte mit und ohne Rückfrage (SDK 2.3) |
 
 ![Status-Wand in Hostwerk](img/status-wall-in-hostwerk.png)
+
+## 15. SDK 2.7: Aussehen, Abhängigkeiten und native Erweiterungen
+
+**Aussehen auf der Erweiterungsseite.** Hostwerk zeigt jede Erweiterung mit Symbol, Banner und Kategorie.
+
+| Feld | Bedeutung |
+|---|---|
+| `category` | Eins von `games`, `network`, `security`, `monitoring`, `developer`, `ai`, `communication`, `other` – die Filter auf der Erweiterungsseite. |
+| `color` | Akzentfarbe `#rrggbb` für Karte und Banner. |
+| `banner` | Breites Bild (SVG/PNG, etwa 1280×400) für die Detailansicht und hervorgehobene Karten. |
+| `screenshots` | Bis zu 6 Bilder (`docs/screenshot.png` …) für die Detailansicht. |
+
+Bewegte Symbole und Banner sind willkommen – jede Animation muss aber unter `@media (prefers-reduced-motion: reduce)`
+stehen bleiben (sonst schlägt die Prüfung fehl).
+
+**Abhängigkeiten.** `"requires": { "game-servers": ">=1.0.0" }` – Hostwerk installiert Fehlendes zuerst (aus dem
+Katalog), lehnt Kreise ab und entfernt keine Erweiterung, die andere noch brauchen (außer der Nutzer erzwingt es).
+Bereiche: `*`, `1.2.3`, `>=1.2.0`, `^1.2.0`, `~1.2.0`.
+
+**Native Erweiterungen** laufen als Teil von Hostwerk – so wurden früher eingebaute Funktionen (Passwort-Manager,
+Spiele-Server, Mailserver, Router …) zu Erweiterungen. Sie brauchen die Berechtigung `native` und bringen mit:
+
+- `backend`: `server/index.js` mit `activate(host)` – eigene API-Routen (`host.router`, gleiche Anmeldung wie Hostwerk;
+  `host.publicRouter` ohne), `host.provide(name, dienst)` für Hostwerk und andere Erweiterungen, Haken
+  `host.on('autostart' | 'shutdown' | 'upgrade')`, Hostwerks Bausteine `host.core(name)`, `host.service(name)`,
+  `host.lib(name)`, Texte `host.t(text, werte)`, `host.error(status, text)`, `host.broadcast(msg)`.
+- `ui`: `ui/index.js`, gebaut mit `node sdk/build-native.js .` aus `ui/src/index.jsx` (React, `@hostwerk/api`,
+  `@hostwerk/ui`, `@hostwerk/kit`, `@hostwerk/i18n` …). Export `{ pages: { main }, slots: { … } }` – Steckplätze setzen
+  Reiter und Knöpfe in Hostwerk (`project.tabs`, `live.tabs`, `mc.connect`, `files.preview`, `mail.tabs`,
+  `titlebar`, `machines.board`).
+- Texte im Code sind Englisch; `locales/de.json` ordnet dem englischen Text das Deutsche zu (`$patterns` für Texte mit Teilen).
+- Daten bleiben, wo Hostwerk sie schon immer abgelegt hat – Entfernen der Erweiterung löscht nichts.
+
+Nativer Code läuft nicht abgeschottet. Hostwerk installiert native Erweiterungen deshalb **nur aus dem offiziellen
+Katalog** (per SHA-256 festgelegt) oder im **Entwickler-Modus** (Erweiterungen → Entwickler) für eigene Ordner.
 
 ### Sprachpakete
 

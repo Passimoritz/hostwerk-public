@@ -13,5 +13,17 @@
   "Passimoritz/hostwerk-ext-cert-watch",
   "Passimoritz/hostwerk-ext-disk-usage",
   "Passimoritz/hostwerk-ext-uptime-wall",
-  "Passimoritz/hostwerk-ext-claude"
+  "Passimoritz/hostwerk-ext-claude",
+  "Passimoritz/hostwerk-ext-passwords",
+  "Passimoritz/hostwerk-ext-game-servers",
+  "Passimoritz/hostwerk-ext-game-network",
+  "Passimoritz/hostwerk-ext-hostwerk-network",
+  "Passimoritz/hostwerk-ext-team",
+  "Passimoritz/hostwerk-ext-mail-server",
+  "Passimoritz/hostwerk-ext-discord-status",
+  "Passimoritz/hostwerk-ext-profiler",
+  "Passimoritz/hostwerk-ext-router",
+  "Passimoritz/hostwerk-ext-schematics-3d",
+  "Passimoritz/hostwerk-ext-bedrock-bridge",
+  "Passimoritz/hostwerk-ext-ai-media"
 ]

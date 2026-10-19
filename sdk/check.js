@@ -15,7 +15,35 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '2.6.0';
+const SDK_VERSION = '2.7.0';
+/** Categories of the extension page (SDK 2.7) – one per extension, shown as filter chips. */
+const CATEGORIES = {
+  games: { de: 'Spiele & Minecraft', en: 'Games & Minecraft' },
+  network: { de: 'Netzwerk & Rechner', en: 'Network & machines' },
+  security: { de: 'Sicherheit & Zugänge', en: 'Security & access' },
+  monitoring: { de: 'Überwachung & Status', en: 'Monitoring & status' },
+  developer: { de: 'Entwickeln', en: 'Developer tools' },
+  ai: { de: 'KI & Medien', en: 'AI & media' },
+  communication: { de: 'E-Mail & Kommunikation', en: 'Mail & communication' },
+  other: { de: 'Sonstiges', en: 'Other' },
+};
+/** Version range of a dependency: ">=1.2.0", "^1.2.0", "1.2.0" or "*". */
+const RANGE_RE = /^(\*|(>=|\^|~)?\s*\d+\.\d+\.\d+)$/;
+const cmpVer = (a, b) => { const x = String(a).split(/[.-]/).map(Number), y = String(b).split(/[.-]/).map(Number); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0); } return 0; };
+/** Does VERSION satisfy RANGE? >=: at least · ^: same major, at least · ~: same minor, at least · plain: exactly. */
+function satisfies(version, range) {
+  const r = String(range || '*').trim();
+  if (r === '*' || !r) return true;
+  const m = r.match(/^(>=|\^|~)?\s*(\d+\.\d+\.\d+)$/);
+  if (!m) return false;
+  const [op, want] = [m[1] || '=', m[2]];
+  const v = String(version || '0.0.0').split(/[.-]/).map(Number), w = want.split('.').map(Number);
+  if (cmpVer(version, want) < 0) return false;
+  if (op === '^') return v[0] === w[0];
+  if (op === '~') return v[0] === w[0] && v[1] === w[1];
+  if (op === '=') return cmpVer(version, want) === 0;
+  return true;
+}
 /** Permission scopes and what they allow (GET = read, POST = change after confirmation). */
 const PERMISSIONS = {
   'read:services': { de: 'Dienste und ihren Zustand sehen', en: 'See services and their state', read: [/^\/overview$/] },
@@ -49,6 +77,9 @@ const PERMISSIONS = {
   'run:terminal': { de: 'Befehle ins Hostwerk-Terminal tippen (du bestätigst mit Enter bzw. vorher im Dialog)', en: 'Type commands into the Hostwerk terminal (you confirm with Enter or in a dialog first)' },
   storage: { de: 'Eigene Daten speichern (max. 256 KB)', en: 'Store own data (max. 256 KB)' },
   network: { de: 'Mit den im Paket genannten Webadressen sprechen', en: 'Talk to the web addresses named in the package' },
+  // Seit SDK 2.7: native Erweiterungen – eigener Server- und Oberflächen-Code in Hostwerk (Funktionen, die früher eingebaut waren).
+  // Nur aus dem Hostwerk-Katalog (Prüfsumme) oder im Entwickler-Modus installierbar.
+  native: { de: 'Läuft als Teil von Hostwerk (eigener Server- und Oberflächen-Code) – nur aus dem Hostwerk-Katalog', en: 'Runs as part of Hostwerk (own server and interface code) – only from the Hostwerk catalog' },
 };
 // Version 1 packages: "read" = all read scopes, "write" = all control scopes
 const LEGACY = { read: Object.keys(PERMISSIONS).filter((k) => k.startsWith('read:')), write: ['control:services', 'command:minecraft', 'run:tasks'] };
@@ -122,6 +153,8 @@ function checkIcon(file, rel, err, warn) {
   if (/(?:xlink:)?href\s*=\s*["']\s*https?:/i.test(svg)) err('icon', `${rel} loads external files – embed everything in the SVG.`);
   const vb = (svg.match(/viewBox\s*=\s*["']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i) || []).slice(1).map(Number);
   if (vb.length === 2 && Math.abs(vb[0] - vb[1]) > Math.max(vb[0], vb[1]) * 0.05) warn('icon', `${rel} is not square (viewBox ${vb[0]}×${vb[1]}).`);
+  // Animated icons (SDK 2.7): gentle motion is welcome, but it must stop for people who turned motion off
+  if (/<animate|@keyframes/.test(svg) && !/prefers-reduced-motion/.test(svg)) warn('icon', `${rel} is animated – stop the motion under @media (prefers-reduced-motion: reduce).`);
   // Sichtbarkeit: Farben einsammeln; nur sehr dunkle bzw. nur sehr helle Farben ohne Hintergrundfläche fallen in einem Design weg
   const cols = [...svg.matchAll(/(?:fill|stroke|stop-color)\s*[:=]\s*["']?\s*(#[0-9a-f]{3,8}|white|black|currentColor)/gi)].map((x) => x[1].toLowerCase());
   if (!cols.length || cols.includes('currentcolor')) return; // currentColor passt sich an
@@ -130,6 +163,21 @@ function checkIcon(file, rel, err, warn) {
   const hasBackdrop = /<(rect|circle)\b[^>]*(width\s*=\s*["'](100%|\d{2,})|r\s*=\s*["']\d{2,})/i.test(svg);
   if (!hasBackdrop && ls.every((l) => l < 0.04)) warn('icon', `${rel} only uses very dark colors – nearly invisible in the dark design. Add a light tile or use currentColor.`);
   if (!hasBackdrop && ls.every((l) => l > 0.85)) warn('icon', `${rel} only uses very light colors – nearly invisible in the light design. Add a colored tile or use currentColor.`);
+}
+
+/** Banner: wide picture on top of the detail view and the catalog card (about 16:5, readable in light and dark). */
+function checkBanner(file, rel, err, warn) {
+  const ext = path.extname(file).toLowerCase();
+  if (!['.svg', '.png', '.webp', '.jpg', '.jpeg'].includes(ext)) { err('banner', `"banner" must be .svg, .png, .webp or .jpg – got ${rel}.`); return; }
+  const buf = fs.readFileSync(file);
+  if (buf.length > 1024 * 1024) warn('banner', `${rel} is ${Math.round(buf.length / 1024)} KB – keep banners under 1 MB.`);
+  if (ext !== '.svg') return;
+  const svg = buf.toString('utf8');
+  if (/<script|\son[a-z]+\s*=|javascript:/i.test(svg)) err('banner', `${rel} contains scripts or event handlers – not allowed.`);
+  if (/(?:xlink:)?href\s*=\s*["']\s*https?:/i.test(svg) || /@import|url\(\s*["']?https?:/i.test(svg)) err('banner', `${rel} loads external files – embed everything in the SVG.`);
+  const vb = (svg.match(/viewBox\s*=\s*["']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i) || []).slice(1).map(Number);
+  if (vb.length === 2 && (vb[0] / vb[1] < 2.4 || vb[0] / vb[1] > 4.2)) warn('banner', `${rel} is ${vb[0]}×${vb[1]} – banners should be wide (about 16:5, e.g. 1280×400).`);
+  if (/<animate|@keyframes/.test(svg) && !/prefers-reduced-motion/.test(svg)) warn('banner', `${rel} is animated – stop the motion under @media (prefers-reduced-motion: reduce).`);
 }
 
 function checkPackage(dir, { strict = false } = {}) {
@@ -147,10 +195,43 @@ function checkPackage(dir, { strict = false } = {}) {
   if (!ID_RE.test(m.id || '')) err('id', '"id" is missing or invalid (a–z, 0–9 and -, 2–40 characters).');
   if (!m.name) err('name', '"name" is missing.');
   if (!SEMVER.test(m.version || '')) err('version', '"version" must look like 1.2.3.');
-  if (!m.page && !m.widget && !m.command) err('entry', 'The extension needs a page ("page"), a dashboard tile ("widget") or a service ("command").');
+  if (!m.page && !m.widget && !m.command && !m.backend && !m.ui) err('entry', 'The extension needs a page ("page"), a dashboard tile ("widget"), a service ("command") or native code ("backend"/"ui").');
+  // ---------- SDK 2.7: category, banner, screenshots, dependencies, native code ----------
+  if (m.category === undefined) info.push({ code: 'category', msg: `Add "category" – one of: ${Object.keys(CATEGORIES).join(', ')}. The extension page groups by it.` });
+  else if (!CATEGORIES[m.category]) err('category', `"category" must be one of: ${Object.keys(CATEGORIES).join(', ')}.`);
+  if (m.banner !== undefined) {
+    if (typeof m.banner !== 'string' || /\.\.|^\/|\\/.test(m.banner) || !fs.existsSync(path.join(dir, m.banner))) err('banner', `"banner" points to a missing file: ${m.banner}`);
+    else checkBanner(path.join(dir, m.banner), m.banner, err, warn);
+  } else info.push({ code: 'banner', msg: 'Add "banner": "banner.svg" (wide, about 16:5) – it heads the extension’s detail view and the catalog card.' });
+  if (m.screenshots !== undefined) {
+    if (!Array.isArray(m.screenshots) || m.screenshots.length > 6) err('screenshots', '"screenshots" must be a list of up to 6 image files.');
+    else for (const s of m.screenshots) if (typeof s !== 'string' || !/\.(png|webp|jpe?g|svg)$/i.test(s) || /\.\.|^\/|\\/.test(s) || !fs.existsSync(path.join(dir, s))) err('screenshots', `Screenshot missing or not an image: ${s}`);
+  }
+  if (m.requires !== undefined) {
+    if (!m.requires || typeof m.requires !== 'object' || Array.isArray(m.requires)) err('requires', '"requires" must be an object: { "other-extension": ">=1.0.0" }.');
+    else for (const [dep, range] of Object.entries(m.requires)) {
+      if (!ID_RE.test(dep)) err('requires', `"requires": "${dep}" is not a valid extension id.`);
+      else if (dep === m.id) err('requires', 'An extension cannot require itself.');
+      if (!RANGE_RE.test(String(range).trim())) err('requires', `"requires.${dep}": "${range}" must look like ">=1.2.0", "^1.2.0", "1.2.0" or "*".`);
+    }
+  }
+  const native = !!(m.backend || m.ui);
+  const permsRaw = Array.isArray(m.permissions) ? m.permissions : [];
+  if (native && !permsRaw.includes('native')) err('native', '"backend"/"ui" run inside Hostwerk – add the "native" permission so people see it before installing.');
+  if (!native && permsRaw.includes('native')) err('native', '"native" permission without "backend" or "ui".');
+  for (const k of ['backend', 'ui']) {
+    if (m[k] === undefined) continue;
+    const f = m[k] && typeof m[k] === 'object' ? m[k].file : m[k];
+    if (typeof f !== 'string' || /\.\.|^\/|\\/.test(f) || !/\.(c?js|mjs)$/.test(f)) { err(k, `"${k}" must name a .js file inside the package, e.g. "${k === 'backend' ? 'server/index.js' : 'ui/index.js'}".`); continue; }
+    if (!fs.existsSync(path.join(dir, f))) { err(k, `"${k}" points to a missing file: ${f}`); continue; }
+    const src = fs.readFileSync(path.join(dir, f), 'utf8');
+    if (k === 'backend' && !/\bactivate\b/.test(src)) err('backend', `${f} must export activate(host) – see the guide, section “Native extensions”.`);
+    if (k === 'ui' && !/\bregister\b|export\s+default|as\s+default\b/.test(src)) err('ui', `${f} must export default { pages, slots } – see the guide, section “Native extensions”.`);
+  }
   for (const k of ['page', 'widget']) {
     const e = m[k];
     if (!e) continue;
+    if (k === 'page' && m.ui && !e.file) continue; // native page: drawn by the ui module, page only names title/icon/description
     if (!e.file || /\.\.|^\/|\\/.test(e.file)) err(`${k}.file`, `"${k}.file" is missing or invalid.`);
     else if (!fs.existsSync(path.join(dir, e.file))) err(`${k}.file`, `"${k}.file" points to a missing file: ${e.file}`);
   }
@@ -211,7 +292,16 @@ function checkPackage(dir, { strict = false } = {}) {
   for (const s of Array.isArray(m.settings) ? m.settings : []) if (!both(s.label)) warn('i18n', `Setting "${s.key}": "label" should exist in German and English.`);
   const loc = (l) => { const f = path.join(dir, 'locales', `${l}.json`); if (!fs.existsSync(f)) return null; try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) { err('i18n', `locales/${l}.json is not valid JSON: ${e.message}`); return {}; } };
   const de = loc('de'), en = loc('en');
-  if (!de || !en) warn('i18n', 'Add locales/de.json and locales/en.json for all visible texts (Hostwerk.t("key"), data-i18n="key").');
+  if (m.ui || m.backend) {
+    // Native extensions: English is the source text, locales/de.json maps it to German ({ "English": "Deutsch", "$patterns": [[…]] }).
+    // locales/en.json is optional (only for wording overrides).
+    if (!de) warn('i18n', 'Add locales/de.json – English texts are the keys, German the values (node tools/i18n-scan.js lists missing ones).');
+    else {
+      const empty = Object.entries(de).filter(([k, v]) => k !== '$patterns' && (typeof v !== 'string' || !v.trim())).map(([k]) => k);
+      if (empty.length) warn('i18n', `locales/de.json has ${empty.length} empty translation(s), e.g. "${empty[0].slice(0, 50)}".`);
+      if (de.$patterns !== undefined && (!Array.isArray(de.$patterns) || de.$patterns.some((p) => !Array.isArray(p) || p.length !== 2 || typeof p[0] !== 'string' || typeof p[1] !== 'string' || !p[1].trim()))) warn('i18n', 'locales/de.json "$patterns" must be a list of ["English {}", "Deutsch {}"] pairs.');
+    }
+  } else if (!de || !en) warn('i18n', 'Add locales/de.json and locales/en.json for all visible texts (Hostwerk.t("key"), data-i18n="key").');
   else {
     for (const k of Object.keys(de)) if (!(k in en)) warn('i18n', `locales/en.json is missing "${k}".`);
     for (const k of Object.keys(en)) if (!(k in de)) warn('i18n', `locales/de.json is missing "${k}".`);
@@ -227,9 +317,15 @@ function checkPackage(dir, { strict = false } = {}) {
   if (files.some((f) => /\.(exe|dll|bat|cmd|ps1|sh|scr|msi)$/i.test(f)) && !m.command) err('binary', 'Programs/scripts in a page-only package are not allowed.');
   const pages = [m.page && m.page.file, m.widget && m.widget.file, ...((m.contributes && Array.isArray(m.contributes.tabs)) ? m.contributes.tabs.map((x) => x && x.file) : [])].filter(Boolean);
   let hardColors = 0; let fontHits = 0;
+  // Native code (backend/ui) is reviewed by hand before it reaches the catalog; the sandbox rules below are for pages.
+  const nativeDirs = ['backend', 'ui'].map((k) => (m[k] ? `${path.posix.dirname(String(typeof m[k] === 'object' ? m[k].file : m[k]))}/` : null)).filter((d) => d && d !== './');
+  // browser-extension/ of a native package is a separate browser add-on that Hostwerk only hands out (it never runs here)
+  const isNative = (f) => nativeDirs.some((d) => f.startsWith(d)) || /^(tests|scripts)\//.test(f) || (!!m.backend && /^browser-extension\//.test(f));
   for (const f of files.filter((x) => TEXT_EXT.test(x))) {
     const src = fs.readFileSync(path.join(dir, f), 'utf8');
-    if (/\.(html?|js|mjs)$/i.test(f)) {
+    if (/\.(html?|js|mjs)$/i.test(f) && isNative(f)) {
+      if (/\beval\s*\(/.test(src)) err('eval', `${f}: eval is not allowed.`);
+    } else if (/\.(html?|js|mjs)$/i.test(f)) {
       for (const mm of src.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)) if (/^(https?:)?\/\//i.test(mm[1])) err('remote-script', `${f}: loads a script from the internet (${mm[1]}) – bundle it into the package.`);
       if (/\beval\s*\(|new\s+Function\s*\(/.test(src)) err('eval', `${f}: eval/new Function is not allowed.`);
       // Unknown SDK functions (typos, invented APIs) – found before the page breaks at runtime
@@ -243,7 +339,7 @@ function checkPackage(dir, { strict = false } = {}) {
       if (/\.innerHTML\s*=\s*`[^`]*\$\{/.test(src) || /\.innerHTML\s*=\s*[^;`]*\+/.test(src)) warn('xss', `${f}: innerHTML with inserted values – use Hostwerk.render(el, Hostwerk.html\`…\`) so names and texts are escaped.`);
       if (/\bfetch\s*\(\s*['"`]https?:/.test(src) && !net.length) err('network', `${f}: talks to the internet without "network" in the manifest.`);
     }
-    if (/\.(html?|css)$/i.test(f)) {
+    if (/\.(html?|css)$/i.test(f) && !isNative(f)) {
       // Colours outside var(--hw-…): fallbacks inside var() are fine
       const noVars = src.replace(/var\([^)]*\)/g, '').replace(/<script[\s\S]*?<\/script>/gi, '');
       const css = /\.css$/i.test(f) ? noVars : [...noVars.matchAll(/<style[^>]*>([\s\S]*?)<\/style>|style="([^"]*)"/gi)].map((x) => x[1] || x[2] || '').join('\n');
@@ -271,7 +367,7 @@ function checkPackage(dir, { strict = false } = {}) {
   return { ok: errors.length === 0, errors, warnings, info, manifest: m, score, size, sdk: SDK_VERSION };
 }
 
-module.exports = { checkPackage, PERMISSIONS, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS };
+module.exports = { checkPackage, PERMISSIONS, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS, CATEGORIES, satisfies, cmpVer, RANGE_RE };
 
 if (require.main === module) {
   const dir = process.argv[2];
