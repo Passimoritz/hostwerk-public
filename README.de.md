@@ -1,6 +1,6 @@
 <p align="right"><a href="README.md">English</a> · <b>Deutsch</b></p>
 
-<p align="center"><img src="img/banner.svg" alt="Hostwerk – die lokale Server-Zentrale für Windows und Linux" width="100%"></p>
+<p align="center"><img src="img/banner-de.svg" alt="Hostwerk – die lokale Server-Zentrale für Windows und Linux" width="100%"></p>
 
 <p align="center">
   <b>Die lokale Server-Zentrale für Windows und Linux</b><br>
@@ -22,11 +22,11 @@
 |---|---|
 | ![Minecraft-Server](img/minecraft-de.png) | ![Datenbank-Studio](img/database-de.png) |
 
-| KI-Helfer | KI-Anbindung (Claude & andere) |
+| KI-Helfer | Spiele-Server |
 |---|---|
-| ![KI-Helfer mit Werkzeug-Schritten](img/ai-assistant.svg) | ![KI-Anbindung](img/claude-de.png) |
+| ![KI-Helfer mit Werkzeug-Schritten](img/ai-assistant-de.svg) | ![Spiele-Server](img/games-de.png) |
 
-<p align="center"><img src="img/going-live.svg" alt="Schritt für Schritt in den Livebetrieb" width="100%"></p>
+<p align="center"><img src="img/going-live-de.svg" alt="Schritt für Schritt in den Livebetrieb" width="100%"></p>
 
 ## Dieses Repository
 

@@ -1,6 +1,6 @@
 <p align="right"><b>English</b> · <a href="README.de.md">Deutsch</a></p>
 
-<p align="center"><img src="img/banner.svg" alt="Hostwerk – the local server hub for Windows and Linux" width="100%"></p>
+<p align="center"><img src="img/banner-en.svg" alt="Hostwerk – the local server hub for Windows and Linux" width="100%"></p>
 
 <p align="center">
   <b>The local server hub for Windows and Linux</b><br>
@@ -22,11 +22,11 @@
 |---|---|
 | ![Minecraft servers](img/minecraft-en.png) | ![Database Studio](img/database-en.png) |
 
-| AI assistant | AI Connect (Claude & others) |
+| AI assistant | Game servers |
 |---|---|
-| ![AI assistant with tool steps](img/ai-assistant.svg) | ![AI Connect](img/claude-en.png) |
+| ![AI assistant with tool steps](img/ai-assistant-en.svg) | ![Game servers](img/games-en.png) |
 
-<p align="center"><img src="img/going-live.svg" alt="Going live step by step" width="100%"></p>
+<p align="center"><img src="img/going-live-en.svg" alt="Going live step by step" width="100%"></p>
 
 ## This repository
 

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0d14"/>
+      <stop offset="1" stop-color="#0f1a1c"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b6cff"/>
+      <stop offset="1" stop-color="#19c7a8"/>
+    </linearGradient>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#19c7a8"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="520" rx="24" fill="url(#bg)"/>
+  <text x="48" y="58" font-size="26" font-weight="800" fill="#fff">From a local project to a real website</text>
+  <text x="48" y="88" font-size="15" fill="#9aa3b8">Going live: own domain with HTTPS, system service, remote access, security and monitoring – all in a click.</text>
+
+  <!-- Fluss -->
+  <g font-size="14">
+    <g transform="translate(48 132)">
+      <rect width="190" height="120" rx="16" fill="#161a28" stroke="#ffffff" stroke-opacity="0.1"/>
+      <text x="95" y="44" text-anchor="middle" font-size="28">🌍</text>
+      <text x="95" y="78" text-anchor="middle" font-weight="700" fill="#fff">Visitors</text>
+      <text x="95" y="100" text-anchor="middle" font-size="12.5" fill="#9aa3b8">shop.my-domain.com</text>
+    </g>
+    <g transform="translate(300 132)">
+      <rect width="190" height="120" rx="16" fill="#161a28" stroke="#ffffff" stroke-opacity="0.1"/>
+      <text x="95" y="44" text-anchor="middle" font-size="28">🧭</text>
+      <text x="95" y="78" text-anchor="middle" font-weight="700" fill="#fff">DNS &amp; router</text>
+      <text x="95" y="100" text-anchor="middle" font-size="12.5" fill="#9aa3b8">Records to copy + check</text>
+    </g>
+    <g transform="translate(552 120)">
+      <rect width="300" height="144" rx="18" fill="#141827" stroke="url(#acc)" stroke-width="1.6"/>
+      <text x="150" y="40" text-anchor="middle" font-size="19" font-weight="800" fill="#fff">Hostwerk</text>
+      <text x="150" y="66" text-anchor="middle" font-size="13" fill="#a6f0e1">🔒 Let's Encrypt · renewed automatically</text>
+      <text x="150" y="88" text-anchor="middle" font-size="13" fill="#cfd4e4">HTTPS redirect · security headers</text>
+      <text x="150" y="110" text-anchor="middle" font-size="13" fill="#cfd4e4">Firewall rules · system service</text>
+      <text x="150" y="130" text-anchor="middle" font-size="12" fill="#7c86a3">runs without signing in too</text>
+    </g>
+    <g transform="translate(914 132)">
+      <rect width="318" height="120" rx="16" fill="#161a28" stroke="#ffffff" stroke-opacity="0.1"/>
+      <text x="20" y="34" font-weight="700" fill="#fff">Your services</text>
+      <text x="20" y="60" font-size="13" fill="#cfd4e4">Websites (Apache/nginx/Caddy + PHP)</text>
+      <text x="20" y="82" font-size="13" fill="#cfd4e4">Databases · apps · Docker</text>
+      <text x="20" y="104" font-size="13" fill="#cfd4e4">Mail server (Stalwart) · Minecraft</text>
+    </g>
+  </g>
+  <g stroke="#19c7a8" stroke-width="2.2" fill="none" marker-end="url(#a)">
+    <path d="M240 192 H 296"/>
+    <path d="M492 192 H 548"/>
+    <path d="M854 192 H 910"/>
+  </g>
+
+  <!-- Bausteine -->
+  <g font-size="13" transform="translate(48 300)">
+    <g>
+      <rect width="282" height="176" rx="16" fill="#161a28"/>
+      <text x="20" y="34" font-size="15" font-weight="700" fill="#fff">🛡 Security check</text>
+      <text x="20" y="62" fill="#cfd4e4">Databases without a password, open ports,</text>
+      <text x="20" y="82" fill="#cfd4e4">missing HTTPS, remote access …</text>
+      <text x="20" y="110" fill="#a6f0e1">Usually fixed in one click</text>
+      <text x="20" y="150" font-size="12" fill="#7c86a3">also by the AI assistant (security mode)</text>
+    </g>
+    <g transform="translate(298 0)">
+      <rect width="282" height="176" rx="16" fill="#161a28"/>
+      <text x="20" y="34" font-size="15" font-weight="700" fill="#fff">📱 Remote access</text>
+      <text x="20" y="62" fill="#cfd4e4">Interface over HTTPS from anywhere</text>
+      <text x="20" y="82" fill="#cfd4e4">Password + two-factor code (TOTP)</text>
+      <text x="20" y="110" fill="#a6f0e1">Lock after failed attempts</text>
+      <text x="20" y="150" font-size="12" fill="#7c86a3">headless too: QR code in the terminal</text>
+    </g>
+    <g transform="translate(596 0)">
+      <rect width="282" height="176" rx="16" fill="#161a28"/>
+      <text x="20" y="34" font-size="15" font-weight="700" fill="#fff">🔔 Alerts &amp; uptime</text>
+      <text x="20" y="62" fill="#cfd4e4">Checks regularly that websites are reachable</text>
+      <text x="20" y="82" fill="#cfd4e4">Crash, outage, certificate expiring</text>
+      <text x="20" y="110" fill="#a6f0e1">Discord · ntfy · e-mail</text>
+      <text x="20" y="150" font-size="12" fill="#7c86a3">Self-healing restarts what hangs</text>
+    </g>
+    <g transform="translate(894 0)">
+      <rect width="290" height="176" rx="16" fill="#161a28"/>
+      <text x="20" y="34" font-size="15" font-weight="700" fill="#fff">💾 Off-site backup</text>
+      <text x="20" y="62" fill="#cfd4e4">Databases, web folders, Minecraft</text>
+      <text x="20" y="82" fill="#cfd4e4">on a schedule to NAS or SFTP</text>
+      <text x="20" y="110" fill="#a6f0e1">with retention</text>
+      <text x="20" y="150" font-size="12" fill="#7c86a3">+ snapshots per project</text>
+    </g>
+  </g>
+</svg>
