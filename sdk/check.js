@@ -284,6 +284,27 @@ function checkPackage(dir, { strict = false } = {}) {
     if (!['text', 'number', 'switch', 'select'].includes(s.type)) err('settings', `Setting "${s.key}": type must be text, number, switch or select.`);
   }
 
+  // ---------- Least privilege: permissions that nothing in the page code uses ----------
+  // Only for sandboxed pages (native code is reviewed by hand). Always a warning, also with --strict: a path can be built at runtime.
+  if (!m.backend && !m.ui && perms.length) {
+    const src = walk(dir).filter((f) => /\.(html?|js|mjs)$/i.test(f) && !/^(tests|scripts|docs)\//.test(f)).map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n');
+    const paths = [...src.matchAll(/["'`](\/[^"'`\s]*)/g)].map((x) => x[1].replace(/\$\{[^}]*\}/g, 'x').replace(/\?.*$/, ''));
+    // SDK helpers that use a permission without a literal path
+    const HELPERS = {
+      'read:services': /Hostwerk\.services\s*\(|Hostwerk\.on\(\s*['"]services|Hostwerk\.minecraft\.servers/, 'control:services': /Hostwerk\.service\s*\(/,
+      'read:minecraft': /Hostwerk\.minecraft\.(servers|players|stats)/, 'command:minecraft': /Hostwerk\.minecraft\.command/,
+      'run:terminal': /Hostwerk\.terminal\s*\(/, storage: /Hostwerk\.storage\./, network: /\bfetch\s*\(/,
+    };
+    const used = (p) => {
+      if (HELPERS[p] && HELPERS[p].test(src)) return true;
+      const res = [...(PERMISSIONS[p].read || []), ...(PERMISSIONS[p].write || [])];
+      if (!res.length) return true; // nothing to compare against
+      return paths.some((x) => res.some((re) => re.test(x)));
+    };
+    const unused = perms.filter((p) => PERMISSIONS[p] && p !== 'native' && !used(p));
+    if (unused.length) warnings.push({ code: 'permissions-unused', msg: `Requested but apparently not used: ${unused.join(', ')} – ask only for what the code needs (people see every permission before installing).` });
+  }
+
   // ---------- Translations (German + English) ----------
   const both = (v) => v && typeof v === 'object' && v.de && v.en;
   if (!both(m.name)) warn('i18n', '"name" should exist in German and English: { "de": "…", "en": "…" }.');
