@@ -127,6 +127,8 @@
   }
   const KIND_BASE = { web: '/web', db: '/dbs', minecraft: '/mc/servers', app: '/apps', mail: '/mail' };
   const service = (kind, id) => {
+    // Der Mail-Fänger ist ein einzelner Dienst ohne ID und ohne eigenes „restart“
+    if (kind === 'mail') return { start: () => call('POST', '/mail/start'), stop: () => call('POST', '/mail/stop'), restart: async () => { await call('POST', '/mail/stop'); return call('POST', '/mail/start'); } };
     const base = `${KIND_BASE[kind] || '/' + kind}/${encodeURIComponent(id)}`;
     return { start: () => call('POST', `${base}/start`), stop: () => call('POST', `${base}/stop`), restart: () => call('POST', `${base}/restart`) };
   };
