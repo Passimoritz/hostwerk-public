@@ -52,6 +52,37 @@
     "released": "2026-10-19"
   },
   {
+    "id": "claude",
+    "name": {
+      "de": "Claude",
+      "en": "Claude"
+    },
+    "description": {
+      "de": "Claude mit Hostwerk: Claude Desktop und Claude Code verbinden, im Projekt loslegen, Tokens sparen und Tipps & Tricks für bessere Ergebnisse.",
+      "en": "Claude with Hostwerk: connect Claude Desktop and Claude Code, get going in your project, save tokens and tips & tricks for better results."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "read:claude",
+      "change:claude",
+      "run:terminal",
+      "read:knowledge",
+      "connect:claude",
+      "storage"
+    ],
+    "hostwerk": ">=2.9.0",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-claude",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-claude/releases/download/v1.0.0/claude-1.0.0.zip",
+    "sha256": "54efa703d5cb80d8f35587a97ec691bd58e983d107b578389ccf6d3f1e4f45a5",
+    "score": 100,
+    "released": "2026-10-19"
+  },
+  {
     "id": "knowledge-graph",
     "name": {
       "de": "Wissensgraph",
