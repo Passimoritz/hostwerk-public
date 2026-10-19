@@ -293,3 +293,7 @@ extension hides code or collects data without saying so.
 | [hostwerk-ext-knowledge-graph](https://github.com/Passimoritz/hostwerk-ext-knowledge-graph) | Large page with 6 tabs, canvas drawing with list alternative, quiet and confirmed permissions (SDK 2.3) |
 
 ![Status Wall inside Hostwerk](img/status-wall-in-hostwerk.png)
+
+### Language packs
+
+Hostwerk itself maintains German and English. More languages come from extensions: list them in `manifest.json` → `"languages": [{ "id": "fr", "name": "Français", "file": "lang/fr.json" }]`. The file has the same shape as Hostwerk's `ui/src/i18n/en.json` – `{ "texts": { "<German text>": "<translation>" }, "patterns": [["text with {}", "translation with {}"]] }`. Users pick the language under Settings → General; whatever is missing appears in English. The checker validates the file and the placeholders.

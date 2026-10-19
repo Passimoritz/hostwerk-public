@@ -608,6 +608,35 @@
           }
         }
       }
+    },
+    "languages": {
+      "type": "array",
+      "maxItems": 10,
+      "description": "UI language packs this extension maintains (Hostwerk itself ships German and English). File format like Hostwerk's en.json: { \"texts\": { \"<German text>\": \"<translation>\" }, \"patterns\": [[\"text with {}\", \"translation with {}\"]] }. Missing texts fall back to English.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "file"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+            "description": "Language code, e.g. \"fr\" or \"pt-BR\" (not \"de\"/\"en\")"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Name in the language itself, e.g. \"Français\""
+          },
+          "file": {
+            "type": "string",
+            "pattern": "^[^/\\\\.][^\\\\]*\\.json$"
+          }
+        }
+      }
     }
   }
 }

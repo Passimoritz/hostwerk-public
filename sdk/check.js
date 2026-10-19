@@ -154,6 +154,19 @@ function checkPackage(dir, { strict = false } = {}) {
     if (!e.file || /\.\.|^\/|\\/.test(e.file)) err(`${k}.file`, `"${k}.file" is missing or invalid.`);
     else if (!fs.existsSync(path.join(dir, e.file))) err(`${k}.file`, `"${k}.file" points to a missing file: ${e.file}`);
   }
+  // Sprachpakete (manifest.languages): Datei vorhanden, Form wie en.json, Platzhalter passen
+  if (m.languages !== undefined) {
+    if (!Array.isArray(m.languages) || m.languages.length > 10) err('languages', '"languages" must be a list of up to 10 entries: [{ "id": "fr", "name": "Français", "file": "lang/fr.json" }].');
+    else for (const l of m.languages) {
+      if (!l || !/^[a-z]{2,3}(-[A-Za-z]{2,4})?$/.test(l.id || '') || ['de', 'en'].includes(l.id)) { err('languages', `Language id "${l && l.id}" is invalid (e.g. "fr", "pt-BR"; German and English are built in).`); continue; }
+      if (!l.name) err('languages', `Language "${l.id}" needs a "name".`);
+      const lf = l.file && !/\.\.|^[\\/]/.test(l.file) ? path.join(dir, l.file) : null;
+      if (!lf || !fs.existsSync(lf)) { err('languages', `Language file for "${l.id}" is missing.`); continue; }
+      let j = null; try { j = JSON.parse(fs.readFileSync(lf, 'utf8')); } catch { err('languages', `Language file for "${l.id}" is not valid JSON.`); continue; }
+      if (!j || typeof j.texts !== 'object' || Array.isArray(j.texts)) err('languages', `Language file for "${l.id}" needs { "texts": { … } }.`);
+      for (const p of Array.isArray(j && j.patterns) ? j.patterns : []) if (!Array.isArray(p) || (String(p[0]).match(/\{\}/g) || []).length !== (String(p[1]).match(/\{\}/g) || []).length) { warn('languages', `Pattern in "${l.id}" has a different number of {} placeholders – it is ignored.`); break; }
+    }
+  }
   // Seit SDK 2.2: Hostwerk zeichnet Kopf und Reiter selbst (page.description, page.tabs)
   if (m.page && m.page.tabs !== undefined) {
     if (!Array.isArray(m.page.tabs) || m.page.tabs.length > 8) err('page.tabs', '"page.tabs" must be a list of up to 8 tabs: [{ "id": "overview", "title": { "en": "Overview", "de": "Übersicht" }, "icon": "gauge" }].');
