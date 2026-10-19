@@ -27,7 +27,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -59,7 +59,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -96,7 +96,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -130,7 +130,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -162,7 +162,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -195,7 +195,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -227,7 +227,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -261,7 +261,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -293,7 +293,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -327,7 +327,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -360,7 +360,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -393,7 +393,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -426,7 +426,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -458,7 +458,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   },
@@ -490,7 +490,7 @@
     "compat": {
       "ok": true,
       "checked": "2026-10-19",
-      "sdk": "2.5.0",
+      "sdk": "2.6.0",
       "problems": []
     }
   }
