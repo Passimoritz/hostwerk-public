@@ -216,6 +216,32 @@
               }
             }
           }
+        },
+        "shortcuts": {
+          "type": "array",
+          "maxItems": 20,
+          "description": "Keyboard shortcuts of this page, shown in Hostwerk's shortcut overview (F1 or ?) while the page is open.",
+          "items": {
+            "type": "object",
+            "required": [
+              "keys",
+              "label"
+            ],
+            "properties": {
+              "keys": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 4,
+                "items": {
+                  "type": "string",
+                  "maxLength": 12
+                }
+              },
+              "label": {
+                "$ref": "#/definitions/text"
+              }
+            }
+          }
         }
       }
     }
