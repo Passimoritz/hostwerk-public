@@ -12,5 +12,6 @@
   "Passimoritz/hostwerk-ext-knowledge-graph",
   "Passimoritz/hostwerk-ext-cert-watch",
   "Passimoritz/hostwerk-ext-disk-usage",
-  "Passimoritz/hostwerk-ext-uptime-wall"
+  "Passimoritz/hostwerk-ext-uptime-wall",
+  "Passimoritz/hostwerk-ext-claude"
 ]

@@ -67,6 +67,16 @@ const mock = [
   [/^\/knowledge\/[\w.-]+\/questions$/, () => ({ questions: [], unanswered: [] })],
   [/^\/knowledge\/[\w.-]+\/memory$/, () => []],
   [/^\/knowledge\/[\w.-]+\/claude$/, () => ({ connected: false, items: [], issues: [], ok: true })],
+  // SDK 2.5: Claude (wie /claude/status, /claude/tools … in Hostwerk)
+  [/^\/claude\/status$/, () => ({ installed: true, version: '2.1.0', platform: 'linux', install: { shell: '', cmd: 'curl -fsSL https://claude.ai/install.sh | bash' }, docs: 'https://docs.anthropic.com/en/docs/claude-code/overview', desktop: { installed: false, supported: false, download: 'https://claude.ai/download', connected: false, wanted: false }, web: 'https://claude.ai', chrome: 'https://claude.ai/chrome', browsers: [{ id: 'chrome', label: 'Chrome', engine: 'chromium' }], codeConnected: true, activity: { at: now - 600e3, client: 'claude-code', text: 'Gedankennetz' } })],
+  [/^\/claude\/connect\/code$/, () => ({ command: 'claude mcp add hostwerk -- node /opt/hostwerk-mcp.js', connected: true })],
+  [/^\/claude\/targets\/[\w.-]+$/, () => [{ id: 'claude', label: 'Claude Code', file: 'CLAUDE.md', has: true }, { id: 'cursor', label: 'Cursor', file: '.cursorrules', has: false }]],
+  [/^\/claude\/tools$/, () => ({ tools: [{ id: 'rtk', name: 'RTK', kind: 'hook', area: 'Befehlsausgaben', summary: 'Kürzt Befehlsausgaben, bevor Claude sie liest.', savings: '60–90 %', pros: ['Schnell', 'Lokal'], cons: ['Nur Shell-Ausgaben'], license: 'MIT', telemetry: 'keine', installable: true, installed: true, active: true, version: '0.9.1', update: true, latest: '0.9.2', repo: 'example/rtk', recommended: true }, { id: 'graph', name: 'Graph', kind: 'mcp', area: 'Code-Suche', summary: 'Graph statt Dateisuche.', savings: '30–50 %', pros: ['Große Projekte'], cons: ['Erst bauen'], license: 'MIT', telemetry: 'keine', installable: true, installed: false, repo: 'example/graph' }, { id: 'builtin', name: 'Gedankennetz', kind: 'mcp', area: 'Kontext', summary: '-', savings: '-', license: 'MIT', telemetry: 'keine', builtin: true, repo: 'x/y' }], tips: [{ title: 'Kurze Antworten', text: 'Bitte Claude um knappe Antworten.' }], autoUpdate: true, mcp: ['hostwerk'], claude: true })],
+  [/^\/claude\/tools\/usage$/, () => ({ days: Array.from({ length: 14 }, (_, i) => ({ date: new Date(now - (13 - i) * 864e5).toISOString().slice(0, 10), total: 40000 + ((i * 7919) % 30000), input: 20000, output: 4000, cacheRead: 16000 })) })],
+  [/^\/claude\/tools\/discover$/, () => [{ repo: 'example/new-tool', description: 'Something new', stars: 1200, pushedAt: new Date(now).toISOString(), url: 'https://github.com/example/new-tool' }]],
+  [/^\/mind\/activity$/, () => [{ at: now - 300e3, client: 'claude-code', action: 'read', text: 'Gedankennetz' }, { at: now - 3600e3, client: 'Claude Desktop', action: 'add', text: 'Nutzt Tabs statt Leerzeichen' }]],
+  [/^\/mind\/context$/, () => ({ md: '# Kontext' })],
+  [/^\/projects$/, () => [{ id: 'p1', name: 'Shop', path: '/home/demo/shop' }, { id: 'p2', name: 'Blog', path: '/home/demo/blog' }]],
 ];
 const POSTS = [[/./, () => ({ ok: true })]];
 
@@ -90,7 +100,7 @@ addEventListener('message', async (e) => {
   window.__calls.push(m.method + ' ' + (m.path || ''));
   if (m.method === 'HELLO') { const l = await (await fetch('/locales/' + ID)).json(); push({ type: 'init', theme: ${JSON.stringify(THEMES[theme])}, lang: ${JSON.stringify(lang)}, messages: { ...l.de, ...l[${JSON.stringify(lang)}] }, settings: l.settings || {}, embed: ${JSON.stringify(embed)}, tab: ${JSON.stringify(tab)}, context: ${JSON.stringify(context)}, action: null, ext: { id: ID, name: ${JSON.stringify(name)}, version: '0', permissions: ${JSON.stringify(permissions)} }, app: { version: '2.9.0' } }); return; }
   if (['RESIZE', 'SUBSCRIBE'].includes(m.method)) return;
-  if (['TOAST', 'NAVIGATE', 'OPEN_URL', 'COPY', 'OPEN_SETTINGS', 'SET_TAB'].includes(m.method)) return reply({ data: true });
+  if (['TOAST', 'NAVIGATE', 'OPEN_URL', 'COPY', 'OPEN_SETTINGS', 'SET_TAB', 'TERMINAL'].includes(m.method)) return reply({ data: true });
   if (m.method === 'PICK_FOLDER') return reply({ data: null });
   if (m.method === 'STORAGE_GET') { const k = (m.body || {}).key; return reply({ data: k ? store[k] : store }); }
   if (m.method === 'STORAGE_SET') { const b = m.body || {}; if (b.remove) delete store[b.key]; else store[b.key] = b.value; return reply({ data: true }); }
@@ -205,7 +215,7 @@ async function fromCatalog() {
           const st = await frame.evaluate(() => {
             const visible = [...document.body.querySelectorAll('*')].filter((el) => { if (el.closest('[hidden]')) return false; const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; });
             const text = [...visible].map((el) => (el.children.length ? '' : el.textContent)).join(' ').replace(/\s+/g, ' ').trim();
-            return { visible: visible.length, text: text.length, keys: (text.match(/\b[a-z]+\.[a-z][\w.]+\b/g) || []).filter((k) => !/\.(js|json|md|java|php|sql|jar|com|org|net|de|io|test|html|css)$/.test(k)).slice(0, 5), sdk: typeof window.Hostwerk === 'object' };
+            return { visible: visible.length, text: text.length, keys: (text.match(/\b[a-z]+\.[a-z][\w.]+\b/g) || []).filter((k) => !/\.(js|json|md|java|php|sql|jar|com|org|net|de|io|ai|dev|app|test|html|css)$/.test(k)).slice(0, 5), sdk: typeof window.Hostwerk === 'object' };
           });
           if (!st.sdk) errors.push('Hostwerk SDK not loaded');
           if (st.visible < 3 || st.text < 10) errors.push(`page stays (almost) empty: ${st.visible} visible elements, ${st.text} characters`);

@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '2.4.0';
+const SDK_VERSION = '2.5.0';
 /** Permission scopes and what they allow (GET = read, POST = change after confirmation). */
 const PERMISSIONS = {
   'read:services': { de: 'Dienste und ihren Zustand sehen', en: 'See services and their state', read: [/^\/overview$/] },
@@ -41,6 +41,10 @@ const PERMISSIONS = {
   'read:knowledge': { de: 'Wissensgraph lesen: Projekte, Graph, Bericht, Fragenverlauf, Gedächtnis, Claude-Status', en: 'Read the knowledge graph: projects, graph, report, question history, memory, Claude status', read: [/^\/knowledge$/, /^\/knowledge\/[\w.-]+\/(graph|report|questions|memory|claude)$/, /^\/claude\/(status|connect\/code)$/] },
   'change:knowledge': { de: 'Wissensgraph bauen und abfragen, Ordner aufnehmen, Gedächtnis pflegen, Obsidian-Export', en: 'Build and query the knowledge graph, add folders, edit memory, Obsidian export', quiet: true, write: [/^\/knowledge$/, /^\/knowledge\/folders(\/[\w.-]+)?$/, /^\/knowledge\/[\w.-]+\/(build|options|query|explain|path|memory(\/[\w-]+)?|obsidian\/(export|sync|notes|import))$/] },
   'connect:claude': { de: 'Claude einbinden und wieder vergessen (schreibt markierte Abschnitte in Projekte – mit Rückfrage)', en: 'Connect Claude and forget it again (writes marked sections into projects – asks first)', write: [/^\/knowledge\/[\w.-]+\/claude\/(connect|repair|forget)$/, /^\/knowledge\/forget-all$/, /^\/claude\/connect\/desktop$/] },
+  // Seit SDK 2.5: Claude-Bereich als Erweiterung (Status, Anbindung, Spar-Werkzeuge, Projekte) und Terminal
+  'read:claude': { de: 'Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen', en: 'Read Claude status, projects, memory context, token-saving tools and usage', read: [/^\/claude\/(status|connect\/code|tools|tools\/discover|tools\/usage|targets\/[\w.-]+)$/, /^\/mind(\/activity|\/context)?$/, /^\/projects(\/[\w-]+)?$/] },
+  'change:claude': { de: 'Claude einrichten: Kontext in Projekt-Dateien schreiben, Spar-Werkzeuge installieren/entfernen, Einstellungen (mit Rückfrage)', en: 'Set up Claude: write context into project files, install/remove token-saving tools, settings (asks first)', write: [/^\/claude\/write\/[\w.-]+$/, /^\/claude\/tools$/, /^\/claude\/tools\/[\w.-]+\/(install|update|remove)$/, /^\/claude\/connect\/desktop$/] },
+  'run:terminal': { de: 'Befehle ins Hostwerk-Terminal tippen (du bestätigst mit Enter bzw. vorher im Dialog)', en: 'Type commands into the Hostwerk terminal (you confirm with Enter or in a dialog first)' },
   storage: { de: 'Eigene Daten speichern (max. 256 KB)', en: 'Store own data (max. 256 KB)' },
   network: { de: 'Mit den im Paket genannten Webadressen sprechen', en: 'Talk to the web addresses named in the package' },
 };
@@ -54,7 +58,7 @@ const SDK_MEMBERS = {
   sdk: null, ready: null, info: null, lang: null, theme: null, embed: null, t: null, esc: null, html: null, render: null, raw: null,
   fmt: ['bytes', 'duration', 'number', 'time'], get: null, post: null, put: null, del: null, pickFolder: null, services: null, service: null, tab: null, setTab: null, context: null,
   minecraft: ['servers', 'players', 'stats', 'command'], storage: ['get', 'set', 'remove', 'all'], settings: ['get', 'open'],
-  on: null, toast: null, navigate: null, openUrl: null, copy: null,
+  on: null, toast: null, navigate: null, openUrl: null, copy: null, terminal: null,
 };
 const SEMVER = /^\d+\.\d+\.\d+(-[\w.]+)?$/;
 const MAX_SIZE = 10 * 1048576;

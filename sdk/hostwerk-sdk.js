@@ -12,7 +12,7 @@
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '2.4.0';
+  const VERSION = '2.5.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
@@ -155,6 +155,11 @@
     /** Delete (DELETE) – like post/put. Since SDK 2.3. */
     del: (path) => call('DELETE', path),
     /** Let the user choose a folder (native dialog in the desktop app). Resolves to the path or null. Since SDK 2.3. */
+    /**
+     * Command into the Hostwerk terminal (permission run:terminal). enter: false (default) only types it – the user
+     * presses Enter; enter: true asks the user first. Since SDK 2.5.
+     */
+    terminal: (command, opts = {}) => call('TERMINAL', '', { command: String(command), cwd: opts.cwd ? String(opts.cwd) : '', title: opts.title ? String(opts.title) : '', enter: !!opts.enter, shell: opts.shell ? String(opts.shell) : '' }),
     pickFolder: (title) => call('PICK_FOLDER', '', { title: title ? String(title) : '' }),
     services, service,
     minecraft: {

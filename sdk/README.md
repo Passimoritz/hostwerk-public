@@ -123,6 +123,7 @@ await Hostwerk.minecraft.command(id, 'say Hi');     // asks first (needs command
 await Hostwerk.put('/mc/servers/' + id + '/properties', { motd: '§aHi' }); // change a setting (change:minecraft, asks first) – SDK 2.2
 await Hostwerk.del('/knowledge/' + id + '/memory/' + entry);               // delete (SDK 2.3)
 const dir = await Hostwerk.pickFolder('Choose vault');                     // native folder dialog, path or null (SDK 2.3)
+await Hostwerk.terminal('claude', { cwd: dir, title: 'Claude' });           // types into the Hostwerk terminal; the user presses Enter (SDK 2.5, run:terminal)
 
 await Hostwerk.storage.set('pinned', 'srv1');       // kept by Hostwerk (needs storage)
 const s = await Hostwerk.settings.get();            // values of manifest.settings
@@ -205,6 +206,9 @@ The check reports missing keys and English texts that still look German. Manifes
 | `read:knowledge` | Knowledge graph: projects, graph, report, questions, memory, Claude status (SDK 2.3) |
 | `change:knowledge` | Build and query the knowledge graph, folders, memory, Obsidian export – **no prompt per call**, because it only touches the graph's own data (SDK 2.3) |
 | `connect:claude` | Write/remove the marked Claude section and skill in projects – asks every time (SDK 2.3) |
+| `read:claude` | Claude status, projects, memory context, token-saving tools and usage (SDK 2.5) |
+| `change:claude` | Write context files into projects, install/update/remove token-saving tools – asks every time (SDK 2.5) |
+| `run:terminal` | `Hostwerk.terminal(cmd, { cwd, title, enter })`: types a command into the Hostwerk terminal. Without `enter` the user starts it with Enter; with `enter: true` Hostwerk asks first (SDK 2.5) |
 | `storage` | `Hostwerk.storage` (256 KB) |
 | `network` | `fetch` to the origins in `network` |
 
