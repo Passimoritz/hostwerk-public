@@ -43,7 +43,7 @@ jobs:
           save() {
             cp catalog/verified.json katalog/verifiziert.json 2>/dev/null || true
             git add catalog/verified.json katalog
-            git diff --cached --quiet || (git commit -m "$1" && git push)
+            git diff --cached --quiet || (git commit -m "$1" && git pull --rebase -q && git push)
           }
           if [ "$ACTION" = "opened" ]; then
             if [ -z "$MINE" ]; then

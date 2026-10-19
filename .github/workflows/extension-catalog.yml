@@ -31,4 +31,4 @@ jobs:
         run: |
           git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
           git add catalog/extensions.json
-          git diff --cached --quiet || (git commit -m "Extension catalog updated" && git push)
+          git diff --cached --quiet || (git commit -m "Extension catalog updated" && git pull --rebase -q && git push)

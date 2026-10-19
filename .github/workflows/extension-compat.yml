@@ -31,7 +31,7 @@ jobs:
         run: |
           git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
           git add catalog/extensions.json catalog/community.json
-          git diff --cached --quiet || (git commit -m "Extension compatibility checked" && git push)
+          git diff --cached --quiet || (git commit -m "Extension compatibility checked" && git pull --rebase -q && git push)
       - name: Report problems as an issue
         if: steps.check.outputs.failing != '0'
         env:
