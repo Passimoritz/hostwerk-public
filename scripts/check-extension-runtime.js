@@ -77,6 +77,8 @@ const mock = [
   [/^\/claude\/tools\/usage$/, () => ({ days: Array.from({ length: 14 }, (_, i) => ({ date: new Date(now - (13 - i) * 864e5).toISOString().slice(0, 10), total: 40000 + ((i * 7919) % 30000), input: 20000, output: 4000, cacheRead: 16000 })) })],
   [/^\/claude\/tools\/discover$/, () => [{ repo: 'example/new-tool', description: 'Something new', stars: 1200, pushedAt: new Date(now).toISOString(), url: 'https://github.com/example/new-tool' }]],
   [/^\/mind\/activity$/, () => [{ at: now - 300e3, client: 'claude-code', action: 'read', text: 'Gedankennetz' }, { at: now - 3600e3, client: 'Claude Desktop', action: 'add', text: 'Nutzt Tabs statt Leerzeichen' }]],
+  // Hostwerk 2.9: memory for every AI provider (GET /ai/memory-share)
+  [/^\/ai\/memory-share$/, () => ({ on: true, clusters: ['ich', 'allgemein'], project: true, graph: false, maxTokens: 1500, providers: {}, mindOn: true, available: { providers: [{ id: 'ollama', label: 'On this PC (Ollama)' }, { id: 'claude-code-1', label: 'Claude (your plan)' }], clusters: [{ id: 'ich', title: 'About me', kind: 'me' }, { id: 'allgemein', title: 'General', kind: 'topic' }] } })],
   [/^\/mind\/context$/, () => ({ md: '# Kontext' })],
   [/^\/projects$/, () => [{ id: 'p1', name: 'Shop', path: '/home/demo/shop' }, { id: 'p2', name: 'Blog', path: '/home/demo/blog' }]],
 ];
