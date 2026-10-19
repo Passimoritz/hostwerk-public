@@ -470,7 +470,7 @@
       "en": "Own encrypted vault or Bitwarden/Vaultwarden, 1Password, KeePass, pass and LastPass – with browser extension, security check (Have I Been Pwned), 2FA codes, generator, sharing with members and import from every common service."
     },
     "author": "Hostwerk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -479,21 +479,21 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-passwords",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-passwords/releases/download/v1.0.0/passwords-1.0.0.zip",
-    "sha256": "a59614d15756a6592185427e5414fbe18aa4e93c8b31d0acd4f69f2db729d1e2",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-passwords/releases/download/v1.0.1/passwords-1.0.1.zip",
+    "sha256": "ad2c85feafafc83d48900b39c80d7ff5c00f2ff4c0405d8e09e201c1bd6739b7",
     "score": 100,
     "released": "2026-10-19",
     "category": "security",
     "color": "#7c3aed",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.0/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.0/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/docs/screenshot.de.png"
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/CHANGELOG.md"
   },
   {
     "id": "player-leaderboard",
