@@ -193,8 +193,9 @@ The check reports missing keys and English texts that still look German. Manifes
 | `read:services` | See services and their state (`Hostwerk.services()`) |
 | `read:web`, `read:databases`, `read:apps`, `read:tasks`, `read:mail` | Read these areas |
 | `read:minecraft` | Minecraft servers, players, stats, worlds |
-| `read:system` | Health, load, ports |
+| `read:system` | Health, load, ports, storage per service |
 | `read:network` | Router, machines, security status |
+| `read:live` | Certificates with days left, uptime checks with history (SDK 2.4) |
 | `control:services` | Start, stop, restart – **Hostwerk asks every time** |
 | `command:minecraft` | Send console commands – asks every time |
 | `run:tasks` | Run scheduled tasks – asks every time |

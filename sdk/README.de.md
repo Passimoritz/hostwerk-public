@@ -193,8 +193,9 @@ Die Prüfung meldet fehlende Schlüssel und englische Texte, die noch deutsch au
 | `read:services` | Dienste und ihren Zustand sehen (`Hostwerk.services()`) |
 | `read:web`, `read:databases`, `read:apps`, `read:tasks`, `read:mail` | Diese Bereiche lesen |
 | `read:minecraft` | Minecraft-Server, Spieler, Statistiken, Welten |
-| `read:system` | Gesundheit, Auslastung, Ports |
+| `read:system` | Gesundheit, Auslastung, Ports, Speicher je Dienst |
 | `read:network` | Router, Rechner, Sicherheitslage |
+| `read:live` | Zertifikate mit Restlaufzeit, Erreichbarkeit mit Verlauf (SDK 2.4) |
 | `control:services` | Starten, stoppen, neu starten – **Hostwerk fragt jedes Mal** |
 | `command:minecraft` | Konsolenbefehle senden – fragt jedes Mal |
 | `run:tasks` | Aufgaben ausführen – fragt jedes Mal |

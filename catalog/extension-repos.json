@@ -9,5 +9,8 @@
   "Passimoritz/hostwerk-ext-quick-tasks",
   "Passimoritz/hostwerk-ext-motd-studio",
   "Passimoritz/hostwerk-ext-service-notes",
-  "Passimoritz/hostwerk-ext-knowledge-graph"
+  "Passimoritz/hostwerk-ext-knowledge-graph",
+  "Passimoritz/hostwerk-ext-cert-watch",
+  "Passimoritz/hostwerk-ext-disk-usage",
+  "Passimoritz/hostwerk-ext-uptime-wall"
 ]

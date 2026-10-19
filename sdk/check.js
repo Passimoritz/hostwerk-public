@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '2.3.0';
+const SDK_VERSION = '2.4.0';
 /** Permission scopes and what they allow (GET = read, POST = change after confirmation). */
 const PERMISSIONS = {
   'read:services': { de: 'Dienste und ihren Zustand sehen', en: 'See services and their state', read: [/^\/overview$/] },
@@ -25,7 +25,9 @@ const PERMISSIONS = {
   'read:apps': { de: 'Apps lesen', en: 'Read apps', read: [/^\/apps$/] },
   'read:tasks': { de: 'Aufgaben lesen', en: 'Read scheduled tasks', read: [/^\/tasks$/] },
   'read:mail': { de: 'Abgefangene E-Mails lesen', en: 'Read captured e-mails', read: [/^\/mail(\/messages)?$/] },
-  'read:system': { de: 'Systemzustand, Auslastung und Ports lesen', en: 'Read system health, load and ports', read: [/^\/system\/(health|resources|ports)$/] },
+  'read:system': { de: 'Systemzustand, Auslastung, Ports und Speicher je Dienst lesen', en: 'Read system health, load, ports and storage per service', read: [/^\/system\/(health|resources|ports|disk-usage)$/] },
+  // Seit SDK 2.4: Livebetrieb – Zertifikate (mit Restlaufzeit) und Erreichbarkeit, ohne Alarm-Ziele, Schlüssel oder Zugänge
+  'read:live': { de: 'Zertifikate und Erreichbarkeit (Überwachung) lesen', en: 'Read certificates and uptime checks', read: [/^\/live\/(certs|uptime)$/] },
   'read:network': { de: 'Router, Rechner und Sicherheitslage lesen', en: 'Read router, machines and security status', read: [/^\/(router|machines|live\/security)$/] },
   'control:services': { de: 'Dienste starten, stoppen, neu starten (mit Rückfrage)', en: 'Start, stop, restart services (asks first)', write: [/^\/(web|dbs|apps|mail|mc\/servers)\/[\w-]+\/(start|stop|restart)$/] },
   'command:minecraft': { de: 'Befehle an Minecraft-Server senden (mit Rückfrage)', en: 'Send commands to Minecraft servers (asks first)', write: [/^\/mc\/servers\/[\w-]+\/command$/] },

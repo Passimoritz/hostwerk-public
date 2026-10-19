@@ -279,6 +279,7 @@
           "read:mail",
           "read:system",
           "read:network",
+          "read:live",
           "control:services",
           "command:minecraft",
           "run:tasks",
