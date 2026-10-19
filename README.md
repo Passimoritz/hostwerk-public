@@ -39,6 +39,7 @@ Hostwerk itself is developed in a private repository. This public one holds what
 | [`catalog/`](catalog) | AI model catalogue, project templates, advisor rules, password-manager catalogue and the extension catalogues: `extensions.json` (official, built daily from the extension repositories), `community.json`, `verified.json`. |
 | [`sdk/`](sdk) | **Extension SDK 2.7** – `hostwerk-sdk.js`, design kit, manifest schema, `check.js`, `build-native.js` and the [developer guide](sdk/README.md). |
 | [`packages/`](packages) | Checked copies of community extensions (pinned by SHA-256). |
+| [`handbuch/`](handbuch/en/README.md) | **User manual** – every page and tab with a screenshot and explanation, generated from the app before each release ([Deutsch](handbuch/de/README.md)). Hostwerk opens the matching page with **F1** or **?**, and the AI helper looks things up in it. |
 | `katalog/` | Old file names for Hostwerk versions before 2.9 – kept up to date automatically. |
 
 ## Extensions
