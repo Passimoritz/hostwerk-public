@@ -58,4 +58,4 @@ MariaDB 11.8.3 · Port 13390 · user root · without password mariadb.org
 **What you can do here:** Change image · Mark as favorite (then listed at the top) · mariadb.org · New in 11.8.3 · Other databases · Open in Studio · Start · Copy · Start Server · Back up now · Everything · Show time · Larger font · Wrap long lines · Save as text file · Empty · Pause · Live · Apply · Change · Update · Remove server …
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

@@ -34,4 +34,4 @@ Apache, nginx oder Caddy – mehrere parallel, jeweils mit eigener PHP-Version.
 **Was du hier tun kannst:** Neuer Webserver · Ordner · Suchen · Übernehmen · Erneut suchen · In Hostwerk übernehmen …
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

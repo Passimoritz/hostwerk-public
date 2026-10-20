@@ -32,9 +32,9 @@ Everything to make Hostwerk reliably and securely reachable on the internet – 
 
 ## Tabs
 
-### Share
+### Share a page (tunnel)
 
-![Share](img/live--share.jpg)
+![Share a page (tunnel)](img/live--share-a-page-tunnel.jpg)
 
 > How it works Hostwerk builds an encrypted connection to Cloudflare. There you get a random address like xyz.trycloudflare.com, which points straight at your local site – handy for showing it to someone or testing on your phone.
 
@@ -50,22 +50,6 @@ Everything to make Hostwerk reliably and securely reachable on the internet – 
 
 **What you can do here:** Emergency · Sign in · Copy · Save · Search again · Open the router interface · Sync now · Own forwarding · Open router · Hide tip · Forward
 
-### Security
-
-![Security](img/live--security.jpg)
-
-**Areas on this page:** Security check · Firewall
-
-**What you can do here:** Emergency · Set a secure password · Manage firewall
-
-### Firewall
-
-![Firewall](img/live--firewall.jpg)
-
-**Areas on this page:** Ports of public services · Own rule · Rules by Hostwerk
-
-**What you can do here:** Emergency · Create / renew rules · Create rule · Lock · Re-read · Remove rule
-
 ### Domains & HTTPS
 
 ![Domains & HTTPS](img/live--domains-https.jpg)
@@ -76,16 +60,6 @@ Everything to make Hostwerk reliably and securely reachable on the internet – 
 
 **What you can do here:** Emergency · Mark as trusted · Download certificate · Add domain · Go to web servers
 
-### System service
-
-![System service](img/live--system-service.jpg)
-
-> Switching is only possible in the desktop app.
-
-**Areas on this page:** Hostwerk as a system service · Good to know
-
-**What you can do here:** Emergency
-
 ### Remote access
 
 ![Remote access](img/live--remote-access.jpg)
@@ -94,33 +68,5 @@ Everything to make Hostwerk reliably and securely reachable on the internet – 
 
 **What you can do here:** Emergency · Save · Set up · Set up password and two-factor · Hide tip · Add passkey
 
-### Users
 
-![Users](img/live--users.jpg)
-
-> How roles work Every person signs in to remote access with their own name and password (or passkey). Members only see and control the services and areas you share – for example “start the survival server and manage players”. The change log shows who did what.
-
-**Areas on this page:** Users
-
-**What you can do here:** Emergency · Add user
-
-### Monitoring
-
-![Monitoring](img/live--monitoring.jpg)
-
-> Hostwerk checks CPU, memory, players, TPS or response time every 30 seconds and lets you know when a value stays above or below the threshold for a while – and when it is fine again.
-
-**Areas on this page:** Thresholds for services · Phone notifications · Alerts · Uptime checks
-
-**What you can do here:** Emergency · Threshold · Send test · Test · Save · Check now · Add check
-
-### Off-site backup
-
-![Off-site backup](img/live--off-site-backup.jpg)
-
-**Areas on this page:** Backup outside this PC · Last backups · What is backed up · Restore test
-
-**What you can do here:** Emergency · Folder · Save · Check connection · Back up now · Check all · Check
-
-
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

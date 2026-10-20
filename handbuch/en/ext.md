@@ -7,29 +7,29 @@
 ### Areas on this page
 
 - Games & Minecraft 7
-- Network & machines 3
+- Network & machines 4
 - Security & access 3
 - Monitoring & status 5
-- Developer tools 3
+- Developer tools 7
 - AI & media 3
 - Mail & communication 3
-- Other 1
+- Other 3
 
 ### What you can do here
 
-- 28 installed
+- 35 installed
 - 0 Updates
-- 27 in the catalogue
+- 33 in the catalogue
 - Add
-- All 28
+- All 35
 - Games & Minecraft 7
-- Network & machines 3
+- Network & machines 4
 - Security & access 3
 - Monitoring & status 5
-- Developer tools 3
+- Developer tools 7
 - AI & media 3
 - Mail & communication 3
-- Other 1
+- Other 3
 - Bedrock bridge – details
 - Open
 - Game server network – details
@@ -38,6 +38,7 @@
 - Player leaderboard – details
 - Player Ticker – details
 - Schematics in 3D – details
+- File share (SFTP) – details
 - Hostwerk network – details
 - Port map – details
 - Router & port forwarding – details
@@ -49,14 +50,13 @@
 - Status Wall – details
 - Storage per service – details
 - Uptime wall – details
+- API tester – details
+- Page check – details
 - Profiler – details
+- Publish static sites – details
 - Quick tasks – details
+- Webhook inbox – details
 - My Extension – details
-- AI Connect – details
-- Image & video studio – details
-- Knowledge graph – details
-- Discord status – details
-- Mail server – details
 
 ## Tabs
 
@@ -64,9 +64,9 @@
 
 ![Discover](img/ext--discover.jpg)
 
-**Areas on this page:** Games & Minecraft 7 · Network & machines 3 · Security & access 3 · Monitoring & status 5 · Developer tools 3 · AI & media 3 · Mail & communication 3 · Other 1
+**Areas on this page:** Games & Minecraft 7 · Network & machines 4 · Security & access 3 · Monitoring & status 5 · Developer tools 7 · AI & media 3 · Mail & communication 3 · Other 3
 
-**What you can do here:** 28 installed · 0 Updates · 27 in the catalogue · Add · All 28 · Games & Minecraft 7 · Network & machines 3 · Security & access 3 · Monitoring & status 5 · Developer tools 3 · AI & media 3 · Mail & communication 3 · Other 1 · Bedrock bridge – details · Open · Game server network – details · Game servers – details · MOTD studio – details · Player leaderboard – details · Player Ticker – details · Schematics in 3D – details · Hostwerk network – details · Port map – details · Router & port forwarding – details · Certificate watch – details · Password manager – details · Team & roles – details · Backup calendar – details · Server profile – details · Status Wall – details · Storage per service – details · Uptime wall – details · Profiler – details · Quick tasks – details · My Extension – details · AI Connect – details · Image & video studio – details · Knowledge graph – details · Discord status – details · Mail server – details
+**What you can do here:** 35 installed · 0 Updates · 33 in the catalogue · Add · All 35 · Games & Minecraft 7 · Network & machines 4 · Security & access 3 · Monitoring & status 5 · Developer tools 7 · AI & media 3 · Mail & communication 3 · Other 3 · Bedrock bridge – details · Open · Game server network – details · Game servers – details · MOTD studio – details · Player leaderboard – details · Player Ticker – details · Schematics in 3D – details · File share (SFTP) – details · Hostwerk network – details · Port map – details · Router & port forwarding – details · Certificate watch – details · Password manager – details · Team & roles – details · Backup calendar – details · Server profile – details · Status Wall – details · Storage per service – details · Uptime wall – details · API tester – details · Page check – details · Profiler – details · Publish static sites – details · Quick tasks – details · Webhook inbox – details · My Extension – details
 
 ### For developers
 
@@ -76,7 +76,7 @@
 
 **Areas on this page:** Developer mode · Extensions – how they are checked
 
-**What you can do here:** 28 installed · 0 Updates · 27 in the catalogue · Add · Guide Package, SDK, design, permissions, translations, dependencies, native extensions, check. · Template on GitHub “Use this template” – with a check action and automatic releases. · Create here Folder with a sample page, texts (de/en) and icon – visible right away. · Developer guide · Apply for verification · Manage more catalogues (sources)
+**What you can do here:** 35 installed · 0 Updates · 33 in the catalogue · Add · Guide Package, SDK, design, permissions, translations, dependencies, native extensions, check. · Template on GitHub “Use this template” – with a check action and automatic releases. · Create here Folder with a sample page, texts (de/en) and icon – visible right away. · Developer guide · Apply for verification · Manage more catalogues (sources)
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

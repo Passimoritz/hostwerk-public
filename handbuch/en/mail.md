@@ -42,4 +42,4 @@ Mail catcher: everything your projects send lands here – nothing goes out.
 **What you can do here:** What's the difference? · Stop · Stop immediately (force) · Test mail · Forward · Settings · Mark all as read · Delete all
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

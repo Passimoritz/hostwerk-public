@@ -15,4 +15,4 @@ Look at Minecraft builds before you place them – from WorldEdit, Litematica an
 - Open files
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

@@ -39,7 +39,6 @@ Hostwerk selbst wird in einem privaten Repository entwickelt. Dieses öffentlich
 | [`catalog/`](catalog) | KI-Modellkatalog, Projektvorlagen, Berater-Regeln, Passwort-Manager-Katalog und die Erweiterungs-Kataloge: `extensions.json` (offiziell, täglich aus den Erweiterungs-Repositorys gebaut), `community.json`, `verified.json`. |
 | [`sdk/`](sdk) | **Erweiterungs-SDK 2.7** – `hostwerk-sdk.js`, Design-Baukasten, Manifest-Schema, `check.js`, `build-native.js` und die [Anleitung für Entwickler](sdk/README.de.md). |
 | [`packages/`](packages) | Geprüfte Kopien der Community-Erweiterungen (per SHA-256 festgelegt). |
-| [`handbuch/`](handbuch/de/README.md) | **Handbuch** – jede Seite und jeder Reiter mit Bild und Erklärung, vor jedem Release aus der App erzeugt ([English](handbuch/en/README.md)). Hostwerk öffnet die passende Stelle mit **F1** oder **?**, der KI-Helfer schlägt darin nach. |
 | `katalog/` | Alte Dateinamen für Hostwerk vor 2.9 – werden automatisch aktuell gehalten. |
 
 ## Erweiterungen

@@ -42,4 +42,4 @@ Mail-Fänger: alles, was deine Projekte verschicken, landet hier – nichts geht
 **Was du hier tun kannst:** Was ist der Unterschied? · Stoppen · Sofort beenden (erzwingen) · Test-Mail · Weiterleiten · Einstellungen · Alle als gelesen markieren · Alle löschen
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

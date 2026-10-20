@@ -1,10 +1,10 @@
-# Datenbankserver
+# Datenbanken
 
 [← Zurück zur Übersicht](README.md)
 
 MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschiedenen Versionen.
 
-![Datenbankserver](img/dbs.jpg)
+![Datenbanken](img/dbs.jpg)
 
 ### Was du hier tun kannst
 
@@ -14,6 +14,12 @@ MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschieden
 - Studio
 
 ## Reiter
+
+### Studio
+
+![Studio](img/dbs--studio.jpg)
+
+**Was du hier tun kannst:** Verbindung · Starten · Servereinstellungen
 
 ### Import
 
@@ -26,4 +32,4 @@ MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschieden
 **Was du hier tun kannst:** Neuer Datenbankserver · Erneut suchen · In Hostwerk übernehmen …
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

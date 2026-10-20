@@ -31,4 +31,4 @@ Freunde und Kollegen hereinlassen – jede Person mit eigener Anmeldung und nur 
 **Was du hier tun kannst:** Ordner · Verbinden
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

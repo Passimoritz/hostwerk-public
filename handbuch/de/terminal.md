@@ -50,4 +50,4 @@ Auf diesem PC (user@hostwerk-pc) · PowerShell · Markieren kopiert, Rechtsklick
 - pip install -r
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

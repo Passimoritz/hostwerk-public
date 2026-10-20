@@ -16,4 +16,4 @@ Alle Dienste groß und farbig auf einen Blick – ideal für einen zweiten Bilds
 - Neu laden
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

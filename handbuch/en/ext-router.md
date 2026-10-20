@@ -37,4 +37,4 @@ Reach your servers from the internet: forwardings, IPv6, DynDNS and – after si
 - Manage forwardings automatically
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

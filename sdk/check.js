@@ -195,7 +195,8 @@ function checkPackage(dir, { strict = false } = {}) {
   if (!ID_RE.test(m.id || '')) err('id', '"id" is missing or invalid (a–z, 0–9 and -, 2–40 characters).');
   if (!m.name) err('name', '"name" is missing.');
   if (!SEMVER.test(m.version || '')) err('version', '"version" must look like 1.2.3.');
-  if (!m.page && !m.widget && !m.command && !m.backend && !m.ui) err('entry', 'The extension needs a page ("page"), a dashboard tile ("widget"), a service ("command") or native code ("backend"/"ui").');
+  // A pure language pack (only "languages") is an extension too
+  if (!m.page && !m.widget && !m.command && !m.backend && !m.ui && !(Array.isArray(m.languages) && m.languages.length)) err('entry', 'The extension needs a page ("page"), a dashboard tile ("widget"), a service ("command"), native code ("backend"/"ui") or language packs ("languages").');
   // ---------- SDK 2.7: category, banner, screenshots, dependencies, native code ----------
   if (m.category === undefined) info.push({ code: 'category', msg: `Add "category" – one of: ${Object.keys(CATEGORIES).join(', ')}. The extension page groups by it.` });
   else if (!CATEGORIES[m.category]) err('category', `"category" must be one of: ${Object.keys(CATEGORIES).join(', ')}.`);
@@ -322,8 +323,8 @@ function checkPackage(dir, { strict = false } = {}) {
       if (empty.length) warn('i18n', `locales/de.json has ${empty.length} empty translation(s), e.g. "${empty[0].slice(0, 50)}".`);
       if (de.$patterns !== undefined && (!Array.isArray(de.$patterns) || de.$patterns.some((p) => !Array.isArray(p) || p.length !== 2 || typeof p[0] !== 'string' || typeof p[1] !== 'string' || !p[1].trim()))) warn('i18n', 'locales/de.json "$patterns" must be a list of ["English {}", "Deutsch {}"] pairs.');
     }
-  } else if (!de || !en) warn('i18n', 'Add locales/de.json and locales/en.json for all visible texts (Hostwerk.t("key"), data-i18n="key").');
-  else {
+  } else if ((!de || !en) && (m.page || m.widget || m.command)) warn('i18n', 'Add locales/de.json and locales/en.json for all visible texts (Hostwerk.t("key"), data-i18n="key").');
+  else if (de && en) {
     for (const k of Object.keys(de)) if (!(k in en)) warn('i18n', `locales/en.json is missing "${k}".`);
     for (const k of Object.keys(en)) if (!(k in de)) warn('i18n', `locales/de.json is missing "${k}".`);
     // Englischer Text, der noch deutsch aussieht (Umlaute oder typische deutsche Wörter)

@@ -32,9 +32,9 @@ Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Dom
 
 ## Reiter
 
-### Teilen
+### Seite teilen (Tunnel)
 
-![Teilen](img/live--teilen.jpg)
+![Seite teilen (Tunnel)](img/live--seite-teilen-tunnel.jpg)
 
 > So funktioniert's Hostwerk baut eine verschlüsselte Verbindung zu Cloudflare auf. Dort bekommst du eine zufällige Adresse wie xyz.trycloudflare.com, die direkt auf deine lokale Seite zeigt – praktisch, um sie jemandem zu zeigen oder auf dem Handy zu testen.
 
@@ -50,22 +50,6 @@ Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Dom
 
 **Was du hier tun kannst:** Notfall · Anmelden · Kopieren · Speichern · Neu suchen · Router-Oberfläche öffnen · Jetzt abgleichen · Eigene Freigabe · Router öffnen · Hinweis ausblenden · Freigeben
 
-### Sicherheit
-
-![Sicherheit](img/live--sicherheit.jpg)
-
-**Bereiche auf dieser Seite:** Sicherheits-Check · Firewall
-
-**Was du hier tun kannst:** Notfall · Sicheres Passwort setzen · Firewall verwalten
-
-### Firewall
-
-![Firewall](img/live--firewall.jpg)
-
-**Bereiche auf dieser Seite:** Ports öffentlicher Dienste · Eigene Regel · Regeln von Hostwerk
-
-**Was du hier tun kannst:** Notfall · Regeln anlegen / erneuern · Regel anlegen · Sperren · Neu lesen · Regel entfernen
-
 ### Domains & HTTPS
 
 ![Domains & HTTPS](img/live--domains-https.jpg)
@@ -76,16 +60,6 @@ Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Dom
 
 **Was du hier tun kannst:** Notfall · Als vertrauenswürdig eintragen · Zertifikat herunterladen · Domain hinzufügen · Zu den Webservern
 
-### Systemdienst
-
-![Systemdienst](img/live--systemdienst.jpg)
-
-> Das Umschalten geht nur in der Desktop-App.
-
-**Bereiche auf dieser Seite:** Hostwerk als Systemdienst · Gut zu wissen
-
-**Was du hier tun kannst:** Notfall
-
 ### Fernzugriff
 
 ![Fernzugriff](img/live--fernzugriff.jpg)
@@ -94,33 +68,5 @@ Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Dom
 
 **Was du hier tun kannst:** Notfall · Speichern · Einrichten · Passwort und Zwei-Faktor einrichten · Hinweis ausblenden · Passkey hinzufügen
 
-### Benutzer
 
-![Benutzer](img/live--benutzer.jpg)
-
-> So funktionieren Rollen Jede Person meldet sich im Fernzugriff mit eigenem Namen und Passwort (oder Passkey) an. Mitglieder sehen und steuern nur die Dienste und Bereiche, die du freigibst – zum Beispiel „Survival-Server starten und Spieler verwalten“. Das Änderungs-Protokoll zeigt, wer was gemacht hat.
-
-**Bereiche auf dieser Seite:** Benutzer
-
-**Was du hier tun kannst:** Notfall · Benutzer anlegen
-
-### Überwachung
-
-![Überwachung](img/live--ueberwachung.jpg)
-
-> Hostwerk prüft alle 30 Sekunden CPU, Arbeitsspeicher, Spieler, TPS oder Antwortzeit und meldet sich, wenn ein Wert die Schwelle eine Weile über- bzw. unterschreitet – und wenn er wieder passt.
-
-**Bereiche auf dieser Seite:** Schwellen für Dienste · Handy-Benachrichtigungen · Alarme · Verfügbarkeit prüfen
-
-**Was du hier tun kannst:** Notfall · Schwelle · Test senden · Test · Speichern · Jetzt prüfen · Prüfung hinzufügen
-
-### Externe Sicherung
-
-![Externe Sicherung](img/live--externe-sicherung.jpg)
-
-**Bereiche auf dieser Seite:** Sicherung außerhalb dieses PCs · Letzte Sicherungen · Was gesichert wird · Wiederherstellungs-Probe
-
-**Was du hier tun kannst:** Notfall · Ordner · Speichern · Verbindung prüfen · Jetzt sichern · Alle prüfen · Prüfen
-
-
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

@@ -34,4 +34,4 @@ Apache, nginx or Caddy – several in parallel, each with its own PHP version.
 **What you can do here:** New web server · Folder · Search · Apply · Search again · Take over into Hostwerk …
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

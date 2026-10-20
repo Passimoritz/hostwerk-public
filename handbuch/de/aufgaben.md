@@ -21,4 +21,4 @@ Skripte, Befehle, Backups, Prüfungen und Neustarts nach Zeitplan, beim Start od
 - Löschen
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

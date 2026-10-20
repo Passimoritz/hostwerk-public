@@ -8,11 +8,16 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 ### Bereiche auf dieser Seite
 
+- Wofür nutzt du Hostwerk?
 - Darstellung
 - Bereiche in der Seitenleiste
 
 ### Was du hier tun kannst
 
+- Webseiten & Apps
+- Spiele-Server
+- KI
+- Online stellen & Team
 - Neu suchen (z. B. nach einer Installation)
 - Eigenes Programm als Editor hinzufügen
 - Hostwerk-Lila
@@ -40,14 +45,14 @@ Hostwerk an deine Arbeitsweise anpassen.
 - Download-Geschwindigkeit anzeigen
 - Projekte
 - Apps
-- Datenbank-Studio
 - E-Mail
 - Aufgaben
 - Dateien
 - Minecraft
-- KI-Helfer
+- KI
 - Claude Gedankennetz
 - Livebetrieb
+- Sicherungen
 
 ## Reiter
 
@@ -59,37 +64,21 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Was du hier tun kannst:** Alle · Keine
 
-### Meldungen & Protokolle
+### Benachrichtigungen & Protokolle
 
-![Meldungen & Protokolle](img/settings--meldungen-protokolle.jpg)
+![Benachrichtigungen & Protokolle](img/settings--benachrichtigungen-protokolle.jpg)
 
-**Bereiche auf dieser Seite:** Windows-Benachrichtigungen · Protokolle
+**Bereiche auf dieser Seite:** Handy-Benachrichtigungen · Alarme · Windows-Benachrichtigungen · Protokolle
 
-### Profile & Teilen
+**Was du hier tun kannst:** Test senden · Test · Speichern · Jetzt prüfen
 
-![Profile & Teilen](img/settings--profile-teilen.jpg)
+### Profile weitergeben
+
+![Profile weitergeben](img/settings--profile-weitergeben.jpg)
 
 **Bereiche auf dieser Seite:** Profile · Als Docker-Compose exportieren · Setup teilen
 
 **Was du hier tun kannst:** Aus laufenden Diensten · Neues Profil · Vorschau · ZIP herunterladen · Setup exportieren
-
-### KI-Helfer
-
-![KI-Helfer](img/settings--ki-helfer.jpg)
-
-**Bereiche auf dieser Seite:** KI-Helfer verwenden · Modelle, Stimmen und Automatik
-
-**Was du hier tun kannst:** Alle Modelle entfernen · KI komplett deinstallieren
-
-### Erweiterungen
-
-![Erweiterungen](img/settings--erweiterungen.jpg)
-
-> Was ist eine Erweiterung? Eine Erweiterung bringt eine eigene Seite, eine Kachel für die Übersicht und/oder einen eigenen Dienst in Hostwerk. Seiten laufen abgeschottet (eigener Ursprung, kein Zugriff auf deine Anmeldung), sehen nur, was ihre Rechte erlauben, und ändern nur, wenn du jedes Mal bestätigst. Farben und Schrift kommen von Hostwerk – so passt jede Erweiterung ins Design.
-
-**Bereiche auf dieser Seite:** Erweiterungen – so wird geprüft · Marktplatz · Installierte Pakete · Für Entwickler
-
-**Was du hier tun kannst:** Anleitung für Entwickler · Verifizierung beantragen · Von Link · Aus Beschreibung · Eigene bauen · Bewerten · Quellcode · Weitere Kataloge (Quellen) hinzufügen · Öffnen · Prüfen (Design, Sicherheit, Übersetzungen) · Zugriffe – was die Erweiterung gelesen oder geändert hat · Weiterbauen lassen – die KI ändert die Erweiterung nach deinem Wunsch · Exportieren (ZIP) · Teilen (Link) · Im öffentlichen Katalog einreichen · Entfernen · Einstellungen · Anleitung Schritt für Schritt: Paket, SDK, Design, Rechte, Übersetzungen, Prüfung, Verifizierung. · Vorlage auf GitHub „Use this template“ – mit Prüf-Action und automatischem Release. · Hier anlegen Ordner mit Beispielseite, Texten (de/en) und Symbol – sofort sichtbar.
 
 ### Updates
 
@@ -111,7 +100,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Hostwerk · Java-Laufzeiten · Zwischenspeicher & temporäre Dateien · Hostwerk entfernen · Speicherort & Zugriff
 
-**Was du hier tun kannst:** Neu laden · 923,1 KB löschen · Neu messen · Jetzt aufräumen · Hostwerk entfernen … · Im Standardbrowser öffnen
+**Was du hier tun kannst:** Neu laden · 921,1 KB löschen · Neu messen · Jetzt aufräumen · Hostwerk entfernen … · Im Standardbrowser öffnen
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

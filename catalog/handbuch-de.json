@@ -1,0 +1,2891 @@
+{
+ "lang": "de",
+ "generated": "2026-10-20T06:35:58.675Z",
+ "version": "2.10.0",
+ "pages": [
+  {
+   "route": "",
+   "slug": "uebersicht",
+   "title": "Übersicht",
+   "activeTab": "",
+   "intro": "",
+   "areas": [
+    "Webserver",
+    "Datenbankserver",
+    "Minecraft",
+    "Updates für Komponenten"
+   ],
+   "actions": [
+    "Alles starten",
+    "Alles stoppen",
+    "Anpassen",
+    "Ausblenden, bis etwas Neues dazukommt",
+    "Nie mehr hier anzeigen",
+    "Neu",
+    "Alle",
+    "Bild ändern",
+    "Starten",
+    "Studio",
+    "Stoppen",
+    "Sofort beenden (erzwingen)",
+    "Posteingang",
+    "Alle aktualisieren",
+    "Erneut prüfen",
+    "Aktualisieren"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/uebersicht.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "web",
+   "slug": "web",
+   "title": "Webserver",
+   "activeTab": "Server",
+   "intro": "Apache, nginx oder Caddy – mehrere parallel, jeweils mit eigener PHP-Version.",
+   "areas": [],
+   "actions": [
+    "Neuer Webserver",
+    "Bild ändern",
+    "Starten"
+   ],
+   "fields": [],
+   "tabs": [
+    "Server",
+    "PHP-Versionen",
+    "Import"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/web.jpg",
+   "tabsDetail": [
+    {
+     "label": "PHP-Versionen",
+     "areas": [
+      "Installiert",
+      "Verfügbar (windows.php.net)"
+     ],
+     "actions": [
+      "Neuer Webserver",
+      "Neu",
+      "Installieren"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/web--php-versionen.jpg"
+    },
+    {
+     "label": "Import",
+     "areas": [
+      "Aus XAMPP übernehmen",
+      "Vorhandene Webserver auf diesem PC",
+      "Apache 2.4.58"
+     ],
+     "actions": [
+      "Neuer Webserver",
+      "Ordner",
+      "Suchen",
+      "Übernehmen",
+      "Erneut suchen",
+      "In Hostwerk übernehmen …"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Import – vorhandene Dienste übernehmen Läuft auf diesem PC schon ein Webserver – z. B. aus XAMPP oder als Windows-Dienst? Hostwerk übernimmt ihn: am bisherigen Ort (nichts wird verschoben) oder 1:1 kopiert, getestet und mit Rückweg. Dieselbe Suche gibt es für alle Arten unter System → Fremde Dienste.",
+      "Smart App Control ist aktiv Windows lässt nur Programme mit bekannter „Reputation“ laufen. Ganz neue Apache- und PHP-Builds werden deshalb manchmal blockiert – die Versionen aus XAMPP sind bekannt und laufen sicher. Hostwerk prüft jede neue Version und behält sonst die alte; nginx, Caddy und die Datenbanken sind bisher nicht betroffen."
+     ],
+     "shot": "img/web--import.jpg"
+    }
+   ]
+  },
+  {
+   "route": "dbs",
+   "slug": "dbs",
+   "title": "Datenbanken",
+   "activeTab": "Server",
+   "intro": "MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschiedenen Versionen.",
+   "areas": [],
+   "actions": [
+    "Neuer Datenbankserver",
+    "Bild ändern",
+    "Starten",
+    "Studio"
+   ],
+   "fields": [],
+   "tabs": [
+    "Server",
+    "Studio",
+    "Import"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/dbs.jpg",
+   "tabsDetail": [
+    {
+     "label": "Studio",
+     "areas": [],
+     "actions": [
+      "Verbindung",
+      "Starten",
+      "Servereinstellungen"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/dbs--studio.jpg"
+    },
+    {
+     "label": "Import",
+     "areas": [
+      "Vorhandene Datenbanken auf diesem PC",
+      "MariaDB 10.4.32"
+     ],
+     "actions": [
+      "Neuer Datenbankserver",
+      "Erneut suchen",
+      "In Hostwerk übernehmen …"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Import – vorhandene Dienste übernehmen Vorhandene MySQL-, MariaDB-, PostgreSQL-, MongoDB- oder Redis-Server übernehmen – am bisherigen Ort oder als Kopie mit allen Daten, getestet und mit Rückweg. Dieselbe Suche gibt es für alle Arten unter System → Fremde Dienste."
+     ],
+     "shot": "img/dbs--import.jpg"
+    }
+   ]
+  },
+  {
+   "route": "mc",
+   "slug": "mc",
+   "title": "Minecraft-Server",
+   "activeTab": "Server",
+   "intro": "Paper, Purpur, Folia, Spigot, Vanilla, Mod-Server (Fabric, NeoForge, Forge) und fertige Modpacks – mit Konsole, Marktplatz, Editor und Backups.",
+   "areas": [],
+   "actions": [
+    "Neuer Server",
+    "Bild ändern",
+    "Starten",
+    "Weiterer Minecraft-Server Eigene Welt, eigener Port – Java und Server-Software lädt Hostwerk Paper Purpur Vanilla Fabric Modpacks Velocity"
+   ],
+   "fields": [],
+   "tabs": [
+    "Server",
+    "Import"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/mc.jpg",
+   "tabsDetail": [
+    {
+     "label": "Import",
+     "areas": [],
+     "actions": [
+      "Neuer Server",
+      "Bild ändern",
+      "Starten",
+      "Weiterer Minecraft-Server Eigene Welt, eigener Port – Java und Server-Software lädt Hostwerk Paper Purpur Vanilla Fabric Modpacks Velocity"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/mc--import.jpg"
+    }
+   ]
+  },
+  {
+   "route": "projects",
+   "slug": "projects",
+   "title": "Projekte & Apps",
+   "activeTab": "Projekte",
+   "intro": "Deine Projekte aus Webordnern, virtuellen Hosts und Apps – mit Git, .env, Paketen, Tests, Veröffentlichen. Apps und Container laufen als Dienst.",
+   "areas": [],
+   "actions": [
+    "Neues Projekt",
+    "Bild ändern"
+   ],
+   "fields": [],
+   "tabs": [
+    "Projekte",
+    "Apps",
+    "Docker",
+    "Laufzeiten"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/projects.jpg",
+   "tabsDetail": [
+    {
+     "label": "Apps",
+     "areas": [],
+     "actions": [
+      "Neue App",
+      "App hinzufügen",
+      "Aus Vorlage"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--apps.jpg"
+    },
+    {
+     "label": "Docker",
+     "areas": [],
+     "actions": [
+      "Docker DesktopDie offizielle App mit eigener Oberfläche (ca. 600 MB). Für größere Firmen kostenpflichtig.Eigene Oberfläche",
+      "Docker Engine einrichten",
+      "Erneut prüfen"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--docker.jpg"
+    },
+    {
+     "label": "Laufzeiten",
+     "areas": [
+      "Node.js",
+      "Python"
+     ],
+     "actions": [
+      "nodejs.org",
+      "python.org"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--laufzeiten.jpg"
+    }
+   ]
+  },
+  {
+   "route": "mail",
+   "slug": "mail",
+   "title": "E-Mail",
+   "activeTab": "Mail-Fänger",
+   "intro": "Mail-Fänger: alles, was deine Projekte verschicken, landet hier – nichts geht nach draußen.",
+   "areas": [],
+   "actions": [
+    "Was ist der Unterschied?",
+    "Stoppen",
+    "Sofort beenden (erzwingen)",
+    "Test-Mail",
+    "Weiterleiten",
+    "Einstellungen",
+    "Alle als gelesen markieren",
+    "Alle löschen"
+   ],
+   "fields": [],
+   "tabs": [
+    "Mail-Fänger",
+    "Mailserver",
+    "Import"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Mail-Fänger oder Mailserver? Der Mail-Fänger ist zum Entwickeln: Er fängt jede Mail ab, die ein Projekt verschickt (Registrierung, Bestellbestätigung …) – du liest sie hier, nichts verlässt den PC. Der Mailserver ist für echte Postfächer wie info@deine-domain.de mit IMAP und Versand ins Internet (Stalwart oder Apache James)."
+   ],
+   "shot": "img/mail.jpg",
+   "tabsDetail": [
+    {
+     "label": "Mailserver",
+     "areas": [
+      "Welcher Mailserver soll es sein?"
+     ],
+     "actions": [
+      "Was ist der Unterschied?",
+      "Alle E-Mail-Varianten vergleichen",
+      "Weiter zur Einrichtung"
+     ],
+     "fields": [
+      "Name in Hostwerk"
+     ],
+     "tipTexts": [
+      "Mail-Fänger oder Mailserver? Der Mail-Fänger ist zum Entwickeln: Er fängt jede Mail ab, die ein Projekt verschickt (Registrierung, Bestellbestätigung …) – du liest sie hier, nichts verlässt den PC. Der Mailserver ist für echte Postfächer wie info@deine-domain.de mit IMAP und Versand ins Internet (Stalwart oder Apache James)."
+     ],
+     "shot": "img/mail--mailserver.jpg"
+    },
+    {
+     "label": "Import",
+     "areas": [],
+     "actions": [
+      "Was ist der Unterschied?",
+      "Stoppen",
+      "Sofort beenden (erzwingen)",
+      "Test-Mail",
+      "Weiterleiten",
+      "Einstellungen",
+      "Alle als gelesen markieren",
+      "Alle löschen"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Mail-Fänger oder Mailserver? Der Mail-Fänger ist zum Entwickeln: Er fängt jede Mail ab, die ein Projekt verschickt (Registrierung, Bestellbestätigung …) – du liest sie hier, nichts verlässt den PC. Der Mailserver ist für echte Postfächer wie info@deine-domain.de mit IMAP und Versand ins Internet (Stalwart oder Apache James)."
+     ],
+     "shot": "img/mail--import.jpg"
+    }
+   ]
+  },
+  {
+   "route": "aufgaben",
+   "slug": "aufgaben",
+   "title": "Aufgaben",
+   "activeTab": "",
+   "intro": "Skripte, Befehle, Backups, Prüfungen und Neustarts nach Zeitplan, beim Start oder als Kette.",
+   "areas": [
+    "Geplante Aufgaben"
+   ],
+   "actions": [
+    "Alle anhalten",
+    "Vorlagen",
+    "Neue Aufgabe",
+    "Verlauf",
+    "Jetzt",
+    "Bearbeiten",
+    "Löschen"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/aufgaben.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "terminal",
+   "slug": "terminal",
+   "title": "Terminal",
+   "activeTab": "",
+   "intro": "Auf diesem PC (user@hostwerk-pc) · PowerShell · Markieren kopiert, Rechtsklick fügt ein",
+   "areas": [],
+   "actions": [
+    "Kurz erklärt: Terminal (45 Sekunden)",
+    "Neues Terminal",
+    "In Projekt öffnen",
+    "Vollbild",
+    "Windows-Terminal",
+    "Terminal auf einem anderen Rechner",
+    "hostwerk-pc",
+    "Neues Terminal (PowerShell) · Strg+Umschalt+T",
+    "Andere Shell wählen",
+    "Suchen (Strg+Umschalt+F)",
+    "Schrift kleiner",
+    "Schrift größer",
+    "Farbschema: Hostwerk – klicken zum Wechseln",
+    "Mitschnitt als Textdatei speichern",
+    "Markiertes kopieren",
+    "Anzeige leeren",
+    "Teilen (zweites Terminal daneben)",
+    "Befehle",
+    "status",
+    "log",
+    "diff",
+    "pull",
+    "push",
+    "branches",
+    "commit …",
+    "stash",
+    "checkout …",
+    "init",
+    "install",
+    "dev",
+    "build",
+    "test",
+    "outdated",
+    "composer install",
+    "composer update",
+    "artisan …",
+    "phpunit",
+    "php -v",
+    "venv",
+    "pip install -r"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/terminal.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "files",
+   "slug": "files",
+   "title": "Dateien",
+   "activeTab": "",
+   "intro": "",
+   "areas": [],
+   "actions": [
+    "Seitenleiste einklappen",
+    "Webordner (Sample Web)",
+    "Projekte",
+    "Sample MC",
+    "Ordner hinzufügen …",
+    "Sicherungen",
+    "Protokolle",
+    "Konfiguration",
+    "Papierkorb",
+    "Wurzel",
+    "Neue Datei",
+    "Neuer Ordner",
+    "Kacheln",
+    "Mehr",
+    "Name",
+    "Geändert",
+    "Größe"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/files.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext",
+   "slug": "ext",
+   "title": "Erweiterungen",
+   "activeTab": "Meine Erweiterungen",
+   "intro": "",
+   "areas": [
+    "Spiele & Minecraft 7",
+    "Netzwerk & Rechner 4",
+    "Sicherheit & Zugänge 3",
+    "Überwachung & Status 5",
+    "Entwickeln 7",
+    "KI & Medien 3",
+    "E-Mail & Kommunikation 3",
+    "Sonstiges 3"
+   ],
+   "actions": [
+    "35 installiert",
+    "0 Updates",
+    "33 im Katalog",
+    "Hinzufügen",
+    "Alle 35",
+    "Spiele & Minecraft 7",
+    "Netzwerk & Rechner 4",
+    "Sicherheit & Zugänge 3",
+    "Überwachung & Status 5",
+    "Entwickeln 7",
+    "KI & Medien 3",
+    "E-Mail & Kommunikation 3",
+    "Sonstiges 3",
+    "Bedrock-Brücke – Details",
+    "Öffnen",
+    "Spiele-Server-Verbund – Details",
+    "Spiele-Server – Details",
+    "MOTD-Studio – Details",
+    "Spieler-Bestenliste – Details",
+    "Spieler-Ticker – Details",
+    "Bauwerke in 3D – Details",
+    "Dateifreigabe (SFTP) – Details",
+    "Hostwerk-Verbund – Details",
+    "Port-Übersicht – Details",
+    "Router & Portfreigaben – Details",
+    "Zertifikats-Wache – Details",
+    "Passwort-Manager – Details",
+    "Team & Rollen – Details",
+    "Backup-Kalender – Details",
+    "Server-Steckbrief – Details",
+    "Status-Wand – Details",
+    "Speicher je Dienst – Details",
+    "Uptime-Wand – Details",
+    "API-Tester – Details",
+    "Seiten-Check – Details",
+    "Leistungs-Messung – Details",
+    "Seiten veröffentlichen – Details",
+    "Schnell-Aufgaben – Details",
+    "Webhook-Postfach – Details",
+    "Meine Erweiterung – Details"
+   ],
+   "fields": [],
+   "tabs": [
+    "Meine Erweiterungen",
+    "Entdecken",
+    "Für Entwickler"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext.jpg",
+   "tabsDetail": [
+    {
+     "label": "Entdecken",
+     "areas": [
+      "Spiele & Minecraft 7",
+      "Netzwerk & Rechner 4",
+      "Sicherheit & Zugänge 3",
+      "Überwachung & Status 5",
+      "Entwickeln 7",
+      "KI & Medien 3",
+      "E-Mail & Kommunikation 3",
+      "Sonstiges 3"
+     ],
+     "actions": [
+      "35 installiert",
+      "0 Updates",
+      "33 im Katalog",
+      "Hinzufügen",
+      "Alle 35",
+      "Spiele & Minecraft 7",
+      "Netzwerk & Rechner 4",
+      "Sicherheit & Zugänge 3",
+      "Überwachung & Status 5",
+      "Entwickeln 7",
+      "KI & Medien 3",
+      "E-Mail & Kommunikation 3",
+      "Sonstiges 3",
+      "Bedrock-Brücke – Details",
+      "Öffnen",
+      "Spiele-Server-Verbund – Details",
+      "Spiele-Server – Details",
+      "MOTD-Studio – Details",
+      "Spieler-Bestenliste – Details",
+      "Spieler-Ticker – Details",
+      "Bauwerke in 3D – Details",
+      "Dateifreigabe (SFTP) – Details",
+      "Hostwerk-Verbund – Details",
+      "Port-Übersicht – Details",
+      "Router & Portfreigaben – Details",
+      "Zertifikats-Wache – Details",
+      "Passwort-Manager – Details",
+      "Team & Rollen – Details",
+      "Backup-Kalender – Details",
+      "Server-Steckbrief – Details",
+      "Status-Wand – Details",
+      "Speicher je Dienst – Details",
+      "Uptime-Wand – Details",
+      "API-Tester – Details",
+      "Seiten-Check – Details",
+      "Leistungs-Messung – Details",
+      "Seiten veröffentlichen – Details",
+      "Schnell-Aufgaben – Details",
+      "Webhook-Postfach – Details",
+      "Meine Erweiterung – Details"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext--entdecken.jpg"
+    },
+    {
+     "label": "Für Entwickler",
+     "areas": [
+      "Entwickler-Modus",
+      "Erweiterungen – so wird geprüft"
+     ],
+     "actions": [
+      "35 installiert",
+      "0 Updates",
+      "33 im Katalog",
+      "Hinzufügen",
+      "Anleitung Paket, SDK, Design, Rechte, Übersetzungen, Abhängigkeiten, native Erweiterungen, Prüfung.",
+      "Vorlage auf GitHub „Use this template“ – mit Prüf-Action und automatischem Release.",
+      "Hier anlegen Ordner mit Beispielseite, Texten (de/en) und Symbol – sofort sichtbar.",
+      "Anleitung für Entwickler",
+      "Verifizierung beantragen",
+      "Weitere Kataloge (Quellen) verwalten"
+     ],
+     "fields": [
+      "Native Erweiterungen aus Dateien und Ordnern erlauben"
+     ],
+     "tipTexts": [
+      "Was ist eine Erweiterung? Eine Erweiterung bringt eine eigene Seite, eine Kachel für die Übersicht und/oder einen eigenen Dienst in Hostwerk. Seiten laufen abgeschottet (eigener Ursprung, kein Zugriff auf deine Anmeldung), sehen nur, was ihre Rechte erlauben, und ändern nur, wenn du jedes Mal bestätigst. Farben und Schrift kommen von Hostwerk – so passt jede Erweiterung ins Design."
+     ],
+     "shot": "img/ext--fuer-entwickler.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/ai-media",
+   "slug": "ext-ai-media",
+   "title": "Image & video studio",
+   "activeTab": "",
+   "intro": "Beschreib es – Hostwerk erzeugt das Bild oder Video mit dem Modell, das du im KI-Helfer gewählt hast. Alles landet in der Mediathek.",
+   "areas": [
+    "Erzeugen",
+    "Mediathek"
+   ],
+   "actions": [
+    "Modelle & Budget",
+    "KI-Einstellungen öffnen"
+   ],
+   "fields": [
+    "Was soll das Bild zeigen?"
+   ],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Bilder und Videos aus dem Studio und aus dem KI-Chat. Nutze eins als Ausgangspunkt für das nächste oder nenne seine ID im Chat."
+   ],
+   "shot": "img/ext-ai-media.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/api-tester",
+   "slug": "ext-api-tester",
+   "title": "API-Tester → Kopfzeilen (0)",
+   "activeTab": "Kopfzeilen (0)",
+   "intro": "Anfragen an deine Projekte senden, in Sammlungen speichern und wiederverwenden.",
+   "areas": [
+    "Antwort"
+   ],
+   "actions": [
+    "curl einfügen",
+    "Neue Sammlung",
+    "Meine erste Sammlung",
+    "GET Startseite",
+    "Neue Anfrage",
+    "Startseite",
+    "Als curl kopieren",
+    "Anfrage entfernen",
+    "Senden",
+    "Sample Web"
+   ],
+   "fields": [],
+   "tabs": [
+    "Kopfzeilen (0)",
+    "Inhalt",
+    "Variablen (1)"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-api-tester.jpg",
+   "tabsDetail": [
+    {
+     "label": "Inhalt",
+     "areas": [
+      "Antwort"
+     ],
+     "actions": [
+      "curl einfügen",
+      "Neue Sammlung",
+      "Meine erste Sammlung",
+      "GET Startseite",
+      "Neue Anfrage",
+      "Startseite",
+      "Als curl kopieren",
+      "Anfrage entfernen",
+      "Senden",
+      "Sample Web"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-api-tester--inhalt.jpg"
+    },
+    {
+     "label": "Variablen (1)",
+     "areas": [
+      "Antwort"
+     ],
+     "actions": [
+      "curl einfügen",
+      "Neue Sammlung",
+      "Meine erste Sammlung",
+      "GET Startseite",
+      "Neue Anfrage",
+      "Startseite",
+      "Als curl kopieren",
+      "Anfrage entfernen",
+      "Senden",
+      "Sample Web",
+      "Entfernen",
+      "Sammlung entfernen"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Variablen Sie gehören zur Sammlung – alle Anfragen darin nutzen dieselben Werte."
+     ],
+     "shot": "img/ext-api-tester--variablen-1.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/backup-calendar",
+   "slug": "ext-backup-calendar",
+   "title": "Backup-Kalender",
+   "activeTab": "",
+   "intro": "Alle geplanten Sicherungen der nächsten Tage als Kalender – und ob die letzten geklappt haben. Fehlschläge stehen oben.",
+   "areas": [],
+   "actions": [
+    "Einstellungen",
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Aufgaben lesen"
+   ],
+   "shot": "img/ext-backup-calendar.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/bedrock-bridge",
+   "slug": "ext-bedrock-bridge",
+   "title": "Bedrock-Brücke",
+   "activeTab": "",
+   "intro": "Freunde auf Handy, Konsole und der Windows-Edition spielen auf deinen Java-Servern mit – Geyser und Floodgate per Klick.",
+   "areas": [
+    "Sample MC"
+   ],
+   "actions": [
+    "Handy- & Konsolen-Spieler erlauben (Bedrock)",
+    "Server öffnen"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "So funktioniert es Geyser übersetzt zwischen Bedrock und Java, Floodgate lässt Bedrock-Spieler ohne Java-Konto herein. Hostwerk wählt einen freien UDP-Port (19132, 19133 …), richtet alles ein und hält beides aktuell: Neue Builds werden im Hintergrund geladen und beim nächsten Neustart eingespielt – oder sofort, wenn niemand online ist."
+   ],
+   "shot": "img/ext-bedrock-bridge.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/cert-watch",
+   "slug": "ext-cert-watch",
+   "title": "Zertifikats-Wache",
+   "activeTab": "",
+   "intro": "Restlaufzeit aller Zertifikate – Let’s Encrypt, lokales Zertifikat und lokale CA.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Zertifikate und Erreichbarkeit (Überwachung) lesen"
+   ],
+   "shot": "img/ext-cert-watch.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/cloud-backup",
+   "slug": "ext-cloud-backup",
+   "title": "Cloud-Sicherung",
+   "activeTab": "",
+   "intro": "Hostwerks externe Sicherung – verschlüsselt auf OneDrive, Google Drive, in einen S3-Bucket, zu Nextcloud oder auf einen SFTP-Server.",
+   "areas": [
+    "1. Programm",
+    "2. Ziel",
+    "3. Wiederherstellungs-Schlüssel",
+    "4. Für die externe Sicherung nutzen"
+   ],
+   "actions": [
+    "rclone installieren",
+    "Bei OneDrive anmelden",
+    "Verbinden und prüfen",
+    "Wiederherstellungs-Schlüssel zeigen",
+    "Cloud für die externe Sicherung nutzen"
+   ],
+   "fields": [
+    "Ordner am Ziel"
+   ],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "So funktioniert's Hostwerk macht die Sicherungen (Datenbanken, Minecraft-Welten, Webseiten) weiter nach seinem Zeitplan. Diese Erweiterung bringt nur das Cloud-Ziel: rclone lädt sie hoch, verschlüsselt auf diesem PC – der Anbieter sieht nie den Inhalt."
+   ],
+   "shot": "img/ext-cloud-backup.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/discord-status",
+   "slug": "ext-discord-status",
+   "title": "Discord-Status",
+   "activeTab": "",
+   "intro": "Zeigt in deinem Discord-Profil „Spielt Hostwerk“ – auch wenn Hostwerk nur im Infobereich läuft.",
+   "areas": [
+    "Einstellungen",
+    "So sieht es aus"
+   ],
+   "actions": [
+    "Speichern",
+    "Discord Developer Portal öffnen"
+   ],
+   "fields": [
+    "Status in Discord teilen",
+    "Laufende Dienste zeigen",
+    "Discord-Anwendungs-ID"
+   ],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Was wird geteilt? Nur Dienstarten (z. B. Webserver · Datenbank) und wie viele laufen. Nie Projekt-, Server- oder Ordnernamen."
+   ],
+   "shot": "img/ext-discord-status.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/disk-usage",
+   "slug": "ext-disk-usage",
+   "title": "Speicher je Dienst",
+   "activeTab": "",
+   "intro": "Belegter Platz je Dienst und freier Platz auf dem Laufwerk.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.1.0 · nur lesen Systemzustand, Auslastung und Ports lesen"
+   ],
+   "shot": "img/ext-disk-usage.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/file-share",
+   "slug": "ext-file-share",
+   "title": "Dateifreigabe",
+   "activeTab": "",
+   "intro": "Einen Ordner per SFTP freigeben – z. B. damit Freunde Welten, Mods oder Fotos hochladen. Jeder Zugang hat ein eigenes Passwort und einen eigenen Ordner.",
+   "areas": [
+    "Zugänge",
+    "Aktivität"
+   ],
+   "actions": [
+    "Einstellungen",
+    "Starten",
+    "Kopieren",
+    "Neuer Zugang"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Fingerabdruck Beim ersten Verbinden zeigt das SFTP-Programm diesen Fingerabdruck. Stimmt er überein, geht die Verbindung wirklich zu diesem PC."
+   ],
+   "shot": "img/ext-file-share.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/game-network",
+   "slug": "ext-game-network",
+   "title": "Spiele-Server-Verbund",
+   "activeTab": "",
+   "intro": "Spiele- und Minecraft-Server zusammenfassen – gemeinsam starten und stoppen, in der richtigen Reihenfolge, und sehen, wer wo spielt.",
+   "areas": [],
+   "actions": [
+    "Neuer Verbund",
+    "Verbund anlegen"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "So funktioniert die Reihenfolge Beim Starten kommen erst alle Server hoch und der Proxy (Velocity) zuletzt – mit der gewählten Pause dazwischen. Beim Stoppen umgekehrt: zuerst der Proxy, damit niemand auf einem Server landet, der gerade herunterfährt."
+   ],
+   "shot": "img/ext-game-network.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/game-servers",
+   "slug": "ext-game-servers",
+   "title": "Spiele-Server → Server",
+   "activeTab": "Server",
+   "intro": "Valheim, Terraria, Palworld, Satisfactory, Rust, ARK und über 100 weitere – über LinuxGSM, mit Konsole, Spielern, Sicherung, Updates und Freigabe.",
+   "areas": [],
+   "actions": [],
+   "fields": [],
+   "tabs": [
+    "Server",
+    "Import"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Nur auf Linux – oder mit Docker LinuxGSM (linuxgsm.com) läuft nur auf Linux. Drei Wege: Eigener Server (VPS) – mit der Erweiterung Hostwerk-Verbund einrichten; dort steht diese Seite dann bereit (Rechner oben wechseln). Linux-PC im Heimnetz – Hostwerk für Linux installieren und koppeln. Docker hier – unter Projekte & Apps → Docker die Hostwerk-Docker-Engine einrichten; danach laufen Spiele-Server als Container auf diesem PC. Minecraft-Server laufen weiterhin direkt hier unter Windows."
+   ],
+   "shot": "img/ext-game-servers.jpg",
+   "tabsDetail": [
+    {
+     "label": "Import",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Nur auf Linux – oder mit Docker LinuxGSM (linuxgsm.com) läuft nur auf Linux. Drei Wege: Eigener Server (VPS) – mit der Erweiterung Hostwerk-Verbund einrichten; dort steht diese Seite dann bereit (Rechner oben wechseln). Linux-PC im Heimnetz – Hostwerk für Linux installieren und koppeln. Docker hier – unter Projekte & Apps → Docker die Hostwerk-Docker-Engine einrichten; danach laufen Spiele-Server als Container auf diesem PC. Minecraft-Server laufen weiterhin direkt hier unter Windows."
+     ],
+     "shot": "img/ext-game-servers--import.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/hostwerk-network",
+   "slug": "ext-hostwerk-network",
+   "title": "Hostwerk-Verbund",
+   "activeTab": "",
+   "intro": "Weitere PCs und Server mit Hostwerk – alle hier bedienen, Projekte und Spielserver verschieben, Sicherungen zurückspielen.",
+   "areas": [
+    "Alle Rechner auf einen Blick",
+    "Computer & Server",
+    "Diesen PC für andere freigeben"
+   ],
+   "actions": [
+    "Neu laden",
+    "Terminal",
+    "Neu prüfen",
+    "Umziehen …",
+    "Rechner hinzufügen",
+    "Server einrichten",
+    "Bestehenden Server aktualisieren"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 3,
+   "tipTexts": [
+    "So funktioniert es Auf dem anderen Rechner Hostwerk installieren (Windows oder Linux; ein Mietserver geht mit „Eigener Server mit einem Klick“), dort den Fernzugriff einschalten und den Kopplungscode hier eintragen. Danach wechselst du oben in der Rechnerleiste zwischen den Geräten – Dienste, Dateien, Terminal und KI laufen dann auf dem gewählten Rechner. Linux-Server im Rechenzentrum · Windows- oder Linux-PCs im Heimnetz · Handy: unter Livebetrieb → Fernzugriff",
+    "Mietserver (z. B. bei Hetzner, Netcup, IONOS) oder Heimserver mit Ubuntu, Debian oder Fedora: Hostwerk richtet sich dort selbst ein – Node.js, Hostwerk ohne Fenster als Dienst, Fernzugriff mit Zwei-Faktor, Firewall – und erscheint danach hier als Rechner. Deine SSH-Zugangsdaten werden nur für die Einrichtung benutzt, nicht gespeichert.",
+    "Ein anderer Hostwerk-PC kann diesen Rechner dann bedienen – über den Fernzugriff (HTTPS) mit einem eigenen Schlüssel, den du jederzeit widerrufen kannst. Der Schlüssel ist nur einmal sichtbar."
+   ],
+   "shot": "img/ext-hostwerk-network.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/knowledge-graph",
+   "slug": "ext-knowledge-graph",
+   "title": "Wissensgraph → Graph",
+   "activeTab": "Graph",
+   "intro": "Code, Doku und Notizen als Graph – Fragen stellen, Zusammenhänge sehen, Claude einbinden und wieder vergessen.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [
+    "Graph",
+    "Fragen",
+    "Bericht",
+    "Obsidian",
+    "Claude"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)"
+   ],
+   "shot": "img/ext-knowledge-graph.jpg",
+   "tabsDetail": [
+    {
+     "label": "Fragen",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)"
+     ],
+     "shot": "img/ext-knowledge-graph--fragen.jpg"
+    },
+    {
+     "label": "Bericht",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)"
+     ],
+     "shot": "img/ext-knowledge-graph--bericht.jpg"
+    },
+    {
+     "label": "Obsidian",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)"
+     ],
+     "shot": "img/ext-knowledge-graph--obsidian.jpg"
+    },
+    {
+     "label": "Claude",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)"
+     ],
+     "shot": "img/ext-knowledge-graph--claude.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/mail-server",
+   "slug": "ext-mail-server",
+   "title": "Mailserver",
+   "activeTab": "",
+   "intro": "Echte Postfächer für deine Domain – Stalwart oder Apache James, eingerichtet und gepflegt von Hostwerk.",
+   "areas": [
+    "Welcher Mailserver soll es sein?"
+   ],
+   "actions": [
+    "Alle E-Mail-Varianten vergleichen",
+    "Weiter zur Einrichtung"
+   ],
+   "fields": [
+    "Name in Hostwerk"
+   ],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-mail-server.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/mail-stats",
+   "slug": "ext-mail-stats",
+   "title": "Mail-Statistik",
+   "activeTab": "",
+   "intro": "Wie viele Mails deine Projekte verschicken – je Tag, je Projekt, je Absender und Empfänger. Daten aus dem Mail-Fänger.",
+   "areas": [],
+   "actions": [
+    "Einstellungen",
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Abgefangene E-Mails lesen"
+   ],
+   "shot": "img/ext-mail-stats.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/motd-studio",
+   "slug": "ext-motd-studio",
+   "title": "MOTD-Studio → Editor",
+   "activeTab": "Editor",
+   "intro": "Beschreibung in der Serverliste gestalten – Farben, Formate, Vorschau. Speichern fragt vorher.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [
+    "Editor",
+    "Farbcodes"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.1.0 · darf nach Rückfrage ändern Minecraft-Server, Spieler und Statistiken lesen Minecraft-Einstellungen ändern (mit Rückfrage)"
+   ],
+   "shot": "img/ext-motd-studio.jpg",
+   "tabsDetail": [
+    {
+     "label": "Farbcodes",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.1.0 · darf nach Rückfrage ändern Minecraft-Server, Spieler und Statistiken lesen Minecraft-Einstellungen ändern (mit Rückfrage)"
+     ],
+     "shot": "img/ext-motd-studio--farbcodes.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/page-check",
+   "slug": "ext-page-check",
+   "title": "Seiten-Check",
+   "activeTab": "",
+   "intro": "Wie schnell ist die Seite, was sehen Suchmaschinen und können alle sie bedienen? Mit konkreten Tipps.",
+   "areas": [],
+   "actions": [
+    "Prüfen",
+    "Sample Web"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-page-check.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/passwords",
+   "slug": "ext-passwords",
+   "title": "Passwörter → Tresore",
+   "activeTab": "Tresore",
+   "intro": "Eigener Tresor oder bestehender Passwort-Manager – mit Browser-Erweiterung, Sicherheitsprüfung und Import aus allen gängigen Diensten.",
+   "areas": [],
+   "actions": [
+    "Hinzufügen"
+   ],
+   "fields": [],
+   "tabs": [
+    "Tresore",
+    "Browser",
+    "Einstellungen"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-passwords.jpg",
+   "tabsDetail": [
+    {
+     "label": "Browser",
+     "areas": [
+      "Browser-Erweiterung"
+     ],
+     "actions": [
+      "Hinzufügen",
+      "In Chrome installieren",
+      "ZIP herunterladen",
+      "Kopplungscode anzeigen"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Wie installiert Hostwerk? Gibt es die Erweiterung im Store des Browsers, meldet Hostwerk sie dem Browser auf dem offiziellen Weg und öffnet die Store-Seite – ein Klick „Hinzufügen“. Sonst lädt der Browser sie als „entpackte Erweiterung“ (Entwicklermodus). In beiden Fällen koppelt sie sich selbst, ohne Code.",
+      "Die Erweiterung spricht nur mit deinem Hostwerk (127.0.0.1)."
+     ],
+     "shot": "img/ext-passwords--browser.jpg"
+    },
+    {
+     "label": "Einstellungen",
+     "areas": [
+      "Verhalten",
+      "Tresore verwalten",
+      "Anbieter-Programme"
+     ],
+     "actions": [
+      "Hinzufügen",
+      "Laden"
+     ],
+     "fields": [
+      "Automatisch sperren",
+      "Auto-Login im Browser",
+      "Vorschläge im Anmeldefeld",
+      "Beim Laden ausfüllen",
+      "Starke Passwörter vorschlagen",
+      "Neue Zugänge zum Speichern anbieten",
+      "Leck-Prüfung (Have I Been Pwned)",
+      "Standard-Tresor"
+     ],
+     "tipTexts": [
+      "Ohne Wartung: Anbieter-Programme werden täglich geprüft und mit Probelauf aktualisiert, neue Import-Formate und Dienste kommen über den Online-Katalog. Der KI-Helfer hat keinerlei Zugriff auf Tresore, Einträge oder Tresor-Dateien – weder lesend noch suchend.",
+      "Selbstwartung: Versionsprüfung täglich, Update mit Probelauf."
+     ],
+     "shot": "img/ext-passwords--einstellungen.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/player-leaderboard",
+   "slug": "ext-player-leaderboard",
+   "title": "Bestenliste",
+   "activeTab": "",
+   "intro": "Wer am meisten spielt, abbaut oder stirbt – über alle Minecraft-Server zusammen oder je Server. Mit Kachel für die Übersicht.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Minecraft-Server, Spieler und Statistiken lesen"
+   ],
+   "shot": "img/ext-player-leaderboard.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/player-ticker",
+   "slug": "ext-player-ticker",
+   "title": "Spieler-Ticker",
+   "activeTab": "",
+   "intro": "Wer ist gerade auf deinen Minecraft-Servern? Live-Liste mit Köpfen, TPS und Spielzeit-Rangliste – schön für Streams und Discord-Bildschirme.",
+   "areas": [],
+   "actions": [
+    "Einstellungen",
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Dienste und ihren Zustand sehen Minecraft-Server, Spieler und Statistiken lesen Eigene Daten speichern (max. 256 KB)"
+   ],
+   "shot": "img/ext-player-ticker.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/port-map",
+   "slug": "ext-port-map",
+   "title": "Ports",
+   "activeTab": "",
+   "intro": "Alle Ports deiner Dienste in einer Liste: was läuft, was ein fremdes Programm blockiert, wo zwei Dienste denselben Port wollen – mit freien Vorschlägen.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Systemzustand, Auslastung und Ports lesen"
+   ],
+   "shot": "img/ext-port-map.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/profiler",
+   "slug": "ext-profiler",
+   "title": "Leistungs-Messung",
+   "activeTab": "",
+   "intro": "Herausfinden, warum eine Seite oder App langsam ist – welche Funktionen und Datenbank-Abfragen die Zeit brauchen.",
+   "areas": [
+    "Projekte",
+    "Letzte Messungen"
+   ],
+   "actions": [],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-profiler.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/quick-tasks",
+   "slug": "ext-quick-tasks",
+   "title": "Schnell-Aufgaben",
+   "activeTab": "",
+   "intro": "Deine Aufgaben als große Knöpfe – ein Klick startet ein Backup, einen Bericht oder ein Skript (Hostwerk fragt vorher). Lieblinge anheften, auch als Kachel.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Aufgaben lesen Aufgaben ausführen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)"
+   ],
+   "shot": "img/ext-quick-tasks.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/router",
+   "slug": "ext-router",
+   "title": "Router & Portfreigaben",
+   "activeTab": "",
+   "intro": "Deine Server aus dem Internet erreichen: Freigaben, IPv6, DynDNS und – nach der Anmeldung – Geräte und WLAN deines Routers.",
+   "areas": [
+    "Router-Zugang",
+    "IPv6 & Anschlussart",
+    "FRITZ!Box 7590",
+    "Automatisch freigeben",
+    "Ports von Hostwerk",
+    "Alle Freigaben im Router"
+   ],
+   "actions": [
+    "Anmelden",
+    "Kopieren",
+    "Speichern",
+    "Neu suchen",
+    "Router-Oberfläche öffnen",
+    "Jetzt abgleichen",
+    "Eigene Freigabe",
+    "Router öffnen",
+    "Hinweis ausblenden",
+    "Freigeben"
+   ],
+   "fields": [
+    "Benutzer (optional)",
+    "Kennwort",
+    "Ports auch für IPv6 öffnen",
+    "Anbieter",
+    "Freigaben automatisch verwalten"
+   ],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-router.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/schematics-3d",
+   "slug": "ext-schematics-3d",
+   "title": "Bauwerke in 3D",
+   "activeTab": "",
+   "intro": "Minecraft-Bauwerke ansehen, bevor du sie setzt – aus WorldEdit, Litematica und MCEdit.",
+   "areas": [],
+   "actions": [
+    "Dateien öffnen"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Woher kommen die Dateien? Hostwerk durchsucht die Ordner deiner Minecraft-Server (z. B. plugins/WorldEdit/schematics oder schematics/). Jede Bauwerk-Datei im Dateibrowser öffnet sich ebenfalls in 3D."
+   ],
+   "shot": "img/ext-schematics-3d.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/server-card",
+   "slug": "ext-server-card",
+   "title": "Steckbrief",
+   "activeTab": "",
+   "intro": "Alles Wichtige über diesen PC und seine Dienste auf einer Seite – Prozessor, Speicher, Laufzeit, Dienste mit Ports und Adressen. Zum Drucken oder als Text kopieren.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Systemzustand, Auslastung und Ports lesen Dienste und ihren Zustand sehen"
+   ],
+   "shot": "img/ext-server-card.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/service-notes",
+   "slug": "ext-service-notes",
+   "title": "Notizen",
+   "activeTab": "",
+   "intro": "Alle Notizen zu deinen Diensten – mit Suche und abhakbaren Checklisten.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.1.0 · nur lesen Dienste und ihren Zustand sehen Eigene Daten speichern (max. 256 KB)"
+   ],
+   "shot": "img/ext-service-notes.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/static-publish",
+   "slug": "ext-static-publish",
+   "title": "Seiten veröffentlichen",
+   "activeTab": "",
+   "intro": "Ein Projekt mit einem Klick online bringen – auf GitHub Pages oder Cloudflare Pages, kostenlos und mit HTTPS.",
+   "areas": [],
+   "actions": [
+    "Zugänge",
+    "Neue Seite",
+    "Zugang hinzufügen"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-static-publish.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/status-wall",
+   "slug": "ext-status-wall",
+   "title": "Status-Wand",
+   "activeTab": "",
+   "intro": "Alle Dienste groß und farbig auf einen Blick – ideal für einen zweiten Bildschirm oder das Tablet an der Wand. Ein Klick startet Gestopptes neu (mit Rückfrage).",
+   "areas": [],
+   "actions": [
+    "Einstellungen",
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Dienste und ihren Zustand sehen Dienste starten, stoppen, neu starten (mit Rückfrage)"
+   ],
+   "shot": "img/ext-status-wall.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/team",
+   "slug": "ext-team",
+   "title": "Team & Rollen → Benutzer",
+   "activeTab": "Benutzer",
+   "intro": "Freunde und Kollegen hereinlassen – jede Person mit eigener Anmeldung und nur den Rechten, die sie braucht.",
+   "areas": [
+    "Benutzer"
+   ],
+   "actions": [
+    "Benutzer anlegen"
+   ],
+   "fields": [],
+   "tabs": [
+    "Benutzer",
+    "Team-Setup"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "So funktionieren Rollen Jede Person meldet sich im Fernzugriff mit eigenem Namen und Passwort (oder Passkey) an. Mitglieder sehen und steuern nur die Dienste und Bereiche, die du freigibst – zum Beispiel „Survival-Server starten und Spieler verwalten“. Das Änderungs-Protokoll zeigt, wer was gemacht hat."
+   ],
+   "shot": "img/ext-team.jpg",
+   "tabsDetail": [
+    {
+     "label": "Team-Setup",
+     "areas": [
+      "Team-Setup"
+     ],
+     "actions": [
+      "Ordner",
+      "Verbinden"
+     ],
+     "fields": [
+      "Ordner"
+     ],
+     "tipTexts": [
+      "Was ist ein Team-Setup? Ein gemeinsames Setup für alle im Team: liegt in einem geteilten Ordner (OneDrive, Netzlaufwerk, Git-Repo) oder unter einer Adresse. Hostwerk prüft alle 15 Minuten auf Änderungen und fragt, bevor etwas übernommen wird – es legt nur Fehlendes an."
+     ],
+     "shot": "img/ext-team--team-setup.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/uptime-wall",
+   "slug": "ext-uptime-wall",
+   "title": "Uptime-Wand → Wand",
+   "activeTab": "Wand",
+   "intro": "Erreichbarkeit aller Überwachungen auf einen Blick.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [
+    "Wand",
+    "Öffentliche Statusseite"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Zertifikate und Erreichbarkeit (Überwachung) lesen Öffentliche Statusseite einrichten (mit Rückfrage)"
+   ],
+   "shot": "img/ext-uptime-wall.jpg",
+   "tabsDetail": [
+    {
+     "label": "Öffentliche Statusseite",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Zertifikate und Erreichbarkeit (Überwachung) lesen Öffentliche Statusseite einrichten (mit Rückfrage)"
+     ],
+     "shot": "img/ext-uptime-wall--oeffentliche-statusseite.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/webhook-inbox",
+   "slug": "ext-webhook-inbox",
+   "title": "Webhook-Postfach",
+   "activeTab": "",
+   "intro": "Webhooks von Stripe, GitHub & Co. empfangen, hineinsehen, Signaturen prüfen und an dein Projekt weitergeben.",
+   "areas": [],
+   "actions": [
+    "Einstellungen",
+    "Empfänger starten",
+    "Kopieren",
+    "Öffentlich machen"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-webhook-inbox.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ki",
+   "slug": "ki",
+   "title": "KI-Helfer",
+   "activeTab": "Chat",
+   "intro": "Sieht selbst in deinen Diensten, Datenbanken, Minecraft-Servern und Projekten nach – und ändert etwas nur, wenn du es bestätigst.",
+   "areas": [],
+   "actions": [
+    "Mediathek",
+    "Vergleichen",
+    "KI einrichten (ca. 11,1 GB)",
+    "Anderes Modell wählen",
+    "Nur Programm",
+    "Stattdessen einen Online-Anbieter nutzen"
+   ],
+   "fields": [],
+   "tabs": [
+    "Chat",
+    "Einstellungen",
+    "Kontingente",
+    "Anbindung & Gedächtnis"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ki.jpg",
+   "tabsDetail": [
+    {
+     "label": "Einstellungen",
+     "areas": [
+      "Start & Verhalten"
+     ],
+     "actions": [
+      "Mediathek",
+      "Vergleichen",
+      "Allgemein Start, Gespräch, Modell-Optionen",
+      "Sprachmodell Welche KI antwortet",
+      "Kontingente Verbrauch, Budgets, Grenzen",
+      "Bilder & Videos Erzeugen und bearbeiten",
+      "Sprechen & Hören Stimmen, Spracherkennung",
+      "Automatische Hilfe Wache, Erklärungen, Hinweise",
+      "Immer aktuell Katalog, Programme, Modelle",
+      "Speicher & Abschalten Modelle entfernen, deinstallieren",
+      "Modi Rollen für den Helfer"
+     ],
+     "fields": [
+      "KI-Helfer mit Hostwerk starten",
+      "Standard-Modell vorladen",
+      "Modell für Gespräche"
+     ],
+     "tipTexts": [],
+     "shot": "img/ki--einstellungen.jpg"
+    },
+    {
+     "label": "Kontingente",
+     "areas": [
+      "Kosten-Vorschau",
+      "Automatische Wahl je Aufgabe",
+      "Ollama"
+     ],
+     "actions": [
+      "Mediathek",
+      "Vergleichen",
+      "Allgemein Start, Gespräch, Modell-Optionen",
+      "Sprachmodell Welche KI antwortet",
+      "Kontingente Verbrauch, Budgets, Grenzen",
+      "Bilder & Videos Erzeugen und bearbeiten",
+      "Sprechen & Hören Stimmen, Spracherkennung",
+      "Automatische Hilfe Wache, Erklärungen, Hinweise",
+      "Immer aktuell Katalog, Programme, Modelle",
+      "Speicher & Abschalten Modelle entfernen, deinstallieren",
+      "Modi Rollen für den Helfer",
+      "Übernehmen"
+     ],
+     "fields": [
+      "Nachfragen ab (US-Dollar je Nachricht)",
+      "Obergrenze je Chat (US-Dollar)"
+     ],
+     "tipTexts": [
+      "Vor dem Senden an einen bezahlten Online-Anbieter schätzt Hostwerk Tokens und Kosten. Die Preise kommen täglich aus einer öffentlichen Modell-Liste – auch neue Modelle ohne Hostwerk-Update.",
+      "Hostwerk erkennt, was du fragst, und nimmt dafür den passenden Anbieter – z. B. kurze Fragen lokal, Code an ein starkes Modell. Antwortet er nicht, greift wie immer die Ausweich-Kette."
+     ],
+     "shot": "img/ki--kontingente.jpg"
+    },
+    {
+     "label": "Anbindung & Gedächtnis",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen Claude einrichten: Kontext in Projekt-Dateien, Spar-Werkzeuge (mit Rückfrage) Befehle ins Terminal tippen (du bestätigst) Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Claude einbinden und wieder vergessen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)"
+     ],
+     "shot": "img/ki--anbindung-gedaechtnis.jpg"
+    }
+   ]
+  },
+  {
+   "route": "live",
+   "slug": "live",
+   "title": "Livebetrieb",
+   "activeTab": "Begleiter",
+   "intro": "Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Domains mit HTTPS, Betrieb ohne Anmeldung, Fernzugriff, Alarme und Sicherungen.",
+   "areas": [
+    "Webseite mit eigener Domain"
+   ],
+   "actions": [
+    "Notfall",
+    "Webseite mit eigener Domain Dauerhaft unter www.deinedomain.de – mit HTTPS, Überwachung und Sicherheits-Check.",
+    "Schnell teilen – ohne Router Zufällige https-Adresse in Sekunden, z. B. um Freunden oder Kunden etwas zu zeigen.",
+    "Minecraft für Freunde Freunde über das Internet auf deinen Server lassen – sicher mit Online-Modus und Whitelist.",
+    "Neu prüfen",
+    "Zu den Webservern",
+    "IP kopieren",
+    "Automatisch freigeben",
+    "Firewall",
+    "HTTPS einrichten",
+    "Ansehen",
+    "Überwachung",
+    "Systemdienst"
+   ],
+   "fields": [],
+   "tabs": [
+    "Begleiter",
+    "Seite teilen (Tunnel)",
+    "Router",
+    "Domains & HTTPS",
+    "Fernzugriff"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Als Nächstes: Eigene Domain eintragen Lege bei deinem Webserver unter „Adressen“ eine Adresse mit deiner Domain an (z. B. www.meinefirma.de) – nicht .localhost. Danach noch: Domain zeigt auf diesen Anschluss (DNS) · Router: Port 80 und 443 an diesen PC weiterleiten · Firewall-Freigabe · HTTPS-Zertifikat (Let's Encrypt) · Sicherheits-Check"
+   ],
+   "shot": "img/live.jpg",
+   "tabsDetail": [
+    {
+     "label": "Seite teilen (Tunnel)",
+     "areas": [
+      "Einmalig einrichten"
+     ],
+     "actions": [
+      "Notfall",
+      "cloudflared installieren"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "So funktioniert's Hostwerk baut eine verschlüsselte Verbindung zu Cloudflare auf. Dort bekommst du eine zufällige Adresse wie xyz.trycloudflare.com, die direkt auf deine lokale Seite zeigt – praktisch, um sie jemandem zu zeigen oder auf dem Handy zu testen."
+     ],
+     "shot": "img/live--seite-teilen-tunnel.jpg"
+    },
+    {
+     "label": "Router",
+     "areas": [
+      "Router-Zugang",
+      "IPv6 & Anschlussart",
+      "FRITZ!Box 7590",
+      "Automatisch freigeben",
+      "Ports von Hostwerk",
+      "Alle Freigaben im Router"
+     ],
+     "actions": [
+      "Notfall",
+      "Anmelden",
+      "Kopieren",
+      "Speichern",
+      "Neu suchen",
+      "Router-Oberfläche öffnen",
+      "Jetzt abgleichen",
+      "Eigene Freigabe",
+      "Router öffnen",
+      "Hinweis ausblenden",
+      "Freigeben"
+     ],
+     "fields": [
+      "Benutzer (optional)",
+      "Kennwort",
+      "Ports auch für IPv6 öffnen",
+      "Anbieter",
+      "Freigaben automatisch verwalten"
+     ],
+     "tipTexts": [],
+     "shot": "img/live--router.jpg"
+    },
+    {
+     "label": "Domains & HTTPS",
+     "areas": [
+      "HTTPS für lokale Adressen (ohne Browser-Warnung)",
+      "Domains"
+     ],
+     "actions": [
+      "Notfall",
+      "Als vertrauenswürdig eintragen",
+      "Zertifikat herunterladen",
+      "Domain hinzufügen",
+      "Zu den Webservern"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "So machst du eine Seite öffentlich 1. Beim Domain-Anbieter einen A-Eintrag auf deine öffentliche IP setzen. 2. Im Router Port 80 und 443 an diesen PC weiterleiten. 3. Unter Webserver → Adressen die echte Domain als Adresse anlegen (z. B. www.meinefirma.de). 4. Hier auf „HTTPS einrichten“ klicken – Hostwerk holt ein kostenloses Zertifikat von Let's Encrypt und erneuert es automatisch."
+     ],
+     "shot": "img/live--domains-https.jpg"
+    },
+    {
+     "label": "Fernzugriff",
+     "areas": [
+      "Hostwerk von unterwegs bedienen",
+      "Zwei-Faktor-Anmeldung",
+      "Hostwerk auf dem Handy",
+      "Anmelden mit Passkey"
+     ],
+     "actions": [
+      "Notfall",
+      "Speichern",
+      "Einrichten",
+      "Passwort und Zwei-Faktor einrichten",
+      "Hinweis ausblenden",
+      "Passkey hinzufügen"
+     ],
+     "fields": [
+      "Benutzer",
+      "Port",
+      "Passwort (mind. 10 Zeichen)",
+      "Eigene Domain (optional)"
+     ],
+     "tipTexts": [],
+     "shot": "img/live--fernzugriff.jpg"
+    }
+   ]
+  },
+  {
+   "route": "sicherungen",
+   "slug": "sicherungen",
+   "title": "Sicherungen",
+   "activeTab": "",
+   "intro": "Alle Stände an einem Ort – Datenbanken, Minecraft-Welten, Projekte und die Zeitmaschine. Neue Sicherungen und Zurückspielen beim jeweiligen Dienst.",
+   "areas": [
+    "Externe Sicherung",
+    "Wiederherstellungs-Probe"
+   ],
+   "actions": [
+    "Einstellen",
+    "Ansehen",
+    "Öffnen: Hostwerk",
+    "Öffnen: Sample MC"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/sicherungen.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "system",
+   "slug": "system",
+   "title": "System",
+   "activeTab": "Zustand",
+   "intro": "Zustand, Protokolle, Ressourcen und Verlauf aller Dienste auf einen Blick.",
+   "areas": [
+    "Ports",
+    "Selbstheilung",
+    "Handy & Web-App",
+    "Windows-Schutz (Smart App Control)",
+    "Diagnosebericht"
+   ],
+   "actions": [
+    "Neu prüfen",
+    "QR-Code fürs Handy",
+    "Handy-Ansicht hier testen",
+    "Gesamtbericht speichern"
+   ],
+   "fields": [
+    "Abgestürzte Dienste automatisch neu starten"
+   ],
+   "tabs": [
+    "Zustand",
+    "Protokolle",
+    "Ressourcen",
+    "Verlauf",
+    "Programme",
+    "Selbstwartung"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/system.jpg",
+   "tabsDetail": [
+    {
+     "label": "Protokolle",
+     "areas": [],
+     "actions": [
+      "alle",
+      "Regulärer Ausdruck",
+      "Alle Rechner",
+      "Anhalten",
+      "Automatisch nach unten scrollen",
+      "Als Textdatei speichern"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/system--protokolle.jpg"
+    },
+    {
+     "label": "Ressourcen",
+     "areas": [
+      "Dienste",
+      "Verlauf"
+     ],
+     "actions": [
+      "Stoppen",
+      "Erzwingen"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/system--ressourcen.jpg"
+    },
+    {
+     "label": "Verlauf",
+     "areas": [
+      "Zeitmaschine"
+     ],
+     "actions": [
+      "Vergleichen",
+      "Jetzt sichern",
+      "08:35 Probe",
+      "Als CSV speichern",
+      "Protokoll leeren"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/system--verlauf.jpg"
+    },
+    {
+     "label": "Programme",
+     "areas": [
+      "Installiert"
+     ],
+     "actions": [
+      "Jetzt aufräumen",
+      "Jetzt",
+      "Neu ermitteln",
+      "Leeren"
+     ],
+     "fields": [
+      "Reste automatisch aufräumen"
+     ],
+     "tipTexts": [],
+     "shot": "img/system--programme.jpg"
+    },
+    {
+     "label": "Selbstwartung",
+     "areas": [
+      "Sicherheits-Updates",
+      "Wiederherstellungs-Probe",
+      "Hostwerk ohne Wartung",
+      "Monatlicher Wartungs-Lauf",
+      "Online-Kataloge"
+     ],
+     "actions": [
+      "Jetzt alles prüfen",
+      "Prüfen",
+      "Alle prüfen",
+      "Bereich öffnen",
+      "Startzeit Server bereit nach 0,7 s 20.10.26, 08:35"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Was heißt „ohne Wartung“? Hostwerk hält sich und deine Dienste selbst aktuell: Updates mit Probelauf und Rückweg, Erneuerungen, Aufräumen, Neustart nach Abstürzen. Hier siehst du je Bereich, ob das schon von allein läuft – ein Klick auf ⓘ erklärt, was genau passiert und was dir bleibt.",
+      "Hostwerk selbst Hostwerk prüft täglich auf neue Versionen, lädt sie im Hintergrund und tauscht sie beim nächsten Start aus. Startet die neue Version nicht sauber, läuft automatisch die vorherige weiter. Was du tun kannst: Nichts – außer du willst Versionen überspringen (Einstellungen → Updates).",
+      "PHP (Patch-Versionen) Alle 6 Stunden schaut Hostwerk nach Sicherheits-Updates innerhalb deiner PHP-Reihe (z. B. 8.3.x). Die neue Version wird neben der alten installiert, mit einem Probelauf getestet und erst dann aktiv. Scheitert der Test, bleibt die alte. Was du tun kannst: Größere Sprünge (8.3 → 8.4) entscheidest du selbst – Hostwerk schlägt sie nur vor.",
+      "Datenbanken (Patch-Versionen) Wie bei PHP: Patch-Versionen von MariaDB, MySQL und PostgreSQL werden geprüft, mit Probelauf eingespielt, bei Fehlern zurückgerollt. Was du tun kannst: Hauptversionen wechselst du selbst im Datenbank-Bereich.",
+      "Webserver (Patch-Versionen) Apache, nginx und Caddy bekommen Sicherheits-Updates ihrer Reihe – mit Probelauf, die alte Version bleibt als Rückweg liegen. Was du tun kannst: Nichts.",
+      "Geyser/Floodgate Geyser und Floodgate (Bedrock-Spieler) werden automatisch aktualisiert und getestet. Was du tun kannst: Nichts.",
+      "Zertifikate (Let’s Encrypt, lokale CA) HTTPS-Zertifikate (Let’s Encrypt und Hostwerks lokale Zertifizierungsstelle) werden rechtzeitig erneuert. Was du tun kannst: Nichts – bei einem Fehler meldet sich Hostwerk.",
+      "KI-Programme und Modelle Ollama, Bildmodelle, Spracherkennung und Stimmen werden mit Probelauf aktualisiert; die Modellkataloge kommen täglich online. Was du tun kannst: Ist die KI abgeschaltet, gibt es hier nichts zu tun.",
+      "Laufzeit (Node/Electron) Node.js und Electron, auf denen Hostwerk läuft, werden mit dem App-Update getauscht – nach einem Selbsttest. Was du tun kannst: Nichts.",
+      "Wiederherstellungs-Probe Regelmäßig wird die neueste Sicherung in eine Wegwerf-Umgebung zurückgespielt und geprüft. So fällt eine kaputte Sicherung auf, bevor man sie braucht. Was du tun kannst: Nichts.",
+      "Aufräumen (Reste, Cache, Papierkorb) Täglich räumt Hostwerk Installationsreste und alte Downloads auf; der Papierkorb wird nach 30 Tagen geleert. Was du tun kannst: Nichts.",
+      "Selbstheilung (Dienste neu starten) Stürzt ein Dienst ab oder antwortet nicht mehr, startet Hostwerk ihn neu (mit Pause, damit er nicht endlos neu startet). Was du tun kannst: Nichts – Vorfälle stehen unter System → Vorfälle."
+     ],
+     "shot": "img/system--selbstwartung.jpg"
+    }
+   ]
+  },
+  {
+   "route": "settings",
+   "slug": "settings",
+   "title": "Einstellungen",
+   "activeTab": "Allgemein",
+   "intro": "Hostwerk an deine Arbeitsweise anpassen.",
+   "areas": [
+    "Wofür nutzt du Hostwerk?",
+    "Darstellung",
+    "Bereiche in der Seitenleiste"
+   ],
+   "actions": [
+    "Webseiten & Apps",
+    "Spiele-Server",
+    "KI",
+    "Online stellen & Team",
+    "Neu suchen (z. B. nach einer Installation)",
+    "Eigenes Programm als Editor hinzufügen",
+    "Hostwerk-Lila",
+    "Blau",
+    "Himmelblau",
+    "Türkis",
+    "Grün",
+    "Bernstein",
+    "Orange",
+    "Rot",
+    "Pink",
+    "Wieder anzeigen"
+   ],
+   "fields": [
+    "Sprache · Language",
+    "Code-Editor",
+    "Akzentfarbe",
+    "Erscheinungsbild",
+    "Startseite",
+    "Kompakte Ansicht",
+    "Animationen reduzieren",
+    "Ausgeblendete Hinweise",
+    "Vor dem Stoppen nachfragen",
+    "Download-Geschwindigkeit anzeigen",
+    "Projekte",
+    "Apps",
+    "E-Mail",
+    "Aufgaben",
+    "Dateien",
+    "Minecraft",
+    "KI",
+    "Claude Gedankennetz",
+    "Livebetrieb",
+    "Sicherungen"
+   ],
+   "tabs": [
+    "Allgemein",
+    "Start & Dienste",
+    "Benachrichtigungen & Protokolle",
+    "Profile weitergeben",
+    "Updates",
+    "Erweitert"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/settings.jpg",
+   "tabsDetail": [
+    {
+     "label": "Start & Dienste",
+     "areas": [
+      "Beim Start von Hostwerk",
+      "Welche Dienste starten automatisch?"
+     ],
+     "actions": [
+      "Alle",
+      "Keine"
+     ],
+     "fields": [
+      "Dienste automatisch starten",
+      "Zuletzt laufende Dienste wiederherstellen",
+      "Nacheinander starten",
+      "Verzögerung",
+      "Hostwerk mit Windows starten",
+      "Minimiert starten",
+      "Beim Schließen im Infobereich bleiben",
+      "Abgestürzte Dienste automatisch neu starten",
+      "Sample DB",
+      "Mail-Fänger",
+      "Sample Web",
+      "Sample MC"
+     ],
+     "tipTexts": [],
+     "shot": "img/settings--start-dienste.jpg"
+    },
+    {
+     "label": "Benachrichtigungen & Protokolle",
+     "areas": [
+      "Handy-Benachrichtigungen",
+      "Alarme",
+      "Windows-Benachrichtigungen",
+      "Protokolle"
+     ],
+     "actions": [
+      "Test senden",
+      "Test",
+      "Speichern",
+      "Jetzt prüfen"
+     ],
+     "fields": [
+      "Discord-Webhook",
+      "ntfy (Push aufs Handy)",
+      "E-Mail",
+      "Abstürze und Startfehler",
+      "Webseite nicht erreichbar / wieder da",
+      "Backup fehlgeschlagen",
+      "Zertifikat-Probleme und baldiger Ablauf",
+      "Gemerkte Abfrage über ihrer Schwelle",
+      "Vor Zertifikats-Ablauf erinnern",
+      "Benachrichtigungen anzeigen",
+      "Abstürze und Fehler",
+      "Backups",
+      "Geplante Aufgaben",
+      "Neue E-Mails",
+      "Updates",
+      "Protokolle aufbewahren"
+     ],
+     "tipTexts": [],
+     "shot": "img/settings--benachrichtigungen-protokolle.jpg"
+    },
+    {
+     "label": "Profile weitergeben",
+     "areas": [
+      "Profile",
+      "Als Docker-Compose exportieren",
+      "Setup teilen"
+     ],
+     "actions": [
+      "Aus laufenden Diensten",
+      "Neues Profil",
+      "Vorschau",
+      "ZIP herunterladen",
+      "Setup exportieren"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/settings--profile-weitergeben.jpg"
+    },
+    {
+     "label": "Updates",
+     "areas": [
+      "App-Updates",
+      "Sicherheits-Updates"
+     ],
+     "actions": [
+      "Prüfen"
+     ],
+     "fields": [
+      "Automatisch aktualisieren",
+      "Komponenten-Updates anzeigen"
+     ],
+     "tipTexts": [
+      "Automatische Updates gibt es nur in der installierten Desktop-App."
+     ],
+     "shot": "img/settings--updates.jpg"
+    },
+    {
+     "label": "Erweitert",
+     "areas": [
+      "Hostwerk",
+      "Java-Laufzeiten",
+      "Zwischenspeicher & temporäre Dateien",
+      "Hostwerk entfernen",
+      "Speicherort & Zugriff"
+     ],
+     "actions": [
+      "Neu laden",
+      "921,1 KB löschen",
+      "Neu messen",
+      "Jetzt aufräumen",
+      "Hostwerk entfernen …",
+      "Im Standardbrowser öffnen"
+     ],
+     "fields": [
+      "Hostwerk-Ordner",
+      "Im Browser öffnen"
+     ],
+     "tipTexts": [
+      "Lädt nur die Oberfläche neu – Dienste laufen ungestört weiter. Hilft, wenn eine Ansicht hängt oder nach einem Update nicht aktuell aussieht.",
+      "Alles hier lädt Hostwerk bei Bedarf neu. Projekte, Datenbanken, Backups und Einstellungen bleiben unberührt.",
+      "Alle 6 Stunden, kurz nach dem Start und nach dem Löschen, Anlegen oder Aktualisieren von Diensten: lange unbenutzte Bilder, alte Video-Fassungen, alte Downloads und Reste werden entfernt – nichts, was gerade gebraucht wird."
+     ],
+     "shot": "img/settings--erweitert.jpg"
+    }
+   ]
+  },
+  {
+   "route": "apps",
+   "slug": "apps",
+   "title": "Apps",
+   "activeTab": "Apps",
+   "intro": "Node.js-, Python- und eigene Programme als Dienst – plus Erweiterungen für weitere Dienst-Typen.",
+   "areas": [],
+   "actions": [
+    "Neue App",
+    "App hinzufügen",
+    "Aus Vorlage"
+   ],
+   "fields": [],
+   "tabs": [
+    "Apps",
+    "Laufzeiten",
+    "Erweiterungen",
+    "Docker",
+    "Import"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/apps.jpg",
+   "tabsDetail": [
+    {
+     "label": "Laufzeiten",
+     "areas": [
+      "Node.js",
+      "Python"
+     ],
+     "actions": [
+      "Neue App",
+      "nodejs.org",
+      "python.org"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/apps--laufzeiten.jpg"
+    },
+    {
+     "label": "Erweiterungen",
+     "areas": [
+      "Spiele & Minecraft 7",
+      "Netzwerk & Rechner 4",
+      "Sicherheit & Zugänge 3",
+      "Überwachung & Status 5",
+      "Entwickeln 7",
+      "KI & Medien 3",
+      "E-Mail & Kommunikation 3",
+      "Sonstiges 3"
+     ],
+     "actions": [
+      "35 installiert",
+      "0 Updates",
+      "33 im Katalog",
+      "Hinzufügen",
+      "Alle 35",
+      "Spiele & Minecraft 7",
+      "Netzwerk & Rechner 4",
+      "Sicherheit & Zugänge 3",
+      "Überwachung & Status 5",
+      "Entwickeln 7",
+      "KI & Medien 3",
+      "E-Mail & Kommunikation 3",
+      "Sonstiges 3",
+      "Bedrock-Brücke – Details",
+      "Öffnen",
+      "Spiele-Server-Verbund – Details",
+      "Spiele-Server – Details",
+      "MOTD-Studio – Details",
+      "Spieler-Bestenliste – Details",
+      "Spieler-Ticker – Details",
+      "Bauwerke in 3D – Details",
+      "Dateifreigabe (SFTP) – Details",
+      "Hostwerk-Verbund – Details",
+      "Port-Übersicht – Details",
+      "Router & Portfreigaben – Details",
+      "Zertifikats-Wache – Details",
+      "Passwort-Manager – Details",
+      "Team & Rollen – Details",
+      "Backup-Kalender – Details",
+      "Server-Steckbrief – Details",
+      "Status-Wand – Details",
+      "Speicher je Dienst – Details",
+      "Uptime-Wand – Details",
+      "API-Tester – Details",
+      "Seiten-Check – Details",
+      "Leistungs-Messung – Details",
+      "Seiten veröffentlichen – Details",
+      "Schnell-Aufgaben – Details",
+      "Webhook-Postfach – Details",
+      "Meine Erweiterung – Details"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/apps--erweiterungen.jpg"
+    },
+    {
+     "label": "Docker",
+     "areas": [],
+     "actions": [
+      "Neue App",
+      "Docker DesktopDie offizielle App mit eigener Oberfläche (ca. 600 MB). Für größere Firmen kostenpflichtig.Eigene Oberfläche",
+      "Docker Engine einrichten",
+      "Erneut prüfen"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/apps--docker.jpg"
+    },
+    {
+     "label": "Import",
+     "areas": [],
+     "actions": [
+      "Neue App",
+      "App hinzufügen",
+      "Aus Vorlage"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/apps--import.jpg"
+    }
+   ]
+  },
+  {
+   "route": "live/waechter",
+   "slug": "live-waechter",
+   "title": "Livebetrieb → Wächter",
+   "activeTab": "Wächter",
+   "intro": "Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Domains mit HTTPS, Betrieb ohne Anmeldung, Fernzugriff, Alarme und Sicherungen.",
+   "areas": [
+    "Wächter"
+   ],
+   "actions": [
+    "Notfall",
+    "Neuer Wächter",
+    "Bearbeiten: Probe shop",
+    "Bearbeiten: Probe count",
+    "Bearbeiten: Zertifikate"
+   ],
+   "fields": [],
+   "tabs": [
+    "Systemdienst",
+    "Überwachung",
+    "Wächter",
+    "Externe Sicherung"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Was sind Wächter? Alles, was Hostwerk von selbst beobachtet: Seiten, Dienste, Abfragen und Zertifikate. Wohin Meldungen gehen, stellst du unter Einstellungen → Benachrichtigungen ein."
+   ],
+   "shot": "img/live-waechter.jpg",
+   "tabsDetail": [
+    {
+     "label": "Überwachung",
+     "areas": [
+      "Schwellen für Dienste",
+      "Alarme",
+      "Verfügbarkeit prüfen"
+     ],
+     "actions": [
+      "Notfall",
+      "Schwelle",
+      "Einstellen",
+      "Prüfung hinzufügen"
+     ],
+     "fields": [
+      "Adresse",
+      "Name (optional)",
+      "Muss enthalten (optional)"
+     ],
+     "tipTexts": [
+      "Hostwerk prüft alle 30 Sekunden CPU, Arbeitsspeicher, Spieler, TPS oder Antwortzeit und meldet sich, wenn ein Wert die Schwelle eine Weile über- bzw. unterschreitet – und wenn er wieder passt."
+     ],
+     "shot": "img/live-waechter--ueberwachung.jpg"
+    },
+    {
+     "label": "Externe Sicherung",
+     "areas": [
+      "Sicherung außerhalb dieses PCs",
+      "Letzte Sicherungen",
+      "Was gesichert wird",
+      "Wiederherstellungs-Probe"
+     ],
+     "actions": [
+      "Notfall",
+      "Ordner",
+      "Speichern",
+      "Verbindung prüfen",
+      "Jetzt sichern",
+      "Alle prüfen",
+      "Prüfen"
+     ],
+     "fields": [
+      "Ziel",
+      "Ordner",
+      "Wie oft?",
+      "Aufbewahren"
+     ],
+     "tipTexts": [],
+     "shot": "img/live-waechter--externe-sicherung.jpg"
+    }
+   ]
+  },
+  {
+   "route": "claude",
+   "slug": "claude",
+   "title": "KI-Anbindung",
+   "activeTab": "",
+   "intro": "Was jede KI über dich und deine Projekte weiß – und wie Claude & Co. mit deinen Projekten arbeiten.",
+   "areas": [],
+   "actions": [
+    "Neu laden"
+   ],
+   "fields": [],
+   "tabs": [
+    "Loslegen",
+    "Verbinden",
+    "Token sparen",
+    "Tipps & Tricks",
+    "Protokoll"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen Claude einrichten: Kontext in Projekt-Dateien, Spar-Werkzeuge (mit Rückfrage) Befehle ins Terminal tippen (du bestätigst) Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Claude einbinden und wieder vergessen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)"
+   ],
+   "shot": "img/claude.jpg",
+   "tabsDetail": [
+    {
+     "label": "Verbinden",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen Claude einrichten: Kontext in Projekt-Dateien, Spar-Werkzeuge (mit Rückfrage) Befehle ins Terminal tippen (du bestätigst) Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Claude einbinden und wieder vergessen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)"
+     ],
+     "shot": "img/claude--verbinden.jpg"
+    },
+    {
+     "label": "Token sparen",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen Claude einrichten: Kontext in Projekt-Dateien, Spar-Werkzeuge (mit Rückfrage) Befehle ins Terminal tippen (du bestätigst) Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Claude einbinden und wieder vergessen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)"
+     ],
+     "shot": "img/claude--token-sparen.jpg"
+    },
+    {
+     "label": "Tipps & Tricks",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen Claude einrichten: Kontext in Projekt-Dateien, Spar-Werkzeuge (mit Rückfrage) Befehle ins Terminal tippen (du bestätigst) Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Claude einbinden und wieder vergessen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)"
+     ],
+     "shot": "img/claude--tipps-tricks.jpg"
+    },
+    {
+     "label": "Protokoll",
+     "areas": [],
+     "actions": [
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch lesen Claude einrichten: Kontext in Projekt-Dateien, Spar-Werkzeuge (mit Rückfrage) Befehle ins Terminal tippen (du bestätigst) Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Claude einbinden und wieder vergessen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)"
+     ],
+     "shot": "img/claude--protokoll.jpg"
+    }
+   ]
+  },
+  {
+   "route": "live/sicherheit",
+   "slug": "live-sicherheit",
+   "title": "Livebetrieb → Sicherheit",
+   "activeTab": "Sicherheit",
+   "intro": "Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Domains mit HTTPS, Betrieb ohne Anmeldung, Fernzugriff, Alarme und Sicherungen.",
+   "areas": [
+    "Sicherheits-Check",
+    "Firewall"
+   ],
+   "actions": [
+    "Notfall",
+    "Sicheres Passwort setzen",
+    "Firewall verwalten"
+   ],
+   "fields": [],
+   "tabs": [
+    "Sicherheit",
+    "Firewall",
+    "Benutzer"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/live-sicherheit.jpg",
+   "tabsDetail": [
+    {
+     "label": "Firewall",
+     "areas": [
+      "Ports öffentlicher Dienste",
+      "Eigene Regel",
+      "Regeln von Hostwerk"
+     ],
+     "actions": [
+      "Notfall",
+      "Regeln anlegen / erneuern",
+      "Regel anlegen",
+      "Sperren",
+      "Neu lesen",
+      "Regel entfernen"
+     ],
+     "fields": [
+      "Port",
+      "Protokoll",
+      "Aktion",
+      "Nur von (optional)",
+      "Bezeichnung"
+     ],
+     "tipTexts": [],
+     "shot": "img/live-sicherheit--firewall.jpg"
+    },
+    {
+     "label": "Benutzer",
+     "areas": [
+      "Benutzer"
+     ],
+     "actions": [
+      "Notfall",
+      "Benutzer anlegen"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "So funktionieren Rollen Jede Person meldet sich im Fernzugriff mit eigenem Namen und Passwort (oder Passkey) an. Mitglieder sehen und steuern nur die Dienste und Bereiche, die du freigibst – zum Beispiel „Survival-Server starten und Spieler verwalten“. Das Änderungs-Protokoll zeigt, wer was gemacht hat."
+     ],
+     "shot": "img/live-sicherheit--benutzer.jpg"
+    }
+   ]
+  },
+  {
+   "route": "live/dienst",
+   "slug": "live-dienst",
+   "title": "Livebetrieb → Systemdienst",
+   "activeTab": "Systemdienst",
+   "intro": "Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Domains mit HTTPS, Betrieb ohne Anmeldung, Fernzugriff, Alarme und Sicherungen.",
+   "areas": [
+    "Hostwerk als Systemdienst",
+    "Gut zu wissen"
+   ],
+   "actions": [
+    "Notfall"
+   ],
+   "fields": [],
+   "tabs": [
+    "Systemdienst",
+    "Überwachung",
+    "Wächter",
+    "Externe Sicherung"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Das Umschalten geht nur in der Desktop-App."
+   ],
+   "shot": "img/live-dienst.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "web/probe-web",
+   "slug": "web-probe-web",
+   "title": "Sample Web → Übersicht",
+   "activeTab": "Übersicht",
+   "intro": "nginx 1.29.1 · Port 18090 · ohne PHP nginx.org",
+   "areas": [
+    "Adressen",
+    "Projekte im Webordner",
+    "Einstellungen",
+    "Version & Verwaltung"
+   ],
+   "actions": [
+    "Bild ändern",
+    "Als Favorit markieren (steht dann in Listen oben)",
+    "nginx.org",
+    "Starten",
+    "Neu in 1.29.1",
+    "Andere Webserver",
+    "Konfiguration testen",
+    "Öffentlich teilen (Link fürs Internet)",
+    "Öffnen",
+    "Neues Projekt",
+    "Ordner",
+    "Übernehmen",
+    "Erneut prüfen",
+    "Webserver entfernen"
+   ],
+   "fields": [
+    "Name",
+    "HTTP-Port",
+    "HTTPS-Port",
+    "Webordner",
+    "PHP-Version",
+    "HTTPS",
+    "Verzeichnisauflistung",
+    "Mit Hostwerk starten"
+   ],
+   "tabs": [
+    "Übersicht",
+    "Virtuelle Hosts",
+    "Konfiguration",
+    "Protokolle",
+    "Notizen"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/web-probe-web.jpg",
+   "tabsDetail": [
+    {
+     "label": "Virtuelle Hosts",
+     "areas": [
+      "Neuer virtueller Host",
+      "Virtuelle Hosts"
+     ],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "nginx.org",
+      "Starten",
+      "Ordner",
+      "Anlegen"
+     ],
+     "fields": [
+      "Domain",
+      "Ordner",
+      "PHP-Version"
+     ],
+     "tipTexts": [
+      "Tipp: Domains auf .localhost Adressen wie meinprojekt.localhost funktionieren in Chrome, Edge und Firefox ohne Eintrag in der hosts-Datei."
+     ],
+     "shot": "img/web-probe-web--virtuelle-hosts.jpg"
+    },
+    {
+     "label": "Konfiguration",
+     "areas": [],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "nginx.org",
+      "Starten",
+      "Anleitung zu nginx",
+      "Speichern & prüfen"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/web-probe-web--konfiguration.jpg"
+    },
+    {
+     "label": "Protokolle",
+     "areas": [],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "nginx.org",
+      "Starten",
+      "Alles",
+      "Uhrzeit anzeigen",
+      "Größere Schrift",
+      "Lange Zeilen umbrechen",
+      "Kopieren",
+      "Als Textdatei speichern",
+      "Leeren",
+      "Anhalten",
+      "Live"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/web-probe-web--protokolle.jpg"
+    },
+    {
+     "label": "Notizen",
+     "areas": [],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "nginx.org",
+      "Starten"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/web-probe-web--notizen.jpg"
+    }
+   ]
+  },
+  {
+   "route": "dbs/probe-db",
+   "slug": "dbs-probe-db",
+   "title": "Sample DB → Übersicht",
+   "activeTab": "Übersicht",
+   "intro": "MariaDB 11.8.3 · Port 13390 · Benutzer root · ohne Passwort mariadb.org",
+   "areas": [
+    "Backups",
+    "Protokoll",
+    "Einstellungen",
+    "Version",
+    "Entfernen"
+   ],
+   "actions": [
+    "Bild ändern",
+    "Als Favorit markieren (steht dann in Listen oben)",
+    "mariadb.org",
+    "Neu in 11.8.3",
+    "Andere Datenbanken",
+    "Im Studio öffnen",
+    "Starten",
+    "Kopieren",
+    "Server starten",
+    "Jetzt sichern",
+    "Alles",
+    "Uhrzeit anzeigen",
+    "Größere Schrift",
+    "Lange Zeilen umbrechen",
+    "Als Textdatei speichern",
+    "Leeren",
+    "Anhalten",
+    "Live",
+    "Übernehmen",
+    "Ändern",
+    "Aktualisieren",
+    "Server entfernen …"
+   ],
+   "fields": [
+    "Automatisch sichern",
+    "Name",
+    "Port",
+    "Mit Hostwerk starten",
+    "Passwort"
+   ],
+   "tabs": [
+    "Übersicht",
+    "Notizen"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/dbs-probe-db.jpg",
+   "tabsDetail": [
+    {
+     "label": "Notizen",
+     "areas": [
+      "Backups",
+      "Protokoll",
+      "Einstellungen",
+      "Version",
+      "Entfernen"
+     ],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "mariadb.org",
+      "Neu in 11.8.3",
+      "Andere Datenbanken",
+      "Im Studio öffnen",
+      "Starten",
+      "Kopieren",
+      "Server starten",
+      "Jetzt sichern",
+      "Alles",
+      "Uhrzeit anzeigen",
+      "Größere Schrift",
+      "Lange Zeilen umbrechen",
+      "Als Textdatei speichern",
+      "Leeren",
+      "Anhalten",
+      "Live",
+      "Übernehmen",
+      "Ändern",
+      "Aktualisieren",
+      "Server entfernen …"
+     ],
+     "fields": [
+      "Automatisch sichern",
+      "Name",
+      "Port",
+      "Mit Hostwerk starten",
+      "Passwort"
+     ],
+     "tipTexts": [],
+     "shot": "img/dbs-probe-db--notizen.jpg"
+    }
+   ]
+  },
+  {
+   "route": "mc/probe-mc",
+   "slug": "mc-probe-mc",
+   "title": "Sample MC → Übersicht",
+   "activeTab": "Übersicht",
+   "intro": "Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io",
+   "areas": [
+    "Zustand",
+    "Online (0)",
+    "So sehen Spieler deinen Server"
+   ],
+   "actions": [
+    "Bild ändern",
+    "Als Favorit markieren (steht dann in Listen oben)",
+    "papermc.io",
+    "Starten",
+    "messen",
+    "Kopieren",
+    "Handy- & Konsolen-Spieler erlauben (Bedrock)",
+    "Spielerverwaltung",
+    "§0",
+    "§1",
+    "§2",
+    "§3",
+    "§4",
+    "§5",
+    "§6",
+    "§7",
+    "§8",
+    "§9",
+    "§a",
+    "§b",
+    "§c",
+    "§d",
+    "§e",
+    "§f",
+    "Speichern",
+    "Symbol wählen"
+   ],
+   "fields": [
+    "Beschreibung (MOTD)"
+   ],
+   "tabs": [
+    "Übersicht",
+    "Konsole",
+    "Spieler",
+    "Plugins",
+    "Welt",
+    "Einstellungen",
+    "Dateien",
+    "Notizen"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/mc-probe-mc.jpg",
+   "tabsDetail": [
+    {
+     "label": "Konsole",
+     "areas": [],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "papermc.io",
+      "Starten",
+      "Alles",
+      "Uhrzeit anzeigen",
+      "Größere Schrift",
+      "Lange Zeilen umbrechen",
+      "Kopieren",
+      "Als Textdatei speichern",
+      "Leeren",
+      "Anhalten",
+      "Live"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/mc-probe-mc--konsole.jpg"
+    },
+    {
+     "label": "Spieler",
+     "areas": [
+      "Online",
+      "Operatoren",
+      "Whitelist",
+      "Gebannt"
+     ],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "papermc.io",
+      "Starten"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Spieler hinzufügen/entfernen geht über die Konsole und ist daher nur bei laufendem Server möglich."
+     ],
+     "shot": "img/mc-probe-mc--spieler.jpg"
+    },
+    {
+     "label": "Plugins",
+     "areas": [
+      "Plugin-Live-Update",
+      "Installiert",
+      "Weitere Quellen",
+      "Schnellsuche"
+     ],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "papermc.io",
+      "Starten",
+      "Live-Update einschalten",
+      "Projekte suchen",
+      "Verknüpfen",
+      "Zum Marktplatz",
+      "Suchen",
+      "Installieren"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/mc-probe-mc--plugins.jpg"
+    },
+    {
+     "label": "Welt",
+     "areas": [
+      "Welten",
+      "Spielregeln"
+     ],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "papermc.io",
+      "Starten",
+      "Neu laden"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/mc-probe-mc--welt.jpg"
+    },
+    {
+     "label": "Einstellungen",
+     "areas": [
+      "Spiel (server.properties)",
+      "Leistung & Start",
+      "Alle Eigenschaften"
+     ],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "papermc.io",
+      "Starten",
+      "Speichern",
+      "Durchsuchen",
+      "server.properties im Editor"
+     ],
+     "fields": [
+      "Beschreibung (MOTD)",
+      "Port",
+      "Max. Spieler",
+      "Inaktive kicken (Min.)",
+      "Pause ohne Spieler (s)",
+      "Online-Modus",
+      "Whitelist",
+      "Whitelist streng",
+      "In der Serverliste sichtbar",
+      "Spielerliste verbergen",
+      "Name",
+      "Max. RAM: 2,0 GB",
+      "Start-RAM (MB)",
+      "Java-Version",
+      "JVM-Optimierung",
+      "Zusätzliche JVM-Argumente",
+      "Eigener Java-Pfad (optional)",
+      "Mit Hostwerk starten",
+      "Nach Absturz neu starten",
+      "Server-Software automatisch aktualisieren",
+      "Plugins automatisch aktualisieren",
+      "Nach jedem Start prüfen"
+     ],
+     "tipTexts": [],
+     "shot": "img/mc-probe-mc--einstellungen.jpg"
+    },
+    {
+     "label": "Dateien",
+     "areas": [],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "papermc.io",
+      "Starten",
+      "Wurzel",
+      "Neue Datei",
+      "Neuer Ordner",
+      "Kacheln",
+      "Mehr",
+      "Name",
+      "Geändert",
+      "Größe"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/mc-probe-mc--dateien.jpg"
+    },
+    {
+     "label": "Notizen",
+     "areas": [],
+     "actions": [
+      "Bild ändern",
+      "Als Favorit markieren (steht dann in Listen oben)",
+      "papermc.io",
+      "Starten"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/mc-probe-mc--notizen.jpg"
+    }
+   ]
+  }
+ ]
+}

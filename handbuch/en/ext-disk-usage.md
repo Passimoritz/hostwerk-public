@@ -15,4 +15,4 @@ Space used per service and free space on the drive.
 - Reload
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

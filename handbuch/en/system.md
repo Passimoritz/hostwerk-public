@@ -2,7 +2,7 @@
 
 [← Back to the overview](README.md)
 
-Health, logs, resources and incidents of all services at a glance.
+State, logs, resources and history of all services at a glance.
 
 ![System](img/system.jpg)
 
@@ -41,41 +41,17 @@ Health, logs, resources and incidents of all services at a glance.
 
 **What you can do here:** Stop · Force
 
-### Incidents
+### History
 
-![Incidents](img/system--incidents.jpg)
-
-**Areas on this page:** Incidents · Crash reports
-
-### Changes
-
-![Changes](img/system--changes.jpg)
+![History](img/system--history.jpg)
 
 **Areas on this page:** Time machine
 
-**What you can do here:** Compare · Back up now · 23:26 Test · Save as CSV · Clear log
+**What you can do here:** Compare · Back up now · 08:35 Test · Save as CSV · Clear log
 
-### Health
+### Programs
 
-![Health](img/system--health.jpg)
-
-> The check looks at disk space, services, age and usability of backups, pending updates, the security check, self-maintenance, crashes and failed tasks – on this PC and all paired machines.
-
-**Areas on this page:** Schedule · Earlier reports
-
-**What you can do here:** Check now
-
-### Foreign services
-
-![Foreign services](img/system--foreign-services.jpg)
-
-**Areas on this page:** Foreign services on this PC · MariaDB 10.4.32 · Apache 2.4.58
-
-**What you can do here:** Search again · Take over into Hostwerk …
-
-### Installed
-
-![Installed](img/system--installed.jpg)
+![Programs](img/system--programs.jpg)
 
 **Areas on this page:** Installed
 
@@ -100,7 +76,7 @@ Health, logs, resources and incidents of all services at a glance.
 
 **Areas on this page:** Security updates · Restore test · Hostwerk without maintenance · Monthly maintenance run · Online catalogs
 
-**What you can do here:** Check everything now · Check · Check all · Open area
+**What you can do here:** Check everything now · Check · Check all · Open area · Startzeit Server ready after 0,7 s 20.10.26, 08:35
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

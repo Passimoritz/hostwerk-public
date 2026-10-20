@@ -2,7 +2,7 @@
 
 [← Zurück zur Übersicht](README.md)
 
-Zustand, Protokolle, Ressourcen und Vorfälle aller Dienste auf einen Blick.
+Zustand, Protokolle, Ressourcen und Verlauf aller Dienste auf einen Blick.
 
 ![System](img/system.jpg)
 
@@ -41,41 +41,17 @@ Zustand, Protokolle, Ressourcen und Vorfälle aller Dienste auf einen Blick.
 
 **Was du hier tun kannst:** Stoppen · Erzwingen
 
-### Vorfälle
+### Verlauf
 
-![Vorfälle](img/system--vorfaelle.jpg)
-
-**Bereiche auf dieser Seite:** Vorfälle · Absturzberichte
-
-### Änderungen
-
-![Änderungen](img/system--aenderungen.jpg)
+![Verlauf](img/system--verlauf.jpg)
 
 **Bereiche auf dieser Seite:** Zeitmaschine
 
-**Was du hier tun kannst:** Vergleichen · Jetzt sichern · 23:26 Probe · Als CSV speichern · Protokoll leeren
+**Was du hier tun kannst:** Vergleichen · Jetzt sichern · 08:35 Probe · Als CSV speichern · Protokoll leeren
 
-### Gesundheit
+### Programme
 
-![Gesundheit](img/system--gesundheit.jpg)
-
-> Der Check sieht Speicher, Dienste, Alter und Brauchbarkeit der Sicherungen, offene Updates, Sicherheits-Check, Selbstwartung, Abstürze und fehlgeschlagene Aufgaben – auf diesem PC und allen gekoppelten Rechnern.
-
-**Bereiche auf dieser Seite:** Zeitplan · Frühere Berichte
-
-**Was du hier tun kannst:** Jetzt prüfen
-
-### Fremde Dienste
-
-![Fremde Dienste](img/system--fremde-dienste.jpg)
-
-**Bereiche auf dieser Seite:** Fremde Dienste auf diesem PC · MariaDB 10.4.32 · Apache 2.4.58
-
-**Was du hier tun kannst:** Erneut suchen · In Hostwerk übernehmen …
-
-### Installiert
-
-![Installiert](img/system--installiert.jpg)
+![Programme](img/system--programme.jpg)
 
 **Bereiche auf dieser Seite:** Installiert
 
@@ -100,7 +76,7 @@ Zustand, Protokolle, Ressourcen und Vorfälle aller Dienste auf einen Blick.
 
 **Bereiche auf dieser Seite:** Sicherheits-Updates · Wiederherstellungs-Probe · Hostwerk ohne Wartung · Monatlicher Wartungs-Lauf · Online-Kataloge
 
-**Was du hier tun kannst:** Jetzt alles prüfen · Prüfen · Alle prüfen · Bereich öffnen
+**Was du hier tun kannst:** Jetzt alles prüfen · Prüfen · Alle prüfen · Bereich öffnen · Startzeit Server bereit nach 0,7 s 20.10.26, 08:35
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

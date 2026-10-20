@@ -20,7 +20,6 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 - Starten
 - messen
 - Kopieren
-- Für Freunde im Internet freigeben
 - Handy- & Konsolen-Spieler erlauben (Bedrock)
 - Spielerverwaltung
 - §0
@@ -101,4 +100,4 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 **Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

@@ -12,4 +12,4 @@ Find out why a page or app is slow – which functions and database queries take
 - Latest measurements
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

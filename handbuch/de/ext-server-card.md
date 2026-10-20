@@ -15,4 +15,4 @@ Alles Wichtige über diesen PC und seine Dienste auf einer Seite – Prozessor, 
 - Neu laden
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

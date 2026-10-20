@@ -72,4 +72,4 @@ nginx 1.29.1 · Port 18090 · ohne PHP nginx.org
 **Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · nginx.org · Starten
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

@@ -22,4 +22,4 @@ Paper, Purpur, Folia, Spigot, Vanilla, Mod-Server (Fabric, NeoForge, Forge) und 
 **Was du hier tun kannst:** Neuer Server · Bild ändern · Starten · Weiterer Minecraft-Server Eigene Welt, eigener Port – Java und Server-Software lädt Hostwerk Paper Purpur Vanilla Fabric Modpacks Velocity
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

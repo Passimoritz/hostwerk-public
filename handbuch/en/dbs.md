@@ -1,10 +1,10 @@
-# Database servers
+# Databases
 
 [← Back to the overview](README.md)
 
 MariaDB, MySQL, PostgreSQL, MongoDB and Redis – as many as you like, in different versions.
 
-![Database servers](img/dbs.jpg)
+![Databases](img/dbs.jpg)
 
 ### What you can do here
 
@@ -14,6 +14,12 @@ MariaDB, MySQL, PostgreSQL, MongoDB and Redis – as many as you like, in differ
 - Studio
 
 ## Tabs
+
+### Studio
+
+![Studio](img/dbs--studio.jpg)
+
+**What you can do here:** Connection · Start · Server settings
 
 ### Import
 
@@ -26,4 +32,4 @@ MariaDB, MySQL, PostgreSQL, MongoDB and Redis – as many as you like, in differ
 **What you can do here:** New database server · Search again · Take over into Hostwerk …
 
 
-<sub>Generated on 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>

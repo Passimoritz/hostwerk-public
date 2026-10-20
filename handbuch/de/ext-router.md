@@ -37,4 +37,4 @@ Deine Server aus dem Internet erreichen: Freigaben, IPv6, DynDNS und – nach de
 - Freigaben automatisch verwalten
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>

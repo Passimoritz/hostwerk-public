@@ -15,4 +15,4 @@ Wer am meisten spielt, abbaut oder stirbt – über alle Minecraft-Server zusamm
 - Neu laden
 
 
-<sub>Erzeugt am 2026-10-19 · Hostwerk 2.9.0</sub>
+<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
