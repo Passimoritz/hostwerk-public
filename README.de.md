@@ -37,11 +37,14 @@ Hostwerk selbst wird in einem privaten Repository entwickelt. Dieses öffentlich
 |---|---|
 | **Releases** | Installationsdateien und App-Updates (gespiegelt vom Hauptprojekt) und die Erklärvideos (Release `videos`). |
 | [`catalog/`](catalog) | KI-Modellkatalog, Projektvorlagen, Berater-Regeln, Passwort-Manager-Katalog und die Erweiterungs-Kataloge: `extensions.json` (offiziell, täglich aus den Erweiterungs-Repositorys gebaut), `community.json`, `verified.json`. |
-| [`sdk/`](sdk) | **Erweiterungs-SDK 2.7** – `hostwerk-sdk.js`, Design-Baukasten, Manifest-Schema, `check.js`, `build-native.js` und die [Anleitung für Entwickler](sdk/README.de.md). |
+| [`docs/`](docs) | **[Erweiterungen erklärt](docs/erweiterungen.md)** – was jede Freigabe erlaubt, wie Hostwerk Erweiterungen abschottet, wo sie erscheinen, Synergien und Vorlagen (mit Bildern). |
+| [`sdk/`](sdk) | **Erweiterungs-SDK 2.8** – `hostwerk-sdk.js`, Design-Baukasten, Manifest-Schema, `check.js`, `build-native.js` und die [Anleitung für Entwickler](sdk/README.de.md). |
 | [`packages/`](packages) | Geprüfte Kopien der Community-Erweiterungen (per SHA-256 festgelegt). |
 | `katalog/` | Alte Dateinamen für Hostwerk vor 2.9 – werden automatisch aktuell gehalten. |
 
 ## Erweiterungen
+
+> **Neu in 2.11:** Erweiterungen fügen sich ein wie eingebaute Funktionen (Seitenleiste, Einstellungen, Reiter, „Neu“-Menü), und alles, was nicht aus dem Hostwerk-Katalog kommt, läuft **abgeschottet**. Alles dazu mit Bildern: **[docs/erweiterungen.md](docs/erweiterungen.md)** · [English](docs/extensions.md)
 
 Alles an einem Ort: **Erweiterungen** in der Seitenleiste – deine installierten Erweiterungen nach Kategorien, der
 Katalog unter *Entdecken* und Werkzeuge für Entwickler. Erweiterungen können aufeinander aufbauen; Hostwerk installiert,

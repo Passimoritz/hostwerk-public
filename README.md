@@ -37,11 +37,14 @@ Hostwerk itself is developed in a private repository. This public one holds what
 |---|---|
 | **Releases** | Installers and app updates (mirrored from the main project) and the explainer videos (release `videos`). |
 | [`catalog/`](catalog) | AI model catalogue, project templates, advisor rules, password-manager catalogue and the extension catalogues: `extensions.json` (official, built daily from the extension repositories), `community.json`, `verified.json`. |
-| [`sdk/`](sdk) | **Extension SDK 2.7** – `hostwerk-sdk.js`, design kit, manifest schema, `check.js`, `build-native.js` and the [developer guide](sdk/README.md). |
+| [`docs/`](docs) | **[Extensions explained](docs/extensions.md)** – what each permission allows, how Hostwerk sandboxes extensions, where they show up, synergies and templates (with pictures). |
+| [`sdk/`](sdk) | **Extension SDK 2.8** – `hostwerk-sdk.js`, design kit, manifest schema, `check.js`, `build-native.js` and the [developer guide](sdk/README.md). |
 | [`packages/`](packages) | Checked copies of community extensions (pinned by SHA-256). |
 | `katalog/` | Old file names for Hostwerk versions before 2.9 – kept up to date automatically. |
 
 ## Extensions
+
+> **New in 2.11:** extensions fit in like built-in features (sidebar, settings, tabs, “New” menu) and everything that is not from the Hostwerk catalog runs **sandboxed**. All details with pictures: **[docs/extensions.md](docs/extensions.md)** · [Deutsch](docs/erweiterungen.md)
 
 Everything lives in one place: **Extensions** in the sidebar – your installed extensions by category, the catalogue
 under *Discover*, and tools for developers. Extensions can depend on each other; Hostwerk installs what is needed and
