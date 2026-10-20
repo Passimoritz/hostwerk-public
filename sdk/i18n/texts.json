@@ -8549,7 +8549,9 @@
     "Notfall-Modus und Schwellen": "Emergency mode and thresholds",
     "Ein Knopf schließt alles Öffentliche; Schwellen jetzt auch für Dienste (CPU, RAM, Spieler, TPS, Antwortzeit).": "One button closes everything public; thresholds now for services too (CPU, RAM, players, TPS, response time).",
     "Barrierefreier": "More accessible",
-    "Bessere Kontraste, Beschriftungen für alle Felder, Links unterstrichen – geprüft nach WCAG 2.2 AA.": "Better contrast, labels for all fields, underlined links – checked against WCAG 2.2 AA."
+    "Bessere Kontraste, Beschriftungen für alle Felder, Links unterstrichen – geprüft nach WCAG 2.2 AA.": "Better contrast, labels for all fields, underlined links – checked against WCAG 2.2 AA.",
+    "Erweiterungsseiten wieder breit": "Extension pages full width again",
+    "Seiten von Erweiterungen (z. B. KI-Anbindung, Wissensgraph) nutzen wieder die volle Breite statt einer schmalen Spalte.": "Extension pages (e.g. AI connection, knowledge graph) use the full width again instead of a narrow column."
   },
   "patterns": [
     [
