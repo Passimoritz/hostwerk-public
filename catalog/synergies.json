@@ -2,30 +2,320 @@
   "$comment": "Synergien zwischen Erweiterungen (SDK 2.8). pairs: zwei Erweiterungen, die zusammen mehr können. recipes: fertige Zusammenstellungen für einen Zweck. Online aktualisierbar (hostwerk-public/catalog/synergies.json), dieser Stand ist der Rückfall.",
   "version": 1,
   "pairs": [
-    { "a": "webhook-inbox", "b": "api-tester", "title": { "de": "Webhooks nachstellen", "en": "Replay webhooks" }, "text": { "de": "Eine empfangene Anfrage aus dem Webhook-Postfach mit einem Klick im API-Tester öffnen, ändern und erneut senden.", "en": "Open a received request from the webhook inbox in the API tester with one click, change it and send it again." } },
-    { "a": "page-check", "b": "uptime-wall", "title": { "de": "Erreichbar und gut", "en": "Reachable and good" }, "text": { "de": "Die Uptime-Wand zeigt, ob eine Seite antwortet – der Seiten-Check, ob sie auch schnell, barrierefrei und ohne kaputte Links ist.", "en": "The uptime wall shows whether a page answers – the page check whether it is also fast, accessible and free of broken links." } },
-    { "a": "cert-watch", "b": "uptime-wall", "title": { "de": "Ein Blick für den Livebetrieb", "en": "One view for going live" }, "text": { "de": "Ablaufende Zertifikate und ausgefallene Seiten gemeinsam im Blick – beide melden in die Wächter-Liste.", "en": "Expiring certificates and failed pages together – both report into the watcher list." } },
-    { "a": "cloud-backup", "b": "backup-calendar", "title": { "de": "Sicherungen außer Haus planen", "en": "Plan off-site backups" }, "text": { "de": "Der Backup-Kalender zeigt, wann gesichert wird; die Cloud-Sicherung schiebt die Stände verschlüsselt ins Netz.", "en": "The backup calendar shows when backups run; cloud backup pushes them encrypted to the cloud." } },
-    { "a": "static-publish", "b": "page-check", "title": { "de": "Erst prüfen, dann veröffentlichen", "en": "Check first, then publish" }, "text": { "de": "Vor dem Veröffentlichen auf GitHub/Cloudflare Pages die Seite durch den Seiten-Check laufen lassen.", "en": "Run the page check before publishing to GitHub/Cloudflare Pages." } },
-    { "a": "file-share", "b": "hostwerk-network", "title": { "de": "Dateien zwischen Rechnern", "en": "Files between machines" }, "text": { "de": "Dateifreigabe (SFTP) auf jedem gekoppelten Rechner – im Verbund direkt erreichbar.", "en": "File share (SFTP) on every paired machine – reachable directly in the network." } },
-    { "a": "game-servers", "b": "router", "title": { "de": "Spiele-Server von außen", "en": "Game servers from outside" }, "text": { "de": "Ports für Spiele-Server automatisch im Router freigeben – und wieder schließen, wenn der Server stoppt.", "en": "Open ports for game servers in the router automatically – and close them when the server stops." } },
-    { "a": "player-ticker", "b": "player-leaderboard", "title": { "de": "Wer spielt – und wer am meisten", "en": "Who plays – and who plays most" }, "text": { "de": "Live-Liste und Bestenliste zusammen ergeben eine Spieler-Ecke für den zweiten Bildschirm.", "en": "Live list and leaderboard together make a player corner for a second screen." } },
-    { "a": "motd-studio", "b": "player-ticker", "title": { "de": "Server-Auftritt", "en": "Server presence" }, "text": { "de": "Gestalte die Beschreibung in der Serverliste und sieh direkt, wer daraufhin beitritt.", "en": "Design the server list description and see right away who joins." } },
-    { "a": "bedrock-bridge", "b": "game-network", "title": { "de": "Java und Bedrock in einem Netz", "en": "Java and Bedrock in one network" }, "text": { "de": "Handy- und Konsolen-Spieler kommen über die Bedrock-Brücke auf alle Server im Spiele-Netzwerk.", "en": "Phone and console players reach every server in the game network through the Bedrock bridge." } },
-    { "a": "service-notes", "b": "quick-tasks", "title": { "de": "Anleitung und Knopf", "en": "Instructions and a button" }, "text": { "de": "Notizen erklären, was zu tun ist – Schnell-Aufgaben erledigen es mit einem Klick.", "en": "Notes explain what to do – quick tasks do it with one click." } },
-    { "a": "disk-usage", "b": "cloud-backup", "title": { "de": "Platz sparen", "en": "Save space" }, "text": { "de": "Große Sicherungen in die Cloud schieben und lokal nur die neuesten behalten.", "en": "Move large backups to the cloud and keep only the newest locally." } },
-    { "a": "knowledge-graph", "b": "claude", "title": { "de": "Claude kennt dein Projekt", "en": "Claude knows your project" }, "text": { "de": "Der Wissensgraph liefert Claude Zusammenhänge statt ganzer Dateien – spart Tokens und trifft genauer.", "en": "The knowledge graph gives Claude connections instead of whole files – saves tokens and is more precise." } },
-    { "a": "mail-stats", "b": "mail-server", "title": { "de": "Vom Test zum echten Versand", "en": "From test to real sending" }, "text": { "de": "Mail-Statistik zeigt, was Projekte verschicken – der Mailserver stellt es echt zu.", "en": "Mail stats show what projects send – the mail server delivers it for real." } },
-    { "a": "passwords", "b": "team", "title": { "de": "Zugänge im Team teilen", "en": "Share logins in the team" }, "text": { "de": "Einzelne Einträge mit Team-Mitgliedern teilen – jeder sieht nur, was für ihn freigegeben ist.", "en": "Share single entries with team members – everyone only sees what was shared with them." } },
-    { "a": "port-map", "b": "router", "title": { "de": "Ports drinnen und draußen", "en": "Ports inside and out" }, "text": { "de": "Welche Ports Dienste belegen und welche davon der Router nach außen öffnet – in einer Sicht.", "en": "Which ports services use and which of them the router opens to the outside – in one view." } },
-    { "a": "status-wall", "b": "uptime-wall", "title": { "de": "Wand für den Flur-Bildschirm", "en": "A wall for the hallway screen" }, "text": { "de": "Dienste von innen (Status-Wand) und Seiten von außen (Uptime-Wand) im Wechsel anzeigen.", "en": "Alternate services from inside (status wall) and pages from outside (uptime wall)." } }
+    {
+      "a": "webhook-inbox",
+      "b": "api-tester",
+      "title": {
+        "de": "Webhooks nachstellen",
+        "en": "Replay webhooks"
+      },
+      "text": {
+        "de": "Im Webhook-Postfach „Im API-Tester öffnen“: der empfangene Aufruf landet mit Kopfzeilen und Inhalt in der Sammlung „Webhook-Postfach“ – dort ändern und erneut an dein Projekt senden.",
+        "en": "“Open in API tester” in the webhook inbox: the received call lands with headers and body in the collection “Webhook inbox” – change it there and send it to your project again."
+      }
+    },
+    {
+      "a": "page-check",
+      "b": "uptime-wall",
+      "title": {
+        "de": "Erreichbar und gut",
+        "en": "Reachable and good"
+      },
+      "text": {
+        "de": "Die Uptime-Wand zeigt, ob eine Seite antwortet – der Seiten-Check, ob sie auch schnell, barrierefrei und ohne kaputte Links ist.",
+        "en": "The uptime wall shows whether a page answers – the page check whether it is also fast, accessible and free of broken links."
+      }
+    },
+    {
+      "a": "cert-watch",
+      "b": "uptime-wall",
+      "title": {
+        "de": "Ein Blick für den Livebetrieb",
+        "en": "One view for going live"
+      },
+      "text": {
+        "de": "Beide lesen Hostwerks eigene Daten aus dem Livebetrieb – nebeneinander angeheftet siehst du ablaufende Zertifikate und ausgefallene Seiten auf einen Blick. Gewarnt wird weiter über Hostwerks Wächter.",
+        "en": "Both read Hostwerk’s own live data – pinned side by side you see expiring certificates and failed pages at a glance. Warnings still come from Hostwerk’s watchers."
+      }
+    },
+    {
+      "a": "cloud-backup",
+      "b": "backup-calendar",
+      "title": {
+        "de": "Sicherungen außer Haus planen",
+        "en": "Plan off-site backups"
+      },
+      "text": {
+        "de": "Der Backup-Kalender zeigt, wann gesichert wird; die Cloud-Sicherung schiebt die Stände verschlüsselt ins Netz.",
+        "en": "The backup calendar shows when backups run; cloud backup pushes them encrypted to the cloud."
+      }
+    },
+    {
+      "a": "static-publish",
+      "b": "page-check",
+      "title": {
+        "de": "Erst prüfen, dann veröffentlichen",
+        "en": "Check first, then publish"
+      },
+      "text": {
+        "de": "Vor dem Veröffentlichen auf GitHub/Cloudflare Pages die Seite durch den Seiten-Check laufen lassen.",
+        "en": "Run the page check before publishing to GitHub/Cloudflare Pages."
+      }
+    },
+    {
+      "a": "file-share",
+      "b": "hostwerk-network",
+      "title": {
+        "de": "Dateien zwischen Rechnern",
+        "en": "Files between machines"
+      },
+      "text": {
+        "de": "Dateifreigabe (SFTP) im Heimnetz auf jedem Rechner einschalten, den du im Hostwerk-Verbund gekoppelt hast – die Rechner erreichen sich dann gegenseitig über ihre LAN-Adresse. Eingerichtet wird je Rechner.",
+        "en": "Turn on the file share (SFTP) in the home network on every machine paired in the Hostwerk network – the machines then reach each other by their LAN address. Set up on each machine."
+      }
+    },
+    {
+      "a": "game-servers",
+      "b": "router",
+      "title": {
+        "de": "Spiele-Server von außen",
+        "en": "Game servers from outside"
+      },
+      "text": {
+        "de": "Schalter „Von außen erreichbar“ je Spiele-Server: solange er läuft, kommen seine Ports in Hostwerks Port-Prüfung und – mit automatischer Router-Freigabe – in den Router; stoppt er, fallen sie wieder heraus.",
+        "en": "Switch “Reachable from outside” per game server: while it runs, its ports join Hostwerk’s port check and – with automatic router forwarding – the router; when it stops, they drop out again."
+      }
+    },
+    {
+      "a": "player-ticker",
+      "b": "player-leaderboard",
+      "title": {
+        "de": "Wer spielt – und wer am meisten",
+        "en": "Who plays – and who plays most"
+      },
+      "text": {
+        "de": "Live-Liste und Bestenliste zusammen ergeben eine Spieler-Ecke für den zweiten Bildschirm.",
+        "en": "Live list and leaderboard together make a player corner for a second screen."
+      }
+    },
+    {
+      "a": "motd-studio",
+      "b": "player-ticker",
+      "title": {
+        "de": "Server-Auftritt",
+        "en": "Server presence"
+      },
+      "text": {
+        "de": "Gestalte die Beschreibung in der Serverliste und sieh direkt, wer daraufhin beitritt.",
+        "en": "Design the server list description and see right away who joins."
+      }
+    },
+    {
+      "a": "bedrock-bridge",
+      "b": "game-network",
+      "title": {
+        "de": "Java und Bedrock in einem Netz",
+        "en": "Java and Bedrock in one network"
+      },
+      "text": {
+        "de": "Die Bedrock-Brücke (Geyser) auch auf dem Velocity-Proxy des Netzwerks einrichten – dann kommen Handy- und Konsolen-Spieler über einen Eingang auf alle Server dahinter.",
+        "en": "Set up the Bedrock bridge (Geyser) on the network’s Velocity proxy too – phone and console players then reach every server behind it through one entrance."
+      }
+    },
+    {
+      "a": "service-notes",
+      "b": "quick-tasks",
+      "title": {
+        "de": "Anleitung und Knopf",
+        "en": "Instructions and a button"
+      },
+      "text": {
+        "de": "Notizen erklären, was zu tun ist – Schnell-Aufgaben erledigen es mit einem Klick.",
+        "en": "Notes explain what to do – quick tasks do it with one click."
+      }
+    },
+    {
+      "a": "disk-usage",
+      "b": "cloud-backup",
+      "title": {
+        "de": "Platz sparen",
+        "en": "Save space"
+      },
+      "text": {
+        "de": "Die Speicher-Übersicht zeigt, wo Platz draufgeht; die Cloud-Sicherung schiebt Sicherungen verschlüsselt ins Netz und behält dort nur die eingestellte Zahl – lokal räumt Hostwerks Aufbewahrung auf.",
+        "en": "Disk usage shows where space goes; cloud backup pushes backups encrypted to the cloud and keeps only the set number there – locally Hostwerk’s retention cleans up."
+      }
+    },
+    {
+      "a": "knowledge-graph",
+      "b": "claude",
+      "title": {
+        "de": "Claude kennt dein Projekt",
+        "en": "Claude knows your project"
+      },
+      "text": {
+        "de": "Über Hostwerks MCP-Anbindung fragt Claude den Wissensgraphen nach Zusammenhängen statt ganze Dateien zu lesen – spart Tokens und trifft genauer.",
+        "en": "Through Hostwerk’s MCP connection Claude asks the knowledge graph for connections instead of reading whole files – saves tokens and is more precise."
+      }
+    },
+    {
+      "a": "mail-stats",
+      "b": "mail-server",
+      "title": {
+        "de": "Vom Test zum echten Versand",
+        "en": "From test to real sending"
+      },
+      "text": {
+        "de": "Mail-Statistik zeigt, was Projekte verschicken – der Mailserver stellt es echt zu.",
+        "en": "Mail stats show what projects send – the mail server delivers it for real."
+      }
+    },
+    {
+      "a": "passwords",
+      "b": "team",
+      "title": {
+        "de": "Zugänge im Team teilen",
+        "en": "Share logins in the team"
+      },
+      "text": {
+        "de": "Einzelne Einträge mit Team-Mitgliedern teilen – jeder sieht nur, was für ihn freigegeben ist.",
+        "en": "Share single entries with team members – everyone only sees what was shared with them."
+      }
+    },
+    {
+      "a": "port-map",
+      "b": "router",
+      "title": {
+        "de": "Ports drinnen und draußen",
+        "en": "Ports inside and out"
+      },
+      "text": {
+        "de": "Die Port-Karte zeigt, welche Ports deine Dienste belegen, der Router-Bereich, welche davon nach außen offen sind – zwei Sichten, die zusammen ein vollständiges Bild ergeben.",
+        "en": "The port map shows which ports your services use, the router area which of them are open to the outside – two views that together give the full picture."
+      }
+    },
+    {
+      "a": "status-wall",
+      "b": "uptime-wall",
+      "title": {
+        "de": "Wand für den Flur-Bildschirm",
+        "en": "A wall for the hallway screen"
+      },
+      "text": {
+        "de": "Beide sind als Vollbild-Wand gebaut: Dienste von innen (Status-Wand) und Seiten von außen (Uptime-Wand) – auf zwei Bildschirmen oder in zwei Browser-Tabs.",
+        "en": "Both are built as full-screen walls: services from inside (status wall) and pages from outside (uptime wall) – on two screens or in two browser tabs."
+      }
+    }
   ],
   "recipes": [
-    { "id": "web-agency", "icon": "globe", "title": { "de": "Webseiten für Kunden", "en": "Websites for clients" }, "text": { "de": "Seiten bauen, prüfen, veröffentlichen und im Blick behalten.", "en": "Build, check, publish and keep an eye on sites." }, "extensions": ["page-check", "static-publish", "uptime-wall", "cert-watch", "webhook-inbox"] },
-    { "id": "api-dev", "icon": "code", "title": { "de": "APIs entwickeln", "en": "Developing APIs" }, "text": { "de": "Anfragen testen, Webhooks empfangen, Zugänge sicher ablegen.", "en": "Test requests, receive webhooks, store credentials safely." }, "extensions": ["api-tester", "webhook-inbox", "passwords", "service-notes"] },
-    { "id": "game-host", "icon": "gamepad", "title": { "de": "Spiele-Server für Freunde", "en": "Game servers for friends" }, "text": { "de": "Server starten, von außen erreichbar machen, Spieler sehen.", "en": "Start servers, make them reachable from outside, see players." }, "extensions": ["game-servers", "router", "player-ticker", "player-leaderboard", "bedrock-bridge", "motd-studio"] },
-    { "id": "safe-backups", "icon": "shield", "title": { "de": "Sicher gesichert", "en": "Safely backed up" }, "text": { "de": "Geplante Sicherungen, Kopie außer Haus, Platz im Blick.", "en": "Planned backups, an off-site copy, space at a glance." }, "extensions": ["backup-calendar", "cloud-backup", "disk-usage"] },
-    { "id": "team-office", "icon": "users", "title": { "de": "Kleines Team", "en": "Small team" }, "text": { "de": "Mehrere Rechner, gemeinsame Zugänge, Dateien teilen.", "en": "Several machines, shared logins, file sharing." }, "extensions": ["team", "passwords", "hostwerk-network", "file-share"] },
-    { "id": "ai-dev", "icon": "bot", "title": { "de": "Mit KI entwickeln", "en": "Developing with AI" }, "text": { "de": "Claude verbinden und mit Projektwissen versorgen.", "en": "Connect Claude and give it project knowledge." }, "extensions": ["claude", "knowledge-graph", "ai-media"] }
+    {
+      "id": "web-agency",
+      "icon": "globe",
+      "title": {
+        "de": "Webseiten für Kunden",
+        "en": "Websites for clients"
+      },
+      "text": {
+        "de": "Seiten bauen, prüfen, veröffentlichen und im Blick behalten.",
+        "en": "Build, check, publish and keep an eye on sites."
+      },
+      "extensions": [
+        "page-check",
+        "static-publish",
+        "uptime-wall",
+        "cert-watch",
+        "webhook-inbox"
+      ]
+    },
+    {
+      "id": "api-dev",
+      "icon": "code",
+      "title": {
+        "de": "APIs entwickeln",
+        "en": "Developing APIs"
+      },
+      "text": {
+        "de": "Anfragen testen, Webhooks empfangen, Zugänge sicher ablegen.",
+        "en": "Test requests, receive webhooks, store credentials safely."
+      },
+      "extensions": [
+        "api-tester",
+        "webhook-inbox",
+        "passwords",
+        "service-notes"
+      ]
+    },
+    {
+      "id": "game-host",
+      "icon": "gamepad",
+      "title": {
+        "de": "Spiele-Server für Freunde",
+        "en": "Game servers for friends"
+      },
+      "text": {
+        "de": "Server starten, von außen erreichbar machen, Spieler sehen.",
+        "en": "Start servers, make them reachable from outside, see players."
+      },
+      "extensions": [
+        "game-servers",
+        "router",
+        "player-ticker",
+        "player-leaderboard",
+        "bedrock-bridge",
+        "motd-studio"
+      ]
+    },
+    {
+      "id": "safe-backups",
+      "icon": "shield",
+      "title": {
+        "de": "Sicher gesichert",
+        "en": "Safely backed up"
+      },
+      "text": {
+        "de": "Geplante Sicherungen, Kopie außer Haus, Platz im Blick.",
+        "en": "Planned backups, an off-site copy, space at a glance."
+      },
+      "extensions": [
+        "backup-calendar",
+        "cloud-backup",
+        "disk-usage"
+      ]
+    },
+    {
+      "id": "team-office",
+      "icon": "users",
+      "title": {
+        "de": "Kleines Team",
+        "en": "Small team"
+      },
+      "text": {
+        "de": "Mehrere Rechner, gemeinsame Zugänge, Dateien teilen.",
+        "en": "Several machines, shared logins, file sharing."
+      },
+      "extensions": [
+        "team",
+        "passwords",
+        "hostwerk-network",
+        "file-share"
+      ]
+    },
+    {
+      "id": "ai-dev",
+      "icon": "bot",
+      "title": {
+        "de": "Mit KI entwickeln",
+        "en": "Developing with AI"
+      },
+      "text": {
+        "de": "Claude verbinden und mit Projektwissen versorgen.",
+        "en": "Connect Claude and give it project knowledge."
+      },
+      "extensions": [
+        "claude",
+        "knowledge-graph",
+        "ai-media"
+      ]
+    }
   ]
 }
