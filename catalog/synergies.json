@@ -1,5 +1,5 @@
 {
-  "$comment": "Synergien zwischen Erweiterungen (SDK 2.8). pairs: zwei Erweiterungen, die zusammen mehr können. recipes: fertige Zusammenstellungen für einen Zweck. Online aktualisierbar (hostwerk-public/catalog/synergies.json), dieser Stand ist der Rückfall.",
+  "$comment": "Synergien zwischen Erweiterungen (SDK 2.8). pairs: zwei Erweiterungen, die zusammen mehr können. recipes: fertige Zusammenstellungen für einen Zweck. Online aktualisierbar (hostwerk-public/catalog/synergies.json), dieser Stand ist der Rückfall. Optional je Paar: \"needs\": { \"<id>\": \">=x.y.z\" } – ab diesen Versionen ist die Verbindung wirklich da (sonst zeigt Hostwerk „aktualisieren“). Paare, bei denen eine die andere per „requires“ braucht, zeigt Hostwerk nicht (Abhängigkeit, keine Synergie).",
   "version": 1,
   "pairs": [
     {
@@ -12,6 +12,10 @@
       "text": {
         "de": "Im Webhook-Postfach „Im API-Tester öffnen“: der empfangene Aufruf landet mit Kopfzeilen und Inhalt in der Sammlung „Webhook-Postfach“ – dort ändern und erneut an dein Projekt senden.",
         "en": "“Open in API tester” in the webhook inbox: the received call lands with headers and body in the collection “Webhook inbox” – change it there and send it to your project again."
+      },
+      "needs": {
+        "webhook-inbox": ">=1.2.0",
+        "api-tester": ">=1.2.0"
       }
     },
     {
@@ -84,6 +88,9 @@
       "text": {
         "de": "Schalter „Von außen erreichbar“ je Spiele-Server: solange er läuft, kommen seine Ports in Hostwerks Port-Prüfung und – mit automatischer Router-Freigabe – in den Router; stoppt er, fallen sie wieder heraus.",
         "en": "Switch “Reachable from outside” per game server: while it runs, its ports join Hostwerk’s port check and – with automatic router forwarding – the router; when it stops, they drop out again."
+      },
+      "needs": {
+        "game-servers": ">=1.1.0"
       }
     },
     {
