@@ -270,6 +270,8 @@ need – users see the list before they install. Every call is recorded in the e
 - **Storage**: `Hostwerk.storage.get/set/remove/all` – JSON values, 256 KB per extension, removed with the extension.
   Browser storage (`localStorage`, cookies) does not work in the sandbox.
 - **Events** instead of polling: `service` (state changes), `minecraft` (players). Poll slowly (≥ 10 s) for the rest.
+  Server modules (`backend`) listen on Hostwerk's event bus: `host.core('events').bus.on('broadcast', fn)` – e.g.
+  `{ type: 'mc-player-join', id, server, player }` and `{ type: 'mc-player-leave', id, server, player, ms }` (`ms` = length of the session).
 
 ## 9. Dashboard tiles
 

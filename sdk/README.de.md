@@ -273,7 +273,8 @@ Zugriffsprotokoll der Erweiterung (auch Ablehnungen).
 - **Speicher**: `Hostwerk.storage.get/set/remove/all` – JSON-Werte, 256 KB je Erweiterung, wird mit ihr entfernt.
   Browser-Speicher (`localStorage`, Cookies) geht im abgeschotteten Rahmen nicht.
 - **Ereignisse** statt ständig abfragen: `service` (Zustand), `minecraft` (Spieler). Für alles andere langsam abfragen
-  (≥ 10 s).
+  (≥ 10 s). Server-Module (`backend`) hören auf Hostwerks Ereignisbus: `host.core('events').bus.on('broadcast', fn)` – z. B.
+  `{ type: 'mc-player-join', id, server, player }` und `{ type: 'mc-player-leave', id, server, player, ms }` (`ms` = Dauer der Sitzung).
 
 ## 9. Kacheln für die Übersicht
 
