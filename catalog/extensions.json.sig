@@ -1,0 +1,1 @@
+{"v":1,"alg":"ed25519","key":"32a1486cc1e365c9","sig":"V47qDNqzlZqO7WX5e5ZoJ9y0SNR8EKm7ZlDn8fmiDQrSY78SbofKOxKCTQCfGKxS7kXSdt3YUGb/wG6g/CoJAQ==","signed":"2026-10-21T10:41:42.083Z"}
