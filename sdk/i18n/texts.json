@@ -9511,6 +9511,7 @@
     "Öffentliche Ansicht anbieten (ohne Anmeldung, z. B. für OBS)": "Offer a public view (no login, e.g. for OBS)",
     "Für CurseForge braucht Hostwerk deinen API-Schlüssel (kostenlos unter console.curseforge.com).": "For CurseForge, Hostwerk needs your API key (free at console.curseforge.com).",
     "CurseForge lehnt den API-Schlüssel ab – bitte prüfen.": "CurseForge rejects the API key – please check it.",
+    "CurseForge meldet zu viele Anfragen – bitte in ein paar Minuten nochmal versuchen.": "CurseForge reports too many requests – please try again in a few minutes.",
     "Dieses Modpack hat keine Dateien.": "This modpack has no files.",
     "Der Autor erlaubt keinen Download über andere Programme – bitte das Pack auf curseforge.com laden.": "The author does not allow downloads through other programs – please get the pack on curseforge.com.",
     "Das Paket enthält keine manifest.json – ist es wirklich ein CurseForge-Modpack?": "The package has no manifest.json – is it really a CurseForge modpack?",
@@ -10684,7 +10685,43 @@
     "gemischt": "mixed",
     "Rechte je Tabelle gibt es hier nur für PostgreSQL.": "Rights per table are only available for PostgreSQL here.",
     "Vorschau abgelaufen – bitte neu öffnen.": "Preview expired – please open it again.",
-    "Zu groß für die Vorschau": "Too large for the preview"
+    "Zu groß für die Vorschau": "Too large for the preview",
+    "Wartung & Installation": "Maintenance & installation",
+    "Wartung öffnen": "Open maintenance",
+    "Wartung wird geöffnet …": "Opening maintenance …",
+    "Beim nächsten Start bleiben alle Erweiterungen aus": "All extensions stay off at the next start",
+    "Erweiterungen starten wieder normal": "Extensions start normally again",
+    "Die Wartung läuft als eigenes Fenster und lädt keine Erweiterung – so kann keine sie stören. Dort schaltest du Erweiterungen aus, setzt sie zurück oder entfernst sie, aktualisierst, reparierst oder entfernst Hostwerk. Startet Hostwerk nicht mehr: Startmenü → „Hostwerk – Wartung“ oder beim Start F8 drücken.": "Maintenance runs as its own window and loads no extension – so none can interfere. There you turn extensions off, roll them back or remove them, and update, repair or remove Hostwerk. If Hostwerk no longer starts: Start menu → “Hostwerk – Maintenance” or press F8 while it starts.",
+    "Lese Erweiterungen …": "Reading extensions …",
+    "Abgesicherter Start": "Safe start",
+    "Hostwerk läuft gerade ohne Erweiterungen. Nach einem normalen Neustart sind sie wieder da.": "Hostwerk is running without extensions right now. After a normal restart they are back.",
+    "im Erweiterungs-Ordner": "in the extensions folder",
+    "unbekannter Eintrag": "unknown entry",
+    "unbekannte Einträge": "unknown entries",
+    "wird nicht geladen": "is not loaded",
+    "werden nicht geladen": "are not loaded",
+    "Abgesicherten Start aufheben": "Cancel safe start",
+    "Nächster Start ohne Erweiterungen": "Next start without extensions",
+    "„Ohne Erweiterungen“ gilt genau einen Start lang: Hostwerk startet ohne Code, Seiten und Farbschemata von Erweiterungen. Deine Dienste und Daten sind ganz normal da.": "“Without extensions” applies to exactly one start: Hostwerk starts without code, pages and themes from extensions. Your services and data are there as usual.",
+    "Ohne Fenster:": "Without a window:",
+    "Nach dem Kopieren fehlt Hostwerk.exe im Zielordner.": "Hostwerk.exe is missing in the target folder after copying.",
+    "Hostwerk aktualisieren, reparieren, entfernen; Erweiterungen verwalten": "Update, repair or remove Hostwerk; manage extensions",
+    "Es läuft schon die mitgelieferte Version – davor gibt es keine.": "The bundled version is already active – there is none before it.",
+    "Bitte einen vollständigen Ordner angeben.": "Please enter a complete folder path.",
+    "In diesen Ordner kann Hostwerk nicht installiert werden – bitte einen eigenen Unterordner wählen.": "Hostwerk cannot be installed into this folder – please choose a subfolder of its own.",
+    "Der Zielordner liegt im entpackten Programm – bitte einen anderen wählen.": "The target folder is inside the unpacked program – please choose another one.",
+    "Der Ordner ist nicht leer und enthält kein Hostwerk – bitte einen leeren Ordner wählen.": "The folder is not empty and contains no Hostwerk – please choose an empty folder.",
+    "Nicht gefunden.": "Not found.",
+    "Von dieser Erweiterung gibt es keine vorige Version.": "There is no previous version of this extension.",
+    "Das ist eine Erweiterung – bitte über „Entfernen“ der Erweiterung.": "This is an extension – please use the extension’s “Remove”.",
+    "Ungültige Kennung.": "Invalid id.",
+    "Das Wartungsfenster gibt es nur in der Desktop-App – ohne Fenster: hostwerk-headless maintenance.": "The maintenance window only exists in the desktop app – without a window: hostwerk-headless maintenance.",
+    "manifest.json ist kein gültiges JSON.": "manifest.json is not valid JSON.",
+    "Das Paket enthält Verknüpfungen nach außen (Symlink/Junction) – wird nicht geladen.": "The package contains links to the outside (symlink/junction) – not loaded.",
+    "Das Paket verweist auf Dateien außerhalb des eigenen Ordners – wird nicht geladen.": "The package points to files outside its own folder – not loaded.",
+    "MinIO bietet keine freien Downloads mehr an – für neue Installationen gibt es „S3-Speicher (lokal)“. Bestehende MinIO-Installationen laufen weiter.": "MinIO no longer offers free downloads – for new installations there is “S3 storage (local)”. Existing MinIO installations keep running.",
+    "Lokaler, S3-kompatibler Dateispeicher zum Testen von Uploads wie bei Amazon S3 – die Dateien liegen ganz normal im Datenordner. Zugang: hostwerk / hostwerk-geheim, Bucket = Unterordner.": "Local, S3-compatible file storage for testing uploads like on Amazon S3 – the files sit as normal files in the data folder. Access: hostwerk / hostwerk-geheim, bucket = subfolder.",
+    "S3-Speicher (lokal)": "S3 storage (local)"
   },
   "patterns": [
     [
@@ -19150,6 +19187,22 @@
     [
       "Rechte auf {}.{}",
       "Rights on {}.{}"
+    ],
+    [
+      "Eintrag unter „Apps“ ließ sich nicht schreiben ({}).",
+      "The entry under “Apps” could not be written ({})."
+    ],
+    [
+      "Version {} ist auf GitHub nicht (mehr) zu finden.",
+      "Version {} can no longer be found on GitHub."
+    ],
+    [
+      "Ordnername „{}“ passt nicht zur Kennung im Manifest – wird nicht geladen (Wartung zeigt den Ordner).",
+      "Folder name “{}” does not match the id in the manifest – not loaded (maintenance shows the folder)."
+    ],
+    [
+      "Das Manifest enthält Felder, mit denen sich eine Erweiterung verstecken oder schützen wollte ({}) – wird nicht geladen.",
+      "The manifest contains fields an extension used to hide or protect itself ({}) – not loaded."
     ]
   ]
 }

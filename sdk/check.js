@@ -377,11 +377,33 @@ function walk(dir, base = dir) {
   let out = [];
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (['node_modules', '.git', '.github'].includes(e.name)) continue;
+    if (e.isSymbolicLink()) continue; // Verknüpfungen nie folgen (meldet checkPackage als Fehler „links“)
     const p = path.join(dir, e.name);
     if (e.isDirectory()) out = out.concat(walk(p, base)); else out.push(path.relative(base, p).replace(/\\/g, '/'));
   }
   return out;
 }
+/** Verknüpfungen (Symlinks, unter Windows auch Junctions) im Paket – zeigen sie nach außen, gehört das Paket nicht mehr sich selbst. */
+function linksIn(dir, base = dir, out = []) {
+  let list = [];
+  try { list = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
+  for (const e of list) {
+    if (['node_modules', '.git'].includes(e.name)) continue;
+    const p = path.join(dir, e.name);
+    if (e.isSymbolicLink()) out.push(path.relative(base, p).replace(/\\/g, '/'));
+    else if (e.isDirectory() && out.length < 50) linksIn(p, base, out);
+  }
+  return out;
+}
+
+/*
+ * Nicht umgehbar (Wartung, Hostwerk 2.12): Eine Erweiterung darf sich nicht verstecken, nicht unentfernbar machen und nicht
+ * an Hostwerks Wartung (Schalter, Registrierung, Startprotokoll, Startschutz) heran. Manifest-Felder dafür gibt es nicht –
+ * wer sie trotzdem setzt, wird abgelehnt; Code, der diese Dateien oder Schalter erwähnt, ebenso.
+ */
+const HIDING_KEYS = ['hidden', 'hide', 'invisible', 'unlisted', 'listed', 'visible', 'system', 'protected', 'locked', 'removable', 'uninstallable', 'noUninstall',
+  'noDisable', 'disableable', 'essential', 'builtin', 'maintenance', 'safeMode', 'preload', 'bootstrap', 'loadOrder', 'autoload', 'persistent'];
+const TAMPER_RE = /maintenance\.json|_installed\.json|_boot\.json|boot-guard\.json|hostwerk-files\.json|--maintenance|--hw-signal|erweiterungen-vorher|selbstwartung\.json/;
 
 /**
  * Symbol prüfen – dieselbe Idee wie beim Plugin-Symbol in Minecraft-JARs: Format, Größe, quadratisch, sicher,
@@ -444,7 +466,16 @@ function checkPackage(dir, { strict = false } = {}) {
   try { m = JSON.parse(fs.readFileSync(mf, 'utf8')); } catch (e) { err('manifest', `manifest.json is not valid JSON: ${e.message}`); return { ok: false, errors, warnings, info, manifest: null, score: 0 }; }
 
   // ---------- Manifest ----------
+  if (!m || typeof m !== 'object' || Array.isArray(m)) { err('manifest', 'manifest.json must be a JSON object.'); return { ok: false, errors, warnings, info, manifest: null, score: 0 }; }
   if (!ID_RE.test(m.id || '')) err('id', '"id" is missing or invalid (a–z, 0–9 and -, 2–40 characters).');
+  // Nicht umgehbar: keine Felder zum Verstecken/Schützen, „_“-Felder setzt nur Hostwerk, keine Verknüpfungen nach außen
+  const hiding = HIDING_KEYS.filter((k) => Object.prototype.hasOwnProperty.call(m, k));
+  if (hiding.length) err('hiding', `${hiding.map((k) => `"${k}"`).join(', ')}: extensions cannot hide, protect or prioritise themselves – every installed extension is listed in Hostwerk's maintenance and can be turned off or removed there. Remove ${hiding.length > 1 ? 'these fields' : 'this field'}.`);
+  const reserved = Object.keys(m).filter((k) => k.startsWith('_'));
+  // Nur ein Hinweis: installierte Pakete tragen Hostwerks eigene „_“-Felder; aus dem Paket mitgebrachte fallen beim Installieren weg
+  if (reserved.length) info.push({ code: 'reserved', msg: `${reserved.map((k) => `"${k}"`).join(', ')}: fields starting with "_" are set by Hostwerk itself – they are dropped when installing.` });
+  const links = linksIn(dir);
+  if (links.length) err('links', `Links (symlinks/junctions) are not allowed – everything must be inside the package folder: ${links.slice(0, 5).join(', ')}.`);
   if (!m.name) err('name', '"name" is missing.');
   if (!SEMVER.test(m.version || '')) err('version', '"version" must look like 1.2.3.');
   // A pure language pack (only "languages") is an extension too
@@ -790,6 +821,8 @@ function checkPackage(dir, { strict = false } = {}) {
   const isNative = (f) => nativeDirs.some((d) => f.startsWith(d)) || /^(tests|scripts)\//.test(f) || (!!m.backend && /^browser-extension\//.test(f));
   for (const f of files.filter((x) => TEXT_EXT.test(x))) {
     const src = fs.readFileSync(path.join(dir, f), 'utf8');
+    // Hostwerks Wartung gehört nur Hostwerk – gilt für Seiten UND nativen Code
+    if (f !== 'manifest.json' && /\.(html?|c?js|mjs|jsx|ts|json)$/i.test(f) && TAMPER_RE.test(src)) err('tamper', `${f}: mentions Hostwerk's maintenance files or switches (${(src.match(TAMPER_RE) || [''])[0]}) – extensions must not touch them.`);
     if (/\.(html?|js|mjs)$/i.test(f) && isNative(f)) {
       if (/\beval\s*\(/.test(src)) err('eval', `${f}: eval is not allowed.`);
     } else if (/\.(html?|js|mjs)$/i.test(f)) {
@@ -868,7 +901,7 @@ function checkPackage(dir, { strict = false } = {}) {
   return { ok: errors.length === 0, errors, warnings, info, manifest: m, score, size, sdk: SDK_VERSION, review };
 }
 
-module.exports = { checkPackage, PERMISSIONS, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS, CATEGORIES, satisfies, cmpVer, RANGE_RE, AREAS, NAV_GROUPS, NAV_GROUP_RE, SETTINGS_TABS, shortcutCombo, SHORTCUT_RESERVED, SHORTCUT_HOSTWERK,
+module.exports = { checkPackage, HIDING_KEYS, TAMPER_RE, PERMISSIONS, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS, CATEGORIES, satisfies, cmpVer, RANGE_RE, AREAS, NAV_GROUPS, NAV_GROUP_RE, SETTINGS_TABS, shortcutCombo, SHORTCUT_RESERVED, SHORTCUT_HOSTWERK,
   // SDK 3.0
   SDK_MAJOR, SDK_MINOR, DEPRECATIONS, EXPERIMENTAL, deprecationText, parseSdk, sdkFits, hostwerkRange, hostwerkFits, hostwerkLabel,
   // SDK 2.9
