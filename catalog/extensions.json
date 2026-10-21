@@ -10,7 +10,7 @@
       "en": "Connect your AIs with Hostwerk: fine-tune the memory every AI gets (Claude, OpenAI, Gemini, local …), connect Claude Desktop and Claude Code, get going in your project, save tokens, tips & tricks."
     },
     "author": "Hostwerk",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -24,24 +24,18 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-claude",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.2.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-claude/releases/download/v1.2.0/claude-1.2.0.zip",
-    "sha256": "a891434d9c7bc82ec5dd0eef27ffdfcc0240b294042ffa3b43ff899b1e4fa581",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.2.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-claude/releases/download/v1.2.1/claude-1.2.1.zip",
+    "sha256": "c5f508fbe15c1520de5d5cc5b8f4e4945e90af33c5b8bc2d1051fc750c2842dc",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "ai",
     "color": "#d97757",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.2.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.2.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.2.1/CHANGELOG.md"
   },
   {
     "id": "api-tester",
@@ -54,7 +48,7 @@
       "en": "Build, send and save requests to your projects – like Postman, right inside Hostwerk: collections, variables like {{base}}, paste and copy curl, clear responses with time and size."
     },
     "author": "Hostwerk",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -63,24 +57,18 @@
     ],
     "hostwerk": ">=2.10.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-api-tester",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-api-tester/releases/download/v1.0.0/api-tester-1.0.0.zip",
-    "sha256": "dbc4c23d0884ff321d520a92bd029e1ce5255414d3003090ef29eaefb79a9f6c",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.2.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-api-tester/releases/download/v1.2.0/api-tester-1.2.0.zip",
+    "sha256": "8d1c575b6c1d60680aea62005fa7b72587f3644d824fde207203d963d12c9312",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "developer",
     "color": "#0ea5e9",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.2.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "backup-calendar",
@@ -93,7 +81,7 @@
       "en": "All scheduled backups of the coming days as a calendar – and whether the last ones worked. Failures come first."
     },
     "author": "Hostwerk",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "page": true,
     "widget": true,
     "service": false,
@@ -102,24 +90,18 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v1.2.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar/releases/download/v1.2.0/backup-calendar-1.2.0.zip",
-    "sha256": "1811a30254815a38c2e2302204db5f3a381df8987714f70ff4d7642ee72b4203",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v1.2.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar/releases/download/v1.2.1/backup-calendar-1.2.1.zip",
+    "sha256": "3ef7fc216b824efc1fc9c68f5906815a2565b6843de16d5b3267fae3f3f1147c",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "monitoring",
     "color": "#22c55e",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v1.2.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v1.2.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v1.2.1/CHANGELOG.md"
   },
   {
     "id": "bedrock-bridge",
@@ -155,13 +137,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-bedrock-bridge/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-bedrock-bridge/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "cert-watch",
@@ -194,13 +170,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "cloud-backup",
@@ -233,13 +203,7 @@
     "screenshots": [],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cloud-backup/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cloud-backup/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "discord-status",
@@ -275,13 +239,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-status/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-status/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "file-share",
@@ -314,13 +272,7 @@
     "screenshots": [],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-file-share/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-file-share/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "game-network",
@@ -358,13 +310,7 @@
       "game-servers": ">=1.0.0"
     },
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-network/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-network/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "game-servers",
@@ -377,7 +323,7 @@
       "en": "Valheim, Palworld, Rust, Terraria, Satisfactory and more than 100 other games through LinuxGSM – natively on Linux, as Docker containers on Windows. With console, player list, map and version through the Steam query, updates, backups, monitoring and port forwarding."
     },
     "author": "Hostwerk",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -386,27 +332,21 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-game-servers",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-game-servers/releases/download/v1.0.0/game-servers-1.0.0.zip",
-    "sha256": "9cdd753e534cf5495505faa08d2662c3674c0ba951d9c2c3ac142c817927642a",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.1.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-game-servers/releases/download/v1.1.0/game-servers-1.1.0.zip",
+    "sha256": "1436b7904401957b12f7025657aef885d51a9f4e74d6ee93fac5b585d37a3fbf",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "games",
     "color": "#ea580c",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.1.0/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.0.0/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.0.0/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.1.0/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.1.0/docs/screenshot.de.png"
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.1.0/CHANGELOG.md"
   },
   {
     "id": "hostwerk-network",
@@ -442,13 +382,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "ai-media",
@@ -484,13 +418,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "knowledge-graph",
@@ -503,35 +431,30 @@
       "en": "Turns your projects (code, docs, Obsidian notes) into a searchable knowledge graph – for you and for Claude. Claude queries the graph instead of searching files, learns along the way and can be disconnected again at any time without leaving traces."
     },
     "author": "Hostwerk",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "page": true,
     "widget": false,
     "service": false,
     "permissions": [
       "read:knowledge",
       "change:knowledge",
-      "connect:claude"
+      "connect:claude",
+      "storage"
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.4.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph/releases/download/v1.4.0/knowledge-graph-1.4.0.zip",
-    "sha256": "ae61297eb9a525ed3b708e67cc11dea5ab12bdc59fb91225c11d63decb2d816a",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.4.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph/releases/download/v1.4.1/knowledge-graph-1.4.1.zip",
+    "sha256": "d543bd5aee4cdfe87d198074e82e830d7b7b269c40903d66b74fea025d3c1033",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "ai",
     "color": "#7c3aed",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.4.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.4.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.4.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.4.1/CHANGELOG.md"
   },
   {
     "id": "mail-server",
@@ -567,13 +490,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-server/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-server/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "mail-stats",
@@ -606,13 +523,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-stats/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-stats/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "motd-studio",
@@ -625,7 +536,7 @@
       "en": "Design your Minecraft server's description in the server list with colours and formats – with a preview like in the game. As its own tab on every Minecraft page."
     },
     "author": "Hostwerk",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -635,24 +546,18 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-motd-studio",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/v1.1.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-motd-studio/releases/download/v1.1.0/motd-studio-1.1.0.zip",
-    "sha256": "8d9fed1977ac2cc6fd402081a5385adccdfecb8e9e3cf6acc9c5e668397cd82f",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/v1.1.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-motd-studio/releases/download/v1.1.1/motd-studio-1.1.1.zip",
+    "sha256": "7529e75c7c771c45da058af15b0f39088ea8d4be3ea2c9f3d37cb2b8d17d99b8",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "games",
     "color": "#16a34a",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/v1.1.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/v1.1.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/v1.1.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/v1.1.1/CHANGELOG.md"
   },
   {
     "id": "page-check",
@@ -665,7 +570,7 @@
       "en": "Checks pages of your web projects: load time, size, compression, SEO basics (title, description, headings), accessibility basics (language, image texts, labels) and broken links on the same site – with a score, concrete tips and history."
     },
     "author": "Hostwerk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -674,24 +579,18 @@
     ],
     "hostwerk": ">=2.10.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-page-check",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-page-check/v1.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-page-check/releases/download/v1.0.0/page-check-1.0.0.zip",
-    "sha256": "bcda69fabce0618c1cf4f70ac9f37a78d9a1f8f73266d55ff2275f88d4390854",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-page-check/v1.0.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-page-check/releases/download/v1.0.1/page-check-1.0.1.zip",
+    "sha256": "a7526d70d6a8435e3778a3aaf14ff250757ac86e6ac0a1b5c01e59a897115605",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "developer",
     "color": "#16a34a",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-page-check/v1.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-page-check/v1.0.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-page-check/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-page-check/v1.0.1/CHANGELOG.md"
   },
   {
     "id": "passwords",
@@ -704,7 +603,7 @@
       "en": "Own encrypted vault or Bitwarden/Vaultwarden, 1Password, KeePass, pass and LastPass – with browser extension, security check (Have I Been Pwned), 2FA codes, generator, sharing with members and import from every common service."
     },
     "author": "Hostwerk",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "page": true,
     "widget": false,
     "service": false,
@@ -713,27 +612,21 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-passwords",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-passwords/releases/download/v1.0.1/passwords-1.0.1.zip",
-    "sha256": "ad2c85feafafc83d48900b39c80d7ff5c00f2ff4c0405d8e09e201c1bd6739b7",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.2/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-passwords/releases/download/v1.0.2/passwords-1.0.2.zip",
+    "sha256": "1829b0c250dcb1fa05cb13975c75533346547b560dea2e7b106c6e0ad62ffde6",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "security",
     "color": "#7c3aed",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.2/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.2/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.2/docs/screenshot.de.png"
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.1/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.2/CHANGELOG.md"
   },
   {
     "id": "player-leaderboard",
@@ -746,7 +639,7 @@
       "en": "Who plays, mines or dies the most – across all Minecraft servers or per server. With a dashboard tile."
     },
     "author": "Hostwerk",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "page": true,
     "widget": true,
     "service": false,
@@ -755,24 +648,18 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-player-leaderboard",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/v1.2.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-player-leaderboard/releases/download/v1.2.0/player-leaderboard-1.2.0.zip",
-    "sha256": "528e81c7f81aaf7c175dfb96ddf36826bd0813a2ac47bf861d5b278a8e3f89b9",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/v1.2.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-player-leaderboard/releases/download/v1.2.1/player-leaderboard-1.2.1.zip",
+    "sha256": "116f7a96700bdd0ce40acba1fe846ceb23bc8449328185e6e3e77fed75e307a3",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "games",
     "color": "#eab308",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/v1.2.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/v1.2.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/v1.2.1/CHANGELOG.md"
   },
   {
     "id": "player-ticker",
@@ -807,13 +694,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-ticker/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-ticker/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "port-map",
@@ -846,13 +727,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-port-map/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-port-map/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "profiler",
@@ -888,13 +763,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-profiler/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-profiler/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "static-publish",
@@ -927,13 +796,7 @@
     "screenshots": [],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-static-publish/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-static-publish/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "quick-tasks",
@@ -968,13 +831,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-quick-tasks/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-quick-tasks/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "router",
@@ -1010,13 +867,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "schematics-3d",
@@ -1052,13 +903,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-schematics-3d/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-schematics-3d/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "server-card",
@@ -1092,13 +937,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "service-notes",
@@ -1132,13 +971,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-service-notes/v1.1.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-service-notes/v1.1.0/CHANGELOG.md"
   },
   {
     "id": "status-wall",
@@ -1151,7 +984,7 @@
       "en": "All services big and colourful at a glance – ideal for a second screen or a tablet on the wall. One click restarts what stopped (asks first)."
     },
     "author": "Hostwerk",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "page": true,
     "widget": true,
     "service": false,
@@ -1161,24 +994,18 @@
     ],
     "hostwerk": ">=2.9.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-status-wall",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.2.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-status-wall/releases/download/v1.2.0/status-wall-1.2.0.zip",
-    "sha256": "e39bb53884c753d60e442c21eddf72442e528ac934a18c2f3b8e3a83a55652e9",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.2.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-status-wall/releases/download/v1.2.1/status-wall-1.2.1.zip",
+    "sha256": "5c737378d2f47c3bc9b5accfe276446e4012d2b3e383c12f0e2ff29d81010a1f",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "monitoring",
     "color": "#0ea5e9",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.2.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.2.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.2.1/CHANGELOG.md"
   },
   {
     "id": "disk-usage",
@@ -1211,13 +1038,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-usage/v1.1.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-usage/v1.1.0/CHANGELOG.md"
   },
   {
     "id": "team",
@@ -1253,13 +1074,7 @@
     ],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "uptime-wall",
@@ -1293,13 +1108,7 @@
     "screenshots": [],
     "requires": {},
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-uptime-wall/v1.2.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-uptime-wall/v1.2.0/CHANGELOG.md"
   },
   {
     "id": "webhook-inbox",
@@ -1312,32 +1121,26 @@
       "en": "An address for the webhooks of Stripe, GitHub, PayPal & co. – public through Hostwerk's tunnel if you like. Every call with headers and body, check signatures, forward to your project or replay."
     },
     "author": "Hostwerk",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "page": true,
     "widget": false,
     "service": false,
     "permissions": [
       "native"
     ],
-    "hostwerk": ">=2.10.0",
+    "hostwerk": ">=2.11.0",
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox/releases/download/v1.0.0/webhook-inbox-1.0.0.zip",
-    "sha256": "a366d94e662a732924fc54db8635a0bdc148de3fdbe6c276fc522bc3989e7b33",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.2.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox/releases/download/v1.2.0/webhook-inbox-1.2.0.zip",
+    "sha256": "b683adc10d3f4abe553986cafc758579a7c576a9a569d54937af984f04cf543f",
     "score": 100,
-    "released": "2026-10-19",
+    "released": "2026-10-20",
     "category": "developer",
     "color": "#d946ef",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.2.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.0.0/CHANGELOG.md",
-    "compat": {
-      "ok": true,
-      "checked": "2026-10-20",
-      "sdk": "2.7.0",
-      "problems": []
-    }
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.2.0/CHANGELOG.md"
   }
 ]
