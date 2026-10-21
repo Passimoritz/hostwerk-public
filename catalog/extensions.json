@@ -23,6 +23,7 @@
       "storage"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-claude",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.2.1/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-claude/releases/download/v1.2.1/claude-1.2.1.zip",
@@ -62,6 +63,7 @@
       "native"
     ],
     "hostwerk": ">=2.10.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-api-tester",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-api-tester/releases/download/v1.2.0/api-tester-1.2.0.zip",
@@ -101,6 +103,7 @@
       "read:tasks"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v1.2.1/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar/releases/download/v1.2.1/backup-calendar-1.2.1.zip",
@@ -140,6 +143,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-bedrock-bridge",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-bedrock-bridge/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-bedrock-bridge/releases/download/v1.0.0/bedrock-bridge-1.0.0.zip",
@@ -182,6 +186,7 @@
       "read:live"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-cert-watch",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-cert-watch/releases/download/v1.2.0/cert-watch-1.2.0.zip",
@@ -221,6 +226,7 @@
       "native"
     ],
     "hostwerk": ">=2.10.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-cloud-backup",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cloud-backup/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-cloud-backup/releases/download/v1.0.0/cloud-backup-1.0.0.zip",
@@ -260,6 +266,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-discord-status",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-status/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-discord-status/releases/download/v1.0.0/discord-status-1.0.0.zip",
@@ -302,6 +309,7 @@
       "native"
     ],
     "hostwerk": ">=2.10.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-file-share",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-file-share/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-file-share/releases/download/v1.0.0/file-share-1.0.0.zip",
@@ -341,6 +349,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-game-network",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-network/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-game-network/releases/download/v1.0.0/game-network-1.0.0.zip",
@@ -385,6 +394,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-game-servers",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.1.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-game-servers/releases/download/v1.1.0/game-servers-1.1.0.zip",
@@ -427,6 +437,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-hostwerk-network",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-hostwerk-network/releases/download/v1.0.0/hostwerk-network-1.0.0.zip",
@@ -469,6 +480,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-ai-media",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-ai-media/releases/download/v1.0.0/ai-media-1.0.0.zip",
@@ -514,6 +526,7 @@
       "storage"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.4.1/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph/releases/download/v1.4.1/knowledge-graph-1.4.1.zip",
@@ -553,6 +566,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-mail-server",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-server/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-mail-server/releases/download/v1.0.0/mail-server-1.0.0.zip",
@@ -595,6 +609,7 @@
       "read:mail"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-mail-stats",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-stats/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-mail-stats/releases/download/v1.2.0/mail-stats-1.2.0.zip",
@@ -635,6 +650,7 @@
       "change:minecraft"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-motd-studio",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-motd-studio/v1.1.1/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-motd-studio/releases/download/v1.1.1/motd-studio-1.1.1.zip",
@@ -674,6 +690,7 @@
       "native"
     ],
     "hostwerk": ">=2.10.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-page-check",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-page-check/v1.0.1/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-page-check/releases/download/v1.0.1/page-check-1.0.1.zip",
@@ -713,6 +730,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-passwords",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-passwords/v1.0.2/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-passwords/releases/download/v1.0.2/passwords-1.0.2.zip",
@@ -755,6 +773,7 @@
       "read:minecraft"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-player-leaderboard",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-leaderboard/v1.2.1/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-player-leaderboard/releases/download/v1.2.1/player-leaderboard-1.2.1.zip",
@@ -796,6 +815,7 @@
       "storage"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-player-ticker",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-player-ticker/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-player-ticker/releases/download/v1.2.0/player-ticker-1.2.0.zip",
@@ -835,6 +855,7 @@
       "read:system"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-port-map",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-port-map/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-port-map/releases/download/v1.2.0/port-map-1.2.0.zip",
@@ -874,6 +895,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-profiler",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-profiler/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-profiler/releases/download/v1.0.0/profiler-1.0.0.zip",
@@ -916,6 +938,7 @@
       "native"
     ],
     "hostwerk": ">=2.10.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-static-publish",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-static-publish/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-static-publish/releases/download/v1.0.0/static-publish-1.0.0.zip",
@@ -957,6 +980,7 @@
       "storage"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-quick-tasks",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-quick-tasks/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-quick-tasks/releases/download/v1.2.0/quick-tasks-1.2.0.zip",
@@ -996,6 +1020,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-router",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-router/releases/download/v1.0.0/router-1.0.0.zip",
@@ -1038,6 +1063,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-schematics-3d",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-schematics-3d/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-schematics-3d/releases/download/v1.0.0/schematics-3d-1.0.0.zip",
@@ -1081,6 +1107,7 @@
       "read:services"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-server-card",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-server-card/releases/download/v1.2.0/server-card-1.2.0.zip",
@@ -1121,6 +1148,7 @@
       "storage"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-service-notes",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-service-notes/v1.1.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-service-notes/releases/download/v1.1.0/service-notes-1.1.0.zip",
@@ -1161,6 +1189,7 @@
       "control:services"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-status-wall",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.2.1/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-status-wall/releases/download/v1.2.1/status-wall-1.2.1.zip",
@@ -1200,6 +1229,7 @@
       "read:system"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-disk-usage",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-usage/v1.1.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-disk-usage/releases/download/v1.1.0/disk-usage-1.1.0.zip",
@@ -1239,6 +1269,7 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-team",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.0.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-team/releases/download/v1.0.0/team-1.0.0.zip",
@@ -1282,6 +1313,7 @@
       "share:status"
     ],
     "hostwerk": ">=2.9.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-uptime-wall",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-uptime-wall/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-uptime-wall/releases/download/v1.2.0/uptime-wall-1.2.0.zip",
@@ -1321,6 +1353,7 @@
       "native"
     ],
     "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox",
     "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.2.0/icon.svg",
     "download": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox/releases/download/v1.2.0/webhook-inbox-1.2.0.zip",
