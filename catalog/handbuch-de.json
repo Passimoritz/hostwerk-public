@@ -4,6 +4,146 @@
  "version": "2.10.0",
  "pages": [
   {
+   "route": null,
+   "slug": "hilfe",
+   "title": "Hilfe & bekannte Probleme",
+   "activeTab": "",
+   "intro": "Wenn etwas nicht klappt, steht die Lösung meist hier. Hilft nichts davon: unter System → Zustand → Vorfälle öffnet „Fehlerbericht“ einen vorausgefüllten Bericht – ohne Pfade, Namen und Geheimnisse, du schickst ihn selbst ab.",
+   "areas": [],
+   "actions": [],
+   "fields": [],
+   "tabs": [
+    "Windows blockiert Hostwerk (Smart App Control)",
+    "Port belegt",
+    "Virenscanner",
+    "WSL und Docker",
+    "Proxy",
+    "Update hängt oder startet nicht",
+    "Systemvoraussetzungen",
+    "Bekannte Probleme in 2.x",
+    "Hostwerk entfernen"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": null,
+   "tabsDetail": [
+    {
+     "label": "Windows blockiert Hostwerk (Smart App Control)",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Unter Windows 11 kann Smart App Control Programme ohne bekannte Signatur sperren. Das betrifft das Setup (Hostwerk-Setup-….exe), nicht Hostwerk selbst.",
+      "Nimm die ZIP-Fassung, entpacke sie z. B. nach %LOCALAPPDATA%\\Programs\\Hostwerk und starte Hostwerk.exe. Beim ersten Start legt Hostwerk Verknüpfungen und den Eintrag unter „Apps“ an.",
+      "Hostwerk.exe ist die unveränderte, offizielle Electron-Laufzeit. Deshalb steht im Task-Manager „Electron“ – das ist kein Fehler.",
+      "Einzelne Programme, die Hostwerk lädt (z. B. neue Apache- oder PHP-Fassungen), prüft Hostwerk nach dem Download. Blockiert Windows eins davon, zeigt Hostwerk das an und schlägt eine Alternative vor (nginx oder Caddy laufen bisher immer)."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Port belegt",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Ein Dienst startet nicht, weil „Port 80“ (oder 3306, 25565 …) schon belegt ist.",
+      "System → Zustand → Ports & Dienste zeigt, welches Programm den Port hält. Ist es ein alter Dienst von Hostwerk, gibt Hostwerk ihn mit einem Klick frei.",
+      "Ist es ein anderes Programm (Skype, IIS, ein zweites XAMPP, eine eigene MariaDB …), stell beim Dienst einfach einen anderen Port ein – oder beende das andere Programm.",
+      "Neue Datenbanken suchen sich selbst einen freien Port."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Virenscanner",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Virenscanner prüfen jede Datei, die ein Webserver oder eine Datenbank anfasst. Das macht Hostwerk langsam, und manchmal wird ein Programm (z. B. php.exe oder mysqld.exe) in Quarantäne verschoben.",
+      "Nimm den Hostwerk-Ordner (Standard: %USERPROFILE%\\Hostwerk) in die Ausnahmen deines Virenscanners auf.",
+      "Fehlt ein Programm plötzlich, lädt Hostwerk es beim nächsten Start neu („Selbstheilung“)."
+     ],
+     "shot": null
+    },
+    {
+     "label": "WSL und Docker",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Docker-Apps und manche Spiele-Server laufen unter Windows in Hostwerks eigener WSL-Umgebung („hostwerk-docker“) – Docker Desktop brauchst du nicht.",
+      "Voraussetzung: Virtualisierung im BIOS/UEFI an und das Windows-Feature WSL. Hostwerk richtet WSL bei Bedarf ein; Windows fragt dafür nach Administrator-Rechten und will danach meist einmal neu starten.",
+      "„Zeitüberschreitung“ heißt nicht „aus“: Beim ersten Start einer WSL-Umgebung braucht Windows manchmal über eine Minute. Einfach noch einmal versuchen.",
+      "Läuft schon Docker Desktop, kann Hostwerk dessen Engine mitbenutzen."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Proxy",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Hostwerk übernimmt bisher keine Proxy-Einstellungen. Hinter einem Firmen-Proxy, der direkte Verbindungen sperrt, scheitern Downloads (PHP, Datenbanken, Erweiterungen, Updates).",
+      "Was ohne Internet geht, läuft weiter. Mit Einstellungen → Datenschutz → Offline-Modus fragt Hostwerk gar nicht erst nach draußen.",
+      "Eine vorhandene XAMPP-Installation lässt sich übernehmen (Webserver → Import), ganz ohne Download."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Update hängt oder startet nicht",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Downloads setzen nach einem Abbruch fort. Steht ein Update lange still, hilft Einstellungen → App-Updates → Nach Updates suchen.",
+      "Startet eine neue Fassung nicht, nimmt Hostwerk beim nächsten Start von selbst die vorige und überspringt die kaputte.",
+      "Gefällt dir eine neue Fassung nicht: Einstellungen → App-Updates → Zurück zur vorherigen Version.",
+      "Läuft Hostwerk als Systemdienst, zeigt Livebetrieb → Dienst nach einem App-Update „Dienst aktualisieren“."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Systemvoraussetzungen",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Windows: Windows 10 (ab 22H2) oder Windows 11, 64 Bit (x64). ARM-Geräte werden nicht unterstützt.",
+      "Linux: x64, glibc-basiert: Ubuntu 22.04/24.04, Debian 12, Fedora 40 oder neuer (AppImage oder .deb).",
+      "Arbeitsspeicher: 4 GB reichen für Webserver und Datenbank, 8 GB oder mehr für Minecraft, Docker oder den lokalen KI-Helfer.",
+      "Speicherplatz: rund 500 MB für Hostwerk, dazu je Dienst (PHP ~100 MB, eine Datenbank ~300 MB, ein Minecraft-Server 0,5–5 GB).",
+      "Administrator-Rechte: Für Installation und normalen Betrieb nicht nötig. Windows fragt nur bei: Systemdienst, Firewall-Regeln, WSL/Docker einrichten. Unter Linux zusätzlich bei Ports unter 1024 und beim Vertrauen der lokalen Zertifizierungsstelle."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Bekannte Probleme in 2.x",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Der Task-Manager zeigt Hostwerk als „Electron“ (siehe Smart App Control) – gewollt, damit Windows Hostwerk nicht blockiert.",
+      "Hinter einem Proxy gehen keine Downloads (siehe Proxy).",
+      "Unter Linux ohne Infobereich (reines GNOME) wird Hostwerk beim Schließen minimiert statt ausgeblendet.",
+      "Apache/PHP-Builds können unter Smart App Control vereinzelt blockiert werden – nginx und Caddy sind die Ausweichlösung."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Hostwerk entfernen",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Einstellungen → Erweitert → Hostwerk entfernen räumt alles auf, was Hostwerk im System eingetragen hat, und fragt, ob deine Daten bleiben sollen. Deinstallierst du über Windows („Apps“), entfernt Hostwerk ebenfalls seine Spuren (Autostart, Zertifikate, Systemdienst, Firewall-Regeln) und lässt deine Daten liegen – eine neue Installation findet sie wieder."
+     ],
+     "shot": null
+    }
+   ],
+   "handwritten": true
+  },
+  {
    "route": "",
    "slug": "uebersicht",
    "title": "Übersicht",

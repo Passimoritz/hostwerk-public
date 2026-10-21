@@ -4,6 +4,146 @@
  "version": "2.10.0",
  "pages": [
   {
+   "route": null,
+   "slug": "help",
+   "title": "Help & known issues",
+   "activeTab": "",
+   "intro": "If something doesn't work, the fix is usually here. If nothing helps: under System → Health → Incidents, “Bug report” opens a prefilled report – without paths, names or secrets, you send it yourself.",
+   "areas": [],
+   "actions": [],
+   "fields": [],
+   "tabs": [
+    "Windows blocks Hostwerk (Smart App Control)",
+    "Port in use",
+    "Virus scanners",
+    "WSL and Docker",
+    "Proxy",
+    "Update stuck or doesn't start",
+    "System requirements",
+    "Known issues in 2.x",
+    "Removing Hostwerk"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": null,
+   "tabsDetail": [
+    {
+     "label": "Windows blocks Hostwerk (Smart App Control)",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "On Windows 11, Smart App Control can block programs without a known signature. This affects the installer (Hostwerk-Setup-….exe), not Hostwerk itself.",
+      "Use the ZIP version, extract it e.g. to %LOCALAPPDATA%\\Programs\\Hostwerk and start Hostwerk.exe. On first start Hostwerk creates the shortcuts and the entry under “Apps”.",
+      "Hostwerk.exe is the unmodified, official Electron runtime. That's why Task Manager shows “Electron” – this is not an error.",
+      "Programs Hostwerk downloads (e.g. new Apache or PHP builds) are checked after the download. If Windows blocks one, Hostwerk tells you and suggests an alternative (nginx and Caddy have always worked so far)."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Port in use",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "A service doesn't start because “port 80” (or 3306, 25565 …) is already in use.",
+      "System → Health → Ports & services shows which program holds the port. If it's an old Hostwerk service, Hostwerk frees it with one click.",
+      "If it's another program (Skype, IIS, a second XAMPP, your own MariaDB …), simply set a different port for the service – or quit the other program.",
+      "New databases pick a free port on their own."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Virus scanners",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Virus scanners check every file a web server or database touches. That slows Hostwerk down, and sometimes a program (e.g. php.exe or mysqld.exe) is moved to quarantine.",
+      "Add the Hostwerk folder (default: %USERPROFILE%\\Hostwerk) to your scanner's exclusions.",
+      "If a program suddenly goes missing, Hostwerk downloads it again on the next start (“self-healing”)."
+     ],
+     "shot": null
+    },
+    {
+     "label": "WSL and Docker",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "On Windows, Docker apps and some game servers run in Hostwerk's own WSL environment (“hostwerk-docker”) – you don't need Docker Desktop.",
+      "Requirement: virtualization enabled in BIOS/UEFI and the Windows feature WSL. Hostwerk sets up WSL when needed; Windows asks for administrator rights and usually wants one restart.",
+      "“Timeout” doesn't mean “off”: the first start of a WSL environment sometimes takes Windows more than a minute. Just try again.",
+      "If Docker Desktop is already running, Hostwerk can use its engine."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Proxy",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Hostwerk doesn't use proxy settings yet. Behind a company proxy that blocks direct connections, downloads (PHP, databases, extensions, updates) fail.",
+      "Everything that works without the internet keeps running. With Settings → Privacy → Offline mode Hostwerk doesn't even try to connect.",
+      "An existing XAMPP installation can be taken over (Web servers → Import) without any download."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Update stuck or doesn't start",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Downloads resume after an interruption. If an update stands still for long, use Settings → App updates → Check for updates.",
+      "If a new version doesn't start, Hostwerk uses the previous one on the next start and skips the broken one.",
+      "Don't like a new version: Settings → App updates → Back to the previous version.",
+      "If Hostwerk runs as a system service, Live → Service shows “Update service” after an app update."
+     ],
+     "shot": null
+    },
+    {
+     "label": "System requirements",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Windows: Windows 10 (22H2 or later) or Windows 11, 64-bit (x64). ARM devices are not supported.",
+      "Linux: x64, glibc-based: Ubuntu 22.04/24.04, Debian 12, Fedora 40 or newer (AppImage or .deb).",
+      "Memory: 4 GB is enough for a web server and a database, 8 GB or more for Minecraft, Docker or the local AI helper.",
+      "Disk space: about 500 MB for Hostwerk, plus each service (PHP ~100 MB, a database ~300 MB, a Minecraft server 0.5–5 GB).",
+      "Administrator rights: Not needed to install or use Hostwerk. Windows only asks for: system service, firewall rules, setting up WSL/Docker. On Linux also for ports below 1024 and trusting the local certificate authority."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Known issues in 2.x",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Task Manager shows Hostwerk as “Electron” (see Smart App Control) – on purpose, so Windows doesn't block Hostwerk.",
+      "No downloads behind a proxy (see Proxy).",
+      "On Linux without a tray (plain GNOME), closing the window minimizes Hostwerk instead of hiding it.",
+      "Apache/PHP builds can occasionally be blocked by Smart App Control – nginx and Caddy are the fallback."
+     ],
+     "shot": null
+    },
+    {
+     "label": "Removing Hostwerk",
+     "areas": [],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Settings → Advanced → Remove Hostwerk cleans up everything Hostwerk registered in the system and asks whether your data should stay. If you uninstall through Windows (“Apps”), Hostwerk also removes its traces (autostart, certificates, system service, firewall rules) and keeps your data – a new installation finds it again."
+     ],
+     "shot": null
+    }
+   ],
+   "handwritten": true
+  },
+  {
    "route": "",
    "slug": "uebersicht",
    "title": "Overview",

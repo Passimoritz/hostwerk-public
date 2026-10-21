@@ -9501,7 +9501,1149 @@
     "Speichergrenze zwischen": "Memory limit between",
     "Spiele-Server und ihre Spieler lesen": "Read game servers and their players",
     "Port eines gestoppten Dienstes umstellen (mit Rückfrage)": "Move a stopped service to a free port (asks first)",
-    "Öffentliche Ansicht anbieten (ohne Anmeldung, z. B. für OBS)": "Offer a public view (no login, e.g. for OBS)"
+    "Öffentliche Ansicht anbieten (ohne Anmeldung, z. B. für OBS)": "Offer a public view (no login, e.g. for OBS)",
+    "Für CurseForge braucht Hostwerk deinen API-Schlüssel (kostenlos unter console.curseforge.com).": "For CurseForge, Hostwerk needs your API key (free at console.curseforge.com).",
+    "CurseForge lehnt den API-Schlüssel ab – bitte prüfen.": "CurseForge rejects the API key – please check it.",
+    "Dieses Modpack hat keine Dateien.": "This modpack has no files.",
+    "Der Autor erlaubt keinen Download über andere Programme – bitte das Pack auf curseforge.com laden.": "The author does not allow downloads through other programs – please get the pack on curseforge.com.",
+    "Das Paket enthält keine manifest.json – ist es wirklich ein CurseForge-Modpack?": "The package has no manifest.json – is it really a CurseForge modpack?",
+    "Minecraft-Version oder Loader fehlen in der manifest.json.": "Minecraft version or loader is missing in manifest.json.",
+    "Unbekanntes Formular": "Unknown form",
+    "Die Einstellungsdatei gibt es nicht (mehr).": "The settings file does not exist (anymore).",
+    "Ein Proxy hat keine Welt.": "A proxy has no world.",
+    "Keine Minecraft-Welt gefunden (es fehlt die Datei level.dat).": "No Minecraft world found (the file level.dat is missing).",
+    "Das ist eine Bedrock-Welt – Java-Server können sie nicht laden.": "This is a Bedrock world – Java servers cannot load it.",
+    "Datapack nicht gefunden": "Datapack not found",
+    "Bitte ein Datapack als .zip hochladen.": "Please upload a datapack as a .zip.",
+    "Das ZIP ist kein Datapack (pack.mcmeta fehlt ganz oben).": "The ZIP is not a datapack (pack.mcmeta is missing at the top level).",
+    "Noch keine Welt – starte den Server einmal, dann lassen sich Datapacks hinzufügen.": "No world yet – start the server once, then you can add datapacks.",
+    "Diese Version hat keine ZIP-Datei.": "This version has no ZIP file.",
+    "Dieser Servertyp kann keine Plugins oder Mods laden – Chunky geht erst mit Paper, Purpur, Fabric oder NeoForge.": "This server type cannot load plugins or mods – Chunky needs Paper, Purpur, Fabric or NeoForge.",
+    "Chunky ist noch nicht installiert.": "Chunky is not installed yet.",
+    "Der Server muss laufen, damit Chunky arbeiten kann.": "The server must be running for Chunky to work.",
+    "Unbekannte Welt.": "Unknown world.",
+    "Unbekannte Aktion.": "Unknown action.",
+    "Protokoll nicht gefunden": "Log not found",
+    "Absturzbericht nicht gefunden": "Crash report not found",
+    "Dieser Server gehört zu keinem Netzwerk.": "This server is not part of a network.",
+    "Bitte mindestens einen anderen Server wählen.": "Please choose at least one other server.",
+    "Bitte mindestens eine Liste wählen.": "Please choose at least one list.",
+    "Bitte die Welt als .zip hochladen.": "Please upload the world as a .zip.",
+    "Keine Datei.": "No file.",
+    "Diese E-Mail gibt es nicht mehr – sie wurde gelöscht oder automatisch aufgeräumt.": "This email no longer exists – it was deleted or cleaned up automatically.",
+    "Keine passende E-Mail gefunden.": "No matching email found.",
+    "Innerhalb der Wartezeit kam keine passende E-Mail an.": "No matching email arrived within the waiting time.",
+    "Die Test-Schnittstelle des Mail-Fängers ist ausgeschaltet (E-Mail → Einstellungen).": "The mail catcher’s test API is switched off (Email → Settings).",
+    "Nur von diesem PC erreichbar.": "Only reachable from this PC.",
+    "Unbekannte Simulation.": "Unknown simulation.",
+    "CSS-Variablen (var(--…))": "CSS variables (var(--…))",
+    "Animationen (animation, transition)": "Animations (animation, transition)",
+    "Eigene Schriften (@font-face, Stylesheet-Link)": "Custom fonts (@font-face, stylesheet link)",
+    "SVG-Grafiken": "SVG graphics",
+    "WebP-Bilder": "WebP images",
+    "Formulare": "Forms",
+    "Bilder ohne width-Attribut": "Images without width attribute",
+    "Mails nach Projekt filtern": "Filter emails by project",
+    "im Anhang": "in attachment",
+    "Wie Apple Mail: die Dunkel-Farben der Mail selbst": "Like Apple Mail: the email’s own dark colors",
+    "Wie die Gmail-App und Outlook: Farben werden zwangsweise umgedreht": "Like the Gmail app and Outlook: colors are forcibly inverted",
+    "Aus – alle Mails annehmen": "Off – accept all emails",
+    "Vorübergehender Fehler (451)": "Temporary error (451)",
+    "Ablehnen (550)": "Reject (550)",
+    "Zufällig vorübergehender Fehler": "Random temporary error",
+    "Langsam antworten": "Respond slowly",
+    "Absender enthält": "Sender contains",
+    "Absender-Domain ist": "Sender domain is",
+    "SMTP-Benutzer enthält": "SMTP user contains",
+    "Empfänger enthält": "Recipient contains",
+    "Meldung bei neuer Mail": "Notify on new email",
+    "Kleine Meldung am Bildschirmrand, wenn Hostwerk nicht im Vordergrund ist.": "Small notification at the screen edge when Hostwerk is not in the foreground.",
+    "Postfächer je Projekt": "Mailboxes per project",
+    "Hostwerk ordnet Mails automatisch zu, wenn der SMTP-Benutzer wie das Projekt heißt oder die Absender-Domain zum Projekt gehört. Eigene Regeln gehen vor – die erste passende gewinnt.": "Hostwerk assigns emails automatically when the SMTP user has the project’s name or the sender domain belongs to the project. Your own rules come first – the first match wins.",
+    "Noch keine eigenen Regeln.": "No custom rules yet.",
+    "Noch keine Projekte vorhanden": "No projects yet",
+    "Test-Schnittstelle (wie Mailpit)": "Test API (like Mailpit)",
+    "Automatische Tests fragen ohne Anmeldung die letzte Mail ab oder warten auf eine – nur von diesem PC aus.": "Automated tests fetch the latest email or wait for one without signing in – only from this PC.",
+    "Damit prüfst du, wie dein Projekt reagiert, wenn der Mailserver streikt. Hostwerks eigene Mails sind ausgenommen.": "Check how your project reacts when the mail server fails. Hostwerk’s own emails are exempt.",
+    "Verzögerung (Sekunden)": "Delay (seconds)",
+    "Nur für Empfänger mit": "Only for recipients with",
+    "Leer = alle Mails.": "Empty = all emails.",
+    "Per IMAP lesbar": "Readable via IMAP",
+    "Echte Mailprogramme (Thunderbird, Outlook) zeigen die gefangenen Mails als Postfach – nur auf diesem PC.": "Real mail programs (Thunderbird, Outlook) show the caught emails as a mailbox – only on this PC.",
+    ", ohne Verschlüsselung, beliebiger Benutzername und beliebiges Passwort. Gelesen, markiert und gelöscht wirkt in beide Richtungen.": ", no encryption, any user name and any password. Read, flagged and deleted work in both directions.",
+    "geht": "works",
+    "teilweise": "partly",
+    "geht nicht": "doesn’t work",
+    "Darstellung in Mailprogrammen": "Rendering in mail programs",
+    "Grobe Einschätzung nach caniemail.com: Bausteine, die Outlook (Windows), Gmail oder Apple Mail ignorieren. Die Mail sollte auch ohne sie lesbar bleiben.": "Rough estimate based on caniemail.com: features that Outlook (Windows), Gmail or Apple Mail ignore. The email should stay readable without them.",
+    "Die Mail meldet Dunkelmodus-Unterstützung, hat aber keine eigenen Dunkel-Farben.": "The email declares dark mode support but has no dark colors of its own.",
+    "Keine eigenen Dunkel-Farben – die Gmail-App und Outlook drehen die Farben selbst um. Prüfe die Vorschau „Umgedreht“.": "No dark colors of its own – the Gmail app and Outlook invert the colors themselves. Check the “Inverted” preview.",
+    "Keine bekannten Stolpersteine gefunden.": "No known pitfalls found.",
+    "Baustein": "Feature",
+    "Der Mail-Fänger lehnt Mails gerade absichtlich ab oder verzögert sie – zum Ausschalten klicken": "The mail catcher is deliberately rejecting or delaying emails – click to switch off",
+    "Fehler-Simulation aus": "Error simulation off",
+    "unterstützt Minecraft": "supports Minecraft",
+    ", dein Server läuft mit": ", your server runs",
+    ". Es kann trotzdem laufen – oft aber erst mit einem Update des Plugins.": ". It may still work – but often only after an update of the plugin.",
+    "Unterstützte Versionen:": "Supported versions:",
+    "Dafür braucht es das": "This needs the",
+    "Chunky (von Modrinth).": "Chunky (from Modrinth).",
+    "Fortschritt der Vorgenerierung": "Pre-generation progress",
+    "Radius (Blöcke)": "Radius (blocks)",
+    "Starte den Server, dann kann Chunky loslegen.": "Start the server, then Chunky can get going.",
+    "Sofort übernommen": "Applied immediately",
+    "Wirkt beim nächsten Start": "Takes effect on the next start",
+    "Datapack hinzugefügt": "Datapack added",
+    "Datapacks ändern Rezepte, Beute, Weltgenerierung oder fügen Funktionen hinzu – ganz ohne Plugins. Läuft der Server, wirkt An/Aus sofort.": "Datapacks change recipes, loot, world generation or add features – without any plugins. While the server runs, on/off takes effect immediately.",
+    "Noch keine Welt": "No world yet",
+    "Starte den Server einmal, dann lassen sich Datapacks hinzufügen.": "Start the server once, then you can add datapacks.",
+    "Keine Datapacks": "No datapacks",
+    "Rechts im Marktplatz suchen oder eine ZIP hochladen.": "Search the marketplace on the right or upload a ZIP.",
+    "Datapack-ZIP hochladen": "Upload datapack ZIP",
+    "Datapacks suchen": "Search datapacks",
+    "Keine Treffer für Minecraft": "No results for Minecraft",
+    "Keine Protokolle": "No logs",
+    "Der Server legt sie beim ersten Start im Ordner logs an.": "The server creates them in the logs folder on its first start.",
+    "Aktuell (latest.log)": "Current (latest.log)",
+    "Protokoll wählen": "Choose a log",
+    "Links stehen alle Protokolle, auch die gepackten älteren Tage.": "All logs are listed on the left, including the packed older days.",
+    "Im Protokoll suchen": "Search the log",
+    "Im Protokoll suchen, z. B. einen Spielernamen …": "Search the log, e.g. a player name …",
+    "– die letzten 5000 werden gezeigt": "– the last 5000 are shown",
+    "(keine passenden Zeilen)": "(no matching lines)",
+    "Leistung im Verlauf": "Performance over time",
+    "Hostwerk misst alle 30 Sekunden die Ticks pro Sekunde (20 = flüssig) – still, ohne Zeilen in der Konsole.": "Hostwerk measures the ticks per second every 30 seconds (20 = smooth) – quietly, without lines in the console.",
+    "Keine Absturzberichte": "No crash reports",
+    "Stürzt der Server ab, schreibt Minecraft hier einen Bericht – Hostwerk hängt ihn auch an den Vorfall.": "If the server crashes, Minecraft writes a report here – Hostwerk also attaches it to the incident.",
+    "Ursache laut Bericht": "Cause according to the report",
+    "KI: Was ist passiert?": "AI: What happened?",
+    "Eine Kopie mit eigenem Port – zum Ausprobieren von Plugins oder Updates, ohne den echten Server anzufassen. Nächtliche Sicherung und Autostart sind bei der Kopie aus.": "A copy with its own port – for trying out plugins or updates without touching the real server. Nightly backup and autostart are off for the copy.",
+    "Name der Kopie": "Name of the copy",
+    "Welten mitkopieren": "Copy worlds too",
+    "Aus = frische Welten beim ersten Start.": "Off = fresh worlds on the first start.",
+    "Plugins, die eine Datenbank oder Discord nutzen, schreiben in der Kopie dorthin, wo auch das Original schreibt – vor dem Start ihre Einstellungen prüfen.": "Plugins that use a database or Discord write to the same place from the copy as the original does – check their settings before starting.",
+    "Kopie anlegen": "Create copy",
+    "Spielerlisten übertragen": "Transfer player lists",
+    "Whitelist, Ops und Banns von diesem Server auf andere übernehmen. Laufende Server bekommen die Änderungen per Befehl, damit nichts überschrieben wird.": "Copy the whitelist, ops and bans from this server to others. Running servers get the changes via commands so nothing is overwritten.",
+    "Genau übernehmen": "Copy exactly",
+    "Es gibt keinen anderen Server.": "There is no other server.",
+    "(läuft)": "(running)",
+    "An alle im Netzwerk": "To everyone in the network",
+    "Keine bekannten Plugins": "No known plugins",
+    "Formulare gibt es für die häufigsten Plugins (EssentialsX, LuckPerms, WorldEdit, Geyser …). Starte den Server einmal, damit sie ihre Einstellungsdateien anlegen.": "Forms exist for the most common plugins (EssentialsX, LuckPerms, WorldEdit, Geyser …). Start the server once so they create their settings files.",
+    "Nichts geändert": "Nothing changed",
+    "Einstellung": "setting",
+    "Die meisten Plugins lesen ihre Einstellungen nur beim Start – nach dem Speichern den Server neu starten.": "Most plugins only read their settings on start – restart the server after saving.",
+    "gespeichert – leer lassen = unverändert": "saved – leave empty = unchanged",
+    "Stoßzeiten": "Peak times",
+    "Durchschnittlich gleichzeitig online je Wochentag und Stunde – gemessen, seit Hostwerk die Sitzungen aufzeichnet.": "Average players online at the same time per weekday and hour – measured since Hostwerk started recording sessions.",
+    "Noch zu wenige Daten.": "Not enough data yet.",
+    "Stoßzeiten je Wochentag und Stunde": "Peak times per weekday and hour",
+    "Spielzeit je Woche": "Playtime per week",
+    "Noch keine aufgezeichneten Sitzungen.": "No recorded sessions yet.",
+    "Netzwerk als Grafik": "Network as a diagram",
+    "Proxy und verbundene Server mit Spielerzahl": "Proxy and connected servers with player count",
+    "Hauptwelt ersetzen?": "Replace main world?",
+    "Die bisherige Welt samt Nether und End wird entfernt. Vorher legt Hostwerk eine Sicherung des ganzen Servers an.": "The current world including Nether and End will be removed. Hostwerk backs up the whole server first.",
+    "Ersetzen": "Replace",
+    "CurseForge verlangt einen eigenen API-Schlüssel. Du bekommst ihn kostenlos unter": "CurseForge requires its own API key. You get it for free at",
+    "CurseForge-API-Schlüssel": "CurseForge API key",
+    "Der Schlüssel wird verschlüsselt gespeichert und nur an CurseForge geschickt.": "The key is stored encrypted and only sent to CurseForge.",
+    "CurseForge-Modpacks suchen": "Search CurseForge modpacks",
+    "Modpack suchen, z. B. All the Mods, RLCraft …": "Search modpacks, e.g. All the Mods, RLCraft …",
+    ". Hostwerk installiert den Loader und lädt alle Mods; Mods, deren Autor fremde Downloads verbietet, zeigt Hostwerk zum Herunterladen von Hand.": ". Hostwerk installs the loader and downloads all mods; mods whose author forbids third-party downloads are listed for manual download.",
+    "Welt-Ordner wählen (z. B. aus .minecraft/saves)": "Choose world folder (e.g. from .minecraft/saves)",
+    "Welt hochladen": "Upload world",
+    "Eine Einzelspieler-Welt (Ordner aus .minecraft/saves) oder eine gezippte Welt übernehmen. Vorher sichert Hostwerk den ganzen Server.": "Import a singleplayer world (folder from .minecraft/saves) or a zipped world. Hostwerk backs up the whole server first.",
+    "Als neue Welt": "As a new world",
+    "Hauptwelt ersetzen": "Replace main world",
+    "Danach als Hauptwelt verwenden": "Use as main world afterwards",
+    "Stellt level-name in server.properties um.": "Changes level-name in server.properties.",
+    "Wird übernommen …": "Importing …",
+    "ZIP hierher ziehen oder auswählen": "Drag a ZIP here or choose one",
+    "Ordner auf diesem PC wählen": "Choose folder on this PC",
+    "Welt vorgenerieren": "Pre-generate world",
+    "Mit Chunky erzeugt der Server das Gelände vorab. Später ruckelt es beim Erkunden nicht mehr, weil nichts mehr neu berechnet werden muss.": "With Chunky the server generates the terrain in advance. Exploring no longer stutters later because nothing needs to be computed anymore.",
+    "Ältere Protokolle": "Older logs",
+    "Kopie & Listen": "Copy & lists",
+    "Umgedreht": "Inverted",
+    "Vorgenerieren starten": "Start pre-generation",
+    "Öffnen →": "Open →",
+    "(ohne Betreff)": "(no subject)",
+    "Höchstens 12 gespeicherte Übersichten – lösche zuerst eine.": "At most 12 saved dashboards – delete one first.",
+    "Nur die gespeicherte Anordnung verschwindet – die Kacheln bleiben.": "Only the saved arrangement goes away – the tiles stay.",
+    "Das ist keine Übersicht aus Hostwerk.": "This is not a Hostwerk dashboard.",
+    "Höhe der Kachel": "Tile height",
+    "Höhe: automatisch": "Height: automatic",
+    "Höhe: niedrig": "Height: low",
+    "Höhe: mittel": "Height: medium",
+    "Höhe: hoch": "Height: tall",
+    "Gespeicherte Übersichten": "Saved dashboards",
+    "Noch keine – speichere die aktuelle Anordnung unter einem Namen und schalte später oben um.": "None yet – save the current arrangement under a name and switch at the top later.",
+    "Mit der aktuellen Anordnung überschreiben": "Overwrite with the current arrangement",
+    "Aktuelle Anordnung speichern …": "Save current arrangement …",
+    "Weitergeben": "Share",
+    "Importieren …": "Import …",
+    "Als Datei für einen anderen Rechner – samt gespeicherten Übersichten.": "As a file for another computer – including saved dashboards.",
+    "Unter welchem Namen? Zum Beispiel „Arbeit“ oder „Minecraft-Abend“.": "Under which name? For example “Work” or “Minecraft night”.",
+    "Höchstens 40 Zeichen": "At most 40 characters",
+    "Übersicht speichern": "Save dashboard",
+    "Übersicht übernommen": "Dashboard imported",
+    "Gestoppte Dienste": "Stopped services",
+    "Dienst ist aus": "service is off",
+    "Dienste sind aus": "services are off",
+    "Alle Dienste laufen.": "All services are running.",
+    "Noch kein Dienst mit Port.": "No service with a port yet.",
+    "Webserver anlegen": "Create web server",
+    "1 Port-Konflikt": "1 port conflict",
+    "Freien Port suchen und eintragen": "Find a free port and use it",
+    "Keine Vorfälle – alles lief rund.": "No incidents – everything ran smoothly.",
+    "Absturz eines Dienstes in Hostwerk – Ursache und nächster Schritt in einfachen Worten": "A service crashed in Hostwerk – cause and next step in plain words",
+    "Vorfall ansehen": "View incident",
+    "Noch keine Sicherung.": "No backup yet.",
+    "Sicherung einrichten": "Set up backup",
+    "Letzte Sicherung": "Last backup",
+    "Letzte Probe": "Last test restore",
+    "Probe ist aus": "Test restore is off",
+    "1 Sicherung lässt sich nicht zurückspielen": "1 backup cannot be restored",
+    "Kein Minecraft-Server läuft": "No Minecraft server is running",
+    "wird sofort ausgeführt": "runs immediately",
+    "Kein SQL-Datenbankserver läuft": "No SQL database server is running",
+    "Zu den Datenbanken": "Go to databases",
+    "ausgeführt wird erst auf Klick": "runs only when you click",
+    " · aktiv": " · active",
+    "· aktiv": "· active",
+    "Inhalte": "Content",
+    "Suchen … oder „mc say Hallo“, „db SELECT …“, „open :8080“": "Search … or “mc say Hello”, “db SELECT …”, “open :8080”",
+    "Mail-Fänger öffnen": "Open mail catcher",
+    "Die Datei ist zu groß.": "The file is too large.",
+    "Die Datei ist kein gültiges JSON.": "The file is not valid JSON.",
+    "Gestoppte Dienste zeigen": "Show stopped services",
+    "Verbrauch je Dienst ansehen": "See usage per service",
+    "Welcher Dienst welchen Port belegt – mit Konflikt-Hinweis": "Which service uses which port – with conflict warnings",
+    "Ports & Adressen": "Ports & addresses",
+    "Die drei letzten Abstürze mit Erklärung": "The last three crashes with an explanation",
+    "Letzte Vorfälle": "Recent incidents",
+    "Letzte Sicherung, letzte Probe, nächster Lauf": "Last backup, last test restore, next run",
+    "Sicherungen & Probe": "Backups & test restore",
+    "Gespeicherte Übersicht wählen": "Choose saved dashboard",
+    "Eigene Anordnung": "Custom arrangement",
+    "Aus einer Vorlage – mit Ordner, Datenbank und Adresse.": "From a template – with folder, database and address.",
+    "Node.js, Python, ein eigener Befehl oder Docker.": "Node.js, Python, a custom command or Docker.",
+    "Valheim, Rust, Palworld und viele mehr.": "Valheim, Rust, Palworld and many more.",
+    "Der Spieler wird getrennt und kann sich danach wieder verbinden.": "The player is disconnected and can reconnect afterwards.",
+    "Werfen": "Kick",
+    "Protokoll durchsuchen …": "Search log …",
+    "Protokoll durchsuchen": "Search log",
+    "Mit Fingerabdruck bestätigen": "Confirm with fingerprint",
+    "Alles stoppen, Dienste stoppen und Spieler werfen zusätzlich mit dem Passkey bestätigen.": "Also confirm stopping everything, stopping services and kicking players with your passkey.",
+    "Mit Passkey bestätigen": "Confirm with passkey",
+    "Für diese Adresse gibt es noch keinen Passkey – in der vollen Ansicht unter Livebetrieb → Fernzugriff einrichten.": "There is no passkey for this address yet – set one up in the full view under Going live → Remote access.",
+    "Keine Verbindung – und noch kein gespeicherter Stand.": "No connection – and no saved state yet.",
+    "Offline – Knöpfe gehen erst wieder mit Verbindung.": "Offline – buttons work again once connected.",
+    "Der Dienst ist kurz nicht erreichbar.": "The service is briefly unreachable.",
+    "1 Dienst läuft gerade und wird beendet.": "1 service is running and will be stopped.",
+    "1 Spieler ist online und fliegt vom Server.": "1 player is online and will be disconnected.",
+    "1 geteilte Adresse ist danach nicht mehr erreichbar.": "1 shared address will no longer be reachable.",
+    "1 Mailserver im Livebetrieb nimmt keine Mails mehr an.": "1 live mail server will stop accepting mail.",
+    "Der Fernzugriff bleibt an – Hostwerk selbst läuft weiter.": "Remote access stays on – Hostwerk itself keeps running.",
+    "Es läuft gerade kein Dienst.": "No service is running right now.",
+    "Alle Dienste stoppen?": "Stop all services?",
+    "Das Release enthält keine Update-Informationen.": "The release contains no update information.",
+    "Das Release enthält keine AppImage.": "The release contains no AppImage.",
+    "Für die AppImage fehlt die Prüfsumme – Update abgelehnt.": "The AppImage has no checksum – update rejected.",
+    "Prüfsumme stimmt nicht – Update verworfen.": "Checksum does not match – update discarded.",
+    "Diese Einstellung ist schon auf Standard.": "This setting is already at its default.",
+    "Bitte eine Git-Adresse angeben, z. B. https://github.com/name/projekt.git oder git@github.com:name/projekt.git.": "Please enter a Git address, e.g. https://github.com/name/project.git or git@github.com:name/project.git.",
+    "Ungültiger Ordnername.": "Invalid folder name.",
+    "Git ist auf diesem Rechner nicht installiert – unter System → Programme lässt es sich einrichten.": "Git is not installed on this computer – you can set it up under System → Programs.",
+    "Zugriff verweigert – für private Repositories Benutzer und Token angeben.": "Access denied – enter user and token for private repositories.",
+    "Kein Handbuch vorhanden.": "No manual available.",
+    "Beispiel: Hallo Welt mit PHP und Datenbank": "Example: Hello world with PHP and a database",
+    "Beispiel: Webseite mit PHP": "Example: website with PHP",
+    "Diese Art Dienst lässt sich nicht klonen.": "This kind of service cannot be cloned.",
+    "Zum Kopieren der Daten bitte den Server zuerst stoppen.": "To copy the data, please stop the server first.",
+    "Zum Kopieren der Welt bitte den Server zuerst stoppen.": "To copy the world, please stop the server first.",
+    "Server samt Welt kopieren …": "Copying server with world …",
+    "Server ohne Welt kopieren …": "Copying server without world …",
+    "Herunterladen …": "Downloading …",
+    "PHP-Pakete installieren (composer install) …": "Installing PHP packages (composer install) …",
+    "Node-Pakete installieren (npm install) …": "Installing Node packages (npm install) …",
+    "PHP installieren …": "Installing PHP …",
+    "Webserver einrichten …": "Setting up web server …",
+    "Datenbankserver einrichten …": "Setting up database server …",
+    "Beispiel-Projekt anlegen …": "Creating example project …",
+    "PHP installiert": "PHP installed",
+    "Geplante Aufgaben und was gerade im Hintergrund läuft.": "Scheduled tasks and what is running in the background.",
+    "Zuletzt besuchte Seiten (Alt+← / Alt+→)": "Recently visited pages (Alt+← / Alt+→)",
+    "Zuletzt besuchte Seiten": "Recently visited pages",
+    "Noch keine anderen Seiten besucht": "No other pages visited yet",
+    "Seitenleiste breit zeigen": "Show wide sidebar",
+    "Seitenleiste schmal (nur Symbole)": "Narrow sidebar (icons only)",
+    "Wird geklont – der Fortschritt steht unten rechts.": "Cloning – progress is shown at the bottom right.",
+    "Projekt aus Git klonen": "Clone project from Git",
+    "Hostwerk lädt das Repository und richtet es ein": "Hostwerk downloads the repository and sets it up",
+    "Klonen": "Clone",
+    "Adresse des Repositorys": "Repository address",
+    "https://github.com/name/projekt.git": "https://github.com/name/project.git",
+    "mein-projekt": "my-project",
+    "Nur für private Repositories": "Only for private repositories",
+    "Token oder Passwort (optional)": "Token or password (optional)",
+    "Token verschlüsselt im Tresor des Projekts merken": "Remember the token encrypted in the project's vault",
+    "Was passiert danach?": "What happens next?",
+    "composer.json → composer install, package.json → npm install, .env.example → .env. Der Token steht nie in der Adresse oder in .git/config.": "composer.json → composer install, package.json → npm install, .env.example → .env. The token never ends up in the address or in .git/config.",
+    "Abhängigkeiten installieren": "Install dependencies",
+    "Kopie angelegt – sie startet erst, wenn du sie startest.": "Copy created – it only starts when you start it.",
+    "Webordner mitkopieren (sonst teilen sich beide denselben Ordner)": "Copy the web folder too (otherwise both share the same folder)",
+    "Daten mitkopieren (alle Datenbanken, Benutzer und Passwörter)": "Copy the data too (all databases, users and passwords)",
+    "Welten mitkopieren (sonst entsteht beim ersten Start eine neue Welt)": "Copy the worlds too (otherwise a new world is created on first start)",
+    "Dienst klonen": "Clone service",
+    "Gleiche Einstellungen, neuer Port – die Kopie startet nicht von selbst": "Same settings, new port – the copy does not start by itself",
+    "Noch keiner angelegt": "None created yet",
+    "Klonen …": "Clone …",
+    "Das Beispiel wird eingerichtet – der Fortschritt steht unten rechts.": "The example is being set up – progress is shown at the bottom right.",
+    "Hostwerk einrichten": "Set up Hostwerk",
+    "Webseite mit PHP und Datenbank": "Website with PHP and a database",
+    "Hostwerk richtet Webserver, PHP und MariaDB ein und öffnet ein fertiges Beispiel.": "Hostwerk sets up a web server, PHP and MariaDB and opens a ready-made example.",
+    "Paper, Purpur, Vanilla oder Modpack – mit Welt und Spielerverwaltung.": "Paper, Purpur, Vanilla or a modpack – with world and player management.",
+    "Node.js, Python, ein eigener Befehl oder ein Docker-Dienst.": "Node.js, Python, a custom command or a Docker service.",
+    "Erst mal umsehen": "Just look around first",
+    "Nichts einrichten – die Übersicht zeigt jederzeit, wie es losgeht.": "Set up nothing – the dashboard always shows how to get started.",
+    "Später": "Later",
+    "Wofür nutzt du Hostwerk? Was du nicht brauchst, verschwindet aus der Seitenleiste – nichts wird gelöscht.": "What do you use Hostwerk for? What you don't need disappears from the sidebar – nothing is deleted.",
+    "Das dauert beim ersten Mal ein paar Minuten – Hostwerk lädt Webserver, PHP und Datenbank herunter.": "The first time this takes a few minutes – Hostwerk downloads web server, PHP and database.",
+    "Ganzes Handbuch drucken – im Druckdialog auch als PDF speichern": "Print the whole manual – the print dialog can also save it as PDF",
+    "Drucken / als PDF": "Print / as PDF",
+    "Nicht mehr oben anheften": "Unpin from top",
+    "Oben anheften": "Pin to top",
+    "Angeheftet": "Pinned",
+    "Webserver, Datenbank oder Minecraft samt Einstellungen kopieren": "Copy a web server, database or Minecraft server with its settings",
+    "Beispiel-Projekt": "Example project",
+    "Hallo Welt mit PHP und Datenbank – fertig eingerichtet": "Hello world with PHP and a database – fully set up",
+    "Adresse eingeben – Pakete und .env richtet Hostwerk ein": "Enter the address – Hostwerk sets up packages and .env",
+    "Eigene Seitenleiste für dieses Profil": "Own sidebar for this profile",
+    "Sichtbare Bereiche": "Visible areas",
+    "Minecraft, Spiele-Server, Dateien, Sicherungen": "Minecraft, game servers, files, backups",
+    "Dateien, Apps, Sicherungen, Livebetrieb": "Files, apps, backups, going live",
+    "Sprachpaket": "Language pack",
+    "Eigener Editor": "Custom editor",
+    "Benachrichtigung: Abstürze und Fehler": "Notification: crashes and errors",
+    "Benachrichtigung: Backups": "Notification: backups",
+    "Benachrichtigung: Geplante Aufgaben": "Notification: scheduled tasks",
+    "Benachrichtigung: Neue E-Mails": "Notification: new emails",
+    "Benachrichtigung: Updates": "Notification: updates",
+    "Mail-Fänger automatisch starten": "Start mail catcher automatically",
+    "Apache automatisch starten": "Start Apache automatically",
+    "MariaDB automatisch starten": "Start MariaDB automatically",
+    "Verzögerung beim Start": "Delay at start",
+    "Ausgeblendete Bereiche": "Hidden areas",
+    "Reihenfolge der Seitenleiste": "Sidebar order",
+    "Zugeklappte Bereiche der Seitenleiste": "Collapsed sidebar sections",
+    "Schmale Seitenleiste": "Narrow sidebar",
+    "Anordnung der Übersicht": "Dashboard layout",
+    "Eigene Tastenkürzel": "Custom shortcuts",
+    "Platz von Erweiterungen in der Seitenleiste": "Place of extensions in the sidebar",
+    "Tipps": "Tips",
+    "Alles auf Standard?": "Reset everything to default?",
+    "Alle Einstellungen in dieser Liste gehen auf den Standard zurück. Dienste, Projekte und Daten bleiben unberührt.": "All settings in this list go back to their defaults. Services, projects and data stay untouched.",
+    "Alles zurücksetzen": "Reset everything",
+    "Was habe ich geändert?": "What did I change?",
+    "Alles, was vom Standard abweicht": "Everything that differs from the default",
+    "Alles auf Standard": "Everything at default",
+    "Du hast an den allgemeinen Einstellungen nichts verändert.": "You have not changed any general settings.",
+    "jetzt": "now",
+    "Einstellungen exportiert – ohne Geheimnisse": "Settings exported – without secrets",
+    "Das ist keine Einstellungs-Datei aus Hostwerk.": "This is not a Hostwerk settings file.",
+    "Einstellungen übernehmen?": "Apply settings?",
+    "Einstellungen übernommen": "Settings applied",
+    "Alle Abweichungen vom Standard – mit Zurücksetzen": "All differences from the default – with reset",
+    "Alle Einstellungen als Datei – ohne Geheimnisse": "All settings as a file – without secrets",
+    "Einstellungen aus einer Datei übernehmen": "Apply settings from a file",
+    "Seitenleiste umsortiert": "Sidebar reordered",
+    "Erklärvideo": "Explainer video",
+    "Geführt einrichten": "Guided setup",
+    "Webserver, PHP und Datenbank werden eingerichtet, das Beispiel öffnet sich im Browser": "Web server, PHP and database are set up, the example opens in the browser",
+    "Beispiel ausprobieren: Hallo Welt mit PHP und Datenbank": "Try an example: hello world with PHP and a database",
+    "Oberflächen-Zoom": "Interface zoom",
+    "Macht Schrift und Bedienelemente überall größer oder kleiner – bis 200 %, ohne dass etwas abgeschnitten wird. Gilt überall, wo du Hostwerk öffnest – auch im Browser und auf dem Handy.": "Makes text and controls larger or smaller everywhere – up to 200 % without cutting anything off. Applies wherever you open Hostwerk – in the browser and on your phone too.",
+    "Auch heruntergeladene Pakete löschen?": "Also delete downloaded packages?",
+    "Für eine erneute Installation (PHP, Datenbanken, Java …) lädt Hostwerk sie dann wieder aus dem Internet.": "For a reinstall (PHP, databases, Java …) Hostwerk then downloads them from the internet again.",
+    "Hier ändert sich nichts – nur Ordner, Verknüpfungen und Java-Laufzeiten ansehen.": "Nothing changes here – just look at folders, shortcuts and Java runtimes.",
+    "Ansehen & öffnen": "View & open",
+    "Löscht Zwischenspeicher (lädt Hostwerk bei Bedarf neu) oder startet bzw. beendet Hostwerk – laufende Dienste sind dabei kurz weg.": "Deletes caches (Hostwerk reloads them when needed) or restarts or quits Hostwerk – running services are briefly gone.",
+    "Mit Bedacht": "With care",
+    "Was hier passiert, lässt sich nicht rückgängig machen.": "What happens here cannot be undone.",
+    "Zurück zur vorigen Seite": "Back to the previous page",
+    "Vorwärts zur nächsten Seite": "Forward to the next page",
+    "Datenbank-Dumps gibt es nur für MariaDB, MySQL, PostgreSQL und SQLite.": "Database dumps are only available for MariaDB, MySQL, PostgreSQL and SQLite.",
+    "Bitte mindestens ein Feld angeben, z. B. { \"email\": 1 }.": "Please enter at least one field, e.g. { \"email\": 1 }.",
+    "Die Ablaufzeit muss eine ganze Zahl in Sekunden sein.": "The expiry must be a whole number of seconds.",
+    "Eine Ablaufzeit (TTL) geht nur mit genau einem Datumsfeld.": "An expiry (TTL) only works with exactly one date field.",
+    "Der Index auf _id gehört zu jeder Sammlung und lässt sich nicht löschen.": "The index on _id belongs to every collection and cannot be deleted.",
+    "Rolle nicht gefunden": "Role not found",
+    "SQLite wird von dieser Hostwerk-Version nicht unterstützt (node:sqlite fehlt).": "SQLite is not supported by this Hostwerk version (node:sqlite is missing).",
+    "SQLite-Abfragen laufen im Hostwerk-Prozess und lassen sich nicht abbrechen.": "SQLite queries run inside the Hostwerk process and cannot be cancelled.",
+    "Verknüpfung (Nested Loop)": "Join (nested loop)",
+    "Sortieren": "Sort",
+    "Sortieren (Filesort)": "Sort (filesort)",
+    "Unterabfrage (zwischengespeichert)": "Subquery (materialized)",
+    "Unterabfragen in der Spaltenliste": "Subqueries in the column list",
+    "Fensterfunktionen": "Window functions",
+    "Verknüpfung (Block Nested Loop)": "Join (block nested loop)",
+    "Kurz-Sicherungen gibt es für Datenbankserver, die Hostwerk verwaltet. Exportiere die Tabelle vorher von Hand.": "Quick backups are available for database servers managed by Hostwerk. Export the table manually first.",
+    "Keine Datenbank ausgewählt.": "No database selected.",
+    "Die betroffene Tabelle wurde nicht erkannt – bitte von Hand sichern.": "The affected table was not recognized – please back it up manually.",
+    "Das ZIP ist keine Hostwerk-Sicherung (manifest.json fehlt). Lade stattdessen die .sql-Datei hoch.": "The ZIP is not a Hostwerk backup (manifest.json is missing). Upload the .sql file instead.",
+    "SQL-Dumps passen nur zu MariaDB, MySQL und PostgreSQL.": "SQL dumps only fit MariaDB, MySQL and PostgreSQL.",
+    "Bitte eine .sql-, .sql.gz- oder Hostwerk-.zip-Datei wählen.": "Please choose a .sql, .sql.gz or Hostwerk .zip file.",
+    "Der Dump legt keine Datenbank an – bitte angeben, in welche Datenbank er gehört.": "The dump does not create a database – please specify which database it belongs to.",
+    "Ungültiger Datenbankname.": "Invalid database name.",
+    "Datenbank und Tabelle fehlen.": "Database and table are missing.",
+    "Ungültiger Name für die Kopie (nur Buchstaben, Ziffern und _).": "Invalid name for the copy (letters, digits and _ only).",
+    "Sammlung nicht in der Sicherung.": "Collection not in the backup.",
+    "Für Redis gibt es keine einzelnen Tabellen.": "Redis has no individual tables.",
+    "Unbekannter Zeichensatz.": "Unknown character set.",
+    "Ohne Passwort wäre der Server für jeden im Netzwerk offen. Setze zuerst ein Passwort.": "Without a password, the server would be open to anyone on the network. Set a password first.",
+    "Fremden Dump als Sicherungsstand übernehmen": "Take over an external dump as a backup",
+    "Nur eine Sammlung zurückspielen": "Restore just one collection",
+    "Nur eine Tabelle zurückspielen – an ihren Platz oder als Kopie": "Restore just one table – in place or as a copy",
+    "Als Sicherungsstand übernommen – „Zurückspielen“ spielt ihn ein.": "Added as a backup – “Restore” loads it.",
+    "Dump hochladen": "Upload dump",
+    "SQL-Dump (.sql, .sql.gz) oder Hostwerk-Sicherung (.zip)": "SQL dump (.sql, .sql.gz) or Hostwerk backup (.zip)",
+    "Hostwerk-Sicherung (.zip)": "Hostwerk backup (.zip)",
+    "Datei auswählen oder hierher ziehen": "Choose a file or drag it here",
+    "Danach steht der Dump wie jede Sicherung in der Liste – ganz oder tabellenweise zurückspielbar.": "The dump then appears in the list like any backup – restorable in full or table by table.",
+    "Datenbank (nötig)": "Database (required)",
+    "Datenbank (falls der Dump keine anlegt)": "Database (if the dump does not create one)",
+    "Hostwerk legt sie beim Zurückspielen an, falls es sie noch nicht gibt.": "Hostwerk creates it when restoring if it does not exist yet.",
+    "Die Kopie hat keine Fremdschlüssel – deren Namen müssen eindeutig sein.": "The copy has no foreign keys – their names have to be unique.",
+    "Einzelne Tabelle zurückspielen": "Restore a single table",
+    "In dieser Sicherung stehen keine einzelnen Tabellen.": "This backup contains no individual tables.",
+    "Tabelle suchen …": "Search table …",
+    "Tabelle suchen": "Search table",
+    "Als Kopie neben die jetzige Tabelle": "As a copy next to the current table",
+    "Die bestehende Tabelle bleibt unberührt – du kannst vergleichen und Zeilen gezielt übernehmen.": "The existing table stays untouched – you can compare and take over rows selectively.",
+    "An ihren Platz (ersetzt die jetzige Tabelle)": "In place (replaces the current table)",
+    "Die jetzige Tabelle wird ersetzt. Hostwerk sichert sie vorher kurz – der Stand erscheint in dieser Liste.": "The current table will be replaced. Hostwerk backs it up first – that backup appears in this list.",
+    "Der Server muss laufen.": "The server must be running.",
+    "Abgleich-SQL:": "Sync SQL:",
+    "Rechts bekommt den Aufbau von links": "Right gets the structure of left",
+    "Rechts angleichen": "Align right",
+    "Links bekommt den Aufbau von rechts": "Left gets the structure of right",
+    "Hostwerk schreibt die nötigen CREATE- und ALTER-Anweisungen. Löschungen stehen nur auskommentiert im Skript – Daten gehen so nicht ungefragt verloren. Du siehst alles vor dem Ausführen.": "Hostwerk writes the necessary CREATE and ALTER statements. Deletions are only included as comments – so no data is lost without asking. You see everything before it runs.",
+    "Neue, geänderte und gelöschte Zeilen zeigen (für kleine Tabellen)": "Show new, changed and deleted rows (for small tables)",
+    "Die Tabelle hat keinen Primärschlüssel – verglichen wird die ganze Zeile, geänderte Zeilen erscheinen deshalb als „nur links“ und „nur rechts“.": "The table has no primary key – whole rows are compared, so changed rows appear as “only left” and “only right”.",
+    "Gleiche Zeilen": "Same rows",
+    "Beide Tabellen enthalten dieselben Daten.": "Both tables contain the same data.",
+    "Nur links": "Only left",
+    "Nur rechts": "Only right",
+    "rechts": "right",
+    "ohne Index": "no index",
+    "Geschätzte Kosten (je Datenbank eigene Einheit)": "Estimated cost (each database has its own unit)",
+    "Tabelle wird komplett gelesen": "table is read completely",
+    "Tabellen werden komplett gelesen": "tables are read completely",
+    "– ein Index auf den Spalten aus WHERE bzw. JOIN macht die Abfrage meist deutlich schneller.": "– an index on the columns from WHERE or JOIN usually makes the query much faster.",
+    "Alle Tabellen werden über einen Index gelesen.": "All tables are read via an index.",
+    "-- SQLite kann Typ, NULL und Standardwert einer Spalte nicht nachträglich ändern. -- Weg: neue Tabelle anlegen, Daten kopieren, alte löschen.": "-- SQLite cannot change the type, NULL or default of a column afterwards. -- Way: create a new table, copy the data, delete the old one.",
+    "-- SQLite kann einen Fremdschlüssel nicht einzeln löschen (Tabelle neu anlegen).": "-- SQLite cannot delete a single foreign key (recreate the table).",
+    "Aufbau": "Structure",
+    "feld oder adresse.ort": "field or address.city",
+    "Weiteres Feld": "Another field",
+    "Eindeutig (keine doppelten Werte)": "Unique (no duplicate values)",
+    "Nur Dokumente, die das Feld haben": "Only documents that have the field",
+    "Ablaufzeit in Sekunden": "Expiry in seconds",
+    "Optional: Dokumente löschen sich selbst (nur mit einem Datumsfeld)": "Optional: documents delete themselves (date field only)",
+    "Leer = aus den Feldern": "Empty = from the fields",
+    "Erneut analysieren": "Analyze again",
+    "Analysieren": "Analyze",
+    "Volltext": "Full text",
+    "Hostwerk zieht zufällige Dokumente und zählt je Feld, wie oft es vorkommt und welchen Typ es hat. So siehst du z. B., dass ein Preis manchmal als Text gespeichert wurde.": "Hostwerk samples random documents and counts how often each field occurs and which type it has. That way you see, for example, that a price was sometimes stored as text.",
+    "Aufbau der Sammlung": "Structure of the collection",
+    "Felder, Häufigkeit und Typen aus einer Stichprobe.": "Fields, frequency and types from a sample.",
+    "Die Sammlung ist leer": "The collection is empty",
+    "Vorkommen": "Occurrence",
+    "Typen": "Types",
+    "Speicher je Schlüsselmuster": "Memory per key pattern",
+    "Hostwerk liest eine Stichprobe der Schlüssel und fragt je Schlüssel den Speicher ab. Teile, die nach Nummer oder ID aussehen, werden zu „*“ zusammengefasst – so siehst du, welche Art von Daten den Speicher füllt.": "Hostwerk reads a sample of keys and asks for the memory of each key. Parts that look like a number or ID are combined into “*” – so you see which kind of data fills the memory.",
+    "Wer belegt den Speicher?": "What is using the memory?",
+    "Messen startet eine Stichprobe – bei großen Datenbanken dauert das ein paar Sekunden.": "Measuring takes a sample – with large databases this takes a few seconds.",
+    "· Größen geschätzt (der Server kennt MEMORY USAGE nicht)": "· sizes estimated (the server does not know MEMORY USAGE)",
+    "Muster": "Pattern",
+    "Schlüssel mit diesem Muster zeigen": "Show keys with this pattern",
+    "Größte Schlüssel": "Biggest keys",
+    "Rechte je Datenbank ansehen und ändern": "View and change permissions per database",
+    "Aus dem Netzwerk erreichbar machen?": "Make reachable from the network?",
+    "Gespeichert – der Server wurde neu gestartet.": "Saved – the server was restarted.",
+    "Gespeichert – gilt beim nächsten Start.": "Saved – applies on the next start.",
+    "Hostwerk schreibt daraus die Konfiguration des Servers. Änderungen wirken nach einem Neustart – läuft der Server, startet Hostwerk ihn beim Speichern neu.": "Hostwerk writes the server configuration from this. Changes take effect after a restart – if the server is running, Hostwerk restarts it when saving.",
+    "Aus dem Netzwerk erreichbar": "Reachable from the network",
+    "Andere Geräte im Netzwerk können sich verbinden.": "Other devices on the network can connect.",
+    "Nur dieser PC (127.0.0.1).": "Only this PC (127.0.0.1).",
+    "Ohne Passwort bleibt der Server nur auf diesem PC erreichbar.": "Without a password, the server stays reachable only on this PC.",
+    "Offen im Netzwerk": "Open on the network",
+    "Alle Geräte in deinem Netzwerk erreichen den Server über Port": "All devices on your network reach the server via port",
+    ". Für das Internet ist das nicht gedacht – dafür lieber einen SSH-Tunnel nutzen.": ". This is not meant for the internet – use an SSH tunnel for that instead.",
+    "shared_buffers: Arbeitsspeicher für zwischengespeicherte Daten. Üblich: etwa ein Viertel des Arbeitsspeichers, den die Datenbank nutzen darf.": "shared_buffers: memory for cached data. Usual: about a quarter of the memory the database may use.",
+    "innodb_buffer_pool_size: Arbeitsspeicher für Tabellen und Indizes. Je größer, desto seltener muss die Platte ran. Standard in Hostwerk: 256 MB.": "innodb_buffer_pool_size: memory for tables and indexes. The larger, the less often the disk is needed. Hostwerk default: 256 MB.",
+    "Max. Verbindungen": "Max. connections",
+    "Wie viele Programme gleichzeitig verbunden sein dürfen. Leer = Standard der Datenbank (meist 100 bzw. 151).": "How many programs may be connected at the same time. Empty = database default (usually 100 or 151).",
+    "Gilt für neue Datenbanken und Tabellen ohne eigene Angabe. utf8mb4 kann alle Zeichen samt Emojis.": "Applies to new databases and tables without their own setting. utf8mb4 supports all characters including emojis.",
+    "UTF-8, deutsche Sortierung (german2)": "UTF-8, German sorting (german2)",
+    "UTF-8, Groß/klein genau (bin)": "UTF-8, case-exact (bin)",
+    "Latin-1 (alt, nur für alte Projekte)": "Latin-1 (old, only for old projects)",
+    "Langsame Abfragen aufzeichnen": "Record slow queries",
+    "Erscheinen im Datenbank-Studio unter „Server & Benutzer“.": "They appear in the database studio under “Server & users”.",
+    "Ab wie vielen Millisekunden gilt eine Abfrage als langsam?": "From how many milliseconds is a query considered slow?",
+    "Speichern und neu starten": "Save and restart",
+    "Liste leeren": "Clear list",
+    "Keine langsamen Abfragen": "No slow queries",
+    "Bisher ist nichts aufgefallen.": "Nothing has stood out so far.",
+    "Schalte „Aufzeichnen“ ein – danach sammelt die Datenbank langsame Abfragen.": "Turn on “Record” – the database then collects slow queries.",
+    "Ausführungsplan als Baum": "Execution plan as a tree",
+    "Im SQL-Editor öffnen (zum Erklären/Optimieren)": "Open in the SQL editor (to explain/optimize)",
+    "Ausführungsplan": "Execution plan",
+    "Rechte geändert": "Permissions changed",
+    "Rechte auf alle Datenbanken": "Permissions on all databases",
+    "Dieser Benutzer darf überall alles (z. B. Superuser oder ALL ON *.*). Einzelne Datenbanken einzuschränken wirkt dann nicht.": "This user may do everything everywhere (e.g. superuser or ALL ON *.*). Restricting individual databases then has no effect.",
+    "Noch keine Datenbanken.": "No databases yet.",
+    "Rechte nur auf einzelne Tabellen": "Permissions on individual tables only",
+    "einzelne Tabellen": "individual tables",
+    "So steht es in der Datenbank": "As stored in the database",
+    "Wirkt nach einem Neustart des Servers (PostgreSQL lädt die Erweiterung beim Start).": "Takes effect after a server restart (PostgreSQL loads the extension at startup).",
+    "PostgreSQL braucht dafür pg_stat_statements in shared_preload_libraries und einen Neustart.": "PostgreSQL needs pg_stat_statements in shared_preload_libraries and a restart for this.",
+    "Kein Zugriff": "No access",
+    "Lesen + Schreiben": "Read + write",
+    "Alle Rechte": "All permissions",
+    "Langsame Abfragen": "Slow queries",
+    "Welche Abfragen am meisten Zeit kosten. MySQL 8 und MariaDB mit performance_schema zählen alle Abfragen mit; sonst schreibt das Slow-Log alles, was länger als die Grenze dauert. PostgreSQL nutzt pg_stat_statements.": "Which queries take the most time. MySQL 8 and MariaDB with performance_schema count all queries; otherwise the slow log records everything that takes longer than the limit. PostgreSQL uses pg_stat_statements.",
+    "Vorher die betroffenen Tabellen sichern (Kurz-Sicherung)": "Back up the affected tables first (quick backup)",
+    "Angeheftet – unter „Angeheftet“ nebeneinander": "Pinned – side by side under “Pinned”",
+    "Diese Verbindung ist schreibgeschützt – nur lesende Abfragen laufen.": "This connection is read-only – only reading queries run.",
+    "Nur lesen": "Read only",
+    "Länger laufende Abfragen bricht Hostwerk auf dem Server ab": "Hostwerk cancels longer-running queries on the server",
+    "Platzhalter": "Placeholders",
+    "Ausführungsplan als Baum – zeigt, wo die Abfrage Zeit verliert": "Execution plan as a tree – shows where the query loses time",
+    "Ordentlich einrücken – Zeichenketten und Kommentare bleiben unverändert": "Indent neatly – strings and comments stay unchanged",
+    "Zurück zum Ergebnis": "Back to the result",
+    "angeheftetes Ergebnis": "pinned result",
+    "angeheftete Ergebnisse": "pinned results",
+    "Lösen": "Unpin",
+    "Ergebnis stehen lassen und mit späteren vergleichen": "Keep the result and compare it with later ones",
+    "Die gemerkten Abfragen bleiben erhalten.": "Saved queries are kept.",
+    "Zeilen aus einer CSV- oder Excel-Datei übernehmen": "Take over rows from a CSV or Excel file",
+    "Beispielzeilen passend zu den Spalten erzeugen": "Create sample rows matching the columns",
+    "Testdaten": "Test data",
+    "Als SQL-Datei": "As an SQL file",
+    "Passend zu Spaltentyp und -name": "Matching column type and name",
+    "E-Mail-Spalten bekommen E-Mail-Adressen, Datumsspalten Datumswerte, Fremdschlüssel nur Werte, die es in der verknüpften Tabelle schon gibt. Automatisch hochgezählte Schlüssel vergibt die Datenbank.": "Email columns get email addresses, date columns dates, foreign keys only values that already exist in the linked table. Auto-incremented keys are assigned by the database.",
+    "Die Datei enthält keine Zeilen.": "The file contains no rows.",
+    "CSV- oder Excel-Datei (erste Zeile = Spaltennamen)": "CSV or Excel file (first row = column names)",
+    ".csv- oder .xlsx-Datei auswählen oder hierher ziehen": "Choose a .csv or .xlsx file or drag it here",
+    "Das Trennzeichen (; , Tab) erkennt Hostwerk selbst.": "Hostwerk detects the delimiter (; , tab) itself.",
+    "Spalte der Tabelle": "Table column",
+    "aus der Datei": "from the file",
+    "– nicht füllen –": "– do not fill –",
+    "Vorhandene Zeilen vorher löschen": "Delete existing rows first",
+    "Import fehlgeschlagen": "Import failed",
+    "Schreibschutz aufheben": "Remove write protection",
+    "Nur lesen: schützt vor versehentlichem UPDATE, DELETE oder DROP": "Read only: protects against accidental UPDATE, DELETE or DROP",
+    "Schreibschutz einschalten": "Turn on write protection",
+    "Schreibschutz aus": "Write protection off",
+    "Nur lesen – Änderungen sind jetzt gesperrt": "Read only – changes are now blocked",
+    "SQLite-Datei": "SQLite file",
+    "Laravel-Datenbank": "Laravel database",
+    "Vollständiger Pfad zur .sqlite- bzw. .db-Datei": "Full path to the .sqlite or .db file",
+    "SQLite-Datei wählen": "Choose SQLite file",
+    "C:\\Projekte\\shop\\database\\database.sqlite": "C:\\Projects\\shop\\database\\database.sqlite",
+    "schon verbunden": "already connected",
+    "Über SSH-Tunnel verbinden": "Connect via SSH tunnel",
+    "Für eine Datenbank auf deinem VPS, deren Port nicht offen ist: Hostwerk meldet sich per SSH am Server an und leitet die Verbindung durch. Host oben ist dann die Adresse aus Sicht des Servers – meist 127.0.0.1.": "For a database on your VPS whose port is not open: Hostwerk logs into the server via SSH and forwards the connection. The host above is then the address as seen from the server – usually 127.0.0.1.",
+    "SSH-Benutzer": "SSH user",
+    "Leer lassen, wenn du einen Schlüssel nutzt": "Leave empty if you use a key",
+    "Privaten Schlüssel wählen": "Choose private key",
+    "Schützt z. B. eine Produktions- oder Fernverbindung: Hostwerk führt hier nur lesende Abfragen aus – kein UPDATE, DELETE oder DROP aus Versehen.": "Protects e.g. a production or remote connection: Hostwerk only runs reading queries here – no accidental UPDATE, DELETE or DROP.",
+    "Unterabfragen": "Subqueries",
+    "HAVING-Unterabfragen": "HAVING subqueries",
+    "· Trennzeichen „": "· delimiter “",
+    "Links angleichen": "Align left",
+    "Stichprobe": "Sample",
+    "Zeichensatz": "Character set",
+    "Aufzeichnen": "Record",
+    "Für „nur bei Änderungen“ bitte einen vollständigen Ordnerpfad angeben.": "For “only when something changed” please enter a full folder path.",
+    "Wiederholen, Bedingungen & Benachrichtigen": "Retries, conditions & notifications",
+    "Bei Fehler danach ausführen": "On failure, run next",
+    "nichts": "nothing",
+    "Verpasste Läufe nachholen": "Catch up on missed runs",
+    "Verpasste Läufe": "Missed runs",
+    "War Hostwerk zum geplanten Zeitpunkt aus, läuft die Aufgabe beim nächsten Start einmal nach. Ausgeschaltet wird der Termin ausgelassen und im Verlauf vermerkt.": "If Hostwerk was off at the scheduled time, the task runs once at the next start. When turned off, the run is skipped and noted in the history.",
+    "Nur laufen, wenn …": "Only run if …",
+    "Bedingungen": "Conditions",
+    "Gilt für geplante Läufe und Ketten. Ist eine Bedingung nicht erfüllt, wird der Lauf ausgelassen und im Verlauf vermerkt. „Jetzt“ läuft immer.": "Applies to scheduled runs and chains. If a condition isn’t met, the run is skipped and noted in the history. “Now” always runs.",
+    "… dieser Dienst läuft": "… this service is running",
+    "egal": "any",
+    "… der Rechner am Netzstrom hängt": "… the computer is plugged in",
+    "Nur am Netzstrom": "Only when plugged in",
+    "… sich in diesem Ordner etwas geändert hat": "… something changed in this folder",
+    "Seit dem letzten Lauf. Leer = egal.": "Since the last run. Empty = don’t care.",
+    "Woche": "Week",
+    "Live-Ausgabe ansehen": "View live output",
+    "abgebrochen": "canceled",
+    "beendet – Ergebnis im Verlauf": "finished – result in the history",
+    "← Vorherige Woche": "← Previous week",
+    "Nächste Woche →": "Next week →",
+    "sehr oft – nur die ersten Termine gezeigt.": "very often – only the first runs are shown.",
+    "Aufgabe läuft": "task runs",
+    "Aufgaben laufen": "tasks run",
+    "Ohne festen Termin:": "Without a fixed time:",
+    "nach anderer Aufgabe": "after another task",
+    "Wiederholung abbrechen": "Cancel retry",
+    "Live-Ausgabe": "Live output",
+    "Bedingung nicht erfüllt: der Rechner läuft auf Akku.": "Condition not met: the computer is on battery.",
+    "Ausgelassen – der vorige Lauf war noch nicht fertig.": "Skipped – the previous run hadn’t finished yet.",
+    "Verpasst, weil Hostwerk nicht lief – nicht nachgeholt (so eingestellt).": "Missed because Hostwerk wasn’t running – not caught up (as configured).",
+    "Von Hand abgebrochen.": "Canceled by hand.",
+    "ausgelassen": "skipped",
+    "Ungültiger Pfad": "Invalid path",
+    "Als UTF-8 speichern?": "Save as UTF-8?",
+    "Als UTF-8 speichern": "Save as UTF-8",
+    "ZIP wird angelegt …": "Creating ZIP …",
+    "Miteinander vergleichen": "Compare with each other",
+    "Mit älterer Fassung vergleichen …": "Compare with an older version …",
+    "Als ZIP hier ablegen": "Save as ZIP here",
+    "Suchen und Ersetzen …": "Find and replace …",
+    "Die zwei Dateien vergleichen": "Compare the two files",
+    "Zeichenkodierung – beim Speichern beibehalten": "Character encoding – kept when saving",
+    "5.000 Zeilen davor laden": "Load the 5,000 lines before",
+    "Aufheben": "Keep for",
+    "Ältere Einträge werden automatisch gelöscht. Wird der Papierkorb größer als erlaubt, fliegen die ältesten zuerst raus.": "Older entries are deleted automatically. If the trash grows beyond the limit, the oldest go first.",
+    "Vergleich nicht möglich": "Comparison not possible",
+    "Beide Fassungen sind gleich": "Both versions are identical",
+    "Mit älterer Fassung vergleichen": "Compare with an older version",
+    "Keine ältere Fassung im Papierkorb": "No older version in the trash",
+    "Ältere Fassungen entstehen beim Löschen, beim Verwerfen in Git und vor „Suchen und Ersetzen“. Schnappschuss-Fassungen vergleichst du unter Projekte → Schnappschüsse.": "Older versions are created when deleting, when discarding in Git and before “Find and replace”. Compare snapshot versions under Projects → Snapshots.",
+    "Ersetzt – der alte Stand liegt im Papierkorb": "Replaced – the old version is in the trash",
+    "Suchen und Ersetzen": "Find and replace",
+    "Ersetzen durch": "Replace with",
+    "Groß-/Kleinschreibung beachten": "Match case",
+    "Im Ersatz stehen $1, $2 … für die Gruppen in Klammern.": "In the replacement, $1, $2 … stand for the groups in parentheses.",
+    "Übersprungen werden node_modules, vendor, .git und Dateien über 1 MB. Vor dem Ersetzen kommt jede geänderte Datei als Kopie in den Papierkorb.": "node_modules, vendor, .git and files over 1 MB are skipped. Before replacing, every changed file is copied to the trash.",
+    "(nur die ersten 4.000 Dateien durchsucht)": "(only the first 4,000 files searched)",
+    "abwählen": "deselect",
+    "Gelöschte Dateien und Ordner bleiben hier eine Weile, danach räumt Hostwerk sie selbst weg.": "Deleted files and folders stay here for a while, then Hostwerk cleans them up by itself.",
+    "Datei ist zu groß für den Editor (> 5 MB) – die letzten 5.000 Zeilen lassen sich ansehen.": "File is too large for the editor (> 5 MB) – the last 5,000 lines can be viewed.",
+    "Für den Vergleich zu groß (> 5 MB).": "Too large to compare (> 5 MB).",
+    "Binärdateien lassen sich nicht vergleichen.": "Binary files can’t be compared.",
+    "Ordner lassen sich nicht vergleichen – bitte eine Datei wählen.": "Folders can’t be compared – please pick a file.",
+    "Bitte einen Suchtext angeben.": "Please enter a search text.",
+    "Der Suchausdruck passt auf leeren Text – bitte genauer angeben.": "The search pattern matches empty text – please be more specific.",
+    "Bitte etwas auswählen.": "Please select something.",
+    "Unbekannte Zeichenkodierung.": "Unknown character encoding.",
+    "Schnappschüsse sind nicht verfügbar.": "Snapshots aren’t available.",
+    "vor „Alles verwerfen“": "before “Discard all”",
+    "Seit dem Snapshot geändert": "Changed since the snapshot",
+    "← Zurück zur Liste": "← Back to the list",
+    "Keine Änderung am Inhalt.": "No change to the content.",
+    "Der Projektordner ist auf dem Stand des Snapshots.": "The project folder matches the snapshot.",
+    "Was ist anders?": "What changed?",
+    "Außerdem weglassen": "Also leave out",
+    "Ausschlüsse": "Exclusions",
+    "Beim Snapshot weglassen": "Leave out of snapshots",
+    "Name oder Muster": "Name or pattern",
+    "z. B. *.zip oder storage": "e.g. *.zip or storage",
+    "Ausschluss": "Exclusion",
+    "Bitte die Schlüsseldatei angeben (z. B. ~/.ssh/id_ed25519).": "Please enter the key file (e.g. ~/.ssh/id_ed25519).",
+    "Auf Stand": "Up to date",
+    "Ungültiger Remote-Name": "Invalid remote name",
+    "Der aktuelle Branch lässt sich nicht löschen – erst zu einem anderen wechseln.": "The current branch can’t be deleted – switch to another one first.",
+    "Ungültiger Tag-Name (z. B. v1.2.0)": "Invalid tag name (e.g. v1.2.0)",
+    "Ungültiger Tag- oder Remote-Name": "Invalid tag or remote name",
+    "Ungültiger Tag-Name": "Invalid tag name",
+    "Die Datei ist noch nicht committet – es gibt keinen Verlauf.": "The file isn’t committed yet – there’s no history.",
+    "Das ist der öffentliche Schlüssel (.pub) – bitte die Datei ohne .pub wählen.": "That’s the public key (.pub) – please pick the file without .pub.",
+    "Bitte einen einfachen Dateinamen angeben (Buchstaben, Ziffern, . _ -).": "Please enter a simple file name (letters, digits, . _ -).",
+    "ssh-keygen wurde nicht gefunden – unter Windows „OpenSSH-Client“ in den optionalen Features aktivieren oder Git for Windows installieren.": "ssh-keygen wasn’t found – on Windows enable “OpenSSH Client” in the optional features or install Git for Windows.",
+    "Wer hat welche Zeile geändert?": "Who changed which line?",
+    "Für eine Datei zeigen, wer welche Zeile zuletzt geändert hat": "Show who last changed each line of a file",
+    "Wer hat was geändert?": "Who changed what?",
+    "Zeilen-Verlauf": "Line history",
+    "Datei im Projekt": "File in the project",
+    "z. B. src/index.php": "e.g. src/index.php",
+    "Neues vom Server holen, ohne etwas zu ändern (git fetch)": "Get news from the server without changing anything (git fetch)",
+    "Vom Server geholt": "Fetched from the server",
+    "Fetch": "Fetch",
+    "Kein Verlauf": "No history",
+    "← Zurück": "← Back",
+    "noch nicht committet": "not committed yet",
+    "Tags": "Tags",
+    "Neuer Tag": "New tag",
+    "Name (z. B. v1.2.0)": "Name (e.g. v1.2.0)",
+    "z. B. Erste stabile Version": "e.g. First stable version",
+    "Noch keine Tags. Mit einem Tag markierst du eine Version, z. B. v1.0.0.": "No tags yet. A tag marks a version, e.g. v1.0.0.",
+    "Neuer SSH-Schlüssel": "New SSH key",
+    "Schlüssel angelegt – öffentlicher Teil ist kopiert": "Key created – public part copied",
+    "ssh-keygen fehlt (OpenSSH-Client oder Git for Windows)": "ssh-keygen is missing (OpenSSH Client or Git for Windows)",
+    "Noch kein Schlüssel. „Neu“ legt einen modernen ed25519-Schlüssel an.": "No key yet. “New” creates a modern ed25519 key.",
+    "Öffentlichen Schlüssel kopieren": "Copy public key",
+    "Öffentlicher Schlüssel kopiert": "Public key copied",
+    "Eintragen bei:": "Add at:",
+    "Der Branch verschwindet nur hier auf diesem Rechner. Auf dem Server bleibt er, bis du ihn dort löschst.": "The branch only disappears here on this computer. It stays on the server until you delete it there.",
+    "Nicht zusammengeführte Commits": "Unmerged commits",
+    "Trotzdem löschen": "Delete anyway",
+    "Alle Änderungen verwerfen?": "Discard all changes?",
+    "Alles wird auf den letzten Commit zurückgesetzt. Vorher legt Hostwerk einen Schnappschuss des Projekts an, und jede Datei liegt zusätzlich im Papierkorb.": "Everything is reset to the last commit. Hostwerk takes a snapshot of the project first, and every file also goes to the trash.",
+    "Die Dateien werden auf den letzten Commit zurückgesetzt. Den bisherigen Stand findest du im Papierkorb.": "The files are reset to the last commit. You’ll find the previous version in the trash.",
+    "Alles verwerfen": "Discard all",
+    "Verworfen – Schnappschuss und Papierkorb haben den alten Stand": "Discarded – the snapshot and the trash have the old version",
+    "Pull Request öffnen": "Open pull request",
+    "SSH-Schlüssel statt Passwort (optional)": "SSH key instead of password (optional)",
+    "z. B. ~/.ssh/id_ed25519 – leer = mit Passwort anmelden.": "e.g. ~/.ssh/id_ed25519 – empty = sign in with password.",
+    "Privaten SSH-Schlüssel wählen": "Choose private SSH key",
+    "Auf dem Server wurde etwas geändert": "Something was changed on the server",
+    "Trotzdem veröffentlichen": "Publish anyway",
+    "Noch kein Vergleich möglich – erst nach dem nächsten Hochladen.": "No comparison possible yet – only after the next upload.",
+    "Prüfen, ob auf dem Server seit dem letzten Hochladen jemand Dateien geändert hat": "Check whether someone changed files on the server since the last upload",
+    "Server-Stand": "Server state",
+    "Anmeldung": "Sign-in",
+    "Schlüsseldatei": "Key file",
+    "Der private Schlüssel, z. B. ~/.ssh/id_ed25519. Neue Schlüssel legst du unter Git → SSH-Schlüssel an.": "The private key, e.g. ~/.ssh/id_ed25519. Create new keys under Git → SSH keys.",
+    "Vorher prüfen, ob auf dem Server jemand Dateien geändert hat": "Check first whether someone changed files on the server",
+    "Danach auf dem Server ausführen (ein Befehl pro Zeile)": "Then run on the server (one command per line)",
+    "Läuft per SSH im Zielordner, z. B. „php artisan migrate --force“. Bricht beim ersten Fehler ab.": "Runs via SSH in the target folder, e.g. “php artisan migrate --force”. Stops at the first error.",
+    "Server-Stand prüfen …": "Checking server state …",
+    "Ohne ZIP wird der Ordner nicht entfernt.": "Without a ZIP the folder isn’t removed.",
+    "Dieses Skript gibt es im Projekt nicht (mehr).": "This script doesn’t exist in the project (any more).",
+    "Ungültiger Skriptname": "Invalid script name",
+    "Beim Anlegen fragen": "Ask when creating",
+    "Fragen beim Anlegen": "Questions when creating",
+    "Trage einen Text ein, der im Projekt vorkommt (z. B. den Firmennamen), und die Frage dazu. Hostwerk ersetzt ihn in allen Textdateien durch einen Platzhalter und fragt beim Anlegen nach dem neuen Wert.": "Enter a text that appears in the project (e.g. the company name) and the question for it. Hostwerk replaces it with a placeholder in all text files and asks for the new value when creating.",
+    "Text im Projekt, z. B. Muster GmbH": "Text in the project, e.g. Example Ltd",
+    "Frage, z. B. Firmenname": "Question, e.g. company name",
+    "Text im Projekt": "Text in the project",
+    "Frage beim Anlegen": "Question when creating",
+    "Frage entfernen": "Remove question",
+    "Frage hinzufügen": "Add question",
+    "Abhängigkeiten-Wächter": "Dependency watch",
+    "Wöchentlich prüfen": "Check weekly",
+    "Noch nicht geprüft. Hostwerk fragt npm outdated, npm audit und composer outdated – am Projekt ändert sich dabei nichts.": "Not checked yet. Hostwerk asks npm outdated, npm audit and composer outdated – nothing in the project changes.",
+    "veraltetes Paket": "outdated package",
+    "veraltete Pakete": "outdated packages",
+    "keine bekannten Lücken": "no known vulnerabilities",
+    "Größerer Versionssprung – vorher die Änderungen lesen": "Bigger version jump – read the changes first",
+    "Letzte Testläufe (links = neuester, Höhe = Dauer)": "Recent test runs (left = newest, height = duration)",
+    "grün": "green",
+    "rot": "red",
+    "Archivieren": "Archive",
+    "Archivieren …": "Archive …",
+    "Archiviert": "Archived",
+    "Das Projekt verschwindet aus der Liste, du kannst es jederzeit zurückholen.": "The project disappears from the list – you can bring it back any time.",
+    "Ordner als ZIP sichern (ohne node_modules und vendor)": "Save the folder as ZIP (without node_modules and vendor)",
+    "Ordner danach in den Papierkorb legen": "Move the folder to the trash afterwards",
+    "Angeheftete Skripte erscheinen als Knopf oben auf der Projektseite. Dauerhafte Befehle wie „npm run dev“ richtest du besser als App ein.": "Pinned scripts appear as a button at the top of the project page. Long-running commands like “npm run dev” are better set up as an app.",
+    "Als Knopf anheften": "Pin as button",
+    "lösen": "unpin",
+    "anheften": "pin",
+    "Notizen & Aufgaben": "Notes & to-dos",
+    "Gedanken, Zugänge (ohne Passwörter), nächste Schritte …": "Thoughts, accesses (no passwords), next steps …",
+    "Notizen zum Projekt": "Notes on the project",
+    "Neue Aufgabe …": "New to-do …",
+    "Ergänzt – Werte noch anpassen": "Added – adjust the values now",
+    "Aus dem Archiv holen": "Restore from archive",
+    "Wieder in der Liste": "Back in the list",
+    "keine Antwort": "no answer",
+    "Die Gesundheits-Adresse ist ein Pfad wie „/health“.": "The health address is a path like “/health”.",
+    "Bun-Skript": "Bun script",
+    "Deno-Skript": "Deno script",
+    "Go-Programm": "Go program",
+    ".NET-Programm": ".NET program",
+    "Java-Programm (JAR)": "Java program (JAR)",
+    "Startdatei (optional)": "Start file (optional)",
+    "Apps nutzen automatisch die Version aus .nvmrc, .node-version oder „engines“ in der package.json, wenn sie hier installiert ist.": "Apps automatically use the version from .nvmrc, .node-version or “engines” in package.json if it’s installed here.",
+    "Beim Hersteller laden": "Get it from the vendor",
+    "Andere Version …": "Other version …",
+    "Passende Version installieren": "Install matching version",
+    "Entwicklungsmodus": "Development mode",
+    "Bei jeder gespeicherten Änderung im Projektordner neu starten (node_modules, .git, Build-Ordner ausgenommen).": "Restart on every saved change in the project folder (except node_modules, .git, build folders).",
+    "Gesundheit & Neustart": "Health & restart",
+    "Gesundheits-Adresse (optional)": "Health address (optional)",
+    "Braucht einen Port.": "Needs a port.",
+    "Eigene Neustart-Regel": "Custom restart rule",
+    "Standard: bis zu 3 Versuche in 10 Minuten (nach 2, 5 und 15 Sekunden).": "Default: up to 3 attempts in 10 minutes (after 2, 5 and 15 seconds).",
+    "Höchstens": "At most",
+    "Pause davor": "Pause before",
+    "Aufgeben nach so vielen Versuchen in": "Give up after that many attempts within",
+    "Regel speichern": "Save rule",
+    "Gespeichert – wirkt nach einem Neustart der App": "Saved – takes effect after restarting the app",
+    "Hintergrund-Prozesse": "Background processes",
+    "Laufen neben der App im selben Ordner, z. B. Warteschlangen („php artisan queue:work“) oder ein zweiter Dienst. Sie starten und stoppen mit der App und werden bei Abstürzen nach derselben Regel neu gestartet.": "Run next to the app in the same folder, e.g. queues (“php artisan queue:work”) or a second service. They start and stop with the app and are restarted after crashes by the same rule.",
+    "Keine.": "None.",
+    "Name des Hintergrund-Prozesses": "Name of the background process",
+    "Befehl des Hintergrund-Prozesses": "Command of the background process",
+    "Hintergrund-Prozess entfernen": "Remove background process",
+    "Java-Archiv": "Java archive",
+    "JavaScript/TypeScript": "JavaScript/TypeScript",
+    ". (leer = go run .)": ". (empty = go run .)",
+    "leer = dotnet run": "empty = dotnet run",
+    "Selbstheilung ist für diesen Dienst ausgeschaltet.": "Self-healing is turned off for this service.",
+    "Die Datei wurde inzwischen geändert – bitte neu laden.": "The file was changed in the meantime – please reload.",
+    "Für dieses Image gibt es keine gesicherte vorige Fassung.": "There’s no saved previous version for this image.",
+    "Ordner nicht lesbar – läuft der Container?": "Folder not readable – is the container running?",
+    "Kopieren fehlgeschlagen": "Copying failed",
+    "Ordner lassen sich hier nicht herunterladen – bitte eine Datei wählen.": "Folders can’t be downloaded here – please pick a file.",
+    "Bitte einen absoluten Pfad im Container angeben (z. B. /app).": "Please enter an absolute path in the container (e.g. /app).",
+    "Diesen Ordner kennt Hostwerk nicht als Projekt oder Compose-Projekt.": "Hostwerk doesn’t know this folder as a project or compose project.",
+    "Der Container läuft nicht – Dateien lassen sich nur in laufenden Containern ansehen.": "The container isn’t running – files can only be viewed in running containers.",
+    "Gesundheitsprüfung des Containers (HEALTHCHECK)": "Container health check (HEALTHCHECK)",
+    "gesund": "healthy",
+    "krank": "unhealthy",
+    "Pfad im Container": "Path in the container",
+    "Datei hineinkopieren": "Copy a file in",
+    "Leer.": "Empty.",
+    "kein HEALTHCHECK im Image": "no HEALTHCHECK in the image",
+    "in Folge": "in a row",
+    "Fehlschlag": "failure",
+    "Fehlschläge": "failures",
+    "Netzwerke nicht lesbar": "Networks not readable",
+    "Container im selben Netz erreichen sich über ihren Namen (z. B. „db“). bridge, host und none bringt Docker selbst mit.": "Containers in the same network reach each other by name (e.g. “db”). bridge, host and none come with Docker itself.",
+    "nur intern": "internal only",
+    "keine Container": "no containers",
+    "Gespeichert – Compose startet neu …": "Saved – compose is restarting …",
+    "Gespeichert und neu gestartet": "Saved and restarted",
+    "Gespeichert – die alte Fassung liegt im Papierkorb": "Saved – the old version is in the trash",
+    "Speichern & neu starten": "Save & restart",
+    "Docker hat die Datei geprüft – in Ordnung.": "Docker checked the file – all good.",
+    "Docker meldet Fehler": "Docker reports errors",
+    "Gespeichert wird nur, wenn „docker compose config“ die Datei annimmt.": "It’s only saved if “docker compose config” accepts the file.",
+    "Image-Updates": "Image updates",
+    "alles aktuell": "all up to date",
+    "Für Container außerhalb von Hostwerk-Apps (die aktualisieren sich selbst): Hostwerk vergleicht die Fassung auf deinem PC mit der in der Registry. Vor dem Aktualisieren wird die alte Fassung gesichert – „Zurück“ holt sie wieder. Compose-Dienste werden danach neu erzeugt, einzelne Container nutzen das neue Image, wenn du sie neu anlegst.": "For containers outside Hostwerk apps (those update themselves): Hostwerk compares the version on your PC with the one in the registry. Before updating, the old version is saved – “Back” restores it. Compose services are recreated afterwards; single containers use the new image when you recreate them.",
+    "Keine eigenen Container mit Image-Namen.": "No own containers with an image name.",
+    "neuere Fassung": "newer version",
+    "Registry nicht erreichbar oder lokal gebautes Image": "Registry not reachable or locally built image",
+    "Compose-Datei bearbeiten": "Edit compose file",
+    "SSH-Profil nicht gefunden": "SSH profile not found",
+    "Bitte einen gültigen Rechnernamen oder eine IP-Adresse angeben.": "Please enter a valid host name or IP address.",
+    "Der Benutzername enthält ungültige Zeichen.": "The user name contains invalid characters.",
+    "Die Schlüsseldatei gibt es nicht.": "The key file doesn’t exist.",
+    "SSH braucht die echte Konsole (ConPTY) – sie ist auf diesem PC nicht verfügbar.": "SSH needs the real console (ConPTY) – it isn’t available on this PC.",
+    "SSH-Profile": "SSH profiles",
+    "Server und gekoppelte Rechner direkt im Terminal öffnen": "Open servers and paired computers directly in the terminal",
+    "z. B. Mein VPS": "e.g. My VPS",
+    "Server (Name oder IP)": "Server (name or IP)",
+    "SSH-Schlüssel (optional)": "SSH key (optional)",
+    "Leer = Standard-Schlüssel oder Passwortabfrage im Terminal.": "Empty = default key or password prompt in the terminal.",
+    "Startordner auf dem Server (optional)": "Start folder on the server (optional)",
+    "Noch keine SSH-Profile": "No SSH profiles yet",
+    "Lege einen Server an – danach öffnest du ihn mit einem Klick im Terminal.": "Add a server – then open it in the terminal with one click.",
+    " · Schlüssel": " · key",
+    "· Schlüssel": "· key",
+    "Rechner aus „Computer & Server“ – als Profil übernehmen und den Benutzer ergänzen.": "Computers from “Computers & servers” – take them over as a profile and add the user.",
+    "Als Profil": "As profile",
+    "SSH-Profile verwalten …": "Manage SSH profiles …",
+    "Eingabe an mehrere Reiter senden (z. B. für mehrere Server gleichzeitig)": "Send input to several tabs (e.g. for several servers at once)",
+    "an alle": "to all",
+    "an sichtbare": "to visible",
+    "Sitzung wird beim nächsten Öffnen wiederhergestellt – klicken zum Ausschalten": "The session is restored next time – click to turn off",
+    "Sitzung nicht wiederherstellen – klicken zum Einschalten": "Don’t restore the session – click to turn on",
+    "Eingaben gehen an alle sichtbaren Reiter.": "Input goes to all visible tabs.",
+    "vorherige Sitzung": "previous session",
+    "Unbekannter Kanal": "Unknown channel",
+    "Gotify: Adresse mit http:// oder https:// angeben.": "Gotify: enter an address with http:// or https://.",
+    "Matrix: Raum als !id:server oder #name:server angeben.": "Matrix: enter the room as !id:server or #name:server.",
+    "Telegram: Chat-ID ist eine Zahl (z. B. 123456789 oder -100…) oder @kanalname.": "Telegram: the chat ID is a number (e.g. 123456789 or -100…) or @channelname.",
+    "Öffentliche Statusseite": "Public status page",
+    "Geteilte Vorlagen-Links": "Shared template links",
+    "Router-Freigabe": "Router forwarding",
+    "Automatischer Router-Abgleich pausiert": "Automatic router sync pauses",
+    "Kein Port angegeben": "No port given",
+    "Ungültiger Rechnername": "Invalid host name",
+    "Keine Antwort auf Ping": "No reply to ping",
+    "Ungültiger Volume-Name": "Invalid volume name",
+    "Verschlüsselung ist an, aber keine Passphrase gespeichert.": "Encryption is on, but no passphrase is stored.",
+    "Externe Sicherung nur teilweise": "Off-site backup only partly done",
+    "Ordner nicht gefunden – ist das Laufwerk/NAS verbunden?": "Folder not found – is the drive/NAS connected?",
+    "In dieser Sicherung liegt kein Einrichtungs-Paket. Es entsteht, wenn „Einstellungen & Tresor“ und die Verschlüsselung eingeschaltet sind.": "This backup has no setup package. It is created when “Settings & vault” and encryption are switched on.",
+    "Das Einrichtungs-Paket hat ein unbekanntes Format.": "The setup package has an unknown format.",
+    "Dieser Kanal ist noch nicht vollständig eingerichtet.": "This channel isn’t fully set up yet.",
+    "Testmeldung": "Test message",
+    "Der Dienst hat die Meldung abgelehnt – Zugangsdaten prüfen.": "The service rejected the message – check the credentials.",
+    "Bitte eine Adresse mit http://, https://, tcp://host:port oder ping://host angeben.": "Please enter an address with http://, https://, tcp://host:port or ping://host.",
+    "TCP-Prüfung: tcp://host:port, z. B. tcp://example.org:25565": "TCP check: tcp://host:port, e.g. tcp://example.org:25565",
+    "Prüfung nicht gefunden": "Check not found",
+    "Die Passphrase braucht mindestens 10 Zeichen.": "The passphrase needs at least 10 characters.",
+    "Bitte zuerst eine Passphrase festlegen – ohne sie lässt sich die Sicherung nicht wieder öffnen.": "Please set a passphrase first – without it the backup can’t be opened again.",
+    "Bitte eine vorhandene .hwenc-Datei wählen.": "Please choose an existing .hwenc file.",
+    "Bitte die Passphrase eingeben.": "Please enter the passphrase.",
+    "Keine Passphrase für die Verschlüsselung.": "No passphrase for encryption.",
+    "Das ist keine mit Hostwerk verschlüsselte Datei.": "This isn’t a file encrypted by Hostwerk.",
+    "Das Passwort braucht mindestens 6 Zeichen.": "The password needs at least 6 characters.",
+    "Das sieht nicht nach einem Tunnel-Token aus. Im Cloudflare-Dashboard unter Tunnels → dein Tunnel → „Installieren“ steht es hinter --token.": "That doesn’t look like a tunnel token. In the Cloudflare dashboard under Tunnels → your tunnel → “Install” it follows --token.",
+    "Bitte zuerst das Tunnel-Token aus dem Cloudflare-Dashboard eintragen.": "Please enter the tunnel token from the Cloudflare dashboard first.",
+    "Cloudflare hat die Verbindung nicht bestätigt (Zeitüberschreitung). Token und Internetverbindung prüfen.": "Cloudflare didn’t confirm the connection (timeout). Check the token and internet connection.",
+    "Das wird geschlossen:": "This will be closed:",
+    "Gerade ist nichts von außen erreichbar.": "Nothing is reachable from outside right now.",
+    "Langsam ab (ms)": "Slow from (ms)",
+    "Zertifikat warnen ab (Tage vorher)": "Warn about certificate (days before)",
+    "Zweimal hintereinander langsamer als die Grenze → eine Meldung; leer lassen schaltet die Grenze ab.": "Slower than the limit twice in a row → one alert; leave empty to turn the limit off.",
+    "mc.meinefirma.de": "mc.mycompany.com",
+    "Statusseite: Ankündigungen": "Status page: announcements",
+    "Statusseite aus": "Status page off",
+    "Besucher der öffentlichen Statusseite sehen diese Hinweise oben, z. B. „Wartung am Samstag“. Abgelaufene verschwinden von selbst.": "Visitors of the public status page see these notices at the top, e.g. “Maintenance on Saturday”. Expired ones disappear by themselves.",
+    "Wartung am Samstag von 8 bis 10 Uhr": "Maintenance on Saturday from 8 to 10 am",
+    "Bis (optional)": "Until (optional)",
+    "Ab (optional)": "From (optional)",
+    "Ankündigung hinzufügen": "Add announcement",
+    "Server-Adresse": "Server address",
+    "Zertifikate zeigen": "Show certificates",
+    "Zeigt Besuchern, wie lange die Zertifikate der https-Prüfungen noch gelten (Grenze „Zertifikat warnen“ an der Prüfung einschalten).": "Shows visitors how long the certificates of the https checks are still valid (switch on the “certificate warning” limit on the check).",
+    "Benutzer-Schlüssel": "User key",
+    "Weitere Ziele": "More destinations",
+    "3-2-1-Regel": "3-2-1 rule",
+    "Drei Kopien, auf zwei verschiedenen Arten von Speicher, eine davon außer Haus. Jedes Ziel hier bekommt dieselbe Sicherung wie das Hauptziel.": "Three copies, on two different kinds of storage, one of them off-site. Every destination here gets the same backup as the main destination.",
+    "Nur das Hauptziel. Ein zweites Ziel – z. B. eine USB-Platte zusätzlich zum NAS – schützt, wenn eines ausfällt.": "Only the main destination. A second one – e.g. a USB drive in addition to the NAS – protects you if one fails.",
+    "Zugriffs-Token": "Access token",
+    "Name des Ziels": "Destination name",
+    "Ziel an": "Destination on",
+    "Ziel entfernen": "Remove destination",
+    "Ziele speichern": "Save destinations",
+    "Zugang richtest du in der Erweiterung ein.": "You set up access in the extension.",
+    "Bei @BotFather einen Bot anlegen und das Token kopieren. Dem Bot einmal schreiben; die Chat-ID zeigt z. B. @userinfobot.": "Create a bot with @BotFather and copy the token. Write to the bot once; @userinfobot, for example, shows the chat ID.",
+    "Verschlüsselung & Aufbewahrung": "Encryption & retention",
+    "Verschlüsselt sichern": "Encrypt backups",
+    "Jede Datei wird vor dem Übertragen mit AES-256 verschlüsselt. Ohne Passphrase lässt sie sich nicht öffnen – auch nicht von dir. Bewahre die Passphrase getrennt auf (z. B. im Passwort-Manager).": "Every file is encrypted with AES-256 before transfer. Without the passphrase it can’t be opened – not even by you. Keep the passphrase somewhere else (e.g. in your password manager).",
+    "Bitte zuerst eine Passphrase festlegen.": "Please set a passphrase first.",
+    "Verschlüsselung ausschalten?": "Turn off encryption?",
+    "Neue Sicherungen liegen dann lesbar am Ziel. Bisherige bleiben verschlüsselt.": "New backups will then be readable at the destination. Existing ones stay encrypted.",
+    "Im eigenen Gotify-Server unter „Apps“ eine App anlegen und deren Token eintragen.": "Create an app under “Apps” in your Gotify server and enter its token.",
+    "Neue Passphrase": "New passphrase",
+    "Passphrase (mind. 10 Zeichen)": "Passphrase (at least 10 characters)",
+    "Passphrase ändern?": "Change passphrase?",
+    "Ältere Sicherungen brauchen weiterhin die alte Passphrase.": "Older backups still need the old passphrase.",
+    "Passphrase gespeichert – bitte gut aufbewahren": "Passphrase saved – please keep it safe",
+    "Feste Anzahl": "Fixed number",
+    "Täglich / wöchentlich / monatlich": "Daily / weekly / monthly",
+    "täglich / wöchentlich / monatlich": "daily / weekly / monthly",
+    "Wochen": "Weeks",
+    "Monate": "Months",
+    "Benutzer-Schlüssel steht nach der Anmeldung auf pushover.net, das App-Token entsteht unter „Create an Application“.": "The user key is shown after signing in on pushover.net; the app token is created under “Create an Application”.",
+    "Wie viele Stände, steht links unter „Aufbewahren“.": "How many versions to keep is set on the left under “Keep”.",
+    "Aufbewahrung speichern": "Save retention",
+    "Je Tag, Woche und Monat bleibt der jeweils neueste Stand – so reicht die Sicherung weit zurück, ohne viel Platz zu brauchen.": "The newest version of each day, week and month is kept – the backup reaches far back without needing much space.",
+    "Ein eigenes Bot-Konto in den Raum einladen; dessen Zugriffs-Token steht in Element unter Einstellungen → Hilfe & Info.": "Invite a separate bot account to the room; its access token is in Element under Settings → Help & About.",
+    "Verschlüsselte Datei öffnen": "Open an encrypted file",
+    "Für Dateien mit der Endung .hwenc aus der externen Sicherung. Die entschlüsselte Datei landet daneben.": "For files ending in .hwenc from the off-site backup. The decrypted file is placed next to it.",
+    "Verschlüsselte Datei": "Encrypted file",
+    "Passphrase (leer = die gespeicherte)": "Passphrase (empty = the stored one)",
+    "Entschlüsseln": "Decrypt",
+    "Entschlüsselt": "Decrypted",
+    "Diesen PC einrichten?": "Set up this PC?",
+    "Einstellungen, Tresor, Alarme und externe Sicherung werden aus der Sicherung übernommen und ersetzen die bisherigen. Danach legt Hostwerk Webserver, Datenbanken und Apps aus dem Setup an.": "Settings, vault, alerts and off-site backup are taken from the backup and replace the current ones. Hostwerk then creates the web servers, databases and apps from the setup.",
+    "Eingerichtet – Daten der Dienste spielst du in der Sicherungs-Zentrale zurück.": "Set up – restore the services’ data in the backup center.",
+    "Neuen PC einrichten": "Set up a new PC",
+    "Auf einem neuen Rechner in einem Durchgang: Einstellungen, Tresor, Alarme, externe Sicherung und das Setup (Webserver, Datenbanken, Apps) aus der letzten verschlüsselten Sicherung. Voraussetzung: dort war „Einstellungen & Tresor“ eingeschaltet.": "On a new computer in one go: settings, vault, alerts, off-site backup and the setup (web servers, databases, apps) from the latest encrypted backup. Requirement: “Settings & vault” was switched on there.",
+    "Ordner der externen Sicherung": "Off-site backup folder",
+    "Passphrase der Sicherung": "Backup passphrase",
+    "Sicherung lesen": "Read backup",
+    "Gefunden": "Found",
+    "Projekt im Tresor": "project in the vault",
+    "Projekte im Tresor": "projects in the vault",
+    "Dienst neu": "new service",
+    "Dienste neu": "new services",
+    "Diesen PC einrichten": "Set up this PC",
+    "Nach 5 Fehlversuchen sperrt Hostwerk die Adresse: zuerst 15 Minuten, dann 1 Stunde, danach 24 Stunden. Jede Sperre meldet sich über die Alarme.": "After 5 failed attempts Hostwerk blocks the address: first for 15 minutes, then 1 hour, then 24 hours. Every block is reported through the alerts.",
+    "Gerade ist keine Adresse gesperrt.": "No address is blocked right now.",
+    "Stufe": "Level",
+    "Weitere Kanäle": "More channels",
+    "Alarme zusätzlich über Telegram, Gotify, Pushover oder Matrix. Zugangsdaten liegen verschlüsselt auf diesem PC.": "Alerts also via Telegram, Gotify, Pushover or Matrix. Credentials are stored encrypted on this PC.",
+    "noch nicht eingerichtet": "not set up yet",
+    "gespeichert": "saved",
+    "Bot-Token": "Bot token",
+    "Chat-ID": "Chat ID",
+    "App-Token": "App token",
+    "Homeserver": "Homeserver",
+    "Raum": "Room",
+    "Prüfung von außen": "Check from outside",
+    "Ein Dienst im Internet (ifconfig.co) versucht, deinen Anschluss auf den bekannten Ports zu erreichen. So siehst du vergessene Router-Freigaben – und ob gewollte wirklich funktionieren.": "A service on the internet (ifconfig.co) tries to reach your connection on the known ports. This shows forgotten router forwardings – and whether the wanted ones really work.",
+    "Von außen prüfen": "Check from outside",
+    "bekannter Port": "known port",
+    "bekannte Ports": "known ports",
+    "Von außen": "From outside",
+    "nicht geprüft": "not checked",
+    "offen – sollte zu sein": "open – should be closed",
+    "Dauerhaft mit eigener Domain": "Permanent with your own domain",
+    "Benannter Tunnel": "Named tunnel",
+    "Im Cloudflare-Dashboard (Zero Trust → Networks → Tunnels) einen Tunnel anlegen, dort Domain und lokale Adresse eintragen und das Token hier einfügen. Die Adresse bleibt dann dauerhaft gleich – ohne Router-Freigabe.": "Create a tunnel in the Cloudflare dashboard (Zero Trust → Networks → Tunnels), enter the domain and local address there and paste the token here. The address then stays the same permanently – without router forwarding.",
+    "Tunnel-Token": "Tunnel token",
+    "Neues Token (gespeichert)": "New token (saved)",
+    "Domain (zur Anzeige)": "Domain (for display)",
+    "öffentlich teilen?": "share publicly?",
+    "Wie lange?": "How long?",
+    "30 Min.": "30 min",
+    "Bis ich beende": "Until I stop it",
+    "Mit Passwort schützen": "Protect with a password",
+    "Passwort (mind. 6 Zeichen)": "Password (at least 6 characters)",
+    "Besucher sehen eine Anmeldung des Browsers; der Benutzername ist egal.": "Visitors see the browser’s sign-in prompt; the user name doesn’t matter.",
+    "leer lassen = behalten": "leave empty = keep",
+    "Ruhezeit": "Quiet hours",
+    "Während der Ruhezeit schickt Hostwerk keine Alarme. Was anfällt, kommt danach gesammelt als eine Meldung.": "During quiet hours Hostwerk sends no alerts. Whatever comes up is sent afterwards as one combined message.",
+    "Jetzt ruhig bis": "Quiet now until",
+    "1 Stunde": "1 hour",
+    "2 Stunden": "2 hours",
+    "Uhr": "o’clock",
+    "Ruhezeit beenden": "End quiet hours",
+    "Meldung wartet": "message waiting",
+    "Meldungen warten": "messages waiting",
+    "Jede Nacht ruhig": "Quiet every night",
+    "Ruhezeit ab": "Quiet from",
+    "Ruhezeit bis": "Quiet until",
+    "im Netzwerk erreichbar – nur mit Passwort und Code aus einer Authenticator-App (Google Authenticator, Microsoft Authenticator, 2FAS …). Nach 5 Fehlversuchen sperrt Hostwerk die Adresse – erst 15 Minuten, bei Wiederholung länger.": "on the network – only with password and a code from an authenticator app (Google Authenticator, Microsoft Authenticator, 2FAS …). After 5 failed attempts Hostwerk blocks the address – first for 15 minutes, longer if it happens again.",
+    "Grenzen": "Limits",
+    "„Einstellungen & Tresor“ geht nur mit eingeschalteter Verschlüsselung – darin stecken Zugangsdaten.": "“Settings & vault” only works with encryption on – it contains credentials.",
+    "verschlüsselt": "encrypted",
+    "Apps & Docker-Volumes": "Apps & Docker volumes",
+    "– Programm- und Datenordner der Apps, benannte Volumes der Docker-Apps als tar.gz.": "– program and data folders of the apps, named volumes of Docker apps as tar.gz.",
+    "Einstellungen & Tresor": "Settings & vault",
+    "– alles, um einen neuen PC in einem Durchgang einzurichten (nur verschlüsselt).": "– everything to set up a new PC in one go (encrypted only).",
+    "Unveränderte Pakete legt Hostwerk auf Ordner-Zielen als Verknüpfung zum letzten Stand ab – das spart Platz und Zeit.": "On folder destinations Hostwerk stores unchanged packages as a link to the previous version – saving space and time.",
+    "Der Link funktioniert nur, solange der Tunnel läuft (und Hostwerk offen ist). Bei jedem neuen Start gibt es eine neue Adresse. Für eine feste Adresse gibt es den dauerhaften Tunnel mit eigener Domain.": "The link only works while the tunnel runs (and Hostwerk is open). Every new start gives a new address. For a fixed address there’s the permanent tunnel with your own domain.",
+    "Port (TCP)": "Port (TCP)",
+    "Ping": "Ping",
+    "Text": "Text",
+    "Das wird geschlossen": "This will be closed",
+    "Dauerhafter Tunnel": "Permanent tunnel",
+    "geschlossen": "closed",
+    "Datei nicht im Archiv": "File not in the archive",
+    "Nur ZIP-Stände lassen sich durchsuchen.": "Only ZIP backups can be browsed.",
+    "Unbekannter Stand": "Unknown backup",
+    "Stand nicht gefunden": "Backup not found",
+    "Ungültiger Pfad im Archiv": "Invalid path in the archive",
+    "Bitte ein Muster angeben, z. B. OutOfMemory.": "Please enter a pattern, e.g. OutOfMemory.",
+    "Der reguläre Ausdruck ist ungültig.": "The regular expression is invalid.",
+    "Einzelne Datei zurückholen": "Restore a single file",
+    "Datei suchen …": "Search file …",
+    "Datei im Stand suchen": "Search a file in the backup",
+    "Geholt nach": "Restored to",
+    "Leerer Stand": "Empty backup",
+    "Holen": "Restore",
+    "Weitere Dateien – Suche eingrenzen.": "More files – narrow the search.",
+    "Alte Sicherungen löschen?": "Delete old backups?",
+    "Stand wird": "backup will be",
+    "Stände werden": "backups will be",
+    "endgültig gelöscht": "deleted permanently",
+    "Alte aufräumen": "Clean up old ones",
+    "Älter als": "Older than",
+    "90 Tage": "90 days",
+    "180 Tage": "180 days",
+    "1 Jahr": "1 year",
+    "Nichts so Altes – alles bleibt.": "Nothing that old – everything stays.",
+    "Der neueste Stand je Dienst bleibt immer, auch wenn er älter ist. Die Zeitmaschine räumt sich selbst auf.": "The newest backup of each service always stays, even if it’s older. The time machine cleans up by itself.",
+    "Belegter Speicher je Art": "Space used per kind",
+    "Protokoll-Wächter": "Log watch",
+    "Muster im Protokoll": "Pattern in the log",
+    "Suchen (Ziel, Aktion, Benutzer, Gerät) …": "Search (target, action, user, device) …",
+    "Änderungs-Verlauf durchsuchen": "Search the change history",
+    "Von Datum": "From date",
+    "Bis Datum": "To date",
+    "Zeitraum aufheben": "Clear date range",
+    "Außer Haus": "Off-site",
+    "Nach Dienst filtern": "Filter by service",
+    "Punktzahl": "Score",
+    "Ungenutzte Versionen entfernen?": "Remove unused versions?",
+    "Lange nicht benutzt": "Unused for a long time",
+    "Ältere Versionen von PHP, Datenbanken und Webservern, die seit mindestens 30 Tagen kein Dienst und kein Projekt benutzt hat. Die neueste Version bleibt immer.": "Older versions of PHP, databases and web servers that no service or project has used for at least 30 days. The newest version always stays.",
+    "Tag ungenutzt": "day unused",
+    "Tage ungenutzt": "days unused",
+    "Wächter für diese Quelle angelegt": "Watch created for this source",
+    "Wächter für alle Quellen angelegt": "Watch created for all sources",
+    "Umgebung zeigen (±20 Zeilen)": "Show surroundings (±20 lines)",
+    "Wächter für ähnliche Zeilen": "Watch for similar lines",
+    "Gemerkten Filter anwenden": "Apply saved filter",
+    "Gemerkte Filter …": "Saved filters …",
+    "Klick: für die KI markieren · Rechtsklick: Umgebung, Wächter": "Click: mark for the AI · right-click: surroundings, watch",
+    "Umgebung": "Surroundings",
+    "Umgebung des Treffers": "Surroundings of the hit",
+    "Keine Wächter": "No watches",
+    "alle Quellen": "all sources",
+    "Gemerkte Filter": "Saved filters",
+    "Filter merken": "Save filter",
+    "z. B. PHP-Fehler heute": "e.g. PHP errors today",
+    "Filter gemerkt": "Filter saved",
+    "Sobald eine neue Zeile dieses Muster enthält, meldet sich Hostwerk über die Alarme (höchstens alle 10 Minuten).": "As soon as a new line contains this pattern, Hostwerk notifies you through the alerts (at most every 10 minutes).",
+    "Wächter anlegen": "Create watch",
+    "Vergleichen mit": "Compare with",
+    "Vergleichen mit …": "Compare with …",
+    "Spitze CPU": "Peak CPU",
+    "Absturz eines Dienstes": "A service crashes",
+    "Gesundheits-Check mit dringenden Punkten": "Health check with urgent items",
+    "Seite nicht erreichbar": "Site unreachable",
+    "Nichts ausgewählt.": "Nothing selected.",
+    "Nichts zum Exportieren.": "Nothing to export.",
+    "Bitte Titel und Text angeben.": "Please enter a title and text.",
+    "Schritt entfernen": "Remove step",
+    "Auslöser hinzufügen": "Add trigger",
+    "Auslöser": "Triggers",
+    "Der Ablauf startet von selbst, sobald das Ereignis eintritt – mit den Schritten, die du beim Speichern bestätigt hast. Höchstens alle 30 Minuten.": "The flow starts by itself as soon as the event happens – with the steps you confirmed when saving. At most every 30 minutes.",
+    "Noch kein Auslöser – der Ablauf läuft nur von Hand oder nach Zeitplan.": "No trigger yet – the flow only runs by hand or on a schedule.",
+    "Wenn": "When",
+    "Ereignis": "Event",
+    "bei jedem Dienst": "for any service",
+    "Auslöser entfernen": "Remove trigger",
+    "Diese Hinweise nicht mehr zeigen": "Don’t show these hints anymore",
+    "Diese Hinweise sind aus – wieder einschalten unter KI-Helfer → Einstellungen → Automatische Hilfe.": "These hints are off – switch them back on under AI helper → Settings → Automatic help.",
+    "Eingabe als Vorlage speichern": "Save input as template",
+    "Vorlagen verwalten …": "Manage templates …",
+    "Vorlage gespeichert": "Template saved",
+    "Tipp: Stellen, die sich ändern, als {{Platzhalter}} schreiben – z. B. {{Domain}}.": "Tip: write the parts that change as {{placeholders}} – e.g. {{Domain}}.",
+    "alle Modi": "all modes",
+    "Neue Vorlage": "New template",
+    "Platzhalter in doppelten geschweiften Klammern, z. B. {{Domain}} – werden beim Einsetzen abgefragt.": "Placeholders in double curly braces, e.g. {{Domain}} – you’re asked for them when inserting.",
+    "Noch keine Vorlagen": "No templates yet",
+    "Häufige Fragen als Vorlage speichern – mit Platzhaltern wie {{Domain}} für das, was sich ändert.": "Save frequent questions as templates – with placeholders like {{Domain}} for what changes.",
+    "Sprechen statt tippen (lokal, nichts geht ins Internet) – oder Strg+Leertaste gedrückt halten": "Speak instead of typing (local, nothing goes to the internet) – or hold Ctrl+Space",
+    "Was der Modus darf": "What the mode may do",
+    "Ändern geht nur nach deiner Bestätigung – jede Änderung steht im Änderungs-Verlauf.": "Changes only happen after you confirm – every change is in the change history.",
+    "Dieser Modus verändert nichts.": "This mode doesn’t change anything.",
+    "In Ordner legen": "Move to folder",
+    "Ordner (leer = ohne Ordner)": "Folder (empty = no folder)",
+    "Schlagwort hinzufügen": "Add tag",
+    "Schlagwort": "Tag",
+    "Schlagwort entfernen": "Remove tag",
+    "+ Schlagwort": "+ tag",
+    "Auswahl aus der Mediathek löschen?": "Delete the selection from the media library?",
+    "Auswahl als ZIP": "Selection as ZIP",
+    "Als ZIP": "As ZIP",
+    "Nach Schlagwort filtern": "Filter by tag",
+    "In Ordner …": "To folder …",
+    "Schlagwort …": "Tag …",
+    "Hell, dunkel und englisch nebeneinander": "Light, dark and English side by side",
+    "Update fehlgeschlagen": "Update failed",
+    "Fehlerprotokoll": "Error log",
+    "Apps stehen hier nicht zur Verfügung.": "Apps aren’t available here.",
+    "Mitgenommen: Programmordner (ohne node_modules/venv), Datenordner und bei Docker-Apps die benannten Volumes. Die App wird dafür kurz angehalten; am Ziel bekommt sie einen freien Port.": "Taken along: program folder (without node_modules/venv), data folder and, for Docker apps, the named volumes. The app is paused briefly for this; at the destination it gets a free port.",
+    "MB/s beim Übertragen": "MB/s while transferring",
+    "0 = ohne Grenze. Mit Grenze bleibt die Leitung beim Umzug großer Welten oder Datenbanken für andere frei; die Geschwindigkeit steht während der Übertragung im Fortschritt.": "0 = no limit. With a limit the connection stays free for others while moving large worlds or databases; the speed is shown in the progress during the transfer.",
+    "Bandbreitengrenze in MB/s": "Bandwidth limit in MB/s",
+    "App kurz stoppen (Daten sauber schreiben) …": "Pausing the app briefly (writing data cleanly) …",
+    "Programmordner packen …": "Packing the program folder …",
+    "Daten packen …": "Packing the data …",
+    "Programmordner entpacken …": "Unpacking the program folder …",
+    "App anlegen …": "Creating the app …",
+    "Daten einspielen …": "Restoring the data …",
+    "Probelauf: App starten …": "Trial run: starting the app …",
+    ".NET 8 (oder neuer) installieren: https://dotnet.microsoft.com/download": "Install .NET 8 (or newer): https://dotnet.microsoft.com/download",
+    "Plugins prüfen …": "Checking plugins …",
+    "Keine Untertitel": "No captions",
+    "Pfeiltasten verschieben, Enter öffnet": "arrow keys move, Enter opens",
+    "Abdeckung je Seite zeigen": "Show coverage per page",
+    "Noch keine Seite besucht – erst ein paar Bereiche öffnen, dann erneut ansehen.": "No page visited yet – open a few areas first, then look again.",
+    "Abdeckung je Seite": "Coverage per page",
+    "Fehlende": "Missing",
+    "Als JSON kopieren": "Copy as JSON",
+    "gestartet": "started",
+    "fertig": "done",
+    "fehlgeschlagen": "failed",
+    "Sicherung des Servers anlegen …": "Backing up the server …",
+    "Alte Welt entfernen …": "Removing the old world …",
+    "Welt kopieren …": "Copying the world …"
   },
   "patterns": [
     [
@@ -16703,6 +17845,1166 @@
     [
       "{} Abstürze",
       "{} crashes"
+    ],
+    [
+      "CurseForge antwortet mit {}",
+      "CurseForge responds with {}"
+    ],
+    [
+      "Datei nicht lesbar: {}",
+      "File not readable: {}"
+    ],
+    [
+      "„{}“ muss eine Zahl sein.",
+      "“{}” must be a number."
+    ],
+    [
+      "Ungültiger Wert für „{}“.",
+      "Invalid value for “{}”."
+    ],
+    [
+      "Welt in „{}“ übernehmen",
+      "Import world into “{}”"
+    ],
+    [
+      "Keine passende Datapack-Version für Minecraft {} gefunden.",
+      "No matching datapack version found for Minecraft {}."
+    ],
+    [
+      "Bitte den Server zuerst stoppen – {}.",
+      "Please stop the server first – {}."
+    ],
+    [
+      "Ohne Projekt ({})",
+      "Without project ({})"
+    ],
+    [
+      "Gespeichert – {} neu zugeordnet",
+      "Saved – {} reassigned"
+    ],
+    [
+      "Nur bis Minecraft {}",
+      "Only up to Minecraft {}"
+    ],
+    [
+      "Nicht für Minecraft {} angegeben",
+      "Not listed for Minecraft {}"
+    ],
+    [
+      "Unterstützt Minecraft {} – passt zu deinem Server.",
+      "Supports Minecraft {} – fits your server."
+    ],
+    [
+      "{} bis {}",
+      "{} to {}"
+    ],
+    [
+      "noch {}",
+      "{} left"
+    ],
+    [
+      "· Dauer {}",
+      "· duration {}"
+    ],
+    [
+      "Gebiet von {} × {} Blöcken rund um den Spawn.",
+      "Area of {} × {} blocks around the spawn."
+    ],
+    [
+      "{} an/aus",
+      "{} on/off"
+    ],
+    [
+      "{} auf Modrinth öffnen",
+      "Open {} on Modrinth"
+    ],
+    [
+      "Jetzt {} TPS",
+      "Now {} TPS"
+    ],
+    [
+      "Testkopie auf Port {} angelegt",
+      "Test copy created on port {}"
+    ],
+    [
+      "{} abgeglichen: {} hinzugefügt{}",
+      "{} synced: {} added{}"
+    ],
+    [
+      "Tiefster Wert {}",
+      "Lowest value {}"
+    ],
+    [
+      "{} gespeichert{}",
+      "{} saved{}"
+    ],
+    [
+      "Meist los: {}, {}–{} Uhr (Ø {} Spieler)",
+      "Busiest: {}, {}–{} h (avg. {} players)"
+    ],
+    [
+      "Welt „{}“ ist jetzt die Hauptwelt",
+      "World “{}” is now the main world"
+    ],
+    [
+      "Welt „{}“ übernommen",
+      "World “{}” imported"
+    ],
+    [
+      "Minecraft-Server {} {}, Absturzbericht: {}",
+      "Minecraft server {} {}, crash report: {}"
+    ],
+    [
+      "Übersicht „{}“ gespeichert",
+      "Dashboard “{}” saved"
+    ],
+    [
+      "{}: Höhe",
+      "{}: height"
+    ],
+    [
+      "{}: überschreiben",
+      "{}: overwrite"
+    ],
+    [
+      "{} Dienst ist aus",
+      "{} service is off"
+    ],
+    [
+      "{} Dienste sind aus",
+      "{} services are off"
+    ],
+    [
+      "{} Port-Konflikte",
+      "{} port conflicts"
+    ],
+    [
+      "und {} weitere",
+      "and {} more"
+    ],
+    [
+      "Belegt von {}",
+      "Used by {}"
+    ],
+    [
+      "{}: Vorfall ansehen",
+      "{}: view incident"
+    ],
+    [
+      "{} Sicherungen lassen sich nicht zurückspielen",
+      "{} backups cannot be restored"
+    ],
+    [
+      "Befehl an {}: {}",
+      "Command to {}: {}"
+    ],
+    [
+      "An {} gesendet",
+      "Sent to {}"
+    ],
+    [
+      "Abfrage in {} öffnen: {}",
+      "Open query in {}: {}"
+    ],
+    [
+      "Im Browser öffnen: {}",
+      "Open in browser: {}"
+    ],
+    [
+      "{} · {} · Server gestoppt",
+      "{} · {} · server stopped"
+    ],
+    [
+      "Spieler · {}",
+      "Player · {}"
+    ],
+    [
+      "Spieler · {} · online",
+      "Player · {} · online"
+    ],
+    [
+      "Plugin · {}",
+      "Plugin · {}"
+    ],
+    [
+      "Mod · {}",
+      "Mod · {}"
+    ],
+    [
+      "Container · {}",
+      "Container · {}"
+    ],
+    [
+      "Container · {} · läuft",
+      "Container · {} · running"
+    ],
+    [
+      "Mail · {}",
+      "Mail · {}"
+    ],
+    [
+      "Datei · {}",
+      "File · {}"
+    ],
+    [
+      "Tabelle · {} · {}",
+      "Table · {} · {}"
+    ],
+    [
+      "Spalte · {} · {}",
+      "Column · {} · {}"
+    ],
+    [
+      "{} von {} Updates laufen im Hintergrund …",
+      "{} of {} updates are running in the background …"
+    ],
+    [
+      "{} von {} Diensten laufen – gestoppte zeigen",
+      "{} of {} services running – show stopped ones"
+    ],
+    [
+      "{} vom Server werfen",
+      "Kick {} from the server"
+    ],
+    [
+      "{} wurde vom Server geworfen",
+      "{} was kicked from the server"
+    ],
+    [
+      "Offline – letzter Stand von {}",
+      "Offline – last state from {}"
+    ],
+    [
+      "{} neu starten?",
+      "Restart {}?"
+    ],
+    [
+      "Bestätigung fehlgeschlagen: {}",
+      "Confirmation failed: {}"
+    ],
+    [
+      "{} Dienste laufen gerade und werden beendet.",
+      "{} services are running and will be stopped."
+    ],
+    [
+      "{} Spieler sind online und fliegen vom Server.",
+      "{} players are online and will be disconnected."
+    ],
+    [
+      "{} geteilte Adressen sind danach nicht mehr erreichbar.",
+      "{} shared addresses will no longer be reachable."
+    ],
+    [
+      "{} Mailserver im Livebetrieb nehmen keine Mails mehr an.",
+      "{} live mail servers will stop accepting mail."
+    ],
+    [
+      "{} stoppen?",
+      "Stop {}?"
+    ],
+    [
+      "Den Ordner „{}“ gibt es schon unter Projekte – bitte einen anderen Namen wählen.",
+      "The folder “{}” already exists under projects – please choose another name."
+    ],
+    [
+      "git clone ist fehlgeschlagen ({}) – Details im Protokoll.",
+      "git clone failed ({}) – details in the log."
+    ],
+    [
+      "Minecraft-Server „{}“ klonen",
+      "Clone Minecraft server “{}”"
+    ],
+    [
+      "Webserver „{}“ klonen",
+      "Clone web server “{}”"
+    ],
+    [
+      "Datenbankserver „{}“ klonen",
+      "Clone database server “{}”"
+    ],
+    [
+      "Projekt klonen: {}",
+      "Clone project: {}"
+    ],
+    [
+      "Webserver „{}“ angelegt",
+      "Web server “{}” created"
+    ],
+    [
+      "Projekt „{}“ angelegt",
+      "Project “{}” created"
+    ],
+    [
+      "{} laufen gerade",
+      "{} running right now"
+    ],
+    [
+      "Projekt „{}“ ist da",
+      "Project “{}” is ready"
+    ],
+    [
+      "„{}“ läuft",
+      "“{}” is running"
+    ],
+    [
+      "Schritt {} von 3",
+      "Step {} of 3"
+    ],
+    [
+      "Fertig: „{}“ läuft unter {}",
+      "Done: “{}” runs at {}"
+    ],
+    [
+      "{}: oben anheften",
+      "{}: pin to top"
+    ],
+    [
+      "{}: nicht mehr anheften",
+      "{}: unpin"
+    ],
+    [
+      "{} Einstellungen zurückgesetzt",
+      "{} settings reset"
+    ],
+    [
+      "{}: auf Standard",
+      "{}: to default"
+    ],
+    [
+      "Die Datei stammt von Hostwerk {}. Passende Einstellungen werden übernommen, alles Unbekannte ignoriert. Dienste und Daten bleiben unberührt.",
+      "The file comes from Hostwerk {}. Matching settings are applied, anything unknown is ignored. Services and data stay untouched."
+    ],
+    [
+      "{} aufklappen",
+      "Expand {}"
+    ],
+    [
+      "{} zuklappen",
+      "Collapse {}"
+    ],
+    [
+      "{} · exportiert {}",
+      "{} · exported {}"
+    ],
+    [
+      "Ungültige Richtung für „{}“ – erlaubt sind 1, -1, \"text\", \"2dsphere\", \"hashed\".",
+      "Invalid direction for “{}” – allowed are 1, -1, \"text\", \"2dsphere\", \"hashed\"."
+    ],
+    [
+      "SQLite-Datei nicht gefunden: {}",
+      "SQLite file not found: {}"
+    ],
+    [
+      "Die Spalte „{}“ verweist auf eine leere Tabelle – dort zuerst Daten anlegen.",
+      "The column “{}” references an empty table – add data there first."
+    ],
+    [
+      "Für :{} fehlt ein Wert.",
+      "A value for :{} is missing."
+    ],
+    [
+      "SSH-Schlüssel nicht lesbar: {}",
+      "Cannot read SSH key: {}"
+    ],
+    [
+      "SSH-Verbindung zu {} fehlgeschlagen: {}",
+      "SSH connection to {} failed: {}"
+    ],
+    [
+      "{} ist im Datenbank-Studio schreibgeschützt – Änderungen sind dort ausgeschaltet.",
+      "{} is read-only in the database studio – changes are switched off there."
+    ],
+    [
+      "Diese Sicherung stammt von {} und passt nicht zu {}.",
+      "This backup comes from {} and does not fit {}."
+    ],
+    [
+      "In der Sicherung fehlt {}.",
+      "{} is missing in the backup."
+    ],
+    [
+      "Das ist ein {}-Dump – er passt nicht zu {}.",
+      "This is a {} dump – it does not fit {}."
+    ],
+    [
+      "„{}“ aus der Sicherung holen",
+      "Restore “{}” from the backup"
+    ],
+    [
+      "{} muss laufen.",
+      "{} must be running."
+    ],
+    [
+      "Die Tabelle „{}“ steht nicht in dieser Sicherung.",
+      "The table “{}” is not in this backup."
+    ],
+    [
+      "Datenbank {}",
+      "Database {}"
+    ],
+    [
+      "{} muss zwischen {} und {} liegen.",
+      "{} must be between {} and {}."
+    ],
+    [
+      "Wert für :{}",
+      "Value for :{}"
+    ],
+    [
+      "Als „{}“ wiederhergestellt",
+      "Restored as “{}”"
+    ],
+    [
+      "„{}“ wiederhergestellt",
+      "“{}” restored"
+    ],
+    [
+      "Sicherung vom {}",
+      "Backup from {}"
+    ],
+    [
+      "{}_wiederhergestellt",
+      "{}_restored"
+    ],
+    [
+      "Zeilen von „{}“ vergleichen",
+      "Compare rows of “{}”"
+    ],
+    [
+      "{} nur links",
+      "{} only left"
+    ],
+    [
+      "{} nur rechts",
+      "{} only right"
+    ],
+    [
+      "{} geändert",
+      "{} changed"
+    ],
+    [
+      "{} links · {} rechts",
+      "{} left · {} right"
+    ],
+    [
+      "Abgleich: {} angleichen",
+      "Sync: align {}"
+    ],
+    [
+      "{} Dokumente",
+      "{} documents"
+    ],
+    [
+      "{} Schlüssel",
+      "{} keys"
+    ],
+    [
+      "{} von {} Schlüsseln gemessen",
+      "{} of {} keys measured"
+    ],
+    [
+      "Andere Geräte in deinem Netzwerk können sich dann mit {} verbinden (Port {}). Hostwerk legt dafür eine Firewall-Regel an – Windows fragt nach Administrator-Rechten. Nutze ein starkes Passwort.",
+      "Other devices on your network can then connect to {} (port {}). Hostwerk creates a firewall rule for it – Windows asks for administrator rights. Use a strong password."
+    ],
+    [
+      "Gespeichert – die Firewall-Regel fehlt aber: {}",
+      "Saved – but the firewall rule is missing: {}"
+    ],
+    [
+      "-- In der Datenbank {} ausführen, damit Lesen auch Tabellen umfasst:",
+      "-- Run in the database {} so that reading includes tables:"
+    ],
+    [
+      "-- In der Datenbank {} ausführen:",
+      "-- Run in the database {}:"
+    ],
+    [
+      "Rechte auf {}",
+      "Permissions on {}"
+    ],
+    [
+      "Bitte einen Wert für {} eingeben.",
+      "Please enter a value for {}."
+    ],
+    [
+      "{} Das lässt sich nicht rückgängig machen.",
+      "{} This cannot be undone."
+    ],
+    [
+      "Gesichert: {} – zurückspielen unter „Sicherungen“.",
+      "Backed up: {} – restore it under “Backups”."
+    ],
+    [
+      "Kurz-Sicherung fehlgeschlagen – nichts ausgeführt: {}",
+      "Quick backup failed – nothing was run: {}"
+    ],
+    [
+      "Die Anweisung löscht die Datenbank „{}“ mit allen Tabellen.",
+      "The statement deletes the database “{}” with all its tables."
+    ],
+    [
+      "Die Anweisung löscht Tabellen{}.",
+      "The statement deletes tables{}."
+    ],
+    [
+      "Die Anweisung leert Tabellen komplett{}.",
+      "The statement empties tables completely{}."
+    ],
+    [
+      "Testdaten für „{}“",
+      "Test data for “{}”"
+    ],
+    [
+      "{} Zeilen dauern ein paar Sekunden.",
+      "{} rows take a few seconds."
+    ],
+    [
+      "{} importiert",
+      "{} imported"
+    ],
+    [
+      "– {} waren schon drin.",
+      "– {} were already in."
+    ],
+    [
+      "In „{}“ importieren",
+      "Import into “{}”"
+    ],
+    [
+      "{} importieren",
+      "Import {}"
+    ],
+    [
+      "Quelle für {}",
+      "Source for {}"
+    ],
+    [
+      "{} angeheftetes Ergebnis",
+      "{} pinned result"
+    ],
+    [
+      "{} angeheftete Ergebnisse",
+      "{} pinned results"
+    ],
+    [
+      "{} Tabelle wird komplett gelesen",
+      "{} table is read completely"
+    ],
+    [
+      "{} Tabellen werden komplett gelesen",
+      "{} tables are read completely"
+    ],
+    [
+      "{} Testzeile",
+      "{} test row"
+    ],
+    [
+      "{} Testzeilen",
+      "{} test rows"
+    ],
+    [
+      "Angeheftet ({})",
+      "Pinned ({})"
+    ],
+    [
+      "· Trennzeichen {}",
+      "· delimiter {}"
+    ],
+    [
+      "„{}“ läuft gerade nicht.",
+      "“{}” isn’t running right now."
+    ],
+    [
+      "„{}“ abbrechen",
+      "Cancel “{}”"
+    ],
+    [
+      "„{}“ abgebrochen",
+      "“{}” canceled"
+    ],
+    [
+      "Live: {}",
+      "Live: {}"
+    ],
+    [
+      "Bedingung nicht erfüllt: {} läuft nicht{}.",
+      "Condition not met: {} isn’t running{}."
+    ],
+    [
+      "Bedingung nicht erfüllt: {} gibt es nicht.",
+      "Condition not met: {} doesn’t exist."
+    ],
+    [
+      "Bedingung nicht erfüllt: in {} hat sich seit dem letzten Lauf nichts geändert.",
+      "Condition not met: nothing changed in {} since the last run."
+    ],
+    [
+      "Papierkorb: {} ({})",
+      "Trash: {} ({})"
+    ],
+    [
+      "Schnappschuss {}: {}",
+      "Snapshot {}: {}"
+    ],
+    [
+      "Das Zeichen „{}“ lässt sich in Windows-1252 nicht speichern – bitte als UTF-8 speichern.",
+      "The character “{}” can’t be saved in Windows-1252 – please save as UTF-8."
+    ],
+    [
+      "„{}“ ist in diesem Schnappschuss nicht enthalten.",
+      "“{}” isn’t part of this snapshot."
+    ],
+    [
+      "{} Als UTF-8 gespeichert bleiben alle Zeichen erhalten. Ältere Programme zeigen Umlaute dann evtl. falsch an.",
+      "{} Saved as UTF-8, every character is kept. Older programs may then show umlauts incorrectly."
+    ],
+    [
+      "Abgelegt als „{}“",
+      "Saved as “{}”"
+    ],
+    [
+      "Große Datei ({}) – du siehst die letzten {} Zeilen, nur zum Lesen.",
+      "Large file ({}) – you’re seeing the last {} lines, read-only."
+    ],
+    [
+      "im Ordner „{}“ und darunter",
+      "in folder “{}” and below"
+    ],
+    [
+      "In {} ersetzen",
+      "Replace in {}"
+    ],
+    [
+      "„{}“ ist keine Datei.",
+      "“{}” isn’t a file."
+    ],
+    [
+      "Ungültiger regulärer Ausdruck: {}",
+      "Invalid regular expression: {}"
+    ],
+    [
+      "Ersetzen: „{}“",
+      "Replace: “{}”"
+    ],
+    [
+      "{} → heute",
+      "{} → today"
+    ],
+    [
+      "Namen oder Muster wie *.zip oder cache – gilt für Dateien und Ordner in jeder Tiefe. Immer weggelassen: {}.",
+      "Names or patterns like *.zip or cache – applies to files and folders at any depth. Always left out: {}."
+    ],
+    [
+      "„{}“ wieder sichern",
+      "Back up “{}” again"
+    ],
+    [
+      "Auf dem Server wurden {} Datei(en) geändert, die jetzt überschrieben würden: {}{}. Erst prüfen – oder „trotzdem veröffentlichen“.",
+      "{} file(s) were changed on the server and would now be overwritten: {}{}. Check first – or “publish anyway”."
+    ],
+    [
+      "Befehl nach dem Hochladen fehlgeschlagen (Code {}): {}",
+      "Command after upload failed (code {}): {}"
+    ],
+    [
+      "„{}“ enthält Commits, die noch nirgends zusammengeführt sind. Trotzdem löschen?",
+      "“{}” contains commits that haven’t been merged anywhere yet. Delete anyway?"
+    ],
+    [
+      "SSH-Schlüssel nicht gefunden: {}",
+      "SSH key not found: {}"
+    ],
+    [
+      "Einen Schlüssel „{}“ gibt es schon – bitte einen anderen Namen wählen.",
+      "A key “{}” already exists – please choose another name."
+    ],
+    [
+      "Zeilen-Verlauf: {}",
+      "Line history: {}"
+    ],
+    [
+      "Tag {}",
+      "Tag {}"
+    ],
+    [
+      "Tag {} angelegt",
+      "Tag {} created"
+    ],
+    [
+      "Tag {} löschen?",
+      "Delete tag {}?"
+    ],
+    [
+      "Tag {} löschen",
+      "Delete tag {}"
+    ],
+    [
+      "{} zu {} schicken",
+      "Send {} to {}"
+    ],
+    [
+      "{} gepusht",
+      "{} pushed"
+    ],
+    [
+      "Auch auf {} löschen",
+      "Also delete on {}"
+    ],
+    [
+      "Mit einem Schlüssel meldest du dich bei GitHub, GitLab oder deinem Server ohne Passwort an. Der private Teil bleibt auf diesem Rechner ({}).",
+      "With a key you sign in to GitHub, GitLab or your server without a password. The private part stays on this computer ({})."
+    ],
+    [
+      "Öffentlichen Schlüssel {} kopieren",
+      "Copy public key {}"
+    ],
+    [
+      "Branch „{}“ löschen?",
+      "Delete branch “{}”?"
+    ],
+    [
+      "Branch „{}“ löschen",
+      "Delete branch “{}”"
+    ],
+    [
+      "Branch {} gelöscht",
+      "Branch {} deleted"
+    ],
+    [
+      "{} hochgeladen{}",
+      "{} uploaded{}"
+    ],
+    [
+      " · {} ausgeführt",
+      " · {} run"
+    ],
+    [
+      "Server unverändert ({} geprüft)",
+      "Server unchanged ({} checked)"
+    ],
+    [
+      "Auf dem Server geändert: {} · dort gelöscht: {}{}",
+      "Changed on the server: {} · deleted there: {}{}"
+    ],
+    [
+      "Abhängigkeiten prüfen: {}",
+      "Check dependencies: {}"
+    ],
+    [
+      "{}: {} schwere Sicherheitslücke(n) in Paketen – Details unter Projekte → Pakete.",
+      "{}: {} serious security issue(s) in packages – details under Projects → Packages."
+    ],
+    [
+      "{}: {} Paket(e) veraltet.",
+      "{}: {} package(s) outdated."
+    ],
+    [
+      "{} {} fehlgeschlagen{}",
+      "{} {} failed{}"
+    ],
+    [
+      "Leer = „{}“",
+      "Empty = “{}”"
+    ],
+    [
+      "{} läuft – Ausgabe im Auftrags-Fenster",
+      "{} is running – output in the jobs window"
+    ],
+    [
+      "Geprüft {}",
+      "Checked {}"
+    ],
+    [
+      "{} kritisch · {} hoch · {} weitere",
+      "{} critical · {} high · {} more"
+    ],
+    [
+      "Betroffen: {}",
+      "Affected: {}"
+    ],
+    [
+      "{} fertig",
+      "{} done"
+    ],
+    [
+      "{} von {} Läufen grün",
+      "{} of {} runs green"
+    ],
+    [
+      " · zuletzt {}/{} bestanden",
+      " · last time {}/{} passed"
+    ],
+    [
+      "„{}“ archivieren",
+      "Archive “{}”"
+    ],
+    [
+      "Archiviert · {}",
+      "Archived · {}"
+    ],
+    [
+      "Archiviert – ZIP liegt unter {}",
+      "Archived – the ZIP is at {}"
+    ],
+    [
+      "Archiviert am {}{}",
+      "Archived on {}{}"
+    ],
+    [
+      "Apps des Projekts anhalten und nicht mehr automatisch starten{}",
+      "Stop the project’s apps and don’t start them automatically any more{}"
+    ],
+    [
+      "{} offen",
+      "{} open"
+    ],
+    [
+      "{}: wieder offen",
+      "{}: open again"
+    ],
+    [
+      "{}: erledigt",
+      "{}: done"
+    ],
+    [
+      "„{}“ entfernen",
+      "Remove “{}”"
+    ],
+    [
+      "In der .env fehlen {} aus der .env.example:",
+      "The .env is missing {} from the .env.example:"
+    ],
+    [
+      "Nur in der .env (nicht in .env.example): {}",
+      "Only in the .env (not in .env.example): {}"
+    ],
+    [
+      "{} ist nicht installiert – unter „Apps → Laufzeiten“ installieren bzw. dort den Link zum Hersteller nutzen.",
+      "{} isn’t installed – install it under “Apps → Runtimes” or use the link to the vendor there."
+    ],
+    [
+      "Kein passendes Paket in {} gefunden.",
+      "No matching package found in {}."
+    ],
+    [
+      "Node.js {} gibt es nicht als Download.",
+      "Node.js {} isn’t available as a download."
+    ],
+    [
+      "Python {} ist unbekannt.",
+      "Python {} is unknown."
+    ],
+    [
+      "Python {} gibt es nicht als portables Paket.",
+      "Python {} isn’t available as a portable package."
+    ],
+    [
+      "{} bitte vom Hersteller installieren ({}) – Hostwerk findet es danach von selbst.",
+      "Please install {} from the vendor ({}) – Hostwerk finds it by itself afterwards."
+    ],
+    [
+      "Von Hostwerk geladen: {}",
+      "Downloaded by Hostwerk: {}"
+    ],
+    [
+      "{}-Version wählen",
+      "Choose {} version"
+    ],
+    [
+      "Das Projekt möchte Node {} (laut {}) – läuft gerade mit {}.",
+      "The project wants Node {} (according to {}) – currently running with {}."
+    ],
+    [
+      "Gesundheits-Adresse {}: {}",
+      "Health address {}: {}"
+    ],
+    [
+      "z. B. /health – muss mit 2xx/3xx antworten. Leer = nur prüfen, ob Port {} offen ist.",
+      "e.g. /health – must answer with 2xx/3xx. Empty = only check whether port {} is open."
+    ],
+    [
+      "Gesundheitsprüfung: {} – {} ({}/3).",
+      "Health check: {} – {} ({}/3)."
+    ],
+    [
+      "Ungesund – {} meldete {}",
+      "Unhealthy – {} reported {}"
+    ],
+    [
+      "Geändert: {} – App wird neu gestartet (Entwicklungsmodus).",
+      "Changed: {} – restarting app (development mode)."
+    ],
+    [
+      "Neustart fehlgeschlagen: {}",
+      "Restart failed: {}"
+    ],
+    [
+      "Entwicklungsmodus nicht möglich: {}",
+      "Development mode not possible: {}"
+    ],
+    [
+      "Hinweis: Das Projekt möchte Node {} (laut {}), installiert ist keine passende Version – läuft mit {}. Unter „Apps → Laufzeiten“ die passende Version installieren.",
+      "Note: the project wants Node {} (according to {}), no matching version is installed – running with {}. Install the matching version under “Apps → Runtimes”."
+    ],
+    [
+      "Node {} (passend zu {}: {})",
+      "Node {} (matching {}: {})"
+    ],
+    [
+      "Die Compose-Datei hat Fehler: {}",
+      "The compose file has errors: {}"
+    ],
+    [
+      "Image {} zurück auf die vorige Fassung",
+      "Image {} back to the previous version"
+    ],
+    [
+      "Image {} aktualisieren",
+      "Update image {}"
+    ],
+    [
+      "Vorige Fassung gesichert als {}",
+      "Previous version saved as {}"
+    ],
+    [
+      "Compose „{}“ neu erzeugen …",
+      "Recreating compose “{}” …"
+    ],
+    [
+      "Vorige Fassung vom {}",
+      "Previous version from {}"
+    ],
+    [
+      "Kopiert nach {}",
+      "Copied to {}"
+    ],
+    [
+      "Gateway {}",
+      "Gateway {}"
+    ],
+    [
+      "Compose bearbeiten: {}",
+      "Edit compose: {}"
+    ],
+    [
+      "Hinweise: {}",
+      "Notes: {}"
+    ],
+    [
+      " – neu erzeugt: {}",
+      " – recreated: {}"
+    ],
+    [
+      "{}: zurück auf die vorige Fassung{}",
+      "{}: back to the previous version{}"
+    ],
+    [
+      "{} aktualisiert{}",
+      "{} updated{}"
+    ],
+    [
+      "{} ist schon aktuell",
+      "{} is already up to date"
+    ],
+    [
+      "{} verfügbar",
+      "{} available"
+    ],
+    [
+      "– neu erzeugt: {}",
+      "– recreated: {}"
+    ],
+    [
+      "SSH: {}",
+      "SSH: {}"
+    ],
+    [
+      "Aus{}",
+      "Off{}"
+    ],
+    [
+      "An alle sichtbaren Reiter{}",
+      "To all visible tabs{}"
+    ],
+    [
+      "An alle Reiter{}",
+      "To all tabs{}"
+    ],
+    [
+      "Eingaben gehen an alle {} Reiter.",
+      "Input goes to all {} tabs."
+    ],
+    [
+      "{} aktive Sitzung(en) enden",
+      "{} active session(s) end"
+    ],
+    [
+      "docker beendet mit {}",
+      "docker exited with {}"
+    ],
+    [
+      "aus externer Sicherung eingerichtet ({})",
+      "set up from off-site backup ({})"
+    ],
+    [
+      "Die Datei gibt es schon: {}",
+      "The file already exists: {}"
+    ],
+    [
+      "{} gesperrt (Stufe {})",
+      "{} blocked (level {})"
+    ],
+    [
+      "Geteilter Link „{}“ ist abgelaufen und geschlossen.",
+      "Shared link “{}” has expired and is closed."
+    ],
+    [
+      "Alarme gehen an: {}.{}",
+      "Alerts go to: {}.{}"
+    ],
+    [
+      "Ruhezeit bis {}.",
+      "Quiet hours until {}."
+    ],
+    [
+      "· Grenze {} ms",
+      "· limit {} ms"
+    ],
+    [
+      "· Zertifikat noch {} Tage",
+      "· certificate valid {} more days"
+    ],
+    [
+      "Fernzugriff: {} gesperrt",
+      "Remote access: {} blocked"
+    ],
+    [
+      "Zertifikat von {} läuft in {} Tag(en) ab",
+      "Certificate of {} expires in {} day(s)"
+    ],
+    [
+      "{} antwortet langsam",
+      "{} responds slowly"
+    ],
+    [
+      "{} antwortet wieder schnell",
+      "{} responds quickly again"
+    ],
+    [
+      "{} Meldungen während der Ruhezeit",
+      "{} alerts during quiet hours"
+    ],
+    [
+      "Gesperrt bis {}",
+      "Blocked until {}"
+    ],
+    [
+      "{} – {}. Die neueste Version jedes Programms bleibt.",
+      "{} – {}. The newest version of every program stays."
+    ],
+    [
+      "{} Tag ungenutzt",
+      "{} day unused"
+    ],
+    [
+      "{} Tage ungenutzt",
+      "{} days unused"
+    ],
+    [
+      "{} Version entfernt",
+      "{} version removed"
+    ],
+    [
+      "{} Versionen entfernt",
+      "{} versions removed"
+    ],
+    [
+      "{} Stand gelöscht",
+      "{} backup deleted"
+    ],
+    [
+      "{} Stände gelöscht",
+      "{} backups deleted"
+    ],
+    [
+      "{} Stand wird",
+      "{} backup will be"
+    ],
+    [
+      "{} Stände werden",
+      "{} backups will be"
+    ],
+    [
+      "{} Stand",
+      "{} backup"
+    ],
+    [
+      "{} Meldung wartet",
+      "{} message waiting"
+    ],
+    [
+      "{} Meldungen warten",
+      "{} messages waiting"
+    ],
+    [
+      "{} bekannter Port",
+      "{} known port"
+    ],
+    [
+      "{} bekannte Ports",
+      "{} known ports"
+    ],
+    [
+      "{} Projekt im Tresor",
+      "{} project in the vault"
+    ],
+    [
+      "{} Projekte im Tresor",
+      "{} projects in the vault"
+    ],
+    [
+      "{} Dienst neu",
+      "{} new service"
+    ],
+    [
+      "{} Dienste neu",
+      "{} new services"
+    ],
+    [
+      "Protokoll-Wächter „{}“: {}",
+      "Log watch “{}”: {}"
+    ],
+    [
+      "Ereignis: {}",
+      "Event: {}"
+    ],
+    [
+      "Update auf {}: {}",
+      "Update to {}: {}"
+    ],
+    [
+      "{} Downloads aller Fassungen",
+      "{} downloads of all versions"
+    ],
+    [
+      "Übertragen … {} % · {}",
+      "Transferring … {} % · {}"
+    ],
+    [
+      "Übertragen: {} MB in {} s ({})",
+      "Transferred: {} MB in {} s ({})"
+    ],
+    [
+      "Docker-Volume {} packen …",
+      "Packing Docker volume {} …"
+    ],
+    [
+      "Docker-Volume {} füllen …",
+      "Filling Docker volume {} …"
+    ],
+    [
+      "Spigot {} wird gebaut …",
+      "Building Spigot {} …"
     ]
   ]
 }
