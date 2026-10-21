@@ -13,6 +13,7 @@
  *   import { Btn, Modal, toast } from '@hostwerk/ui';    → Hostwerk's components (dialog texts are translated for you)
  *   import { SvcImage, contextMenu } from '@hostwerk/kit';  · '@hostwerk/editor' · '@hostwerk/files' · '@hostwerk/three'
  *   import { t } from '@hostwerk/i18n';                  → t('Server {name} started', { name }) for texts outside JSX
+ *   import { pl } from '@hostwerk/i18n';                 → pl(n, '{n} server', '{n} servers') – plural (SDK 2.10)
  *
  * JSX text is translated automatically: write English, put German into locales/de.json ({ "English": "Deutsch" }).
  * Icons: import from 'lucide-react' (bundled, tree-shaken). Needs esbuild (npm i -D esbuild lucide-react).
@@ -40,7 +41,7 @@ function hostPlugin(id, used) {
         const ext = `globalThis.__hostwerk.forExt(${JSON.stringify(id)})`;
         if (/jsx-(dev-)?runtime$/.test(p)) return { contents: `module.exports = ${ext}.runtime;`, loader: 'js' };
         if (p === '@hostwerk/ui') return { contents: `module.exports = ${ext}.ui;`, loader: 'js' };
-        if (p === '@hostwerk/i18n') return { contents: `module.exports = { t: ${ext}.t };`, loader: 'js' };
+        if (p === '@hostwerk/i18n') return { contents: `module.exports = { t: ${ext}.t, pl: ${ext}.pl };`, loader: 'js' };
         if (!HOST_MODULES.includes(p)) throw new Error(`${p} is not offered by Hostwerk – available: ${HOST_MODULES.join(', ')}`);
         used.add(p);
         return { contents: `module.exports = globalThis.__hostwerk.mods[${JSON.stringify(p)}];`, loader: 'js' };

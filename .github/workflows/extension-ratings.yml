@@ -1,6 +1,6 @@
 name: Extension ratings
 
-# Counts the reactions on the "Rating: <id>" issues and writes catalog/ratings.json (stars in the marketplace).
+# Counts the reactions on the "Rating: <id>" issues and the release downloads and writes catalog/ratings.json (stars and downloads in the marketplace).
 # Creates the rating issue for new extensions automatically. Daily and on demand.
 on:
   schedule:

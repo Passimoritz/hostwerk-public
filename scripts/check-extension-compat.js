@@ -60,7 +60,7 @@ function apiProblems(dir) {
         for (const x of c.errors) problems.push(x.msg);
         problems.push(...apiProblems(path.join(tmp, 'x')));
         const min = c.manifest && c.manifest.hostwerk && String(c.manifest.hostwerk).replace(/^>=\s*/, '');
-        if (min && /^\d/.test(min) && c.manifest.sdk && cmp(c.manifest.sdk, SDK_VERSION) > 0) problems.push(`needs SDK ${c.manifest.sdk}, catalog has ${SDK_VERSION}`);
+        if (min && /^\d/.test(min) && (c.manifest.sdkVersion || c.manifest.sdk) && cmp(c.manifest.sdkVersion || c.manifest.sdk, SDK_VERSION) > 0) problems.push(`needs SDK ${c.manifest.sdkVersion || c.manifest.sdk}, catalog has ${SDK_VERSION}`);
       } catch (err) { problems.push(err.message); }
       e.compat = { ok: problems.length === 0, checked: new Date().toISOString().slice(0, 10), sdk: SDK_VERSION, problems: problems.slice(0, 10) };
       if (problems.length) failing++;

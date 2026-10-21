@@ -27,8 +27,13 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/build-extension-catalog.js
+      # Signature for Hostwerk (key only as a secret, see scripts/sign-catalog.js)
+      - name: Sign
+        env:
+          HOSTWERK_SIGNING_KEY: ${{ secrets.HOSTWERK_SIGNING_KEY }}
+        run: node scripts/sign-catalog.js catalog/extensions.json
       - name: Commit
         run: |
           git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
-          git add catalog/extensions.json
+          git add catalog/extensions.json catalog/extensions.json.sig 2>/dev/null || git add catalog/extensions.json
           git diff --cached --quiet || (git commit -m "Extension catalog updated" && git pull --rebase -q && git push)

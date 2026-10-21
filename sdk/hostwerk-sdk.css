@@ -1,94 +1,140 @@
 /*!
  * Hostwerk design kit for extensions (loaded automatically by /ext-sdk.js).
- * All colours come from Hostwerk at runtime (--hw-*), light and dark mode switch with the app.
- * Use these classes and variables instead of your own colours – then an extension never breaks the design.
- * Fallback values = Hostwerk dark theme, so a page also looks right when opened on its own.
+ * All colours AND the design scale (font sizes, radii, spacing, control heights) come from Hostwerk at runtime (--hw-*),
+ * light and dark mode switch with the app. The classes below mirror Hostwerk's own components 1:1 – same heights,
+ * radii, colours and states – so an extension looks like a built-in part of Hostwerk.
+ * Use these classes and variables instead of your own values. Fallbacks = Hostwerk dark theme, so a page also looks
+ * right when opened on its own.
  */
 :root {
-  --hw-bg: #0a0c11; --hw-bg-2: #0e1118; --hw-surface: #12151d; --hw-surface-2: #171b25; --hw-surface-3: #1e2330;
-  --hw-line: #232838; --hw-line-2: #2d3446; --hw-text: #e7e9f0; --hw-text-2: #b4bacb; --hw-muted: #7d859b;
-  --hw-accent: #7c5cff; --hw-accent-2: #19c7a8; --hw-accent-soft: rgba(124, 92, 255, .14); --hw-accent-text: #b4a3ff;
-  --hw-ok: #2fd39a; --hw-ok-soft: rgba(47, 211, 154, .13); --hw-warn: #f5b84a; --hw-warn-soft: rgba(245, 184, 74, .13);
-  --hw-err: #ff5d6c; --hw-err-soft: rgba(255, 93, 108, .13); --hw-info: #4ea8ff; --hw-info-soft: rgba(78, 168, 255, .13);
+  --hw-bg: #0e0e10; --hw-bg-2: #0b0b0d; --hw-surface: #151517; --hw-surface-2: #1b1b1e; --hw-surface-3: #232327;
+  --hw-line: rgba(255, 255, 255, .07); --hw-line-2: rgba(255, 255, 255, .12); --hw-text: #ececee; --hw-text-2: #c2c2c8; --hw-muted: #8e8e96;
+  --hw-accent: #7c5cff; --hw-accent-btn: #6f4cff; --hw-accent-2: #19c7a8; --hw-accent-soft: rgba(124, 92, 255, .14); --hw-accent-text: #b4a3ff;
+  /* Accent palette (Hostwerk derives all of it from the user's ONE accent colour, readable in light and dark – use these, never your own brand colour for UI chrome) */
+  --hw-accent-contrast: #000000; --hw-accent-ring: #7c5cff;
+  --hw-ok: #2fd39a; --hw-ok-text: #2fd39a; --hw-ok-soft: rgba(47, 211, 154, .13);
+  --hw-warn: #f5b84a; --hw-warn-text: #f5b84a; --hw-warn-soft: rgba(245, 184, 74, .13);
+  --hw-err: #ff5d6c; --hw-err-text: #ff5d6c; --hw-err-soft: rgba(255, 93, 108, .13);
+  --hw-info: #4ea8ff; --hw-info-soft: rgba(78, 168, 255, .13);
   --hw-grad: linear-gradient(135deg, #8b6cff 0%, #5f7bff 45%, #19c7a8 100%);
   --hw-shadow: 0 10px 30px -12px rgba(0, 0, 0, .6), 0 2px 6px -2px rgba(0, 0, 0, .4);
+  --hw-shadow-lg: 0 30px 80px -20px rgba(0, 0, 0, .75);
+  --hw-console-bg: #07080c; --hw-input-bg: #111113;
   --hw-font: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --hw-mono: 'Cascadia Code', Consolas, 'JetBrains Mono', monospace;
-  --hw-radius: 14px; --hw-radius-sm: 10px; --hw-gap: 14px;
+  /* Design scale (same steps as Hostwerk – pick a step, never an own number) */
+  --hw-fs-2xs: 11px; --hw-fs-xs: 12px; --hw-fs-sm: 13px; --hw-fs-md: 14px; --hw-fs-lg: 16px; --hw-fs-xl: 20px; --hw-fs-2xl: 24px; --hw-fs-3xl: 28px;
+  --hw-r-xs: 4px; --hw-r-sm: 6px; --hw-r-md: 8px; --hw-r-lg: 10px; --hw-r-xl: 12px; --hw-r-2xl: 20px; --hw-r-pill: 999px;
+  --hw-sp-1: 4px; --hw-sp-2: 8px; --hw-sp-3: 12px; --hw-sp-4: 16px; --hw-sp-5: 20px; --hw-sp-6: 24px; --hw-sp-8: 32px;
+  --hw-control-h: 32px; --hw-control-h-sm: 28px; --hw-control-h-xs: 24px;
+  /* Older names (SDK ≤ 2.7), kept so existing extensions keep working */
+  --hw-radius: var(--hw-r-xl); --hw-radius-sm: var(--hw-r-lg); --hw-gap: 14px;
   color-scheme: dark;
 }
-:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='light'] {
+  color-scheme: light;
+  /* Light fallbacks for the accent palette (Hostwerk sends the real values at runtime) */
+  --hw-accent: #6a46ff; --hw-accent-btn: #6a46ff; --hw-accent-2: #0fae92; --hw-accent-soft: rgba(106, 70, 255, .1); --hw-accent-text: #5a37f0;
+  --hw-accent-contrast: #ffffff; --hw-accent-ring: #6a46ff;
+}
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
-body { padding: 22px 26px; font: 14px/1.5 var(--hw-font); background: var(--hw-bg); color: var(--hw-text); -webkit-font-smoothing: antialiased; }
+body { padding: 22px 26px; font: var(--hw-fs-md)/1.45 var(--hw-font); background: var(--hw-bg); color: var(--hw-text); -webkit-font-smoothing: antialiased; }
 :root[data-embed='widget'] body { padding: 0; background: transparent; overflow: hidden; }
-h1, .hw-h1 { font-size: 22px; letter-spacing: -.02em; margin: 0 0 4px; font-weight: 700; }
-h2, .hw-h2 { font-size: 16px; margin: 18px 0 10px; font-weight: 650; }
-h3, .hw-h3 { font-size: 14px; margin: 0 0 8px; font-weight: 650; }
+h1, .hw-h1 { font-size: var(--hw-fs-2xl); letter-spacing: -.02em; margin: 0 0 4px; font-weight: 700; text-wrap: balance; }
+h2, .hw-h2 { font-size: var(--hw-fs-lg); margin: 18px 0 10px; font-weight: 650; text-wrap: balance; }
+h3, .hw-h3 { font-size: var(--hw-fs-md); margin: 0 0 8px; font-weight: 650; }
 p { margin: 0 0 10px; color: var(--hw-text-2); }
 a { color: var(--hw-accent-text); text-decoration: none; } a:hover { text-decoration: underline; }
 code, .hw-mono { font-family: var(--hw-mono); font-size: .92em; }
-::selection { background: var(--hw-accent-soft); }
-::-webkit-scrollbar { width: 10px; height: 10px; } ::-webkit-scrollbar-thumb { background: var(--hw-line-2); border-radius: 10px; border: 2px solid var(--hw-bg); }
+code { background: var(--hw-surface-3); border: 1px solid var(--hw-line); padding: 1px 6px; border-radius: var(--hw-r-sm); }
+kbd { font-family: var(--hw-mono); font-size: var(--hw-fs-2xs); border: 1px solid var(--hw-line-2); border-bottom-width: 2px; padding: 0 5px; border-radius: var(--hw-r-xs); background: var(--hw-surface-2); color: var(--hw-text-2); }
+::selection { background: color-mix(in srgb, var(--hw-accent) 35%, transparent); }
+::-webkit-scrollbar { width: 10px; height: 10px; } ::-webkit-scrollbar-thumb { background: var(--hw-line-2); border-radius: var(--hw-r-lg); border: 2px solid transparent; background-clip: padding-box; }
+:focus-visible { outline: 2px solid var(--hw-accent-ring); outline-offset: 2px; }
 
 /* Layout */
 .hw-sub { color: var(--hw-muted); margin: 0 0 18px; }
-.hw-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.hw-row { display: flex; align-items: center; gap: var(--hw-sp-2); flex-wrap: wrap; }
 .hw-grow { flex: 1; min-width: 0; }
 .hw-stack { display: flex; flex-direction: column; gap: var(--hw-gap); }
-.hw-grid { display: grid; gap: var(--hw-gap); grid-template-columns: repeat(auto-fill, minmax(var(--hw-min, 240px), 1fr)); }
-.hw-muted { color: var(--hw-muted); } .hw-small { font-size: 12.5px; } .hw-tiny { font-size: 11.5px; }
+.hw-grid { display: grid; gap: var(--hw-sp-4); grid-template-columns: repeat(auto-fill, minmax(var(--hw-min, 240px), 1fr)); }
+.hw-muted { color: var(--hw-muted); } .hw-small { font-size: var(--hw-fs-sm); } .hw-tiny { font-size: var(--hw-fs-xs); }
 .hw-ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* Cards and stat tiles */
-.hw-card { background: var(--hw-surface); border: 1px solid var(--hw-line); border-radius: var(--hw-radius); padding: 16px; }
-.hw-card.hw-flat { background: var(--hw-surface-2); }
-.hw-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.hw-card-head h3 { margin: 0; }
-.hw-stat .hw-k { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--hw-muted); }
-.hw-stat .hw-v { font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
-.hw-stat .hw-s { font-size: 12px; color: var(--hw-muted); }
+/* Cards and stat tiles (Hostwerk: .card / .card-head / .card-body) */
+.hw-card { background: var(--hw-surface); border: 1px solid var(--hw-line); border-radius: var(--hw-r-xl); padding: 18px; box-shadow: var(--hw-shadow); }
+.hw-card.hw-flat { background: var(--hw-surface-2); box-shadow: none; }
+.hw-card-head { display: flex; align-items: center; gap: var(--hw-sp-3); margin: -4px 0 12px; }
+.hw-card-head h3 { margin: 0; font-size: var(--hw-fs-lg); }
+.hw-card-head .hw-right { margin-left: auto; display: flex; gap: var(--hw-sp-2); align-items: center; }
+.hw-stat .hw-k { font-size: var(--hw-fs-2xs); text-transform: uppercase; letter-spacing: .06em; color: var(--hw-muted); font-weight: 600; }
+.hw-stat .hw-v { font-size: var(--hw-fs-2xl); font-weight: 700; letter-spacing: -.02em; }
+.hw-stat .hw-s { font-size: var(--hw-fs-xs); color: var(--hw-muted); }
 
-/* Buttons and inputs */
-.hw-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 10px; border: 1px solid var(--hw-line-2); background: var(--hw-surface-2); color: var(--hw-text); font: inherit; font-weight: 600; font-size: 13px; cursor: pointer; transition: border-color .15s, background .15s; }
-.hw-btn:hover { border-color: color-mix(in srgb, var(--hw-accent) 45%, var(--hw-line-2)); }
-.hw-btn:disabled { opacity: .5; cursor: default; }
-.hw-btn.hw-primary { background: var(--hw-grad); border-color: transparent; color: #fff; }
-.hw-btn.hw-danger { color: var(--hw-err); border-color: color-mix(in srgb, var(--hw-err) 40%, var(--hw-line)); background: var(--hw-err-soft); }
+/* Buttons (Hostwerk: .btn, .btn.primary, .btn.danger, .btn.ghost, .btn.sm, .btn.xs, .btn.icon) */
+.hw-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: var(--hw-control-h); padding: 0 14px; border-radius: var(--hw-r-md); border: 1px solid var(--hw-line-2); background: var(--hw-surface-2); color: var(--hw-text); font: inherit; font-weight: 600; font-size: var(--hw-fs-sm); cursor: pointer; white-space: nowrap; transition: background .12s, border-color .12s, transform .05s, opacity .12s; }
+.hw-btn:hover { background: var(--hw-surface-3); border-color: var(--hw-muted); }
+.hw-btn:active { transform: translateY(1px); }
+.hw-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.hw-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+.hw-btn.hw-primary { background: var(--hw-accent-btn); border-color: transparent; color: #fff; box-shadow: 0 6px 18px -8px var(--hw-accent); }
+.hw-btn.hw-primary:hover { filter: brightness(1.08); background: var(--hw-accent-btn); }
+.hw-btn.hw-grad { background: var(--hw-accent-btn); border-color: transparent; color: #fff; box-shadow: 0 6px 18px -8px var(--hw-accent); } /* same as primary – the gradient is reserved for Hostwerk's own "+ New" button */
+.hw-btn.hw-danger { color: var(--hw-err-text); border-color: color-mix(in srgb, var(--hw-err) 35%, transparent); background: var(--hw-err-soft); }
+.hw-btn.hw-danger:hover { background: var(--hw-err); color: #fff; border-color: transparent; }
 .hw-btn.hw-ghost { background: transparent; border-color: transparent; }
-.hw-btn.hw-sm { padding: 4px 9px; font-size: 12px; border-radius: 8px; }
-.hw-input, .hw-select, .hw-textarea { width: 100%; padding: 8px 11px; border-radius: 10px; border: 1px solid var(--hw-line-2); background: var(--hw-surface-2); color: var(--hw-text); font: inherit; }
-.hw-input:focus, .hw-select:focus, .hw-textarea:focus, .hw-btn:focus-visible { outline: 2px solid color-mix(in srgb, var(--hw-accent) 60%, transparent); outline-offset: 1px; }
-.hw-label { display: block; font-size: 12px; font-weight: 600; color: var(--hw-text-2); margin-bottom: 5px; }
+.hw-btn.hw-ghost:hover { background: var(--hw-surface-3); }
+.hw-btn.hw-sm { height: var(--hw-control-h-sm); padding: 0 10px; font-size: var(--hw-fs-sm); }
+.hw-btn.hw-xs { height: var(--hw-control-h-xs); padding: 0 8px; font-size: var(--hw-fs-xs); border-radius: var(--hw-r-sm); }
+.hw-btn.hw-icon { width: var(--hw-control-h); padding: 0; } .hw-btn.hw-icon.hw-sm { width: var(--hw-control-h-sm); } .hw-btn.hw-icon.hw-xs { width: var(--hw-control-h-xs); }
 
-/* Badges, pills, states */
-.hw-badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; background: var(--hw-surface-3); color: var(--hw-text-2); }
-.hw-badge.hw-ok { background: var(--hw-ok-soft); color: var(--hw-ok); }
-.hw-badge.hw-warn { background: var(--hw-warn-soft); color: var(--hw-warn); }
-.hw-badge.hw-err { background: var(--hw-err-soft); color: var(--hw-err); }
+/* Inputs (Hostwerk: .field, .label, .input, .select, .hint) */
+.hw-field { display: flex; flex-direction: column; gap: 6px; }
+.hw-label { display: block; font-size: var(--hw-fs-sm); font-weight: 600; color: var(--hw-text-2); margin-bottom: 5px; }
+.hw-field > .hw-label { margin-bottom: 0; }
+.hw-hint { font-size: var(--hw-fs-xs); color: var(--hw-muted); }
+.hw-input, .hw-select, .hw-textarea { width: 100%; min-height: var(--hw-control-h); padding: 7px 11px; border-radius: var(--hw-r-md); border: 1px solid var(--hw-line-2); background: var(--hw-input-bg); color: var(--hw-text); font: inherit; font-size: var(--hw-fs-sm); }
+.hw-textarea { min-height: 80px; resize: vertical; line-height: 1.5; }
+.hw-input:focus, .hw-select:focus, .hw-textarea:focus { outline: none; border-color: var(--hw-accent); box-shadow: 0 0 0 3px var(--hw-accent-soft); }
+.hw-input::placeholder, .hw-textarea::placeholder { color: var(--hw-muted); }
+
+/* Badges, pills, states – text in the readable *-text colour (contrast in light mode) */
+.hw-badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: var(--hw-r-pill); font-size: var(--hw-fs-xs); font-weight: 600; background: var(--hw-surface-3); color: var(--hw-text-2); white-space: nowrap; }
+.hw-badge.hw-ok { background: var(--hw-ok-soft); color: var(--hw-ok-text); }
+.hw-badge.hw-warn { background: var(--hw-warn-soft); color: var(--hw-warn-text); }
+.hw-badge.hw-err { background: var(--hw-err-soft); color: var(--hw-err-text); }
 .hw-badge.hw-info { background: var(--hw-info-soft); color: var(--hw-info); }
 .hw-badge.hw-accent { background: var(--hw-accent-soft); color: var(--hw-accent-text); }
+.hw-ok-text { color: var(--hw-ok-text); } .hw-warn-text { color: var(--hw-warn-text); } .hw-err-text { color: var(--hw-err-text); }
 .hw-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--hw-muted); display: inline-block; flex-shrink: 0; }
 .hw-dot.hw-ok { background: var(--hw-ok); box-shadow: 0 0 0 3px var(--hw-ok-soft); }
 .hw-dot.hw-warn { background: var(--hw-warn); } .hw-dot.hw-err { background: var(--hw-err); }
-.hw-pill { display: inline-flex; align-items: center; gap: 8px; padding: 5px 11px 5px 5px; border-radius: 999px; background: var(--hw-surface-2); border: 1px solid var(--hw-line); }
-.hw-avatar { width: 26px; height: 26px; border-radius: 7px; background: var(--hw-surface-3); object-fit: cover; image-rendering: pixelated; flex-shrink: 0; }
+.hw-pill { display: inline-flex; align-items: center; gap: 8px; padding: 5px 11px 5px 5px; border-radius: var(--hw-r-pill); background: var(--hw-surface-2); border: 1px solid var(--hw-line); }
+.hw-avatar { width: 26px; height: 26px; border-radius: var(--hw-r-sm); background: var(--hw-surface-3); object-fit: cover; image-rendering: pixelated; flex-shrink: 0; }
+.hw-callout { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: var(--hw-r-lg); border: 1px solid var(--hw-line); background: var(--hw-surface-2); font-size: var(--hw-fs-sm); }
+.hw-callout.hw-info { background: var(--hw-info-soft); border-color: transparent; }
+.hw-callout.hw-warn { background: var(--hw-warn-soft); border-color: transparent; }
+.hw-callout.hw-err { background: var(--hw-err-soft); border-color: transparent; }
+.hw-callout.hw-ok { background: var(--hw-ok-soft); border-color: transparent; }
 
-/* Tables and lists */
-.hw-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.hw-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--hw-muted); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--hw-line); }
-.hw-table td { padding: 9px 10px; border-bottom: 1px solid var(--hw-line); }
+/* Tables and lists (Hostwerk: table.table) */
+.hw-table { width: 100%; border-collapse: collapse; font-size: var(--hw-fs-sm); }
+.hw-table th { text-align: left; font-size: var(--hw-fs-xs); text-transform: uppercase; letter-spacing: .05em; color: var(--hw-muted); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid var(--hw-line); background: var(--hw-surface-2); }
+.hw-table td { padding: 10px 14px; border-bottom: 1px solid var(--hw-line); vertical-align: middle; }
 .hw-table tr:last-child td { border-bottom: 0; }
+.hw-table tbody tr:hover td { background: var(--hw-surface-2); }
+.hw-table .hw-num { text-align: right; font-variant-numeric: tabular-nums; }
 .hw-list { display: flex; flex-direction: column; }
-.hw-list > * { display: flex; align-items: center; gap: 10px; padding: 9px 2px; border-bottom: 1px solid var(--hw-line); }
+.hw-list > * { display: flex; align-items: center; gap: 10px; padding: 10px 2px; border-bottom: 1px solid var(--hw-line); }
 .hw-list > *:last-child { border-bottom: 0; }
-.hw-bar { height: 6px; border-radius: 999px; background: var(--hw-surface-3); overflow: hidden; }
-.hw-bar > span { display: block; height: 100%; background: var(--hw-grad); border-radius: 999px; }
+.hw-bar { height: 6px; border-radius: var(--hw-r-pill); background: var(--hw-surface-3); overflow: hidden; }
+.hw-bar > span { display: block; height: 100%; background: var(--hw-grad); border-radius: var(--hw-r-pill); }
 
-/* Empty state, loading */
-.hw-empty { text-align: center; padding: 34px 16px; color: var(--hw-muted); }
-.hw-empty b { display: block; color: var(--hw-text); font-size: 15px; margin-bottom: 4px; }
-.hw-skeleton { border-radius: 10px; min-height: 14px; background: linear-gradient(90deg, var(--hw-surface-2) 25%, var(--hw-surface-3) 50%, var(--hw-surface-2) 75%); background-size: 200% 100%; animation: hw-skel 1.4s linear infinite; }
+/* Empty state, loading (Hostwerk: <Empty>) */
+.hw-empty { text-align: center; padding: 34px 16px; color: var(--hw-muted); font-size: var(--hw-fs-sm); }
+.hw-empty b { display: block; color: var(--hw-text); font-size: var(--hw-fs-lg); margin-bottom: 4px; }
+.hw-skeleton { border-radius: var(--hw-r-lg); min-height: 14px; background: linear-gradient(90deg, var(--hw-surface-2) 25%, var(--hw-surface-3) 50%, var(--hw-surface-2) 75%); background-size: 200% 100%; animation: hw-skel 1.4s linear infinite; }
 @keyframes hw-skel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 .hw-spinner { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--hw-line-2); border-top-color: var(--hw-accent); animation: hw-spin .8s linear infinite; display: inline-block; }
 @keyframes hw-spin { to { transform: rotate(360deg); } }

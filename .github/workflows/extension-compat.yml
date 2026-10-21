@@ -27,10 +27,14 @@ jobs:
       - name: Check all catalog extensions
         id: check
         run: node scripts/check-extension-compat.js
+      - name: Sign
+        env:
+          HOSTWERK_SIGNING_KEY: ${{ secrets.HOSTWERK_SIGNING_KEY }}
+        run: node scripts/sign-catalog.js catalog/extensions.json catalog/community.json
       - name: Commit results
         run: |
           git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
-          git add catalog/extensions.json catalog/community.json
+          git add catalog/extensions.json catalog/community.json catalog/*.sig 2>/dev/null || git add catalog/extensions.json catalog/community.json
           git diff --cached --quiet || (git commit -m "Extension compatibility checked" && git pull --rebase -q && git push)
       - name: Report problems as an issue
         if: steps.check.outputs.failing != '0'

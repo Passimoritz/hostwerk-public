@@ -46,7 +46,7 @@ const get = async (url, raw = false) => { const r = await fetch(url, { headers: 
       const raw = (f) => `https://raw.githubusercontent.com/${name}/${rel.tag_name}/${f}`;
       next.push({
         id: m.id, name: m.name, description: m.description, author: m.author || name.split('/')[0], version: m.version,
-        page: !!m.page, widget: !!m.widget, service: !!m.command, permissions: scopes(m.permissions), hostwerk: m.hostwerk || null,
+        page: !!m.page, widget: !!m.widget, service: !!m.command, permissions: scopes(m.permissions), hostwerk: m.hostwerk || null, sdkVersion: m.sdkVersion || null,
         homepage: `https://github.com/${name}`, icon: m.icon ? raw(m.icon) : null,
         download: zip.browser_download_url, sha256: sha, score: r.score, released: (rel.published_at || '').slice(0, 10),
         // SDK 2.7: category, colour, banner, screenshots, dependencies on other extensions, native code, changelog

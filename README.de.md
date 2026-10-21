@@ -168,3 +168,12 @@ Paket testen ohne Einreichen: *Actions → Add extension → Run workflow* (Prob
 3. Eine Action bestätigt, dass die Erweiterungen von deinem Konto eingereicht wurden.
 4. Das Projekt sieht sich den Antrag an und setzt das Label **verified** – du kommst in `catalog/verified.json`, und
    alle deine Erweiterungen tragen das Abzeichen. Wer gegen die Regeln verstößt (versteckter Code, heimliches Sammeln von Daten), verliert es.
+
+## Lizenz, Datenschutz, Sicherheit
+
+- [Lizenz](LICENSE.de.md) – Hostwerk ist Freeware: kostenlos privat und in Firmen, der Quellcode ist nicht öffentlich.
+- [Datenschutz](DATENSCHUTZ.md) – keine Telemetrie; welche Funktion wann mit wem spricht.
+- [Sicherheit](SECURITY.de.md) – Lücken vertraulich melden. Updates und Kataloge sind signiert.
+- [Support](SUPPORT.de.md) – welche Version Korrekturen bekommt, was „Wartungsmodus“ heißt, was passiert, falls das Projekt endet.
+- [Mitmachen](CONTRIBUTING.de.md) – seit 3.0 ist der Kern im Feature-Freeze; Neues kommt als Erweiterung.
+- **Barrierefreiheit** – Hostwerk zielt auf WCAG 2.2 AA (Tastatur, Bildschirmleser, Kontrast). Eine Barriere gefunden? Bitte ein Issue anlegen.

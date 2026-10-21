@@ -60,6 +60,7 @@ jobs:
           cat /tmp/result.json
       - name: Add or answer
         env:
+          HOSTWERK_SIGNING_KEY: ${{ secrets.HOSTWERK_SIGNING_KEY }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NR: ${{ github.event.issue.number }}
           APPROVED: ${{ contains(github.event.issue.labels.*.name, 'approved') }}
@@ -82,6 +83,7 @@ jobs:
           if [ "$APPROVED" = "true" ]; then
             node -e 'const fs=require("fs");const f="catalog/community.json";const d=JSON.parse(fs.readFileSync(f,"utf8"));const id=require("/tmp/result.json").id;for(const x of d) if(x.id===id){x.reviewed=true;x.service=x.service||false;}fs.writeFileSync(f,JSON.stringify(d,null,2)+"\n");fs.writeFileSync("katalog/community.json",JSON.stringify(d,null,2)+"\n");'
           fi
+          node scripts/sign-catalog.js catalog/community.json
           git config user.name "hostwerk-bot"
           git config user.email "bot@users.noreply.github.com"
           git add -A catalog packages katalog

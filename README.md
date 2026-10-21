@@ -167,3 +167,12 @@ Test a package without submitting: *Actions → Add extension → Run workflow* 
 3. An action confirms the extensions were submitted by your account.
 4. The project looks at the request and sets the label **verified** – you are added to `catalog/verified.json`, and
    all your extensions carry the badge. Breaking the rules (hidden code, collecting data without saying so) revokes it.
+
+## License, privacy, security
+
+- [License](LICENSE.md) – Hostwerk is freeware: free for private and business use, the source code is not public.
+- [Privacy](PRIVACY.md) – no telemetry; which feature talks to whom, and when.
+- [Security](SECURITY.md) – report vulnerabilities privately. Updates and catalogs are signed.
+- [Support](SUPPORT.md) – which version gets fixes, what “maintenance mode” means, what happens if the project ends.
+- [Contributing](CONTRIBUTING.md) – since 3.0 the core is in feature freeze; new things come as extensions.
+- **Accessibility** – Hostwerk aims for WCAG 2.2 AA (keyboard, screen readers, contrast). Found a barrier? Please open an issue.

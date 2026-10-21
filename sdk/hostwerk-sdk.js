@@ -12,7 +12,7 @@
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '2.7.0';
+  const VERSION = '3.0.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
@@ -116,16 +116,24 @@
     time(ts) { return new Date(ts).toLocaleTimeString(state.lang === 'de' ? 'de-DE' : 'en-US', { hour: '2-digit', minute: '2-digit' }); },
   };
 
-  /** Flat list of all services from /overview: { id, kind, name, state, port, url } */
+  /**
+   * Flat list of all services from /overview: { id, kind, name, state, port, url, cpu, memory, startedAt, extra }.
+   * kind: web · db · minecraft · app · docker (Docker app, since 2.10) · game (game server, since 2.10) · mail.
+   * Same logic as server/extensions/sdk/services.js (host.services.list() for native extensions).
+   */
   async function services() {
     const o = await call('GET', '/overview');
-    const pick = (kind, xs, url) => (xs || []).map((s) => ({ id: s.id, kind, name: s.name, state: (s.proc && s.proc.state) || 'stopped', port: s.port || null, url: url ? url(s) : null, cpu: s.proc && s.proc.stats ? s.proc.stats.cpu : null, memory: s.proc && s.proc.stats ? s.proc.stats.memory : null, startedAt: s.proc ? s.proc.startedAt : null, extra: (s.proc && s.proc.extra) || {} }));
+    const pick = (kind, xs, url) => (xs || []).map((s) => ({ id: s.id, kind: typeof kind === 'function' ? kind(s) : kind, name: s.name, state: (s.proc && s.proc.state) || 'stopped', port: s.port || null, url: url ? url(s) : null, cpu: s.proc && s.proc.stats ? s.proc.stats.cpu : null, memory: s.proc && s.proc.stats ? s.proc.stats.memory : null, startedAt: s.proc ? s.proc.startedAt : null, extra: (s.proc && s.proc.extra) || {} }));
+    const games = (o.games || []).map((g) => ({ id: g.id, kind: 'game', name: g.name, state: g.running ? 'running' : 'stopped', port: g.port || null, url: null, cpu: null, memory: null, startedAt: null, extra: { game: g.game || null, docker: !!g.docker, method: g.method || null } }));
     return [
       ...pick('web', o.web, (s) => (s.port ? `http://localhost:${s.port}` : null)),
-      ...pick('db', o.db), ...pick('minecraft', o.minecraft), ...pick('app', o.apps), ...pick('mail', o.mail ? [].concat(o.mail) : []),
+      ...pick('db', o.db), ...pick('minecraft', o.minecraft),
+      ...pick((s) => (s.kind === 'docker' ? 'docker' : 'app'), o.apps, (s) => s.url || null),
+      ...pick('mail', o.mail ? [].concat(o.mail) : []),
+      ...games,
     ];
   }
-  const KIND_BASE = { web: '/web', db: '/dbs', minecraft: '/mc/servers', app: '/apps', mail: '/mail' };
+  const KIND_BASE = { web: '/web', db: '/dbs', minecraft: '/mc/servers', app: '/apps', docker: '/apps', game: '/games', mail: '/mail' };
   const service = (kind, id) => {
     // Der Mail-Fänger ist ein einzelner Dienst ohne ID und ohne eigenes „restart“
     if (kind === 'mail') return { start: () => call('POST', '/mail/start'), stop: () => call('POST', '/mail/stop'), restart: async () => { await call('POST', '/mail/stop'); return call('POST', '/mail/start'); } };
@@ -145,7 +153,7 @@
     get tab() { return state.tab; },
     /** Switch the tab from inside the page. Since SDK 2.2. */
     setTab: (id) => call('SET_TAB', '', { tab: String(id) }),
-    /** Where a contributed tab is shown: { kind: 'minecraft' | 'web' | 'db' | 'app' | 'game', id }. Since SDK 2.2. */
+    /** Where a contributed tab is shown: { kind: 'minecraft' | 'web' | 'db' | 'app' | 'game' | 'project', id }. Since SDK 2.2 ('project' since 2.10). */
     get context() { return state.context; },
     t, esc, html, render, raw: (s) => new Raw(String(s)), fmt,
     /** Read (GET) – only areas covered by the extension's read permissions. */
@@ -156,6 +164,11 @@
     put: (path, body) => call('PUT', path, body),
     /** Delete (DELETE) – like post/put. Since SDK 2.3. */
     del: (path) => call('DELETE', path),
+    /**
+     * Talk to the extension's own server module (manifest "backend", runs sandboxed): Hostwerk.backend('GET', '/items').
+     * Routes are the ones the module registers on host.router. No extra permission needed. Since SDK 2.8.
+     */
+    backend: (method, path = '/', body) => call('BACKEND', '', { method: String(method || 'GET').toUpperCase(), path: String(path), body }),
     /** Let the user choose a folder (native dialog in the desktop app). Resolves to the path or null. Since SDK 2.3. */
     /**
      * Command into the Hostwerk terminal (permission run:terminal). enter: false (default) only types it – the user
@@ -165,7 +178,14 @@
     pickFolder: (title) => call('PICK_FOLDER', '', { title: title ? String(title) : '' }),
     services, service,
     minecraft: {
-      servers: async () => (await services()).filter((s) => s.kind === 'minecraft'),
+      // Mit „read:minecraft“ allein ist die Gesamtübersicht (/overview, „read:services“) gesperrt – dann direkt die
+      // Minecraft-Liste lesen; gleiche Felder wie services()
+      servers: async () => {
+        try { return (await services()).filter((s) => s.kind === 'minecraft'); } catch {
+          const list = await call('GET', '/mc/servers');
+          return (list || []).map((s) => ({ id: s.id, kind: 'minecraft', name: s.name, state: (s.proc && s.proc.state) || 'stopped', port: s.port || null, url: null, extra: { players: s.players || [], version: s.version, type: s.type } }));
+        }
+      },
       players: (id) => call('GET', `/mc/servers/${encodeURIComponent(id)}/players`),
       stats: (id) => call('GET', `/mc/servers/${encodeURIComponent(id)}/stats`),
       command: (id, command) => call('POST', `/mc/servers/${encodeURIComponent(id)}/command`, { command }),
@@ -179,7 +199,7 @@
     },
     /** Values of the settings declared in manifest.settings (the form is drawn by Hostwerk). */
     settings: { get: () => Promise.resolve(state.settings), open: () => call('OPEN_SETTINGS') },
-    /** Events: 'service' (state change), 'minecraft' (players), 'theme', 'lang', 'settings', 'tab', 'action'. Returns an unsubscribe function. */
+    /** Events: 'service' (state change), 'minecraft' (players), 'backend' (host.emit from the own server module, SDK 2.8), 'theme', 'lang', 'settings', 'tab', 'action'. Returns an unsubscribe function. */
     on(type, cb) {
       if (!listeners.has(type)) listeners.set(type, new Set());
       listeners.get(type).add(cb);

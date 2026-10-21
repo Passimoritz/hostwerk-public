@@ -30,6 +30,7 @@ jobs:
           WHO: ${{ github.event.issue.user.login }}
           ACTION: ${{ github.event.action }}
           LABEL: ${{ github.event.label.name }}
+          HOSTWERK_SIGNING_KEY: ${{ secrets.HOSTWERK_SIGNING_KEY }}
         run: |
           node -e '
             const fs = require("fs");
@@ -42,7 +43,9 @@ jobs:
           git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
           save() {
             cp catalog/verified.json katalog/verifiziert.json 2>/dev/null || true
+            node scripts/sign-catalog.js catalog/verified.json
             git add catalog/verified.json katalog
+            [ -f catalog/verified.json.sig ] && git add catalog/verified.json.sig
             git diff --cached --quiet || (git commit -m "$1" && git pull --rebase -q && git push)
           }
           if [ "$ACTION" = "opened" ]; then

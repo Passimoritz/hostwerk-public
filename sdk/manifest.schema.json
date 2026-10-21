@@ -111,7 +111,12 @@
             "wand",
             "wifi",
             "wrench",
-            "zap"
+            "zap",
+            "smartphone",
+            "cloud-upload",
+            "folder-up",
+            "file-search",
+            "router"
           ],
           "description": "Line icon for the sidebar (same style as Hostwerk's own areas)."
         },
@@ -210,7 +215,12 @@
                   "wand",
                   "wifi",
                   "wrench",
-                  "zap"
+                  "zap",
+                  "smartphone",
+                  "cloud-upload",
+                  "folder-up",
+                  "file-search",
+                  "router"
                 ],
                 "description": "Line icon for the sidebar (same style as Hostwerk's own areas)."
               }
@@ -242,6 +252,51 @@
               }
             }
           }
+        },
+        "nav": {
+          "$ref": "#/definitions/nav"
+        }
+      }
+    },
+    "nav": {
+      "type": "object",
+      "description": "Where the page sits in the sidebar – like Hostwerk's own areas (SDK 2.8, own areas and \"after\" since Hostwerk 2.11). People can still drag it elsewhere or hide it.",
+      "required": [
+        "group"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "group": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{1,30}$",
+          "description": "server = under “Server”, develop = under “Develop”, system = at the bottom next to AI/System, or the id of an OWN area (needs groupTitle; it only shows while a page is in it). “extensions” (old) = Hostwerk places it by category."
+        },
+        "order": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Position inside the group (default 50)"
+        },
+        "groupTitle": {
+          "type": "object",
+          "description": "Title of an own area: { \"de\": …, \"en\": … }. Several extensions with the same group id share the area.",
+          "required": [
+            "de",
+            "en"
+          ],
+          "properties": {
+            "de": {
+              "type": "string"
+            },
+            "en": {
+              "type": "string"
+            }
+          }
+        },
+        "after": {
+          "type": "string",
+          "pattern": "^(ext:)?[a-z0-9][a-z0-9-]{1,39}$",
+          "description": "Show right after this sidebar entry, e.g. \"mc\", \"terminal\" or \"ext:api-tester\"."
         }
       }
     }
@@ -287,9 +342,28 @@
       "pattern": "^#[0-9a-fA-F]{6}$"
     },
     "hostwerk": {
+      "description": "Hostwerk versions this extension runs on: a minimum like \">=3.0.0\" or (SDK 3.0) { \"min\": \"3.0.0\", \"max\": \"3.x\" }.",
+      "oneOf": [
+        { "type": "string", "pattern": "^>=\\s*\\d+\\.\\d+\\.\\d+$" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Lowest Hostwerk version, e.g. 3.0.0" },
+            "max": { "type": "string", "pattern": "^\\d+(\\.(\\d+|x))?(\\.(\\d+|x))?$", "description": "Highest Hostwerk version (inclusive): 3.x, 3.4.x or 3.4.2" }
+          }
+        }
+      ]
+    },
+    "sdkVersion": {
       "type": "string",
-      "pattern": "^>=\\s*\\d+\\.\\d+\\.\\d+$",
-      "description": "Minimum Hostwerk version, e.g. >=2.9.0"
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$",
+      "description": "SDK 3.0: which SDK this extension was written for, e.g. \"3.0\". Every SDK 3.x runs extensions written for 3.0 up to its own minor version."
+    },
+    "experimental": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "SDK 3.0: opt-in to experimental APIs (may change in any version, not allowed in the catalog)."
     },
     "category": {
       "enum": [
@@ -365,6 +439,11 @@
           "read:claude",
           "change:claude",
           "run:terminal",
+          "read:games",
+          "change:ports",
+          "share:view",
+          "override:ui",
+          "extend:extensions",
           "native",
           "storage",
           "network",
@@ -532,7 +611,12 @@
                   "wand",
                   "wifi",
                   "wrench",
-                  "zap"
+                  "zap",
+                  "smartphone",
+                  "cloud-upload",
+                  "folder-up",
+                  "file-search",
+                  "router"
                 ],
                 "description": "Line icon for the sidebar (same style as Hostwerk's own areas)."
               },
@@ -542,8 +626,19 @@
                   "web",
                   "db",
                   "app",
-                  "game"
-                ]
+                  "game",
+                  "project",
+                  "area:web",
+                  "area:dbs",
+                  "area:minecraft",
+                  "area:projects",
+                  "area:mail",
+                  "area:system",
+                  "area:live",
+                  "area:ai",
+                  "area:backups"
+                ],
+                "description": "Detail pages (minecraft, web, db, app, game) or – since SDK 2.8 – main areas (area:system, area:backups, area:ai …)"
               },
               "file": {
                 "type": "string",
@@ -634,7 +729,12 @@
                   "wand",
                   "wifi",
                   "wrench",
-                  "zap"
+                  "zap",
+                  "smartphone",
+                  "cloud-upload",
+                  "folder-up",
+                  "file-search",
+                  "router"
                 ],
                 "description": "Line icon for the sidebar (same style as Hostwerk's own areas)."
               },
@@ -649,6 +749,543 @@
                     "app",
                     "game"
                   ]
+                }
+              }
+            }
+          }
+        },
+        "new": {
+          "type": "array",
+          "description": "SDK 2.8: tiles in Hostwerk's “New” menu – they open the extension page with this action (Hostwerk.on('action')).",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]{1,30}$"
+              },
+              "title": {
+                "$ref": "#/definitions/text"
+              },
+              "description": {
+                "$ref": "#/definitions/text"
+              },
+              "icon": {
+                "enum": [
+                  "puzzle",
+                  "users",
+                  "monitor",
+                  "gauge",
+                  "activity",
+                  "chart",
+                  "bar-chart",
+                  "bell",
+                  "book",
+                  "bot",
+                  "box",
+                  "calendar",
+                  "camera",
+                  "clock",
+                  "cloud",
+                  "code",
+                  "coffee",
+                  "cpu",
+                  "database",
+                  "download",
+                  "file",
+                  "flag",
+                  "gamepad",
+                  "gift",
+                  "globe",
+                  "heart",
+                  "home",
+                  "image",
+                  "inbox",
+                  "key",
+                  "dashboard",
+                  "grid",
+                  "leaf",
+                  "line-chart",
+                  "list",
+                  "lock",
+                  "mail",
+                  "map",
+                  "message",
+                  "music",
+                  "network",
+                  "news",
+                  "package",
+                  "pie-chart",
+                  "radio",
+                  "rocket",
+                  "server",
+                  "settings",
+                  "shield",
+                  "cart",
+                  "sparkles",
+                  "star",
+                  "sun",
+                  "swords",
+                  "table",
+                  "tag",
+                  "terminal",
+                  "timer",
+                  "trophy",
+                  "tv",
+                  "wand",
+                  "wifi",
+                  "wrench",
+                  "zap",
+                  "smartphone",
+                  "cloud-upload",
+                  "folder-up",
+                  "file-search",
+                  "router"
+                ]
+              }
+            }
+          }
+        },
+        "shortcuts": {
+          "type": "array",
+          "maxItems": 20,
+          "description": "Keyboard shortcuts. Hostwerk registers them as ext:<extension id>:<id>; the user can change or switch them off (Settings → General → Shortcuts). They never take over one of Hostwerk's own shortcuts without the user's consent.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title",
+              "keys"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]{1,30}$"
+              },
+              "title": {
+                "$ref": "#/definitions/text"
+              },
+              "keys": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9+,.;\\-/[\\]'`=]{1,40}$",
+                "description": "One combination such as \"ctrl+alt+p\" – with ctrl or alt (F keys may stand alone). Copy/paste/undo and similar are reserved."
+              },
+              "action": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]{1,30}$",
+                "description": "What it does: the id of a page tab (opens it), of contributes.actions (runs it) or of contributes.new. Without it, the shortcut opens the page."
+              }
+            }
+          }
+        },
+        "themes": {
+          "type": "array",
+          "maxItems": 6,
+          "description": "SDK 2.9: colour themes. Only these CSS variables (colours as #rrggbb), checked for WCAG 2.2 AA contrast. Accent colours are derived from \"accent\".",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]{1,30}$"
+              },
+              "title": {
+                "$ref": "#/definitions/text"
+              },
+              "description": {
+                "$ref": "#/definitions/text"
+              },
+              "tokens": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "dark": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "--bg": {
+                        "type": "string"
+                      },
+                      "--bg-2": {
+                        "type": "string"
+                      },
+                      "--surface": {
+                        "type": "string"
+                      },
+                      "--surface-2": {
+                        "type": "string"
+                      },
+                      "--surface-3": {
+                        "type": "string"
+                      },
+                      "--line": {
+                        "type": "string"
+                      },
+                      "--line-2": {
+                        "type": "string"
+                      },
+                      "--text": {
+                        "type": "string"
+                      },
+                      "--text-2": {
+                        "type": "string"
+                      },
+                      "--muted": {
+                        "type": "string"
+                      },
+                      "--ok": {
+                        "type": "string"
+                      },
+                      "--ok-text": {
+                        "type": "string"
+                      },
+                      "--warn": {
+                        "type": "string"
+                      },
+                      "--warn-text": {
+                        "type": "string"
+                      },
+                      "--err": {
+                        "type": "string"
+                      },
+                      "--err-text": {
+                        "type": "string"
+                      },
+                      "--info": {
+                        "type": "string"
+                      },
+                      "--console-bg": {
+                        "type": "string"
+                      },
+                      "--input-bg": {
+                        "type": "string"
+                      },
+                      "--ok-soft": {
+                        "type": "string"
+                      },
+                      "--warn-soft": {
+                        "type": "string"
+                      },
+                      "--err-soft": {
+                        "type": "string"
+                      },
+                      "--info-soft": {
+                        "type": "string"
+                      },
+                      "--shadow": {
+                        "type": "string"
+                      },
+                      "--shadow-lg": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "light": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "--bg": {
+                        "type": "string"
+                      },
+                      "--bg-2": {
+                        "type": "string"
+                      },
+                      "--surface": {
+                        "type": "string"
+                      },
+                      "--surface-2": {
+                        "type": "string"
+                      },
+                      "--surface-3": {
+                        "type": "string"
+                      },
+                      "--line": {
+                        "type": "string"
+                      },
+                      "--line-2": {
+                        "type": "string"
+                      },
+                      "--text": {
+                        "type": "string"
+                      },
+                      "--text-2": {
+                        "type": "string"
+                      },
+                      "--muted": {
+                        "type": "string"
+                      },
+                      "--ok": {
+                        "type": "string"
+                      },
+                      "--ok-text": {
+                        "type": "string"
+                      },
+                      "--warn": {
+                        "type": "string"
+                      },
+                      "--warn-text": {
+                        "type": "string"
+                      },
+                      "--err": {
+                        "type": "string"
+                      },
+                      "--err-text": {
+                        "type": "string"
+                      },
+                      "--info": {
+                        "type": "string"
+                      },
+                      "--console-bg": {
+                        "type": "string"
+                      },
+                      "--input-bg": {
+                        "type": "string"
+                      },
+                      "--ok-soft": {
+                        "type": "string"
+                      },
+                      "--warn-soft": {
+                        "type": "string"
+                      },
+                      "--err-soft": {
+                        "type": "string"
+                      },
+                      "--info-soft": {
+                        "type": "string"
+                      },
+                      "--shadow": {
+                        "type": "string"
+                      },
+                      "--shadow-lg": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "accent": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "accents": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+              },
+              "fonts": {
+                "type": "array",
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "family",
+                    "file"
+                  ],
+                  "properties": {
+                    "family": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9 _-]{1,39}$"
+                    },
+                    "file": {
+                      "type": "string",
+                      "pattern": ".(woff2|woff|ttf|otf)$"
+                    },
+                    "weight": {
+                      "type": "string",
+                      "pattern": "^d{3}( d{3})?$"
+                    },
+                    "style": {
+                      "enum": [
+                        "normal",
+                        "italic"
+                      ]
+                    }
+                  }
+                }
+              },
+              "font": {
+                "type": "string",
+                "description": "Family of one of \"fonts\"."
+              },
+              "radius": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 2,
+                "description": "Factor for all radii – 1 is Hostwerk’s own."
+              },
+              "density": {
+                "enum": [
+                  "compact",
+                  "normal",
+                  "comfortable"
+                ]
+              }
+            }
+          }
+        },
+        "overrides": {
+          "type": "array",
+          "maxItems": 10,
+          "description": "SDK 2.9: replace or extend named places of Hostwerk’s interface. Needs the permission \"override:ui\"; active after the user agrees (official packages: right away), can be switched off with one click.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "slot",
+              "mode",
+              "title"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]{1,30}$"
+              },
+              "slot": {
+                "enum": [
+                  "dashboard.hero",
+                  "web.empty",
+                  "dbs.empty",
+                  "minecraft.empty"
+                ]
+              },
+              "mode": {
+                "enum": [
+                  "replace",
+                  "before",
+                  "after"
+                ]
+              },
+              "title": {
+                "$ref": "#/definitions/text"
+              },
+              "description": {
+                "$ref": "#/definitions/text"
+              },
+              "file": {
+                "type": "string",
+                "pattern": ".html?$"
+              },
+              "preview": {
+                "type": "string",
+                "pattern": ".(png|webp|jpe?g|svg)$"
+              },
+              "height": {
+                "type": "number",
+                "minimum": 32,
+                "maximum": 480
+              },
+              "order": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          }
+        },
+        "extends": {
+          "type": "array",
+          "maxItems": 10,
+          "description": "SDK 2.9: add to other extensions – only what their author allows in \"allowExtensions\". Needs the permission \"extend:extensions\".",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{1,39}$"
+              },
+              "version": {
+                "type": "string"
+              },
+              "tabs": {
+                "type": "array",
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "title",
+                    "file"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9-]{1,30}$"
+                    },
+                    "title": {
+                      "$ref": "#/definitions/text"
+                    },
+                    "file": {
+                      "type": "string",
+                      "pattern": ".html?$"
+                    },
+                    "icon": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "actions": {
+                "type": "array",
+                "maxItems": 6,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "title"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9-]{1,30}$"
+                    },
+                    "title": {
+                      "$ref": "#/definitions/text"
+                    },
+                    "icon": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "settings": {
+                "const": true
+              },
+              "locales": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  }
+                }
+              },
+              "page": {
+                "type": "object",
+                "required": [
+                  "file"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "pattern": ".html?$"
+                  }
                 }
               }
             }
@@ -682,6 +1319,87 @@
             "type": "string",
             "pattern": "^[^/\\\\.][^\\\\]*\\.json$"
           }
+        }
+      }
+    },
+    "settingsTab": {
+      "enum": [
+        "general",
+        "start",
+        "notifications",
+        "advanced",
+        "extensions"
+      ],
+      "description": "SDK 2.8: in which tab of Hostwerk's settings the form from \"settings\" appears (default: extensions)."
+    },
+    "synergies": {
+      "type": "array",
+      "description": "SDK 2.8: other extensions this one works well with – shown under Extensions → Ideas & synergies.",
+      "items": {
+        "type": "object",
+        "required": [
+          "with",
+          "title"
+        ],
+        "properties": {
+          "with": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{1,39}$"
+          },
+          "title": {
+            "$ref": "#/definitions/text"
+          },
+          "text": {
+            "$ref": "#/definitions/text"
+          }
+        }
+      }
+    },
+    "provides": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][\\w-]{1,40}$"
+      },
+      "description": "SDK 2.8: services this extension offers to others (host.provide). Matching \"uses\" of other extensions are suggested as synergies."
+    },
+    "uses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][\\w-]{1,40}$"
+      },
+      "description": "SDK 2.8: services of other extensions this one uses (host.use)."
+    },
+    "publicView": {
+      "type": "object",
+      "required": ["file"],
+      "properties": {
+        "file": { "type": "string", "description": "HTML file of the public view (its folder is served at /v/<id>/)." },
+        "title": { "description": "Name shown in the extension details (text or { de, en })." }
+      },
+      "description": "SDK 2.10: a public view without login at /v/<id>/ (e.g. an OBS overlay). Sandboxed, scripts allowed, may only fetch /api/x/<id>/pub/… of its own server part. Needs the permission \"share:view\"."
+    },
+    "shareStorage": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^(\\*|[a-z0-9][a-z0-9-]{1,39})$" },
+      "description": "SDK 2.10: extensions that may read this extension's storage (read only, e.g. [\"claude\"] or [\"*\"]) – host.storage.of(id) / host.storageOf(id)."
+    },
+    "allowExtensions": {
+      "type": "object",
+      "description": "SDK 2.9: which extensions may add what to this one: { \"other-id\": [\"tabs\", \"actions\", \"settings\", \"locales\", \"page\"], \"*\": [\"tabs\", \"actions\", \"settings\"] }. Remove an entry in a new version to take it back.",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "enum": [
+            "tabs",
+            "actions",
+            "settings",
+            "locales",
+            "page"
+          ]
         }
       }
     }

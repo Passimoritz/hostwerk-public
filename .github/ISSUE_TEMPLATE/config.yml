@@ -6,3 +6,6 @@ contact_links:
   - name: Handbook / Handbuch
     url: https://github.com/Passimoritz/hostwerk-public#readme
     about: How Hostwerk works – most questions are answered there. / So funktioniert Hostwerk – viele Fragen sind dort beantwortet.
+  - name: Help & known issues / Hilfe & bekannte Probleme
+    url: https://github.com/Passimoritz/hostwerk-public/blob/main/handbuch/de/hilfe.md
+    about: Smart App Control, port in use, virus scanner, WSL/Docker, proxy, stuck update – check here first. / Erst hier nachsehen.
