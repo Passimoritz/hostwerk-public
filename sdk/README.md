@@ -39,6 +39,7 @@ check warns about hard-coded colours and fonts.
 17. [SDK 2.9: themes, overrides and extending other extensions](#17-sdk-29-themes-overrides-and-extending-other-extensions)
 18. [SDK 2.10: events, notifications, controlling services and public views](#18-sdk-210-events-notifications-controlling-services-and-public-views)
 19. [SDK 3.0: stability and deprecations](#19-sdk-30-stability-and-deprecations)
+20. [SDK 3.1: shared site check and notes in the knowledge graph](#20-sdk-31-shared-site-check-and-notes-in-the-knowledge-graph)
 
 ![From idea to the marketplace](img/lifecycle.svg)
 
@@ -250,7 +251,7 @@ The check reports missing keys and English texts that still look German. Manifes
 | `change:databases` | Create database backups – asks every time (SDK 2.2) |
 | `change:mail` | Send test mails to the mail catcher, mark mails as read – asks every time (SDK 2.2) |
 | `read:knowledge` | Knowledge graph: projects, graph, report, questions, memory, Claude status (SDK 2.3) |
-| `change:knowledge` | Build and query the knowledge graph, folders, memory, Obsidian export – **no prompt per call**, because it only touches the graph's own data (SDK 2.3) |
+| `change:knowledge` | Build and query the knowledge graph, folders, memory, Obsidian export, own notes as nodes (`PUT /knowledge/notes`, SDK 3.1) – **no prompt per call**, because it only touches the graph's own data (SDK 2.3) |
 | `connect:claude` | Write/remove the marked Claude section and skill in projects – asks every time (SDK 2.3) |
 | `read:claude` | Claude status, projects, memory context, token-saving tools and usage (SDK 2.5) |
 | `change:claude` | Write context files into projects, install/update/remove token-saving tools – asks every time (SDK 2.5) |
@@ -708,3 +709,61 @@ check only shows a hint – no points are deducted.
 ### SDK changelog
 
 What changed in which SDK version, and what is deprecated: [SDK-CHANGELOG.md](SDK-CHANGELOG.md).
+
+---
+
+## 20. SDK 3.1: shared site check and notes in the knowledge graph
+
+Hostwerk 3.0 and newer. Minor version – only additions, everything from 3.0 keeps working.
+
+**Site check as a service** (*native*): `host.service('sitecheck')` is Hostwerk's own site check – the same one as
+*Projects → Site check*. Two functions:
+
+```js
+const sc = host.service('sitecheck');                 // throws on Hostwerk before 3.0 – check, keep an own fallback
+const r = await sc.checkDir('/path/to/dist', { base: '/my-repo/', max: 60 });   // built folder, nothing uploaded
+const s = await sc.crawl('http://localhost:8080/', { max: 60 });                // running site
+// → { pages: [{ url, status, ms, title, issues: [{ level: 'err'|'warn'|'info', text }] }], broken: [{ url, kind, status, foundOn }], summary }
+```
+
+`checkDir` serves the folder for a moment on `127.0.0.1` under `base` (GitHub project pages live under `/<repo>/`), so
+links starting with `/` that point past `base` show up as broken – exactly as they would after publishing. Texts are German
+like Hostwerk's own check. *Publish static sites* uses it before every upload.
+
+**Notes as nodes in the knowledge graph** (permission `change:knowledge`, no prompt; native: `ctx.knowledge.setNotes(id, notes)`):
+
+```js
+await Hostwerk.put('/knowledge/notes', { notes: [
+  { id: 'web:apache', title: 'Web server “Apache”', text: '- [ ] renew certificate\nUses `UserController`', service: { kind: 'web', id: 'apache' } },
+] });
+```
+
+The call replaces all notes of the extension (`[]` removes them). Hostwerk sets the sender itself – an extension can only
+change its own notes. Every note becomes a document node (heading, `#tags`, `[[links]]`, named classes as edges) in the
+source “Notes from Hostwerk” and in every project the service belongs to (web server or app of the project) or that the note
+names in `projects: [projectId]`. `GET /knowledge/notes` (permission `read:knowledge`) lists what is in the graph.
+*Service notes* uses it.
+
+**Moving data of extensions between machines** (*native*): `host.transfer.register({ label, export({ dir, job }), import({ dir, job, test }) })`
+– `export` puts files into `dir`, `import` reads them on the target machine (the same extension has to run there). The
+data shows up as its own line in *Move* (also when moving several things at once). Gone when the extension is removed.
+
+```js
+host.transfer.register({ label: { de: 'Postfächer', en: 'Mailboxes' },
+  export: async ({ dir, job }) => { job.progress(30, 'Packing mailboxes …'); /* copy files into dir */ },
+  import: async ({ dir, job, test }) => { /* take the files from dir */ return { boxes: 3 }; } });
+```
+
+**Hostwerk's address for pages in a frame:** `Hostwerk.info().app.origin` (e.g. `http://192.168.1.5:7800`) and
+`Hostwerk.info().app.publicView` – the full address of the own public view `/v/<id>/` (or `null`), e.g. to show it for OBS.
+
+**Move a port to a wanted one:** `POST /system/ports/fix` (permission `change:ports`) takes `to` besides `{ kind, id, field }`
+– Hostwerk uses this port if it is free and no other Hostwerk service has it, otherwise **409** with who uses it. Without
+`to` it picks the next free port as before.
+
+**Services of official extensions** (via `host.use(name)` / `ctx[name]`, check with `typeof … === 'function'`):
+
+| Service | New | What for |
+|---|---|---|
+| `router` (Router & port forwarding 1.2) | `router.forwards.list()` · `add({ port, protocol, label }, owner)` · `remove({ port, protocol }, owner)` · `owned(owner)` | Port forwardings of other packages with an owner – the automatic mode keeps them and the router page shows where they come from. Instead of writing `router.cfg.extra` yourself. |
+| `users` (Team & roles 1.2) | `users.can(memberId, serviceId, area)` · `users.byDiscord(discordId)` · `users.serviceKey(kind, id)` | “May this member do that?” with the same rules as remote access – e.g. for the Discord bot. Service ids like `mc:<id>`, `game:<id>`, `web:<id>`, `dbs:<id>`, `apps:<id>`; areas `start-stop`, `console`, `players`, `backups`, `files`, `logs`. |

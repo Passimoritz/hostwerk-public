@@ -5,6 +5,23 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
+## 3.1.0 – 2026-10-21
+
+Shared site check and notes in the knowledge graph ([section 20 of the guide](README.md#20-sdk-31-shared-site-check-and-notes-in-the-knowledge-graph)). Only additions.
+
+- New: `host.service('sitecheck')` for native extensions – `crawl(url)` for a running site and `checkDir(folder, { base })`
+  for a built folder before publishing (served for a moment on 127.0.0.1).
+- New: `PUT /knowledge/notes` (permission `change:knowledge`) / `ctx.knowledge.setNotes(id, notes)` – own notes as document
+  nodes in the knowledge graph, linked to the projects of their service; `GET /knowledge/notes` with `read:knowledge`.
+- Calls of extensions carry `x-hostwerk-ext-id` (set by Hostwerk, not by the page) – so the core knows the sender.
+- New: `host.transfer.register({ label, export, import })` – data of native extensions moves along between machines.
+- New: `Hostwerk.info().app.origin` and `.publicView` (full address of `/v/<id>/`) for pages in a frame.
+- New: `POST /system/ports/fix` takes a wanted port `to` (409 if it is taken).
+
+> DE: Seiten-Check als Dienst (`host.service('sitecheck')`: `crawl`, `checkDir`), eigene Notizen als Knoten im
+> Wissensgraph (`PUT /knowledge/notes`, Recht `change:knowledge`), Erweiterungsdaten im Umzug (`host.transfer.register`),
+> Hostwerks Adresse für Seiten (`Hostwerk.info().app.origin`/`publicView`), Wunschport bei `/system/ports/fix`. Nur Neues.
+
 ## 3.0.0 – 2026-10-21
 
 **Stability promise.** Everything documented in SDK 3.0 runs with every Hostwerk 3.x. Removals only in a new major version,

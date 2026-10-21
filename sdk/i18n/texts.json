@@ -1756,6 +1756,9 @@
     "Ertrinken": "Drowning",
     "Erweitert": "Advanced",
     "Erweiterung": "Extension",
+    "Wunschport: eine Zahl zwischen 1024 und 65535.": "Desired port: a number between 1024 and 65535.",
+    "Diese Erweiterung bietet keinen Umzug an.": "This extension offers no move.",
+    "Mitgenommen: die Daten dieser Erweiterung. Auf dem Zielrechner muss dieselbe Erweiterung installiert sein.": "Taken along: the data of this extension. The same extension has to be installed on the target machine.",
     "Erweiterung (.json) hierher ziehen oder klicken": "Drag an extension (.json) here or click",
     "Erweiterung herunterladen (ZIP)": "Download extension (ZIP)",
     "Erweiterung hinzugefügt": "Extension added",
@@ -8144,7 +8147,11 @@
     "Projekt nicht gefunden.": "Project not found.",
     "Sicherheitsprüfung: Der Rest der Datei hätte sich verändert – nichts geschrieben.": "Safety check: the rest of the file would have changed – nothing written.",
     "Stand": "Status",
-    "Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export": "Build and query the knowledge graph, edit memory, Obsidian export",
+    "Wissensgraph bauen und abfragen, Gedächtnis pflegen, eigene Notizen eintragen, Obsidian-Export": "Build and query the knowledge graph, edit memory, add own notes, Obsidian export",
+    "Ungültiger Absender.": "Invalid sender.",
+    "notes muss eine Liste sein.": "notes must be a list.",
+    "Notizen aus Hostwerk": "Notes from Hostwerk",
+    "Im Ordner fehlt die index.html.": "The folder has no index.html.",
     "Wissensgraph installiert": "Knowledge graph installed",
     "Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status)": "Read the knowledge graph (projects, graph, report, memory, Claude status)",
     "Wissensgraph": "Knowledge graph",
@@ -9882,7 +9889,6 @@
     "Der Index auf _id gehört zu jeder Sammlung und lässt sich nicht löschen.": "The index on _id belongs to every collection and cannot be deleted.",
     "Rolle nicht gefunden": "Role not found",
     "SQLite wird von dieser Hostwerk-Version nicht unterstützt (node:sqlite fehlt).": "SQLite is not supported by this Hostwerk version (node:sqlite is missing).",
-    "SQLite-Abfragen laufen im Hostwerk-Prozess und lassen sich nicht abbrechen.": "SQLite queries run inside the Hostwerk process and cannot be cancelled.",
     "Verknüpfung (Nested Loop)": "Join (nested loop)",
     "Sortieren": "Sort",
     "Sortieren (Filesort)": "Sort (filesort)",
@@ -10160,6 +10166,12 @@
     "Ungültiger Tag-Name": "Invalid tag name",
     "Die Datei ist noch nicht committet – es gibt keinen Verlauf.": "The file isn’t committed yet – there’s no history.",
     "Das ist der öffentliche Schlüssel (.pub) – bitte die Datei ohne .pub wählen.": "That’s the public key (.pub) – please pick the file without .pub.",
+    "Der SSH-Schlüssel ist mit einer Passphrase geschützt – bitte die Passphrase angeben.": "The SSH key is protected by a passphrase – please enter the passphrase.",
+    "Die Passphrase für den SSH-Schlüssel stimmt nicht.": "The passphrase for the SSH key is wrong.",
+    "Anmeldung abgelehnt – bitte Benutzername, Passwort bzw. Schlüssel prüfen (ist der öffentliche Schlüssel auf dem Server eingetragen?).": "Login rejected – please check user name, password or key (is the public key added on the server?).",
+    "Der Server nimmt keine Verbindung an – stimmen Adresse und Port?": "The server refuses the connection – are address and port correct?",
+    "Server nicht gefunden – bitte die Adresse prüfen.": "Server not found – please check the address.",
+    "Keine Antwort vom Server (Zeitüberschreitung) – Adresse, Port und Firewall prüfen.": "No answer from the server (timeout) – check address, port and firewall.",
     "Bitte einen einfachen Dateinamen angeben (Buchstaben, Ziffern, . _ -).": "Please enter a simple file name (letters, digits, . _ -).",
     "ssh-keygen wurde nicht gefunden – unter Windows „OpenSSH-Client“ in den optionalen Features aktivieren oder Git for Windows installieren.": "ssh-keygen wasn’t found – on Windows enable “OpenSSH Client” in the optional features or install Git for Windows.",
     "Wer hat welche Zeile geändert?": "Who changed which line?",
@@ -10315,7 +10327,6 @@
     "Gespeichert wird nur, wenn „docker compose config“ die Datei annimmt.": "It’s only saved if “docker compose config” accepts the file.",
     "Image-Updates": "Image updates",
     "alles aktuell": "all up to date",
-    "Für Container außerhalb von Hostwerk-Apps (die aktualisieren sich selbst): Hostwerk vergleicht die Fassung auf deinem PC mit der in der Registry. Vor dem Aktualisieren wird die alte Fassung gesichert – „Zurück“ holt sie wieder. Compose-Dienste werden danach neu erzeugt, einzelne Container nutzen das neue Image, wenn du sie neu anlegst.": "For containers outside Hostwerk apps (those update themselves): Hostwerk compares the version on your PC with the one in the registry. Before updating, the old version is saved – “Back” restores it. Compose services are recreated afterwards; single containers use the new image when you recreate them.",
     "Keine eigenen Container mit Image-Namen.": "No own containers with an image name.",
     "neuere Fassung": "newer version",
     "Registry nicht erreichbar oder lokal gebautes Image": "Registry not reachable or locally built image",
@@ -10643,9 +10654,47 @@
     "fehlgeschlagen": "failed",
     "Sicherung des Servers anlegen …": "Backing up the server …",
     "Alte Welt entfernen …": "Removing the old world …",
-    "Welt kopieren …": "Copying the world …"
+    "Welt kopieren …": "Copying the world …",
+    "· Projekt läuft": "· project is running",
+    "· Projekt läuft noch nicht – bitte prüfen": "· project isn't running yet – please check",
+    "Für Container außerhalb von Hostwerk-Apps (die aktualisieren sich selbst): Hostwerk vergleicht die Fassung auf deinem PC mit der in der Registry. Vor dem Aktualisieren wird die alte Fassung gesichert – „Zurück“ holt sie wieder. Compose-Dienste werden danach neu erzeugt. Einzelne Container legt Hostwerk mit denselben Einstellungen neu an – der alte bleibt gestoppt daneben, bis du ihn entfernst.": "For containers outside Hostwerk apps (those update themselves): Hostwerk compares the version on your PC with the one in the registry. Before updating, the old version is saved – “Back” restores it. Compose services are recreated afterwards. Hostwerk recreates single containers with the same settings – the old one stays stopped next to it until you remove it.",
+    "Vorige Container": "Previous containers",
+    "Beim Aktualisieren hat Hostwerk diese Container neu angelegt. Die alten sind gestoppt und umbenannt – „Zurück“ legt sie wieder an ihren Platz, „Entfernen“ gibt den Platz frei.": "Hostwerk recreated these containers while updating. The old ones are stopped and renamed – “Back” puts them back in place, “Remove” frees the space.",
+    "· vorher als": "· previously as",
+    "Ungültiger Container-Name": "Invalid container name",
+    "Für diesen Container gibt es keinen Rückweg.": "There is no way back for this container.",
+    "Docker steht hier nicht zur Verfügung.": "Docker is not available here.",
+    "Ungültiger Projektname im Paket": "Invalid project name in the package",
+    "Passphrase des Schlüssels (gespeichert)": "Key passphrase (saved)",
+    "Passphrase des Schlüssels": "Key passphrase",
+    "Nur nötig, wenn der Schlüssel geschützt ist. Leer lassen = behalten.": "Only needed if the key is protected. Leave empty = keep.",
+    "Pfad der AppImage unbekannt (APPIMAGE fehlt).": "Path of the AppImage unknown (APPIMAGE missing).",
+    "Das Release ist nicht signiert – ein .deb-Paket (Installation mit Administratorrechten) spielt Hostwerk nur mit gültiger Signatur ein.": "The release is not signed – Hostwerk only installs a .deb package (installed with administrator rights) with a valid signature.",
+    "Kein Release gefunden oder Token abgelaufen/ohne Zugriff auf das Repository.": "No release found, or the token expired / has no access to the repository.",
+    "Kein Release gefunden – für ein privates Repository bitte ein GitHub-Token in den Einstellungen hinterlegen.": "No release found – for a private repository please add a GitHub token in the settings.",
+    "Kein Release gefunden.": "No release found.",
+    "Release enthält keine Update-Informationen.": "The release contains no update information.",
+    "Update-Informationen sind beschädigt.": "The update information is damaged.",
+    "Für diese Datei fehlt die Prüfsumme im Release – Update abgelehnt.": "The checksum for this file is missing in the release – update rejected.",
+    "Download neu beginnen": "Restarting the download",
+    "Abfrage abgebrochen.": "Query cancelled.",
+    "Keine Tabellen in dieser Datenbank.": "No tables in this database.",
+    "· Ansicht": "· view",
+    "Einzelne Rechte, die zu keiner Stufe passen": "Individual rights that match no level",
+    "gemischt": "mixed",
+    "Rechte je Tabelle gibt es hier nur für PostgreSQL.": "Rights per table are only available for PostgreSQL here.",
+    "Vorschau abgelaufen – bitte neu öffnen.": "Preview expired – please open it again.",
+    "Zu groß für die Vorschau": "Too large for the preview"
   },
   "patterns": [
+    [
+      "Port {} ist schon belegt{}.",
+      "Port {} is already in use{}."
+    ],
+    [
+      "Auf diesem Rechner fehlt die Erweiterung „{}“ – bitte erst installieren.",
+      "The extension “{}” is missing on this machine – please install it first."
+    ],
     [
       "Format nicht erkannt. Spalten: {}. Erwartet werden Exporte von Bitwarden, Chrome, Edge, Firefox, Apple, 1Password, LastPass, Dashlane, NordPass, Proton Pass, KeePass, Enpass, Keeper, RoboForm, Zoho oder eine CSV mit Spalten Name/URL/Benutzer/Passwort.",
       "Format not recognized. Columns: {}. Expected are exports from Bitwarden, Chrome, Edge, Firefox, Apple, 1Password, LastPass, Dashlane, NordPass, Proton Pass, KeePass, Enpass, Keeper, RoboForm, Zoho or a CSV with columns name/URL/user/password."
@@ -18515,6 +18564,10 @@
       "SSH key not found: {}"
     ],
     [
+      "Der SSH-Schlüssel lässt sich nicht lesen: {}",
+      "The SSH key can’t be read: {}"
+    ],
+    [
       "Einen Schlüssel „{}“ gibt es schon – bitte einen anderen Namen wählen.",
       "A key “{}” already exists – please choose another name."
     ],
@@ -19005,6 +19058,98 @@
     [
       "Spigot {} wird gebaut …",
       "Building Spigot {} …"
+    ],
+    [
+      "{} Volume übernommen",
+      "{} volume copied"
+    ],
+    [
+      "{} Volumes übernommen",
+      "{} volumes copied"
+    ],
+    [
+      "{} entfernt",
+      "{} removed"
+    ],
+    [
+      "{} läuft wieder mit der vorigen Fassung",
+      "{} runs the previous version again"
+    ],
+    [
+      "{}: zurück auf den alten Container",
+      "{}: back to the old container"
+    ],
+    [
+      "{} entfernen",
+      "Remove {}"
+    ],
+    [
+      "„{}“ ist eine Hostwerk-App – sie aktualisiert sich unter Apps.",
+      "“{}” is a Hostwerk app – it updates under Apps."
+    ],
+    [
+      "Container „{}“ nicht gefunden.",
+      "Container “{}” not found."
+    ],
+    [
+      "„{}“ gehört zum Compose-Projekt „{}“ – bitte dort aktualisieren.",
+      "“{}” belongs to the Compose project “{}” – please update it there."
+    ],
+    [
+      "„{}“ nutzt Einstellungen, die Hostwerk beim Neuanlegen nicht mitnehmen kann ({}) – bitte von Hand neu anlegen.",
+      "“{}” uses settings Hostwerk can’t carry over when recreating ({}) – please recreate it by hand."
+    ],
+    [
+      "Der alte Container {} ist nicht mehr da.",
+      "The old container {} is gone."
+    ],
+    [
+      "„{}“ wurde inzwischen anders angelegt – Hostwerk lässt ihn lieber, wie er ist.",
+      "“{}” has been recreated differently in the meantime – Hostwerk leaves it as it is."
+    ],
+    [
+      "Container {} neu anlegen",
+      "Recreate container {}"
+    ],
+    [
+      "Compose-Projekt „{}“ mit Ordner nicht gefunden.",
+      "Compose project “{}” with a folder not found."
+    ],
+    [
+      "Auf diesem Rechner gibt es schon ein Compose-Projekt „{}“ – bitte dort zuerst entfernen.",
+      "There already is a Compose project “{}” on this computer – please remove it there first."
+    ],
+    [
+      "Volume {} gibt es hier schon – bitte prüfen und ggf. entfernen, dann erneut umziehen.",
+      "Volume {} already exists here – please check and remove it if needed, then move again."
+    ],
+    [
+      "Diese Hostwerk-Kopie stammt aus keinem Paket (Setup, ZIP, AppImage, .deb) – bitte die neue Version laden: {}",
+      "This copy of Hostwerk doesn’t come from a package (Setup, ZIP, AppImage, .deb) – please download the new version: {}"
+    ],
+    [
+      "Das Release enthält kein passendes Paket ({}) – bitte laden: {}",
+      "The release contains no matching package ({}) – please download: {}"
+    ],
+    [
+      "Für diese Installationsart ({}) gibt es kein automatisches Update – bitte laden: {}",
+      "There is no automatic update for this kind of installation ({}) – please download: {}"
+    ],
+    [
+      "Update-Informationen nicht ladbar ({}).",
+      "Update information could not be loaded ({})."
+    ],
+    [
+      "SQLite-Prozess beendet ({}){}",
+      "SQLite process ended ({}){}"
+    ],
+    [
+      "Rechte je Tabelle in {}",
+      "Rights per table in {}"
+    ],
+    [
+      "Rechte auf {}.{}",
+      "Rights on {}.{}"
     ]
   ]
 }

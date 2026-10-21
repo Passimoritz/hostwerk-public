@@ -39,6 +39,7 @@ die Prüfung warnt bei festen Farben und eigenen Schriften.
 17. [SDK 2.9: Farbschemata, Anpassungen und andere Erweiterungen erweitern](#17-sdk-29-farbschemata-anpassungen-und-andere-erweiterungen-erweitern)
 18. [SDK 2.10: Ereignisse, Benachrichtigungen, Dienste steuern und öffentliche Ansichten](#18-sdk-210-ereignisse-benachrichtigungen-dienste-steuern-und-öffentliche-ansichten)
 19. [SDK 3.0: Stabilität und Abkündigungen](#19-sdk-30-stabilität-und-abkündigungen)
+20. [SDK 3.1: geteilter Seiten-Check und Notizen im Wissensgraph](#20-sdk-31-geteilter-seiten-check-und-notizen-im-wissensgraph)
 
 ![Von der Idee in den Marktplatz](img/lifecycle.svg)
 
@@ -252,7 +253,7 @@ Die Prüfung meldet fehlende Schlüssel und englische Texte, die noch deutsch au
 | `change:databases` | Datenbank-Sicherungen anlegen – fragt jedes Mal (SDK 2.2) |
 | `change:mail` | Test-Mails in den Mail-Fänger, Mails als gelesen markieren – fragt jedes Mal (SDK 2.2) |
 | `read:knowledge` | Wissensgraph: Projekte, Graph, Bericht, Fragen, Gedächtnis, Claude-Status (SDK 2.3) |
-| `change:knowledge` | Wissensgraph bauen und abfragen, Ordner, Gedächtnis, Obsidian-Export – **ohne Rückfrage je Aufruf**, weil nur die eigenen Daten des Graphen betroffen sind (SDK 2.3) |
+| `change:knowledge` | Wissensgraph bauen und abfragen, Ordner, Gedächtnis, Obsidian-Export, eigene Notizen als Knoten (`PUT /knowledge/notes`, SDK 3.1) – **ohne Rückfrage je Aufruf**, weil nur die eigenen Daten des Graphen betroffen sind (SDK 2.3) |
 | `connect:claude` | Markierten Claude-Abschnitt und Skill in Projekte schreiben/entfernen – fragt jedes Mal (SDK 2.3) |
 | `read:claude` | Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch (SDK 2.5) |
 | `change:claude` | Kontext-Dateien in Projekte schreiben, Spar-Werkzeuge installieren/aktualisieren/entfernen – fragt jedes Mal (SDK 2.5) |
@@ -716,3 +717,62 @@ zeigt die Prüfung nur einen Hinweis – Punkte werden dafür nicht abgezogen.
 ### SDK-Changelog
 
 Was sich in welcher SDK-Version geändert hat und was abgekündigt ist: [SDK-CHANGELOG.md](SDK-CHANGELOG.md).
+
+---
+
+## 20. SDK 3.1: geteilter Seiten-Check und Notizen im Wissensgraph
+
+Hostwerk 3.0 und neuer. Minor-Version – nur Neues, alles aus 3.0 läuft weiter.
+
+**Seiten-Check als Dienst** (*nativ*): `host.service('sitecheck')` ist Hostwerks eigener Seiten-Check – derselbe wie unter
+*Projekte → Seiten-Check*. Zwei Funktionen:
+
+```js
+const sc = host.service('sitecheck');                 // wirft auf Hostwerk vor 3.0 – prüfen, eigenen Rückfall behalten
+const r = await sc.checkDir('/pfad/zu/dist', { base: '/mein-repo/', max: 60 });   // gebauter Ordner, nichts wird hochgeladen
+const s = await sc.crawl('http://localhost:8080/', { max: 60 });                  // laufende Seite
+// → { pages: [{ url, status, ms, title, issues: [{ level: 'err'|'warn'|'info', text }] }], broken: [{ url, kind, status, foundOn }], summary }
+```
+
+`checkDir` liefert den Ordner kurz über `127.0.0.1` unter `base` aus (GitHub-Projektseiten liegen unter `/<repo>/`) – Links
+mit `/` am Anfang, die an `base` vorbeizeigen, stehen so als kaputt im Ergebnis, genau wie nach dem Veröffentlichen. Die
+Texte sind deutsch wie in Hostwerks eigenem Check. *Seiten veröffentlichen* nutzt ihn vor jedem Hochladen.
+
+**Notizen als Knoten im Wissensgraph** (Recht `change:knowledge`, ohne Rückfrage; nativ: `ctx.knowledge.setNotes(id, notes)`):
+
+```js
+await Hostwerk.put('/knowledge/notes', { notes: [
+  { id: 'web:apache', title: 'Webserver „Apache“', text: '- [ ] Zertifikat erneuern\nNutzt `UserController`', service: { kind: 'web', id: 'apache' } },
+] });
+```
+
+Der Aufruf ersetzt alle Notizen der Erweiterung (`[]` entfernt sie). Den Absender setzt Hostwerk selbst – eine Erweiterung
+ändert nur ihre eigenen Notizen. Jede Notiz wird ein Doku-Knoten (Überschrift, `#tags`, `[[Links]]`, genannte Klassen als
+Kanten) in der Quelle „Notizen aus Hostwerk“ und in jedem Projekt, zu dem der Dienst gehört (Webserver oder App des
+Projekts) oder das die Notiz in `projects: [projektId]` nennt. `GET /knowledge/notes` (Recht `read:knowledge`) zeigt, was
+im Graph steht. *Dienst-Notizen* nutzt das.
+
+**Daten von Erweiterungen beim Umziehen** (*nativ*): `host.transfer.register({ label, export({ dir, job }), import({ dir, job, test }) })`
+– `export` legt Dateien in `dir` ab, `import` liest sie auf dem Zielrechner (dort muss dieselbe Erweiterung laufen). Die
+Daten stehen als eigene Zeile unter *Umziehen* (auch beim Umzug mehrerer Dinge auf einmal). Entfällt beim Entfernen.
+
+```js
+host.transfer.register({ label: { de: 'Postfächer', en: 'Mailboxes' },
+  export: async ({ dir, job }) => { job.progress(30, 'Packing mailboxes …'); /* Dateien nach dir kopieren */ },
+  import: async ({ dir, job, test }) => { /* Dateien aus dir übernehmen */ return { boxes: 3 }; } });
+```
+
+**Hostwerks Adresse für Seiten im Rahmen:** `Hostwerk.info().app.origin` (z. B. `http://192.168.1.5:7800`) und
+`Hostwerk.info().app.publicView` – die volle Adresse der eigenen öffentlichen Ansicht `/v/<id>/` (oder `null`), z. B. zum
+Anzeigen für OBS.
+
+**Port auf einen Wunschport umstellen:** `POST /system/ports/fix` (Recht `change:ports`) nimmt neben `{ kind, id, field }`
+auch `to` – Hostwerk nimmt diesen Port, wenn er frei ist und kein anderer Hostwerk-Dienst ihn hat, sonst **409** mit dem,
+der ihn belegt. Ohne `to` wie bisher der nächste freie Port.
+
+**Dienste offizieller Erweiterungen** (über `host.use(name)` / `ctx[name]`, vorher mit `typeof … === 'function'` prüfen):
+
+| Dienst | Neu | Wofür |
+|---|---|---|
+| `router` (Router & Portfreigaben 1.2) | `router.forwards.list()` · `add({ port, protocol, label }, besitzer)` · `remove({ port, protocol }, besitzer)` · `owned(besitzer)` | Portfreigaben anderer Pakete mit Besitzer – der Automatikmodus behält sie, die Router-Seite zeigt ihre Herkunft. Statt selbst in `router.cfg.extra` zu schreiben. |
+| `users` (Team & Rollen 1.2) | `users.can(mitgliedId, dienstId, bereich)` · `users.byDiscord(discordId)` · `users.serviceKey(art, id)` | „Darf dieses Mitglied das?“ mit denselben Regeln wie beim Fernzugriff – z. B. für den Discord-Bot. Dienst-IDs wie `mc:<id>`, `game:<id>`, `web:<id>`, `dbs:<id>`, `apps:<id>`; Bereiche `start-stop`, `console`, `players`, `backups`, `files`, `logs`. |

@@ -12,7 +12,7 @@
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '3.0.0';
+  const VERSION = '3.1.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
@@ -145,6 +145,8 @@
     sdk: VERSION,
     /** Resolves once Hostwerk has sent theme, language and settings. */
     ready: () => ready,
+    /** Stand der Seite. app: { version, origin, publicView } – origin = Hostwerks Adresse, publicView = volle Adresse der
+     *  öffentlichen Ansicht /v/<id>/ (null ohne). origin/publicView seit SDK 3.1. */
     info: () => ({ lang: state.lang, theme: state.theme, ext: state.ext, app: state.app, settings: state.settings, embed: state.embed, tab: state.tab, context: state.context, action: state.action }),
     get lang() { return state.lang; },
     get theme() { return state.theme; },
