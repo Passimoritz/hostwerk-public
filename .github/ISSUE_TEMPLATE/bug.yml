@@ -1,0 +1,63 @@
+name: Report a bug / Fehler melden
+description: Something in Hostwerk does not work as expected.
+title: "Bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! The fastest way: in Hostwerk, **System → Incidents → Report** fills in this form for you – paths, user names and secrets are removed automatically.
+        Please never paste passwords, tokens or private addresses here – this page is public.
+
+        *Danke fürs Melden! Am schnellsten geht es in Hostwerk unter **System → Vorfälle → Melden** – Pfade, Benutzernamen und Geheimnisse werden dabei automatisch entfernt. Bitte nie Passwörter, Token oder private Adressen einfügen – diese Seite ist öffentlich.*
+  - type: input
+    id: version
+    attributes:
+      label: Hostwerk version / Version
+      description: Settings → Updates, or the bottom of the sidebar (e.g. 2.11.0)
+    validations:
+      required: true
+  - type: dropdown
+    id: system
+    attributes:
+      label: System
+      options:
+        - Windows 11
+        - Windows 10
+        - Linux (desktop)
+        - Linux (headless server)
+        - Other / Andere
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How is Hostwerk installed? / Wie ist Hostwerk installiert?
+      options:
+        - Setup (installer)
+        - ZIP (portable)
+        - Windows app (MSIX)
+        - AppImage
+        - Headless / Docker
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened? / Was ist passiert?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / Schritte zum Nachstellen
+      placeholder: |
+        1. …
+        2. …
+  - type: textarea
+    id: report
+    attributes:
+      label: Error report / Fehlerbericht
+      description: From System → Incidents (optional). Check that nothing private is in it.
+      render: text

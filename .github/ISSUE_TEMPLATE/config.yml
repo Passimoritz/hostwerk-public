@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security issue / Sicherheitslücke
+    url: https://github.com/Passimoritz/hostwerk-public/security/advisories/new
+    about: Please report security issues privately, not as a public issue. / Sicherheitslücken bitte vertraulich melden, nicht öffentlich.
+  - name: Handbook / Handbuch
+    url: https://github.com/Passimoritz/hostwerk-public#readme
+    about: How Hostwerk works – most questions are answered there. / So funktioniert Hostwerk – viele Fragen sind dort beantwortet.
