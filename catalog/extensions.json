@@ -214,6 +214,74 @@
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cloud-backup/v1.2.0/CHANGELOG.md"
   },
   {
+    "id": "deploy-log",
+    "name": {
+      "de": "Deploy-Protokoll",
+      "en": "Deploy log"
+    },
+    "description": {
+      "de": "Jedes Veröffentlichen, jeder Git-Pull und jede veröffentlichte Seite mit Zeit, Stand (Commit und Snapshot) und Ergebnis – je Projekt, mit einem Klick zurück auf einen früheren Stand.",
+      "en": "Every deploy, every git pull and every published site with time, state (commit and snapshot) and result – per project, with one click back to an earlier state."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native"
+    ],
+    "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-deploy-log",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-deploy-log/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-deploy-log/releases/download/v1.0.0/deploy-log-1.0.0.zip",
+    "sha256": "305ad8c507ca6fe82449dbab191a5d3e130146ca937b7c891ef97b278ca8e170",
+    "score": 100,
+    "released": "2026-10-21",
+    "category": "developer",
+    "color": "#4f46e5",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-deploy-log/v1.0.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-deploy-log/v1.0.0/CHANGELOG.md"
+  },
+  {
+    "id": "discord-bot",
+    "name": {
+      "de": "Discord-Steuerung",
+      "en": "Discord control"
+    },
+    "description": {
+      "de": "Dein eigener Discord-Bot für Hostwerk: /status, /spieler, /start, /stop und /neustart direkt aus deinem Discord-Server. Wer Dienste steuern darf, legst du über Discord-Rollen oder dein Team fest – Stoppen und Neustarten bestätigt man per Knopf.",
+      "en": "Your own Discord bot for Hostwerk: /status, /players, /start, /stop and /restart right from your Discord server. You decide who may control services through Discord roles or your team – stop and restart are confirmed with a button."
+    },
+    "author": "Hostwerk",
+    "version": "1.1.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native"
+    ],
+    "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-discord-bot",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.1.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-discord-bot/releases/download/v1.1.0/discord-bot-1.1.0.zip",
+    "sha256": "b71abd973e0555dacf3611daf56d872ca38ac1501552af25a680e0cc880a1eff",
+    "score": 100,
+    "released": "2026-10-21",
+    "category": "communication",
+    "color": "#4752c4",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.1.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.1.0/CHANGELOG.md"
+  },
+  {
     "id": "discord-status",
     "name": {
       "de": "Discord-Status",
@@ -249,6 +317,74 @@
     "requires": {},
     "native": true,
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-status/v1.1.0/CHANGELOG.md"
+  },
+  {
+    "id": "dns",
+    "name": {
+      "de": "DNS-Verwaltung",
+      "en": "DNS management"
+    },
+    "description": {
+      "de": "DNS-Einträge deiner Domains direkt bei Cloudflare, Hetzner, INWX oder IONOS setzen, ändern, löschen und prüfen (A, AAAA, CNAME, MX, TXT, SRV, CAA) – Zugangsdaten verschlüsselt in Hostwerk. Andere Erweiterungen nutzen den Dienst, z. B. der Mailserver für SPF/DKIM/DMARC und Let’s Encrypt für Wildcard-Zertifikate (dns-01).",
+      "en": "Set, change, delete and check the DNS records of your domains right at Cloudflare, Hetzner, INWX or IONOS (A, AAAA, CNAME, MX, TXT, SRV, CAA) – credentials stored encrypted in Hostwerk. Other extensions use the service, e.g. the mail server for SPF/DKIM/DMARC and Let’s Encrypt for wildcard certificates (dns-01)."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native"
+    ],
+    "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-dns",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-dns/releases/download/v1.0.0/dns-1.0.0.zip",
+    "sha256": "cf0dab29a3cd6bc16cb962ee55c550a73f2a6dffc571990f70c86de95206314c",
+    "score": 100,
+    "released": "2026-10-21",
+    "category": "network",
+    "color": "#0891b2",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.0.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.0.0/CHANGELOG.md"
+  },
+  {
+    "id": "disk-health",
+    "name": {
+      "de": "Festplatten-Gesundheit",
+      "en": "Drive health"
+    },
+    "description": {
+      "de": "Zustand jedes Laufwerks auf einen Blick: Temperatur, Abnutzung, Lese- und Schreibfehler und Betriebsstunden (S.M.A.R.T.). Meldet sich über Hostwerks Benachrichtigungen, wenn Fehler wachsen, es zu warm wird oder ein Laufwerk verschleißt. Mit Kachel für die Übersicht.",
+      "en": "The state of every drive at a glance: temperature, wear, read and write errors and power-on hours (S.M.A.R.T.). Alerts you through Hostwerk's notifications when errors grow, a drive runs hot or wears out. With a dashboard tile."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native"
+    ],
+    "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-disk-health",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-disk-health/releases/download/v1.0.0/disk-health-1.0.0.zip",
+    "sha256": "b4530f35c80f63bccdb7f58ca5060a9e91ca123e90b2d3969fa448385cadcf37",
+    "score": 100,
+    "released": "2026-10-21",
+    "category": "monitoring",
+    "color": "#0e7490",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v1.0.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "file-share",
@@ -1121,6 +1257,38 @@
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.2.0/CHANGELOG.md"
   },
   {
+    "id": "theme-pack",
+    "name": {
+      "de": "Farbschemata",
+      "en": "Themes"
+    },
+    "description": {
+      "de": "Drei sorgfältig abgestimmte Farbschemata für Hostwerk – „Hoher Kontrast“ für schwächere Augen, „Ruhig“ und „Warm“, jeweils hell und dunkel und auf gute Lesbarkeit geprüft.",
+      "en": "Three carefully tuned themes for Hostwerk – “High contrast” for weaker eyesight, “Calm” and “Warm”, each in light and dark and checked for good readability."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": false,
+    "widget": false,
+    "service": false,
+    "permissions": [],
+    "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-theme-pack",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-theme-pack/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-theme-pack/releases/download/v1.0.0/theme-pack-1.0.0.zip",
+    "sha256": "47d2c2acca1f16eb27a41dc6c729dd10cf0c55dcb66898feea504d4394f0fbf1",
+    "score": 100,
+    "released": "2026-10-21",
+    "category": "other",
+    "color": "#7c4dcc",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-theme-pack/v1.0.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": false,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-theme-pack/v1.0.0/CHANGELOG.md"
+  },
+  {
     "id": "uptime-wall",
     "name": {
       "de": "Uptime-Wand",
@@ -1154,6 +1322,74 @@
     "requires": {},
     "native": false,
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-uptime-wall/v1.3.0/CHANGELOG.md"
+  },
+  {
+    "id": "visitor-stats",
+    "name": {
+      "de": "Besucher-Statistik",
+      "en": "Visitor stats"
+    },
+    "description": {
+      "de": "Wie viele Besucher haben deine Seiten? Liest die Zugriffsprotokolle deiner Hostwerk-Webserver (Apache, nginx, Caddy) aus – ohne Cookies, ohne Fingerabdruck, IP-Adressen nur gekürzt. Seiten, Herkunft, Geräte, Bots herausgefiltert. Alles bleibt auf diesem PC.",
+      "en": "How many visitors do your sites get? Reads the access logs of your Hostwerk web servers (Apache, nginx, Caddy) – no cookies, no fingerprinting, IP addresses only shortened. Pages, sources, devices, bots filtered out. Everything stays on this PC."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native"
+    ],
+    "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-visitor-stats",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-visitor-stats/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-visitor-stats/releases/download/v1.0.0/visitor-stats-1.0.0.zip",
+    "sha256": "9b967f5f6cd980ffb1bc2cb9eca34eefc6daf4a35979a12cecbb460e2668e21b",
+    "score": 100,
+    "released": "2026-10-21",
+    "category": "monitoring",
+    "color": "#0891b2",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-visitor-stats/v1.0.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-visitor-stats/v1.0.0/CHANGELOG.md"
+  },
+  {
+    "id": "vpn",
+    "name": {
+      "de": "VPN-Zugang",
+      "en": "VPN access"
+    },
+    "description": {
+      "de": "WireGuard-Zugänge für deine Geräte und Freunde – statt vieler Portfreigaben nur eine: Schlüssel erzeugen, Konfiguration und QR-Code fürs Handy, Zugänge je Person (auch für Team-Mitglieder), WireGuard-Dienst starten und stoppen. Mit Anleitung, falls WireGuard fehlt, und Tailscale-Status, falls du das schon nutzt.",
+      "en": "WireGuard access for your devices and friends – one port forwarding instead of many: create keys, configuration and QR code for the phone, access per person (team members too), start and stop the WireGuard service. With a guide if WireGuard is missing, and the Tailscale status if you use that already."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native"
+    ],
+    "hostwerk": ">=2.11.0",
+    "sdkVersion": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-vpn",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.0.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-vpn/releases/download/v1.0.0/vpn-1.0.0.zip",
+    "sha256": "f81b463b1a3b27d0c5d50e9ff2962f0054b46f8859a4d13d63452674f8620505",
+    "score": 100,
+    "released": "2026-10-21",
+    "category": "network",
+    "color": "#16a34a",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.0.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.0.0/CHANGELOG.md"
   },
   {
     "id": "webhook-inbox",
