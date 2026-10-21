@@ -31,5 +31,12 @@
   "Passimoritz/hostwerk-ext-page-check",
   "Passimoritz/hostwerk-ext-cloud-backup",
   "Passimoritz/hostwerk-ext-static-publish",
-  "Passimoritz/hostwerk-ext-file-share"
+  "Passimoritz/hostwerk-ext-file-share",
+  "Passimoritz/hostwerk-ext-theme-pack",
+  "Passimoritz/hostwerk-ext-disk-health",
+  "Passimoritz/hostwerk-ext-deploy-log",
+  "Passimoritz/hostwerk-ext-dns",
+  "Passimoritz/hostwerk-ext-vpn",
+  "Passimoritz/hostwerk-ext-discord-bot",
+  "Passimoritz/hostwerk-ext-visitor-stats"
 ]
