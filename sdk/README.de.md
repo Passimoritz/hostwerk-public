@@ -20,6 +20,8 @@ die Prüfung warnt bei festen Farben und eigenen Schriften.
 
 ## Inhalt
 
+- **[Worauf Erweiterungen zugreifen dürfen – und worauf nicht](#worauf-erweiterungen-zugreifen-dürfen--und-worauf-nicht)** (je Recht: darf, darf nicht, fragt nach · „Darf keine Erweiterung“ · abgeschottet oder Teil von Hostwerk)
+
 1. [Schnellstart (5 Minuten)](#1-schnellstart-5-minuten)
 2. [Das Paket](#2-das-paket)
 3. [manifest.json](#3-manifestjson)
@@ -40,8 +42,93 @@ die Prüfung warnt bei festen Farben und eigenen Schriften.
 18. [SDK 2.10: Ereignisse, Benachrichtigungen, Dienste steuern und öffentliche Ansichten](#18-sdk-210-ereignisse-benachrichtigungen-dienste-steuern-und-öffentliche-ansichten)
 19. [SDK 3.0: Stabilität und Abkündigungen](#19-sdk-30-stabilität-und-abkündigungen)
 20. [SDK 3.1: geteilter Seiten-Check und Notizen im Wissensgraph](#20-sdk-31-geteilter-seiten-check-und-notizen-im-wissensgraph)
+21. [SDK 3.2: Abschnitte statt Reiter, Datei-Browser und Seiten im Webserver](#21-sdk-32-abschnitte-statt-reiter-datei-browser-und-seiten-im-webserver)
+22. [SDK 3.2: Minecraft-Servertypen und Netzwerke](#22-sdk-32-minecraft-servertypen-und-netzwerke)
+23. [SDK 3.2: Laden wie eine eingebaute Seite](#23-sdk-32-laden-wie-eine-eingebaute-seite)
+24. [SDK 3.2: ohne eigenen Eintrag in der Seitenleiste](#24-sdk-32-ohne-eigenen-eintrag-in-der-seitenleiste)
+25. [SDK 3.3: stabile Dienste statt Kern-Interna, Spuren und Entfernen-Haken](#25-sdk-33-stabile-dienste-statt-kern-interna-spuren-und-entfernen-haken)
+26. [SDK 3.4: eigene Vollbild-Ansichten und Geräte-Anmeldung](#26-sdk-34-eigene-vollbild-ansichten-und-geräte-anmeldung)
 
 ![Von der Idee in den Marktplatz](img/lifecycle.svg)
+
+---
+
+## Worauf Erweiterungen zugreifen dürfen – und worauf nicht
+
+<!-- perms:start -->
+Diese Liste erzeugt `scripts/ext-perm-docs.js` aus `server/extensions/sdk/check.js` – derselben Quelle, aus der Hostwerk den Installations-Dialog und die Erweiterungs-Details füllt. „Wege“ sind die API-Pfade, die das Recht freischaltet (GET = lesen, alles andere = ändern); alles andere ist mit diesem Recht gesperrt. Antworten kommen immer ohne Felder an, die nach Geheimnis aussehen.
+
+### Je Recht
+
+| Recht | Darf | Darf nicht | Fragt nach | Wege |
+|---|---|---|---|---|
+| `read:services` | Übersicht: welche Dienste es gibt und ob sie laufen | Dienste starten oder stoppen<br>Protokolle und Konfiguration der Dienste<br>Felder, die nach Geheimnis aussehen (Passwort, Token, Schlüssel …) – kommen geschwärzt an | – (nur lesen) | `GET /overview` |
+| `read:web` | Liste der Webserver und Angaben zu einem Webserver (Typ, Version, Ports, Zustand) | Konfigurationsdateien, Zugriffs- und Fehlerprotokolle<br>Virtuelle Hosts oder Einstellungen ändern<br>Webserver starten oder stoppen<br>Felder, die nach Geheimnis aussehen (Passwort, Token, Schlüssel …) – kommen geschwärzt an | – (nur lesen) | `GET /web[/<id>]` |
+| `read:databases` | Namen, Typ, Version, Port und Zustand der Datenbankserver<br>Ob ein Passwort gesetzt ist (ja/nein) | Inhalte der Datenbanken (Tabellen, Zeilen)<br>Das Passwort selbst<br>Sicherungen auflisten, herunterladen oder wiederherstellen<br>Datenbanken starten, stoppen oder ändern | – (nur lesen) | `GET /dbs[/<id>]` |
+| `read:minecraft` | Minecraft-Server, Spieler, Statistiken und Welten-Liste | Konsole, Protokolle und Absturzberichte<br>server.properties, Plugins und Sicherungen<br>Befehle senden oder etwas ändern | – (nur lesen) | `GET /mc/servers(/<id>(/(players\|stats\|worlds))?)?` |
+| `read:apps` | Liste der Apps mit Zustand | Apps starten, stoppen oder ändern<br>Abhängigkeiten installieren<br>Felder, die nach Geheimnis aussehen (Passwort, Token, Schlüssel …) – kommen geschwärzt an | – (nur lesen) | `GET /apps` |
+| `read:tasks` | Liste der Aufgaben mit Zeitplan und Erfolgsquote | Verlauf und Ausgaben der Läufe<br>Aufgaben ausführen, ändern oder pausieren<br>Felder, die nach Geheimnis aussehen (Passwort, Token, Schlüssel …) – kommen geschwärzt an | – (nur lesen) | `GET /tasks` |
+| `read:mail` | Zustand des Mail-Fängers<br>Liste der abgefangenen Mails (Absender, Empfänger, Betreff, Vorschau) | Eine Mail vollständig öffnen oder Anhänge laden<br>Mails weiterleiten, löschen oder die Weiterleitung einrichten | – (nur lesen) | `GET /mail[/messages]` |
+| `read:system` | Systemzustand, Auslastung, belegte und freie Ports, Speicher je Dienst<br>Steckbrief des Rechners: Betriebssystem, Hardware, Laufwerke, Laufzeiten, installierte Erweiterungen | Prozesse beenden<br>Ports umstellen (eigenes Recht „change:ports“)<br>Verlaufswerte (Messreihen) exportieren | – (nur lesen) | `GET /system/(health\|info\|resources\|ports\|disk-usage\|ports/free)` |
+| `read:games` | Spiele-Server, ihr Zustand und ihre Spieler | Konsole und Dateien der Server<br>Server starten oder stoppen<br>Felder, die nach Geheimnis aussehen (Passwort, Token, Schlüssel …) – kommen geschwärzt an | – (nur lesen) | `GET /games`<br>`GET /games/<id>[/players]`<br>`GET /games-players` |
+| `change:ports` | Einen Dienst auf einen freien Port umstellen – nach deiner Rückfrage | Ohne deine Rückfrage<br>Andere Einstellungen der Dienste ändern<br>Dienste starten oder stoppen | ja, jede Änderung | `ändern /system/ports/fix` |
+| `read:live` | Zertifikate mit Restlaufzeit<br>Erreichbarkeits-Prüfungen und ihr Verlauf | Private Schlüssel der Zertifikate<br>Alarm-Ziele, Firewall, Fernzugriff, Domains<br>Etwas anlegen, ändern oder löschen | – (nur lesen) | `GET /live/(certs\|uptime)` |
+| `read:network` | Router, Rechner im Verbund und Sicherheitslage | Router-Anmeldung<br>Rechner koppeln oder ihre Schlüssel<br>Firewall oder Fernzugriff ändern<br>Felder, die nach Geheimnis aussehen (Passwort, Token, Schlüssel …) – kommen geschwärzt an | – (nur lesen) | `GET /(router\|machines\|live/security)` |
+| `control:services` | Webserver, Datenbanken, Apps, Mail, Minecraft- und Spiele-Server starten, stoppen, neu starten – jedes Mal nach deiner Rückfrage | Ohne deine Rückfrage<br>Dienste anlegen, löschen oder umkonfigurieren<br>Prozesse hart beenden | ja, jede Änderung | `ändern /(web\|dbs\|apps\|mail\|mc/servers\|games)/<id>/(start\|stop\|restart)`<br>`ändern /mail/(start\|stop)` |
+| `command:minecraft` | Einen Befehl an einen Minecraft-Server senden – nach deiner Rückfrage | Ohne deine Rückfrage<br>Konsole oder Protokolle lesen<br>Dateien des Servers ändern | ja, jede Änderung | `ändern /mc/servers/<id>/command` |
+| `run:tasks` | Eine vorhandene Aufgabe sofort ausführen – nach deiner Rückfrage | Ohne deine Rückfrage<br>Aufgaben anlegen, ändern, löschen oder abbrechen | ja, jede Änderung | `ändern /tasks/<id>/run` |
+| `change:minecraft` | server.properties, Spielregeln und Server-Symbol ändern, Plugins an- und ausschalten, Sicherung anlegen – jedes Mal nach deiner Rückfrage | Ohne deine Rückfrage<br>Plugins installieren oder löschen<br>Sicherungen herunterladen, wiederherstellen oder löschen<br>Server löschen | ja, jede Änderung | `ändern /mc/servers/<id>/(properties\|gamerules\|icon\|backups\|plugins/toggle)` |
+| `change:databases` | Eine Datenbank-Sicherung anlegen – nach deiner Rückfrage | Ohne deine Rückfrage<br>Sicherungen herunterladen, wiederherstellen oder löschen<br>Inhalte der Datenbanken lesen<br>Passwort ändern | ja, jede Änderung | `ändern /dbs/<id>/backups` |
+| `change:mail` | Test-Mails in den Mail-Fänger schicken, alle als gelesen markieren – nach deiner Rückfrage | Ohne deine Rückfrage<br>Mails nach draußen weiterleiten oder löschen | ja, jede Änderung | `ändern /mail/(compose\|read-all)` |
+| `read:knowledge` | Wissensgraph lesen: Projekte, Graph, Bericht, Fragenverlauf, Gedächtnis, Claude-Status | Etwas ändern<br>Schlüssel und Konten der KI-Anbieter | – (nur lesen) | `GET /knowledge`<br>`GET /knowledge/notes`<br>`GET /knowledge/<id>/(graph\|report\|questions\|memory\|claude)`<br>`GET /claude/(status\|connect/code)` |
+| `change:knowledge` | Wissensgraph bauen und abfragen, Ordner aufnehmen, Gedächtnis pflegen, eigene Notizen eintragen, Obsidian-Export – ohne Rückfrage je Aufruf | Claude in Projekten einbinden (eigenes Recht „connect:claude“)<br>Andere Bereiche von Hostwerk ändern | nein – ausdrücklich ohne Rückfrage | `ändern /knowledge`<br>`ändern /knowledge/notes`<br>`ändern /knowledge/folders[/<id>]`<br>`ändern /knowledge/<id>/(build\|options\|query\|explain\|path\|memory[/<id>]\|obsidian/(export\|sync\|notes\|import))` |
+| `connect:claude` | Claude in Projekten einbinden, reparieren und wieder vergessen – nach deiner Rückfrage | Ohne deine Rückfrage<br>Schlüssel der KI-Anbieter lesen | ja, jede Änderung | `ändern /knowledge/<id>/claude/(connect\|repair\|forget)`<br>`ändern /knowledge/forget-all`<br>`ändern /claude/connect/desktop` |
+| `read:claude` | Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch | Schlüssel und Konten der KI-Anbieter<br>Tresor, Umgebungsdateien (.env) und Git der Projekte<br>Etwas ändern | – (nur lesen) | `GET /claude/(status\|connect/code\|tools\|tools/discover\|tools/usage\|targets/<id>)`<br>`GET /mind[/activity\|/context]`<br>`GET /projects[/<id>]`<br>`GET /ai/memory-share` |
+| `change:claude` | Kontext in Projekt-Dateien schreiben, Spar-Werkzeuge installieren oder entfernen, Claude Desktop anbinden – jedes Mal nach deiner Rückfrage | Ohne deine Rückfrage<br>Schlüssel und Konten der KI-Anbieter | ja, jede Änderung | `ändern /claude/write/<id>`<br>`ändern /claude/tools`<br>`ändern /claude/tools/<id>/(install\|update\|remove)`<br>`ändern /claude/connect/desktop`<br>`ändern /ai/memory-share[/preview]` |
+| `share:status` | Öffentliche Statusseite lesen und einrichten – Änderungen nach deiner Rückfrage | Änderungen ohne deine Rückfrage<br>Überwachung, Alarm-Ziele oder Domains ändern | ja, jede Änderung | `GET /live/statuspage`<br>`ändern /live/statuspage(/(rotate\|publish))?` |
+| `share:view` | Eine Seite ohne Anmeldung anbieten (z. B. Overlay für OBS) – nur Dateien aus ihrem eigenen Ordner | Von dort Hostwerks API abfragen (nur der eigene öffentliche Server-Teil)<br>Deine Anmeldung oder Cookies nutzen | – (nur lesen) | kein API-Weg |
+| `read:profile` | Deinen Namen aus Einstellungen → Allgemein – nur, wenn du ihn dort für Erweiterungen freigegeben hast (sonst kommt nichts an) | Deinen Namen ohne deine Freigabe<br>Andere Einstellungen, Konten oder Anmeldedaten | – (nur lesen) | `GET /you` |
+| `run:terminal` | Einen Befehl ins Hostwerk-Terminal tippen – du drückst Enter oder bestätigst vorher im Dialog | Einen Befehl ohne dich abschicken<br>Die Ausgabe des Terminals lesen | ja, du bestätigst selbst | kein API-Weg |
+| `use:ai` | Kurze Texte übersetzen, erklären, zusammenfassen oder beschreiben lassen – mit der KI, die du in Hostwerk eingerichtet hast (nur wenn sie an ist) | Schlüssel und Konten der KI-Anbieter<br>KI-Chat, Gedächtnis oder Einstellungen der KI<br>Längere Texte als 6000 Zeichen | – (nur lesen) | kein API-Weg |
+| `read:updates` | Welche Sicherheits-Updates anstehen: Dienst, Version jetzt und neu | Updates einspielen (eigenes Recht „change:updates“)<br>Automatische Updates ein- oder ausschalten | – (nur lesen) | kein API-Weg |
+| `change:updates` | Ein anstehendes Sicherheits-Update einspielen – mit Probelauf und Rückfall wie unter Einstellungen → Updates, im Aktivitätsprotokoll vermerkt | Abgeschottet: gar nicht – nur offizielle Pakete aus dem Hostwerk-Katalog<br>Andere Versionen einspielen oder den Probelauf überspringen<br>Automatische Updates ein- oder ausschalten | – (nur lesen) | kein API-Weg |
+| `fetch:icons` | Das Symbol einer öffentlichen Webseite laden – Hostwerk holt es selbst und hebt es 30 Tage auf | Adressen im Heimnetz oder auf diesem Rechner – auch nicht über Weiterleitungen<br>Andere Inhalte als Bilder, mehr als 512 KB<br>Abgeschottet: gar nicht | – (nur lesen) | kein API-Weg |
+| `write:ssh-keys` | Einen SSH-Schlüssel (privat und öffentlich) unter neuem Namen in ~/.ssh ablegen | Vorhandene Schlüssel überschreiben oder lesen<br>authorized_keys, known_hosts oder config ändern<br>Abgeschottet: gar nicht | – (nur lesen) | kein API-Weg |
+| `connect:mail` | Mit den Mail-Servern sprechen, die du beim Einrichten eines Kontos angibst (IMAP, SMTP, POP3 – Ports 25, 110, 143, 465, 587, 993, 995, 2525)<br>Die Einstellungen zu deiner Mail-Adresse suchen (Autoconfig und Autodiscover deiner Domain, Mozillas Anbieter-Verzeichnis, DNS) – abgeschottet nur über die unter „network“ genannten Adressen | Andere Ports oder Webseiten (dafür gibt es „network“)<br>Abgeschottet: Mail-Server im Heimnetz oder auf diesem Rechner<br>Deine Hostwerk-Anmeldung, Einstellungen oder Geheimnisse anderer Bereiche | – (nur lesen) | kein API-Weg |
+| `storage` | Eigene Daten speichern, höchstens 256 KB | Daten anderer Erweiterungen lesen – außer deren Autor gibt sie frei<br>Mehr als 256 KB | – (nur lesen) | kein API-Weg |
+| `network` | Abfragen an die im Paket genannten https-Adressen | Abfragen an andere Adressen<br>Server-Code: ins eigene Netz, Heimnetz oder 127.0.0.1 – auch wenn genannt | – (nur lesen) | kein API-Weg |
+| `override:ui` | Benannte Teile von Hostwerks Oberfläche ersetzen oder ergänzen – erst nach deiner Zustimmung mit Vorschau (offizielle Pakete sofort), jederzeit abschaltbar | Teile ersetzen, die nicht als Anpassungs-Stelle benannt sind<br>Sich gegen das Abschalten wehren | – (nur lesen) | kein API-Weg |
+| `extend:extensions` | Andere Erweiterungen ergänzen (Reiter, Seiten, Texte) – nur so weit, wie deren Autor es erlaubt | Andere Erweiterungen installieren, ändern oder abschalten<br>Mehr als deren Autor freigibt | – (nur lesen) | kein API-Weg |
+| `native` | Eigenen Server-Code ausführen: eigene Routen, Hintergrund-Arbeit, Dienste für andere Erweiterungen | Abgeschottet: Dateien außerhalb des eigenen Ordners, Programme starten, eigenes Netz, eigene Ports, Hostwerks Umgebung<br>Offizielle Pakete aus dem Hostwerk-Katalog laufen als Teil von Hostwerk – geprüft und signiert, aber nicht abgeschottet | – (nur lesen) | kein API-Weg |
+
+### Darf keine Erweiterung
+
+Diese Grenzen erzwingt Hostwerk technisch für jede abgeschottete Erweiterung – also alle aus anderen Quellen, jede Seite im Rahmen und eigenen Server-Code im eigenen Prozess. `scripts/ext-security-test.js` prüft jede einzelne mit einem absichtlich neugierigen Test-Paket.
+
+- **Passwörter, Tresore und Geheimnisse lesen** – Passwort-Manager, Tresore und Schlüssel sind gesperrt; Felder, die nach Geheimnis aussehen, kommen in jeder erlaubten Antwort geschwärzt an. <sub>(Fundstelle: server/services/extpolicy.js: DENY_FIRST (pw, passwords, vault, secrets), DENY_RE, redact())</sub>
+- **Hostwerks Einstellungen, Schlüssel und Anmelde-Token lesen** – Die Einstellungen sind gesperrt, Hostwerks Umgebungsvariablen erbt der Prozess nicht, Cookies und Token gehen nie an die Erweiterung. <sub>(Fundstelle: extpolicy.js DENY_FIRST (settings, auth, tokens, keys); extsandbox.js start() env + STRIP_HEADERS)</sub>
+- **Sich selbst mehr Rechte geben** – Rechte stehen im Paket und gelten erst nach deiner Zustimmung. Die eigene manifest.json ist schreibgeschützt, Hostwerks Erweiterungs-Verwaltung gesperrt, „_“-Felder setzt nur Hostwerk. <sub>(Fundstelle: extpolicy.js DENY_FIRST (extmarket, extstudio, ext); extsandbox.js --allow-fs-write nur Datenordner; extmarket.js installFromDir (ohne „_“-Felder))</sub>
+- **Andere Erweiterungen installieren, ändern, abschalten oder ansprechen** – Ausnahmen nur, wenn der andere Autor es erlaubt: Ergänzungen („extend:extensions“), angebotene Dienste und freigegebener Speicher. <sub>(Fundstelle: extpolicy.js DENY_FIRST (extmarket, x); extmarket.js /call (nur eigenes /x/&lt;id&gt;); extmarket.js sharedStorage)</sub>
+- **Wartung, abgesicherten Start oder Updates von Hostwerk beeinflussen** – Wartung, Selbstwartung und Updates sind gesperrt; Pakete, die Wartungsdateien oder -schalter erwähnen, lassen sich gar nicht installieren. <sub>(Fundstelle: extpolicy.js DENY_FIRST (maintenance, keeper, update, app); check.js TAMPER_RE)</sub>
+- **Sich verstecken oder unentfernbar machen** – Jede Erweiterung steht in der Liste und in der Wartung und lässt sich dort abschalten und entfernen. Ihr Zugriffsprotokoll kann sie nicht löschen, Meldungen tragen immer ihren Namen. <sub>(Fundstelle: check.js HIDING_KEYS (Installation abgelehnt); extpolicy.js DENY_FIRST (extmarket); extsandbox.js op toast (Name davor))</sub>
+- **Dateien außerhalb des eigenen Ordners lesen oder schreiben** – Der Server-Code liest nur sein Paket und schreibt nur in seinen Datenordner; Hostwerks Datei-Bereich ist gesperrt. <sub>(Fundstelle: extsandbox.js start(): node --permission --allow-fs-read/--allow-fs-write; extpolicy.js DENY_FIRST (files, fs))</sub>
+- **Abfragen an Adressen schicken, die nicht im Paket stehen** – Ohne das Recht „network“ gar keine. Server-Code kommt nie ins eigene Netz, ins Heimnetz oder an 127.0.0.1. Seiten dürfen Bilder und Medien von https-Adressen anzeigen. <sub>(Fundstelle: extensions/sandbox/runner.js (net.Socket.connect, dgram); extmarket.js mountPages (CSP connect-src))</sub>
+- **Programme oder Befehle ohne deine Zustimmung starten** – Server-Code kann keine Programme, Worker oder fremden Code starten. Pakete mit eigenem Programm installiert Hostwerk nur nach deiner ausdrücklichen Zustimmung; Terminal-Befehle bestätigst du selbst. <sub>(Fundstelle: extsandbox.js (--permission, --disallow-code-generation-from-strings); extpolicy.js DENY_FIRST (terminal, pty, shell, exec); extmarket.js installFromDir PROGRAM_CONSENT; ui/src/extBridge.js TERMINAL)</sub>
+- **Etwas ohne deine Rückfrage ändern** – Jede Änderung über Hostwerk fragt dich vorher. Einzige Ausnahme: Rechte, die ausdrücklich ohne Rückfrage sind (Wissensgraph bauen). <sub>(Fundstelle: extpolicy.js decide() confirm; extmarket.js /call (428 EXT_CONFIRM); extsandbox.js op api)</sub>
+- **Mit deiner Anmeldung handeln oder Cookies setzen** – Seiten laufen in einem eigenen, leeren Ursprung; Antworten des Server-Codes verlieren Set-Cookie und laufen nie als Hostwerk-Seite. <sub>(Fundstelle: extmarket.js mountPages (CSP sandbox); extsandbox.js proxy (set-cookie entfernt, CSP sandbox))</sub>
+- **Hostwerks eigene Bereiche oder Dienste ersetzen** – Eigene Routen gibt es nur unter /api/x/&lt;id&gt;/, Dienstnamen von Hostwerk sind vergeben. Oberflächen-Anpassungen nur mit „override:ui“ und deiner Zustimmung. <sub>(Fundstelle: extsandbox.js proxy (nur /x/&lt;id&gt;), op provide)</sub>
+- **Eigene Ports öffnen** – Erreichbar ist eine Erweiterung nur über Hostwerk (/api/x/&lt;id&gt;/), nie direkt. <sub>(Fundstelle: extensions/sandbox/runner.js (net.Server.listen, dgram))</sub>
+
+### Abgeschottet oder Teil von Hostwerk
+
+| | Abgeschottet | Offizielles Paket mit eigenem Code |
+|---|---|---|
+| Wer | Alle Erweiterungen aus anderen Quellen, jede Seite im Rahmen, eigener Code im Entwickler-Modus | Pakete aus dem Hostwerk-Katalog (Prüfsumme, signierter Katalog) mit `backend`/`ui` |
+| Wo läuft der Code | Seite: eigener, leerer Ursprung · Server-Code: eigener Prozess mit Nodes Rechte-Modus | Im Hostwerk-Prozess bzw. Hostwerk-Fenster |
+| Rechte | Technisch erzwungen (Sperrliste, Rechte, Rückfrage, Schwärzen, Datei-/Netz-Sperre) | Geprüft und signiert, aber nicht abgeschottet – die Grenzen gelten als Regel, nicht als Sperre |
+
+> **Offen gesagt:** Offizielle Pakete mit eigenem Code laufen als Teil von Hostwerk. Für sie gelten die Grenzen oben als Regel, nicht als Sperre. Dasselbe gilt für eigenen Code, dessen Abschottung du im Entwickler-Modus abschaltest.
+<!-- perms:end -->
 
 ---
 
@@ -219,6 +306,47 @@ Regeln der Prüfung (Hinweise – im Katalog Fehler): keine festen Farben, keine
 Ordnung), nichts über Hostwerk legen (`position: fixed`, riesiger `z-index`). Eine bewusste Ausnahme je Datei, mit
 Begründung: `/* hostwerk-allow: colors, fonts – Vorschau wie im Spiel */`.
 
+### Gestaltung: so sieht eine Hostwerk-Seite aus
+
+Verbindlich für Erweiterungen wie für Hostwerk selbst ist das Regelwerk
+**[„So sieht eine Hostwerk-Seite aus“](ui-guidelines.md)**. Kurz:
+
+- **Kern-Bausteine statt Eigenbau**: Karten `card`/`card-head`/`card-body`, Kennzahlen `card stat` (`v text` für Text,
+  `of` für „/ gesamt“), Zustand `<StatusPill>`/`badge ok|warn|err`, leer `<Empty>`/`<TileEmpty>`, laden
+  `<Loading>`/`hw-skeleton`, Bestätigen `confirmDialog` – nie `window.confirm`, keine eigenen Kreisel.
+- **Seitenkopf** (nur native Seiten – Seiten im Rahmen bekommen ihn von Hostwerk): Symbol + Titel, **ein** Satz als
+  `<p>`, Aktionen rechts; mehr Erklärung als ⓘ.
+- **Knöpfe**: eine `primary`-Aktion je Bereich, ganz rechts; „Abbrechen“ links davon. Öffnet ein Knopf erst einen
+  Dialog, endet er auf „ …“. Keine Ausrufezeichen, kein „erfolgreich“ in Meldungen (`toast.success('Gespeichert')`).
+- **Wörter** (auch in `locales/de.json`): Sicherung statt Backup, Dienst statt Service, Passwort statt Kennwort, Ordner
+  statt Verzeichnis, Anmeldung statt Login, neu starten statt neustarten, „Lädt …“ für Fortschritt, „…“ statt „...“.
+
+Der Prüfer meldet Abweichungen als Hinweise mit dem Kürzel `ui-…` (kein Punktabzug), z. B.
+`· [ui-text-empty] empty card as a grey sentence – use <TileEmpty …>`.
+
+**Platz – ohne Scrollen (ab Hostwerk 3.1):** Eine Seite passt bei 1366×768 auf einen Bildschirm, lange Listen scrollen in
+ihrer eigenen Fläche. Dafür gibt es Bausteine – native Erweiterungen nehmen die Komponenten aus `@hostwerk/ui`, Seiten im
+Rahmen dieselben Klassen aus `/ext-sdk.css`:
+
+| Muster | `@hostwerk/ui` | Klassen |
+|---|---|---|
+| Raster, das mit der Breite wächst (1366 → 2, 1920 → 3 Spalten) | `<Cols size>` | `cols` (+ `cols-sm`, `cols-lg`) |
+| Einstellungen mit Gruppen links | `<SettingsLayout groups value onChange>` | `settings-layout` › `settings-nav-wrap` › `settings-nav` (`role="tablist"`, `aria-orientation="vertical"`) › `settings-nav-item`; daneben `settings-pane` |
+| Ein Speichern für alles, erscheint bei Änderungen | `<SaveBar dirty onSave onReset>` | `save-bar`, `save-bar-text` |
+| Seitenblatt für Seltenes („Mehr …“, Einrichten) | `<SideSheet title onClose>` | `side-sheet-back` › `side-sheet` (`role="dialog"`) › `side-sheet-head` / `-body` / `-foot` |
+| Liste links, Einzelheiten rechts | `<MasterDetail list detail>` | `master-detail` › `md-list` (`md-item`, `md-group`) + `md-detail` |
+| Tabelle/Liste scrollt innen, Kopf klebt | `useFillHeight({ max: true })` | `fill-scroll` (im Rahmen: Höhe selbst setzen, z. B. `max-height: calc(100vh - 160px)`) |
+| Kennzahlen als schmale Leiste | `<StatBar items>` | `stat-bar` › `stat-bar-item` › `stat-bar-k` + `stat-bar-v` |
+| Akkordeon, merkt sich offen/zu | `<Accordion id title>` | `<details class="accordion"><summary class="accordion-head">…</summary><div class="accordion-body">` |
+| Mehrere Hinweise → einer + „weitere“ | `<HintBar id>` | `hint-bar`, `hint-bar-more` |
+| Erledigter Schritt als eine Zeile | – | `summary-row` |
+| Kompakte Liste statt hoher Karten | – | `list-rows` › `list-row-item` (`list-row-title`, `list-row-sub`) |
+| Suche/Filter bleiben oben | – | `toolbar-sticky` |
+| Zustand je Ort merken | `useRemembered(key, start)` | – |
+
+Ziel-Budgets und Beispiele: [Regelwerk, Abschnitt 10](ui-guidelines.md#10-platz--seiten-ohne-scrollen). Auf älteren
+Hostwerk-Versionen fehlen die Klassen – die Seite fällt dann auf normale Blöcke untereinander zurück, bleibt also bedienbar.
+
 ## 6. Übersetzungen (Deutsch + Englisch)
 
 Jeder sichtbare Text steht in `locales/de.json` und `locales/en.json` mit **denselben Schlüsseln**:
@@ -263,8 +391,9 @@ Die Prüfung meldet fehlende Schlüssel und englische Texte, die noch deutsch au
 | `extend:extensions` | Anderen Erweiterungen Reiter, Aktionen, Einstellungen, Texte oder eine Seite geben – nur so weit, wie deren Autor es in `allowExtensions` erlaubt (SDK 2.9) |
 | `network` | `fetch` zu den Adressen in `network` |
 
-Nie möglich: Hostwerk-Einstellungen, Passwörter, beliebige Dateien, Herunterfahren und alles, was nicht in der Liste
-steht. Nur anfordern, was du brauchst – Nutzer sehen die Liste vor der Installation. Jeder Aufruf landet im
+Was jedes Recht genau darf und nicht darf, steht oben unter [Worauf Erweiterungen zugreifen dürfen – und worauf nicht](#worauf-erweiterungen-zugreifen-dürfen--und-worauf-nicht).
+
+Nur anfordern, was du brauchst – Nutzer sehen die Liste vor der Installation. Jeder Aufruf landet im
 Zugriffsprotokoll der Erweiterung (auch Ablehnungen).
 
 ## 8. Einstellungen, Speicher, Ereignisse
@@ -378,7 +507,7 @@ Spiele-Server, Mailserver, Router …) zu Erweiterungen. Sie brauchen die Berech
 - `ui`: `ui/index.js`, gebaut mit `node sdk/build-native.js .` aus `ui/src/index.jsx` (React, `@hostwerk/api`,
   `@hostwerk/ui`, `@hostwerk/kit`, `@hostwerk/i18n` …). Export `{ pages: { main }, slots: { … } }` – Steckplätze setzen
   Reiter und Knöpfe in Hostwerk (`project.tabs`, `live.tabs`, `mc.connect`, `files.preview`, `mail.tabs`,
-  `titlebar`, `machines.board`).
+  `titlebar`, `machines.board`, `tasks.tabs`, `dashboard.actions` – ein Knopf neben „Anpassen“ auf der Übersicht, `sidebar.footer` – neben der Version unten in der Seitenleiste, `live.remote.actions` – Knöpfe beim Fernzugriff, SDK 3.4). Seit SDK 3.4 außerdem `screens` – eine ganze eigene Ansicht (Abschnitt 26).
 - Texte im Code sind Englisch; `locales/de.json` ordnet dem englischen Text das Deutsche zu (`$patterns` für Texte mit Teilen).
 - Daten bleiben, wo Hostwerk sie schon immer abgelegt hat – Entfernen der Erweiterung löscht nichts.
 
@@ -776,3 +905,347 @@ der ihn belegt. Ohne `to` wie bisher der nächste freie Port.
 |---|---|---|
 | `router` (Router & Portfreigaben 1.2) | `router.forwards.list()` · `add({ port, protocol, label }, besitzer)` · `remove({ port, protocol }, besitzer)` · `owned(besitzer)` | Portfreigaben anderer Pakete mit Besitzer – der Automatikmodus behält sie, die Router-Seite zeigt ihre Herkunft. Statt selbst in `router.cfg.extra` zu schreiben. |
 | `users` (Team & Rollen 1.2) | `users.can(mitgliedId, dienstId, bereich)` · `users.byDiscord(discordId)` · `users.serviceKey(art, id)` | „Darf dieses Mitglied das?“ mit denselben Regeln wie beim Fernzugriff – z. B. für den Discord-Bot. Dienst-IDs wie `mc:<id>`, `game:<id>`, `web:<id>`, `dbs:<id>`, `apps:<id>`; Bereiche `start-stop`, `console`, `players`, `backups`, `files`, `logs`. |
+
+## 21. SDK 3.2: Abschnitte statt Reiter, Datei-Browser und Seiten im Webserver
+
+Hostwerk 3.0 und neuer (die neuen Stellen gibt es ab der Hostwerk-Version mit SDK 3.2). Minor-Version – nur Neues.
+Nicht alles braucht einen eigenen Reiter: Was zu einer Detailansicht gehört, erscheint jetzt **direkt dort** als Abschnitt.
+
+**Abschnitte** (`contributes.sections`, abgeschottet – oder nativ über das Modul-Feld `sections`):
+
+```json
+"contributes": {
+  "sections": [{ "id": "preview", "title": { "de": "MOTD", "en": "MOTD" }, "icon": "sparkles", "on": "mc.overview", "file": "page/section.html", "height": 360 }],
+  "tabs": [{ "id": "motd", "title": "MOTD", "on": "minecraft", "file": "page/tab.html", "fallback": true }]
+}
+```
+
+| `on` | Wo | `Hostwerk.context` |
+|---|---|---|
+| `mc.overview` | Minecraft-Server → Übersicht (unter „So sehen Spieler deinen Server“) | `{ kind: 'minecraft', id, place, section }` |
+| `mc.players` | Minecraft-Server → Spieler → Verwaltung | `{ kind: 'minecraft', id, place, section }` |
+| `files.folder` | Dateien → rechts, solange keine Datei offen ist (zum geöffneten Ordner) | `{ kind: 'folder', root, path, place, section }` |
+| `web.site` | Webserver → Übersicht | `{ kind: 'web', id, place, section }` |
+
+- Hostwerk zeichnet die Karte (Titel, Puzzle-Zeichen mit Infos, Zuklappen – merkt sich der Browser). Die Seite läuft
+  abgeschottet im Rahmen (`Hostwerk.embed === 'section'`) und wächst mit ihrem Inhalt bis `height` (höchstens 900 px).
+- Höchstens zwei Abschnitte je Erweiterung und Stelle. Meldet sich die Seite nicht binnen 6 Sekunden oder stürzt ein
+  nativer Abschnitt ab, steht dort ein Hinweis mit „Nochmal“ – die Detailansicht läuft weiter.
+- **Rückfall für ältere Hostwerk-Versionen:** einen Reiter mit `"fallback": true` zeigen nur Versionen ohne Abschnitte.
+  So braucht die Erweiterung keine höhere Mindestversion.
+- Aus einem Abschnitt zur eigenen Seite mit Aktion: `Hostwerk.navigate('/ext/<id>?action=edit&target=<id>')` (seit 3.2 mit einfacher Abfrage).
+- **Ganze Seite in einem Hauptbereich:** ein Reiter mit `"page": true` (nur `on: "area:…"`, `file` = `page.file`) zeigt
+  die komplette Seite der Erweiterung als Reiter dieses Bereichs – z. B. `"on": "area:ai"` → KI-Helfer → dein Reiter. Kopf
+  und Reiterleiste des Bereichs bleiben, `page.tabs` stehen links als Liste (wie bei den Einstellungen), die Adresse ist
+  `#/ki/<reiter-id>/<unterreiter>` (Bereiche, deren Adresse eine Dienst-ID enthält: `x-<erweiterung>-<reiter>`). `#/ext/<id>`,
+  die Suche und `Hostwerk.navigate('/ext/<id>/<reiter>')` führen dorthin – dazu passt `"nav": false` in `page`. Ältere
+  Hostwerk-Versionen zeigen `file` als normalen Reiter.
+- Nativ: `export default { sections: { 'mc.overview': [{ id, title, icon, order, when(ctx), Component }] } }` –
+  `Component` bekommt `ctx` und dazu `server` (Minecraft), `web` (Webserver) als Props; `when(ctx) === false` blendet aus.
+
+**Datei-Browser** (nativ über `slots`, abgeschottet über `contributes.actions`):
+
+```js
+slots: {
+  'files.actions': [{ id: 'view-3d', title: 'View in 3D', icon: Box, when: (e) => !e.dir && /\.schem$/i.test(e.name), run: (e) => e.open() }],
+  'files.marks': [{ id: 'shared', icon: Share2, marks: async ({ root, path }) => ({ 'welten': { title: 'Shared with Anna' } }) }],
+}
+```
+
+- `files.actions`: Einträge im Rechtsklick-Menü (Eintrag und freie Fläche = offener Ordner). `e = { root, path, dir, name, open() }`
+  – `open()` zeigt die Datei in Hostwerks Vorschau.
+- `files.marks`: kleines Zeichen hinter dem Namen (mit Tooltip) – neu laden mit `window.dispatchEvent(new Event('hw:files-marks'))`.
+- Abgeschottet: `contributes.actions` mit `"on": ["folder"]` bzw. `["file"]` – öffnet die eigene Seite mit
+  `?action=<id>&kind=folder&target=<root>:<pfad>` (wie die Rechtsklick-Aktionen von Diensten).
+- Vorschau für Dateiarten wie bisher über `files.preview` (`{ id, title, match: /…/, Component({ root, path }) }`).
+
+**Seiten im Webserver bereitstellen** (*nativ*, `host.sites`): eine Erweiterung bietet eine Seite an, Hostwerk schreibt
+sie in einen Unterordner eines Webservers (docRoot oder vHost) und erneuert sie im gewählten Takt – ohne Hostwerk-Anmeldung,
+ohne offenen Hostwerk-Port. Unter *Webserver → Übersicht → Seiten von Erweiterungen* sieht man, was wo liegt.
+
+```js
+if (host.sites) host.sites.register({ id: 'board', title: { de: 'Bestenliste', en: 'Leaderboard' }, defaults: { limit: 10 },
+  render: async (options, { lang }) => ({ 'index.html': page(options, lang), 'data.json': JSON.stringify(await data(options)) }) });
+host.sites.targets();                 // [{ id, web, vhost, label, base }] – Webordner zur Auswahl
+host.sites.list();                    // eigene Seiten: [{ id, kind, web, vhost, sub, options, interval, on, url, writtenAt, error }]
+await host.sites.save({ kind: 'board', web: 'apache', vhost: null, sub: 'bestenliste', options, interval: 60, title }); // neu/ändern (mit id)
+host.sites.remove(id); await host.sites.publish(id);
+```
+
+- Ziel ist immer ein Webordner eines Hostwerk-Webservers plus **ein** einfacher Unterordner (`[a-z0-9_-]`). Ein Ordner mit
+  fremden Dateien wird nicht übernommen; Hostwerk legt `.hostwerk-site.json` als Kennung ab und löscht beim Entfernen nur
+  seine eigenen Dateien. Höchstens 12 Dateien (`.html .json .css .js .svg .txt`), zusammen 2 MB, Takt 30 s – 24 h.
+- `render()` muss `index.html` liefern und bekommt die Einstellungen (Vorgaben + gespeicherte). **Nur öffentliche Daten**
+  hineinschreiben – die Seite ist für jeden lesbar, der den Webserver erreicht.
+- Die eigene Seite öffnet Hostwerk mit Aktion über `?action=site&target=<seiten-id>` (Knopf „Einstellungen“ in der Liste).
+- Läuft die Erweiterung nicht, bleibt die Seite auf dem letzten Stand (Hinweis in der Liste). Gibt es `host.sites` nicht
+  (älteres Hostwerk, abgeschottet laufend), einfach weglassen.
+
+---
+
+## 22. SDK 3.2: Minecraft-Servertypen und Netzwerke
+
+Hostwerk 3.2 und neuer. Minor-Version – nur Neues. Genutzt von der Erweiterung „Minecraft-Servernetzwerk“ (`mc-network`).
+
+**Eigener Servertyp** (*nativ*): `ctx.minecraft.registerType(id, def, besitzer)` meldet einen weiteren Typ an – er lässt sich
+mit `minecraft.create({ type: id, … })` anlegen und bekommt Hostwerks Server-Updates (`latestBuild`) wie ein eingebauter.
+
+```js
+exports.activate = (host) => {
+  const mc = host.ctx.minecraft;
+  if (typeof mc.registerType !== 'function') return;          // Hostwerk vor 3.2
+  const off = mc.registerType('bungeecord', {
+    label: 'BungeeCord', proxy: true, hidden: true,              // hidden: nicht im „Neuer Server“-Dialog
+    versions: async () => ({ latest: 'latest', versions: [{ id: 'latest', stable: true }] }),
+    latestBuild: async () => '2104',
+    download: async (version, dest, job) => ({ build: '2104' }), // Datei nach dest legen, Prüfsumme prüfen
+    java: () => 21,
+    launchArgs: (s, jar) => ['-jar', jar],                       // statt „-jar server.jar nogui“
+    beforeStart: (s, dir) => { /* z. B. Port in die eigene Konfig schreiben */ },
+    readyRe: /Listening on \//,                                  // statt „Done (…s)!“
+  }, host.id);
+  host.on('shutdown', off);
+};
+```
+
+Eingebaute Typen (paper, velocity …) lassen sich nicht ersetzen. Ohne die Erweiterung bleibt ein angelegter Server in der
+Liste und startet weiter mit `-jar server.jar nogui`.
+
+**Bedrock und Fähigkeiten** (ab 3.x, Feature-Erkennung): Der Kern kennt den Typ `bedrock` (Bedrock Dedicated Server, kein
+Java, UDP). Statt Typnamen zu vergleichen, fragt man `ctx.minecraft.caps(server)` → `{ edition: 'java'|'bedrock', java,
+protocol: 'TCP'|'UDP', addons: 'plugins'|'mods'|null, worlds, datapacks, lists: 'java'|'bedrock'|null, … }` bzw.
+`ctx.minecraft.isBedrock(server)`. Bedrock-Server haben `port` und `portv6` (beide UDP), keine Plugins und keine
+whitelist/ops (stattdessen `minecraft.bedrock.lists(id)` mit Erlaubnisliste, Rechten und bekannten Spielern samt XUID).
+Anlegen wie jeder Typ: `minecraft.create({ type: 'bedrock', name, eula: true })`.
+
+**Forced hosts für Velocity**: `ctx.minecraft.network.apply(proxyId, { members: [{ id, key }], forcedHosts: { "survival.example.org": ["survival"] } })`
+schreibt die Adressen in `[forced-hosts]` der velocity.toml (gültige Domain, Ziel muss im Netzwerk sein – sonst Fehler vor
+jeder Änderung). Ohne `forcedHosts` bleibt der Abschnitt leer wie bisher. BungeeCord-Proxys richtet die Erweiterung selbst ein.
+
+**Sicherheit**: Server hinter einem Proxy (`network.proxy` gesetzt) lauschen nur auf 127.0.0.1 und prüfen keine Konten –
+`security.publicPorts()` führt sie deshalb nicht mehr; Firewall und Router-Automatik öffnen sie nie.
+
+**Umzug**: Wer Geyser, einen Proxy oder ein Netzwerk nutzt, bekommt beim Update „Minecraft-Servernetzwerk“ (früher „Bedrock-Brücke“) –
+die Erweiterung liest dieselben Daten (`settings.minecraft.servers[].geyser`) und übernimmt Ports und Floodgate-Schlüssel.
+## 23. SDK 3.2: Laden wie eine eingebaute Seite
+
+Hostwerk 3.0 und neuer (mit dem SDK 3.2). Nebenversion – nur Neues, jede Seite läuft unverändert weiter.
+
+**Hostwerk zeigt die Ladeanimation.** Solange eine Seite, ein Reiter oder eine Kachel im Rahmen lädt, zeichnet Hostwerk
+dasselbe Platzhalter-Gerüst wie bei eigenen Seiten über den Rahmen und zeigt ihn erst, wenn die Seite *geladen* meldet.
+Das macht das SDK von selbst – nach dem ersten `Hostwerk.render(…)` (nach `Hostwerk.ready()`) oder sobald die Seite Inhalt
+zeigt und kurz Ruhe ist (spätestens 8 s nach `ready`). Meldet sich eine Seite gar nicht, zeigt Hostwerk „Die Erweiterung
+antwortet nicht“ mit **Erneut versuchen** statt einer leeren Fläche. Ältere Seiten ohne Meldung erscheinen nach höchstens 10 s.
+
+Seiten, die erst mit ihren Daten Sinn ergeben, halten die Animation und melden sich selbst:
+
+```html
+<meta name="hostwerk-loading" content="manual">   <!-- oder: Hostwerk.holdLoaded() gleich am Anfang des Skripts -->
+```
+
+```js
+await Hostwerk.ready();
+zeichnen(await Hostwerk.get('/system/ports'));
+Hostwerk.loaded();                                  // jetzt zeigt Hostwerk die Seite
+```
+
+**Dieselben Zustände innerhalb der Seite** – für Teile, die später nachladen, im Design-Baukasten:
+
+```js
+Hostwerk.ui.loading('#liste', { rows: 4 });         // Platzhalter-Zeilen, aria-busy + Ansage für Screenreader
+Hostwerk.ui.error('#liste', err, neuLaden);         // Meldung (role=alert) mit „Erneut versuchen“, ruft neuLaden()
+await Hostwerk.ui.load('#liste', async () => {      // beides in einem: Laden → dein Code zeichnet → sonst Fehler mit Wiederholen
+  Hostwerk.render('#liste', Hostwerk.html`…${await Hostwerk.get('/apps')}…`);
+});
+Hostwerk.html`<div>${Hostwerk.ui.skeleton(3)}</div>`; // nur die Platzhalter-Zeilen
+```
+
+Texte gibt es auf Deutsch und Englisch; eigene über die Schlüssel `hw.loading`, `hw.loadError`, `hw.retry` in `locales/*.json`.
+`Hostwerk.ui.loading` zählt nicht als *geladen*, `error` und jedes andere `render` schon.
+
+**Robustere Verbindung:** Das SDK wiederholt seinen Gruß, bis Hostwerk antwortet, und hält Anfragen von davor (z. B.
+`Hostwerk.get` gleich am Anfang) so lange zurück – nichts geht mehr verloren, wenn der Rahmen schneller ist als Hostwerk.
+Jede Nachricht trägt die Kennung des Dokuments; Antworten eines zwischendurch neu geladenen Rahmens werden nicht mehr vertauscht.
+
+## 24. SDK 3.2: ohne eigenen Eintrag in der Seitenleiste
+
+Hostwerk 3.0 und neuer (mit dem SDK 3.2). Nur Neues – ältere Hostwerk-Versionen ignorieren die neuen Werte und zeigen den Eintrag weiter.
+
+In der Seitenleiste stehen Hostwerks Bereiche. Eine Erweiterung, die zu einem davon gehört, erscheint **dort** – als Reiter,
+Abschnitt oder Kachel – statt als weiterer Eintrag:
+
+```json
+"page": { "title": { "de": "Router", "en": "Router" }, "icon": "router", "nav": false }
+```
+
+- `"nav": false` = kein eigener Eintrag in der Seitenleiste. Die Seite bleibt erreichbar über *Erweiterungen → Öffnen*, das
+  Puzzle-Zeichen, die Schnellsuche, *Einstellungen → Erweiterungen* und `Hostwerk.navigate('/ext/<id>')`. Wer sie trotzdem in
+  der Leiste will, heftet sie unter *Einstellungen → Allgemein → Seitenleiste* an (Schalter an). Der Prüfer warnt, wenn die
+  Erweiterung dann keinen anderen Platz hat (`contributes.tabs`/`sections`/`actions`, natives `ui` mit Steckplätzen, Kachel).
+- Wohin stattdessen – je Bereich ein Platz:
+
+| Bereich | Abgeschottet (`contributes.tabs[].on`) | Nativ (`slots`) |
+|---|---|---|
+| Webserver, Datenbanken, Minecraft, Projekte, E-Mail, System, KI, Sicherungen | `area:web` … `area:backups` | `web.tabs`, `dbs.tabs`, `minecraft.tabs`, `projects.tabs`, `mail.tabs`, `system.tabs`, `ai.tabs`, `backups.tabs` |
+| Aufgaben (neu) | `area:tasks` | `tasks.tabs` |
+| Livebetrieb | `area:live` | `live.tabs` mit `group` (`erreichbar`, `schuetzen`, `betrieb`) – **gleiche id** aus mehreren Erweiterungen = ein gemeinsamer Reiter (z. B. `discord`) |
+| Spiele-Server (Erweiterung) | – | `games.tabs` – zeigt „Spiele-Server“ über `useAreaTabs('games')` aus `@hostwerk/kit` |
+| Detailansichten | `contributes.sections` (Abschnitt 21) | `sections` |
+
+- `area:tasks` ist neu – ein Paket, das es nutzt, braucht `"hostwerk": ">=3.0.0"` (ältere Prüfer lehnen unbekannte Bereiche ab).
+  Native Steckplätze brauchen keine höhere Version: Ein älteres Hostwerk zeigt sie einfach nicht.
+- **Abschnitte mit Rolle** – `"role": "motd"` an `mc.overview`: Der Abschnitt zeigt und bearbeitet, wie Spieler den Server
+  sehen (MOTD und Symbol); Hostwerks eigene Karte „So sehen Spieler deinen Server“ tritt dann zurück – nur eine Vorschau.
+  Nativ: `sections: { 'mc.overview': [{ id, role: 'motd', … }] }`.
+
+**Außerdem neu in 3.2:**
+
+- `Hostwerk.saveFile(name, text, type)` – Text als Datei speichern (CSV, Markdown, JSON …); der abgeschottete Rahmen kann
+  selbst nichts herunterladen. Nur Text (`text/*`, JSON, XML, YAML, SQL, SVG), höchstens 5 MB, Dateiname mit Endung, keine
+  ausführbaren Endungen, eine Datei je Sekunde. Liefert `{ name }`.
+- `GET /system/info` (`read:system`) – Steckbrief des Rechners: Betriebssystem mit Build, Prozessor, Grafikkarte, Laufwerke,
+  Netzwerkadapter (nur Adressen), Laufzeiten (Node, Java, Python), Update-Stand, letzte Sicherung, Gesundheit und installierte
+  Erweiterungen. 60 s zwischengespeichert (`?fresh=1` misst neu). `GET /system/health` liefert den Gesundheitsteil.
+- `GET /live/security` liefert zu jeder Prüfung `titles: { de, en }` (`title` bleibt wie bisher deutsch).
+
+## 25. SDK 3.3: stabile Dienste statt Kern-Interna, Spuren und Entfernen-Haken
+
+Hostwerk 3.0 und neuer (mit dem SDK 3.3). Nur Neues. Für eigenen Server-Code (`backend`, Abschnitt 15).
+
+### Stabile Dienste
+
+Bis SDK 3.2 mussten native Erweiterungen für manches in Hostwerks Innereien greifen (`ctx.ai.quick`,
+`ctx.minecraft.readMeta`/`addonDir`, `ctx.patchUpdates`, `host.core('download').isOffline()`, Bild-Code des Kerns, direkt nach
+`~/.ssh` schreiben). Dafür gibt es jetzt dokumentierte, versionierte Dienste am `host` – mit Rechten im Paket:
+
+| Dienst | Recht | Abgeschottet | Liefert |
+|---|---|---|---|
+| `host.ai.quick.ready()` · `.run(task, { text, lang, context })` | `use:ai` | ja | `task`: `translate`, `explain`, `summarize`, `describe` → `{ text, cached }`; höchstens 6000 Zeichen, nur wenn der KI-Helfer an ist (sonst 409) |
+| `host.minecraft.addons(serverId?)` | `read:minecraft` | ja | Plugins/Mods `[{ file, name, version, enabled, kind }]` – ohne `serverId` je Server `{ server, addons }`; nur lesen |
+| `host.updates.pending()` | `read:updates` | ja | anstehende Sicherheits-Updates `[{ key, component, label, current, latest }]` |
+| `host.updates.apply(key)` | `change:updates` | nein | spielt ein anstehendes Update ein – mit Probelauf und Rückfall wie *Einstellungen → Updates*, im Aktivitätsprotokoll → `{ ok, skipped, error }` |
+| `host.net.offline()` | – | ja | `true`, wenn der Offline-Modus an ist |
+| `host.icons.favicon(url)` | `fetch:icons` | nein | Symbol einer **öffentlichen** Webseite `{ mime, data }` oder `null` – nur https, nie Heimnetz oder 127.0.0.1 (auch nicht über DNS oder Weiterleitungen), höchstens 512 KB, 30 Tage zwischengespeichert |
+| `host.sshKeys.import({ name, privateKey, publicKey })` | `write:ssh-keys` | nein | legt den Schlüssel unter neuem Namen in `~/.ssh` (600/644) – überschreibt nie (409 `EXISTS`) |
+| `host.images.list()` | `read:apps` | ja | Docker-Images mit Tag aus Docker-Apps, Compose-Stapeln und Docker-Spiele-Servern `[{ source, owner, name, image, repo, tag, digest }]`; nur lesen |
+| `host.traces.add/remove/list` | – | nein | Spuren außerhalb des eigenen Ordners (unten) |
+
+**Mail-Programme** (Recht `connect:mail`): Mail-Server sind frei wählbar (Gmail, web.de, eigene Domain …) – eine Liste unter
+`network` ginge nicht. Mit diesem Recht darf der Server-Code IMAP/SMTP/POP3 zu jedem Server sprechen, den der Mensch beim
+Einrichten angibt (Ports 25, 110, 143, 465, 587, 993, 995, 2525). Abgeschottet erzwingt `runner.js` genau diese Ports und
+sperrt Heimnetz und 127.0.0.1 weiter; Webseiten (auch Autoconfig) nur über `network`. Genutzt von *E-Mail-Konten* (`mail-accounts`).
+
+**Feature-Erkennung:** `host.sdkVersion` (z. B. `"3.3.0"`) und `host.supports('updates.apply')` – `true` heißt vorhanden
+**und** erlaubt (Recht im Paket, abgeschottet oder nicht). So läuft dieselbe Fassung auch auf älterem Hostwerk:
+
+```js
+const pending = host.supports && host.supports('updates.pending')
+  ? await host.updates.pending()
+  : (host.ctx.patchUpdates && host.ctx.patchUpdates.pending) || []; // Rückfall für Hostwerk vor SDK 3.3
+```
+
+Abgeschottete Module haben die lesenden Dienste (Spalte „Abgeschottet“) – als Promise, auch `host.supports()`
+(also `if (await host.supports('updates.pending'))`). Einspielen, Symbole aus dem Netz,
+SSH-Schlüssel und Spuren gibt es nur für offizielle Pakete im Hostwerk-Prozess.
+
+Neue Rechte brauchen `"hostwerk": ">=3.0.0"` und `"sdkVersion": "3.3"` – ältere Prüfer kennen sie nicht und lehnen das Paket ab.
+
+**Abkündigung:** Die Interna oben bleiben als Rückfall, sind aber seit SDK 3.3.0 (22.10.2026) abgekündigt und fallen frühestens
+mit SDK 4.0.0 und nicht vor dem 22.10.2027 weg (Regeln aus Abschnitt 19). Der Prüfer nennt den Ersatz als Hinweis (`internals`,
+ohne Abzug), solange der Code nicht zuerst den stabilen Dienst fragt.
+
+### Spuren außerhalb des eigenen Ordners
+
+Legt der Server-Code etwas außerhalb seines Ordners an – eine Windows-Aufgabe, einen Ordner unter `%ProgramData%`, einen
+Registry-Schlüssel, einen Dienst, eine Firewall-Regel, eine Portweiterleitung –, meldet er es als **Spur**:
+
+```js
+host.traces.add({ kind: 'task', id: 'task', label: '\\Hostwerk\\DiskHealth', admin: true, remove: { name: '\\Hostwerk\\DiskHealth' } });
+host.traces.add({ kind: 'dir', id: 'folder', label: 'C:\\ProgramData\\HostwerkDiskHealth', admin: true, remove: { path: 'C:\\ProgramData\\HostwerkDiskHealth' } });
+// selbst weggeräumt (z. B. Funktion abgeschaltet):
+host.traces.remove('task');
+```
+
+| `kind` | `remove` | Hostwerk entfernt mit |
+|---|---|---|
+| `task` | `{ name }` | `schtasks /Delete` (Standard: Admin) |
+| `file`, `dir` | `{ path }` (absolut) | löschen; mit `admin: true` über die Admin-Rückfrage |
+| `registry` | `{ key, value? }` – mindestens drei Ebenen unter `HKCU`/`HKLM` | `reg delete` (HKLM = Admin) |
+| `service` | `{ name, user? }` | Windows `sc.exe delete`, Linux `systemctl (--user) disable --now` |
+| `firewall` | `{ name }` | `netsh advfirewall firewall delete rule` (Admin) |
+| `port-forward` | `{ protocol, port, router? }` | nur die Erweiterung selbst (Entfernen-Haken) – sonst bleibt ein Hinweis |
+
+Spuren sind **Daten, keine Befehle**: Wie eine Spur entfernt wird, legt Hostwerk je Art fest. Pfade dürfen keine Laufwerke,
+Benutzer-, System- oder Hostwerk-Ordner sein; Zeichen wie `" & | % ^ < >` sind nie erlaubt; höchstens 50 Spuren je Erweiterung.
+
+Wer sie sieht: das Erweiterungs-Pop-up (Puzzle-Zeichen) unter „Was sie auf deinem PC angelegt hat“, der Schritt
+*Deinstallieren* mit Häkchen je Spur, die Wartung (*Entfernen* mit „Auch entfernen, was sie auf dem PC angelegt hat“) und
+*Hostwerk entfernen* (Eintrag „Spuren von Erweiterungen“). Alles, was Administrator-Rechte braucht, entfernt Hostwerk mit
+**einer** Rückfrage. Nicht angehakte oder fehlgeschlagene Spuren bleiben verwaist in der Liste – *Hostwerk entfernen* bietet
+sie noch einmal an.
+
+Der Prüfer warnt (`traces`), wenn der Server-Code erkennbar Aufgaben, Registry-Einträge, Dienste oder Dateien unter
+`ProgramData` anlegt, aber nie `host.traces.add()` aufruft.
+
+### Entfernen-Haken
+
+```js
+exports.uninstall = async (host, { traces }) => { /* z. B. Portweiterleitungen im Router löschen */ };
+```
+
+`uninstall()` läuft **nur beim Entfernen** – nie beim Ausschalten, beim Update, im abgesicherten Start oder beim Beenden
+(dafür bleibt `deactivate()`). Reihenfolge: `uninstall(host, { traces })` (höchstens 60 s, abgeschottet 30 s) → Hostwerk
+entfernt die angehakten Spuren, die das Modul nicht selbst mit `host.traces.remove(id)` abgemeldet hat → `deactivate()` →
+Paket weg. `traces` sind die Spuren, die der Nutzer angehakt hat. Fehler im Haken halten das Entfernen nicht auf.
+Daten der Erweiterung bleiben wie bisher liegen.
+
+**Außerdem neu in 3.3:** `ctx.games.summary()` (Erweiterung „Spiele-Server“ ab 1.10) liefert je Server `version` (Steam-Build-ID,
+wo Steam sie kennt) und `image` (Docker-Image mit Tag) – nur lesen.
+
+## 26. SDK 3.4: eigene Vollbild-Ansichten und Geräte-Anmeldung
+
+Hostwerk 3.0 und neuer (mit dem SDK 3.4). Nur Neues. Für native Erweiterungen (`ui` und `backend`, Abschnitt 15) – die offizielle
+Erweiterung „Hostwerk-App“ (`hostwerk-ext-pwa`) nutzt alles davon.
+
+### Eine eigene Vollbild-Ansicht
+
+```js
+// ui/src/index.jsx
+export default {
+  screens: { handy: { Component: PhoneApp, mobileHome: true } },
+};
+```
+
+Die Ansicht erscheint unter `#/handy` ohne Hostwerks Seitenleiste – Meldungen, Aufträge und Dialoge bleiben. `mobileHome: true`:
+Auf schmalen Bildschirmen (< 700 px) startet Hostwerk dort statt auf der Übersicht. Adressen, die Hostwerk selbst belegt
+(`#/web`, `#/ki` …), lassen sich nicht übernehmen; die Adresse besteht aus a–z, 0–9 und `-`. Vollbild-Ansichten landen nie in
+„Zuletzt besucht“.
+
+### Knöpfe beim Fernzugriff und weitere Bausteine
+
+Steckplatz `live.remote.actions` – Knöpfe im Kopf von Livebetrieb → Fernzugriff (die Komponente bekommt `remote`, den Stand). Aus
+`@hostwerk/kit`: `stopAllGuarded()`, `confirmStopOne(svc, name)`, `runGate()` und `setStopGate(fn)` (Hostwerks Stopp-Schutz –
+`fn` ist eine zusätzliche Bestätigung, z. B. der Passkey, `null` nimmt sie wieder weg), `askAi(frage)`, `EmergencyButton`,
+`EmergencyBanner`, `AiQuotaWidget`, `HwLogo`.
+
+### Geräte-Anmeldung (Dienst `devices`)
+
+Die Anmeldung bleibt bei Hostwerk (Passwort + Zwei-Faktor-Code, Passkeys, Sperre je Adresse und je Konto). Eine native
+Erweiterung darf einen weiteren Zugang hinzufügen, indem sie den Dienst `devices` bereitstellt:
+
+```js
+host.provide('devices', {
+  verify(req) { /* → { user, userId, role, device } oder null – gefragt bei jeder Anfrage ohne Sitzung */ },
+  logout(req) { /* Abmelden auf diesem Gerät → Set-Cookie-Text, der dein Cookie löscht, oder null */ },
+  removeAll() { /* „Alle abmelden“ beim Fernzugriff */ },
+});
+```
+
+Was Hostwerk zusichert: `verify` wird nur bei eingeschaltetem Fernzugriff und ohne gültige Sitzung gefragt; das Ergebnis läuft
+durch dieselben Prüfungen wie eine normale Anmeldung (Team & Rollen `allowed()`, gefilterte Übersicht, Notfall-Modus). Gib die
+Rolle des Kontos **in diesem Moment** zurück – nie eine auf dem Gerät gespeicherte. Prüfen mit `host.supports('devices')`.
+
+Regeln für den eigenen Zugang (der Prüfer sieht sie nicht, die Katalog-Prüfung schon): nur Hashes von Geheimnissen speichern,
+Cookie `HttpOnly; Secure; SameSite`, Anfragen fremder Seiten abweisen (`Sec-Fetch-Site` außer `same-origin`/`none`), bei
+Passwortwechsel ungültig machen, falsche Codes mit `ctx.remote.fail(ip)` zählen, Sitzungen mit `ctx.remote.dropSessions(s => …)`
+beenden.

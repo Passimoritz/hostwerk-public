@@ -31,7 +31,6 @@ als personenbezogenes Datum – für die Verarbeitung bei den Gegenstellen gelte
 | KI-Anbieter in der Cloud | api.openai.com, api.anthropic.com, generativelanguage.googleapis.com, api.mistral.ai, api.groq.com, api.deepseek.com, openrouter.ai, api.replicate.com, queue.fal.run | nur wenn du einen Cloud-Anbieter einrichtest und nutzt (auch die KI-Wache, falls sie ihn nutzt) | deine Eingaben und mitgeschickte Inhalte sowie dein API-Schlüssel | wenn eingerichtet |
 | Docker-Katalog | hub.docker.com, api.linuxserver.io | täglich | Abfrage beliebter Container | automatisch |
 | Bilder und Logos | cdn.jsdelivr.net, raw.githubusercontent.com, Webseiten deiner Projekte / your projects’ websites | beim ersten Anzeigen, danach 14 Tage aus dem Zwischenspeicher | Abruf des Bildes | automatisch |
-| Push-Benachrichtigungen aufs Handy | fcm.googleapis.com, updates.push.services.mozilla.com, web.push.apple.com | bei Ereignissen, nur wenn du Push auf einem Gerät eingeschaltet hast | verschlüsselte Nachricht an den Push-Dienst deines Browsers | wenn eingerichtet |
 | Alarme (Discord, ntfy, E-Mail, Telegram, Gotify, Pushover, Matrix) | discord.com, ntfy.sh, api.telegram.org, api.pushover.net, dein Gotify-/Matrix-Server / your Gotify/Matrix server, dein Mail-Server / your mail server | bei Abstürzen, Zertifikaten, Sicherungen, Ausfällen – nur wenn eingerichtet | Text der Meldung und Rechnername | wenn eingerichtet |
 | Erreichbarkeits-Prüfung | deine Seiten / your sites | alle 30 Sekunden für eingetragene Adressen | Abruf der Seite | wenn eingerichtet |
 | HTTPS-Zertifikate (Let’s Encrypt) | acme-v02.api.letsencrypt.org | beim Anfordern und automatisch vor Ablauf | Domainname und Konto-Schlüssel | wenn eingerichtet |
@@ -52,6 +51,13 @@ ins Netz senden, hängt von ihnen und deiner Einrichtung ab.
 
 Erweiterungen dürfen nur mit dem Recht „Netzwerk“ ins Internet und nur zu den Adressen, die in ihrem Manifest stehen; das
 siehst du vor der Installation. Was eine Erweiterung gelesen oder geändert hat, steht in ihrem Zugriffsprotokoll.
+
+## Dein Name
+
+Unter Einstellungen → Allgemein kannst du Hostwerk sagen, wie es dich nennen soll. Der Name bleibt in den Einstellungen
+auf diesem Rechner – nicht in Profilen, Einstellungs-Exporten oder Protokollen, und Fehlerberichte ersetzen ihn durch
+`<name>`. Verwendet wird er nur, wo du es einschaltest: für die Begrüßung (lokal), im KI-Helfer (bei einem Cloud-Anbieter
+geht er dann mit an diesen Anbieter) und für Erweiterungen mit dem Recht „read:profile“ (sonst bekommen sie ihn nie).
 
 ---
 Diese Liste wird aus `server/core/connections.js` erzeugt (`node scripts/privacy-docs.js`) – dieselbe Liste zeigt

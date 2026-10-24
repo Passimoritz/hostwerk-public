@@ -31,7 +31,6 @@ counts as personal data – processing on the other side is governed by the resp
 | Cloud AI providers | api.openai.com, api.anthropic.com, generativelanguage.googleapis.com, api.mistral.ai, api.groq.com, api.deepseek.com, openrouter.ai, api.replicate.com, queue.fal.run | only if you set up and use a cloud provider (also the AI watch, if it uses one) | your prompts and attached content plus your API key | if set up |
 | Docker catalog | hub.docker.com, api.linuxserver.io | daily | Query of popular containers | automatic |
 | Images and logos | cdn.jsdelivr.net, raw.githubusercontent.com, Webseiten deiner Projekte / your projects’ websites | on first display, then 14 days from the cache | Download of the image | automatic |
-| Push notifications to your phone | fcm.googleapis.com, updates.push.services.mozilla.com, web.push.apple.com | on events, only if you enabled push on a device | encrypted message to your browser’s push service | if set up |
 | Alerts (Discord, ntfy, e-mail, Telegram, Gotify, Pushover, Matrix) | discord.com, ntfy.sh, api.telegram.org, api.pushover.net, dein Gotify-/Matrix-Server / your Gotify/Matrix server, dein Mail-Server / your mail server | on crashes, certificates, backups, outages – only if set up | Message text and computer name | if set up |
 | Uptime check | deine Seiten / your sites | every 30 seconds for added addresses | Request of the page | if set up |
 | HTTPS certificates (Let’s Encrypt) | acme-v02.api.letsencrypt.org | when requesting and automatically before expiry | Domain name and account key | if set up |
@@ -52,6 +51,13 @@ depends on them and on your setup.
 
 Extensions may only access the internet with the “network” permission and only the addresses listed in their manifest;
 you see this before installing. What an extension has read or changed is shown in its access log.
+
+## Your name
+
+Under Settings → General you can tell Hostwerk what to call you. The name stays in the settings on this computer – not in
+profiles, settings exports or logs, and error reports replace it with `<name>`. It is only used where you switch it on:
+for the greeting (local), in the AI helper (with a cloud provider it then goes to that provider) and for extensions with
+the “read:profile” permission (otherwise they never get it).
 
 ---
 This list is generated from `server/core/connections.js` (`node scripts/privacy-docs.js`) – Hostwerk shows the same

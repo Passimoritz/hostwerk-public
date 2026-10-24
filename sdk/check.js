@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '3.1.0';
+const SDK_VERSION = '3.4.0';
 /*
  * Stabilitätsversprechen (SDK 3.0, Anleitung Abschnitt 18 „Stabilität und Abkündigungen“):
  *  - SemVer: Alles, was SDK 3.0 dokumentiert (window.Hostwerk, Manifest-Felder, Rechte, contributes), läuft mit jeder
@@ -41,6 +41,25 @@ const DEPRECATIONS = [
   { id: 'nav-group-extensions', since: '3.0.0', announced: '2026-10-21', removeIn: '4.0.0', notBefore: '2027-10-21', code: 'page.nav',
     test: (m) => !!(m.page && m.page.nav && m.page.nav.group === 'extensions'),
     msg: '"extensions" is no longer an area (Hostwerk 2.11) – choose "server", "develop", "system" or an own area. Until then Hostwerk places the page by its category.' },
+];
+/**
+ * Kern-Interna, die native Erweiterungen bis SDK 3.2 benutzen mussten – seit SDK 3.3 gibt es stabile Dienste dafür
+ * (services/extapi.js). Die Interna bleiben vorerst als Rückfall; der Prüfer weist auf den Ersatz hin (Hinweis, kein
+ * Abzug), solange der Code nicht zuerst den stabilen Dienst fragt (host.supports / host.ai …).
+ */
+const INTERNALS = [
+  { re: /ctx\.ai\.quick|ctx\.ai && [\w.]*ai\.quick/, use: 'host.ai.quick', stable: /host\.ai\b|\.ai\.quick\.run|supports\(\s*['"]ai\.quick/ },
+  { re: /minecraft\.readMeta|minecraft\.addonDir/, use: 'host.minecraft.addons()', stable: /\.minecraft\.addons\s*\(|supports\(\s*['"]minecraft\.addons/ },
+  { re: /ctx\.patchUpdates\.(pending|apply)|patchUpdates\.pending|patchUpdates\.apply/, use: 'host.updates.pending() / apply()', stable: /\.updates\.(pending|apply)\s*\(|supports\(\s*['"]updates\./ },
+  { re: /core\(\s*['"]download['"]\s*\)\.isOffline/, use: 'host.net.offline()', stable: /\.net\.offline\s*\(/ },
+  { re: /ctx\.sshKeys\.dir/, use: 'host.sshKeys.import()', stable: /\.sshKeys\.import\s*\(/ },
+];
+/** Spuren außerhalb des eigenen Ordners, die der Prüfer im Server-Code erkennt (SDK 3.3, host.traces.add) */
+const TRACE_PATTERNS = [
+  { kind: 'task', re: /Register-ScheduledTask|schtasks(\.exe)?['"]?\s*,\s*\[\s*['"]\/Create|schtasks(\.exe)?\s+\/Create/i },
+  { kind: 'registry', re: /reg(\.exe)?['"]\s*,\s*\[\s*['"]add['"]|New-ItemProperty|Set-ItemProperty\s+-Path\s+['"]?(HK|Registry::)/i },
+  { kind: 'service', re: /New-Service\b|sc(\.exe)?['"]\s*,\s*\[\s*['"]create['"]|systemctl['"]\s*,\s*\[[^\]]*['"]enable['"]/i },
+  { kind: 'dir', re: /ProgramData[\s\S]{0,300}(mkdirSync|writeFileSync|New-Item|Set-Content|Out-File|WriteAllText)|(mkdirSync|writeFileSync|New-Item|Set-Content|Out-File|WriteAllText)[\s\S]{0,300}ProgramData/ },
 ];
 /** Experimentelle Schnittstellen (Name → Beschreibung und Mitglieder von window.Hostwerk). Derzeit keine. */
 const EXPERIMENTAL = {};
@@ -121,7 +140,7 @@ const PERMISSIONS = {
   'read:apps': { de: 'Apps lesen', en: 'Read apps', read: [/^\/apps$/] },
   'read:tasks': { de: 'Aufgaben lesen', en: 'Read scheduled tasks', read: [/^\/tasks$/] },
   'read:mail': { de: 'Abgefangene E-Mails lesen', en: 'Read captured e-mails', read: [/^\/mail(\/messages)?$/] },
-  'read:system': { de: 'Systemzustand, Auslastung, Ports und Speicher je Dienst lesen', en: 'Read system health, load, ports and storage per service', read: [/^\/system\/(health|resources|ports|disk-usage|ports\/free)$/] },
+  'read:system': { de: 'Systemzustand, Auslastung, Ports und Speicher je Dienst lesen', en: 'Read system health, load, ports and storage per service', read: [/^\/system\/(health|info|resources|ports|disk-usage|ports\/free)$/] }, // info seit SDK 3.2
   // Seit SDK 2.10: Spiele-Server (Erweiterung „Spiele-Server“) – Liste, Zustand, Spieler (A2S), ohne Passwörter/Konsole
   'read:games': { de: 'Spiele-Server und ihre Spieler lesen', en: 'Read game servers and their players', read: [/^\/games$/, /^\/games\/[\w-]+(\/players)?$/, /^\/games-players$/] },
   // Seit SDK 2.10: belegten Port eines gestoppten Hostwerk-Dienstes auf einen freien umstellen (wie System → Ports)
@@ -140,15 +159,25 @@ const PERMISSIONS = {
   // des Wissensgraphen selbst); alles, was Dateien in Projekten oder Claudes Anbindung ändert, fragt immer.
   'read:knowledge': { de: 'Wissensgraph lesen: Projekte, Graph, Bericht, Fragenverlauf, Gedächtnis, Claude-Status', en: 'Read the knowledge graph: projects, graph, report, question history, memory, Claude status', read: [/^\/knowledge$/, /^\/knowledge\/notes$/, /^\/knowledge\/[\w.-]+\/(graph|report|questions|memory|claude)$/, /^\/claude\/(status|connect\/code)$/] },
   'change:knowledge': { de: 'Wissensgraph bauen und abfragen, Ordner aufnehmen, Gedächtnis pflegen, eigene Notizen als Knoten eintragen, Obsidian-Export', en: 'Build and query the knowledge graph, add folders, edit memory, add own notes as nodes, Obsidian export', quiet: true, write: [/^\/knowledge$/, /^\/knowledge\/notes$/, /^\/knowledge\/folders(\/[\w.-]+)?$/, /^\/knowledge\/[\w.-]+\/(build|options|query|explain|path|memory(\/[\w-]+)?|obsidian\/(export|sync|notes|import))$/] },
-  'connect:claude': { de: 'Claude einbinden und wieder vergessen (schreibt markierte Abschnitte in Projekte – mit Rückfrage)', en: 'Connect Claude and forget it again (writes marked sections into projects – asks first)', write: [/^\/knowledge\/[\w.-]+\/claude\/(connect|repair|forget)$/, /^\/knowledge\/forget-all$/, /^\/claude\/connect\/desktop$/] },
+  'connect:claude': { de: 'KI einbinden und wieder vergessen (Claude, Codex, Gemini …: schreibt markierte Abschnitte in Projekte – mit Rückfrage)', en: 'Connect an AI and forget it again (Claude, Codex, Gemini …: writes marked sections into projects – asks first)', write: [/^\/knowledge\/[\w.-]+\/claude\/(connect|repair|forget)$/, /^\/knowledge\/forget-all$/, /^\/claude\/connect\/desktop$/] },
   // Seit SDK 2.5: Claude-Bereich als Erweiterung (Status, Anbindung, Spar-Werkzeuge, Projekte) und Terminal
-  'read:claude': { de: 'KI-Anbindung lesen: Claude-Status, Projekte, Gedächtnis (auch was jede KI davon bekommt), Spar-Werkzeuge, Verbrauch', en: 'Read the AI connection: Claude status, projects, memory (incl. what each AI gets), token-saving tools, usage', read: [/^\/claude\/(status|connect\/code|tools|tools\/discover|tools\/usage|targets\/[\w.-]+)$/, /^\/mind(\/activity|\/context)?$/, /^\/projects(\/[\w-]+)?$/, /^\/ai\/memory-share$/] },
-  'change:claude': { de: 'Claude einrichten: Kontext in Projekt-Dateien schreiben, Spar-Werkzeuge installieren/entfernen, Einstellungen (mit Rückfrage)', en: 'Set up Claude: write context into project files, install/remove token-saving tools, settings (asks first)', write: [/^\/claude\/write\/[\w.-]+$/, /^\/claude\/tools$/, /^\/claude\/tools\/[\w.-]+\/(install|update|remove)$/, /^\/claude\/connect\/desktop$/, /^\/ai\/memory-share(\/preview)?$/] },
+  'read:claude': { de: 'KI-Anbindung lesen: welche KI-Werkzeuge installiert und verbunden sind, Projekte, Gedächtnis (auch was jede KI davon bekommt), Spar-Werkzeuge, Verbrauch', en: 'Read the AI connection: which AI tools are installed and connected, projects, memory (incl. what each AI gets), token-saving tools, usage', read: [/^\/claude\/(status|connect\/code|tools|tools\/discover|tools\/usage|targets\/[\w.-]+)$/, /^\/mind(\/activity|\/context)?$/, /^\/projects(\/[\w-]+)?$/, /^\/ai\/memory-share$/] },
+  'change:claude': { de: 'KI-Anbindung einrichten: Kontext in Projekt-Dateien schreiben (CLAUDE.md, AGENTS.md, GEMINI.md …), Spar-Werkzeuge installieren/entfernen, Einstellungen (mit Rückfrage)', en: 'Set up the AI connection: write context into project files (CLAUDE.md, AGENTS.md, GEMINI.md …), install/remove token-saving tools, settings (asks first)', write: [/^\/claude\/write\/[\w.-]+$/, /^\/claude\/tools$/, /^\/claude\/tools\/[\w.-]+\/(install|update|remove)$/, /^\/claude\/connect\/desktop$/, /^\/ai\/memory-share(\/preview)?$/] },
   // Seit SDK 2.6: öffentliche Statusseite (nur Namen, Zustand, Verfügbarkeit – keine Adressen, Fehler oder Alarm-Ziele)
   'share:status': { de: 'Öffentliche Statusseite einrichten: an/aus, Titel, angezeigte Prüfungen, Link erneuern, in eine Website legen (mit Rückfrage)', en: 'Set up the public status page: on/off, title, shown checks, renew link, place it into a website (asks first)', read: [/^\/live\/statuspage$/], write: [/^\/live\/statuspage(\/(rotate|publish))?$/] },
   // Seit SDK 2.10: öffentliche Ansicht ohne Anmeldung (manifest.publicView, /v/<id>/) – z. B. Overlay für OBS
   'share:view': { de: 'Eine öffentliche Ansicht anbieten (ohne Anmeldung erreichbar, z. B. Overlay für OBS) – zeigt nur, was ihr eigener öffentlicher Server-Teil liefert', en: 'Offer a public view (reachable without login, e.g. an OBS overlay) – shows only what its own public server part returns' },
-  'run:terminal': { de: 'Befehle ins Hostwerk-Terminal tippen (du bestätigst mit Enter bzw. vorher im Dialog)', en: 'Type commands into the Hostwerk terminal (you confirm with Enter or in a dialog first)' },
+  // Seit SDK 3.1: dein Name (Einstellungen → Allgemein) – liefert ihn nur, wenn du ihn für Erweiterungen freigegeben hast, sonst null
+  'read:profile': { de: 'Deinen Namen lesen – nur wenn du ihn für Erweiterungen freigibst', en: 'Read your name – only if you share it with extensions', read: [/^\/you$/] },
+  'run:terminal': { de: 'Befehle ins Hostwerk-Terminal tippen (du bestätigst mit Enter bzw. vorher im Dialog)', en: 'Type commands into the Hostwerk terminal (you confirm with Enter or in a dialog first)', asks: true /* Bestätigung in der Seiten-Brücke (ui/src/extBridge.js TERMINAL) */ },
+  // Seit SDK 3.3: stabile Dienste für eigenen Server-Code statt Kern-Interna (services/extapi.js)
+  'use:ai': { de: 'Kurze Texte vom KI-Helfer übersetzen, erklären oder zusammenfassen lassen', en: 'Let the AI assistant translate, explain or summarise short texts' },
+  'read:updates': { de: 'Anstehende Sicherheits-Updates lesen', en: 'Read pending security updates' },
+  'change:updates': { de: 'Ein anstehendes Sicherheits-Update einspielen (mit Probelauf und Rückfall)', en: 'Install a pending security update (with trial run and fallback)' },
+  'fetch:icons': { de: 'Symbole öffentlicher Webseiten über Hostwerk laden', en: 'Load icons of public websites through Hostwerk' },
+  'write:ssh-keys': { de: 'SSH-Schlüssel in deinen SSH-Ordner legen (nie überschreiben)', en: 'Put SSH keys into your SSH folder (never overwrites)' },
+  // Seit SDK 3.3: Mail-Programme – Mail-Server sind frei wählbar (Gmail, web.de, eigene Domain …), eine Adressliste ginge nicht
+  'connect:mail': { de: 'Mit Mail-Servern deiner Wahl verbinden (IMAP und SMTP) und deren Einstellungen suchen', en: 'Connect to mail servers of your choice (IMAP and SMTP) and look up their settings' },
   storage: { de: 'Eigene Daten speichern (max. 256 KB)', en: 'Store own data (max. 256 KB)' },
   network: { de: 'Mit den im Paket genannten Webadressen sprechen', en: 'Talk to the web addresses named in the package' },
   // Seit SDK 2.7: native Erweiterungen – eigener Server- und Oberflächen-Code in Hostwerk (Funktionen, die früher eingebaut waren).
@@ -161,8 +190,146 @@ const PERMISSIONS = {
   'extend:extensions': { de: 'Andere Erweiterungen ergänzen – nur so weit, wie deren Autor es erlaubt', en: 'Extend other extensions – only as far as their author allows' },
   native: { de: 'Eigener Server-Code – läuft abgeschottet (offizielle Pakete aus dem Hostwerk-Katalog als Teil von Hostwerk)', en: 'Own server code – runs sandboxed (official packages from the Hostwerk catalog as part of Hostwerk)' },
 };
+/*
+ * Was jedes Recht genau erlaubt (can) und was NICHT (not) – für Installations-Dialog, Details und Doku.
+ * Jede Aussage folgt aus den Mustern oben (read/write) und der Durchsetzung in services/extpolicy.js (Sperrliste,
+ * Rückfrage, Schwärzen), services/extsandbox.js + extensions/sandbox/runner.js (abgeschotteter Prozess), der Seiten-Brücke
+ * ui/src/extBridge.js und extmarket.js (CSP der Seiten). Was nur Absicht, aber nicht erzwungen ist, steht hier nicht.
+ * scripts/ext-perm-texts-test.js prüft, dass jedes Recht beide Listen in beiden Sprachen hat.
+ */
+const L = (canDe, canEn, notDe, notEn) => ({ can: { de: canDe, en: canEn }, not: { de: notDe, en: notEn } });
+const SECRETS_DE = 'Felder, die nach Geheimnis aussehen (Passwort, Token, Schlüssel …) – kommen geschwärzt an';
+const SECRETS_EN = 'Fields that look like secrets (password, token, key …) – arrive blacked out';
+const LIMITS = {
+  'read:services': L(['Übersicht: welche Dienste es gibt und ob sie laufen'], ['Overview: which services exist and whether they run'],
+    ['Dienste starten oder stoppen', 'Protokolle und Konfiguration der Dienste', SECRETS_DE], ['Start or stop services', 'Service logs and configuration', SECRETS_EN]),
+  'read:web': L(['Liste der Webserver und Angaben zu einem Webserver (Typ, Version, Ports, Zustand)'], ['List of web servers and details of one (type, version, ports, state)'],
+    ['Konfigurationsdateien, Zugriffs- und Fehlerprotokolle', 'Virtuelle Hosts oder Einstellungen ändern', 'Webserver starten oder stoppen', SECRETS_DE], ['Config files, access and error logs', 'Change virtual hosts or settings', 'Start or stop web servers', SECRETS_EN]),
+  'read:databases': L(['Namen, Typ, Version, Port und Zustand der Datenbankserver', 'Ob ein Passwort gesetzt ist (ja/nein)'], ['Name, type, version, port and state of database servers', 'Whether a password is set (yes/no)'],
+    ['Inhalte der Datenbanken (Tabellen, Zeilen)', 'Das Passwort selbst', 'Sicherungen auflisten, herunterladen oder wiederherstellen', 'Datenbanken starten, stoppen oder ändern'], ['Database contents (tables, rows)', 'The password itself', 'List, download or restore backups', 'Start, stop or change databases']),
+  'read:minecraft': L(['Minecraft-Server, Spieler, Statistiken und Welten-Liste'], ['Minecraft servers, players, stats and the list of worlds'],
+    ['Konsole, Protokolle und Absturzberichte', 'server.properties, Plugins und Sicherungen', 'Befehle senden oder etwas ändern'], ['Console, logs and crash reports', 'server.properties, plugins and backups', 'Send commands or change anything']),
+  'read:apps': L(['Liste der Apps mit Zustand'], ['List of apps with their state'],
+    ['Apps starten, stoppen oder ändern', 'Abhängigkeiten installieren', SECRETS_DE], ['Start, stop or change apps', 'Install dependencies', SECRETS_EN]),
+  'read:tasks': L(['Liste der Aufgaben mit Zeitplan und Erfolgsquote'], ['List of tasks with schedule and success rate'],
+    ['Verlauf und Ausgaben der Läufe', 'Aufgaben ausführen, ändern oder pausieren', SECRETS_DE], ['Run history and output', 'Run, change or pause tasks', SECRETS_EN]),
+  'read:mail': L(['Zustand des Mail-Fängers', 'Liste der abgefangenen Mails (Absender, Empfänger, Betreff, Vorschau)'], ['State of the mail catcher', 'List of captured mails (sender, recipient, subject, preview)'],
+    ['Eine Mail vollständig öffnen oder Anhänge laden', 'Mails weiterleiten, löschen oder die Weiterleitung einrichten'], ['Open a full mail or load attachments', 'Forward or delete mails, set up the relay']),
+  'read:system': L(['Systemzustand, Auslastung, belegte und freie Ports, Speicher je Dienst', 'Steckbrief des Rechners: Betriebssystem, Hardware, Laufwerke, Laufzeiten, installierte Erweiterungen'], ['System health, load, used and free ports, storage per service', 'Machine profile: operating system, hardware, drives, runtimes, installed extensions'],
+    ['Prozesse beenden', 'Ports umstellen (eigenes Recht „change:ports“)', 'Verlaufswerte (Messreihen) exportieren'], ['End processes', 'Move ports (separate permission "change:ports")', 'Export metrics history']),
+  'read:games': L(['Spiele-Server, ihr Zustand und ihre Spieler'], ['Game servers, their state and players'],
+    ['Konsole und Dateien der Server', 'Server starten oder stoppen', SECRETS_DE], ['Server console and files', 'Start or stop servers', SECRETS_EN]),
+  'change:ports': L(['Einen Dienst auf einen freien Port umstellen – nach deiner Rückfrage'], ['Move a service to a free port – after you confirm'],
+    ['Ohne deine Rückfrage', 'Andere Einstellungen der Dienste ändern', 'Dienste starten oder stoppen'], ['Without asking you', 'Change other service settings', 'Start or stop services']),
+  'read:live': L(['Zertifikate mit Restlaufzeit', 'Erreichbarkeits-Prüfungen und ihr Verlauf'], ['Certificates with time left', 'Uptime checks and their history'],
+    ['Private Schlüssel der Zertifikate', 'Alarm-Ziele, Firewall, Fernzugriff, Domains', 'Etwas anlegen, ändern oder löschen'], ['Private keys of certificates', 'Alert targets, firewall, remote access, domains', 'Create, change or delete anything']),
+  'read:network': L(['Router, Rechner im Verbund und Sicherheitslage'], ['Router, machines and security status'],
+    ['Router-Anmeldung', 'Rechner koppeln oder ihre Schlüssel', 'Firewall oder Fernzugriff ändern', SECRETS_DE], ['Router login', 'Pair machines or their keys', 'Change firewall or remote access', SECRETS_EN]),
+  'control:services': L(['Webserver, Datenbanken, Apps, Mail, Minecraft- und Spiele-Server starten, stoppen, neu starten – jedes Mal nach deiner Rückfrage'], ['Start, stop, restart web servers, databases, apps, mail, Minecraft and game servers – each time after you confirm'],
+    ['Ohne deine Rückfrage', 'Dienste anlegen, löschen oder umkonfigurieren', 'Prozesse hart beenden'], ['Without asking you', 'Create, delete or reconfigure services', 'Kill processes']),
+  'command:minecraft': L(['Einen Befehl an einen Minecraft-Server senden – nach deiner Rückfrage'], ['Send a command to a Minecraft server – after you confirm'],
+    ['Ohne deine Rückfrage', 'Konsole oder Protokolle lesen', 'Dateien des Servers ändern'], ['Without asking you', 'Read the console or logs', 'Change server files']),
+  'run:tasks': L(['Eine vorhandene Aufgabe sofort ausführen – nach deiner Rückfrage'], ['Run an existing task right away – after you confirm'],
+    ['Ohne deine Rückfrage', 'Aufgaben anlegen, ändern, löschen oder abbrechen'], ['Without asking you', 'Create, change, delete or cancel tasks']),
+  'change:minecraft': L(['server.properties, Spielregeln und Server-Symbol ändern, Plugins an- und ausschalten, Sicherung anlegen – jedes Mal nach deiner Rückfrage'], ['Change server.properties, game rules and server icon, turn plugins on and off, create a backup – each time after you confirm'],
+    ['Ohne deine Rückfrage', 'Plugins installieren oder löschen', 'Sicherungen herunterladen, wiederherstellen oder löschen', 'Server löschen'], ['Without asking you', 'Install or delete plugins', 'Download, restore or delete backups', 'Delete servers']),
+  'change:databases': L(['Eine Datenbank-Sicherung anlegen – nach deiner Rückfrage'], ['Create a database backup – after you confirm'],
+    ['Ohne deine Rückfrage', 'Sicherungen herunterladen, wiederherstellen oder löschen', 'Inhalte der Datenbanken lesen', 'Passwort ändern'], ['Without asking you', 'Download, restore or delete backups', 'Read database contents', 'Change the password']),
+  'change:mail': L(['Test-Mails in den Mail-Fänger schicken, alle als gelesen markieren – nach deiner Rückfrage'], ['Send test mails to the mail catcher, mark all as read – after you confirm'],
+    ['Ohne deine Rückfrage', 'Mails nach draußen weiterleiten oder löschen'], ['Without asking you', 'Forward mails outside or delete them']),
+  'read:knowledge': L(['Wissensgraph lesen: Projekte, Graph, Bericht, Fragenverlauf, Gedächtnis, Claude-Status'], ['Read the knowledge graph: projects, graph, report, question history, memory, Claude status'],
+    ['Etwas ändern', 'Schlüssel und Konten der KI-Anbieter'], ['Change anything', 'AI provider keys and accounts']),
+  'change:knowledge': L(['Wissensgraph bauen und abfragen, Ordner aufnehmen, Gedächtnis pflegen, eigene Notizen eintragen, Obsidian-Export – ohne Rückfrage je Aufruf'], ['Build and query the knowledge graph, add folders, edit memory, add own notes, Obsidian export – without asking each time'],
+    ['Claude in Projekten einbinden (eigenes Recht „connect:claude“)', 'Andere Bereiche von Hostwerk ändern'], ['Connect Claude in projects (separate permission "connect:claude")', 'Change other parts of Hostwerk']),
+  'connect:claude': L(['Claude in Projekten einbinden, reparieren und wieder vergessen – nach deiner Rückfrage'], ['Connect, repair and forget Claude in projects – after you confirm'],
+    ['Ohne deine Rückfrage', 'Schlüssel der KI-Anbieter lesen'], ['Without asking you', 'Read AI provider keys']),
+  'read:claude': L(['Claude-Status, Projekte, Gedächtnis-Kontext, Spar-Werkzeuge und Verbrauch'], ['Claude status, projects, memory context, token-saving tools and usage'],
+    ['Schlüssel und Konten der KI-Anbieter', 'Tresor, Umgebungsdateien (.env) und Git der Projekte', 'Etwas ändern'], ['AI provider keys and accounts', 'Vault, environment files (.env) and Git of projects', 'Change anything']),
+  'change:claude': L(['Kontext in Projekt-Dateien schreiben, Spar-Werkzeuge installieren oder entfernen, Claude Desktop anbinden – jedes Mal nach deiner Rückfrage'], ['Write context into project files, install or remove token-saving tools, connect Claude Desktop – each time after you confirm'],
+    ['Ohne deine Rückfrage', 'Schlüssel und Konten der KI-Anbieter'], ['Without asking you', 'AI provider keys and accounts']),
+  'share:status': L(['Öffentliche Statusseite lesen und einrichten – Änderungen nach deiner Rückfrage'], ['Read and set up the public status page – changes after you confirm'],
+    ['Änderungen ohne deine Rückfrage', 'Überwachung, Alarm-Ziele oder Domains ändern'], ['Changes without asking you', 'Change monitoring, alert targets or domains']),
+  'share:view': L(['Eine Seite ohne Anmeldung anbieten (z. B. Overlay für OBS) – nur Dateien aus ihrem eigenen Ordner'], ['Offer a page without login (e.g. an OBS overlay) – only files from its own folder'],
+    ['Von dort Hostwerks API abfragen (nur der eigene öffentliche Server-Teil)', 'Deine Anmeldung oder Cookies nutzen'], ['Call Hostwerk’s API from there (only its own public server part)', 'Use your login or cookies']),
+  'read:profile': L(['Deinen Namen aus Einstellungen → Allgemein – nur, wenn du ihn dort für Erweiterungen freigegeben hast (sonst kommt nichts an)'], ['Your name from Settings → General – only if you shared it with extensions there (otherwise nothing arrives)'],
+    ['Deinen Namen ohne deine Freigabe', 'Andere Einstellungen, Konten oder Anmeldedaten'], ['Your name without your consent', 'Other settings, accounts or login data']),
+  'run:terminal': L(['Einen Befehl ins Hostwerk-Terminal tippen – du drückst Enter oder bestätigst vorher im Dialog'], ['Type a command into the Hostwerk terminal – you press Enter or confirm in a dialog first'],
+    ['Einen Befehl ohne dich abschicken', 'Die Ausgabe des Terminals lesen'], ['Send a command without you', 'Read the terminal output']),
+  'use:ai': L(['Kurze Texte übersetzen, erklären, zusammenfassen oder beschreiben lassen – mit der KI, die du in Hostwerk eingerichtet hast (nur wenn sie an ist)'], ['Translate, explain, summarise or describe short texts – with the AI you set up in Hostwerk (only when it is on)'],
+    ['Schlüssel und Konten der KI-Anbieter', 'KI-Chat, Gedächtnis oder Einstellungen der KI', 'Längere Texte als 6000 Zeichen'], ['AI provider keys and accounts', 'AI chat, memory or AI settings', 'Texts longer than 6000 characters']),
+  'read:updates': L(['Welche Sicherheits-Updates anstehen: Dienst, Version jetzt und neu'], ['Which security updates are pending: service, current and new version'],
+    ['Updates einspielen (eigenes Recht „change:updates“)', 'Automatische Updates ein- oder ausschalten'], ['Install updates (separate permission "change:updates")', 'Switch automatic updates on or off']),
+  'change:updates': L(['Ein anstehendes Sicherheits-Update einspielen – mit Probelauf und Rückfall wie unter Einstellungen → Updates, im Aktivitätsprotokoll vermerkt'], ['Install a pending security update – with trial run and fallback like Settings → Updates, noted in the activity log'],
+    ['Abgeschottet: gar nicht – nur offizielle Pakete aus dem Hostwerk-Katalog', 'Andere Versionen einspielen oder den Probelauf überspringen', 'Automatische Updates ein- oder ausschalten'], ['Sandboxed: not at all – only official packages from the Hostwerk catalog', 'Install other versions or skip the trial run', 'Switch automatic updates on or off']),
+  'fetch:icons': L(['Das Symbol einer öffentlichen Webseite laden – Hostwerk holt es selbst und hebt es 30 Tage auf'], ['Load the icon of a public website – Hostwerk fetches it itself and keeps it for 30 days'],
+    ['Adressen im Heimnetz oder auf diesem Rechner – auch nicht über Weiterleitungen', 'Andere Inhalte als Bilder, mehr als 512 KB', 'Abgeschottet: gar nicht'], ['Addresses in the home network or on this PC – not via redirects either', 'Anything but images, more than 512 KB', 'Sandboxed: not at all']),
+  'write:ssh-keys': L(['Einen SSH-Schlüssel (privat und öffentlich) unter neuem Namen in ~/.ssh ablegen'], ['Put an SSH key (private and public) under a new name into ~/.ssh'],
+    ['Vorhandene Schlüssel überschreiben oder lesen', 'authorized_keys, known_hosts oder config ändern', 'Abgeschottet: gar nicht'], ['Overwrite or read existing keys', 'Change authorized_keys, known_hosts or config', 'Sandboxed: not at all']),
+  'connect:mail': L(['Mit den Mail-Servern sprechen, die du beim Einrichten eines Kontos angibst (IMAP, SMTP, POP3 – Ports 25, 110, 143, 465, 587, 993, 995, 2525)', 'Die Einstellungen zu deiner Mail-Adresse suchen (Autoconfig und Autodiscover deiner Domain, Mozillas Anbieter-Verzeichnis, DNS) – abgeschottet nur über die unter „network“ genannten Adressen'], ['Talk to the mail servers you enter when setting up an account (IMAP, SMTP, POP3 – ports 25, 110, 143, 465, 587, 993, 995, 2525)', 'Look up the settings for your mail address (autoconfig and autodiscover of your domain, Mozilla’s provider directory, DNS) – sandboxed only via the addresses listed under "network"'],
+    ['Andere Ports oder Webseiten (dafür gibt es „network“)', 'Abgeschottet: Mail-Server im Heimnetz oder auf diesem Rechner', 'Deine Hostwerk-Anmeldung, Einstellungen oder Geheimnisse anderer Bereiche'], ['Other ports or websites (that is what "network" is for)', 'Sandboxed: mail servers in the home network or on this PC', 'Your Hostwerk login, settings or secrets of other areas']),
+  storage: L(['Eigene Daten speichern, höchstens 256 KB'], ['Store own data, at most 256 KB'],
+    ['Daten anderer Erweiterungen lesen – außer deren Autor gibt sie frei', 'Mehr als 256 KB'], ['Read other extensions’ data – unless their author shares it', 'More than 256 KB']),
+  network: L(['Abfragen an die im Paket genannten https-Adressen'], ['Requests to the https addresses named in the package'],
+    ['Abfragen an andere Adressen', 'Server-Code: ins eigene Netz, Heimnetz oder 127.0.0.1 – auch wenn genannt'], ['Requests to other addresses', 'Server code: into the local or home network or 127.0.0.1 – even if listed']),
+  'override:ui': L(['Benannte Teile von Hostwerks Oberfläche ersetzen oder ergänzen – erst nach deiner Zustimmung mit Vorschau (offizielle Pakete sofort), jederzeit abschaltbar'], ['Replace or extend named parts of Hostwerk’s interface – only after your consent with a preview (official packages right away), can be switched off any time'],
+    ['Teile ersetzen, die nicht als Anpassungs-Stelle benannt sind', 'Sich gegen das Abschalten wehren'], ['Replace parts that are not named override points', 'Prevent being switched off']),
+  'extend:extensions': L(['Andere Erweiterungen ergänzen (Reiter, Seiten, Texte) – nur so weit, wie deren Autor es erlaubt'], ['Extend other extensions (tabs, pages, texts) – only as far as their author allows'],
+    ['Andere Erweiterungen installieren, ändern oder abschalten', 'Mehr als deren Autor freigibt'], ['Install, change or switch off other extensions', 'More than their author allows']),
+  native: L(['Eigenen Server-Code ausführen: eigene Routen, Hintergrund-Arbeit, Dienste für andere Erweiterungen'], ['Run own server code: own routes, background work, services for other extensions'],
+    ['Abgeschottet: Dateien außerhalb des eigenen Ordners, Programme starten, eigenes Netz, eigene Ports, Hostwerks Umgebung', 'Offizielle Pakete aus dem Hostwerk-Katalog laufen als Teil von Hostwerk – geprüft und signiert, aber nicht abgeschottet'], ['Sandboxed: files outside its own folder, starting programs, local network, own ports, Hostwerk’s environment', 'Official packages from the Hostwerk catalog run as part of Hostwerk – reviewed and signed, but not sandboxed']),
+};
+for (const [k, v] of Object.entries(LIMITS)) if (PERMISSIONS[k]) Object.assign(PERMISSIONS[k], v);
+
+/*
+ * Darf keine Erweiterung – Grenzen, die Hostwerk für JEDE abgeschottete Erweiterung erzwingt (alle aus anderen Quellen,
+ * Seiten im Rahmen, eigener Server-Code im eigenen Prozess). Ausnahme, offen gesagt: offizielle Pakete aus dem
+ * Hostwerk-Katalog mit eigenem Code laufen im Hostwerk-Prozess (geprüft und signiert, aber technisch nicht abgeschottet),
+ * ebenso eigener Code, dessen Abschottung du im Entwickler-Modus abschaltest.
+ * where = Fundstelle der Durchsetzung · probes = Prüfungen in scripts/ext-security-test.js (müssen alle scheitern).
+ */
+const NEVER = [
+  { id: 'secrets', de: 'Passwörter, Tresore und Geheimnisse lesen', en: 'Read passwords, vaults and secrets',
+    tip: { de: 'Passwort-Manager, Tresore und Schlüssel sind gesperrt; Felder, die nach Geheimnis aussehen, kommen in jeder erlaubten Antwort geschwärzt an.', en: 'Password manager, vaults and keys are blocked; fields that look like secrets arrive blacked out in every allowed answer.' },
+    where: 'server/services/extpolicy.js: DENY_FIRST (pw, passwords, vault, secrets), DENY_RE, redact()', probes: ['apiPw', 'apiVault', 'apiAiKeys', 'pageNoSecret'] },
+  { id: 'settings', de: 'Hostwerks Einstellungen, Schlüssel und Anmelde-Token lesen', en: 'Read Hostwerk’s settings, keys and login tokens',
+    tip: { de: 'Die Einstellungen sind gesperrt, Hostwerks Umgebungsvariablen erbt der Prozess nicht, Cookies und Token gehen nie an die Erweiterung.', en: 'Settings are blocked, the process does not inherit Hostwerk’s environment, cookies and tokens never reach the extension.' },
+    where: 'extpolicy.js DENY_FIRST (settings, auth, tokens, keys); extsandbox.js start() env + STRIP_HEADERS', probes: ['apiSettings', 'readSettings', 'envHasHostwerk', 'cookieForwarded'] },
+  { id: 'own-rights', de: 'Sich selbst mehr Rechte geben', en: 'Give itself more permissions',
+    tip: { de: 'Rechte stehen im Paket und gelten erst nach deiner Zustimmung. Die eigene manifest.json ist schreibgeschützt, Hostwerks Erweiterungs-Verwaltung gesperrt, „_“-Felder setzt nur Hostwerk.', en: 'Permissions are in the package and only apply after your consent. Its own manifest.json is read-only, Hostwerk’s extension management is blocked, "_" fields are set by Hostwerk only.' },
+    where: 'extpolicy.js DENY_FIRST (extmarket, extstudio, ext); extsandbox.js --allow-fs-write nur Datenordner; extmarket.js installFromDir (ohne „_“-Felder)', probes: ['writeOwnManifest', 'apiGrant'] },
+  { id: 'other-extensions', de: 'Andere Erweiterungen installieren, ändern, abschalten oder ansprechen', en: 'Install, change, switch off or call other extensions',
+    tip: { de: 'Ausnahmen nur, wenn der andere Autor es erlaubt: Ergänzungen („extend:extensions“), angebotene Dienste und freigegebener Speicher.', en: 'Only where the other author allows it: extensions ("extend:extensions"), offered services and shared storage.' },
+    where: 'extpolicy.js DENY_FIRST (extmarket, x); extmarket.js /call (nur eigenes /x/<id>); extmarket.js sharedStorage', probes: ['apiInstall', 'apiRemoveOther', 'apiOtherModule', 'storageOfOther'] },
+  { id: 'maintenance', de: 'Wartung, abgesicherten Start oder Updates von Hostwerk beeinflussen', en: 'Affect Hostwerk’s maintenance, safe start or updates',
+    tip: { de: 'Wartung, Selbstwartung und Updates sind gesperrt; Pakete, die Wartungsdateien oder -schalter erwähnen, lassen sich gar nicht installieren.', en: 'Maintenance, self-care and updates are blocked; packages that mention maintenance files or switches cannot be installed at all.' },
+    where: 'extpolicy.js DENY_FIRST (maintenance, keeper, update, app); check.js TAMPER_RE', probes: ['apiMaintenance', 'apiSafeStart', 'installTamper'] },
+  { id: 'hide', de: 'Sich verstecken oder unentfernbar machen', en: 'Hide itself or make itself impossible to remove',
+    tip: { de: 'Jede Erweiterung steht in der Liste und in der Wartung und lässt sich dort abschalten und entfernen. Ihr Zugriffsprotokoll kann sie nicht löschen, Meldungen tragen immer ihren Namen.', en: 'Every extension is listed here and in maintenance and can be switched off and removed there. It cannot clear its access log, messages always carry its name.' },
+    where: 'check.js HIDING_KEYS (Installation abgelehnt); extpolicy.js DENY_FIRST (extmarket); extsandbox.js op toast (Name davor)', probes: ['installHiding', 'apiClearLog'] },
+  { id: 'files', de: 'Dateien außerhalb des eigenen Ordners lesen oder schreiben', en: 'Read or write files outside its own folder',
+    tip: { de: 'Der Server-Code liest nur sein Paket und schreibt nur in seinen Datenordner; Hostwerks Datei-Bereich ist gesperrt.', en: 'The server code only reads its package and writes only into its data folder; Hostwerk’s file area is blocked.' },
+    where: 'extsandbox.js start(): node --permission --allow-fs-read/--allow-fs-write; extpolicy.js DENY_FIRST (files, fs)', probes: ['readHome', 'readAppData', 'writeOutside', 'apiFiles'] },
+  { id: 'network', de: 'Abfragen an Adressen schicken, die nicht im Paket stehen', en: 'Send requests to addresses not named in the package',
+    tip: { de: 'Ohne das Recht „network“ gar keine. Server-Code kommt nie ins eigene Netz, ins Heimnetz oder an 127.0.0.1. Seiten dürfen Bilder und Medien von https-Adressen anzeigen.', en: 'None without the "network" permission. Server code never reaches the local or home network or 127.0.0.1. Pages may show images and media from https addresses.' },
+    where: 'extensions/sandbox/runner.js (net.Socket.connect, dgram); extmarket.js mountPages (CSP connect-src)', probes: ['internetNotListed', 'lanIp', 'loopbackApi', 'localhostName', 'udp', 'pageCsp'] },
+  { id: 'programs', de: 'Programme oder Befehle ohne deine Zustimmung starten', en: 'Start programs or commands without your consent',
+    tip: { de: 'Server-Code kann keine Programme, Worker oder fremden Code starten. Pakete mit eigenem Programm installiert Hostwerk nur nach deiner ausdrücklichen Zustimmung; Terminal-Befehle bestätigst du selbst.', en: 'Server code cannot start programs, workers or foreign code. Packages with their own program are only installed after your explicit consent; you confirm terminal commands yourself.' },
+    where: 'extsandbox.js (--permission, --disallow-code-generation-from-strings); extpolicy.js DENY_FIRST (terminal, pty, shell, exec); extmarket.js installFromDir PROGRAM_CONSENT; ui/src/extBridge.js TERMINAL', probes: ['spawn', 'worker', 'evalCode', 'fnCode', 'apiTerminal', 'installProgram'] },
+  { id: 'confirm', de: 'Etwas ohne deine Rückfrage ändern', en: 'Change anything without asking you',
+    tip: { de: 'Jede Änderung über Hostwerk fragt dich vorher. Einzige Ausnahme: Rechte, die ausdrücklich ohne Rückfrage sind (Wissensgraph bauen).', en: 'Every change through Hostwerk asks you first. Only exception: permissions that explicitly need no confirmation (building the knowledge graph).' },
+    where: 'extpolicy.js decide() confirm; extmarket.js /call (428 EXT_CONFIRM); extsandbox.js op api', probes: ['apiWriteNeedsConfirm', 'pageWriteNeedsConfirm'] },
+  { id: 'login', de: 'Mit deiner Anmeldung handeln oder Cookies setzen', en: 'Act with your login or set cookies',
+    tip: { de: 'Seiten laufen in einem eigenen, leeren Ursprung; Antworten des Server-Codes verlieren Set-Cookie und laufen nie als Hostwerk-Seite.', en: 'Pages run in their own empty origin; answers from the server code lose Set-Cookie and never run as a Hostwerk page.' },
+    where: 'extmarket.js mountPages (CSP sandbox); extsandbox.js proxy (set-cookie entfernt, CSP sandbox)', probes: ['setCookie', 'moduleCsp'] },
+  { id: 'core', de: 'Hostwerks eigene Bereiche oder Dienste ersetzen', en: 'Replace Hostwerk’s own areas or services',
+    tip: { de: 'Eigene Routen gibt es nur unter /api/x/<id>/, Dienstnamen von Hostwerk sind vergeben. Oberflächen-Anpassungen nur mit „override:ui“ und deiner Zustimmung.', en: 'Own routes only exist under /api/x/<id>/, Hostwerk’s service names are taken. Interface changes only with "override:ui" and your consent.' },
+    where: 'extsandbox.js proxy (nur /x/<id>), op provide', probes: ['provideCore', 'coreRoute'] },
+  { id: 'ports', de: 'Eigene Ports öffnen', en: 'Open its own ports',
+    tip: { de: 'Erreichbar ist eine Erweiterung nur über Hostwerk (/api/x/<id>/), nie direkt.', en: 'An extension is only reachable through Hostwerk (/api/x/<id>/), never directly.' },
+    where: 'extensions/sandbox/runner.js (net.Server.listen, dgram)', probes: ['listenPort', 'udp'] },
+];
 // Version 1 packages: "read" = all read scopes, "write" = all control scopes
-const LEGACY = { read: Object.keys(PERMISSIONS).filter((k) => k.startsWith('read:')), write: ['control:services', 'command:minecraft', 'run:tasks'] };
+const LEGACY = { read: Object.keys(PERMISSIONS).filter((k) => k.startsWith('read:') && !['read:profile' /* Name nie stillschweigend */, 'read:updates' /* erst ab SDK 3.3 */].includes(k)), write: ['control:services', 'command:minecraft', 'run:tasks'] };
 const ID_RE = /^[a-z0-9][a-z0-9-]{1,39}$/;
 /** Line icons for the sidebar (same style as Hostwerk's own areas) – ui/src/extIcons.js */
 const SIDEBAR_ICONS = ['smartphone', 'cloud-upload', 'folder-up', 'file-search', 'router', 'puzzle', 'users', 'monitor', 'gauge', 'activity', 'chart', 'bar-chart', 'bell', 'book', 'bot', 'box', 'calendar', 'camera', 'clock', 'cloud', 'code', 'coffee', 'cpu', 'database', 'download', 'file', 'flag', 'gamepad', 'gift', 'globe', 'heart', 'home', 'image', 'inbox', 'key', 'dashboard', 'grid', 'leaf', 'line-chart', 'list', 'lock', 'mail', 'map', 'message', 'music', 'network', 'news', 'package', 'pie-chart', 'radio', 'rocket', 'server', 'settings', 'shield', 'cart', 'sparkles', 'star', 'sun', 'swords', 'table', 'tag', 'terminal', 'timer', 'trophy', 'tv', 'wand', 'wifi', 'wrench', 'zap'];
@@ -171,7 +338,8 @@ const SDK_MEMBERS = {
   sdk: null, ready: null, info: null, lang: null, theme: null, embed: null, t: null, esc: null, html: null, render: null, raw: null,
   fmt: ['bytes', 'duration', 'number', 'time'], get: null, post: null, put: null, del: null, pickFolder: null, services: null, service: null, tab: null, setTab: null, context: null,
   minecraft: ['servers', 'players', 'stats', 'command'], storage: ['get', 'set', 'remove', 'all'], settings: ['get', 'open'],
-  on: null, toast: null, navigate: null, openUrl: null, copy: null, terminal: null, backend: null,
+  on: null, toast: null, navigate: null, openUrl: null, copy: null, saveFile: null /* SDK 3.2 */, terminal: null, backend: null,
+  loaded: null, holdLoaded: null, ui: ['loading', 'error', 'load', 'skeleton'], // SDK 3.2: Laden
 };
 /** Tastenkürzel wie in der Oberfläche (ui/src/shortcutKeys.mjs): "Strg+Shift+K" → "ctrl+shift+k", sonst null. */
 const SHORTCUT_MODS = ['ctrl', 'alt', 'shift', 'meta'];
@@ -189,7 +357,7 @@ const SHORTCUT_RESERVED = ['ctrl+c', 'ctrl+v', 'ctrl+x', 'ctrl+a', 'ctrl+z', 'ct
 const SHORTCUT_HOSTWERK = ['ctrl+k', 'ctrl+n', 'ctrl+shift+s', 'ctrl+shift+x', 'ctrl+,', 'ctrl+r', 'ctrl+shift+r', 'f1', 'shift+f10', 'ctrl+enter', 'ctrl+s', 'ctrl+f', 'ctrl+shift+t', 'ctrl+shift+w', 'ctrl+shift+f', 'f11', ...'123456789'.split('').map((n) => `ctrl+${n}`)];
 
 /** SDK 2.8: Hauptbereiche, in die eine Erweiterung einen Reiter einhängen kann (contributes.tabs[].on) */
-const AREAS = ['area:web', 'area:dbs', 'area:minecraft', 'area:projects', 'area:mail', 'area:system', 'area:live', 'area:ai', 'area:backups'];
+const AREAS = ['area:web', 'area:dbs', 'area:minecraft', 'area:projects', 'area:mail', 'area:system', 'area:live', 'area:ai', 'area:backups', 'area:tasks']; // area:tasks seit SDK 3.2
 /** Gruppen der Seitenleiste (page.nav.group): Server, Entwickeln oder unter „Erweiterungen“ */
 const NAV_GROUPS = ['server', 'develop', 'system', 'extensions']; // „extensions“ = alt (≤ 2.10) → Hostwerk ordnet nach Kategorie ein
 const NAV_GROUP_RE = /^[a-z][a-z0-9-]{1,30}$/; // eigener Bereich (mit page.nav.groupTitle)
@@ -311,6 +479,23 @@ const OVERRIDE_SLOTS = {
   'minecraft.empty': { de: 'Leere Minecraft-Server-Liste', en: 'Empty Minecraft server list', route: '/mc', modes: ['replace', 'after'] },
 };
 const OVERRIDE_MAX_HEIGHT = 480;
+/**
+ * SDK 3.2: Einbaustellen für Abschnitte in Detailansichten (contributes.sections, native: Modul-Feld „sections“) – statt
+ * eigener Reiter. Gleiche Liste in ui/src/extSections.js (scripts/ext-sections-test.js vergleicht beide).
+ */
+const SECTION_PLACES = {
+  'mc.overview': { de: 'Minecraft-Server · Übersicht', en: 'Minecraft server · overview', ctx: '{ kind: "minecraft", id }' },
+  'mc.players': { de: 'Minecraft-Server · Spieler', en: 'Minecraft server · players', ctx: '{ kind: "minecraft", id }' },
+  'files.folder': { de: 'Dateien · geöffneter Ordner', en: 'Files · open folder', ctx: '{ kind: "folder", root, path }' },
+  'web.site': { de: 'Webserver · Detailseite', en: 'Web server · detail page', ctx: '{ kind: "web", id }' },
+};
+const SECTION_MAX_HEIGHT = 900;
+/**
+ * SDK 3.2: Rolle eines Abschnitts ("role") – er übernimmt eine Karte, die Hostwerk an dieser Stelle selbst zeigt.
+ * mc.overview + "motd": der Abschnitt zeigt und bearbeitet, wie Spieler den Server in der Serverliste sehen (MOTD + Symbol) –
+ * Hostwerks Karte „So sehen Spieler deinen Server“ tritt dann zurück (keine doppelte Vorschau). Gleiche Liste in ui/src/extSections.js.
+ */
+const SECTION_ROLES = { 'mc.overview': ['motd'] };
 /** Leistungsbudget: was in Hostwerks Oberfläche mitläuft (Seite + eigene Skripte/Stile einer Anpassung), bleibt klein. */
 const OVERRIDE_BUDGET = 100 * 1024;
 /** Was eine Erweiterung an einer anderen ergänzen darf (contributes.extends) – deren Autor erlaubt es in "allowExtensions". */
@@ -439,6 +624,93 @@ function checkIcon(file, rel, err, warn) {
   if (!hasBackdrop && ls.every((l) => l > 0.85)) warn('icon', `${rel} only uses very light colors – nearly invisible in the light design. Add a colored tile or use currentColor.`);
 }
 
+/*
+ * Gestaltungs-Hinweise (Regelwerk docs/ui-guidelines.md, „So sieht eine Hostwerk-Seite aus“): Stellen, an denen eine Seite
+ * etwas selbst baut, wofür es einen Kern-Baustein gibt, oder anders schreibt als der Rest von Hostwerk. Nur Hinweise, kein
+ * Punktabzug – und nur, was sich sicher erkennen lässt. Dieselben Regeln prüft scripts/ui-consistency-audit.js am Kern.
+ *   kind: 'code' (JSX/JS/HTML), 'css', 'de' (deutsche Texte: locales/de.json bzw. deutsche Quelltexte im Kern)
+ * find(src) liefert Fundstellen [{ i: Index, s: Ausschnitt }].
+ */
+const all = (re, src, pick = (m) => m[0]) => [...src.matchAll(re)].map((m) => ({ i: m.index, s: String(pick(m)).trim().slice(0, 70) }));
+// Kleine Symbole folgen der Schriftstufe daneben (10–16 im Text, 18 in Köpfen); ab 20 (Seitenkopf, Bühnen, Logos) frei
+const ICON_SIZES = new Set([10, 11, 12, 13, 14, 15, 16, 18]);
+// Begriffe: EIN Wort je Sache (deutsch), in Klammern, wann das andere Wort richtig bleibt
+const GLOSSARY = [
+  { re: /\bKennw(ort|örter)/g, use: 'Passwort' },
+  { re: /\bExtensions?\b/g, use: 'Erweiterung' }, // „Add-ons“ bleibt, wo es der Fachbegriff ist (Bedrock, Firefox)
+  { re: /\bneustarten\b/g, use: 'neu starten (als Verb getrennt; „das Neustarten“ als Nomen ist richtig)' },
+  { re: /(?<![-\w])Verzeichnis(se)?\b/g, use: 'Ordner' }, // „Anbieter-Verzeichnis“ (ein Katalog) bleibt
+  { re: /\bLogin\b(?![\s-]?Token)/g, use: 'Anmeldung' }, // „Game Server Login Token“ ist ein Name
+  { re: /(?<!\{)\b[Ee]-?mails?\b(?<![Ee]-mails?)(?<!E-Mails?)(?!\})/g, use: 'E-Mail (oder kurz Mail)' },
+  { re: /\b(upgedatet|updaten|geupdated)\b/gi, use: 'aktualisieren' },
+  { re: /\b(Backups?)\b(?![-.]?(Ordner|Befehl|Token|Codes?)\b|\/)/g, use: 'Sicherung' }, // Ordnernamen (Backups/…) bleiben
+  { re: /(?<!→ )\bServices?\b(?!-Account)/g, use: 'Dienst' }, // Menünamen fremder Geräte („IP → Services“) bleiben
+  { re: /\bPlug-?ins? \b(?=installieren)/g, use: 'Plugin' },
+  { re: /\bKonfig\b/g, use: 'Einstellungen' },
+  { re: /"(Lade\b[^"]{0,40}…|Wird geladen …)"/g, use: 'Lädt … (Fortschritt immer gleich: „Lädt …“, „Lädt Versionen …“)' },
+];
+const UI_HINTS = [
+  { id: 'dots', kind: ['code', 'de'], msg: 'three dots "..." in a text – use the ellipsis "…" (with a space before it: "Speichern …").',
+    find: (s) => all(/[A-Za-zÄÖÜäöüß)]\.\.\.(?=\s*(['"`<]|$))/gm, s) },
+  { id: 'native-dialog', kind: ['code'], msg: 'browser dialog (alert/confirm/prompt) – use confirmDialog/promptDialog from @hostwerk/ui (pages: Hostwerk.ui).',
+    find: (s) => all(/(?:^|[^\w.$])(?:window\.)?(alert|confirm|prompt)\(\s*['"`]/g, s) },
+  { id: 'footer-order', kind: ['code'], msg: 'dialog footer: the main action stands before "Cancel" – cancel left, main action right (as in every Hostwerk dialog).',
+    find: (s) => [...s.matchAll(/footer=\{<>([\s\S]{0,900}?)<\/>\}/g)].filter((m) => {
+      const c = m[1].search(/>\s*(Abbrechen|Cancel)\s*</); const p = m[1].search(/className=["'`{][^>]*\b(primary|danger-solid)\b/);
+      return c > 0 && p >= 0 && p < c;
+    }).map((m) => ({ i: m.index, s: 'footer' })) },
+  { id: 'exclaim', kind: ['code', 'de'], msg: 'exclamation mark in a button, title or message – Hostwerk talks calmly: "Gespeichert", not "Gespeichert!".',
+    find: (s) => all(/(?:toast(?:\.\w+)?\(\s*['"`]([^'"`\n]{2,80}[a-zäöüß]!)['"`])|(?:>\s*([^<>{}\n]{2,40}[a-zäöüß]!)\s*<\/(?:Btn|button|h[1-4])>)|(?:: "([^"\n]{2,60}[a-zäöüß]!)",?$)/gm, s, (m) => m[1] || m[2] || m[3]) },
+  { id: 'success-word', kind: ['code', 'de'], msg: '"erfolgreich"/"successfully" in a message – say what happened: "Gespeichert", "Server gestartet".',
+    // nur Meldungen („erfolgreich gespeichert“, „Import erfolgreich.“) – Erfolgsquoten und „wenn erfolgreich“ sind Fakten
+    find: (s) => all(/\b[Ee]rfolgreich\s+(ge\w+t|\w+iert|ausgeführt|abgeschlossen|beendet|erstellt|entfernt|verbunden)\b|\b(?!wenn\b|falls\b)[A-Za-zÄÖÜäöüß]\w+ erfolgreich[.!]?(?=["'`<])|\bsuccessfully\b/g, s) },
+  { id: 'toast-kind', kind: ['code'], msg: 'toast(text, "success"/"error"/"warn") – use toast.success / toast.error / toast.warn.',
+    find: (s) => all(/\btoast\((['"`])(?:(?!\1)[^\n])*\1\s*,\s*['"](success|error|warn)['"]\s*\)/g, s) }, // mit Dauer/Aktion ist toast(…) richtig
+  { id: 'raw-pill', kind: ['code'], msg: 'hand-made status pill (class "pill …") – use <StatusPill state="running|stopped|error|…">, same words everywhere.',
+    find: (s) => all(/className=\{?["'`]pill (running|stopped|error|starting|stopping)\b/g, s) },
+  { id: 'text-loading', kind: ['code'], msg: 'card or area that only says "Loading …" – use <Loading> (area/card) or <PageSkeleton> (page). A short "Lädt …" inside a list or menu is fine.',
+    find: (s) => all(/<(div|p)\s+className=["'][^"']*\b(card-body|card|card-pad|center-fill)\b[^"']*["'][^>]*>\s*(\{t\(['"])?(Lädt|Lade|Wird geladen|Laden|Loading)\b[^<]{0,24}<\/\1>/g, s) },
+  { id: 'text-empty', kind: ['code'], msg: 'empty card as a grey sentence – use <TileEmpty icon={…} text="…" /> (card) or <Empty> (page/area): symbol, one sentence, at most one action.',
+    find: (s) => all(/<(p|div)\s+className=["'](?=[^"']*\bcard-body\b)(?=[^"']*\bmuted\b)[^"']*["'][^>]*>\s*(\{t\(['"])?(Noch kein|Noch nichts|Keine |Kein |Nichts |No [a-z]+|Nothing )[^<]{0,80}<\/\1>/g, s) },
+  { id: 'page-head', kind: ['code'], msg: 'page head without a one-line description – <div className="page-head"><div><h1><Icon size={22} /> Title</h1><p>One sentence.</p></div><div className="actions">…</div></div>; longer explanations go into an ⓘ (InfoTip).',
+    find: (s) => [...s.matchAll(/className=["']page-head\b[^"']*["'][^>]*>([\s\S]{0,700}?)<\/h1>([\s\S]{0,200})/g)].filter((m) => !/^\s*(\{\s*\}\s*)?(\{[^}]*(&&|\?)\s*)?<p\b/.test(m[2]) && !/<p\b/.test(m[1])).map((m) => ({ i: m.index, s: 'page-head' })) },
+  { id: 'label-colon', kind: ['code'], msg: 'label ending with ":" – Hostwerk labels stand above the field without a colon.',
+    find: (s) => all(/<Field\s+label=["']([^"']*):["']|<label\b[^>]*>([^<{]{2,40}):\s*<\/label>/g, s) },
+  { id: 'table-class', kind: ['code'], msg: '<table> without class "table" – the kit class gives header, row lines, hover and numbers right-aligned (td.num).',
+    find: (s) => all(/<table(?![^>]*\bclass(Name)?=\{?["'`][^"'`]*\btable\b)[^>]*>/g, s) },
+  { id: 'inline-font', kind: ['code'], msg: 'font size as a number in style={…} – use a class (small, tiny) or var(--fs-…).',
+    find: (s) => all(/fontSize:\s*['"]?\d+(px)?['"]?/g, s) },
+  { id: 'icon-size', kind: ['code'], msg: 'small icon off the scale – 12/13/14/16 next to text (like the font size), 18 in card heads, 22 in the page head.',
+    find: (s) => (/lucide-react/.test(s) ? all(/\bsize=\{(\d+)\}/g, s).filter((x) => { const n = Number(/\d+/.exec(x.s)[0]); return n < 20 && !ICON_SIZES.has(n); }) : []) },
+  { id: 'own-spinner', kind: ['code', 'css'], msg: 'own spinner – use <Loading>, <Spinner> or the busy state of <Btn> (spins by itself while the click runs).',
+    find: (s) => all(/@keyframes\s+[\w-]*spin\b|className=["'][^"']*\bspinner\b(?![^"']*\bsm\b)/g, s) },
+  { id: 'css-scale', kind: ['css'], msg: 'font size/rounding in px – use a step of the scale: var(--fs-…), var(--r-…).',
+    find: (s) => all(/^(?!\s*--)[^\n]*?\b(font-size|border-radius):\s*[0-9.]+px\s*[;}!]/gm, s, (m) => `${m[1]}: …px`) },
+  // Weiß auf einer farbigen Kachel (wie .svc-icon) bleibt in beiden Designs richtig – das ist kein Fund
+  { id: 'css-color', kind: ['css'], msg: 'fixed colour – use the tokens (var(--text), var(--surface), var(--accent), var(--ok) …) so light and dark mode work.',
+    find: (s) => (/hostwerk-allow:\s*[a-z, ]*colors/.test(s) ? [] : all(/^(?!\s*--)[^\n]*?(#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\()/gm, s.replace(/var\([^()]*(\([^()]*\))?[^()]*\)/g, (x) => x.replace(/#|rgb|hsl/g, '_')).replace(/#fff(fff)?\b/gi, '_').replace(/hsla?\((?=\s*(var|calc)\()/g, '_'), (m) => m[1])) },
+  { id: 'term', kind: ['de'], msg: 'different word for the same thing – Hostwerk glossary (docs/ui-guidelines.md, section "Wörter").',
+    find: (s) => GLOSSARY.flatMap((g) => all(g.re, s).map((x) => ({ ...x, s: `${x.s} → ${g.use}` }))) },
+];
+/**
+ * Gestaltungs-Hinweise für eine Datei. kinds: z. B. ['code', 'ext-code'] für eine Erweiterungs-Oberfläche.
+ * Liefert [{ id, line, s }]. Kommentare im Code (Zeilen- und Blockkommentare) werden vorher ausgeblendet, damit sie nichts melden.
+ */
+function uiHintsFor(src, kinds) {
+  let s = String(src);
+  if (kinds.includes('code') || kinds.includes('css')) s = s.replace(/\/\*[\s\S]*?\*\//g, (c) => (/hostwerk-allow:/.test(c) ? c : c.replace(/[^\n]/g, ' '))).replace(/(^|[^:'"`\\])\/\/[^\n]*/g, (c, a) => a + ' '.repeat(c.length - a.length));
+  const out = [];
+  for (const r of UI_HINTS) {
+    if (!r.kind.some((k) => kinds.includes(k))) continue;
+    for (const x of r.find(s)) out.push({ id: r.id, line: s.slice(0, x.i).split('\n').length, s: x.s });
+  }
+  return out;
+}
+/** Deutsche Texte aus locales/de.json als eine Zeile je Eintrag („key": "Wert"), damit Zeilennummern stimmen. */
+function deValues(json) {
+  try { const o = JSON.parse(json); return '\n' + Object.values(o).filter((v) => typeof v === 'string').map((v) => `: ${JSON.stringify(v)},`).join('\n'); } catch { return ''; }
+}
+
 /** Banner: wide picture on top of the detail view and the catalog card (about 16:5, readable in light and dark). */
 function checkBanner(file, rel, err, warn) {
   const ext = path.extname(file).toLowerCase();
@@ -541,20 +813,50 @@ function checkPackage(dir, { strict = false } = {}) {
   if (m.page && !m.page.description && !m.description) warn('page.description', 'Add "page.description" – Hostwerk shows it under the page title like on its own pages.');
   // Beiträge zu Hostwerk-Bereichen: eigener Reiter auf Detailseiten, Aktionen in Schnellsuche und Rechtsklick-Menüs
   const PLACES = ['minecraft', 'web', 'db', 'app', 'game', 'project']; // 'project' seit SDK 2.10
+  const FILE_PLACES = ['file', 'folder']; // SDK 3.2: Rechtsklick im Datei-Browser (nur Aktionen)
   const co = m.contributes || {};
+  const sectionIds = new Set();
+  if (co.sections !== undefined && !Array.isArray(co.sections)) err('contributes.sections', '"contributes.sections" is a list: [{ "id": "preview", "title": { … }, "on": "mc.overview", "file": "page/section.html" }].');
+  if (Array.isArray(co.sections) && co.sections.length > 8) err('contributes.sections', 'At most 8 sections – Hostwerk shows two per extension and place.');
+  for (const sc of Array.isArray(co.sections) ? co.sections : []) {
+    if (!sc || !/^[a-z0-9-]{1,30}$/.test(sc.id || '') || !sc.title) { err('contributes.sections', 'Every section needs "id" (a–z, 0–9, -) and "title".'); continue; }
+    if (sectionIds.has(sc.id)) err('contributes.sections', `Two sections are called "${sc.id}".`);
+    sectionIds.add(sc.id);
+    if (!SECTION_PLACES[sc.on]) err('contributes.sections', `Section "${sc.id}": "on" must be one of ${Object.keys(SECTION_PLACES).join(', ')}.`);
+    else if (!sc.file || /\.\.|^\/|\\/.test(sc.file) || !/\.html?$/i.test(sc.file) || !fs.existsSync(path.join(dir, sc.file))) err('contributes.sections', `Section "${sc.id}": "file" is missing or not an .html file inside the package.`);
+    if (sc.height !== undefined && !(Number.isFinite(sc.height) && sc.height >= 48 && sc.height <= SECTION_MAX_HEIGHT)) err('contributes.sections', `Section "${sc.id}": "height" is 48–${SECTION_MAX_HEIGHT} px (the frame grows with its content up to that).`);
+    if (sc.icon !== undefined && !SIDEBAR_ICONS.includes(sc.icon)) warn('contributes.sections', `Icon "${sc.icon}" is not a sidebar icon.`);
+    if (sc.role !== undefined && !(SECTION_ROLES[sc.on] || []).includes(sc.role)) err('contributes.sections', `Section "${sc.id}": "role" ${SECTION_ROLES[sc.on] ? `on ${sc.on} is ${SECTION_ROLES[sc.on].map((r) => `"${r}"`).join(' or ')}` : `is not available on ${sc.on}`}.`);
+  }
   for (const tb of Array.isArray(co.tabs) ? co.tabs : []) {
     if (!tb || !/^[a-z0-9-]{1,30}$/.test(tb.id || '') || !tb.title) err('contributes.tabs', 'Every contributed tab needs "id" and "title".');
     else if (!PLACES.includes(tb.on) && !AREAS.includes(tb.on)) err('contributes.tabs', `Tab "${tb.id}": "on" must be one of ${PLACES.join(', ')} (detail pages) or ${AREAS.join(', ')} (main areas).`);
     else if (!tb.file || /\.\.|^\/|\\/.test(tb.file) || !fs.existsSync(path.join(dir, tb.file))) err('contributes.tabs', `Tab "${tb.id}": "file" is missing or points to a missing file.`);
+    // SDK 3.2: "fallback": true = Reiter nur für ältere Hostwerk-Versionen ohne Abschnitte (ab 3.2 erscheint der Abschnitt)
+    if (tb && tb.fallback !== undefined && typeof tb.fallback !== 'boolean') err('contributes.tabs', `Tab "${tb.id}": "fallback" is true or false.`);
+    if (tb && tb.fallback === true && !(Array.isArray(co.sections) && co.sections.length)) warn('contributes.tabs', `Tab "${tb.id}" is a fallback, but no section replaces it ("contributes.sections").`);
+    // "page": true = die ganze Seite (mit page.tabs als Unter-Navigation) erscheint als Reiter im Hauptbereich – Hostwerk
+    // leitet #/ext/<id> dorthin um; ältere Hostwerk-Versionen zeigen file als normalen Reiter
+    if (tb && tb.page !== undefined) {
+      if (typeof tb.page !== 'boolean') err('contributes.tabs', `Tab "${tb.id}": "page" is true or false.`);
+      else if (tb.page && !AREAS.includes(tb.on)) err('contributes.tabs', `Tab "${tb.id}": "page": true only works in a main area (${AREAS.join(', ')}).`);
+      else if (tb.page && !(m.page && m.page.file === tb.file)) err('contributes.tabs', `Tab "${tb.id}": with "page": true, "file" is the page file ("${(m.page && m.page.file) || 'page.file'}") – older Hostwerk versions show it as a plain tab.`);
+      else if (tb.page && co.tabs.filter((x) => x && x.page).length > 1) warn('contributes.tabs', 'Only the first tab with "page": true is used – the page lives in one area.');
+    }
   }
   for (const a of Array.isArray(co.actions) ? co.actions : []) {
     if (!a || !/^[a-z0-9-]{1,30}$/.test(a.id || '') || !a.title) err('contributes.actions', 'Every action needs "id" and "title".');
-    else if (!(Array.isArray(a.on) && a.on.length && a.on.every((x) => x === 'palette' || (PLACES.includes(x) && x !== 'project')))) err('contributes.actions', `Action "${a.id}": "on" must list "palette" and/or ${PLACES.filter((x) => x !== 'project').join(', ')}.`);
+    else if (!(Array.isArray(a.on) && a.on.length && a.on.every((x) => x === 'palette' || FILE_PLACES.includes(x) || (PLACES.includes(x) && x !== 'project')))) err('contributes.actions', `Action "${a.id}": "on" must list "palette" and/or ${[...PLACES.filter((x) => x !== 'project'), ...FILE_PLACES].join(', ')}.`);
     else if (!m.page) err('contributes.actions', `Action "${a.id}" opens the extension page – the extension needs a "page".`);
   }
   // SDK 2.8: einbauen wie eingebaute Funktionen – Platz in der Seitenleiste, Kachel im „Neu“-Menü, Ort der Einstellungen,
   // Synergien mit anderen Erweiterungen
-  if (m.page && m.page.nav !== undefined) {
+  // SDK 3.2: "nav": false = kein eigener Eintrag – die Seite bleibt über Erweiterungen → Öffnen erreichbar, die Erweiterung
+  // steckt als Reiter/Abschnitt/Kachel in Hostwerks Bereichen (ältere Hostwerk ignorieren false und zeigen den Eintrag weiter)
+  const navOther = !!(m.ui || m.widget || (Array.isArray(co.tabs) && co.tabs.length) || (Array.isArray(co.sections) && co.sections.length) || (Array.isArray(co.actions) && co.actions.length));
+  if (m.page && m.page.nav !== undefined && m.page.nav !== false && (m.page.nav === null || typeof m.page.nav !== 'object' || Array.isArray(m.page.nav))) err('page.nav', '"page.nav" is an object ({ "group": … }) or false (no own sidebar entry).');
+  else if (m.page && m.page.nav === false && !navOther) warn('page.nav', '"page.nav": false hides the sidebar entry, but the extension has no other place (contributes.tabs/sections/actions, a native "ui" with slots or a dashboard tile) – people only find it under Extensions.');
+  else if (m.page && m.page.nav !== undefined && m.page.nav !== false) {
     const nv = m.page.nav || {};
     const customGroup = typeof nv.group === 'string' && !NAV_GROUPS.includes(nv.group);
     if (nv.group !== undefined && !NAV_GROUPS.includes(nv.group) && !NAV_GROUP_RE.test(String(nv.group))) err('page.nav', `"page.nav.group" is ${NAV_GROUPS.slice(0, 3).join(', ')} or an own area id (a–z, 0–9, -).`);
@@ -782,6 +1084,17 @@ function checkPackage(dir, { strict = false } = {}) {
     if (missing.length) warn('permissions', `The code uses ${missing.map((p) => `"${p}"`).join(', ')} but the manifest does not ask for it – Hostwerk will decline these calls. Add ${missing.length > 1 ? 'them' : 'it'} to "permissions".`);
   }
 
+  // ---------- Eigener Server-Code (SDK 3.3): Kern-Interna und Spuren außerhalb des eigenen Ordners ----------
+  if (m.backend) {
+    const code = walk(dir).filter((f) => /\.(c|m)?js$/i.test(f) && !/^(tests|test|scripts|docs|node_modules|ui|browser-extension)\//.test(f))
+      .map((f) => { try { return fs.readFileSync(path.join(dir, f), 'utf8'); } catch { return ''; } }).join('\n')
+      .replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/.*$/gm, '$1');
+    for (const x of INTERNALS) if (x.re.test(code) && !x.stable.test(code)) info.push({ code: 'internals', msg: `Uses a Hostwerk internal that has a stable replacement since SDK 3.3: ${x.use} (the internal stays as a fallback – deprecated since SDK 3.3.0 (2026-10-22), removed no earlier than SDK 4.0.0 and not before 2027-10-22; ask the stable service first, e.g. with host.supports()).` });
+    const kinds = TRACE_PATTERNS.filter((x) => x.re.test(code)).map((x) => x.kind);
+    // Immer Warnung (auch --strict): die Erkennung ist eine Vermutung aus dem Code
+    if (kinds.length && !/\btraces\.add\s*\(/.test(code)) warnings.push({ code: 'traces', msg: `The server code seems to create things outside its own folder (${[...new Set(kinds)].join(', ')}) but never reports them with host.traces.add() – people could not see or remove them when uninstalling (SDK 3.3).` });
+  }
+
   // ---------- Translations (German + English) ----------
   const both = (v) => v && typeof v === 'object' && v.de && v.en;
   if (!both(m.name)) warn('i18n', '"name" should exist in German and English: { "de": "…", "en": "…" }.');
@@ -813,7 +1126,7 @@ function checkPackage(dir, { strict = false } = {}) {
   const size = files.reduce((n, f) => n + fs.statSync(path.join(dir, f)).size, 0);
   if (size > MAX_SIZE) err('size', `The package is ${(size / 1048576).toFixed(1)} MB – at most 10 MB.`);
   if (files.some((f) => /\.(exe|dll|bat|cmd|ps1|sh|scr|msi)$/i.test(f)) && !m.command) err('binary', 'Programs/scripts in a page-only package are not allowed.');
-  const pages = [m.page && m.page.file, m.widget && m.widget.file, ...((m.contributes && Array.isArray(m.contributes.tabs)) ? m.contributes.tabs.map((x) => x && x.file) : []), ...contribPages(m)].filter(Boolean);
+  const pages = [m.page && m.page.file, m.widget && m.widget.file, ...((m.contributes && Array.isArray(m.contributes.tabs)) ? m.contributes.tabs.map((x) => x && x.file) : []), ...((m.contributes && Array.isArray(m.contributes.sections)) ? m.contributes.sections.map((x) => x && x.file) : []), ...contribPages(m)].filter(Boolean);
   let hardColors = 0; let fontHits = 0;
   // Native code (backend/ui) is reviewed by hand before it reaches the catalog; the sandbox rules below are for pages.
   const nativeDirs = ['backend', 'ui'].map((k) => (m[k] ? `${path.posix.dirname(String(typeof m[k] === 'object' ? m[k].file : m[k]))}/` : null)).filter((d) => d && d !== './');
@@ -859,6 +1172,21 @@ function checkPackage(dir, { strict = false } = {}) {
       if (/z-index\s*:\s*\d{4,}/i.test(css)) warn('overlay', `${f}: very high z-index.`);
     }
   }
+  // Gestaltungs-Hinweise (ohne Punktabzug): Eigenbau statt Kern-Baustein, andere Wörter als im Rest von Hostwerk
+  const hintCount = new Map();
+  for (const f of files) {
+    // gebaute Oberfläche (ui/index.js) nicht doppelt, Tests/Server-Code sind keine Oberfläche
+    const ui = !/^(tests|scripts|backend|server|browser-extension|node_modules)\//.test(f) && f !== 'ui/index.js' && f !== 'ui/index.css' && !/\.min\.js$/.test(f);
+    const kinds = !ui ? null : /\.(jsx?|mjs|html?)$/i.test(f) ? ['code', 'ext-code'] : /\.css$/i.test(f) ? ['css'] : f === 'locales/de.json' ? ['de'] : null;
+    if (!kinds) continue;
+    const raw = fs.readFileSync(path.join(dir, f), 'utf8');
+    for (const h of uiHintsFor(kinds[0] === 'de' ? deValues(raw) : raw, kinds)) {
+      const c = hintCount.get(h.id) || { n: 0, at: [] };
+      c.n++; if (c.at.length < 3) c.at.push(kinds[0] === 'de' ? `${f} („${h.s}“)` : `${f}:${h.line}`);
+      hintCount.set(h.id, c);
+    }
+  }
+  for (const [id, c] of hintCount) info.push({ code: `ui-${id}`, msg: `${UI_HINTS.find((r) => r.id === id).msg} ${c.n}× – ${c.at.join(', ')}${c.n > c.at.length ? ' …' : ''}` });
   if (hardColors) warn('colors', `${hardColors} fixed colour(s) – use var(--hw-text), var(--hw-surface), var(--hw-accent) … so light and dark mode work.`);
   if (fontHits) warn('fonts', `${fontHits} own font(s) – leave the font to Hostwerk (var(--hw-font)).`);
   for (const p of pages) {
@@ -901,11 +1229,13 @@ function checkPackage(dir, { strict = false } = {}) {
   return { ok: errors.length === 0, errors, warnings, info, manifest: m, score, size, sdk: SDK_VERSION, review };
 }
 
-module.exports = { checkPackage, HIDING_KEYS, TAMPER_RE, PERMISSIONS, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS, CATEGORIES, satisfies, cmpVer, RANGE_RE, AREAS, NAV_GROUPS, NAV_GROUP_RE, SETTINGS_TABS, shortcutCombo, SHORTCUT_RESERVED, SHORTCUT_HOSTWERK,
+module.exports = { checkPackage, HIDING_KEYS, TAMPER_RE, PERMISSIONS, NEVER, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS, CATEGORIES, satisfies, cmpVer, RANGE_RE, AREAS, NAV_GROUPS, NAV_GROUP_RE, SETTINGS_TABS, shortcutCombo, SHORTCUT_RESERVED, SHORTCUT_HOSTWERK,
+  // SDK 3.3
+  INTERNALS, TRACE_PATTERNS, UI_HINTS, GLOSSARY, ICON_SIZES, uiHintsFor, deValues,
   // SDK 3.0
   SDK_MAJOR, SDK_MINOR, DEPRECATIONS, EXPERIMENTAL, deprecationText, parseSdk, sdkFits, hostwerkRange, hostwerkFits, hostwerkLabel,
   // SDK 2.9
-  themeReport, THEME_TOKENS, THEME_COLOR_TOKENS, THEME_SOFT_TOKENS, THEME_SHADOW_TOKENS, THEME_DEFAULTS, THEME_DENSITY, contrastHex, OVERRIDE_SLOTS, OVERRIDE_MAX_HEIGHT, OVERRIDE_BUDGET, EXTEND_POINTS, EXTEND_EXPLICIT, extendGrant, extendRequested, contribPages };
+  themeReport, THEME_TOKENS, THEME_COLOR_TOKENS, THEME_SOFT_TOKENS, THEME_SHADOW_TOKENS, THEME_DEFAULTS, THEME_DENSITY, contrastHex, OVERRIDE_SLOTS, OVERRIDE_MAX_HEIGHT, SECTION_PLACES, SECTION_ROLES, SECTION_MAX_HEIGHT, OVERRIDE_BUDGET, EXTEND_POINTS, EXTEND_EXPLICIT, extendGrant, extendRequested, contribPages };
 
 if (require.main === module) {
   const dir = process.argv[2];

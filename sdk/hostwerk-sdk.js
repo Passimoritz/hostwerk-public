@@ -8,11 +8,16 @@
  * Since 2.2 the kit is generated from Hostwerk's own stylesheet: use the same classes as Hostwerk (card, card-head,
  * btn primary, tabs/tab, seg, callout, setting-row, switch, badge, list-item, empty, grid-2 …) and the page looks
  * exactly like a built-in area. Hostwerk draws the page header and the tabs (manifest page.tabs) itself.
+ *
+ * Loading (SDK 3.2): until the page reports "loaded", Hostwerk shows its own loading animation over the frame. The SDK
+ * reports it by itself after the first Hostwerk.render() or once the page shows content; pages that load longer can hold
+ * it (<meta name="hostwerk-loading" content="manual"> or Hostwerk.holdLoaded()) and call Hostwerk.loaded() themselves.
+ * Hostwerk.ui.loading()/.error()/.load() draw the same states for content that loads later inside the page.
  */
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '3.1.0';
+  const VERSION = '3.4.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
@@ -27,7 +32,32 @@
   }
 
   const emit = (type, payload) => { for (const cb of listeners.get(type) || []) { try { cb(payload); } catch (e) { console.error(e); } } };
-  const send = (msg) => parent.postMessage({ hostwerkExt: true, v: 2, ...msg }, '*');
+  /*
+   * Verbindung zu Hostwerk (SDK 3.2): Die Brücke hört evtl. noch nicht zu, wenn dieses Skript läuft (Rahmen schneller
+   * als Hostwerks Oberfläche). Deshalb: HELLO wiederholen, bis „init“ kommt; alles andere bis dahin puffern und danach
+   * in Reihenfolge senden. DOC kennzeichnet genau dieses Laden des Rahmens – Hostwerk ordnet Antworten danach zu.
+   */
+  const DOC = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  let inited = false;
+  const outbox = [];
+  const post = (msg) => parent.postMessage({ hostwerkExt: true, v: 2, doc: DOC, ...msg }, '*');
+  const send = (msg) => {
+    if (inited || msg.method === 'HELLO') return post(msg);
+    // Größe: nur die letzte zählt
+    if (msg.method === 'RESIZE') for (let i = outbox.length - 1; i >= 0; i--) if (outbox[i].method === 'RESIZE') outbox.splice(i, 1);
+    outbox.push(msg);
+    return undefined;
+  };
+  const HELLO_GAPS = [150, 250, 500, 900, 1500]; // danach alle 3 s, insgesamt höchstens 25 Versuche (gut 60 s)
+  let helloN = 0;
+  let helloTimer = null;
+  const hello = () => {
+    if (inited) return;
+    post({ method: 'HELLO', body: { sdk: VERSION } });
+    const gap = HELLO_GAPS[helloN] || 3000;
+    helloN++;
+    if (helloN < 25) helloTimer = setTimeout(hello, gap);
+  };
   const call = (method, path = '', body) => new Promise((resolve, reject) => {
     const id = ++seq;
     pending.set(id, { resolve, reject });
@@ -66,11 +96,19 @@
     if (!m.hostwerk) return;
     if (m.id && pending.has(m.id)) { const p = pending.get(m.id); pending.delete(m.id); return m.error ? p.reject(new Error(m.error)) : p.resolve(m.data); }
     if (m.type === 'init') {
+      // Kommt bei wiederholtem HELLO evtl. zweimal – dann nur neu anwenden
+      const first = !inited;
+      inited = true; clearTimeout(helloTimer);
       Object.assign(state, { ext: m.ext, app: m.app, settings: m.settings || {}, embed: m.embed || 'page', tab: m.tab || null, context: m.context || null, action: m.action || null });
       applyTheme(m.theme); applyLang(m.lang, m.messages);
       document.documentElement.dataset.embed = state.embed;
       if (state.tab) document.documentElement.dataset.tab = state.tab;
-      readyResolve(api.info());
+      if (first) {
+        for (const x of outbox.splice(0)) post(x);
+        readyResolve(api.info());
+        if (document.readyState === 'loading') addEventListener('DOMContentLoaded', autoLoaded, { once: true }); else autoLoaded();
+        if (loadedWanted) loaded();
+      }
     } else if (m.type === 'theme') { applyTheme(m.theme); emit('theme', state.theme); }
     else if (m.type === 'lang') { applyLang(m.lang, m.messages); emit('lang', state.lang); }
     else if (m.type === 'settings') { state.settings = m.settings || {}; emit('settings', state.settings); }
@@ -81,6 +119,37 @@
 
   let readyResolve;
   const ready = new Promise((r) => { readyResolve = r; });
+
+  /*
+   * „Geladen“ melden (SDK 3.2): Hostwerk zeigt bis dahin seine Ladeanimation über dem Rahmen. Von selbst nach dem ersten
+   * Hostwerk.render() oder sobald die Seite Inhalt zeigt und kurz Ruhe ist (spätestens 8 s nach init – bis dahin sichtbar leer: lieber Hostwerks Animation). Mit
+   * <meta name="hostwerk-loading" content="manual"> bzw. Hostwerk.holdLoaded() nur per Hostwerk.loaded().
+   */
+  let loadedSent = false;
+  let loadedWanted = false;
+  let holding = false;
+  const manual = () => holding || !!document.querySelector('meta[name="hostwerk-loading"][content="manual"]');
+  const later = (fn) => { let done = false; const go = () => { if (!done) { done = true; fn(); } }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => setTimeout(go, 0)); setTimeout(go, 120); };
+  function loaded() {
+    if (loadedSent) return;
+    if (!inited) { loadedWanted = true; return; }
+    loadedSent = true;
+    later(() => post({ method: 'LOADED' })); // erst nach dem Zeichnen – sonst blitzt die leere Seite kurz auf
+  }
+  const autoSignal = () => { if (!manual()) loaded(); };
+  function autoLoaded() {
+    if (loadedSent) return;
+    const body = document.body;
+    const hasContent = () => !!body && ((body.innerText || '').trim().length > 0 || !!body.querySelector('img, svg, canvas, video, input, select, textarea, .hw-skeleton, .skeleton'));
+    let quiet = null;
+    let mo = null;
+    let cap = null;
+    const finish = () => { clearTimeout(quiet); clearTimeout(cap); if (mo) mo.disconnect(); autoSignal(); };
+    const arm = () => { clearTimeout(quiet); quiet = setTimeout(() => { if (hasContent()) finish(); }, 250); };
+    cap = setTimeout(finish, 8000);
+    if (body && typeof MutationObserver !== 'undefined') { mo = new MutationObserver(arm); mo.observe(body, { childList: true, subtree: true, characterData: true }); }
+    arm();
+  }
 
   /** Text in the current language: locales/<lang>.json of the extension; {name} placeholders. */
   function t(key, vars) {
@@ -107,7 +176,56 @@
     if (!node) return;
     node.innerHTML = content instanceof Raw ? content.s : esc(content);
     translate(node);
+    // erster echter, SICHTBARER Inhalt → Hostwerk blendet die Ladeanimation aus (nicht: Vorbereiten versteckter Reiter)
+    if (!quietRender && inited && visible(node)) autoSignal();
   }
+  const visible = (n) => !(n.closest && n.closest('[hidden]')) && !(typeof n.getClientRects === 'function' && n.getClientRects().length === 0);
+  let quietRender = false;
+  const renderQuiet = (el, content) => { quietRender = true; try { render(el, content); } finally { quietRender = false; } };
+
+  /*
+   * Lade-, Fehler- und Platzhalter-Bausteine wie in Hostwerk (SDK 3.2) – für Inhalte, die innerhalb der Seite nachladen.
+   * Texte eingebaut (de/en); eigene Texte über die Schlüssel hw.loading, hw.loadError, hw.retry in locales/*.json.
+   */
+  const UI_TEXT = {
+    de: { loading: 'Lädt …', loadError: 'Konnte nicht geladen werden', retry: 'Erneut versuchen' },
+    en: { loading: 'Loading …', loadError: 'Could not load', retry: 'Try again' },
+  };
+  const uiText = (k) => (messages[`hw.${k}`] != null ? String(messages[`hw.${k}`]) : UI_TEXT[state.lang === 'de' ? 'de' : 'en'][k]);
+  const nodeOf = (el) => (typeof el === 'string' ? document.querySelector(el) : el);
+  const ui = {
+    /** Platzhalter-Zeilen (Baustein für Hostwerk.html): rows Zeilen, height je Zeile in px. */
+    skeleton(rows = 3, { height = 16 } = {}) {
+      const n = Math.max(1, Math.min(Number(rows) || 3, 20));
+      const h = Math.max(8, Math.min(Number(height) || 16, 200));
+      return new Raw(`<div class="hw-load-skel" aria-hidden="true">${Array.from({ length: n }, (_, i) => `<div class="hw-skeleton" style="height:${h}px;width:${100 - (i % 3) * 12}%"></div>`).join('')}</div>`);
+    },
+    /** Ladezustand in target: Platzhalter + Ansage für Screenreader (aria-busy, role=status). */
+    loading(target, { text, rows = 3, height } = {}) {
+      const node = nodeOf(target);
+      if (!node) return;
+      node.setAttribute('aria-busy', 'true');
+      renderQuiet(node, html`<div class="hw-load-box" role="status"><span class="hw-sr">${text || uiText('loading')}</span>${ui.skeleton(rows, { height })}</div>`);
+    },
+    /** Fehlerzustand mit „Erneut versuchen“ (retry = Funktion) statt leerer Fläche. compact = für Kacheln. */
+    error(target, err, retry, { compact = false, title } = {}) {
+      const node = nodeOf(target);
+      if (!node) return;
+      node.removeAttribute('aria-busy');
+      const msg = String((err && err.message) || err || '');
+      const btn = typeof retry === 'function' ? html`<button type="button" class="btn ${compact ? 'xs' : 'primary'}" data-hw-retry>${uiText('retry')}</button>` : '';
+      render(node, compact
+        ? html`<div class="hw-load-alert hw-compact small" role="alert"><span class="hw-err-text">${title || uiText('loadError')}</span> ${btn}</div>`
+        : html`<div class="hw-load-alert" role="alert"><b>${title || uiText('loadError')}</b>${msg ? html`<p class="muted small">${msg}</p>` : ''}${btn}</div>`);
+      const b = node.querySelector('[data-hw-retry]');
+      if (b) b.addEventListener('click', () => { b.disabled = true; Promise.resolve().then(retry).catch(() => {}); });
+    },
+    /** Ablauf in einem: loading → fn() (zeichnet selbst) bzw. error mit „Erneut versuchen“. Gibt das Ergebnis von fn zurück. */
+    async load(target, fn, opts = {}) {
+      ui.loading(target, opts);
+      try { const r = await fn(); const node = nodeOf(target); if (node) node.removeAttribute('aria-busy'); return r; } catch (e) { ui.error(target, e, () => ui.load(target, fn, opts), opts); return undefined; }
+    },
+  };
 
   const fmt = {
     bytes(n) { if (n == null || isNaN(n)) return '–'; const u = ['B', 'KB', 'MB', 'GB', 'TB']; let i = 0; let x = Number(n); while (x >= 1024 && i < u.length - 1) { x /= 1024; i++; } return `${x.toFixed(x >= 10 || i === 0 ? 0 : 1)} ${u[i]}`; },
@@ -145,6 +263,12 @@
     sdk: VERSION,
     /** Resolves once Hostwerk has sent theme, language and settings. */
     ready: () => ready,
+    /** The page shows its content – Hostwerk hides its loading animation. Usually automatic; see holdLoaded(). Since SDK 3.2. */
+    loaded,
+    /** Keep Hostwerk's loading animation until Hostwerk.loaded() (call it right away in the page script). Since SDK 3.2. */
+    holdLoaded: () => { holding = true; },
+    /** Loading, error and placeholder states like Hostwerk: ui.loading(el), ui.error(el, err, retry), ui.load(el, fn), ui.skeleton(rows). Since SDK 3.2. */
+    ui,
     /** Stand der Seite. app: { version, origin, publicView } – origin = Hostwerks Adresse, publicView = volle Adresse der
      *  öffentlichen Ansicht /v/<id>/ (null ohne). origin/publicView seit SDK 3.1. */
     info: () => ({ lang: state.lang, theme: state.theme, ext: state.ext, app: state.app, settings: state.settings, embed: state.embed, tab: state.tab, context: state.context, action: state.action }),
@@ -215,6 +339,11 @@
     openUrl: (url) => call('OPEN_URL', '', { url: String(url) }),
     /** Copy text to the clipboard (through Hostwerk – the sandboxed frame cannot do it itself). Since SDK 2.1. */
     copy: (text) => call('COPY', '', { text: String(text) }),
+    /**
+     * Save text as a file (CSV, Markdown, JSON …) through Hostwerk – the sandboxed frame cannot download itself. Since SDK 3.2.
+     * Hostwerk.saveFile('players.csv', csv, 'text/csv') → { name }. Text only, at most 5 MB, no executable extensions.
+     */
+    saveFile: (name, text, type) => call('SAVE_FILE', '', { name: String(name || ''), text: String(text == null ? '' : text), type: type ? String(type) : 'text/plain' }),
   };
   window.Hostwerk = api;
 
@@ -222,6 +351,6 @@
   const report = () => send({ method: 'RESIZE', body: { height: Math.ceil(document.documentElement.scrollHeight) } });
   if (typeof ResizeObserver !== 'undefined') new ResizeObserver(report).observe(document.documentElement);
   addEventListener('load', report);
-  // Ask for theme/language/settings (Hostwerk also sends them on its own when the frame loads)
-  send({ method: 'HELLO', body: { sdk: VERSION } });
+  // Ask for theme/language/settings – repeated until Hostwerk answers (Hostwerk also sends them on its own when the frame loads)
+  hello();
 })();

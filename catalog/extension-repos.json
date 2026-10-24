@@ -38,5 +38,8 @@
   "Passimoritz/hostwerk-ext-dns",
   "Passimoritz/hostwerk-ext-vpn",
   "Passimoritz/hostwerk-ext-discord-bot",
-  "Passimoritz/hostwerk-ext-visitor-stats"
+  "Passimoritz/hostwerk-ext-visitor-stats",
+  "Passimoritz/hostwerk-ext-modes",
+  "Passimoritz/hostwerk-ext-pwa",
+  "Passimoritz/hostwerk-ext-minecraft"
 ]

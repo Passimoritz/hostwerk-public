@@ -2,6 +2,8 @@
 
 Every page and tab of Hostwerk with a picture and an explanation – generated from the interface itself, so it always matches the current version.
 
+- **[Help & known issues](help.md)**
+
 - [Overview](uebersicht.md)
 - [Web servers](web.md) – Apache, nginx or Caddy – several in parallel, each with its own PHP version.
 - [Databases](dbs.md) – MariaDB, MySQL, PostgreSQL, MongoDB and Redis – as many as you like, in different versions.

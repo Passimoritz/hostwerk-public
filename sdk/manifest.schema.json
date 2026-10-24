@@ -254,7 +254,15 @@
           }
         },
         "nav": {
-          "$ref": "#/definitions/nav"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/nav"
+            },
+            {
+              "const": false,
+              "description": "SDK 3.2: no own sidebar entry – the extension lives in Hostwerk's areas (tabs, sections, tiles); the page stays reachable from Extensions → Open. People can still pin it in the sidebar editor. Older Hostwerk versions ignore it and keep the entry."
+            }
+          ]
         }
       }
     },
@@ -344,13 +352,24 @@
     "hostwerk": {
       "description": "Hostwerk versions this extension runs on: a minimum like \">=3.0.0\" or (SDK 3.0) { \"min\": \"3.0.0\", \"max\": \"3.x\" }.",
       "oneOf": [
-        { "type": "string", "pattern": "^>=\\s*\\d+\\.\\d+\\.\\d+$" },
+        {
+          "type": "string",
+          "pattern": "^>=\\s*\\d+\\.\\d+\\.\\d+$"
+        },
         {
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "min": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Lowest Hostwerk version, e.g. 3.0.0" },
-            "max": { "type": "string", "pattern": "^\\d+(\\.(\\d+|x))?(\\.(\\d+|x))?$", "description": "Highest Hostwerk version (inclusive): 3.x, 3.4.x or 3.4.2" }
+            "min": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d+\\.\\d+$",
+              "description": "Lowest Hostwerk version, e.g. 3.0.0"
+            },
+            "max": {
+              "type": "string",
+              "pattern": "^\\d+(\\.(\\d+|x))?(\\.(\\d+|x))?$",
+              "description": "Highest Hostwerk version (inclusive): 3.x, 3.4.x or 3.4.2"
+            }
           }
         }
       ]
@@ -362,7 +381,9 @@
     },
     "experimental": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "SDK 3.0: opt-in to experimental APIs (may change in any version, not allowed in the catalog)."
     },
     "category": {
@@ -439,6 +460,7 @@
           "read:claude",
           "change:claude",
           "run:terminal",
+          "read:profile",
           "read:games",
           "change:ports",
           "share:view",
@@ -636,13 +658,22 @@
                   "area:system",
                   "area:live",
                   "area:ai",
-                  "area:backups"
+                  "area:backups",
+                  "area:tasks"
                 ],
-                "description": "Detail pages (minecraft, web, db, app, game) or – since SDK 2.8 – main areas (area:system, area:backups, area:ai …)"
+                "description": "Detail pages (minecraft, web, db, app, game) or – since SDK 2.8 – main areas (area:system, area:backups, area:ai …; area:tasks since SDK 3.2)"
               },
               "file": {
                 "type": "string",
                 "pattern": "^[^/\\\\.][^\\\\]*\\.html$"
+              },
+              "fallback": {
+                "type": "boolean",
+                "description": "Since SDK 3.2: only shown by Hostwerk versions without sections – from 3.2 on the section from contributes.sections appears instead."
+              },
+              "page": {
+                "type": "boolean",
+                "description": "Since SDK 3.2 (Hostwerk 3.0, later build): only with on: area:… and file = page.file – the whole extension page appears as a tab of that main area, its page.tabs as sub-navigation on the left; #/ext/<id> leads there. Older versions show file as a plain tab."
               }
             }
           }
@@ -747,7 +778,9 @@
                     "web",
                     "db",
                     "app",
-                    "game"
+                    "game",
+                    "file",
+                    "folder"
                   ]
                 }
               }
@@ -1290,6 +1323,128 @@
               }
             }
           }
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 8,
+          "description": "Since SDK 3.2: sections inside Hostwerk detail views instead of own tabs (Minecraft server overview/players, folder in Files, web server). Hostwerk shows two per extension and place.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title",
+              "on",
+              "file"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]{1,30}$"
+              },
+              "title": {
+                "$ref": "#/definitions/text"
+              },
+              "icon": {
+                "enum": [
+                  "puzzle",
+                  "users",
+                  "monitor",
+                  "gauge",
+                  "activity",
+                  "chart",
+                  "bar-chart",
+                  "bell",
+                  "book",
+                  "bot",
+                  "box",
+                  "calendar",
+                  "camera",
+                  "clock",
+                  "cloud",
+                  "code",
+                  "coffee",
+                  "cpu",
+                  "database",
+                  "download",
+                  "file",
+                  "flag",
+                  "gamepad",
+                  "gift",
+                  "globe",
+                  "heart",
+                  "home",
+                  "image",
+                  "inbox",
+                  "key",
+                  "dashboard",
+                  "grid",
+                  "leaf",
+                  "line-chart",
+                  "list",
+                  "lock",
+                  "mail",
+                  "map",
+                  "message",
+                  "music",
+                  "network",
+                  "news",
+                  "package",
+                  "pie-chart",
+                  "radio",
+                  "rocket",
+                  "server",
+                  "settings",
+                  "shield",
+                  "cart",
+                  "sparkles",
+                  "star",
+                  "sun",
+                  "swords",
+                  "table",
+                  "tag",
+                  "terminal",
+                  "timer",
+                  "trophy",
+                  "tv",
+                  "wand",
+                  "wifi",
+                  "wrench",
+                  "zap",
+                  "smartphone",
+                  "cloud-upload",
+                  "folder-up",
+                  "file-search",
+                  "router"
+                ],
+                "description": "Line icon for the sidebar (same style as Hostwerk's own areas)."
+              },
+              "on": {
+                "enum": [
+                  "mc.overview",
+                  "mc.players",
+                  "files.folder",
+                  "web.site"
+                ],
+                "description": "Where the section appears – Hostwerk.context tells the page the place and its target ({ kind, id } or { kind: \"folder\", root, path })."
+              },
+              "file": {
+                "type": "string",
+                "pattern": "^[^/\\\\.][^\\\\]*\\.html$"
+              },
+              "height": {
+                "type": "number",
+                "minimum": 48,
+                "maximum": 900,
+                "description": "Highest height in px – the frame grows with its content up to that (default 900)."
+              },
+              "role": {
+                "enum": [
+                  "motd"
+                ],
+                "description": "SDK 3.2: the section takes over a card Hostwerk shows there itself. mc.overview + \"motd\" = shows and edits how players see the server (MOTD and icon) – Hostwerk's card “How players see your server” then steps back."
+              }
+            }
+          }
         }
       }
     },
@@ -1373,17 +1528,27 @@
     },
     "publicView": {
       "type": "object",
-      "required": ["file"],
+      "required": [
+        "file"
+      ],
       "properties": {
-        "file": { "type": "string", "description": "HTML file of the public view (its folder is served at /v/<id>/)." },
-        "title": { "description": "Name shown in the extension details (text or { de, en })." }
+        "file": {
+          "type": "string",
+          "description": "HTML file of the public view (its folder is served at /v/<id>/)."
+        },
+        "title": {
+          "description": "Name shown in the extension details (text or { de, en })."
+        }
       },
       "description": "SDK 2.10: a public view without login at /v/<id>/ (e.g. an OBS overlay). Sandboxed, scripts allowed, may only fetch /api/x/<id>/pub/… of its own server part. Needs the permission \"share:view\"."
     },
     "shareStorage": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^(\\*|[a-z0-9][a-z0-9-]{1,39})$" },
+      "items": {
+        "type": "string",
+        "pattern": "^(\\*|[a-z0-9][a-z0-9-]{1,39})$"
+      },
       "description": "SDK 2.10: extensions that may read this extension's storage (read only, e.g. [\"claude\"] or [\"*\"]) – host.storage.of(id) / host.storageOf(id)."
     },
     "allowExtensions": {

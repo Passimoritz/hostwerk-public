@@ -5,6 +5,137 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
+## 3.4.0 – 2026-10-24
+
+Screens of their own and device sign-in ([section 26 of the guide](README.md#26-sdk-34-screens-of-their-own-and-device-sign-in)). Only additions.
+
+- New in the interface module: `screens: { <route>: { Component, mobileHome } }` – a whole screen without Hostwerk's sidebar
+  under `#/<route>` (e.g. the Hostwerk app under `#/handy`). `mobileHome: true` = small screens (< 700 px) start there. Routes
+  Hostwerk uses itself cannot be taken.
+- New slot `live.remote.actions`: buttons in the head of the remote access card (gets `remote`, the remote access status).
+- New in `@hostwerk/kit`: `stopAllGuarded`, `confirmStopOne`, `runGate`, `setStopGate` (Hostwerk's stop guard with an own extra
+  confirmation, e.g. a passkey), `askAi`, `EmergencyButton`, `EmergencyBanner`, `AiQuotaWidget`, `HwLogo`.
+- New: a native extension can provide the service `devices` (`host.provide('devices', …)`) – Hostwerk's sign-in asks
+  `devices.verify(req)` for requests without a session (same session shape: `{ user, userId, role, device }`), `/logout` calls
+  `devices.logout(req)`, “Sign out everyone” calls `devices.removeAll()`. Feature detection: `host.supports('devices')`.
+- Core: lockout per account in addition to per address (10 failed sign-ins within an hour, also from different addresses);
+  `remote.dropSessions(pred)` ends sessions selectively.
+- Moved out of the core: phone view, web app manifest, service worker and `/app-laden` are the extension “Hostwerk app” (`pwa`).
+
+> DE: Eigene Vollbild-Ansichten (`screens`, `mobileHome`), Steckplatz `live.remote.actions`, neue Bausteine in `@hostwerk/kit`
+> (Stopp-Schutz mit eigener Zusatz-Bestätigung, KI fragen, Notaus, KI-Kontingente, Logo) und der Dienst `devices`: gekoppelte
+> Geräte zählen bei Hostwerks Anmeldung mit (gleiche Rechte, Sperren, „Alle abmelden“). Kern: Sperre je Konto. Die Handy-App ist
+> jetzt die Erweiterung „Hostwerk-App“ (`pwa`).
+
+Also building blocks for features that used to be part of Hostwerk (first user: Minecraft servers as the extension `minecraft`):
+
+- `@hostwerk/kit` also exports `Console`, `ErrorHelp`, `ErrorBoundary`, `ExtSections`/`useSectionRole`, `SourceLink`,
+  `OverrideSlot`, `useSelection`/`SelectBox`/`SelectAll`/`BulkBar`, `TaskList`, `TaskEditor`, `Adopt`, `Advisor`/`Choices`/`Step`/`Summary`,
+  `useImportState`/`ImportIntro`, `PickInfo`, `removeMc`, `useSlot` and Hostwerk's own `tr`/`pl`/`locale`/`getLang`.
+- Translation: when a native extension has no entry of its own, the English interface falls back to Hostwerk's `en.json`
+  (for extensions with German source text that were moved out of the core).
+- `host.provide(name)` may replace a core placeholder (`ctx.minecraft`); removing the extension brings the placeholder back.
+  Extensions listed as core-first (`minecraft`) start before all others.
+
+Kurz: Neue Bausteine im Kit für ausgelagerte Funktionen (Konsole, Abschnitte, Mehrfachauswahl, Aufgaben, Anlegen/Übernehmen,
+Kern-Übersetzung), englische Texte fallen auf Hostwerks en.json zurück, `host.provide` ersetzt Kern-Platzhalter.
+
+## 3.3.0 – 2026-10-22
+
+Stable services instead of core internals, traces and an uninstall hook ([section 25 of the guide](README.md#25-sdk-33-stable-services-instead-of-core-internals-traces-and-an-uninstall-hook)). Only additions.
+
+- New stable services for own server code, each with a permission: `host.ai.quick` (`use:ai`), `host.minecraft.addons()`
+  (`read:minecraft`), `host.updates.pending()` (`read:updates`) / `.apply(key)` (`change:updates`), `host.net.offline()`,
+  `host.icons.favicon(url)` (`fetch:icons`, public addresses only, cached), `host.sshKeys.import()` (`write:ssh-keys`, never
+  overwrites), `host.images.list()` (`read:apps`, Docker images with tag from apps, Compose stacks and game servers).
+  Sandboxed modules get the reading ones.
+- New: `host.sdkVersion` and `host.supports(name)` for feature detection (available and allowed).
+- New permissions: `use:ai`, `read:updates`, `change:updates`, `fetch:icons`, `write:ssh-keys` (with can/cannot texts).
+- New permission `connect:mail` for mail programs: IMAP/SMTP/POP3 to mail servers the person chooses (mail ports only; sandboxed
+  never into the home network or 127.0.0.1).
+- New: traces outside the own folder – `host.traces.add({ kind, id, label, admin, remove })`, `.remove(id)`, `.list()`
+  (`task`, `file`, `dir`, `registry`, `service`, `firewall`, `port-forward`). Shown in the extension pop-up, offered with ticks
+  when uninstalling, in maintenance and in *Remove Hostwerk*; admin steps with one prompt.
+- New: `exports.uninstall(host, { traces })` – runs only when an extension is removed (not when switched off or updated).
+- Checker: warning `traces` when server code creates tasks, registry entries, services or `ProgramData` files without
+  `host.traces.add()`; hint `internals` for core internals that now have a stable replacement.
+- Deprecated (fallback stays): `ctx.ai.quick`, `ctx.minecraft.readMeta`/`addonDir` for reading versions,
+  `ctx.patchUpdates.pending/apply`, `host.core('download').isOffline()`, writing into `ctx.sshKeys.dir` – removed no earlier
+  than SDK 4.0.0 and not before 2027-10-22.
+- Checker: design hints `ui-…` (no points deducted) where a page builds its own instead of a core building block or uses
+  other words than Hostwerk – rule book `ui-guidelines.md` ([“Design”](README.md#design-what-a-hostwerk-page-looks-like)).
+  Kit: `card stat` value as text (`v text`) and a quiet “/ total” (`of`).
+
+> DE: Gestaltungs-Hinweise `ui-…` im Prüfer (ohne Abzug, Regelwerk `ui-guidelines.md`), Kennzahl-Klassen `v text` und `of`.
+> Stabile Dienste mit Rechten statt Kern-Interna (`host.ai.quick`, `host.minecraft.addons`, `host.updates`, `host.net.offline`,
+> `host.icons.favicon`, `host.sshKeys.import`, `host.images.list`), Feature-Erkennung (`host.supports`), Spuren außerhalb des
+> eigenen Ordners (`host.traces`) mit Liste im Pop-up und Häkchen beim Deinstallieren, Entfernen-Haken `uninstall()`; der
+> Prüfer warnt bei Spuren ohne Meldung. Die alten Interna bleiben als Rückfall (abgekündigt, frühestens 4.0.0 / 22.10.2027).
+
+## 3.2.0 – 2026-10-21
+
+Sections instead of tabs, file browser hooks and pages in a web server ([section 21 of the guide](README.md#21-sdk-32-sections-instead-of-tabs-file-browser-and-pages-in-a-web-server)). Only additions.
+
+- New: `contributes.sections` (`on`: `mc.overview`, `mc.players`, `files.folder`, `web.site`) and the native module field
+  `sections` – a card right inside Hostwerk's detail view, with error protection. Two per extension and place.
+- New: `"fallback": true` for `contributes.tabs` – the tab only shows on Hostwerk versions without sections.
+- New: `contributes.actions` with `"on": ["file"]` / `["folder"]` (right-click in the file browser); native slots
+  `files.actions` and `files.marks`.
+- New: `host.sites` for native extensions – provide a page (HTML + JSON) in a web server folder, renewed at an interval.
+- `.nbt` structures go through `files.preview` as well (before: only the NBT tree).
+- `Hostwerk.navigate()` takes a simple query (`/ext/<id>?action=edit&target=…`) – e.g. from a section to the own page with an action.
+- New (later 3.2 build): `"page": true` for `contributes.tabs` in a main area – the whole page with its `page.tabs` as
+  sub-navigation inside that area; `#/ext/<id>` leads there. Older versions show `file` as a plain tab.
+
+> DE: Abschnitte in Detailansichten statt eigener Reiter (`contributes.sections`, nativ `sections`), Reiter-Rückfall
+> `"fallback": true`, Rechtsklick und Kennzeichen im Datei-Browser (`on: file/folder`, `files.actions`, `files.marks`),
+> Seiten in einen Webserver legen (`host.sites`). Nur Neues.
+
+Also in 3.2: Minecraft networks ([section 22 of the guide](README.md#22-sdk-32-minecraft-server-types-and-networks)). Only additions.
+
+- New: `ctx.minecraft.registerType(id, def, owner)` for native extensions – an own Minecraft server type (e.g. BungeeCord
+  from "Minecraft server network"): `label`, `versions()`, `download()`, optional `latestBuild()`, `java()`, `proxy`,
+  `hidden` (not in the create dialog), start hooks `launchArgs(s, jar)`, `beforeStart(s, dir)` and `readyRe`. Built-in
+  types cannot be replaced. Returns an unregister function.
+- New: `ctx.minecraft.network.apply(proxyId, { members, forcedHosts })` writes forced hosts (`{ "host": ["key"] }`) into
+  velocity.toml; without `forcedHosts` the section stays empty as before. Only for Velocity proxies.
+- Changed (security): servers behind a proxy (`network.proxy`) are no longer listed in `security.publicPorts()` – firewall
+  and router automation never open them.
+- The move of "Bedrock bridge" goes to "Minecraft server network" (`mc-network`, extMigrate).
+
+> DE: Eigene Minecraft-Servertypen für native Erweiterungen (`minecraft.registerType`, z. B. BungeeCord), forced hosts in
+> `network.apply`, Server hinter einem Proxy nie mehr in den öffentlichen Ports; Umzug der Bedrock-Brücke nach „Minecraft-
+> Servernetzwerk“. Nur Neues.
+
+Also in 3.2: loading like a built-in page ([section 23 of the guide](README.md#23-sdk-32-loading-like-a-built-in-page)). Only additions.
+
+- Hostwerk shows its own loading animation over every extension frame (page, tab, tile) until the page reports *loaded*;
+  a page that does not answer gets “not responding” with *Try again* instead of an empty area.
+- New: `Hostwerk.loaded()`, `Hostwerk.holdLoaded()` and `<meta name="hostwerk-loading" content="manual">` – usually
+  automatic after the first `Hostwerk.render()`.
+- New: `Hostwerk.ui.loading()`, `.error()`, `.load()`, `.skeleton()` – loading/error states inside the page (aria-busy,
+  role=alert), texts de/en or own via `hw.loading`, `hw.loadError`, `hw.retry`.
+- Fix: the SDK repeats its hello until Hostwerk answers and buffers calls made before – pages no longer stay empty when
+  the frame was faster than Hostwerk (often only after reloading several times). Messages carry the document id.
+
+> DE: Hostwerk zeigt seine Ladeanimation über jedem Erweiterungs-Rahmen, bis die Seite „geladen“ meldet (`Hostwerk.loaded()`,
+> sonst automatisch); Fehlerzustand mit „Erneut versuchen“ statt leerer Fläche; `Hostwerk.ui.loading/error/load/skeleton`
+> für Zustände in der Seite. Behoben: Seiten blieben manchmal leer (Gruß ging verloren) – jetzt Wiederholung + Puffer.
+
+Also in 3.2: without an own sidebar entry ([section 24 of the guide](README.md#24-sdk-32-without-an-own-sidebar-entry)). Only additions.
+
+- New: `"page": { "nav": false }` – no own sidebar entry; the extension lives in Hostwerk's areas, the page stays reachable
+  from Extensions → Open, and people can pin it in the sidebar editor. Older Hostwerk versions ignore it.
+- New: `area:tasks` for `contributes.tabs` (native `tasks.tabs`), native `games.tabs` (shown by "Game servers" through
+  `useAreaTabs` from `@hostwerk/kit`), `live.tabs` with the same id from several extensions share one tab.
+- New: `"role": "motd"` for sections on `mc.overview` – Hostwerk's own MOTD card steps back (one preview).
+- New: `Hostwerk.saveFile(name, text, type)`, `GET /system/info` and `GET /system/health` (`read:system`),
+  `titles: { de, en }` in `GET /live/security`.
+
+> DE: `"nav": false` (kein eigener Seitenleisten-Eintrag, anheftbar), Reiter im Bereich Aufgaben (`area:tasks`), `games.tabs`,
+> gemeinsame Livebetrieb-Reiter mit gleicher id, Abschnitts-Rolle `motd`, `Hostwerk.saveFile`, `/system/info`, `/system/health`,
+> englische Titel in `/live/security`. Nur Neues.
+
 ## 3.1.0 – 2026-10-21
 
 Shared site check and notes in the knowledge graph ([section 20 of the guide](README.md#20-sdk-31-shared-site-check-and-notes-in-the-knowledge-graph)). Only additions.

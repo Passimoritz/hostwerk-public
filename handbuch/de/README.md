@@ -2,6 +2,8 @@
 
 Jede Seite und jeder Reiter von Hostwerk mit Bild und Erklärung – automatisch aus der Oberfläche erzeugt, damit es immer zum aktuellen Stand passt.
 
+- **[Hilfe & bekannte Probleme](hilfe.md)**
+
 - [Übersicht](uebersicht.md)
 - [Webserver](web.md) – Apache, nginx oder Caddy – mehrere parallel, jeweils mit eigener PHP-Version.
 - [Datenbanken](dbs.md) – MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschiedenen Versionen.

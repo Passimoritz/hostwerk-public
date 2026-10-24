@@ -39,6 +39,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
+[hidden] { display: none !important; } /* versteckt bleibt versteckt, auch bei .btn & Co. */
 body { padding: 22px 26px; font: var(--hw-fs-md)/1.45 var(--hw-font); background: var(--hw-bg); color: var(--hw-text); -webkit-font-smoothing: antialiased; }
 :root[data-embed='widget'] body { padding: 0; background: transparent; overflow: hidden; }
 h1, .hw-h1 { font-size: var(--hw-fs-2xl); letter-spacing: -.02em; margin: 0 0 4px; font-weight: 700; text-wrap: balance; }
@@ -139,6 +140,16 @@ kbd { font-family: var(--hw-mono); font-size: var(--hw-fs-2xs); border: 1px soli
 .hw-spinner { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--hw-line-2); border-top-color: var(--hw-accent); animation: hw-spin .8s linear infinite; display: inline-block; }
 @keyframes hw-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .hw-skeleton, .hw-spinner { animation: none; } }
+/* SDK 3.2: Hostwerk.ui.loading / .error / .skeleton – gleiche Zustände wie Hostwerks eigene Seiten */
+.hw-load-skel { display: flex; flex-direction: column; gap: 10px; padding: 4px 0; }
+.hw-load-box { animation: hw-load-in .25s ease .15s both; }
+@keyframes hw-load-in { from { opacity: 0; } to { opacity: 1; } }
+.hw-load-alert { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; padding: 28px 16px; }
+.hw-load-alert b { color: var(--hw-text); font-size: var(--hw-fs-md); }
+.hw-load-alert p { margin: 0; max-width: 60ch; overflow-wrap: anywhere; }
+.hw-load-alert.hw-compact { flex-direction: row; justify-content: center; flex-wrap: wrap; padding: 10px 8px; }
+.hw-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (prefers-reduced-motion: reduce) { .hw-load-box { animation: none; } }
 
 /* Small screens */
 @media (max-width: 560px) { body { padding: 14px 16px; } .hw-grid { grid-template-columns: 1fr; } }
