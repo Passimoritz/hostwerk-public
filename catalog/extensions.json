@@ -390,6 +390,42 @@
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v1.3.4/CHANGELOG.md"
   },
   {
+    "id": "mail-accounts",
+    "name": {
+      "de": "E-Mail-Konten",
+      "en": "E-mail accounts"
+    },
+    "description": {
+      "de": "Deine Postfächer von Gmail, Outlook, web.de, GMX, T-Online, iCloud, Yahoo, Posteo, mailbox.org oder der eigenen Domain direkt in Hostwerk: alle Posteingänge zusammen, Ordner, Konversationen, Suche, sicheres Lesen mit Schutz vor Trackern und Phishing, Schreiben mit Signaturen, Vorlagen und Rückgängig-Senden, Regeln, Push über IMAP IDLE und Offline-Lesen. Die Einstellungen findet Hostwerk selbst – ohne eigene Anbieterliste.",
+      "en": "Your mailboxes from Gmail, Outlook, web.de, GMX, T-Online, iCloud, Yahoo, Posteo, mailbox.org or your own domain right inside Hostwerk: all inboxes together, folders, conversations, search, safe reading that blocks trackers and flags phishing, writing with signatures, templates and undo send, rules, push via IMAP IDLE and offline reading. Hostwerk finds the settings itself – without its own provider list."
+    },
+    "author": "Hostwerk",
+    "version": "1.1.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native",
+      "connect:mail",
+      "use:ai"
+    ],
+    "hostwerk": ">=3.0.0",
+    "sdkVersion": "3.3",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-mail-accounts",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-accounts/v1.1.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-mail-accounts/releases/download/v1.1.0/mail-accounts-1.1.0.zip",
+    "sha256": "6877859f884ed05d70ada529ce4ef09eab62b5f683d596a49ec4faafe2f1df81",
+    "score": 100,
+    "released": "2026-10-25",
+    "category": "communication",
+    "color": "#2563eb",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-accounts/v1.1.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-accounts/v1.1.0/CHANGELOG.md"
+  },
+  {
     "id": "file-share",
     "name": {
       "de": "Dateifreigabe (SFTP)",
@@ -498,6 +534,41 @@
     "requires": {},
     "native": true,
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v1.10.3/CHANGELOG.md"
+  },
+  {
+    "id": "pwa",
+    "name": {
+      "de": "Hostwerk-App",
+      "en": "Hostwerk app"
+    },
+    "description": {
+      "de": "Hostwerk aufs Handy – als Web-App für Android und iPhone, ohne App-Store. Handy per QR-Code koppeln, gekoppelte Geräte im Blick und einzeln sperren, neue Geräte erst nach Freigabe am PC. Für dich und für Mitglieder aus Team & Rollen, mit deren Rechten.",
+      "en": "Hostwerk on your phone – as a web app for Android and iPhone, without an app store. Pair a phone with a QR code, keep an eye on paired devices and block them one by one, new devices only after approval on the PC. For you and for members from Team & roles, with their rights."
+    },
+    "author": "Hostwerk",
+    "version": "1.1.0",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native",
+      "storage"
+    ],
+    "hostwerk": ">=3.0.0",
+    "sdkVersion": "3.4",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-pwa",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.1.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-pwa/releases/download/v1.1.0/pwa-1.1.0.zip",
+    "sha256": "9af53f197dad293637b24f72c77c392616b3e9dc8b7d91b5013fbca1a155c863",
+    "score": 100,
+    "released": "2026-10-25",
+    "category": "security",
+    "color": "#ea580c",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.1.0/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.1.0/CHANGELOG.md"
   },
   {
     "id": "hostwerk-network",
@@ -680,6 +751,43 @@
     "requires": {},
     "native": false,
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mail-stats/v1.4.0/CHANGELOG.md"
+  },
+  {
+    "id": "mc-network",
+    "name": {
+      "de": "Minecraft-Servernetzwerk",
+      "en": "Minecraft server network"
+    },
+    "description": {
+      "de": "Mehrere Minecraft-Server hinter einer Adresse und Java mit Bedrock zusammen: Velocity oder BungeeCord als Proxy, Lobby, direkte Adressen, Wartung je Server, gemeinsame Whitelist/OPs/Bans, Geyser + Floodgate einmal am Proxy, Geyser Standalone vor Vanilla/Forge, Bedrock Dedicated Server, ViaVersion & Co. – alles hält sich selbst aktuell, mit Rücksprung bei Fehlern.",
+      "en": "Several Minecraft servers behind one address and Java together with Bedrock: Velocity or BungeeCord as the proxy, lobby, direct addresses, maintenance per server, shared whitelist/ops/bans, Geyser + Floodgate once on the proxy, Geyser Standalone in front of Vanilla/Forge, Bedrock Dedicated Server, ViaVersion & co. – everything keeps itself up to date, with a way back on errors."
+    },
+    "author": "Hostwerk",
+    "version": "1.4.1",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native",
+      "network"
+    ],
+    "hostwerk": ">=3.1.0",
+    "sdkVersion": "3.0",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-mc-network",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mc-network/v1.4.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-mc-network/releases/download/v1.4.1/mc-network-1.4.1.zip",
+    "sha256": "6496803273e75cfd35b58d1b2bd207269bc9bc0d11be9a0af740d790699c7e5a",
+    "score": 100,
+    "released": "2026-10-25",
+    "category": "games",
+    "color": "#16a34a",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mc-network/v1.4.1/banner.svg",
+    "screenshots": [],
+    "requires": {
+      "minecraft": ">=1.0.0"
+    },
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-mc-network/v1.4.1/CHANGELOG.md"
   },
   {
     "id": "minecraft",
@@ -1280,6 +1388,42 @@
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v1.6.0/CHANGELOG.md"
   },
   {
+    "id": "steam",
+    "name": {
+      "de": "Steam & Spiele",
+      "en": "Steam & games"
+    },
+    "description": {
+      "de": "Deine Steam-Bibliothek ohne Anmeldung: Spiele, Größe, Laufwerk, Spielzeit und laufende Downloads. Dazu ein Speicher-Doktor, der zeigt, was Platz frisst, Spielstand-Sicherung nach jeder Sitzung (Ludusavi-Liste), Preisalarm für deine Merkliste, Spielzeit-Statistik, Screenshots, „Was spiele ich heute?“ und eigene Server zu deinen Spielen mit einem Klick.",
+      "en": "Your Steam library without signing in: games, size, drive, playtime and running downloads. Plus a storage doctor that shows what eats space, save backups after every session (Ludusavi index), price alerts for your watchlist, playtime statistics, screenshots, “What should I play tonight?” and your own server for your games in one click."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.1",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native",
+      "network",
+      "read:games"
+    ],
+    "hostwerk": ">=3.0.0",
+    "sdkVersion": "3.3",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-steam",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-steam/v1.0.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-steam/releases/download/v1.0.1/steam-1.0.1.zip",
+    "sha256": "588deaa46497348a286adbde76fc4e8b645a7a43b579accf49b4c35ac10794ab",
+    "score": 100,
+    "released": "2026-10-25",
+    "category": "games",
+    "color": "#1e6fd9",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-steam/v1.0.1/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-steam/v1.0.1/CHANGELOG.md"
+  },
+  {
     "id": "disk-usage",
     "name": {
       "de": "Speicher je Dienst",
@@ -1485,6 +1629,46 @@
     "requires": {},
     "native": true,
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.2.2/CHANGELOG.md"
+  },
+  {
+    "id": "vuln-watch",
+    "name": {
+      "de": "Schwachstellen-Wache",
+      "en": "Vulnerability watch"
+    },
+    "description": {
+      "de": "Alle bekannten Schwachstellen (CVE, CVSS) deiner Dienste auf einen Blick – Webserver, PHP, Datenbanken, Laufzeiten, Docker-Images, Minecraft und Projekt-Abhängigkeiten, passend zur installierten Version. Mit „wird aktiv ausgenutzt“ (CISA KEV), Ausnutzungs-Wahrscheinlichkeit (EPSS), Lebensende, Update per Knopf, Ausnahmen und Benachrichtigung. Freie Quellen ohne Schlüssel: OSV.dev, NVD, CISA, FIRST.",
+      "en": "Every known vulnerability (CVE, CVSS) of your services at a glance – web servers, PHP, databases, runtimes, Docker images, Minecraft and project dependencies, matched to the installed version. With “actively exploited” (CISA KEV), likelihood of exploitation (EPSS), end of life, one-click updates, exceptions and alerts. Free sources without keys: OSV.dev, NVD, CISA, FIRST."
+    },
+    "author": "Hostwerk",
+    "version": "1.3.2",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native",
+      "network",
+      "read:updates",
+      "change:updates",
+      "use:ai",
+      "read:minecraft",
+      "read:apps"
+    ],
+    "hostwerk": ">=3.0.0",
+    "sdkVersion": "3.3",
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-vuln-watch",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.3.2/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-vuln-watch/releases/download/v1.3.2/vuln-watch-1.3.2.zip",
+    "sha256": "f9eef8fb86a49ef6909a3c9e3cf7bf2c365728ae214a41913ccff448311b142a",
+    "score": 100,
+    "released": "2026-10-25",
+    "category": "security",
+    "color": "#be123c",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.3.2/banner.svg",
+    "screenshots": [],
+    "requires": {},
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.3.2/CHANGELOG.md"
   },
   {
     "id": "webhook-inbox",
