@@ -1,0 +1,32 @@
+name: Withdraw an extension / Erweiterung zurückziehen
+description: Remove your extension from the community catalog.
+title: "Withdraw: "
+labels: [withdraw]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Your extension leaves the community catalog: nobody can install it any more. People who already have it **keep it** (without updates).
+        If you submitted it yourself, it is withdrawn at once. Otherwise a person checks the request first.
+        The id stays reserved for you – nobody else can publish under it.
+
+        *Deine Erweiterung verschwindet aus dem Community-Katalog. Wer sie schon hat, behält sie (ohne Updates). Hast du sie selbst eingereicht, geht es sofort – sonst schaut erst ein Mensch drüber. Die ID bleibt für dich reserviert.*
+  - type: input
+    id: id
+    attributes:
+      label: Extension ID
+      description: The "id" from manifest.json (a–z, 0–9, -)
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason
+      description: Optional – e.g. "no longer maintained" or "replaced by …". Shown to nobody but the maintainers.
+  - type: checkboxes
+    id: ok
+    attributes:
+      label: Confirmation
+      options:
+        - label: I am the author of this extension (or allowed to speak for it).
+          required: true

@@ -1,0 +1,45 @@
+name: Extension sources
+
+# Weekly: is the author's repository of each community extension still there? Deleted (404) or archived sources are
+# marked in catalog/community.json (origin.state) – Hostwerk shows "source deleted" / "archived". The checked copy in
+# packages/ stays installable. Newly marked entries are listed in one issue labelled "source-gone".
+on:
+  schedule:
+    - cron: '29 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sources:
+    runs-on: ubuntu-latest
+    concurrency: catalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Check sources
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-extension-sources.js
+      - name: Sign
+        env:
+          HOSTWERK_SIGNING_KEY: ${{ secrets.HOSTWERK_SIGNING_KEY }}
+        run: node scripts/sign-catalog.js catalog/community.json
+      - name: Commit results
+        run: |
+          git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
+          git add catalog/community.json catalog/*.sig katalog 2>/dev/null || git add catalog/community.json
+          git diff --cached --quiet || (git commit -m "Extension sources checked" && git pull --rebase -q && git push)
+      - name: Report new marks as an issue
+        if: steps.check.outputs.changed != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create source-gone --color 8B949E --description "Source repository of a community extension deleted or archived" 2>/dev/null || true
+          num=$(gh issue list --label source-gone --state open --json number --jq '.[0].number')
+          if [ -n "$num" ]; then gh issue comment "$num" --body-file sources-report.md; else gh issue create --title "Community extensions without source" --label source-gone --body-file sources-report.md; fi

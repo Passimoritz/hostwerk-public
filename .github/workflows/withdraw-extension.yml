@@ -1,0 +1,57 @@
+name: Withdraw extension
+
+# Issue form "Withdraw an extension": the submitter of a community extension removes it from the catalog at once
+# (scripts/withdraw-extension.js). Requests by anyone else get the label "needs-review" and wait for a person
+# (label "approved" → withdrawn). The id stays reserved for the submitter (catalog/withdrawn.json).
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  withdraw:
+    if: contains(github.event.issue.labels.*.name, 'withdraw') && github.event.issue.state == 'open'
+    runs-on: ubuntu-latest
+    concurrency: catalog
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Withdraw or answer
+        env:
+          HOSTWERK_SIGNING_KEY: ${{ secrets.HOSTWERK_SIGNING_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BODY: ${{ github.event.issue.body }}
+          WHO: ${{ github.event.issue.user.login }}
+          NR: ${{ github.event.issue.number }}
+          # Only the moment a person sets "approved" counts – a later edit of the issue (other id) must not ride on it
+          APPROVED: ${{ github.event.action == 'labeled' && github.event.label.name == 'approved' }}
+        run: |
+          printf '%s' "$BODY" > /tmp/body.md
+          FLAG=""; [ "$APPROVED" = "true" ] && FLAG="--approved"
+          node scripts/withdraw-extension.js /tmp/body.md "$WHO" $FLAG > /tmp/result.json
+          cat /tmp/result.json
+          OK=$(node -e "console.log(require('/tmp/result.json').ok)")
+          REVIEW=$(node -e "console.log(!!require('/tmp/result.json').review)")
+          MSG=$(node -e "console.log(require('/tmp/result.json').message)")
+          if [ "$OK" != "true" ]; then
+            gh issue comment "$NR" --body "❌ $MSG"$'\n\n'"Edit the issue to correct the id – the request runs again."
+            exit 0
+          fi
+          if [ "$REVIEW" = "true" ]; then
+            gh label create needs-review --color FBCA04 2>/dev/null || true
+            gh issue edit "$NR" --add-label needs-review
+            gh issue comment "$NR" --body "⏳ $MSG"
+            exit 0
+          fi
+          node scripts/sign-catalog.js catalog/community.json
+          git config user.name "hostwerk-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A catalog packages katalog
+          git diff --cached --quiet || (git commit -m "Catalog: $(node -e "console.log(require('/tmp/result.json').id)") withdrawn" && git pull --rebase -q && git push)
+          gh issue comment "$NR" --body "✅ $MSG"
+          gh issue close "$NR"

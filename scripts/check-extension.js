@@ -87,6 +87,9 @@ function runtime(dir) {
   const list = fs.existsSync(catalogFile) ? JSON.parse(fs.readFileSync(catalogFile, 'utf8')) : [];
   const prev = list.find((x) => x.id === m.id);
   if (prev && prev.submitter && prev.submitter !== submitter && !DRY) out({ ok: false, message: `The id "${m.id}" already belongs to an extension by @${prev.submitter}. Please choose another id.` });
+  // Withdrawn ids stay with their submitter (scripts/withdraw-extension.js) – people who still have it would get someone else's "update"
+  const gone = (() => { try { return JSON.parse(fs.readFileSync(path.join('catalog', 'withdrawn.json'), 'utf8')); } catch { return []; } })().find((x) => x.id === m.id);
+  if (gone && gone.submitter && gone.submitter.toLowerCase() !== submitter.toLowerCase() && !DRY) out({ ok: false, message: `The id "${m.id}" belonged to a withdrawn extension by @${gone.submitter} and stays reserved. Please choose another id.` });
   const version = m.version;
   const files = [];
   const walk = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else files.push(path.relative(root, f)); } };
