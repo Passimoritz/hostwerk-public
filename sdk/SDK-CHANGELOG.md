@@ -5,6 +5,60 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
+## 3.7.0 – 2026-10-25
+
+“Ask AI” – the Explain button like Hostwerk ([section 29 of the guide](README.md#29-sdk-37-ask-ai--the-explain-button-like-hostwerk)). Only additions.
+
+- `@hostwerk/kit`: `AiQuickButton` (`task`, `text`, `context`, `label`, `size`), `openAiExplain({ task, text, context, label })`,
+  `useAiReady()`, `aiReadyNow()`. The button is hidden and the window does not open while the AI is off or not ready.
+- Pages in the frame: `Hostwerk.ai.ready()`, `Hostwerk.ai.explain(text, { task, context, label })` (permission `use:ai`) and the
+  event `Hostwerk.on('ai', ({ ready }) => …)`.
+- New design-kit class `btn-ai` (sparkle pill in the accent colour) in `/ext-sdk.css`.
+- The Explain button no longer unfolds the answer in the row: it opens the Ask AI window (answer, copy, follow-up question,
+  continue in the AI chat) – also in the `Console` from `@hostwerk/kit`.
+- `check.js` warns about `Hostwerk.ai.explain` without `use:ai`.
+
+> DE: „KI fragen“ wie in Hostwerk – `AiQuickButton`, `openAiExplain`, `useAiReady` in `@hostwerk/kit`, `Hostwerk.ai.ready()`/
+> `.explain()` und das Ereignis `ai` im Rahmen (Recht `use:ai`), Klasse `btn-ai`. Der Erklären-Knopf öffnet jetzt ein Fenster
+> statt die Antwort in der Zeile aufzuklappen.
+
+## 3.6.0 – 2026-10-25
+
+Animations like Hostwerk ([section 28 of the guide](README.md#28-sdk-36-animations-like-hostwerk)). Only additions.
+
+- New classes in `/ext-sdk.css` and for native extensions: `hw-spinner` (`hw-sm`/`hw-lg`), `hw-dots`, `hw-fade`, `hw-rise`,
+  `hw-pop`, `hw-slide`, `hw-stagger`, `hw-pulse`, `hw-breathe`, `hw-float`, `hw-spin`, `hw-shake`, `hw-glow`, `hw-check`,
+  `hw-flash`; Hostwerk's loading line (`hw-loading`) and empty state now work in the frame too.
+- `Hostwerk.ui.loader()`, `.spinner()`, `.dots()`, `.check()`, `.empty()`, `.animate(el, kind)`, `.countUp(el, n)`, `.motionOk()`.
+- `@hostwerk/ui`: `Dots`, `CheckMark`, `Reveal`, `CountUp`, `animate`; `Spinner` takes `size`, `Loading` takes `inline`.
+- Hostwerk's *Reduce animations* setting reaches pages in the frame (`theme.reduceMotion` → `data-motion="reduce"`) – every
+  animation above stops there, like with the system setting.
+
+> DE: Hostwerks Animationen für Erweiterungen – Kreisel, hüpfende Punkte, Einblenden (auch nacheinander), Puls, gezeichneter
+> Haken, Lade-Linie und leerer Zustand als Klassen, `Hostwerk.ui.*` im Rahmen und Bausteine in `@hostwerk/ui`.
+> „Animationen reduzieren“ in Hostwerk hält sie auch im Rahmen an.
+
+## 3.5.0 – 2026-10-25
+
+Service kinds, contributions and a core without special cases ([section 27 of the guide](README.md#27-sdk-35-service-kinds-contributions-and-a-core-without-special-cases)). Only additions.
+
+- New: `host.serviceKind(def)` – your own kind of services (overview, search, start/stop, files, tasks, backups, moving,
+  mirror, time machine, ports, alert thresholds, AI). The overview has `overview.kinds`; `@hostwerk/kit` exports `kindItems`,
+  `allKindItems`, `kindDef`, `kindDefs`, `kindText`, `kindState` and `removeKindItem`.
+- New: `host.contribute(type, def)` for `keeper`, `health`, `search`, `guide`, `audit`, `icons`, `connections`, `emergency`,
+  `releaseNotes`, `terminal`, `advisor` and `clickguard`; `host.aiExtend({ tools, groups, modes, assists, about, vocab, speak, context })`.
+- Manifest: `page.route`, `page.nav.area`, `data { settings, folders }` (“Remove completely”), `keep` (keep services when
+  Hostwerk is removed), `liveEvents`, `videos`/`videosRepo`; project templates in `templates/projects/<id>/`.
+- Native: `host.dataDir`, `host.get(path)`; error texts are translated with every installed extension's `locales/de.json`;
+  default imports of `@hostwerk/files` and `@hostwerk/editor`; slot `files.preview` (`title`, `match`, `Component`).
+- Core: no extension-specific code any more – Minecraft, game servers, passwords, router, mail server and the others bring
+  their parts themselves. The `ctx.minecraft` placeholder and the core-first list are gone.
+
+> DE: Eigene Dienst-Arten (`host.serviceKind`), Beiträge zu Hostwerks Bereichen (`host.contribute`: Selbstwartung, Gesundheit,
+> Suche, Livegang, Änderungsprotokoll, Bilder, Verbindungen, Notfall, Versionshinweise, Terminal, Berater, Klick-Test) und KI
+> (`host.aiExtend`). Manifest: `page.route`, `data` (restlos entfernen), `keep` (beim Entfernen von Hostwerk behalten),
+> `liveEvents`, eigene Erklärvideos. Der Kern kennt keine bestimmte Erweiterung mehr.
+
 ## 3.4.0 – 2026-10-24
 
 Screens of their own and device sign-in ([section 26 of the guide](README.md#26-sdk-34-screens-of-their-own-and-device-sign-in)). Only additions.

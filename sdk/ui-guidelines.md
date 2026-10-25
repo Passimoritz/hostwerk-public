@@ -82,6 +82,12 @@ Reiter; was darunter noch geteilt werden muss, wird `<Seg>` (Segmente) oder eine
 Keine grauen Sätze als Leer- oder Ladezustand einer ganzen Karte, keine eigenen Kreisel (`@keyframes spin`): `<Btn>`
 zeigt beim Klick selbst einen Ladezustand, sonst `<Loading>`/`<Spinner>`.
 
+**Bewegung** kommt aus einer Quelle: `ui/src/styles/motion.css` (öffentliche `hw-*`-Klassen, SDK 3.6). Dieselbe nutzen
+Hostwerk, native Erweiterungen (`<Dots>`, `<CheckMark>`, `<Reveal>`, `<CountUp>`, `animate()`) und Seiten im Rahmen
+(`Hostwerk.ui.loader/animate/countUp …`, [Erweiterungs-Anleitung, Abschnitt 28](README.de.md#28-sdk-36-animationen-wie-hostwerk)).
+Ruhig bleiben: einmal beim ersten Zeichnen oder bei einer Änderung, nie bei jedem Nachladen; Puls nur für Übergänge
+(startet, stoppt), nicht für Dauerzustände. Alles ruht bei „Animationen reduzieren“ – nie eigene Keyframes dafür bauen.
+
 ## 4. Knöpfe
 
 - Varianten: `primary` (Hauptaktion, **eine** je Bereich) · ohne Zusatz (normal) · `ghost` (Nebenaktion, Werkzeugleiste) ·
@@ -93,6 +99,8 @@ zeigt beim Klick selbst einen Ladezustand, sonst `<Loading>`/`<Spinner>`.
   („Abbrechen“ links, „Speichern“ rechts). Gefährliches nie direkt neben die Hauptaktion.
 - Beschriftung: Verb (+ Objekt): „Speichern“, „Server starten“, „Sicherung erstellen“. Öffnet der Knopf erst einen Dialog
   oder eine weitere Auswahl, endet er mit „ …“ („Umziehen …“). Keine Ausrufezeichen.
+- **KI fragen**: `<AiQuickButton task text context />` (Funken-Pille `btn-ai`) neben Fehlern, Protokollen und langen Texten –
+  öffnet das Fenster „KI fragen“, ist ohne bereite KI unsichtbar, ändert nie etwas. Eigene KI-Knöpfe nicht nachbauen.
 
 ## 5. Dialoge und Meldungen
 

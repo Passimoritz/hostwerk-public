@@ -12,7 +12,9 @@ ein Ordner mit `manifest.json`, normalem HTML/JavaScript und zwei Textdateien �
 
 Erweiterungen **können Hostwerks Design nicht brechen**: Das SDK bringt den Design-Baukasten mit und gibt Farben,
 Hell/Dunkel, Schrift und Sprache zur Laufzeit an die Seite weiter. Nutze die `hw-*`-Klassen und `var(--hw-…)`-Farben –
-die Prüfung warnt bei festen Farben und eigenen Schriften.
+die Prüfung warnt bei festen Farben und eigenen Schriften. **Auch Hostwerks Animationen stehen dir zur Verfügung** (seit
+SDK 3.6): Lade-Linie, Kreisel, Einblenden, Puls, gezeichneter Haken und hochzählende Zahlen – als Klassen,
+`Hostwerk.ui.*`-Helfer und `@hostwerk/ui`-Bausteine ([Abschnitt 28](#28-sdk-36-animationen-wie-hostwerk)).
 
 ![So läuft eine Erweiterung](img/architecture.svg)
 
@@ -48,6 +50,9 @@ die Prüfung warnt bei festen Farben und eigenen Schriften.
 24. [SDK 3.2: ohne eigenen Eintrag in der Seitenleiste](#24-sdk-32-ohne-eigenen-eintrag-in-der-seitenleiste)
 25. [SDK 3.3: stabile Dienste statt Kern-Interna, Spuren und Entfernen-Haken](#25-sdk-33-stabile-dienste-statt-kern-interna-spuren-und-entfernen-haken)
 26. [SDK 3.4: eigene Vollbild-Ansichten und Geräte-Anmeldung](#26-sdk-34-eigene-vollbild-ansichten-und-geräte-anmeldung)
+27. [SDK 3.5: Dienst-Arten, Beiträge und ein Kern ohne Sonderfälle](#27-sdk-35-dienst-arten-beiträge-und-ein-kern-ohne-sonderfälle)
+28. [SDK 3.6: Animationen wie Hostwerk](#28-sdk-36-animationen-wie-hostwerk)
+29. [SDK 3.7: „KI fragen“ – der Erklären-Knopf wie in Hostwerk](#29-sdk-37-ki-fragen--der-erklären-knopf-wie-in-hostwerk)
 
 ![Von der Idee in den Marktplatz](img/lifecycle.svg)
 
@@ -240,6 +245,7 @@ Hostwerk.toast('Fertig', { kind: 'success' });
 Hostwerk.navigate('/mc/mein-server'); // einen Hostwerk-Bereich öffnen
 Hostwerk.openUrl('https://…');        // öffnet nach Rückfrage im Browser (seit SDK 2.3 auch obsidian://)
 Hostwerk.copy(text);                  // in die Zwischenablage (SDK 2.1)
+Hostwerk.ai.explain(text);            // Hostwerks Fenster „KI fragen“ – Recht use:ai, nur bei bereiter KI (SDK 3.7, Abschnitt 29)
 Hostwerk.get('/system/health');       // direkter Lesezugriff (gegen die Rechte geprüft)
 ```
 
@@ -260,7 +266,8 @@ Deine Seite beginnt direkt mit dem Inhalt.
 | Bedienung | `btn` (+ `primary`, `ghost`, `danger`, `sm`, `xs`), `input`, `select`, `label`, `seg` (Segment-Knöpfe), `switch` (`<label class="switch"><input type="checkbox"><span class="track"></span><span class="thumb"></span></label>`) |
 | Zustand | `badge` (+ `ok`, `warn`, `err`, `accent`), `callout` (+ `ok`/`warn`/`err`) mit `callout-body`, `callout-title`, `progress` |
 | Listen | `table`, `list-item`, `setting-row` (mit `txt`) |
-| Leer / Laden | `empty` (+ `h3`, `p`, `empty-action`), `hw-skeleton`, `spinner` |
+| Leer / Laden | `empty` (+ `h3`, `p`, `empty-action`), `hw-skeleton`, `spinner`, `hw-spinner`, `hw-dots`, `hw-loading` (über `Hostwerk.ui.loader()`) |
+| Bewegung (SDK 3.6) | `hw-fade`, `hw-rise`, `hw-pop`, `hw-slide`, `hw-stagger`, `hw-pulse`, `hw-breathe`, `hw-float`, `hw-spin`, `hw-shake`, `hw-glow`, `hw-flash`, `hw-check` – ruhen von selbst bei „Animationen reduzieren“, siehe [Abschnitt 28](#28-sdk-36-animationen-wie-hostwerk) |
 
 Farben: `--bg`, `--surface`, `--surface-2`, `--line`, `--line-2`, `--text`, `--text-2`, `--muted`, `--accent`,
 `--accent-soft`, `--accent-text`, `--ok`, `--warn`, `--err`, `--mono`. Die älteren `hw-…`-Klassen und `--hw-…`-Variablen
@@ -314,6 +321,10 @@ Verbindlich für Erweiterungen wie für Hostwerk selbst ist das Regelwerk
 - **Kern-Bausteine statt Eigenbau**: Karten `card`/`card-head`/`card-body`, Kennzahlen `card stat` (`v text` für Text,
   `of` für „/ gesamt“), Zustand `<StatusPill>`/`badge ok|warn|err`, leer `<Empty>`/`<TileEmpty>`, laden
   `<Loading>`/`hw-skeleton`, Bestätigen `confirmDialog` – nie `window.confirm`, keine eigenen Kreisel.
+- **Hostwerks Bewegung statt eigener Keyframes** (SDK 3.6): Kreisel, Punkte, Einblenden, Puls, Haken und hochzählende
+  Zahlen kommen von Hostwerk – `hw-*`-Klassen, `Hostwerk.ui.loader/animate/countUp …`, `<Dots>`, `<Reveal>`, `<CountUp>`
+  ([Abschnitt 28](#28-sdk-36-animationen-wie-hostwerk)). Sie sehen aus wie Hostwerk und achten auf „Animationen reduzieren“. Einmal bewegen
+  (erstes Zeichnen, eine Änderung), nie bei jedem Nachladen.
 - **Seitenkopf** (nur native Seiten – Seiten im Rahmen bekommen ihn von Hostwerk): Symbol + Titel, **ein** Satz als
   `<p>`, Aktionen rechts; mehr Erklärung als ⓘ.
 - **Knöpfe**: eine `primary`-Aktion je Bereich, ganz rechts; „Abbrechen“ links davon. Öffnet ein Knopf erst einen
@@ -1061,6 +1072,7 @@ Hostwerk.html`<div>${Hostwerk.ui.skeleton(3)}</div>`; // nur die Platzhalter-Zei
 ```
 
 Texte gibt es auf Deutsch und Englisch; eigene über die Schlüssel `hw.loading`, `hw.loadError`, `hw.retry` in `locales/*.json`.
+Für Bereiche ohne bekannte Form gibt es Hostwerks Lade-Linie `Hostwerk.ui.loader({ text })`; mehr Bewegung in [Abschnitt 28](#28-sdk-36-animationen-wie-hostwerk).
 `Hostwerk.ui.loading` zählt nicht als *geladen*, `error` und jedes andere `render` schon.
 
 **Robustere Verbindung:** Das SDK wiederholt seinen Gruß, bis Hostwerk antwortet, und hält Anfragen von davor (z. B.
@@ -1249,3 +1261,209 @@ Regeln für den eigenen Zugang (der Prüfer sieht sie nicht, die Katalog-Prüfun
 Cookie `HttpOnly; Secure; SameSite`, Anfragen fremder Seiten abweisen (`Sec-Fetch-Site` außer `same-origin`/`none`), bei
 Passwortwechsel ungültig machen, falsche Codes mit `ctx.remote.fail(ip)` zählen, Sitzungen mit `ctx.remote.dropSessions(s => …)`
 beenden.
+
+## 27. SDK 3.5: Dienst-Arten, Beiträge und ein Kern ohne Sonderfälle
+
+Hostwerk 3.2 und neuer (mit SDK 3.5). Nur Ergänzungen – alles aus SDK 3.0 läuft weiter. Seit 3.5 kennt Hostwerks Kern keine
+bestimmte Erweiterung mehr: Minecraft-Server, Spiele-Server, Passwörter, Router, Mailserver und alle anderen bringen alles selbst
+mit und hängen sich über die Schnittstellen unten in Hostwerks Bereiche. Für native Erweiterungen (Abschnitt 15).
+
+### Eine eigene Dienst-Art (`host.serviceKind`)
+
+Deine Dienste erscheinen wie Hostwerks eigene: Kachel und Kennzahl in der Übersicht, Suche, Punkte in der Seitenleiste,
+Starten/Stoppen, Dateien, geplante Aufgaben, Sicherungen, Umziehen, Spiegel, Zeitmaschine, Firewall-/Router-Ports,
+Melde-Schwellen, KI.
+
+```js
+host.serviceKind({
+  kind: 'game', label: { de: 'Spiele-Server', en: 'Game servers' }, one: { de: 'Spiele-Server', en: 'Game server' },
+  icon: 'gamepad-2', color: '#7c3aed', route: '/spiele', api: '/games',
+  list: () => games.list(), get: (id) => games.get(id), proc: (id) => ({ state: 'running' }),   // Pflicht
+  start: (id) => …, stop: (id) => …, restart: (id) => …,
+  detail: (eintrag) => 'Valheim · Docker',               // Zeile unter dem Namen
+  dir: (id) => ordner, fileRoot: (eintrag) => ({ path, docker }),   // Dateien
+  ports: (eintrag) => [{ port, label, proto: 'TCP' | 'UDP', public }],   // Firewall, Router, Prüfung von außen
+  iconSources: (id) => [{ file } | { url: 'https://…', color }],  // Bilder (nur https)
+  image: (eintrag) => 'repo/image:tag',                  // Docker-Image-Liste für andere Erweiterungen
+  tasks: { control: { type: 'game', label, fields, validate, clean, run(aktion, env) } },   // geplante Aufgaben
+  backups: { prefix, list(id), dir(id), create, restore, remove, probe },
+  copy: { folder, dir, dirFor, entry, add, place, isRunning, skip, clone, … },   // Umzug, Spiegel, Behalten, Klonen
+  headline: () => ({ icon, value, label, sub }), metrics: ['cpu', 'ram', 'players'], …
+});
+```
+
+Pflicht sind nur `kind`, `label`, `list()`, `get(id)` und `proc(id)` – alles andere fragt Hostwerk ab, bevor es es nutzt. In der
+Oberfläche bietet `@hostwerk/kit` `kindItems(overview, 'game')`, `allKindItems(overview)`, `kindDef`, `kindDefs`, `kindText`,
+`kindState` und `removeKindItem`; die Einträge stehen in `overview.kinds.<art>.items`. Eine Art, die früher zu Hostwerk gehörte, behält
+ihre alten Namen für andere Erweiterungen: `sdk: { kind: 'minecraft', base: '/mc/servers', overviewKey: 'minecraft', overview: () => [...] }` –
+`Hostwerk.services()` meldet sie als `kind: 'minecraft'`, `/overview` hat weiter das Feld `minecraft`.
+
+### Beiträge zu Hostwerks Bereichen (`host.contribute`)
+
+```js
+host.contribute('keeper', { checks: [{ label, run }], areas: [{ id, label, auto, text, url, detail, every, keys }], catalogs: [{ id, label, key, text }] });
+host.contribute('health', { run: () => [{ level, area, text, fix }] });          // Gesundheits-Check
+host.contribute('search', { run: (match, { cached }) => [{ type, label, hint, href }] });   // Inhaltssuche
+host.contribute('guide', { id, title, text, icon, run: (h) => [h.step(…)] });    // Ziel im Livegang-Lotsen
+host.contribute('audit', { ignore: [/…/], routes: [[/…/, (m, c, req) => ({ kind, target, action, undo })]], redact: (text) => text });
+host.contribute('icons', { kind, sources: (id) => [{ url, color }] });           // Bilder für Einträge einer eigenen Art
+host.contribute('connections', { id, kind: 'auto', hosts: [...], de: {...}, en: {...}, active: () => true });   // Datenschutz-Seite
+host.contribute('emergency', { preview: (en) => [...], close: async ({ en, step }) => stand, reopen: async (stand, { step }) => {} });
+host.contribute('releaseNotes', { sources: { paper: { label, link: (v) => url, fetch: (v, { json, text, decode, github }) => ({ items }) } } });
+host.contribute('terminal', { detect: (names, has) => ({ id, label, reason, first, recent: /…/, commands: [{ label, cmd, ps, win }] }) });
+host.contribute('advisor', { kind, label, start: /minecraft|…/i, open: { id, route }, what, rules: [[/…/i, 'wahl', 'Begründung']], values: (text) => ({}) });
+host.contribute('clickguard', { block: [/^\/meine-api\/install/] });           // Routen, die der Klick-Roboter nicht auslösen darf
+```
+
+`emergency`: Der Notfall-Knopf schließt, was deine Erweiterung nach außen geöffnet hat (`step(text, fn)` zählt es mit), und
+„Wiederherstellen“ öffnet genau das wieder – Hostwerk hebt deinen `stand` auf. `advisor`: „Was möchtest du machen?“ erkennt
+deine Art (`start`) und öffnet deinen Dialog (`open`, wie `openNew(id, route)`); `rules` wählen eine Option im Anlegen-Dialog.
+`terminal`: Schnellbefehle für Ordner deiner Art (`ps` = PowerShell, `win` = cmd, `cmd` = alles andere).
+
+### KI (`host.aiExtend`)
+
+`host.aiExtend({ tools({ add, S, L, find, clip }) {…}, groups, modes, assists, about, vocab, speak, context })` – eigene
+KI-Werkzeuge (gleiche Form und Risikoklassen wie Hostwerks eigene), Rollen, Helfer-Texte, Wörter für Spracherkennung und
+Aussprache.
+
+### Manifest
+
+| Feld | Bedeutung |
+|---|---|
+| `page.route` | Eigene Adresse, z. B. `"mc"` → `#/mc/…` (sonst `#/ext/<id>`). Hostwerks eigene Adressen sind vergeben. |
+| `page.nav` | `{ group, order, after, area }` – Platz in der Seitenleiste (Hostwerk führt keine Liste von Erweiterungen). |
+| `data` | `{ settings: [...], folders: [...] }` – was dir außer `host.dataDir` gehört; gelöscht nur mit „Restlos entfernen“. |
+| `keep` | `{ kind, label, settings, list, dir, folder, external, detail }` – „Hostwerk entfernen“ kann deine Dienste behalten, auch ohne laufendes Hostwerk. |
+| `liveEvents` | Ereignisse, nach denen die Oberfläche den Überblick nachlädt (z. B. `["mc"]`). |
+| `videos` / `videosRepo` | Eigene Erklärvideos; `videos-release/` wird nie mit eingepackt. |
+
+Außerdem neu: `host.dataDir` (eigener Datenordner, beim ersten Zugriff angelegt und mit „Restlos entfernen“ gelöscht),
+`host.get(pfad)` für native Erweiterungen (Hostwerks API lesen wie in der Sandbox), Projektvorlagen in
+`templates/projects/<id>/` und der Steckplatz `files.preview` (`{ id, title, match: RegExp, Component({ root, path }) }`) für
+eigene Dateiansichten (z. B. einen NBT-Baum). Fehlertexte deiner Routen übersetzt Hostwerk mit deiner `locales/de.json` – auch
+wenn eine andere Erweiterung sie weiterreicht. `import FileBrowser from '@hostwerk/files'` und `import Editor from
+'@hostwerk/editor'` gehen jetzt auch als Standard-Import.
+
+## 28. SDK 3.6: Animationen wie Hostwerk
+
+Hostwerk 3.1 und neuer (mit SDK 3.6). Nur Ergänzungen. Deine Erweiterung kann Hostwerks eigene Bewegung nutzen – die
+Lade-Linie, Kreisel, Einblendungen, den gezeichneten Haken, den leeren Zustand – und wirkt dadurch wie eine
+eingebaute Seite. Alles kommt aus einer Quelle (`ui/src/styles/motion.css` in Hostwerk); künftiger Feinschliff erreicht deine
+Erweiterung von selbst. Alles ruht, wenn das System oder Hostwerk *Animationen reduzieren* sagt (Einstellungen → Allgemein) –
+du musst nichts prüfen.
+
+### Klassen (Seiten im Rahmen und native Erweiterungen)
+
+| Klasse | Was sie tut |
+|---|---|
+| `hw-spinner` (`hw-sm`, `hw-lg`) | Kreisel in der Akzentfarbe |
+| `hw-dots` mit drei `<i>` | Hüpfende Punkte („denkt nach“, „tippt“) |
+| `hw-fade` · `hw-rise` · `hw-pop` · `hw-slide` | Erscheinen: einblenden, leicht aufsteigen, aufploppen, von links hereingleiten |
+| `hw-stagger` | Kinder steigen nacheinander auf (Listen, Kachelreihen) |
+| `hw-pulse` | Pulsierender Ring in der Textfarbe – z. B. an einem grünen Status-Punkt |
+| `hw-breathe` · `hw-float` · `hw-glow` | Ruhige Aufmerksamkeit: atmen, schweben, Akzent-Schein |
+| `hw-spin` | Dreht ein Symbol (z. B. „Aktualisieren“, solange es arbeitet) |
+| `hw-shake` · `hw-flash` | Einmalig: schütteln (falsche Eingabe), aufleuchten (Wert hat sich geändert) |
+| `hw-check` | Gezeichneter Haken (SVG mit `<circle>` und `<path>`) |
+
+Dauer und Kurve über `--hw-motion-fast`, `--hw-motion-base`, `--hw-motion-slow` und `--hw-ease` anpassbar.
+
+### Seiten im Rahmen (`Hostwerk.ui`)
+
+```js
+Hostwerk.render('#list', Hostwerk.ui.loader({ text: 'Server werden geladen …' }));   // Hostwerks Lade-Linie
+Hostwerk.html`<button class="btn">${Hostwerk.ui.spinner('sm')} Speichert</button>`;
+Hostwerk.ui.dots();                       // hüpfende Punkte
+Hostwerk.ui.check('lg');                  // gezeichneter Haken
+Hostwerk.ui.empty({ title: 'Noch keine Prüfungen', text: 'Füge deine erste Seite hinzu.', icon: Hostwerk.raw('<svg …>'), action: Hostwerk.html`<button class="btn primary">Hinzufügen</button>` });
+Hostwerk.ui.animate('#list', 'stagger');  // rise | fade | pop | slide | stagger | shake | flash – auch erneut
+Hostwerk.ui.countUp('#total', 1234);      // zählt vom letzten Wert hoch; format: (n) => …
+Hostwerk.ui.motionOk();                   // false bei „Animationen reduzieren“
+```
+
+`ui.loading()`, `ui.error()`, `ui.load()` und `ui.skeleton()` (Abschnitt 23) bleiben wie sie sind – Platzhalter-Zeilen für
+Listen, die Lade-Linie für Bereiche ohne bekannte Form.
+
+### Native Erweiterungen (`@hostwerk/ui`)
+
+```jsx
+import { Loading, Spinner, Dots, CheckMark, Reveal, CountUp, animate, motionOk } from '@hostwerk/ui';
+
+{loading ? <Loading inline text={t('Loading servers …')} /> : <Reveal kind="stagger" as="ul">{rows}</Reveal>}
+<Spinner size="sm" />  <Dots />  <CheckMark size="lg" />  <CountUp value={players} />
+animate(ref.current, 'shake');
+```
+
+`Loading` ohne `inline` füllt die ganze Fläche (wie eine Seite, die lädt); `Spinner` ohne `size` bleibt der bisherige Kreisel.
+
+## 29. SDK 3.7: „KI fragen“ – der Erklären-Knopf wie in Hostwerk
+
+Hostwerk 3.1 und neuer (mit SDK 3.7). Nur Ergänzungen. Hostwerk zeigt neben Fehlern, Protokollen und langen Texten einen
+kleinen Funken-Knopf – *Erklären*, *Zusammenfassen*, *Was ist das?*. Ein Klick öffnet das **Fenster „KI fragen“**: Es zeigt
+den Text, holt die kurze Antwort der KI (derselbe Weg wie überall in Hostwerk, `/api/ai/quick`) und bietet *Kopieren*, eine
+Rückfrage und *Im KI-Chat weiterfragen* (ein neuer Chat des KI-Helfers mit deinem Text und der ersten Antwort als Kontext).
+Geändert wird nichts. Deine Erweiterung bekommt denselben Knopf und dasselbe Fenster.
+
+**Nur solange die KI bereit ist.** Ist der KI-Helfer aus oder nicht eingerichtet, erscheint der Knopf nicht und das Fenster
+öffnet sich nicht – deine Seite muss nie eine fehlende KI erklären. Das Fenster nutzt die KI, die eingerichtet ist (lokal oder
+ein Online-Anbieter, mit den Datenschutz-Einstellungen); der Text wird auf 6000 Zeichen gekürzt, Passwörter werden vor dem
+Senden unkenntlich gemacht.
+
+### Native Erweiterungen (`@hostwerk/kit`)
+
+```jsx
+import { AiQuickButton, openAiExplain, useAiReady } from '@hostwerk/kit';
+
+// Neben einer Fehlerzeile – blendet sich selbst aus, solange die KI aus ist
+<AiQuickButton task="explain" text={job.error} context="Sicherungsauftrag meiner Erweiterung" label={t('Explain')} />
+
+// Text erst beim Klick lesen (z. B. die letzten 60 Protokollzeilen), Größe für Werkzeugleisten
+<AiQuickButton task="summarize" size="sm" text={() => lines.slice(-60).join('\n')} />
+
+// Ohne Knopf, z. B. aus einem Rechtsklick-Menü – false, wenn die KI nicht bereit ist
+if (!openAiExplain({ task: 'describe', text: file.content, label: t('What is this?') })) toast(t('The AI assistant is off.'));
+
+const aiReady = useAiReady(); // eigene KI-Stellen nur zeigen, solange true (außerhalb von Komponenten: aiReadyNow())
+```
+
+| Eigenschaft | Bedeutung |
+|---|---|
+| `task` | `explain` (Standard) · `summarize` · `describe` · `translate` – bestimmt die Anweisung an die KI und den Fenstertitel |
+| `text` | der Text, den die KI ansieht – Zeichenkette oder Funktion (einmal beim Öffnen gelesen). Ohne Text kein Knopf |
+| `context` | eine kurze Zeile, woher der Text kommt („Konsole eines Spieleservers“) – hilft der KI, höchstens 300 Zeichen |
+| `label` | Beschriftung; Standard *Erklären* / *Zusammenfassen* / *Beschreiben* / *Übersetzen* |
+| `size` | `xs` (Standard, Zeilen und Listen) · `sm` (Werkzeugleisten, Karten-Köpfe) · `''` (normale Höhe) |
+| `className` | zusätzliche Klassen, z. B. für Abstände |
+
+Die `Console` aus `@hostwerk/kit` hat den *Erklären*-Knopf schon in ihrer Werkzeugleiste.
+
+### Seiten im Rahmen (`Hostwerk.ai`)
+
+Braucht das Recht `use:ai` in der `manifest.json`. Das Fenster öffnet sich in Hostwerk (über deiner Seite) und nennt deine
+Erweiterung.
+
+```js
+const btn = document.querySelector('#explain');
+const show = (ready) => { btn.hidden = !ready; };
+show(await Hostwerk.ai.ready());                       // true, solange die KI an und bereit ist
+Hostwerk.on('ai', ({ ready }) => show(ready));         // später ein- oder ausgeschaltet
+btn.onclick = () => Hostwerk.ai.explain(errorText, { task: 'explain', context: 'Abgleich', label: 'Erklären' });
+```
+
+```html
+<button id="explain" class="btn xs btn-ai" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></svg>
+  Erklären
+</button>
+```
+
+`Hostwerk.ai.explain()` lehnt mit einer Meldung ab, wenn `use:ai` fehlt, der Text leer ist oder die KI nicht bereit ist.
+`check.js` warnt, wenn der Code `Hostwerk.ai.explain` ohne `use:ai` aufruft.
+
+### Aussehen des Knopfs (`btn-ai`)
+
+Überall gleich: eine Pille in der Akzentfarbe mit dem Funken links, hell und dunkel aus den Farb-Tokens, beim Darüberfahren
+dreht sich der Funke leicht (ruht bei „Animationen reduzieren“). `btn-ai` immer zusammen mit `btn` und einer Größe (`xs`,
+`sm`) – im Rahmen kommt die Klasse mit `/ext-sdk.css`. Regeln: ein KI-Knopf je Zeile oder Werkzeugleiste, die Beschriftung ist
+ein Verb (*Erklären*, nicht *KI*), und er fragt nur – er ändert nie etwas. Für Aktionen, die etwas ändern, einen normalen
+Knopf nehmen.

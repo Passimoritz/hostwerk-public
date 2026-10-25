@@ -185,7 +185,10 @@ async function fromCatalog() {
   const exts = dirs.length ? dirs.map((d) => ({ dir: d, official: true, manifest: JSON.parse(fs.readFileSync(path.join(d, 'manifest.json'), 'utf8')) })) : await fromCatalog();
   for (const e of exts) e.id = e.manifest.id;
   let puppeteer; try { puppeteer = require('puppeteer-core'); } catch { console.error('puppeteer-core missing (npm i puppeteer-core)'); process.exit(2); }
-  const chrome = process.env.CHROME_PATH || (process.platform === 'win32' ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : '/usr/bin/google-chrome');
+  // First browser that exists: Chrome, then Edge (both install places on Windows), Chromium on Linux
+  const chrome = process.env.CHROME_PATH || (process.platform === 'win32'
+    ? ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', 'C:/Program Files/Microsoft/Edge/Application/msedge.exe']
+    : ['/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser']).find((p) => fs.existsSync(p));
   const browser = await puppeteer.launch({ executablePath: chrome, headless: true, args: ['--no-sandbox'] });
   const srv = await serve(exts.filter((e) => !e.loadError));
   const base = `http://127.0.0.1:${srv.address().port}`;

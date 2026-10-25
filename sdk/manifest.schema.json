@@ -411,6 +411,95 @@
       },
       "description": "Up to 6 screenshots in the package (e.g. docs/screenshot-1.png), shown in the detail view (SDK 2.7)."
     },
+    "videos": {
+      "type": "string",
+      "pattern": "^[^/\\\\.][^\\\\]*\\.json$",
+      "description": "Explainer videos (SDK 3.5): list in the package, e.g. videos/index.json = [{ id, lang, title, seconds, section?, parent?, voice?, of? }]. Files: <id>.mp4 (and <id>.vtt) in the release \"videos\" of the repository (videosRepo or homepage) or next to the list. Shown with the play symbol next to the page title of the extension (section \"ext:<id>\" by default)."
+    },
+    "videosRepo": {
+      "type": "string",
+      "pattern": "^https://github\\.com/[\\w.-]+/[\\w.-]+/?$",
+      "description": "GitHub repository whose release \"videos\" holds the video files (SDK 3.5). Default: homepage."
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What belongs to this extension beyond host.dataDir (SDK 3.5) – deleted only when the user removes it with \"Remove completely\". Hostwerk's own settings and folders are never deleted.",
+      "properties": {
+        "settings": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{1,40}$"
+          },
+          "description": "Top-level settings sections, e.g. [\"minecraft\"]"
+        },
+        "folders": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "pattern": "^[\\w.-]+(/[\\w.-]+)*$"
+          },
+          "description": "Folders relative to Hostwerk's folder, e.g. [\"minecraft\", \"backups/minecraft\"]"
+        }
+      }
+    },
+    "keep": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Keep services of your service kind when Hostwerk is removed – also without a running Hostwerk (SDK 3.5). Entries come from your settings section, folders are copied next to the user folder.",
+      "required": [
+        "kind",
+        "settings",
+        "list",
+        "dir"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,15}$"
+        },
+        "label": {
+          "type": "object",
+          "properties": {
+            "de": {
+              "type": "string"
+            },
+            "en": {
+              "type": "string"
+            }
+          }
+        },
+        "settings": {
+          "type": "string",
+          "pattern": "^[\\w-]{1,40}$",
+          "description": "Your settings section, e.g. \"minecraft\""
+        },
+        "list": {
+          "type": "string",
+          "pattern": "^[\\w-]{1,40}$",
+          "description": "Array with the entries in it, e.g. \"servers\""
+        },
+        "dir": {
+          "type": "string",
+          "description": "Folder of an entry relative to Hostwerk's folder with {id}, e.g. \"minecraft/{id}\""
+        },
+        "folder": {
+          "type": "string",
+          "description": "Folder name in the keep folder (default: kind)"
+        },
+        "external": {
+          "type": "string",
+          "description": "Field of an entry with its own folder outside Hostwerk (stays where it is)"
+        },
+        "detail": {
+          "type": "string",
+          "description": "Line in the dialog with {field} placeholders, e.g. \"Minecraft {type} {version}\""
+        }
+      }
+    },
     "requires": {
       "type": "object",
       "description": "Other extensions this one needs, with a version range (SDK 2.7). Hostwerk installs them first and warns before removing one that others need.",
@@ -1567,6 +1656,15 @@
           ]
         }
       }
+    },
+    "liveEvents": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]{1,40}$"
+      },
+      "description": "Event types this extension broadcasts (host.broadcast) after which Hostwerk reloads open views and the overview (SDK 3.5)."
     }
   }
 }

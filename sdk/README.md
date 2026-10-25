@@ -12,7 +12,9 @@ HTML/JavaScript and two text files – no build step, no framework required.
 
 Extensions **cannot break Hostwerk's design**: the SDK brings Hostwerk's design kit and passes the current colours,
 light/dark mode, font and language into the page at runtime. Use the `hw-*` classes and `var(--hw-…)` colours – the
-check warns about hard-coded colours and fonts.
+check warns about hard-coded colours and fonts. **Hostwerk's animations are yours too** (since SDK 3.6): loading line,
+spinners, entrances, pulse, drawn checkmark and counting numbers – as classes, `Hostwerk.ui.*` helpers and `@hostwerk/ui`
+components ([section 28](#28-sdk-36-animations-like-hostwerk)).
 
 ![How an extension runs](img/architecture.svg)
 
@@ -48,6 +50,9 @@ check warns about hard-coded colours and fonts.
 24. [SDK 3.2: without an own sidebar entry](#24-sdk-32-without-an-own-sidebar-entry)
 25. [SDK 3.3: stable services instead of core internals, traces and an uninstall hook](#25-sdk-33-stable-services-instead-of-core-internals-traces-and-an-uninstall-hook)
 26. [SDK 3.4: screens of their own and device sign-in](#26-sdk-34-screens-of-their-own-and-device-sign-in)
+27. [SDK 3.5: service kinds, contributions and a core without special cases](#27-sdk-35-service-kinds-contributions-and-a-core-without-special-cases)
+28. [SDK 3.6: animations like Hostwerk](#28-sdk-36-animations-like-hostwerk)
+29. [SDK 3.7: “Ask AI” – the Explain button like Hostwerk](#29-sdk-37-ask-ai--the-explain-button-like-hostwerk)
 
 ![From idea to the marketplace](img/lifecycle.svg)
 
@@ -240,6 +245,7 @@ Hostwerk.toast('Done', { kind: 'success' });
 Hostwerk.navigate('/mc/my-server');  // open a Hostwerk area
 Hostwerk.openUrl('https://…');       // opens in the browser after asking (also obsidian:// since SDK 2.3)
 Hostwerk.copy(text);                 // copies to the clipboard (SDK 2.1)
+Hostwerk.ai.explain(text);           // Hostwerk's Ask AI window – permission use:ai, only while the AI is ready (SDK 3.7, section 29)
 Hostwerk.get('/system/health');      // raw read access (checked against permissions)
 ```
 
@@ -260,7 +266,8 @@ directly with the content.
 | Controls | `btn` (+ `primary`, `ghost`, `danger`, `sm`, `xs`), `input`, `select`, `label`, `seg` (segment buttons), `switch` (`<label class="switch"><input type="checkbox"><span class="track"></span><span class="thumb"></span></label>`) |
 | State | `badge` (+ `ok`, `warn`, `err`, `accent`), `callout` (+ `ok`/`warn`/`err`) with `callout-body`, `callout-title`, `progress` |
 | Lists | `table`, `list-item`, `setting-row` (with `txt`) |
-| Empty / loading | `empty` (+ `h3`, `p`, `empty-action`), `hw-skeleton`, `spinner` |
+| Empty / loading | `empty` (+ `h3`, `p`, `empty-action`), `hw-skeleton`, `spinner`, `hw-spinner`, `hw-dots`, `hw-loading` (via `Hostwerk.ui.loader()`) |
+| Motion (SDK 3.6) | `hw-fade`, `hw-rise`, `hw-pop`, `hw-slide`, `hw-stagger`, `hw-pulse`, `hw-breathe`, `hw-float`, `hw-spin`, `hw-shake`, `hw-glow`, `hw-flash`, `hw-check` – they stop by themselves with “Reduce animations”, see [section 28](#28-sdk-36-animations-like-hostwerk) |
 
 Colours: `--bg`, `--surface`, `--surface-2`, `--line`, `--line-2`, `--text`, `--text-2`, `--muted`, `--accent`,
 `--accent-soft`, `--accent-text`, `--ok`, `--warn`, `--err`, `--mono`. The older `hw-…` classes and `--hw-…`
@@ -312,6 +319,10 @@ Extensions follow the same rule book as Hostwerk itself:
 - **Core building blocks instead of home-made ones**: cards `card`/`card-head`/`card-body`, key figures `card stat`
   (`v text` for text values, `of` for “/ total”), state `<StatusPill>`/`badge ok|warn|err`, empty `<Empty>`/`<TileEmpty>`,
   loading `<Loading>`/`hw-skeleton`, confirming `confirmDialog` – never `window.confirm`, no own spinners.
+- **Hostwerk's motion instead of own keyframes** (SDK 3.6): spinners, dots, entrances, pulse, checkmark and counting
+  numbers come from Hostwerk – `hw-*` classes, `Hostwerk.ui.loader/animate/countUp …`, `<Dots>`, `<Reveal>`, `<CountUp>`
+  ([section 28](#28-sdk-36-animations-like-hostwerk)). They look like Hostwerk and respect “Reduce animations”. Animate once (first paint, a
+  change), never on every refresh.
 - **Page head** (native pages only – framed pages get it from Hostwerk): icon + title, **one** sentence as `<p>`,
   actions on the right; longer explanations as ⓘ.
 - **Buttons**: one `primary` action per area, rightmost; “Cancel” to the left of it. A button that first opens a dialog
@@ -1051,6 +1062,7 @@ Hostwerk.html`<div>${Hostwerk.ui.skeleton(3)}</div>`; // just the placeholder ro
 ```
 
 Texts come in German and English; your own via the keys `hw.loading`, `hw.loadError`, `hw.retry` in `locales/*.json`.
+For areas without a known shape use Hostwerk's loading line `Hostwerk.ui.loader({ text })`; more motion in [section 28](#28-sdk-36-animations-like-hostwerk).
 `Hostwerk.ui.loading` does not count as *loaded*; `error` and every other `render` do.
 
 **More robust connection:** the SDK repeats its hello until Hostwerk answers and keeps calls made before that (e.g.
@@ -1235,3 +1247,202 @@ of the account **at that moment** – never one stored on the device. Check with
 Rules for your own credential (the checker cannot see them, the catalogue review does): store only hashes of secrets, cookie
 `HttpOnly; Secure; SameSite`, refuse requests another site started (`Sec-Fetch-Site` other than `same-origin`/`none`), invalidate
 on a password change, count wrong codes with `ctx.remote.fail(ip)`, end sessions with `ctx.remote.dropSessions(s => …)`.
+
+## 27. SDK 3.5: service kinds, contributions and a core without special cases
+
+Hostwerk 3.2 and newer (with SDK 3.5). Only additions – everything from SDK 3.0 keeps working. Since 3.5 Hostwerk's core knows
+no particular extension: Minecraft servers, game servers, passwords, router, mail server and all others bring everything
+themselves and plug into Hostwerk's areas through the interfaces below. For native extensions (section 15).
+
+### A service kind of your own (`host.serviceKind`)
+
+Your services appear like Hostwerk's own ones: overview tile and headline figure, search, sidebar dots, start/stop, files,
+scheduled tasks, backups, moving to another computer, mirror, time machine, firewall/router ports, alert thresholds, AI.
+
+```js
+host.serviceKind({
+  kind: 'game', label: { de: 'Spiele-Server', en: 'Game servers' }, one: { de: 'Spiele-Server', en: 'Game server' },
+  icon: 'gamepad-2', color: '#7c3aed', route: '/spiele', api: '/games',
+  list: () => games.list(), get: (id) => games.get(id), proc: (id) => ({ state: 'running' }),   // required
+  start: (id) => …, stop: (id) => …, restart: (id) => …,
+  detail: (entry) => 'Valheim · Docker',                 // line under the name
+  dir: (id) => folder, fileRoot: (entry) => ({ path, docker }),   // Files
+  ports: (entry) => [{ port, label, proto: 'TCP' | 'UDP', public }],   // firewall, router, outside check
+  iconSources: (id) => [{ file } | { url: 'https://…', color }],  // images (https only)
+  image: (entry) => 'repo/image:tag',                    // Docker image list for other extensions
+  tasks: { control: { type: 'game', label, fields, validate, clean, run(action, env) } },   // scheduled tasks
+  backups: { prefix, list(id), dir(id), create, restore, remove, probe },
+  copy: { folder, dir, dirFor, entry, add, place, isRunning, skip, clone, … },   // move, mirror, keep, clone
+  headline: () => ({ icon, value, label, sub }), metrics: ['cpu', 'ram', 'players'], …
+});
+```
+
+Only `kind`, `label`, `list()`, `get(id)` and `proc(id)` are required – Hostwerk asks for everything else before it uses it.
+In the interface `@hostwerk/kit` offers `kindItems(overview, 'game')`, `allKindItems(overview)`, `kindDef`, `kindDefs`,
+`kindText`, `kindState` and `removeKindItem`; the entries are in `overview.kinds.<kind>.items`. A kind that used to be part of Hostwerk keeps its
+old names for other extensions: `sdk: { kind: 'minecraft', base: '/mc/servers', overviewKey: 'minecraft', overview: () => [...] }` –
+`Hostwerk.services()` reports it as `kind: 'minecraft'`, `/overview` still has the field `minecraft`.
+
+### Contributions to Hostwerk's areas (`host.contribute`)
+
+```js
+host.contribute('keeper', { checks: [{ label, run }], areas: [{ id, label, auto, text, url, detail, every, keys }], catalogs: [{ id, label, key, text }] });
+host.contribute('health', { run: () => [{ level, area, text, fix }] });          // health check
+host.contribute('search', { run: (match, { cached }) => [{ type, label, hint, href }] });   // content search
+host.contribute('guide', { id, title, text, icon, run: (h) => [h.step(…)] });    // go-live guide goal
+host.contribute('audit', { ignore: [/…/], routes: [[/…/, (m, c, req) => ({ kind, target, action, undo })]], redact: (text) => text });
+host.contribute('icons', { kind, sources: (id) => [{ url, color }] });           // images for entries of your own kind
+host.contribute('connections', { id, kind: 'auto', hosts: [...], de: {...}, en: {...}, active: () => true });   // privacy page
+host.contribute('emergency', { preview: (en) => [...], close: async ({ en, step }) => saved, reopen: async (saved, { step }) => {} });
+host.contribute('releaseNotes', { sources: { paper: { label, link: (v) => url, fetch: (v, { json, text, decode, github }) => ({ items }) } } });
+host.contribute('terminal', { detect: (names, has) => ({ id, label, reason, first, recent: /…/, commands: [{ label, cmd, ps, win }] }) });
+host.contribute('advisor', { kind, label, start: /minecraft|…/i, open: { id, route }, what, rules: [[/…/i, 'choice', 'reason']], values: (text) => ({}) });
+host.contribute('clickguard', { block: [/^\/my-api\/install/] });              // routes the UI click robot must not trigger
+```
+
+`emergency`: the emergency button closes what your extension opened to the outside (`step(label, fn)` counts it) and “Restore”
+opens exactly that again – Hostwerk keeps your `saved` value. `advisor`: “What do you want to do?” recognises your kind
+(`start`) and opens your dialog (`open`, like `openNew(id, route)`); `rules` pick an option in your create dialog. `terminal`:
+quick commands for folders of your kind (`ps` = PowerShell, `win` = cmd, `cmd` = everything else).
+
+### AI (`host.aiExtend`)
+
+`host.aiExtend({ tools({ add, S, L, find, clip }) {…}, groups, modes, assists, about, vocab, speak, context })` – your own AI
+tools (same form and risk classes as Hostwerk's), roles, helper texts, words for speech recognition and pronunciation.
+
+### Manifest
+
+| Field | Meaning |
+|---|---|
+| `page.route` | Your own address, e.g. `"mc"` → `#/mc/…` (otherwise `#/ext/<id>`). Hostwerk's own routes are reserved. |
+| `page.nav` | `{ group, order, after, area }` – place in the sidebar (Hostwerk keeps no list of extensions). |
+| `data` | `{ settings: [...], folders: [...] }` – what belongs to you beyond `host.dataDir`; deleted only with “Remove completely”. |
+| `keep` | `{ kind, label, settings, list, dir, folder, external, detail }` – lets “Remove Hostwerk” keep your services even without a running Hostwerk. |
+| `liveEvents` | Events after which the interface reloads the overview (e.g. `["mc"]`). |
+| `videos` / `videosRepo` | Explainer videos of your own; `videos-release/` is never packed. |
+
+Also new: `host.dataDir` (your own data folder, created on first use and removed with “Remove completely”), `host.get(path)`
+for native extensions (read Hostwerk's API like in the sandbox), project templates in `templates/projects/<id>/` and the slot
+`files.preview` (`{ id, title, match: RegExp, Component({ root, path }) }`) for file views of your own (e.g. an NBT tree).
+Error texts from your routes are translated with your `locales/de.json` – also when another extension passes them on.
+`import FileBrowser from '@hostwerk/files'` and `import Editor from '@hostwerk/editor'` now work as default imports, too.
+
+## 28. SDK 3.6: animations like Hostwerk
+
+Hostwerk 3.1 and newer (with SDK 3.6). Only additions. Your extension can use Hostwerk's own motion – the loading line,
+spinners, entrances, the drawn checkmark, the empty state – so it feels like a built-in page. Everything comes from
+one source (`ui/src/styles/motion.css` in Hostwerk), so future polish reaches your extension by itself. All of it stops when
+the system or Hostwerk says *Reduce animations* (Settings → General) – you don't have to check anything.
+
+### Classes (pages in the frame and native extensions)
+
+| Class | What it does |
+|---|---|
+| `hw-spinner` (`hw-sm`, `hw-lg`) | Spinner in the accent colour |
+| `hw-dots` with three `<i>` | Bouncing dots (“thinking”, “typing”) |
+| `hw-fade` · `hw-rise` · `hw-pop` · `hw-slide` | Entrance: fade, rise a little, pop in, slide in from the left |
+| `hw-stagger` | Children rise one after another (lists, rows of tiles) |
+| `hw-pulse` | Pulsing ring in the text colour – e.g. on a green status dot |
+| `hw-breathe` · `hw-float` · `hw-glow` | Calm attention: fade in and out, float, accent glow |
+| `hw-spin` | Turns an icon (e.g. the refresh icon while it works) |
+| `hw-shake` · `hw-flash` | Once: shake (wrong input), highlight (a value changed) |
+| `hw-check` | Drawn checkmark (SVG with `<circle>` and `<path>`) |
+
+Durations can be adjusted with `--hw-motion-fast`, `--hw-motion-base`, `--hw-motion-slow` and `--hw-ease`.
+
+### Pages in the frame (`Hostwerk.ui`)
+
+```js
+Hostwerk.render('#list', Hostwerk.ui.loader({ text: 'Loading servers …' }));   // Hostwerk's loading line
+Hostwerk.html`<button class="btn">${Hostwerk.ui.spinner('sm')} Saving</button>`;
+Hostwerk.ui.dots();                       // bouncing dots
+Hostwerk.ui.check('lg');                  // drawn checkmark
+Hostwerk.ui.empty({ title: 'No checks yet', text: 'Add your first site.', icon: Hostwerk.raw('<svg …>'), action: Hostwerk.html`<button class="btn primary">Add</button>` });
+Hostwerk.ui.animate('#list', 'stagger');  // rise | fade | pop | slide | stagger | shake | flash – also again
+Hostwerk.ui.countUp('#total', 1234);      // counts from the last value; format: (n) => …
+Hostwerk.ui.motionOk();                   // false with “Reduce animations”
+```
+
+`ui.loading()`, `ui.error()`, `ui.load()` and `ui.skeleton()` (section 23) stay as they are – skeleton rows for lists, the
+loading line for areas without a known shape.
+
+### Native extensions (`@hostwerk/ui`)
+
+```jsx
+import { Loading, Spinner, Dots, CheckMark, Reveal, CountUp, animate, motionOk } from '@hostwerk/ui';
+
+{loading ? <Loading inline text={t('Loading servers …')} /> : <Reveal kind="stagger" as="ul">{rows}</Reveal>}
+<Spinner size="sm" />  <Dots />  <CheckMark size="lg" />  <CountUp value={players} />
+animate(ref.current, 'shake');
+```
+
+`Loading` without `inline` fills the whole area (like a page that loads); `Spinner` without `size` stays the old spinner.
+
+## 29. SDK 3.7: “Ask AI” – the Explain button like Hostwerk
+
+Hostwerk 3.1 and newer (with SDK 3.7). Only additions. Hostwerk shows a small sparkle button next to errors, logs and long
+texts – *Explain*, *Summarise*, *What is this?*. A click opens the **Ask AI window**: it shows the text, fetches the AI's short
+answer (the same path as everywhere in Hostwerk, `/api/ai/quick`), and offers *Copy*, a follow-up question and *Continue in
+the AI chat* (a new chat of the AI assistant with your text and the first answer as context). Nothing is changed.
+Your extension gets the same button and the same window.
+
+**Only while the AI is ready.** If the AI assistant is switched off or not set up, the button is not shown and the window
+does not open – your page never has to explain a missing AI. The window works with the AI the person set up (local or an
+online provider, with their privacy settings); text is cut to 6000 characters and passwords are blanked out before it is sent.
+
+### Native extensions (`@hostwerk/kit`)
+
+```jsx
+import { AiQuickButton, openAiExplain, useAiReady } from '@hostwerk/kit';
+
+// Next to an error line – hidden by itself while the AI is off
+<AiQuickButton task="explain" text={job.error} context="Backup job of my extension" label={t('Explain')} />
+
+// Text only read on click (e.g. the last 60 log lines), toolbar size
+<AiQuickButton task="summarize" size="sm" text={() => lines.slice(-60).join('\n')} />
+
+// Without a button, e.g. from a context menu – false when the AI is not ready
+if (!openAiExplain({ task: 'describe', text: file.content, label: t('What is this?') })) toast(t('The AI assistant is off.'));
+
+const aiReady = useAiReady(); // your own AI places: show them only while true (aiReadyNow() outside components)
+```
+
+| Prop | Meaning |
+|---|---|
+| `task` | `explain` (default) · `summarize` · `describe` · `translate` – decides the AI's instruction and the window title |
+| `text` | the text the AI looks at – a string or a function (read once when the window opens). Without text there is no button |
+| `context` | one short line about where the text comes from (“Console of a game server”) – helps the AI, at most 300 characters |
+| `label` | button text; default *Explain* / *Summarise* / *Describe* / *Translate* |
+| `size` | `xs` (default, rows and lists) · `sm` (toolbars, card heads) · `''` (normal height) |
+| `className` | extra classes, e.g. for spacing |
+
+The `Console` from `@hostwerk/kit` already has the *Explain* button in its toolbar.
+
+### Pages in the frame (`Hostwerk.ai`)
+
+Needs the permission `use:ai` in `manifest.json`. The window opens in Hostwerk (above your page) and names your extension.
+
+```js
+const btn = document.querySelector('#explain');
+const show = (ready) => { btn.hidden = !ready; };
+show(await Hostwerk.ai.ready());                       // true while the AI is on and ready
+Hostwerk.on('ai', ({ ready }) => show(ready));         // switched on/off later
+btn.onclick = () => Hostwerk.ai.explain(errorText, { task: 'explain', context: 'Sync job', label: 'Explain' });
+```
+
+```html
+<button id="explain" class="btn xs btn-ai" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></svg>
+  Explain
+</button>
+```
+
+`Hostwerk.ai.explain()` rejects with a message when `use:ai` is missing, the text is empty or the AI is not ready.
+`check.js` warns when the code calls `Hostwerk.ai.explain` without `use:ai`.
+
+### The button's look (`btn-ai`)
+
+One look everywhere: a pill in the accent colour with the sparkle icon on the left, light and dark from the theme tokens, a
+small turn of the sparkle on hover (still with *Reduce animations*). Use `btn-ai` together with `btn` and a size (`xs`, `sm`)
+– in the frame it comes with `/ext-sdk.css`. Rules: one AI button per row or toolbar, the label is a verb (*Explain*, not
+*AI*), and it only ever asks – it never changes anything. For actions that change something, use a normal button.

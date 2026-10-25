@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '3.4.0';
+const SDK_VERSION = '3.7.0';
 /*
  * Stabilitätsversprechen (SDK 3.0, Anleitung Abschnitt 18 „Stabilität und Abkündigungen“):
  *  - SemVer: Alles, was SDK 3.0 dokumentiert (window.Hostwerk, Manifest-Felder, Rechte, contributes), läuft mit jeder
@@ -339,7 +339,7 @@ const SDK_MEMBERS = {
   fmt: ['bytes', 'duration', 'number', 'time'], get: null, post: null, put: null, del: null, pickFolder: null, services: null, service: null, tab: null, setTab: null, context: null,
   minecraft: ['servers', 'players', 'stats', 'command'], storage: ['get', 'set', 'remove', 'all'], settings: ['get', 'open'],
   on: null, toast: null, navigate: null, openUrl: null, copy: null, saveFile: null /* SDK 3.2 */, terminal: null, backend: null,
-  loaded: null, holdLoaded: null, ui: ['loading', 'error', 'load', 'skeleton'], // SDK 3.2: Laden
+  loaded: null, holdLoaded: null, ui: ['loading', 'error', 'load', 'skeleton', 'loader', 'spinner', 'dots', 'check', 'empty', 'animate', 'countUp', 'motionOk'], // SDK 3.2: Laden; 3.6: Animationen
 };
 /** Tastenkürzel wie in der Oberfläche (ui/src/shortcutKeys.mjs): "Strg+Shift+K" → "ctrl+shift+k", sonst null. */
 const SHORTCUT_MODS = ['ctrl', 'alt', 'shift', 'meta'];
@@ -561,7 +561,7 @@ const text = (v, lang) => (v && typeof v === 'object' ? v[lang] || v.en || v.de 
 function walk(dir, base = dir) {
   let out = [];
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (['node_modules', '.git', '.github'].includes(e.name)) continue;
+    if (['node_modules', '.git', '.github', 'videos-release'].includes(e.name)) continue;
     if (e.isSymbolicLink()) continue; // Verknüpfungen nie folgen (meldet checkPackage als Fehler „links“)
     const p = path.join(dir, e.name);
     if (e.isDirectory()) out = out.concat(walk(p, base)); else out.push(path.relative(base, p).replace(/\\/g, '/'));
@@ -573,7 +573,7 @@ function linksIn(dir, base = dir, out = []) {
   let list = [];
   try { list = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
   for (const e of list) {
-    if (['node_modules', '.git'].includes(e.name)) continue;
+    if (['node_modules', '.git', 'videos-release'].includes(e.name)) continue;
     const p = path.join(dir, e.name);
     if (e.isSymbolicLink()) out.push(path.relative(base, p).replace(/\\/g, '/'));
     else if (e.isDirectory() && out.length < 50) linksIn(p, base, out);
@@ -683,7 +683,8 @@ const UI_HINTS = [
   { id: 'icon-size', kind: ['code'], msg: 'small icon off the scale – 12/13/14/16 next to text (like the font size), 18 in card heads, 22 in the page head.',
     find: (s) => (/lucide-react/.test(s) ? all(/\bsize=\{(\d+)\}/g, s).filter((x) => { const n = Number(/\d+/.exec(x.s)[0]); return n < 20 && !ICON_SIZES.has(n); }) : []) },
   { id: 'own-spinner', kind: ['code', 'css'], msg: 'own spinner – use <Loading>, <Spinner> or the busy state of <Btn> (spins by itself while the click runs).',
-    find: (s) => all(/@keyframes\s+[\w-]*spin\b|className=["'][^"']*\bspinner\b(?![^"']*\bsm\b)/g, s) },
+    // hw-spin ist Hostwerks eigene Dreh-Animation (ui/src/styles/motion.css, SDK 3.6) – kein eigener Kreisel
+    find: (s) => all(/@keyframes\s+(?!hw-spin\b)[\w-]*spin\b|className=["'][^"']*\bspinner\b(?![^"']*\bsm\b)/g, s) },
   { id: 'css-scale', kind: ['css'], msg: 'font size/rounding in px – use a step of the scale: var(--fs-…), var(--r-…).',
     find: (s) => all(/^(?!\s*--)[^\n]*?\b(font-size|border-radius):\s*[0-9.]+px\s*[;}!]/gm, s, (m) => `${m[1]}: …px`) },
   // Weiß auf einer farbigen Kachel (wie .svc-icon) bleibt in beiden Designs richtig – das ist kein Fund
@@ -764,6 +765,51 @@ function checkPackage(dir, { strict = false } = {}) {
     if (!Array.isArray(m.screenshots) || m.screenshots.length > 6) err('screenshots', '"screenshots" must be a list of up to 6 image files.');
     else for (const s of m.screenshots) if (typeof s !== 'string' || !/\.(png|webp|jpe?g|svg)$/i.test(s) || /\.\.|^\/|\\/.test(s) || !fs.existsSync(path.join(dir, s))) err('screenshots', `Screenshot missing or not an image: ${s}`);
   }
+  // ---------- SDK 3.5: explainer videos (list in the package, files in the release "videos" or next to the list) ----------
+  if (m.videos !== undefined) {
+    let list = null;
+    if (typeof m.videos !== 'string' || !/\.json$/i.test(m.videos) || /\.\.|^\/|\\/.test(m.videos) || !fs.existsSync(path.join(dir, m.videos))) err('videos', `"videos" points to a missing list: ${m.videos} (e.g. "videos/index.json").`);
+    else { try { list = JSON.parse(fs.readFileSync(path.join(dir, m.videos), 'utf8')); } catch { err('videos', `${m.videos} is not valid JSON.`); } }
+    if (list && !Array.isArray(list)) err('videos', `${m.videos} must be a list: [{ "id", "lang", "title", "seconds" }].`);
+    else if (list) {
+      for (const v of list) {
+        if (!v || !/^[a-z0-9][a-z0-9-]{1,40}$/.test(v.id || '')) { err('videos', `Video id "${v && v.id}" – only a–z, 0–9 and -, 2–41 characters.`); continue; }
+        if (typeof v.title !== 'string' || !v.title.trim()) err('videos', `Video "${v.id}" needs a "title".`);
+        if (v.lang !== undefined && !['de', 'en'].includes(v.lang)) err('videos', `Video "${v.id}": "lang" is "de" or "en".`);
+        if (v.seconds !== undefined && !(Number(v.seconds) > 0)) err('videos', `Video "${v.id}": "seconds" must be a positive number.`);
+        if (v.of !== undefined && !list.some((x) => x && x.id === v.of)) err('videos', `Video "${v.id}": "of" names a video that is not in the list.`);
+      }
+      const repo = m.videosRepo || m.homepage || '';
+      if (!/github\.com\/[\w.-]+\/[\w.-]+/.test(repo) && !list.every((v) => v && fs.existsSync(path.join(dir, path.dirname(m.videos), `${v.id}.mp4`)))) warn('videos', 'Videos are loaded from the release "videos" of your GitHub repository ("videosRepo" or "homepage") – neither is set and not every video is in the package.');
+    }
+  }
+  // Daten für „Restlos entfernen“ (SDK 3.5): nur eigene Bereiche, nie Hostwerks
+  if (m.data !== undefined) {
+    const CORE_DIRS = ['bin', 'config', 'data', 'logs', 'run', 'cache', 'backups', 'htdocs', 'extensions', 'updates', 'webordner', 'projekte'];
+    const INTERNAL = ['bin', 'config', 'extensions', 'run', 'updates'];
+    const CORE_KEYS = ['general', 'live', 'ai', 'mail', 'php', 'deploy', 'databases', 'web', 'docker', 'db', 'apps', 'transfer', 'tasks', 'backups', 'apache', 'mariadb', 'extSettings', 'extOverrides', 'extRemoved', 'inventory'];
+    if (!m.data || typeof m.data !== 'object' || Array.isArray(m.data)) err('data', '"data" must be an object: { "settings": [...], "folders": [...] }.');
+    else {
+      for (const k of m.data.settings || []) if (typeof k !== 'string' || !/^[a-zA-Z][a-zA-Z0-9_-]{1,40}$/.test(k) || CORE_KEYS.includes(k)) err('data', `data.settings: "${k}" is not allowed – only your own settings section (Hostwerk's own are never deleted).`);
+      for (const f of m.data.folders || []) {
+        const p = String(f).replace(/\\/g, '/');
+        const parts = p.split('/');
+        if (!/^[\w.-]+(\/[\w.-]+)*$/.test(p) || p.includes('..') || INTERNAL.includes(parts[0]) || (parts.length === 1 && CORE_DIRS.includes(parts[0]))) err('data', `data.folders: "${f}" is not allowed – a folder of your own below Hostwerk's folder, e.g. "minecraft" or "backups/minecraft".`);
+      }
+    }
+  }
+  // SDK 3.5: Dienste beim Entfernen von Hostwerk behalten, auch ohne laufendes Hostwerk (core/installer.js)
+  if (m.keep !== undefined) {
+    const k = m.keep || {};
+    if (typeof k !== 'object' || Array.isArray(k)) err('keep', '"keep" must be an object: { kind, label, settings, list, dir, folder?, external?, detail? }.');
+    else {
+      if (!/^[a-z][a-z0-9-]{0,15}$/.test(k.kind || '')) err('keep', 'keep.kind: the id of your service kind (a–z, 0–9, -).');
+      if (!/^[\w-]{1,40}$/.test(k.settings || '') || !/^[\w-]{1,40}$/.test(k.list || '')) err('keep', 'keep.settings / keep.list: your settings section and the array with the entries (e.g. "minecraft" / "servers").');
+      const d = String(k.dir || '');
+      if (!/^[\w./{}-]{1,120}$/.test(d) || d.includes('..') || d.startsWith('/') || !d.includes('{id}')) err('keep', 'keep.dir: folder of an entry relative to Hostwerk\'s folder with {id}, e.g. "minecraft/{id}".');
+    }
+  }
+  if (m.videosRepo !== undefined && !/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/?$/.test(String(m.videosRepo))) err('videosRepo', '"videosRepo" must be a GitHub repository address (https://github.com/owner/repo).');
   if (m.requires !== undefined) {
     if (!m.requires || typeof m.requires !== 'object' || Array.isArray(m.requires)) err('requires', '"requires" must be an object: { "other-extension": ">=1.0.0" }.');
     else for (const [dep, range] of Object.entries(m.requires)) {
@@ -1077,7 +1123,7 @@ function checkPackage(dir, { strict = false } = {}) {
   // (People then see a warning "… wanted to access … and was declined" – e.g. Hostwerk.storage without "storage".)
   if (!m.backend) {
     const src = walk(dir).filter((f) => /\.(html?|js|mjs|jsx)$/i.test(f) && !/^(tests|scripts|docs|node_modules)\//.test(f) && !/(^|\/)ui\/index\.js$/.test(f)).map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n');
-    const NEEDS = { storage: /Hostwerk\.storage\.(get|set|remove|all)\s*\(/, 'run:terminal': /Hostwerk\.terminal\s*\(/, 'command:minecraft': /Hostwerk\.minecraft\.command\s*\(/, 'control:services': /Hostwerk\.service\s*\(/ };
+    const NEEDS = { storage: /Hostwerk\.storage\.(get|set|remove|all)\s*\(/, 'run:terminal': /Hostwerk\.terminal\s*\(/, 'command:minecraft': /Hostwerk\.minecraft\.command\s*\(/, 'control:services': /Hostwerk\.service\s*\(/, 'use:ai': /Hostwerk\.ai\.explain\s*\(/ };
     const have = new Set(scopes(perms)); // alte Sammelrechte (z. B. „write“) zählen mit
     const code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1'); // Beispiele in Kommentaren zählen nicht
     const missing = Object.entries(NEEDS).filter(([p, re]) => !have.has(p) && re.test(code)).map(([p]) => p);

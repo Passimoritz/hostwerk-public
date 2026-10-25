@@ -38,7 +38,7 @@ Hostwerk itself is developed in a private repository. This public one holds what
 | **Releases** | Installers and app updates (mirrored from the main project) and the explainer videos (release `videos`). |
 | [`catalog/`](catalog) | AI model catalogue, project templates, advisor rules, password-manager catalogue and the extension catalogues: `extensions.json` (official, built daily from the extension repositories), `community.json`, `verified.json`. |
 | [`docs/`](docs) | **[Extensions explained](docs/extensions.md)** – what each permission allows, how Hostwerk sandboxes extensions, where they show up, synergies and templates (with pictures). |
-| [`sdk/`](sdk) | **Extension SDK 2.8** – `hostwerk-sdk.js`, design kit, manifest schema, `check.js`, `build-native.js` and the [developer guide](sdk/README.md). |
+| [`sdk/`](sdk) | **Extension SDK 3.6** – `hostwerk-sdk.js`, design kit with Hostwerk's animations, manifest schema, `check.js`, `build-native.js` and the [developer guide](sdk/README.md). |
 | [`packages/`](packages) | Checked copies of community extensions (pinned by SHA-256). |
 | `katalog/` | Old file names for Hostwerk versions before 2.9 – kept up to date automatically. |
 
@@ -134,6 +134,10 @@ and getting verified – is in the **[developer guide](sdk/README.md)** ([Deutsc
 ![How an extension runs](sdk/img/architecture.svg)
 
 Quick start: [hostwerk-ext-template](https://github.com/Passimoritz/hostwerk-ext-template) → *Use this template*.
+
+Your extension looks and moves like Hostwerk: the design kit brings Hostwerk's classes and colours, and since SDK 3.6
+also its animations – loading line, spinners, entrances, pulse, checkmark and counting numbers, all of them respecting
+“Reduce animations” ([guide, section 28](sdk/README.md#28-sdk-36-animations-like-hostwerk)).
 
 ## Submit an extension
 

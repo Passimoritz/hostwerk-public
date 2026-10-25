@@ -2474,7 +2474,6 @@
     "Hostwerk schaltet den Profiler nur für diesen Aufruf ein (Modus profile, Auslöser XDEBUG_TRIGGER), wertet die Cachegrind-Datei aus und schaltet ihn wieder aus. Xdebug wird bei Bedarf installiert.": "Hostwerk enables the profiler only for this request (mode profile, trigger XDEBUG_TRIGGER), evaluates the cachegrind file and switches it off again. Xdebug is installed if needed.",
     "Hostwerk schaut hinein und schlägt den passenden Startbefehl vor.": "Hostwerk looks inside and suggests the right start command.",
     "Hostwerk sichert alle Datenbanken dieses Servers, solange er läuft. Alte automatische Backups werden aufgeräumt – eigene bleiben.": "Hostwerk backs up all databases of this server while it runs. Old automatic backups are cleaned up – your own ones stay.",
-    "Hostwerk spielt die jeweils neueste Sicherung testweise zurück – Datenbanken in eine Probedatenbank auf demselben Server, Minecraft-Welten in einen Temp-Ordner (auf Wunsch mit Startversuch), Snapshots in einen Temp-Ordner. Die echten Daten werden nie angefasst.": "Hostwerk restores the latest backup as a test – databases into a test database on the same server, Minecraft worlds into a temp folder (optionally with a start attempt), snapshots into a temp folder. The real data is never touched.",
     "Hostwerk spielt jede neu gebaute Version live in diesen Server ein.": "Hostwerk deploys every newly built version live into this server.",
     "Hostwerk startet beim Anmelden (im Infobereich).": "Hostwerk starts when you sign in (in the system tray).",
     "Hostwerk startet beim Anmelden im Infobereich.": "Hostwerk starts in the notification area at login.",
@@ -12087,10 +12086,7 @@
     "Aufgaben → Modi (Erweiterung)": "Tasks → Modes (extension)",
     "Zurück geht nur auf eine ältere Version derselben Reihe – über Reihen hinweg würde das Datenverzeichnis unlesbar.": "Going back only works to an older version of the same series – across series the data folder would become unreadable.",
     "Position der Meldungen": "Notification position",
-    "Dynamisch: Meldungen weichen Knöpfen und Feldern aus und wandern weich in eine freie Ecke.": "Dynamic: notifications avoid buttons and fields and glide to a free corner.",
-    "Meldungen erscheinen immer in dieser Ecke.": "Notifications always appear in this corner.",
-    "Dynamisch": "Dynamic",
-    "Feste Ecke": "Fixed corner",
+    "Meldungen bleiben immer in dieser Ecke. Ältere liegen gestapelt hinter der neuesten – darüberfahren zeigt alle.": "Notifications always stay in this corner. Older ones are stacked behind the newest – hover to see all.",
     "Ecke für Meldungen": "Corner for notifications",
     "Oben links": "Top left",
     "Oben rechts": "Top right",
@@ -12274,9 +12270,72 @@
     "Anmeldung und Proxys abgesichert": "Sign-in and proxies secured",
     "Anmeldesperre zusätzlich je Konto (10 Fehlversuche in einer Stunde, auch von verschiedenen Adressen). Server hinter einem Proxy landen nie in den öffentlichen Ports.": "Sign-in lockout also per account (10 failed attempts within an hour, also from different addresses). Servers behind a proxy never end up in the public ports.",
     "Kleinere Fehler behoben": "Small bugs fixed",
-    "Die Kachel „Schnellzugriff“ stürzt nicht mehr ab, Befehle im Terminal werden je Shell richtig zitiert (PowerShell, cmd, Git Bash, WSL) und Abrufe bei GitHub laufen nicht mehr ins Limit.": "The “Quick access” tile no longer crashes, terminal commands are quoted correctly for each shell (PowerShell, cmd, Git Bash, WSL) and requests to GitHub no longer run into the limit."
+    "Die Kachel „Schnellzugriff“ stürzt nicht mehr ab, Befehle im Terminal werden je Shell richtig zitiert (PowerShell, cmd, Git Bash, WSL) und Abrufe bei GitHub laufen nicht mehr ins Limit.": "The “Quick access” tile no longer crashes, terminal commands are quoted correctly for each shell (PowerShell, cmd, Git Bash, WSL) and requests to GitHub no longer run into the limit.",
+    "Bitte zuerst stoppen.": "Please stop it first.",
+    "Deine markierten Dienste und Projekte": "Your starred services and projects",
+    "Die Sicherung ist leer.": "The backup is empty.",
+    "Dienste aus Erweiterungen, Auslastung, Erreichbarkeit": "Services from extensions, load, reachability",
+    "Diese Sicherung lässt sich nicht zurückspielen.": "This backup cannot be restored.",
+    "Einträge in Seitenleiste, Favoriten und Übersicht": "Entries in the sidebar, favorites and overview",
+    "Erledigt.": "Done.",
+    "Fällt eine Quelle aus, nimmt Hostwerk eine Ersatzquelle (Hugging Face, winget, zonky …).": "If a source fails, Hostwerk uses a fallback (Hugging Face, winget, zonky …).",
+    "Gehören weder Hostwerk noch einer anderen installierten Erweiterung – vielleicht von dieser, vielleicht von einer früher entfernten. Nur anhaken, wenn du sicher bist.": "Belong neither to Hostwerk nor to another installed extension – maybe to this one, maybe to one removed earlier. Only tick them if you are sure.",
+    "Hostwerk verbindet das neue Projekt mit diesem Dienst.": "Hostwerk connects the new project to this service.",
+    "Kopien auch testweise starten, wo möglich (dauert, braucht RAM)": "Also test-start copies where possible (takes time, needs RAM)",
+    "Kopple zuerst deinen Server (VPS oder Linux-PC) – dann bringst du dieses Projekt hier per Klick live.": "Pair your server (VPS or Linux PC) first – then you take this project live here with one click.",
+    "Ordner ohne Besitzer": "Folders without an owner",
+    "Restlos: die Erweiterung und die angehakten Daten werden gelöscht. Das lässt sich nicht rückgängig machen.": "Completely: the extension and the ticked data are deleted. This cannot be undone.",
+    "Sie hat keine eigenen Daten hinterlegt.": "It has not declared any data of its own.",
+    "Webserver, Datenbank oder einen Dienst aus einer Erweiterung samt Einstellungen kopieren": "Copy a web server, database or a service from an extension including its settings",
+    "XAMPP, MySQL, Apache … auf diesem PC": "XAMPP, MySQL, Apache … on this PC",
+    "Zur Liste": "To the list",
+    "– auch ihre Daten löschen (Einstellungen, Ordner, geplante Aufgaben)": "– also delete its data (settings, folders, scheduled tasks)",
+    "Restlos entfernen": "Remove completely",
+    "Hostwerk spielt die jeweils neueste Sicherung testweise zurück – Datenbanken in eine Probedatenbank auf demselben Server, Sicherungen anderer Dienste in einen Temp-Ordner (auf Wunsch mit Startversuch), Snapshots in einen Temp-Ordner. Die echten Daten werden nie angefasst.": "Hostwerk restores the latest backup as a test – databases into a test database on the same server, backups of other services into a temp folder (optionally with a start attempt), snapshots into a temp folder. The real data is never touched.",
+    "Diese Art lässt sich nicht sichern.": "This kind cannot be backed up.",
+    "Der Dienst ist beim Probelauf nicht hochgefahren – siehe Protokoll. Die Kopie bleibt zum Nachsehen erhalten.": "The service did not start during the trial run – see the log. The copy is kept so you can look into it.",
+    "z. B. „Ich will mit Freunden auf einem eigenen Server spielen“": "e.g. \"I want to play with friends on my own server\"",
+    "Einen Spiele-Server für Freunde": "A game server for friends",
+    "Keine Vorschau": "No preview",
+    "Für diese Datei gibt es keine Ansicht mehr.": "There is no view for this file anymore.",
+    "Details und Protokoll": "Details and log",
+    "Dienste aus Erweiterungen": "Services from extensions",
+    "– ihre neueste Sicherung je Dienst (z. B. Spielwelten als ZIP).": "– their newest backup per service (e.g. game worlds as ZIP).",
+    "Webseiten, Datenbanken und alle anderen Dienste sind auch erreichbar, wenn niemand angemeldet ist.": "Websites, databases and all other services are reachable even when nobody is signed in.",
+    "Spiele-Server, Dateien, Sicherungen, Livebetrieb": "Game servers, files, backups, going live",
+    "Passende Erweiterungen": "Matching extensions",
+    "nur zum Behalten": "only for keeping",
+    "Für andere Rechner braucht es eine Erweiterung, die gekoppelte Rechner bereitstellt (Erweiterungen → Entdecken).": "Other computers need an extension that provides paired computers (Extensions → Discover).",
+    "Für einen Spiegel braucht es eine Erweiterung, die gekoppelte Rechner bereitstellt (Erweiterungen → Entdecken).": "A mirror needs an extension that provides paired computers (Extensions → Discover).",
+    "Den KI-Helfer fragen – öffnet ein Fenster, nichts wird geändert": "Ask the AI assistant – opens a window, nothing is changed",
+    "KI erklärt": "AI explains",
+    "KI fasst zusammen": "AI summarizes",
+    "KI beschreibt": "AI describes",
+    "KI übersetzt": "AI translates",
+    "Erkläre mir das genauer: Woran liegt es, und wie behebe ich es Schritt für Schritt?": "Explain this in more detail: what is causing it, and how do I fix it step by step?",
+    "Geh genauer darauf ein: Was ist wichtig, und muss ich etwas tun?": "Go into more detail: what is important, and do I need to do anything?",
+    "Erkläre mir das genauer: Wofür ist das da, und worauf muss ich achten?": "Explain this in more detail: what is it for, and what should I watch out for?",
+    "Erkläre mir den Text genauer.": "Explain the text to me in more detail.",
+    "Antwort kopiert": "Answer copied",
+    "Kopieren ging nicht": "Copying didn't work",
+    "Der KI-Helfer schaut kurz drauf – nichts wird geändert": "The AI assistant takes a quick look – nothing is changed",
+    "Im KI-Chat weiterfragen": "Continue in the AI chat",
+    "Worum es geht": "What it's about",
+    "Die KI antwortet …": "The AI is answering …",
+    "Die KI sieht sich das an …": "The AI is looking at it …",
+    "Rückfrage stellen …": "Ask a follow-up question …",
+    "Rückfrage an den KI-Helfer": "Follow-up question to the AI assistant",
+    "Im KI-Chat fragen": "Ask in the AI chat",
+    "Der KI-Helfer ist für die Erweiterung nicht freigegeben (Recht use:ai fehlt).": "This extension may not use the AI assistant (missing permission use:ai).",
+    "Der KI-Helfer ist aus oder nicht bereit.": "The AI assistant is off or not ready.",
+    "Hier steht noch nichts, das die KI ansehen könnte.": "There is nothing here yet for the AI to look at.",
+    "Erste Antwort der KI:": "The AI's first answer:"
   },
   "patterns": [
+    [
+      "Frage aus „{}“ – der KI-Helfer schaut kurz drauf, nichts wird geändert",
+      "Question from “{}” – the AI assistant takes a quick look, nothing is changed"
+    ],
     [
       "Modrinth · passend zu {} {}",
       "Modrinth · matching {} {}"
@@ -21724,6 +21783,62 @@
     [
       "Seitenblatt: {}",
       "Side sheet: {}"
+    ],
+    [
+      "Einstellungen „{}“",
+      "Settings “{}”"
+    ],
+    [
+      "Für diese Vorlage brauchst du: {}.",
+      "This template needs: {}."
+    ],
+    [
+      "Für „{}“ fehlt die Erweiterung.",
+      "The extension for “{}” is missing."
+    ],
+    [
+      "Neu: {}",
+      "New: {}"
+    ],
+    [
+      "Nichts läuft: {}",
+      "Nothing running: {}"
+    ],
+    [
+      "Noch nichts eingerichtet: {}",
+      "Nothing set up yet: {}"
+    ],
+    [
+      "Ordner „{}“",
+      "Folder “{}”"
+    ],
+    [
+      "Zusammen {}",
+      "Together {}"
+    ],
+    [
+      "{} Datei(en) lesbar",
+      "{} file(s) readable"
+    ],
+    [
+      "{} Erklärvideo(s)",
+      "{} explainer video(s)"
+    ],
+    [
+      "{} geplante Aufgabe(n): {}{}",
+      "{} scheduled task(s): {}{}"
+    ],
+    [
+      "„{}“ deinstalliert – nicht alles ließ sich löschen: {}",
+      "“{}” uninstalled – not everything could be deleted: {}"
+    ],
+    [
+      "„{}“ restlos entfernt",
+      "“{}” removed completely"
+    ],
+    [
+      "Auf diesem Rechner fehlt die Erweiterung für „{}“ – bitte erst installieren.",
+      "The extension for \"{}\" is missing on this computer – please install it first."
     ]
   ]
 }

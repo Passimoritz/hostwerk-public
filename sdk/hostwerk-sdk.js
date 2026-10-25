@@ -17,7 +17,7 @@
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '3.4.0';
+  const VERSION = '3.7.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
@@ -71,6 +71,8 @@
     const root = document.documentElement;
     root.dataset.theme = state.theme;
     root.style.colorScheme = state.theme;
+    // Hostwerks „Animationen reduzieren“ (SDK 3.6): die hw-*-Animationen ruhen dann auch hier
+    if (t.reduceMotion) root.dataset.motion = 'reduce'; else delete root.dataset.motion;
     // Same variables as Hostwerk (for the generated kit) and the older --hw-* names (SDK 2.0/2.1 pages)
     for (const [k, v] of Object.entries(t.vars || {})) if (/^--[\w-]+$/.test(k)) { root.style.setProperty(k, String(v)); root.style.setProperty(`--hw-${k.slice(2)}`, String(v)); }
     if (t.font) root.style.setProperty('--hw-font', t.font);
@@ -94,7 +96,8 @@
     if (e.source !== parent) return;
     const m = e.data || {};
     if (!m.hostwerk) return;
-    if (m.id && pending.has(m.id)) { const p = pending.get(m.id); pending.delete(m.id); return m.error ? p.reject(new Error(m.error)) : p.resolve(m.data); }
+    // code: z. B. „EXT_PERMISSION“ (fehlendes Recht) – unterscheidet das von „gibt es nicht“ (SDK 3.5)
+    if (m.id && pending.has(m.id)) { const p = pending.get(m.id); pending.delete(m.id); return m.error ? p.reject(Object.assign(new Error(m.error), m.code ? { code: m.code } : {})) : p.resolve(m.data); }
     if (m.type === 'init') {
       // Kommt bei wiederholtem HELLO evtl. zweimal – dann nur neu anwenden
       const first = !inited;
@@ -225,7 +228,62 @@
       ui.loading(target, opts);
       try { const r = await fn(); const node = nodeOf(target); if (node) node.removeAttribute('aria-busy'); return r; } catch (e) { ui.error(target, e, () => ui.load(target, fn, opts), opts); return undefined; }
     },
+
+    /*
+     * Animationen wie in Hostwerk (SDK 3.6) – Bausteine für Hostwerk.html bzw. render(); die Klassen (hw-rise, hw-pulse …)
+     * stehen auch direkt zur Verfügung (/ext-sdk.css). Alles ruht bei „Bewegung reduzieren“ (System oder Hostwerk).
+     */
+    /** Hostwerks Lade-Animation (Herzschlag-Linie) mit Text – für größere Bereiche statt Platzhalter-Zeilen. */
+    loader({ text } = {}) {
+      const d = 'M2 20 H34 L46 20 L56 4 L66 36 L76 20 H118';
+      const gid = `hwLoadGrad${++loaderSeq}`;
+      return html`<div class="hw-loading-inline" role="status"><div class="hw-loading"><svg viewBox="0 0 120 40" aria-hidden="true">${new Raw(`<defs><linearGradient id="${gid}" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="var(--accent)" stop-opacity=".15"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2, var(--accent))" stop-opacity=".15"/></linearGradient></defs><path class="hw-load-base" d="${d}"/><path class="hw-load-line" d="${d}" style="stroke:url(#${gid})"/><circle class="hw-load-dot" r="3.2"><animateMotion dur="1.6s" repeatCount="indefinite" path="${d}"/></circle>`)}</svg><span class="small muted hw-load-text">${text || uiText('loading')}</span></div></div>`;
+    },
+    /** Kreisel: size 'sm' | 'md' | 'lg'. */
+    spinner(size = 'md') { return new Raw(`<span class="hw-spinner${size === 'sm' ? ' hw-sm' : size === 'lg' ? ' hw-lg' : ''}" role="status" aria-label="${escAttr(uiText('loading'))}"></span>`); },
+    /** Drei hüpfende Punkte („tippt“, „denkt nach“). */
+    dots() { return new Raw(`<span class="hw-dots" role="status" aria-label="${escAttr(uiText('loading'))}"><i></i><i></i><i></i></span>`); },
+    /** Gezeichneter Haken für „erledigt“; size 'md' | 'lg'. */
+    check(size = 'md') { return new Raw(`<svg class="hw-check hw-pop${size === 'lg' ? ' hw-lg' : ''}" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg>`); },
+    /** Leerer Zustand wie in Hostwerk: Symbol, Satz, Aktion (icon = SVG-Markup über Hostwerk.raw, sonst eine Ablage),
+     *  action = Knopf o. Ä. (Hostwerk.html) darunter. */
+    empty({ title, text, icon, action } = {}) {
+      const ico = icon || new Raw('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>');
+      return html`<div class="empty-state"><div class="empty-art" aria-hidden="true">${new Raw('<svg viewBox="0 0 120 120"><circle class="o1" cx="60" cy="60" r="44"/><circle class="o2" cx="60" cy="60" r="56"/><g class="p1"><circle cx="60" cy="16" r="3.2"/></g><g class="p2"><circle cx="116" cy="60" r="2.4"/></g></svg>')}<div class="ico">${ico}</div></div>${title ? html`<h3>${title}</h3>` : ''}${text ? html`<p>${text}</p>` : ''}${action ? html`<div class="empty-action">${action}</div>` : ''}</div>`;
+    },
+    /** Element (oder Selektor) animieren: 'rise' | 'fade' | 'pop' | 'slide' | 'stagger' (Kinder nacheinander) | 'shake' | 'flash'. Spielt auch erneut ab. */
+    animate(target, kind = 'rise') {
+      const node = nodeOf(target);
+      if (!node || !/^(rise|fade|pop|slide|stagger|shake|flash)$/.test(kind)) return node;
+      const cls = `hw-${kind}`;
+      node.classList.remove(cls);
+      void node.offsetWidth; // neu starten
+      node.classList.add(cls);
+      if (kind === 'shake' || kind === 'flash') node.addEventListener('animationend', () => node.classList.remove(cls), { once: true });
+      return node;
+    },
+    /** Zahl hochzählen (z. B. Kachelwerte): vom zuletzt gezeigten Wert bis to; format(n) für die Anzeige (Standard: fmt.number). */
+    countUp(target, to, { duration = 700, format } = {}) {
+      const node = nodeOf(target);
+      if (!node) return;
+      const show = typeof format === 'function' ? format : (n) => fmt.number(Math.round(n));
+      const end = Number(to) || 0;
+      const from = Number(node.dataset.hwCount || 0) || 0;
+      node.dataset.hwCount = String(end);
+      if (!motionOk() || from === end) { node.textContent = show(end); return; }
+      const t0 = performance.now();
+      const step = (t) => { const p = Math.min(1, (t - t0) / duration); node.textContent = show(from + (end - from) * (1 - (1 - p) ** 3)); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    },
+    /** Ist Bewegung erwünscht? false bei „Bewegung reduzieren“ im System oder in Hostwerk. */
+    motionOk: () => motionOk(),
   };
+  let loaderSeq = 0;
+  function motionOk() {
+    if (document.documentElement.dataset.motion === 'reduce') return false;
+    try { return !matchMedia('(prefers-reduced-motion: reduce)').matches; } catch { return true; }
+  }
+  function escAttr(s) { return String(s).replace(/[&"<>]/g, (c) => ({ '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;' }[c])); }
 
   const fmt = {
     bytes(n) { if (n == null || isNaN(n)) return '–'; const u = ['B', 'KB', 'MB', 'GB', 'TB']; let i = 0; let x = Number(n); while (x >= 1024 && i < u.length - 1) { x /= 1024; i++; } return `${x.toFixed(x >= 10 || i === 0 ? 0 : 1)} ${u[i]}`; },
@@ -236,26 +294,29 @@
 
   /**
    * Flat list of all services from /overview: { id, kind, name, state, port, url, cpu, memory, startedAt, extra }.
-   * kind: web · db · minecraft · app · docker (Docker app, since 2.10) · game (game server, since 2.10) · mail.
+   * kind: web · db · minecraft · app · docker (Docker app, since 2.10) · game (game server, since 2.10) · mail – and since 3.5 every
+   * service kind of an extension (overview.kinds, name as the SDK always used it: kind.sdk.kind).
    * Same logic as server/extensions/sdk/services.js (host.services.list() for native extensions).
    */
   async function services() {
     const o = await call('GET', '/overview');
     const pick = (kind, xs, url) => (xs || []).map((s) => ({ id: s.id, kind: typeof kind === 'function' ? kind(s) : kind, name: s.name, state: (s.proc && s.proc.state) || 'stopped', port: s.port || null, url: url ? url(s) : null, cpu: s.proc && s.proc.stats ? s.proc.stats.cpu : null, memory: s.proc && s.proc.stats ? s.proc.stats.memory : null, startedAt: s.proc ? s.proc.startedAt : null, extra: (s.proc && s.proc.extra) || {} }));
-    const games = (o.games || []).map((g) => ({ id: g.id, kind: 'game', name: g.name, state: g.running ? 'running' : 'stopped', port: g.port || null, url: null, cpu: null, memory: null, startedAt: null, extra: { game: g.game || null, docker: !!g.docker, method: g.method || null } }));
+    const kindItems = Object.values(o.kinds || {}).flatMap((k) => { const name = (k.sdk && k.sdk.kind) || k.kind; kindBases[name] = (k.sdk && k.sdk.base) || k.api || kindBases[name]; return pick(name, k.items); });
     return [
       ...pick('web', o.web, (s) => (s.port ? `http://localhost:${s.port}` : null)),
-      ...pick('db', o.db), ...pick('minecraft', o.minecraft),
+      ...pick('db', o.db),
       ...pick((s) => (s.kind === 'docker' ? 'docker' : 'app'), o.apps, (s) => s.url || null),
       ...pick('mail', o.mail ? [].concat(o.mail) : []),
-      ...games,
+      ...kindItems,
     ];
   }
-  const KIND_BASE = { web: '/web', db: '/dbs', minecraft: '/mc/servers', app: '/apps', docker: '/apps', game: '/games', mail: '/mail' };
+  const KIND_BASE = { web: '/web', db: '/dbs', app: '/apps', docker: '/apps', mail: '/mail' };
+  // Arten aus Erweiterungen: Pfad aus overview.kinds (services() merkt ihn sich); bis dahin die bekannten Namen von früher
+  const kindBases = { minecraft: '/mc/servers', game: '/games' };
   const service = (kind, id) => {
     // Der Mail-Fänger ist ein einzelner Dienst ohne ID und ohne eigenes „restart“
     if (kind === 'mail') return { start: () => call('POST', '/mail/start'), stop: () => call('POST', '/mail/stop'), restart: async () => { await call('POST', '/mail/stop'); return call('POST', '/mail/start'); } };
-    const base = `${KIND_BASE[kind] || '/' + kind}/${encodeURIComponent(id)}`;
+    const base = `${KIND_BASE[kind] || kindBases[kind] || '/' + kind}/${encodeURIComponent(id)}`;
     return { start: () => call('POST', `${base}/start`), stop: () => call('POST', `${base}/stop`), restart: () => call('POST', `${base}/restart`) };
   };
 
@@ -267,7 +328,8 @@
     loaded,
     /** Keep Hostwerk's loading animation until Hostwerk.loaded() (call it right away in the page script). Since SDK 3.2. */
     holdLoaded: () => { holding = true; },
-    /** Loading, error and placeholder states like Hostwerk: ui.loading(el), ui.error(el, err, retry), ui.load(el, fn), ui.skeleton(rows). Since SDK 3.2. */
+    /** Loading, error and placeholder states like Hostwerk: ui.loading(el), ui.error(el, err, retry), ui.load(el, fn), ui.skeleton(rows) (SDK 3.2).
+     *  Animations like Hostwerk (SDK 3.6): ui.loader(), ui.spinner(), ui.dots(), ui.check(), ui.empty(), ui.animate(el, kind), ui.countUp(el, n), ui.motionOk(). */
     ui,
     /** Stand der Seite. app: { version, origin, publicView } – origin = Hostwerks Adresse, publicView = volle Adresse der
      *  öffentlichen Ansicht /v/<id>/ (null ohne). origin/publicView seit SDK 3.1. */
@@ -304,13 +366,16 @@
     pickFolder: (title) => call('PICK_FOLDER', '', { title: title ? String(title) : '' }),
     services, service,
     minecraft: {
-      // Mit „read:minecraft“ allein ist die Gesamtübersicht (/overview, „read:services“) gesperrt – dann direkt die
-      // Minecraft-Liste lesen; gleiche Felder wie services()
+      // Erst die Minecraft-Liste („read:minecraft“), nur ohne dieses Recht die Gesamtübersicht („read:services“) – sonst
+      // meldet Hostwerk bei Erweiterungen mit „read:minecraft“ allein einen abgelehnten Zugriff. Ohne Minecraft-Erweiterung
+      // gibt es die Liste nicht: dann keine Server. Gleiche Felder wie services().
       servers: async () => {
-        try { return (await services()).filter((s) => s.kind === 'minecraft'); } catch {
-          const list = await call('GET', '/mc/servers');
-          return (list || []).map((s) => ({ id: s.id, kind: 'minecraft', name: s.name, state: (s.proc && s.proc.state) || 'stopped', port: s.port || null, url: null, extra: { players: s.players || [], version: s.version, type: s.type } }));
+        let list;
+        try { list = await call('GET', '/mc/servers'); } catch (e) {
+          if (e.code === 'EXT_PERMISSION') return (await services()).filter((s) => s.kind === 'minecraft');
+          return [];
         }
+        return (list || []).map((s) => { const p = s.proc || {}; return { id: s.id, kind: 'minecraft', name: s.name, state: p.state || 'stopped', port: s.port || null, url: null, cpu: p.stats ? p.stats.cpu : null, memory: p.stats ? p.stats.memory : null, startedAt: p.startedAt || null, extra: { ...(p.extra || {}), version: s.version, type: s.type } }; });
       },
       players: (id) => call('GET', `/mc/servers/${encodeURIComponent(id)}/players`),
       stats: (id) => call('GET', `/mc/servers/${encodeURIComponent(id)}/stats`),
@@ -325,7 +390,7 @@
     },
     /** Values of the settings declared in manifest.settings (the form is drawn by Hostwerk). */
     settings: { get: () => Promise.resolve(state.settings), open: () => call('OPEN_SETTINGS') },
-    /** Events: 'service' (state change), 'minecraft' (players), 'backend' (host.emit from the own server module, SDK 2.8), 'theme', 'lang', 'settings', 'tab', 'action'. Returns an unsubscribe function. */
+    /** Events: 'service' (state change), 'minecraft' (players), 'backend' (host.emit from the own server module, SDK 2.8), 'ai' (AI ready or off, SDK 3.7), 'theme', 'lang', 'settings', 'tab', 'action'. Returns an unsubscribe function. */
     on(type, cb) {
       if (!listeners.has(type)) listeners.set(type, new Set());
       listeners.get(type).add(cb);
@@ -333,6 +398,17 @@
       return () => listeners.get(type).delete(cb);
     },
     toast: (text, opts = {}) => call('TOAST', '', { text: String(text), kind: opts.kind || 'info' }),
+    /**
+     * Hostwerk's "Ask AI" window (since SDK 3.7) – the same one the Explain buttons in Hostwerk open. Needs the "use:ai" permission.
+     * Hostwerk.ai.ready() → true/false (AI on and ready). Hostwerk.on('ai', ({ ready }) => …) tells you when that changes –
+     * show your AI button only while ready is true.
+     * Hostwerk.ai.explain(text, { task: 'explain' | 'summarize' | 'describe' | 'translate', context, label }) opens the window:
+     * Hostwerk shows the text, the AI's short answer, Copy and "Continue in the AI chat". Text at most 6000 characters.
+     */
+    ai: {
+      ready: () => call('AI_READY'),
+      explain: (text, opts = {}) => call('AI_EXPLAIN', '', { text: String(text == null ? '' : text), task: opts.task || 'explain', context: opts.context ? String(opts.context) : '', label: opts.label ? String(opts.label) : '' }),
+    },
     /** Open a Hostwerk area, e.g. Hostwerk.navigate('/mc/my-server'). */
     navigate: (route) => call('NAVIGATE', '', { route: String(route) }),
     /** Open a web page in the browser (Hostwerk asks first). */

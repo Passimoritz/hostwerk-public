@@ -38,7 +38,7 @@ Hostwerk selbst wird in einem privaten Repository entwickelt. Dieses öffentlich
 | **Releases** | Installationsdateien und App-Updates (gespiegelt vom Hauptprojekt) und die Erklärvideos (Release `videos`). |
 | [`catalog/`](catalog) | KI-Modellkatalog, Projektvorlagen, Berater-Regeln, Passwort-Manager-Katalog und die Erweiterungs-Kataloge: `extensions.json` (offiziell, täglich aus den Erweiterungs-Repositorys gebaut), `community.json`, `verified.json`. |
 | [`docs/`](docs) | **[Erweiterungen erklärt](docs/erweiterungen.md)** – was jede Freigabe erlaubt, wie Hostwerk Erweiterungen abschottet, wo sie erscheinen, Synergien und Vorlagen (mit Bildern). |
-| [`sdk/`](sdk) | **Erweiterungs-SDK 2.8** – `hostwerk-sdk.js`, Design-Baukasten, Manifest-Schema, `check.js`, `build-native.js` und die [Anleitung für Entwickler](sdk/README.de.md). |
+| [`sdk/`](sdk) | **Erweiterungs-SDK 3.6** – `hostwerk-sdk.js`, Design-Baukasten mit Hostwerks Animationen, Manifest-Schema, `check.js`, `build-native.js` und die [Anleitung für Entwickler](sdk/README.de.md). |
 | [`packages/`](packages) | Geprüfte Kopien der Community-Erweiterungen (per SHA-256 festgelegt). |
 | `katalog/` | Alte Dateinamen für Hostwerk vor 2.9 – werden automatisch aktuell gehalten. |
 
@@ -135,6 +135,10 @@ Veröffentlichen und Verifizierung – steht in der **[Anleitung für Entwickler
 ![So läuft eine Erweiterung](sdk/img/architecture.svg)
 
 Schnellstart: [hostwerk-ext-template](https://github.com/Passimoritz/hostwerk-ext-template) → *Use this template*.
+
+Deine Erweiterung sieht aus und bewegt sich wie Hostwerk: Der Design-Baukasten bringt Hostwerks Klassen und Farben mit,
+seit SDK 3.6 auch seine Animationen – Lade-Linie, Kreisel, Einblenden, Puls, Haken und hochzählende Zahlen, alle mit
+Rücksicht auf „Animationen reduzieren“ ([Anleitung, Abschnitt 28](sdk/README.de.md#28-sdk-36-animationen-wie-hostwerk)).
 
 ## Eine Erweiterung einreichen
 
