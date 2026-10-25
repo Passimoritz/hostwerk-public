@@ -41,5 +41,9 @@
   "Passimoritz/hostwerk-ext-visitor-stats",
   "Passimoritz/hostwerk-ext-modes",
   "Passimoritz/hostwerk-ext-pwa",
-  "Passimoritz/hostwerk-ext-minecraft"
+  "Passimoritz/hostwerk-ext-minecraft",
+  "Passimoritz/hostwerk-ext-mc-network",
+  "Passimoritz/hostwerk-ext-steam",
+  "Passimoritz/hostwerk-ext-mail-accounts",
+  "Passimoritz/hostwerk-ext-vuln-watch"
 ]
