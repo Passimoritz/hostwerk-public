@@ -20,19 +20,19 @@
     },
     {
       "a": "page-check",
-      "b": "uptime-wall",
+      "b": "status-wall",
       "title": {
         "de": "Erreichbar und gut",
         "en": "Reachable and good"
       },
       "text": {
-        "de": "Die Uptime-Wand zeigt, ob eine Seite antwortet – der Seiten-Check, ob sie auch schnell, barrierefrei und ohne kaputte Links ist.",
+        "de": "Die Status-Wand zeigt, ob eine Seite antwortet – der Seiten-Check, ob sie auch schnell, barrierefrei und ohne kaputte Links ist.",
         "en": "The uptime wall shows whether a page answers – the page check whether it is also fast, accessible and free of broken links."
       }
     },
     {
       "a": "cert-watch",
-      "b": "uptime-wall",
+      "b": "status-wall",
       "title": {
         "de": "Ein Blick für den Livebetrieb",
         "en": "One view for going live"
@@ -40,18 +40,6 @@
       "text": {
         "de": "Beide lesen Hostwerks eigene Daten aus dem Livebetrieb – nebeneinander angeheftet siehst du ablaufende Zertifikate und ausgefallene Seiten auf einen Blick. Gewarnt wird weiter über Hostwerks Wächter.",
         "en": "Both read Hostwerk’s own live data – pinned side by side you see expiring certificates and failed pages at a glance. Warnings still come from Hostwerk’s watchers."
-      }
-    },
-    {
-      "a": "cloud-backup",
-      "b": "backup-calendar",
-      "title": {
-        "de": "Sicherungen außer Haus planen",
-        "en": "Plan off-site backups"
-      },
-      "text": {
-        "de": "Der Backup-Kalender zeigt, wann gesichert wird; die Cloud-Sicherung schiebt die Stände verschlüsselt ins Netz.",
-        "en": "The backup calendar shows when backups run; cloud backup pushes them encrypted to the cloud."
       }
     },
     {
@@ -94,19 +82,7 @@
       }
     },
     {
-      "a": "player-ticker",
-      "b": "player-leaderboard",
-      "title": {
-        "de": "Wer spielt – und wer am meisten",
-        "en": "Who plays – and who plays most"
-      },
-      "text": {
-        "de": "Live-Liste und Bestenliste zusammen ergeben eine Spieler-Ecke für den zweiten Bildschirm.",
-        "en": "Live list and leaderboard together make a player corner for a second screen."
-      }
-    },
-    {
-      "a": "motd-studio",
+      "a": "minecraft",
       "b": "player-ticker",
       "title": {
         "de": "Server-Auftritt",
@@ -118,8 +94,8 @@
       }
     },
     {
-      "a": "bedrock-bridge",
-      "b": "game-network",
+      "a": "mc-network",
+      "b": "game-servers",
       "title": {
         "de": "Java und Bedrock in einem Netz",
         "en": "Java and Bedrock in one network"
@@ -131,25 +107,25 @@
     },
     {
       "a": "service-notes",
-      "b": "quick-tasks",
+      "b": "modes",
       "title": {
         "de": "Anleitung und Knopf",
         "en": "Instructions and a button"
       },
       "text": {
-        "de": "Notizen erklären, was zu tun ist – Schnell-Aufgaben erledigen es mit einem Klick.",
+        "de": "Notizen erklären, was zu tun ist – Ein-Klick erledigen es mit einem Klick.",
         "en": "Notes explain what to do – quick tasks do it with one click."
       }
     },
     {
-      "a": "disk-usage",
-      "b": "cloud-backup",
+      "a": "disk-health",
+      "b": "backup-calendar",
       "title": {
         "de": "Platz sparen",
         "en": "Save space"
       },
       "text": {
-        "de": "Die Speicher-Übersicht zeigt, wo Platz draufgeht; die Cloud-Sicherung schiebt Sicherungen verschlüsselt ins Netz und behält dort nur die eingestellte Zahl – lokal räumt Hostwerks Aufbewahrung auf.",
+        "de": "Die Speicher-Übersicht zeigt, wo Platz draufgeht; die Sicherungs-Kalender & Cloud schiebt Sicherungen verschlüsselt ins Netz und behält dort nur die eingestellte Zahl – lokal räumt Hostwerks Aufbewahrung auf.",
         "en": "Disk usage shows where space goes; cloud backup pushes backups encrypted to the cloud and keeps only the set number there – locally Hostwerk’s retention cleans up."
       }
     },
@@ -188,30 +164,6 @@
         "de": "Einzelne Einträge mit Team-Mitgliedern teilen – jeder sieht nur, was für ihn freigegeben ist.",
         "en": "Share single entries with team members – everyone only sees what was shared with them."
       }
-    },
-    {
-      "a": "port-map",
-      "b": "router",
-      "title": {
-        "de": "Ports drinnen und draußen",
-        "en": "Ports inside and out"
-      },
-      "text": {
-        "de": "Die Port-Karte zeigt, welche Ports deine Dienste belegen, der Router-Bereich, welche davon nach außen offen sind – zwei Sichten, die zusammen ein vollständiges Bild ergeben.",
-        "en": "The port map shows which ports your services use, the router area which of them are open to the outside – two views that together give the full picture."
-      }
-    },
-    {
-      "a": "status-wall",
-      "b": "uptime-wall",
-      "title": {
-        "de": "Wand für den Flur-Bildschirm",
-        "en": "A wall for the hallway screen"
-      },
-      "text": {
-        "de": "Beide sind als Vollbild-Wand gebaut: Dienste von innen (Status-Wand) und Seiten von außen (Uptime-Wand) – auf zwei Bildschirmen oder in zwei Browser-Tabs.",
-        "en": "Both are built as full-screen walls: services from inside (status wall) and pages from outside (uptime wall) – on two screens or in two browser tabs."
-      }
     }
   ],
   "recipes": [
@@ -229,7 +181,7 @@
       "extensions": [
         "page-check",
         "static-publish",
-        "uptime-wall",
+        "status-wall",
         "cert-watch",
         "webhook-inbox"
       ]
@@ -267,9 +219,8 @@
         "game-servers",
         "router",
         "player-ticker",
-        "player-leaderboard",
-        "bedrock-bridge",
-        "motd-studio"
+        "mc-network",
+        "minecraft"
       ]
     },
     {
@@ -285,8 +236,7 @@
       },
       "extensions": [
         "backup-calendar",
-        "cloud-backup",
-        "disk-usage"
+        "disk-health"
       ]
     },
     {

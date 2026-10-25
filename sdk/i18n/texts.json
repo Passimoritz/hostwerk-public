@@ -11387,6 +11387,7 @@
     "öffentlich": "public",
     "öffentlich (UDP)": "public (UDP)",
     "Ports werden geprüft …": "Checking ports …",
+    "Ports konnten nicht geprüft werden": "Could not check the ports",
     "Leer lassen = Hostwerk nimmt den nächsten freien Port. Der Dienst muss gestoppt sein.": "Leave empty = Hostwerk takes the next free port. The service must be stopped.",
     "Wunschport": "Desired port",
     "Bitte eine Zahl von 1024 bis 65535.": "Please a number from 1024 to 65535.",
@@ -13095,6 +13096,10 @@
     [
       "Seite {}: {} ms gesamt, Datenbank {} ms in {} Abfragen, Speicher {} MB. Eigene Zeit: {} Datenbank: {} Hinweise: {}",
       "Page {}: {} ms total, database {} ms in {} queries, memory {} MB. Own time: {} Database: {} Hints: {}"
+    ],
+    [
+      "„{}“ ist in „{}“ aufgegangen – Einstellungen und Daten sind übernommen.",
+      "“{}” is now part of “{}” – settings and data were taken over."
     ],
     [
       "„{}“ ist jetzt eine Erweiterung und wurde automatisch installiert – deine Daten sind unverändert da.",

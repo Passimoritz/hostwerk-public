@@ -5,6 +5,23 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
+## 3.8.0 – 2026-10-25
+
+Merging extensions ([section 30 of the guide](README.md#30-sdk-38-merging-extensions-replaces)). Only additions.
+
+- New manifest field `replaces` (list of extension ids). When the extension is installed, Hostwerk copies the storage and
+  settings of each replaced extension into its storage under `replaced:<id>` (`{ storage, settings, at }`), copies their data
+  folders to `replaced/<id>/`, removes them and never installs them again by itself.
+- People who only have a replaced extension get its successor from the Hostwerk catalog on the next start.
+- The catalog carries `replaces`; `check.js` checks the ids and warns below `sdkVersion` 3.8.
+- New native slot `settings.tabs` (`{ id, title, icon, Component }`): an own tab in Hostwerk's settings, before *Updates*.
+- `contributes.sections[].showIf`: key of a switch in `settings` – the section only shows while it is on.
+- Merging also moves published pages ("Publish as a web page") to the new extension, and an old public view `/v/<old>/` redirects to the new one with `?from=<old>`.
+
+> DE: Erweiterungen zusammenlegen – neues Manifest-Feld `replaces`. Hostwerk übernimmt Speicher, Einstellungen und
+> Datenordner der abgelösten Erweiterung (`replaced:<id>`, `replaced/<id>/`), entfernt sie und holt für alle, die nur
+> die alte haben, den Nachfolger aus dem Hostwerk-Katalog.
+
 ## 3.7.0 – 2026-10-25
 
 “Ask AI” – the Explain button like Hostwerk ([section 29 of the guide](README.md#29-sdk-37-ask-ai--the-explain-button-like-hostwerk)). Only additions.

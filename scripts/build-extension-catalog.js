@@ -53,6 +53,8 @@ const get = async (url, raw = false) => { const r = await fetch(url, { headers: 
         category: m.category || 'other', color: m.color || null, banner: m.banner ? raw(m.banner) : null,
         screenshots: (Array.isArray(m.screenshots) ? m.screenshots : []).slice(0, 6).map(raw),
         requires: m.requires && typeof m.requires === 'object' ? m.requires : {},
+        // SDK 3.8: abgelöste Erweiterungen – wer eine davon hat, bekommt diese als Nachfolger
+        replaces: Array.isArray(m.replaces) ? m.replaces : [],
         native: (m.permissions || []).includes('native') && !!(m.backend || m.ui),
         changelog: fs.existsSync(path.join(tmp, 'x', 'CHANGELOG.md')) ? raw('CHANGELOG.md') : null,
       });

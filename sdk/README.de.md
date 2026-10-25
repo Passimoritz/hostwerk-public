@@ -53,6 +53,7 @@ SDK 3.6): Lade-Linie, Kreisel, Einblenden, Puls, gezeichneter Haken und hochzäh
 27. [SDK 3.5: Dienst-Arten, Beiträge und ein Kern ohne Sonderfälle](#27-sdk-35-dienst-arten-beiträge-und-ein-kern-ohne-sonderfälle)
 28. [SDK 3.6: Animationen wie Hostwerk](#28-sdk-36-animationen-wie-hostwerk)
 29. [SDK 3.7: „KI fragen“ – der Erklären-Knopf wie in Hostwerk](#29-sdk-37-ki-fragen--der-erklären-knopf-wie-in-hostwerk)
+30. [SDK 3.8: Erweiterungen zusammenlegen (`replaces`)](#30-sdk-38-erweiterungen-zusammenlegen-replaces)
 
 ![Von der Idee in den Marktplatz](img/lifecycle.svg)
 
@@ -1100,6 +1101,7 @@ Abschnitt oder Kachel – statt als weiterer Eintrag:
 |---|---|---|
 | Webserver, Datenbanken, Minecraft, Projekte, E-Mail, System, KI, Sicherungen | `area:web` … `area:backups` | `web.tabs`, `dbs.tabs`, `minecraft.tabs`, `projects.tabs`, `mail.tabs`, `system.tabs`, `ai.tabs`, `backups.tabs` |
 | Aufgaben (neu) | `area:tasks` | `tasks.tabs` |
+| Einstellungen – eigener Reiter (SDK 3.8) | – | `settings.tabs` `{ id, title, icon, Component }` – steht vor *Updates*, nie anstelle eines Hostwerk-Reiters; `settings.sections` fügt einem vorhandenen Reiter eine Karte hinzu |
 | Livebetrieb | `area:live` | `live.tabs` mit `group` (`erreichbar`, `schuetzen`, `betrieb`) – **gleiche id** aus mehreren Erweiterungen = ein gemeinsamer Reiter (z. B. `discord`) |
 | Spiele-Server (Erweiterung) | – | `games.tabs` – zeigt „Spiele-Server“ über `useAreaTabs('games')` aus `@hostwerk/kit` |
 | Detailansichten | `contributes.sections` (Abschnitt 21) | `sections` |
@@ -1467,3 +1469,52 @@ dreht sich der Funke leicht (ruht bei „Animationen reduzieren“). `btn-ai` im
 `sm`) – im Rahmen kommt die Klasse mit `/ext-sdk.css`. Regeln: ein KI-Knopf je Zeile oder Werkzeugleiste, die Beschriftung ist
 ein Verb (*Erklären*, nicht *KI*), und er fragt nur – er ändert nie etwas. Für Aktionen, die etwas ändern, einen normalen
 Knopf nehmen.
+
+## 30. SDK 3.8: Erweiterungen zusammenlegen (`replaces`)
+
+Hostwerk 3.1 und neuer (mit SDK 3.8). Nur Ergänzungen. Wachsen zwei Erweiterungen zusammen, kann eine die andere ablösen:
+die alte unter `replaces` eintragen. Hostwerk übernimmt dann alles, was die alte hinterlassen hat, in die neue und entfernt
+die alte – die Daten bleiben, niemand muss etwas tun.
+
+```json
+{ "id": "status-wall", "sdkVersion": "3.8", "replaces": ["uptime-wall"] }
+```
+
+**Was übernommen wird** – einmal je alter Erweiterung, beim Installieren oder Aktualisieren der neuen:
+
+| Aus der alten Erweiterung | Landet in der neuen |
+|---|---|
+| ihr Speicher (`Hostwerk.storage` / `host.storage`) und ihre Einstellungen (`settings`) | eigener Speicher, Schlüssel `replaced:<id>` = `{ storage, settings, at }` |
+| ihr Datenordner (`host.dataDir` bei nativen Erweiterungen, sonst der Sandbox-Ordner) | Kopie unter `<eigener Datenordner>/replaced/<id>/` – das Original bleibt |
+| Bereiche in Hostwerks Einstellungen (`data.settings`) | bleiben, wo sie sind – wie bisher lesen |
+
+Danach wird die alte entfernt (auch wenn andere sie gebraucht haben) und nie wieder von selbst installiert. Wer nur die alte
+hat, bekommt die neue beim nächsten Start aus dem Hostwerk-Katalog; sie übernimmt genauso.
+
+**Dein Teil:** beim ersten Start `replaced:<id>` (und `replaced/<id>/`) lesen, in die eigenen Daten übernehmen und den
+Schlüssel löschen – oder behalten, wenn du das alte Format direkt liest. Hostwerk übernimmt nie zweimal, auch wenn jemand die
+alte Erweiterung später von Hand wieder installiert.
+
+```js
+// Native Erweiterung (Server-Teil)
+const old = host.storage.get('replaced:uptime-wall');
+if (old) { mergeChecks(old.storage.checks || [], old.settings || {}); host.storage.set('replaced:uptime-wall', undefined); }
+
+// Seite im Rahmen
+const old = await Hostwerk.storage.get('replaced:uptime-wall');
+if (old) { /* … */ await Hostwerk.storage.remove('replaced:uptime-wall'); }
+```
+
+Regeln: höchstens 10 Kennungen, nie die eigene; `check.js` warnt, wenn `sdkVersion` unter 3.8 liegt (ältere
+Hostwerk-Versionen kennen `replaces` nicht und behalten beide Erweiterungen nebeneinander). Im Katalog das alte Repository
+aus `catalog/extension-repos.json` nehmen, sobald die neue Fassung veröffentlicht ist.
+
+**Links laufen weiter.** Veröffentlichte Seiten („Als Webseite bereitstellen“) gehören danach der neuen Erweiterung, eine alte
+öffentliche Ansicht `/v/<alt>/…` leitet nach `/v/<neu>/?from=<alt>` (deine Seite wählt über `from` die passende Ansicht), und
+`#/ext/<alt>` öffnet die neue Erweiterung. Der alte Datenordner bleibt, bis jemand die Erweiterung restlos entfernt.
+
+**Auch neu in 3.8:**
+- `contributes.sections[].showIf`: Schlüssel einer Einstellung vom Typ `switch` – der Abschnitt erscheint nur, solange der
+  Schalter an ist; so wählt man in den Einstellungen, welche deiner Abschnitte man sehen will (z. B. zwei auf `mc.players`).
+- Nativer Steckplatz `settings.tabs` `{ id, title, icon, Component }`: ein eigener Reiter in Hostwerks Einstellungen, vor
+  *Updates* – für Dinge, die zur Person gehören und nicht zu einem Bereich (z. B. „Discord-Status“).

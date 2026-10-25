@@ -1531,6 +1531,11 @@
                   "motd"
                 ],
                 "description": "SDK 3.2: the section takes over a card Hostwerk shows there itself. mc.overview + \"motd\" = shows and edits how players see the server (MOTD and icon) – Hostwerk's card “How players see your server” then steps back."
+              },
+              "showIf": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][\\w-]{0,39}$",
+                "description": "SDK 3.8: key of a setting of type \"switch\" – the section only shows while that switch is on (people choose in the extension's settings which sections they want)."
               }
             }
           }
@@ -1639,6 +1644,16 @@
         "pattern": "^(\\*|[a-z0-9][a-z0-9-]{1,39})$"
       },
       "description": "SDK 2.10: extensions that may read this extension's storage (read only, e.g. [\"claude\"] or [\"*\"]) – host.storage.of(id) / host.storageOf(id)."
+    },
+    "replaces": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]{1,39}$"
+      },
+      "description": "SDK 3.8: extensions that went into this one, e.g. [\"uptime-wall\"]. On install Hostwerk copies their storage and settings into this extension's storage under \"replaced:<id>\" ({ storage, settings, at }), their data folders to <own data folder>/replaced/<id>/, then removes them. People who only have the old extension get this one from the Hostwerk catalog. Needs \"sdkVersion\": \"3.8\"."
     },
     "allowExtensions": {
       "type": "object",

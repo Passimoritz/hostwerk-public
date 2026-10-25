@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '3.7.0';
+const SDK_VERSION = '3.8.0';
 /*
  * Stabilitätsversprechen (SDK 3.0, Anleitung Abschnitt 18 „Stabilität und Abkündigungen“):
  *  - SemVer: Alles, was SDK 3.0 dokumentiert (window.Hostwerk, Manifest-Felder, Rechte, contributes), läuft mit jeder
@@ -872,6 +872,8 @@ function checkPackage(dir, { strict = false } = {}) {
     else if (!sc.file || /\.\.|^\/|\\/.test(sc.file) || !/\.html?$/i.test(sc.file) || !fs.existsSync(path.join(dir, sc.file))) err('contributes.sections', `Section "${sc.id}": "file" is missing or not an .html file inside the package.`);
     if (sc.height !== undefined && !(Number.isFinite(sc.height) && sc.height >= 48 && sc.height <= SECTION_MAX_HEIGHT)) err('contributes.sections', `Section "${sc.id}": "height" is 48–${SECTION_MAX_HEIGHT} px (the frame grows with its content up to that).`);
     if (sc.icon !== undefined && !SIDEBAR_ICONS.includes(sc.icon)) warn('contributes.sections', `Icon "${sc.icon}" is not a sidebar icon.`);
+    // SDK 3.8: nur bei eingeschaltetem Schalter zeigen – der Schlüssel muss ein "switch" in "settings" sein
+    if (sc.showIf !== undefined && !(typeof sc.showIf === 'string' && (Array.isArray(m.settings) ? m.settings : []).some((s) => s && s.key === sc.showIf && s.type === 'switch'))) err('contributes.sections', `Section "${sc.id}": "showIf" must name a setting of type "switch" in "settings".`);
     if (sc.role !== undefined && !(SECTION_ROLES[sc.on] || []).includes(sc.role)) err('contributes.sections', `Section "${sc.id}": "role" ${SECTION_ROLES[sc.on] ? `on ${sc.on} is ${SECTION_ROLES[sc.on].map((r) => `"${r}"`).join(' or ')}` : `is not available on ${sc.on}`}.`);
   }
   for (const tb of Array.isArray(co.tabs) ? co.tabs : []) {
@@ -899,7 +901,9 @@ function checkPackage(dir, { strict = false } = {}) {
   // Synergien mit anderen Erweiterungen
   // SDK 3.2: "nav": false = kein eigener Eintrag – die Seite bleibt über Erweiterungen → Öffnen erreichbar, die Erweiterung
   // steckt als Reiter/Abschnitt/Kachel in Hostwerks Bereichen (ältere Hostwerk ignorieren false und zeigen den Eintrag weiter)
-  const navOther = !!(m.ui || m.widget || (Array.isArray(co.tabs) && co.tabs.length) || (Array.isArray(co.sections) && co.sections.length) || (Array.isArray(co.actions) && co.actions.length));
+  // … auch Reiter, Aktionen oder eine Seite in ANDEREN Erweiterungen ("contributes.extends", SDK 2.9) sind ein Platz
+  const extendsPlace = Array.isArray(co.extends) && co.extends.some((x) => x && ((Array.isArray(x.tabs) && x.tabs.length) || (Array.isArray(x.actions) && x.actions.length) || x.page));
+  const navOther = !!(m.ui || m.widget || extendsPlace || (Array.isArray(co.tabs) && co.tabs.length) || (Array.isArray(co.sections) && co.sections.length) || (Array.isArray(co.actions) && co.actions.length));
   if (m.page && m.page.nav !== undefined && m.page.nav !== false && (m.page.nav === null || typeof m.page.nav !== 'object' || Array.isArray(m.page.nav))) err('page.nav', '"page.nav" is an object ({ "group": … }) or false (no own sidebar entry).');
   else if (m.page && m.page.nav === false && !navOther) warn('page.nav', '"page.nav": false hides the sidebar entry, but the extension has no other place (contributes.tabs/sections/actions, a native "ui" with slots or a dashboard tile) – people only find it under Extensions.');
   else if (m.page && m.page.nav !== undefined && m.page.nav !== false) {
@@ -944,7 +948,8 @@ function checkPackage(dir, { strict = false } = {}) {
   if (m.ui && m.page && m.page.icon && fs.existsSync(path.join(dir, 'ui', 'src'))) {
     const SPECIAL = { chart: 'BarChart3', 'bar-chart': 'BarChart3', book: 'BookOpen', code: 'Code2', file: 'FileText', gamepad: 'Gamepad2', dashboard: 'LayoutDashboard', grid: 'LayoutGrid', message: 'MessageSquare', news: 'Newspaper', cart: 'ShoppingCart', table: 'Table2', wand: 'Wand2', 'line-chart': 'LineChart', 'pie-chart': 'PieChart' };
     const want = SPECIAL[m.page.icon] || m.page.icon.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join('');
-    const ui = walk(path.join(dir, 'ui', 'src')).filter((f) => /\.jsx?$/.test(f)).map((f) => fs.readFileSync(path.join(dir, 'ui', 'src', f), 'utf8')).join('\n');
+    // Die Hauptseite steht in index.jsx – zuerst lesen, damit nicht die Überschrift eines Teils (z. B. cloud.jsx) zählt
+    const ui = walk(path.join(dir, 'ui', 'src')).filter((f) => /\.jsx?$/.test(f)).sort((a, b) => Number(/^index\.jsx?$/.test(b)) - Number(/^index\.jsx?$/.test(a))).map((f) => fs.readFileSync(path.join(dir, 'ui', 'src', f), 'utf8')).join('\n');
     const h = /<h1[^>]*>\s*<([A-Z]\w*)/.exec(ui);
     const fromLucide = h && new RegExp(`import\\s*\\{[^}]*\\b${h[1]}\\b[^}]*\\}\\s*from\\s*['"]lucide-react['"]`).test(ui);
     if (h && fromLucide) {
@@ -1084,6 +1089,16 @@ function checkPackage(dir, { strict = false } = {}) {
     if (!Array.isArray(m.shareStorage) || m.shareStorage.some((x) => x !== '*' && !ID_RE.test(String(x)))) err('shareStorage', '"shareStorage" is a list of extension ids (or "*") that may read this extension\'s storage.');
     else if (!(m.permissions || []).includes('storage')) warn('shareStorage', '"shareStorage" shares the storage – but this extension has no "storage" permission.');
     else if (m.shareStorage.length) info.push({ code: 'shareStorage', msg: `Shares its storage (read only) with: ${m.shareStorage.join(', ')}.` });
+  }
+  // SDK 3.8: Erweiterungen, die in dieser aufgehen – Hostwerk übernimmt ihre Daten und entfernt sie
+  if (m.replaces !== undefined) {
+    if (!Array.isArray(m.replaces) || m.replaces.some((x) => !ID_RE.test(String(x)))) err('replaces', '"replaces" is a list of extension ids this extension takes over, e.g. ["uptime-wall"].');
+    else if (m.replaces.includes(m.id)) err('replaces', '"replaces" cannot name the extension itself.');
+    else if (m.replaces.length > 10) err('replaces', '"replaces" takes at most 10 extensions.');
+    else if (m.replaces.length) {
+      if (!m.sdkVersion || !sdkFits('3.8', m.sdkVersion)) warn('replaces', '"replaces" needs "sdkVersion": "3.8" – older Hostwerk versions ignore it and keep the old extension next to this one.');
+      info.push({ code: 'replaces', msg: `Takes over: ${m.replaces.join(', ')} (storage and settings under "replaced:<id>", data folders under replaced/<id>/).` });
+    }
   }
   if (m.allowExtensions !== undefined) {
     const ax = m.allowExtensions;

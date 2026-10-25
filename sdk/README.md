@@ -53,6 +53,7 @@ components ([section 28](#28-sdk-36-animations-like-hostwerk)).
 27. [SDK 3.5: service kinds, contributions and a core without special cases](#27-sdk-35-service-kinds-contributions-and-a-core-without-special-cases)
 28. [SDK 3.6: animations like Hostwerk](#28-sdk-36-animations-like-hostwerk)
 29. [SDK 3.7: “Ask AI” – the Explain button like Hostwerk](#29-sdk-37-ask-ai--the-explain-button-like-hostwerk)
+30. [SDK 3.8: merging extensions (`replaces`)](#30-sdk-38-merging-extensions-replaces)
 
 ![From idea to the marketplace](img/lifecycle.svg)
 
@@ -1090,6 +1091,7 @@ tile – instead of adding one more sidebar entry:
 |---|---|---|
 | Web server, Databases, Minecraft, Projects, Mail, System, AI, Backups | `area:web` … `area:backups` | `web.tabs`, `dbs.tabs`, `minecraft.tabs`, `projects.tabs`, `mail.tabs`, `system.tabs`, `ai.tabs`, `backups.tabs` |
 | Tasks (new) | `area:tasks` | `tasks.tabs` |
+| Settings – own tab (SDK 3.8) | – | `settings.tabs` `{ id, title, icon, Component }` – shown before *Updates*, never instead of one of Hostwerk's tabs; `settings.sections` adds a card to an existing tab |
 | Go live | `area:live` | `live.tabs` with `group` (`erreichbar`, `schuetzen`, `betrieb`) – the **same id** from several extensions shares one tab (e.g. `discord`) |
 | Game servers (extension) | – | `games.tabs` – shown by "Game servers" through `useAreaTabs('games')` from `@hostwerk/kit` |
 | Detail views | `contributes.sections` (section 21) | `sections` |
@@ -1446,3 +1448,52 @@ One look everywhere: a pill in the accent colour with the sparkle icon on the le
 small turn of the sparkle on hover (still with *Reduce animations*). Use `btn-ai` together with `btn` and a size (`xs`, `sm`)
 – in the frame it comes with `/ext-sdk.css`. Rules: one AI button per row or toolbar, the label is a verb (*Explain*, not
 *AI*), and it only ever asks – it never changes anything. For actions that change something, use a normal button.
+
+## 30. SDK 3.8: merging extensions (`replaces`)
+
+Hostwerk 3.1 and newer (with SDK 3.8). Only additions. When two extensions grow together, one of them can take over the
+other: list the old one in `replaces`. Hostwerk then moves everything the old extension left behind into the new one and
+removes the old one – people keep their data and do not have to do anything.
+
+```json
+{ "id": "status-wall", "sdkVersion": "3.8", "replaces": ["uptime-wall"] }
+```
+
+**What is taken over** – once per old extension, when the new one is installed or updated:
+
+| From the old extension | Ends up in the new one |
+|---|---|
+| its storage (`Hostwerk.storage` / `host.storage`) and its settings (`settings`) | own storage, key `replaced:<id>` = `{ storage, settings, at }` |
+| its data folder (`host.dataDir` for native extensions, the sandbox folder otherwise) | a copy under `<own data folder>/replaced/<id>/` – the original stays |
+| areas in Hostwerk's own settings (`data.settings`) | stay where they are – read them as before |
+
+Then the old extension is removed (also when other extensions needed it) and is never installed again by itself. People who
+only have the old extension get the new one from the Hostwerk catalog on the next start; it takes over the same way.
+
+**Your part:** on the first start, read `replaced:<id>` (and `replaced/<id>/`), merge it into your own data and delete
+the key – or keep it, if you read the old format directly. Hostwerk never runs the takeover twice, even if someone installs
+the old extension again by hand.
+
+```js
+// Native extension (server part)
+const old = host.storage.get('replaced:uptime-wall');
+if (old) { mergeChecks(old.storage.checks || [], old.settings || {}); host.storage.set('replaced:uptime-wall', undefined); }
+
+// Page in the frame
+const old = await Hostwerk.storage.get('replaced:uptime-wall');
+if (old) { /* … */ await Hostwerk.storage.remove('replaced:uptime-wall'); }
+```
+
+Rules: at most 10 ids, never your own; `check.js` warns when `sdkVersion` is below 3.8 (older Hostwerk versions ignore
+`replaces` and keep both extensions side by side). In the catalog, remove the old repository from
+`catalog/extension-repos.json` once the new release is out.
+
+**Links keep working.** Published pages (“Publish as a web page”) move to the new extension, an old public view
+`/v/<old>/…` redirects to `/v/<new>/?from=<old>` (your page picks the right view from `from`), and `#/ext/<old>` opens the
+new extension. The old data folder stays as it was until the person removes it completely.
+
+**Also new in 3.8:**
+- `contributes.sections[].showIf`: key of a setting of type `switch` – the section only shows while that switch is on, so
+  people choose in the settings which of your sections they want (e.g. two sections on `mc.players`).
+- Native slot `settings.tabs` `{ id, title, icon, Component }`: an own tab in Hostwerk's settings, before *Updates* – for
+  things that belong to the person, not to an area (e.g. “Discord status”).
