@@ -68,13 +68,19 @@ module.exports = { sourceState, checkAll, report };
 
 if (require.main === module) {
   (async () => {
-    const list = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, 'utf8')) : [];
+    const before = fs.existsSync(FILE) ? fs.readFileSync(FILE, 'utf8') : '[]';
+    const list = JSON.parse(before);
     const { list: next, changed } = await checkAll(list, { token: process.env.GH_TOKEN || process.env.GITHUB_TOKEN || '' });
-    fs.writeFileSync(FILE, JSON.stringify(next, null, 2) + '\n');
-    // Older Hostwerk versions read katalog/community.json
-    if (fs.existsSync('katalog')) fs.writeFileSync(path.join('katalog', 'community.json'), JSON.stringify(next, null, 2) + '\n');
+    const after = JSON.stringify(next, null, 2) + '\n';
+    // Only write when something changed – otherwise the workflow neither re-signs nor commits (no empty commits racing other catalog runs)
+    const updated = after.replace(/\r\n/g, '\n') !== before.replace(/\r\n/g, '\n');
+    if (updated) {
+      fs.writeFileSync(FILE, after);
+      // Older Hostwerk versions read katalog/community.json
+      if (fs.existsSync('katalog')) fs.writeFileSync(path.join('katalog', 'community.json'), after);
+    }
     fs.writeFileSync('sources-report.md', report(next, changed));
     console.log(report(next, changed));
-    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `changed=${changed.length}\n`);
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `changed=${changed.length}\nupdated=${updated ? 1 : 0}\n`);
   })().catch((e) => { console.error(e); process.exit(1); });
 }

@@ -27,10 +27,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/check-extension-sources.js
       - name: Sign
+        if: steps.check.outputs.updated == '1'
         env:
           HOSTWERK_SIGNING_KEY: ${{ secrets.HOSTWERK_SIGNING_KEY }}
         run: node scripts/sign-catalog.js catalog/community.json
       - name: Commit results
+        if: steps.check.outputs.updated == '1'
         run: |
           git config user.name "hostwerk-bot"; git config user.email "bot@users.noreply.github.com"
           git add catalog/community.json catalog/*.sig katalog 2>/dev/null || git add catalog/community.json
