@@ -1,227 +1,227 @@
 {
- "updated": "2026-10-30T11:28:09.362Z",
+ "updated": "2026-10-31T10:59:12.982Z",
  "ratings": {
   "claude": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/3",
-   "downloads": 91
+   "downloads": 92
   },
   "api-tester": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/17",
-   "downloads": 62
+   "downloads": 63
   },
   "backup-calendar": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/1",
-   "downloads": 105
+   "downloads": 106
   },
   "cert-watch": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/2",
-   "downloads": 89
+   "downloads": 90
   },
   "discord-bot": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/36",
-   "downloads": 43
+   "downloads": 44
   },
   "discord-status": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/20",
-   "downloads": 65
+   "downloads": 66
   },
   "dns": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/37",
-   "downloads": 42
+   "downloads": 43
   },
   "disk-health": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/38",
-   "downloads": 42
+   "downloads": 43
   },
   "mail-accounts": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/44",
-   "downloads": 15
+   "downloads": 16
   },
   "file-share": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/21",
-   "downloads": 58
+   "downloads": 59
   },
   "steam": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/45",
-   "downloads": 16
+   "downloads": 17
   },
   "game-servers": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/23",
-   "downloads": 69
+   "downloads": 70
   },
   "pwa": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/46",
-   "downloads": 14
+   "downloads": 15
   },
   "hostwerk-network": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/24",
-   "downloads": 73
+   "downloads": 74
   },
   "ai-media": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/25",
-   "downloads": 66
+   "downloads": 67
   },
   "knowledge-graph": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/4",
-   "downloads": 98
+   "downloads": 99
   },
   "mail-server": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/26",
-   "downloads": 67
+   "downloads": 68
   },
   "mail-stats": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/5",
-   "downloads": 100
+   "downloads": 101
   },
   "mc-network": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/47",
-   "downloads": 15
+   "downloads": 16
   },
   "minecraft": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/42",
-   "downloads": 26
+   "downloads": 27
   },
   "modes": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/43",
-   "downloads": 22
+   "downloads": 23
   },
   "page-check": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/27",
-   "downloads": 58
+   "downloads": 59
   },
   "passwords": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/28",
-   "downloads": 68
+   "downloads": 69
   },
   "player-ticker": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/8",
-   "downloads": 103
+   "downloads": 104
   },
   "profiler": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/29",
-   "downloads": 63
+   "downloads": 64
   },
   "static-publish": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/30",
-   "downloads": 58
+   "downloads": 59
   },
   "router": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/31",
-   "downloads": 66
+   "downloads": 67
   },
   "schematics-3d": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/32",
-   "downloads": 63
+   "downloads": 64
   },
   "server-card": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/11",
-   "downloads": 100
+   "downloads": 101
   },
   "service-notes": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/12",
-   "downloads": 100
+   "downloads": 101
   },
   "status-wall": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/13",
-   "downloads": 104
+   "downloads": 105
   },
   "team": {
    "stars": 3.7,
    "votes": 1,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/33",
-   "downloads": 65
+   "downloads": 66
   },
   "theme-pack": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/39",
-   "downloads": 43
+   "downloads": 44
   },
   "visitor-stats": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/40",
-   "downloads": 42
+   "downloads": 43
   },
   "vpn": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/41",
-   "downloads": 42
+   "downloads": 43
   },
   "vuln-watch": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/48",
-   "downloads": 14
+   "downloads": 15
   },
   "webhook-inbox": {
    "stars": 3,
    "votes": 0,
    "url": "https://github.com/Passimoritz/hostwerk-public/issues/34",
-   "downloads": 59
+   "downloads": 60
   }
  }
 }
