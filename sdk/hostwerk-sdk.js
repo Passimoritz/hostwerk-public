@@ -17,7 +17,7 @@
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '3.8.0';
+  const VERSION = '3.12.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();
@@ -196,6 +196,18 @@
   };
   const uiText = (k) => (messages[`hw.${k}`] != null ? String(messages[`hw.${k}`]) : UI_TEXT[state.lang === 'de' ? 'de' : 'en'][k]);
   const nodeOf = (el) => (typeof el === 'string' ? document.querySelector(el) : el);
+  /* Aktion eines leeren Zustands: Markup (Hostwerk.html) oder { label, href | onClick } (SDK 3.9) */
+  let actionSeq = 0;
+  const actionOf = (action) => {
+    if (!action || action instanceof Raw || typeof action !== 'object' || !action.label) return action || '';
+    if (action.href) return html`<a class="btn sm" href="${action.href}">${action.label}</a>`;
+    const key = `a${++actionSeq}`;
+    if (typeof action.onClick === 'function') {
+      // nach dem Einsetzen anbinden (Hostwerk.render setzt das Markup als HTML ein)
+      setTimeout(() => { const b = document.querySelector(`[data-hw-action="${key}"]`); if (b) b.addEventListener('click', action.onClick); }, 0);
+    }
+    return html`<button type="button" class="btn sm" data-hw-action="${key}">${action.label}</button>`;
+  };
   const ui = {
     /** Platzhalter-Zeilen (Baustein für Hostwerk.html): rows Zeilen, height je Zeile in px. */
     skeleton(rows = 3, { height = 16 } = {}) {
@@ -246,10 +258,17 @@
     /** Gezeichneter Haken für „erledigt“; size 'md' | 'lg'. */
     check(size = 'md') { return new Raw(`<svg class="hw-check hw-pop${size === 'lg' ? ' hw-lg' : ''}" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg>`); },
     /** Leerer Zustand wie in Hostwerk: Symbol, Satz, Aktion (icon = SVG-Markup über Hostwerk.raw, sonst eine Ablage),
-     *  action = Knopf o. Ä. (Hostwerk.html) darunter. */
+     *  action = Knopf o. Ä. (Hostwerk.html) darunter. In einer Kachel (embed 'widget') wird daraus ui.tileEmpty() (SDK 3.9). */
     empty({ title, text, icon, action } = {}) {
+      if (state.embed === 'widget') return ui.tileEmpty({ text: text || title, icon, action });
       const ico = icon || new Raw('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>');
-      return html`<div class="empty-state"><div class="empty-art" aria-hidden="true">${new Raw('<svg viewBox="0 0 120 120"><circle class="o1" cx="60" cy="60" r="44"/><circle class="o2" cx="60" cy="60" r="56"/><g class="p1"><circle cx="60" cy="16" r="3.2"/></g><g class="p2"><circle cx="116" cy="60" r="2.4"/></g></svg>')}<div class="ico">${ico}</div></div>${title ? html`<h3>${title}</h3>` : ''}${text ? html`<p>${text}</p>` : ''}${action ? html`<div class="empty-action">${action}</div>` : ''}</div>`;
+      return html`<div class="empty-state"><div class="empty-art" aria-hidden="true">${new Raw('<svg viewBox="0 0 120 120"><circle class="o1" cx="60" cy="60" r="44"/><circle class="o2" cx="60" cy="60" r="56"/><g class="p1"><circle cx="60" cy="16" r="3.2"/></g><g class="p2"><circle cx="116" cy="60" r="2.4"/></g></svg>')}<div class="ico">${ico}</div></div>${title ? html`<h3>${title}</h3>` : ''}${text ? html`<p>${text}</p>` : ''}${action ? html`<div class="empty-action">${actionOf(action)}</div>` : ''}</div>`;
+    },
+    /** Leere Kachel wie Hostwerks eigene (SDK 3.9): Symbol im gestrichelten Kreis, ein Satz, höchstens eine Aktion rechts.
+     *  icon = SVG-Markup über Hostwerk.raw (sonst eine Ablage), action = Knopf oder Link (Hostwerk.html) bzw. { label, href | onClick }. */
+    tileEmpty({ text, icon, action } = {}) {
+      const ico = icon || new Raw('<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>');
+      return html`<div class="card-body tile-empty"><span class="tile-empty-ico" aria-hidden="true">${ico}</span><span class="tile-empty-txt">${text || ''}</span>${actionOf(action)}</div>`;
     },
     /** Element (oder Selektor) animieren: 'rise' | 'fade' | 'pop' | 'slide' | 'stagger' (Kinder nacheinander) | 'shake' | 'flash'. Spielt auch erneut ab. */
     animate(target, kind = 'rise') {

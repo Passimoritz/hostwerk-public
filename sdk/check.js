@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '3.8.0';
+const SDK_VERSION = '3.12.0';
 /*
  * Stabilitätsversprechen (SDK 3.0, Anleitung Abschnitt 18 „Stabilität und Abkündigungen“):
  *  - SemVer: Alles, was SDK 3.0 dokumentiert (window.Hostwerk, Manifest-Felder, Rechte, contributes), läuft mit jeder
@@ -339,7 +339,8 @@ const SDK_MEMBERS = {
   fmt: ['bytes', 'duration', 'number', 'time'], get: null, post: null, put: null, del: null, pickFolder: null, services: null, service: null, tab: null, setTab: null, context: null,
   minecraft: ['servers', 'players', 'stats', 'command'], storage: ['get', 'set', 'remove', 'all'], settings: ['get', 'open'],
   on: null, toast: null, navigate: null, openUrl: null, copy: null, saveFile: null /* SDK 3.2 */, terminal: null, backend: null,
-  loaded: null, holdLoaded: null, ui: ['loading', 'error', 'load', 'skeleton', 'loader', 'spinner', 'dots', 'check', 'empty', 'animate', 'countUp', 'motionOk'], // SDK 3.2: Laden; 3.6: Animationen
+  loaded: null, holdLoaded: null, ui: ['loading', 'error', 'load', 'skeleton', 'loader', 'spinner', 'dots', 'check', 'empty', 'tileEmpty', 'animate', 'countUp', 'motionOk'], // SDK 3.2: Laden; 3.6: Animationen; 3.9: leere Kachel
+  ai: ['ready', 'explain'], // SDK 3.7: „Erklären“ im Fenster
 };
 /** Tastenkürzel wie in der Oberfläche (ui/src/shortcutKeys.mjs): "Strg+Shift+K" → "ctrl+shift+k", sonst null. */
 const SHORTCUT_MODS = ['ctrl', 'alt', 'shift', 'meta'];
@@ -354,7 +355,7 @@ function shortcutCombo(str) {
 }
 /** Vom System/Texteingaben belegt (wie RESERVED in shortcutKeys.mjs) und Hostwerks eigene Standard-Kürzel. */
 const SHORTCUT_RESERVED = ['ctrl+c', 'ctrl+v', 'ctrl+x', 'ctrl+a', 'ctrl+z', 'ctrl+y', 'ctrl+shift+z', 'alt+f4', 'ctrl+w', 'ctrl+q', 'ctrl+tab', 'ctrl+shift+tab', 'alt+tab', 'ctrl+shift+i', 'f12', 'ctrl+shift+escape', 'ctrl+alt+delete', 'ctrl+arrowleft', 'ctrl+arrowright', 'ctrl+backspace', 'ctrl+delete', 'ctrl+home', 'ctrl+end', 'shift+arrowleft', 'shift+arrowright', 'shift+arrowup', 'shift+arrowdown'];
-const SHORTCUT_HOSTWERK = ['ctrl+k', 'ctrl+n', 'ctrl+shift+s', 'ctrl+shift+x', 'ctrl+,', 'ctrl+r', 'ctrl+shift+r', 'f1', 'shift+f10', 'ctrl+enter', 'ctrl+s', 'ctrl+f', 'ctrl+shift+t', 'ctrl+shift+w', 'ctrl+shift+f', 'f11', ...'123456789'.split('').map((n) => `ctrl+${n}`)];
+const SHORTCUT_HOSTWERK = ['ctrl+k', 'ctrl+j', 'ctrl+n', 'ctrl+shift+s', 'ctrl+shift+x', 'ctrl+,', 'ctrl+r', 'ctrl+shift+r', 'f1', 'shift+f10', 'ctrl+enter', 'ctrl+s', 'ctrl+f', 'ctrl+shift+t', 'ctrl+shift+w', 'ctrl+shift+f', 'f11', ...'123456789'.split('').map((n) => `ctrl+${n}`)];
 
 /** SDK 2.8: Hauptbereiche, in die eine Erweiterung einen Reiter einhängen kann (contributes.tabs[].on) */
 const AREAS = ['area:web', 'area:dbs', 'area:minecraft', 'area:projects', 'area:mail', 'area:system', 'area:live', 'area:ai', 'area:backups', 'area:tasks']; // area:tasks seit SDK 3.2
@@ -488,7 +489,51 @@ const SECTION_PLACES = {
   'mc.players': { de: 'Minecraft-Server · Spieler', en: 'Minecraft server · players', ctx: '{ kind: "minecraft", id }' },
   'files.folder': { de: 'Dateien · geöffneter Ordner', en: 'Files · open folder', ctx: '{ kind: "folder", root, path }' },
   'web.site': { de: 'Webserver · Detailseite', en: 'Web server · detail page', ctx: '{ kind: "web", id }' },
+  // SDK 3.10: Plätze im Bereich KI (Abschnitte statt eigener Reiter; alte area:ai-Reiter zeigt Hostwerk unter „Erweiterungen“)
+  'ai.media': { de: 'KI · Medien (Erzeugen-Werkzeuge über der Mediathek)', en: 'AI · Media (create tools above the media library)', ctx: '{ kind: "ai", area: "media" }', sdk: '3.10' },
+  'ai.settings': { de: 'KI · Einstellungen (eigener Abschnitt mit Titel)', en: 'AI · Settings (own section with a title)', ctx: '{ kind: "ai", area: "settings" }', sdk: '3.10' },
+  'ai.memory': { de: 'KI · Gedächtnis (eigene Ebene)', en: 'AI · Memory (own layer)', ctx: '{ kind: "ai", area: "memory" }', sdk: '3.10' },
+  // SDK 3.11: Plätze im neuen Livebetrieb (fünf Bereiche statt Reiter-Gruppen; alte area:live-/live.tabs-Reiter ordnet Hostwerk zu)
+  'live.online': { de: 'Livebetrieb · Online (Adressen, Domains, Tunnel)', en: 'Go live · Online (addresses, domains, tunnels)', ctx: '{ kind: "live", area: "online" }', sdk: '3.11' },
+  'live.zugriff': { de: 'Livebetrieb · Zugriff (Fernzugriff, Benutzer, Handy, VPN)', en: 'Go live · Access (remote access, users, phone, VPN)', ctx: '{ kind: "live", area: "zugriff" }', sdk: '3.11' },
+  'live.schutz': { de: 'Livebetrieb · Schutz (Prüfung, Firewall, Sperren)', en: 'Go live · Protection (check, firewall, blocks)', ctx: '{ kind: "live", area: "schutz" }', sdk: '3.11' },
+  'live.ueberwachung': { de: 'Livebetrieb · Überwachung (Wächter, Meldungen, Statusseite)', en: 'Go live · Monitoring (watchers, alerts, status page)', ctx: '{ kind: "live", area: "ueberwachung" }', sdk: '3.11' },
+  // Seit SDK 3.12 ein Alias von backups.ausserhaus: die Sicherung außer Haus zog nach Sicherungen → Außer Haus (SECTION_ALIASES)
+  'live.sicherung': { de: 'Livebetrieb · Sicherung (seit 3.12: Sicherungen · Außer Haus)', en: 'Go live · Backup (since 3.12: Backups · Off-site)', ctx: '{ kind: "live", area: "sicherung" }', sdk: '3.11' },
+  // SDK 3.12: Plätze in den neuen Bereichen Sicherungen (fünf Reiter) und System (sechs Reiter)
+  'backups.lage': { de: 'Sicherungen · Lage (Ist alles gesichert?)', en: 'Backups · Overview (is everything backed up?)', ctx: '{ kind: "backups", area: "lage" }', sdk: '3.12' },
+  'backups.staende': { de: 'Sicherungen · Stände (was liegt da?)', en: 'Backups · Backups (what is there?)', ctx: '{ kind: "backups", area: "staende" }', sdk: '3.12' },
+  'backups.zeitplan': { de: 'Sicherungen · Zeitplan (wann wird gesichert?)', en: 'Backups · Schedule (when is it backed up?)', ctx: '{ kind: "backups", area: "zeitplan" }', sdk: '3.12' },
+  'backups.ausserhaus': { de: 'Sicherungen · Außer Haus (Ziele, Cloud, zweiter PC)', en: 'Backups · Off-site (targets, cloud, second PC)', ctx: '{ kind: "backups", area: "ausserhaus" }', sdk: '3.12' },
+  'backups.zurueckholen': { de: 'Sicherungen · Zurückholen (Probe, einzelne Datei, Umzug)', en: 'Backups · Restore (test restore, single file, move)', ctx: '{ kind: "backups", area: "zurueckholen" }', sdk: '3.12' },
+  'system.lage': { de: 'System · Lage (Läuft alles?)', en: 'System · Overview (is everything running?)', ctx: '{ kind: "system", area: "lage" }', sdk: '3.12' },
+  'system.dienste': { de: 'System · Dienste (Ports, Programme, Selbstheilung)', en: 'System · Services (ports, programs, self-healing)', ctx: '{ kind: "system", area: "dienste" }', sdk: '3.12' },
+  'system.leistung': { de: 'System · Leistung (jetzt, Verlauf, Laufwerke)', en: 'System · Performance (now, history, drives)', ctx: '{ kind: "system", area: "leistung" }', sdk: '3.12' },
+  'system.protokolle': { de: 'System · Protokolle (Vorfälle, Absturzberichte)', en: 'System · Logs (incidents, crash reports)', ctx: '{ kind: "system", area: "protokolle" }', sdk: '3.12' },
+  'system.wartung': { de: 'System · Wartung (Selbstwartung, Gesundheits-Check)', en: 'System · Upkeep (self-maintenance, health check)', ctx: '{ kind: "system", area: "wartung" }', sdk: '3.12' },
+  'system.aenderungen': { de: 'System · Änderungen (Zeitachse, Rückgängig)', en: 'System · Changes (timeline, undo)', ctx: '{ kind: "system", area: "aenderungen" }', sdk: '3.12' },
 };
+/** SDK 3.12: alte Plätze, die heute an einem anderen Ort erscheinen (gleicher Abschnitt, neuer Ort) */
+const SECTION_ALIASES = { 'live.sicherung': 'backups.ausserhaus' };
+/**
+ * SDK 3.11: alte Livebetrieb-Reiter laufen weiter (Rückfall) – contributes.tabs "on": "area:live" und native live.tabs landen
+ * als Abschnitt im passenden Bereich, nach "group": erreichbar → Online, schuetzen → Schutz, betrieb → Überwachung; ohne
+ * group in der Überwachung. Die Oberfläche (ui/src/extSections.js) ordnet genauso zu.
+ */
+const LIVE_LEGACY_GROUPS = { erreichbar: 'live.online', schuetzen: 'live.schutz', betrieb: 'live.ueberwachung' };
+const LIVE_LEGACY_DEFAULT = 'live.ueberwachung';
+/**
+ * SDK 3.12: alte Reiter in Sicherungen und System laufen weiter – contributes.tabs "on": "area:backups" / "area:system" und
+ * native backups.tabs / system.tabs werden ein Abschnitt im Bereich ihrer "group" (Name des Bereichs, z. B. "leistung"),
+ * ohne passende group unter „Weitere“ (LEGACY_OTHER). Die Oberfläche ordnet genauso zu.
+ */
+const BACKUPS_LEGACY_GROUPS = { lage: 'backups.lage', staende: 'backups.staende', zeitplan: 'backups.zeitplan', ausserhaus: 'backups.ausserhaus', 'ausser-haus': 'backups.ausserhaus', zurueckholen: 'backups.zurueckholen' };
+const SYSTEM_LEGACY_GROUPS = { lage: 'system.lage', dienste: 'system.dienste', leistung: 'system.leistung', protokolle: 'system.protokolle', wartung: 'system.wartung', aenderungen: 'system.aenderungen' };
+const LEGACY_OTHER = 'weitere';
+/** Bereiche für host.contribute(type, def) – gleiche Liste wie TYPES in server/core/contrib.js (check.js läuft auch allein, ohne Kern). */
+const CONTRIB_TYPES = ['keeper', 'health', 'search', 'guide', 'audit', 'icons', 'connections', 'emergency', 'releaseNotes', 'clickguard', 'terminal', 'advisor', 'live.overview', 'live.addresses', 'backups.overview', 'system.overview'];
+/** Seit SDK 3.11: neue Bereiche für host.contribute – ältere Hostwerk-Fassungen lehnen sie ab (der Aufruf wirft dort). */
+const CONTRIB_SDK = { 'live.overview': '3.11', 'live.addresses': '3.11', 'backups.overview': '3.12', 'system.overview': '3.12' };
 const SECTION_MAX_HEIGHT = 900;
 /**
  * SDK 3.2: Rolle eines Abschnitts ("role") – er übernimmt eine Karte, die Hostwerk an dieser Stelle selbst zeigt.
@@ -588,7 +633,7 @@ function linksIn(dir, base = dir, out = []) {
  */
 const HIDING_KEYS = ['hidden', 'hide', 'invisible', 'unlisted', 'listed', 'visible', 'system', 'protected', 'locked', 'removable', 'uninstallable', 'noUninstall',
   'noDisable', 'disableable', 'essential', 'builtin', 'maintenance', 'safeMode', 'preload', 'bootstrap', 'loadOrder', 'autoload', 'persistent'];
-const TAMPER_RE = /maintenance\.json|_installed\.json|_boot\.json|boot-guard\.json|hostwerk-files\.json|--maintenance|--hw-signal|erweiterungen-vorher|selbstwartung\.json/;
+const TAMPER_RE = /maintenance\.json|_installed\.json|_boot\.json|_veraltet\.json|boot-guard\.json|hostwerk-files\.json|--maintenance|--hw-signal|erweiterungen-vorher|selbstwartung\.json/;
 
 /**
  * Symbol prüfen – dieselbe Idee wie beim Plugin-Symbol in Minecraft-JARs: Format, Größe, quadratisch, sicher,
@@ -751,6 +796,12 @@ function checkPackage(dir, { strict = false } = {}) {
   if (links.length) err('links', `Links (symlinks/junctions) are not allowed – everything must be inside the package folder: ${links.slice(0, 5).join(', ')}.`);
   if (!m.name) err('name', '"name" is missing.');
   if (!SEMVER.test(m.version || '')) err('version', '"version" must look like 1.2.3.');
+  // SDK 3.12: ältere Installationen als „supportedFrom“ aktualisiert Hostwerk zwingend (oder pausiert sie) – höchstens die eigene Version
+  if (m.supportedFrom !== undefined) {
+    if (typeof m.supportedFrom !== 'string' || !/^\d+\.\d+\.\d+$/.test(m.supportedFrom)) err('supportedFrom', '"supportedFrom" must be a version like "1.2.0" – installs older than it are no longer supported.');
+    else if (SEMVER.test(m.version || '') && cmpVer(m.supportedFrom, m.version) > 0) err('supportedFrom', `"supportedFrom" (${m.supportedFrom}) is higher than "version" (${m.version}) – it can be at most the version of this package.`);
+    else if (!m.sdkVersion || !sdkFits('3.12', m.sdkVersion)) info.push({ code: 'supportedFrom', msg: '"supportedFrom" is new in SDK 3.12 – older Hostwerk versions ignore it and keep running old installs. Set "sdkVersion": "3.12" if you rely on it.' });
+  }
   // A pure language pack (only "languages") is an extension too
   // SDK 2.9: reine Farbschemata, Oberflächen-Anpassungen und Ergänzungen anderer Erweiterungen auch
   if (!m.page && !m.widget && !m.command && !m.backend && !m.ui && !(Array.isArray(m.languages) && m.languages.length) && !hasContribEntry(m)) err('entry', 'The extension needs a page ("page"), a dashboard tile ("widget"), a service ("command"), native code ("backend"/"ui"), language packs ("languages"), a theme, interface overrides or extensions of other extensions ("contributes.themes" / "overrides" / "extends").');
@@ -869,6 +920,8 @@ function checkPackage(dir, { strict = false } = {}) {
     if (sectionIds.has(sc.id)) err('contributes.sections', `Two sections are called "${sc.id}".`);
     sectionIds.add(sc.id);
     if (!SECTION_PLACES[sc.on]) err('contributes.sections', `Section "${sc.id}": "on" must be one of ${Object.keys(SECTION_PLACES).join(', ')}.`);
+    // SDK 3.10: Plätze, die ältere Hostwerk-Versionen nicht kennen – deren Prüfer lehnt das Paket ab; sdkVersion verhindert das Angebot
+    else if (SECTION_PLACES[sc.on].sdk && !(m.sdkVersion && sdkFits(SECTION_PLACES[sc.on].sdk, m.sdkVersion))) warn('contributes.sections', `Section "${sc.id}": "on": "${sc.on}" is new in SDK ${SECTION_PLACES[sc.on].sdk} – set "sdkVersion": "${SECTION_PLACES[sc.on].sdk}" (older Hostwerk versions do not know this place and refuse the package).`);
     else if (!sc.file || /\.\.|^\/|\\/.test(sc.file) || !/\.html?$/i.test(sc.file) || !fs.existsSync(path.join(dir, sc.file))) err('contributes.sections', `Section "${sc.id}": "file" is missing or not an .html file inside the package.`);
     if (sc.height !== undefined && !(Number.isFinite(sc.height) && sc.height >= 48 && sc.height <= SECTION_MAX_HEIGHT)) err('contributes.sections', `Section "${sc.id}": "height" is 48–${SECTION_MAX_HEIGHT} px (the frame grows with its content up to that).`);
     if (sc.icon !== undefined && !SIDEBAR_ICONS.includes(sc.icon)) warn('contributes.sections', `Icon "${sc.icon}" is not a sidebar icon.`);
@@ -1151,6 +1204,18 @@ function checkPackage(dir, { strict = false } = {}) {
       .map((f) => { try { return fs.readFileSync(path.join(dir, f), 'utf8'); } catch { return ''; } }).join('\n')
       .replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/.*$/gm, '$1');
     for (const x of INTERNALS) if (x.re.test(code) && !x.stable.test(code)) info.push({ code: 'internals', msg: `Uses a Hostwerk internal that has a stable replacement since SDK 3.3: ${x.use} (the internal stays as a fallback – deprecated since SDK 3.3.0 (2026-10-22), removed no earlier than SDK 4.0.0 and not before 2027-10-22; ask the stable service first, e.g. with host.supports()).` });
+    // SDK 3.10 (seit Hostwerk mit Klartext-Freigabe): ändernde KI-Werkzeuge erklären sich selbst – describe(args) → { ask, verb, effect, undo }
+    if (/\baiExtend\s*\(/.test(code) && /\brisk\s*:\s*['"](change|system)['"]/.test(code) && !/\bdescribe\s*[:(]/.test(code)) warnings.push({ code: 'ai-describe', msg: 'host.aiExtend adds AI tools that change something, but none has describe(args) → { ask, verb, effect, undo } – Hostwerk then asks for approval with the bare tool name instead of plain words (SDK 3.10, guide section 32).' });
+    if (/\baiExtend\s*\(/.test(code) && /\bcontext\s*:\s*[[{]/.test(code) && !/\bresolve\s*[:(]/.test(code)) warnings.push({ code: 'ai-context', msg: 'host.aiExtend({ context: { kind, label, search, resolve } }) – a context source needs resolve(id) → text, otherwise the AI gets nothing when someone picks it with @ (SDK 3.10, guide section 32).' });
+    // host.contribute(type, …): nur Bereiche, die Hostwerk kennt (core/contrib.js) – ein Tippfehler wirft beim Start
+    const ctypes = [...new Set([...code.matchAll(/\bcontribute\(\s*['"]([\w.-]+)['"]/g)].map((x) => x[1]))];
+    const unknownTypes = ctypes.filter((x) => !CONTRIB_TYPES.includes(x));
+    if (unknownTypes.length) warnings.push({ code: 'contribute', msg: `host.contribute: unknown type ${unknownTypes.map((x) => `"${x}"`).join(', ')} – known are ${CONTRIB_TYPES.join(', ')} (guide section 27; live.overview and live.addresses since SDK 3.11, section 33; backups.overview and system.overview since SDK 3.12, section 34).` });
+    const newer = ctypes.filter((x) => CONTRIB_SDK[x] && !(m.sdkVersion && sdkFits(CONTRIB_SDK[x], m.sdkVersion)));
+    if (newer.length) {
+      const versions = [...new Set(newer.map((x) => CONTRIB_SDK[x]))].sort(cmpVer);
+      info.push({ code: 'contribute', msg: `host.contribute(${newer.map((x) => `'${x}'`).join(', ')}) is new in SDK ${versions.join(' / ')} – older Hostwerk versions refuse the type (the call throws there): set "sdkVersion": "${versions[versions.length - 1]}" or wrap the call in try/catch.` });
+    }
     const kinds = TRACE_PATTERNS.filter((x) => x.re.test(code)).map((x) => x.kind);
     // Immer Warnung (auch --strict): die Erkennung ist eine Vermutung aus dem Code
     if (kinds.length && !/\btraces\.add\s*\(/.test(code)) warnings.push({ code: 'traces', msg: `The server code seems to create things outside its own folder (${[...new Set(kinds)].join(', ')}) but never reports them with host.traces.add() – people could not see or remove them when uninstalling (SDK 3.3).` });
@@ -1296,7 +1361,7 @@ module.exports = { checkPackage, HIDING_KEYS, TAMPER_RE, PERMISSIONS, NEVER, LEG
   // SDK 3.0
   SDK_MAJOR, SDK_MINOR, DEPRECATIONS, EXPERIMENTAL, deprecationText, parseSdk, sdkFits, hostwerkRange, hostwerkFits, hostwerkLabel,
   // SDK 2.9
-  themeReport, THEME_TOKENS, THEME_COLOR_TOKENS, THEME_SOFT_TOKENS, THEME_SHADOW_TOKENS, THEME_DEFAULTS, THEME_DENSITY, contrastHex, OVERRIDE_SLOTS, OVERRIDE_MAX_HEIGHT, SECTION_PLACES, SECTION_ROLES, SECTION_MAX_HEIGHT, OVERRIDE_BUDGET, EXTEND_POINTS, EXTEND_EXPLICIT, extendGrant, extendRequested, contribPages };
+  themeReport, THEME_TOKENS, THEME_COLOR_TOKENS, THEME_SOFT_TOKENS, THEME_SHADOW_TOKENS, THEME_DEFAULTS, THEME_DENSITY, contrastHex, OVERRIDE_SLOTS, OVERRIDE_MAX_HEIGHT, SECTION_PLACES, SECTION_ALIASES, SECTION_ROLES, SECTION_MAX_HEIGHT, LIVE_LEGACY_GROUPS, LIVE_LEGACY_DEFAULT, BACKUPS_LEGACY_GROUPS, SYSTEM_LEGACY_GROUPS, LEGACY_OTHER, CONTRIB_TYPES, CONTRIB_SDK, OVERRIDE_BUDGET, EXTEND_POINTS, EXTEND_EXPLICIT, extendGrant, extendRequested, contribPages };
 
 if (require.main === module) {
   const dir = process.argv[2];

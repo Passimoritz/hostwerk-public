@@ -327,6 +327,11 @@
       "type": "string",
       "pattern": "^\\d+\\.\\d+\\.\\d+(-[\\w.]+)?$"
     },
+    "supportedFrom": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SDK 3.12: oldest version of this extension that is still supported, at most \"version\". Hostwerk updates older installs to this release even when automatic updates are off – or pauses them (\"update needed\") when that needs your consent (new permissions) or cannot run."
+    },
     "author": {
       "type": "string"
     },
@@ -750,7 +755,7 @@
                   "area:backups",
                   "area:tasks"
                 ],
-                "description": "Detail pages (minecraft, web, db, app, game) or – since SDK 2.8 – main areas (area:system, area:backups, area:ai …; area:tasks since SDK 3.2)"
+                "description": "Detail pages (minecraft, web, db, app, game) or – since SDK 2.8 – main areas (area:system, area:backups, area:ai …; area:tasks since SDK 3.2). Since SDK 3.10 Hostwerk shows area:ai tabs as sections under “Extensions” in the AI settings – new packages use contributes.sections with ai.media / ai.settings / ai.memory. Since SDK 3.11 area:live tabs show as a section in the matching go-live area (group erreichbar → live.online, schuetzen → live.schutz, betrieb or none → live.ueberwachung) – new packages use live.online / live.zugriff / live.schutz / live.ueberwachung / live.sicherung. Since SDK 3.12 area:backups and area:system tabs show as a section in the backup or system area named by their group (e.g. leistung, wartung, zeitplan), otherwise under “Weitere” – new packages use backups.* / system.* sections."
               },
               "file": {
                 "type": "string",
@@ -759,6 +764,11 @@
               "fallback": {
                 "type": "boolean",
                 "description": "Since SDK 3.2: only shown by Hostwerk versions without sections – from 3.2 on the section from contributes.sections appears instead."
+              },
+              "group": {
+                "type": "string",
+                "pattern": "^[a-z-]+(\\.[a-z-]+)?$",
+                "description": "SDK 3.11/3.12: area for an old area: tab, e.g. \"wartung\" or \"system.wartung\" (Livebetrieb, Sicherungen, System). Without it the tab lands under “Weitere”."
               },
               "page": {
                 "type": "boolean",
@@ -1416,7 +1426,7 @@
         "sections": {
           "type": "array",
           "maxItems": 8,
-          "description": "Since SDK 3.2: sections inside Hostwerk detail views instead of own tabs (Minecraft server overview/players, folder in Files, web server). Hostwerk shows two per extension and place.",
+          "description": "Since SDK 3.2: sections inside Hostwerk detail views instead of own tabs (Minecraft server overview/players, folder in Files, web server) – since SDK 3.10 also in the AI area (ai.media, ai.settings, ai.memory), since SDK 3.11 in the go-live areas (live.online, live.zugriff, live.schutz, live.ueberwachung, live.sicherung), since SDK 3.12 in the backup areas (backups.*) and system areas (system.*). Hostwerk shows two per extension and place.",
           "items": {
             "type": "object",
             "required": [
@@ -1512,9 +1522,28 @@
                   "mc.overview",
                   "mc.players",
                   "files.folder",
-                  "web.site"
+                  "web.site",
+                  "ai.media",
+                  "ai.settings",
+                  "ai.memory",
+                  "live.online",
+                  "live.zugriff",
+                  "live.schutz",
+                  "live.ueberwachung",
+                  "live.sicherung",
+                  "backups.lage",
+                  "backups.staende",
+                  "backups.zeitplan",
+                  "backups.ausserhaus",
+                  "backups.zurueckholen",
+                  "system.lage",
+                  "system.dienste",
+                  "system.leistung",
+                  "system.protokolle",
+                  "system.wartung",
+                  "system.aenderungen"
                 ],
-                "description": "Where the section appears – Hostwerk.context tells the page the place and its target ({ kind, id } or { kind: \"folder\", root, path })."
+                "description": "Where the section appears – Hostwerk.context tells the page the place and its target ({ kind, id } or { kind: \"folder\", root, path }). Since SDK 3.10 also the AI area: ai.media (create tools above the one media library), ai.settings (own section in the AI settings, with its title), ai.memory (own memory layer) – context { kind: \"ai\", area }; needs \"sdkVersion\": \"3.10\". Since SDK 3.11 also the five go-live areas: live.online (addresses, domains, tunnels), live.zugriff (remote access, users, phone, VPN), live.schutz (check, firewall, blocks), live.ueberwachung (watchers, alerts, status page), live.sicherung (backup targets, restore) – context { kind: \"live\", area }; needs \"sdkVersion\": \"3.11\". Old tabs on \"area:live\" keep working and show as a section in the matching area. Since SDK 3.12 also the five backup areas (backups.lage, backups.staende, backups.zeitplan, backups.ausserhaus, backups.zurueckholen – context { kind: \"backups\", area }) and the six system areas (system.lage, system.dienste, system.leistung, system.protokolle, system.wartung, system.aenderungen – context { kind: \"system\", area }); needs \"sdkVersion\": \"3.12\". live.sicherung stays valid as an alias of backups.ausserhaus (the section shows under Backups → Off-site)."
               },
               "file": {
                 "type": "string",

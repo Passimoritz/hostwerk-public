@@ -5,6 +5,108 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
+## 3.12.0 – 2026-10-29
+
+Backups and System rebuilt ([section 34 of the guide](README.md#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule)). Only additions.
+
+- New section places for `contributes.sections` and native `sections` (or `slots` with the same name): `backups.lage`,
+  `backups.staende`, `backups.zeitplan`, `backups.ausserhaus`, `backups.zurueckholen` (context `{ kind: "backups", area }`) and
+  `system.lage`, `system.dienste`, `system.leistung`, `system.protokolle`, `system.wartung`, `system.aenderungen` (context
+  `{ kind: "system", area }`). Sandboxed packages need `"sdkVersion": "3.12"` – `check.js` warns without it.
+- `live.sicherung` stays valid as an alias of `backups.ausserhaus` – the off-site backup moved from Go live to *Backups → Off-site*,
+  sections there show in the new place (`check.js` exports `SECTION_ALIASES`).
+- `contributes.tabs` with `"on": "area:backups"` / `"area:system"` and the native slots `backups.tabs` / `system.tabs` keep
+  working; Hostwerk shows them as a section in the area their `group` names (e.g. `zeitplan`, `leistung`), otherwise under
+  *Weitere* (`BACKUPS_LEGACY_GROUPS`, `SYSTEM_LEGACY_GROUPS`, `LEGACY_OTHER` in `check.js`).
+- New contribution types: `host.contribute('backups.overview', { list(ctx) → [{ area?, level, title, detail, href, action? }],
+  schedule?(ctx) → [{ label, what, every, next, last, href }] })` and `host.contribute('system.overview', { list(ctx) → [{ area?,
+  level, title, detail, href, action? }] })` – points on the overviews (`ext`; `warn`/`err` also in `needs`).
+- Service kinds: optional `kind.backups.schedule(id) → { enabled, everyHours, hour?, keep?, lastRun, lastError }` (nightly backup in
+  the schedule and in “too old”/“failed”). Backup tasks (`db-backup`, `snapshot`, `<kind>-backup`) accept `action.keep`.
+- New endpoints: `GET /api/backups/overview`, `GET`/`POST /api/backups/schedule`, `POST /api/backups/run`,
+  `GET /api/system/overview`.
+- New optional manifest field `supportedFrom` (`"x.y.z"`, at most `version`): installs older than it are no longer
+  supported – Hostwerk updates them even with automatic updates off, or pauses them (*Update needed*, `offReason: "outdated"`)
+  until updated. The catalog copies it into the entry; `check.js` rejects invalid values ([section 34](README.md#retiring-old-versions-supportedfrom)).
+
+> DE: Sicherungen und System neu – neue Abschnitts-Plätze `backups.lage`, `backups.staende`, `backups.zeitplan`,
+> `backups.ausserhaus`, `backups.zurueckholen` und `system.lage`, `system.dienste`, `system.leistung`, `system.protokolle`,
+> `system.wartung`, `system.aenderungen` (abgeschottet mit `"sdkVersion": "3.12"`). `live.sicherung` bleibt als Alias von
+> `backups.ausserhaus` gültig. Alte `area:backups`-/`area:system`-Reiter und `backups.tabs`/`system.tabs` erscheinen als Abschnitt
+> im Bereich ihrer `group`, sonst unter *Weitere*. Neue Beitrags-Arten `backups.overview` (Lage-Punkte, Zeitplan-Einträge) und
+> `system.overview`. Dienst-Arten: freiwillig `backups.schedule(id)`; Sicherungs-Aufgaben kennen `action.keep`. Neue Endpunkte
+> `/api/backups/overview`, `/api/backups/schedule`, `/api/backups/run`, `/api/system/overview`.
+> Neu: Manifest-Feld `supportedFrom` – ältere Installationen aktualisiert Hostwerk auch bei ausgeschalteten automatischen
+> Updates oder pausiert sie bis zum Update (*Update nötig*).
+
+## 3.11.0 – 2026-10-28
+
+Go live in five areas ([section 33 of the guide](README.md#33-sdk-311-go-live-in-five-areas--sections-overview-points-and-own-addresses)). Only additions.
+
+- New section places for `contributes.sections` and native `sections` (or `slots` with the same name): `live.online`,
+  `live.zugriff`, `live.schutz`, `live.ueberwachung`, `live.sicherung`. Context `{ kind: "live", area }`. Sandboxed packages
+  need `"sdkVersion": "3.11"` – `check.js` warns without it.
+- `contributes.tabs` with `"on": "area:live"` and the native slot `live.tabs` keep working; Hostwerk shows them as a section in
+  the area of their `group`: `erreichbar` → Online, `schuetzen` → Protection, `betrieb` (or none) → Monitoring.
+- New contribution types: `host.contribute('live.overview', { list(ctx) → [{ area, level, title, detail, href }] })` (points on
+  the go-live overview, `GET /api/live/overview` → `extras`) and `host.contribute('live.addresses', { list(ctx) → [{ label, url,
+  kind, state, detail, href }] })` (own addresses in `GET /api/live/addresses`). `check.js` warns about unknown `contribute` types.
+- New read endpoints: `GET /api/live/overview`, `/api/live/addresses`, `/api/live/watchers`; backup routes also as
+  `/api/live/backup/…` (`/api/live/monitor/offsite/…` stays).
+- Backup targets (`ctx.offsiteTargets.set(id, …)`) get a unique internal id `<extension>:<id>`; `host.ctx.offsiteTargets` shows
+  each extension only its own targets with short ids – no code change, two extensions with the same id no longer overwrite each other.
+
+> DE: Livebetrieb in fünf Bereichen – neue Abschnitts-Plätze `live.online`, `live.zugriff`, `live.schutz`, `live.ueberwachung`,
+> `live.sicherung` (abgeschottet mit `"sdkVersion": "3.11"`, nativ über `sections`/`slots`); alte `area:live`-Reiter und
+> `live.tabs` erscheinen als Abschnitt im Bereich ihrer `group` (erreichbar → Online, schuetzen → Schutz, betrieb/keine →
+> Überwachung). Neue Beitrags-Arten `live.overview` (Punkte auf der Lage) und `live.addresses` (eigene Adressen). Neue Endpunkte
+> `/api/live/overview`, `/api/live/addresses`, `/api/live/watchers`, Sicherung auch unter `/api/live/backup/…`.
+> Sicherungsziele intern mit Erweiterungs-Präfix eindeutig – ohne Code-Änderung.
+
+## 3.10.0 – 2026-10-27
+
+AI everywhere ([section 32 of the guide](README.md#32-sdk-310-ai-everywhere--side-panel-ai-places-and-own--sources)). Only additions.
+
+- New section places in the AI area for `contributes.sections` and native `sections` (or `slots` with the same name):
+  `ai.media` (create tools above the one media library), `ai.settings` (an own section in the AI settings, with its title),
+  `ai.memory` (an own memory layer). Context `{ kind: "ai", area }`. Sandboxed packages need `"sdkVersion": "3.10"` –
+  `check.js` warns without it, older Hostwerk versions do not know these places.
+- `contributes.tabs` with `"on": "area:ai"` and the native slot `ai.tabs` keep working; Hostwerk shows them as a section under
+  *AI → Settings → Extensions*. Native slot entries with `fallback: true` are left out from 3.10 on (old tab for older Hostwerk).
+- AI side panel (Ctrl+J / ⌘J, ✦ button): `askAi`, `AiQuickButton`, `openAiExplain` and `Hostwerk.ai.explain` now open it with a
+  new conversation instead of the AI page or an own window – no code change needed.
+- `@hostwerk/kit`: `openAiPanel({ question, context, mode })` and `useAiContext({ kind, id, label })` (what your page shows;
+  Ctrl+J attaches it).
+- `host.aiExtend`: `describe(args) → { ask, verb, effect, undo }` for plain-language approval is now documented; `check.js`
+  warns about changing tools without `describe`.
+- `host.aiExtend({ context: { kind, label, search(q), resolve(id) } })` (also a list): own @ sources in the chat;
+  `GET /api/ai/context-sources?q=&kind=`. `check.js` warns about a source without `resolve`.
+- Ctrl+J is reserved for Hostwerk (`SHORTCUT_HOSTWERK`).
+
+> DE: KI überall – neue Abschnitts-Plätze `ai.media`, `ai.settings`, `ai.memory` (abgeschottet mit `"sdkVersion": "3.10"`,
+> nativ über `sections`/`slots`), alte `area:ai`-Reiter und `ai.tabs` erscheinen als Abschnitt unter *Erweiterungen*
+> (`fallback: true` lässt einen nativen Reiter ab 3.10 weg). `askAi`, `AiQuickButton`, `openAiExplain` und
+> `Hostwerk.ai.explain` öffnen jetzt das KI-Seitenfenster (Strg+J). Neu in `@hostwerk/kit`: `openAiPanel`, `useAiContext`.
+> `host.aiExtend`: `describe` für Klartext-Freigaben dokumentiert, eigene @-Quellen über `context: { kind, label, search,
+> resolve }`. Strg+J gehört Hostwerk.
+
+## 3.9.0 – 2026-10-25
+
+Empty tiles like Hostwerk ([section 31 of the guide](README.md#31-sdk-39-empty-tiles-like-hostwerk)). Only additions.
+
+- `Hostwerk.ui.tileEmpty({ text, icon, action })`: the tile placeholder – icon in a dashed circle, one sentence, at most one action.
+- `Hostwerk.ui.empty()` draws the tile form by itself inside a dashboard tile (`embed === 'widget'`).
+- `action` of both helpers also takes `{ label, href }` or `{ label, onClick }`.
+- Kit classes `tile-empty`, `tile-empty-ico`, `tile-empty-txt` in `/ext-sdk.css`; native extensions use `TileEmpty` from `@hostwerk/ui`.
+- A tile that draws nothing gets the placeholder with its title from Hostwerk.
+- The guide got a “where to look” table, contents grouped by topic, a longer tiles section, a checklist before publishing and common questions.
+- `Console` from `@hostwerk/kit`: prop `historyId` – own command history per service (without it, per page); now described in the guide.
+
+> DE: Leere Kacheln wie Hostwerk – `Hostwerk.ui.tileEmpty()`, `ui.empty()` in Kacheln automatisch als Kachel-Platzhalter,
+> Aktionen als `{ label, href | onClick }`, Klassen `tile-empty*` im Baukasten; leere Kacheln bekommen den Platzhalter
+> von Hostwerk. Die Anleitung hat jetzt einen Wegweiser, ein Inhaltsverzeichnis nach Themen, eine Checkliste und häufige Fragen.
+> `Console` aus `@hostwerk/kit`: Eigenschaft `historyId` für einen eigenen Befehlsverlauf je Dienst (ohne: je Seite).
+
 ## 3.8.0 – 2026-10-25
 
 Merging extensions ([section 30 of the guide](README.md#30-sdk-38-merging-extensions-replaces)). Only additions.

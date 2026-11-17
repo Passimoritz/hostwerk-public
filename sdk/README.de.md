@@ -22,38 +22,56 @@ SDK 3.6): Lade-Linie, Kreisel, Einblenden, Puls, gezeichneter Haken und hochzäh
 
 ## Inhalt
 
-- **[Worauf Erweiterungen zugreifen dürfen – und worauf nicht](#worauf-erweiterungen-zugreifen-dürfen--und-worauf-nicht)** (je Recht: darf, darf nicht, fragt nach · „Darf keine Erweiterung“ · abgeschottet oder Teil von Hostwerk)
+### Wegweiser – ich will …
 
-1. [Schnellstart (5 Minuten)](#1-schnellstart-5-minuten)
-2. [Das Paket](#2-das-paket)
-3. [manifest.json](#3-manifestjson)
-4. [Das SDK – `Hostwerk.*`](#4-das-sdk--hostwerk)
-5. [Design-Baukasten](#5-design-baukasten)
-6. [Übersetzungen (Deutsch + Englisch)](#6-übersetzungen-deutsch--englisch)
-7. [Rechte](#7-rechte)
-8. [Einstellungen, Speicher, Ereignisse](#8-einstellungen-speicher-ereignisse)
-9. [Kacheln für die Übersicht](#9-kacheln-für-die-übersicht)
-10. [Erweiterung prüfen](#10-erweiterung-prüfen)
-11. [Veröffentlichen: Repository, Release, Einreichen](#11-veröffentlichen-repository-release-einreichen)
-12. [Vertrauensstufen und Verifizierung](#12-vertrauensstufen-und-verifizierung)
-13. [Sicherheit](#13-sicherheit)
-14. [Beispiele](#14-beispiele)
-15. [SDK 2.7: Aussehen, Abhängigkeiten und native Erweiterungen](#15-sdk-27-aussehen-abhängigkeiten-und-native-erweiterungen)
-16. [SDK 2.8: eingebaut wie Hostwerk selbst – und abgeschottet](#16-sdk-28-eingebaut-wie-hostwerk-selbst--und-abgeschottet)
-17. [SDK 2.9: Farbschemata, Anpassungen und andere Erweiterungen erweitern](#17-sdk-29-farbschemata-anpassungen-und-andere-erweiterungen-erweitern)
-18. [SDK 2.10: Ereignisse, Benachrichtigungen, Dienste steuern und öffentliche Ansichten](#18-sdk-210-ereignisse-benachrichtigungen-dienste-steuern-und-öffentliche-ansichten)
-19. [SDK 3.0: Stabilität und Abkündigungen](#19-sdk-30-stabilität-und-abkündigungen)
-20. [SDK 3.1: geteilter Seiten-Check und Notizen im Wissensgraph](#20-sdk-31-geteilter-seiten-check-und-notizen-im-wissensgraph)
-21. [SDK 3.2: Abschnitte statt Reiter, Datei-Browser und Seiten im Webserver](#21-sdk-32-abschnitte-statt-reiter-datei-browser-und-seiten-im-webserver)
-22. [SDK 3.2: Minecraft-Servertypen und Netzwerke](#22-sdk-32-minecraft-servertypen-und-netzwerke)
-23. [SDK 3.2: Laden wie eine eingebaute Seite](#23-sdk-32-laden-wie-eine-eingebaute-seite)
-24. [SDK 3.2: ohne eigenen Eintrag in der Seitenleiste](#24-sdk-32-ohne-eigenen-eintrag-in-der-seitenleiste)
-25. [SDK 3.3: stabile Dienste statt Kern-Interna, Spuren und Entfernen-Haken](#25-sdk-33-stabile-dienste-statt-kern-interna-spuren-und-entfernen-haken)
-26. [SDK 3.4: eigene Vollbild-Ansichten und Geräte-Anmeldung](#26-sdk-34-eigene-vollbild-ansichten-und-geräte-anmeldung)
-27. [SDK 3.5: Dienst-Arten, Beiträge und ein Kern ohne Sonderfälle](#27-sdk-35-dienst-arten-beiträge-und-ein-kern-ohne-sonderfälle)
-28. [SDK 3.6: Animationen wie Hostwerk](#28-sdk-36-animationen-wie-hostwerk)
-29. [SDK 3.7: „KI fragen“ – der Erklären-Knopf wie in Hostwerk](#29-sdk-37-ki-fragen--der-erklären-knopf-wie-in-hostwerk)
-30. [SDK 3.8: Erweiterungen zusammenlegen (`replaces`)](#30-sdk-38-erweiterungen-zusammenlegen-replaces)
+| Ich will … | Hier steht es |
+|---|---|
+| in 5 Minuten eine erste Erweiterung sehen | [1. Schnellstart](#1-schnellstart-5-minuten) |
+| wissen, welche Dateien ins Paket gehören und was ins Manifest kommt | [2. Das Paket](#2-das-paket) · [3. manifest.json](#3-manifestjson) |
+| eine Seite bauen, die aussieht wie Hostwerk | [5. Design-Baukasten](#5-design-baukasten--hostwerks-eigene-klassen) · [23. Laden](#23-sdk-32-laden-wie-eine-eingebaute-seite) · [28. Animationen](#28-sdk-36-animationen-wie-hostwerk) |
+| eine Kachel für die Übersicht bauen – mit Laden, Leer und Fehler | [9. Kacheln](#9-kacheln-für-die-übersicht) · [31. Leere Kacheln](#31-sdk-39-leere-kacheln-wie-hostwerk) |
+| Einstellungen anbieten, Daten speichern, auf Ereignisse hören | [8. Einstellungen, Speicher, Ereignisse](#8-einstellungen-speicher-ereignisse) · [18. Ereignisse und Dienste](#18-sdk-210-ereignisse-benachrichtigungen-dienste-steuern-und-öffentliche-ansichten) |
+| Hostwerks Daten lesen oder Dienste steuern | [4. Das SDK](#4-das-sdk--hostwerk) · [7. Rechte](#7-rechte) · [25. Stabile Dienste](#25-sdk-33-stabile-dienste-statt-kern-interna-spuren-und-entfernen-haken) |
+| ein eigenes Programm im Hintergrund (Server-Teil) | [15. Native Erweiterungen](#15-sdk-27-aussehen-abhängigkeiten-und-native-erweiterungen) · [16. Abgeschottet](#16-sdk-28-eingebaut-wie-hostwerk-selbst--und-abgeschottet) |
+| Hostwerks Bereiche ergänzen (Reiter, Abschnitte, Farbschemata, Dienst-Arten) | [17. Farbschemata und Anpassungen](#17-sdk-29-farbschemata-anpassungen-und-andere-erweiterungen-erweitern) · [21. Abschnitte](#21-sdk-32-abschnitte-statt-reiter-datei-browser-und-seiten-im-webserver) · [27. Dienst-Arten](#27-sdk-35-dienst-arten-beiträge-und-ein-kern-ohne-sonderfälle) |
+| den „KI fragen“-Knopf einbauen | [29. KI fragen](#29-sdk-37-ki-fragen--der-erklären-knopf-wie-in-hostwerk) |
+| mich in den Bereich KI einhängen (Strg+J, Medien, Einstellungen, Gedächtnis, @-Quellen) | [32. KI überall](#32-sdk-310-ki-überall--seitenfenster-ki-plätze-und-eigene--quellen) |
+| mich in den Livebetrieb einhängen (Online, Zugriff, Schutz, Überwachung, Sicherung; Lage-Punkte, eigene Adressen) | [33. Livebetrieb in fünf Bereichen](#33-sdk-311-livebetrieb-in-fünf-bereichen--abschnitte-lage-punkte-und-eigene-adressen) |
+| mich in Sicherungen oder System einhängen (Lage-Punkte, Zeitplan, Abschnitte in den Bereichen) | [34. Sicherungen und System neu](#34-sdk-312-sicherungen-und-system-neu--abschnitte-lage-punkte-und-zeitplan) |
+| prüfen und veröffentlichen | [10. Prüfen](#10-erweiterung-prüfen) · [11. Veröffentlichen](#11-veröffentlichen-repository-release-einreichen) · [35. Checkliste](#35-checkliste-vor-dem-veröffentlichen) |
+| wissen, warum etwas nicht geht | [36. Häufige Fragen und Fehler](#36-häufige-fragen-und-fehler) |
+
+### Alle Abschnitte nach Thema
+
+**Grundlagen**
+- [Worauf Erweiterungen zugreifen dürfen – und worauf nicht](#worauf-erweiterungen-zugreifen-dürfen--und-worauf-nicht) (je Recht: darf, darf nicht, fragt nach · „Darf keine Erweiterung“ · abgeschottet oder Teil von Hostwerk)
+- [1. Schnellstart (5 Minuten)](#1-schnellstart-5-minuten) · [2. Das Paket](#2-das-paket) · [3. manifest.json](#3-manifestjson) · [4. Das SDK – `Hostwerk.*`](#4-das-sdk--hostwerk) · [14. Beispiele](#14-beispiele)
+
+**Oberfläche und Design**
+- [5. Design-Baukasten](#5-design-baukasten--hostwerks-eigene-klassen) · [6. Übersetzungen (Deutsch + Englisch)](#6-übersetzungen-deutsch--englisch) · [9. Kacheln für die Übersicht](#9-kacheln-für-die-übersicht)
+- [23. Laden wie eine eingebaute Seite](#23-sdk-32-laden-wie-eine-eingebaute-seite) · [24. Ohne eigenen Eintrag in der Seitenleiste](#24-sdk-32-ohne-eigenen-eintrag-in-der-seitenleiste)
+- [28. Animationen wie Hostwerk](#28-sdk-36-animationen-wie-hostwerk) · [29. „KI fragen“ – der Erklären-Knopf](#29-sdk-37-ki-fragen--der-erklären-knopf-wie-in-hostwerk) · [31. Leere Kacheln wie Hostwerk](#31-sdk-39-leere-kacheln-wie-hostwerk) · [32. KI überall – Seitenfenster, KI-Plätze und eigene @-Quellen](#32-sdk-310-ki-überall--seitenfenster-ki-plätze-und-eigene--quellen) · [33. Livebetrieb in fünf Bereichen – Abschnitte, Lage-Punkte und eigene Adressen](#33-sdk-311-livebetrieb-in-fünf-bereichen--abschnitte-lage-punkte-und-eigene-adressen) · [34. Sicherungen und System neu – Abschnitte, Lage-Punkte und Zeitplan](#34-sdk-312-sicherungen-und-system-neu--abschnitte-lage-punkte-und-zeitplan)
+
+**Daten, Rechte und Sicherheit**
+- [7. Rechte](#7-rechte) · [8. Einstellungen, Speicher, Ereignisse](#8-einstellungen-speicher-ereignisse) · [13. Sicherheit](#13-sicherheit)
+- [18. Ereignisse, Benachrichtigungen, Dienste steuern und öffentliche Ansichten](#18-sdk-210-ereignisse-benachrichtigungen-dienste-steuern-und-öffentliche-ansichten)
+- [25. Stabile Dienste statt Kern-Interna, Spuren und Entfernen-Haken](#25-sdk-33-stabile-dienste-statt-kern-interna-spuren-und-entfernen-haken)
+
+**Hostwerk erweitern (nativ, Beiträge, eigene Arten)**
+- [15. Aussehen, Abhängigkeiten und native Erweiterungen](#15-sdk-27-aussehen-abhängigkeiten-und-native-erweiterungen) · [16. Eingebaut wie Hostwerk selbst – und abgeschottet](#16-sdk-28-eingebaut-wie-hostwerk-selbst--und-abgeschottet)
+- [17. Farbschemata, Anpassungen und andere Erweiterungen erweitern](#17-sdk-29-farbschemata-anpassungen-und-andere-erweiterungen-erweitern) · [20. Geteilter Seiten-Check und Notizen im Wissensgraph](#20-sdk-31-geteilter-seiten-check-und-notizen-im-wissensgraph)
+- [21. Abschnitte statt Reiter, Datei-Browser und Seiten im Webserver](#21-sdk-32-abschnitte-statt-reiter-datei-browser-und-seiten-im-webserver) · [22. Minecraft-Servertypen und Netzwerke](#22-sdk-32-minecraft-servertypen-und-netzwerke)
+- [26. Eigene Vollbild-Ansichten und Geräte-Anmeldung](#26-sdk-34-eigene-vollbild-ansichten-und-geräte-anmeldung) · [27. Dienst-Arten, Beiträge und ein Kern ohne Sonderfälle](#27-sdk-35-dienst-arten-beiträge-und-ein-kern-ohne-sonderfälle)
+
+**Prüfen und veröffentlichen**
+- [10. Erweiterung prüfen](#10-erweiterung-prüfen) · [11. Veröffentlichen: Repository, Release, Einreichen](#11-veröffentlichen-repository-release-einreichen) · [12. Vertrauensstufen und Verifizierung](#12-vertrauensstufen-und-verifizierung)
+- [35. Checkliste vor dem Veröffentlichen](#35-checkliste-vor-dem-veröffentlichen) · [36. Häufige Fragen und Fehler](#36-häufige-fragen-und-fehler)
+
+**Versionen**
+- [19. Stabilität und Abkündigungen](#19-sdk-30-stabilität-und-abkündigungen) · [30. Erweiterungen zusammenlegen (`replaces`)](#30-sdk-38-erweiterungen-zusammenlegen-replaces) · [SDK-Changelog](SDK-CHANGELOG.md)
+
+> Die Abschnitte 15–32 tragen die SDK-Version im Titel, mit der sie dazukamen. Sie gelten alle weiter – setze
+> `"sdkVersion"` im Manifest auf die kleinste Version, deren Funktionen du nutzt ([Abschnitt 19](#19-sdk-30-stabilität-und-abkündigungen)).
 
 ![Von der Idee in den Marktplatz](img/lifecycle.svg)
 
@@ -199,6 +217,7 @@ Höchstens 10 MB. Keine Programme (`.exe`, `.sh` …) in Paketen, die nur Seiten
 | `id` | a–z, 0–9 und `-`, 2–40 Zeichen. Bleibt für immer gleich. |
 | `name`, `description`, `title`, `label` | Text oder `{ "de": …, "en": … }` – im Katalog sind beide Sprachen Pflicht. |
 | `version` | `1.2.3`. Eine höhere Version erscheint in Hostwerk als Update. |
+| `supportedFrom` | Freiwillig (SDK 3.12): älteste noch unterstützte Version, z. B. `"2.0.0"` – höchstens `version`. Ältere Installationen werden auch bei ausgeschalteten automatischen Updates aktualisiert oder bis zum Update pausiert – siehe [Abschnitt 34](#alte-fassungen-auslaufen-lassen-supportedfrom). |
 | `icon` | Quadratisches SVG/PNG im Paket – Marktplatz-Karte und Kopf der Seite. |
 | `page.icon` | **Symbol in der Seitenleiste** – ein schlichtes Linien-Symbol wie bei Hostwerks eigenen Bereichen. Einer von: `puzzle users monitor gauge activity chart bell book bot box calendar camera clock cloud code coffee cpu database download file flag gamepad gift globe heart home image inbox key dashboard grid leaf line-chart list lock mail map message music network news package pie-chart radio rocket server settings shield cart sparkles star sun swords table tag terminal timer trophy tv wand wifi wrench zap`. |
 | `sdkVersion` | Das SDK, für das die Erweiterung geschrieben ist, z. B. `"3.0"` – siehe [Abschnitt 19](#19-sdk-30-stabilität-und-abkündigungen). |
@@ -420,9 +439,71 @@ Zugriffsprotokoll der Erweiterung (auch Ablehnungen).
 
 ## 9. Kacheln für die Übersicht
 
-`widget.file` ist eine kleine Seite ohne eigenen Rand/Hintergrund – den Rahmen zeichnet Hostwerk. Die Höhe folgt dem
-Inhalt automatisch. Größen: `third`, `half`, `full`. Installierte Kacheln erscheinen in der Übersicht unter
-*Anpassen* (ein-/ausblenden, anordnen).
+Eine Kachel zeigt **eine Sache auf einen Blick** – eine Zahl, einen Zustand oder eine kurze Liste – und führt für alles
+Weitere auf deine Seite. Hostwerk zeichnet den Rahmen samt Kopf (Symbol, Titel), die Höhe folgt dem Inhalt (höchstens
+520 px, darüber scrollt die Kachel). Installierte Kacheln erscheinen unter *Übersicht → Anpassen*; dort blendet man sie
+ein und aus, angeordnet wird direkt auf der Übersicht (Knopf neben *Anpassen*).
+
+```json
+"widget": { "file": "widget/index.html", "title": { "de": "Notizen", "en": "Notes" }, "size": "third" }
+```
+
+| Feld | Bedeutung |
+|---|---|
+| `file` | Die Kachel-Seite – klein, ohne eigenen Rand, Hintergrund oder Titel (den zeichnet Hostwerk). |
+| `title` | Titel im Kachelkopf und unter *Anpassen*, `{ "de": …, "en": … }`. |
+| `size` | `third` (ein Drittel), `half` oder `full` – Standard `third`. Die Breite lässt sich auf der Übersicht ändern. |
+
+**Jede Kachel kennt drei Zustände** – genau wie Hostwerks eigene:
+
+| Zustand | So geht's | So sieht es aus |
+|---|---|---|
+| **Lädt** | automatisch bis zum ersten `Hostwerk.render()`; für später nachgeladene Teile `Hostwerk.ui.load(el, fn)` | Hostwerks Lade-Animation |
+| **Leer** | `Hostwerk.ui.empty({ text, icon, action })` – in einer Kachel wird daraus von selbst der Kachel-Platzhalter ([Abschnitt 31](#31-sdk-39-leere-kacheln-wie-hostwerk)) | Symbol im gestrichelten Kreis, ein Satz, höchstens eine Aktion |
+| **Fehler** | `Hostwerk.ui.load` zeigt Fehler von selbst, sonst `Hostwerk.ui.error(el, err, retry)` | Meldung mit „Erneut versuchen“ |
+
+```html
+<!-- widget/index.html -->
+<div id="tile"></div>
+<script src="/ext-sdk.js"></script>
+<script>
+  const tile = document.getElementById('tile');
+  async function show() {
+    const notes = await Hostwerk.ui.load(tile, () => Hostwerk.storage.get('notes'));
+    if (notes === undefined) return; // Fehler – ui.load zeigt ihn schon an, mit „Erneut versuchen“
+    if (!notes || !notes.length) {
+      return Hostwerk.render(tile, Hostwerk.ui.empty({ text: 'Noch keine Notizen.', action: { label: 'Notiz anlegen', onClick: () => Hostwerk.navigate('/ext/notizen') } }));
+    }
+    Hostwerk.render(tile, Hostwerk.html`<div class="card-body">${notes.slice(0, 5).map((n) => Hostwerk.html`<div class="list-item">${n.title}</div>`)}</div>`);
+  }
+  Hostwerk.ready().then(show);
+</script>
+```
+
+**Gute Kacheln …**
+
+- zeigen **eine** Aussage und verlinken für Details auf die eigene Seite (`Hostwerk.navigate(…)`);
+- haben **keinen eigenen Rahmen, Hintergrund oder Titel** und keine festen Farben – Klassen aus dem Baukasten (`card-body`,
+  `list-item`, `stat`, `badge` …) und `var(--hw-…)`;
+- nennen den leeren Zustand **in einem Satz mit Symbol** statt einer grauen Zeile („Keine Daten“) – `check.js` warnt
+  sonst (Regel `text-empty`, [Abschnitt 10](#10-erweiterung-prüfen));
+- fragen höchstens alle 10 Sekunden nach und hören lieber auf Ereignisse ([Abschnitt 8](#8-einstellungen-speicher-ereignisse)).
+
+**Native Erweiterungen** tragen Kacheln über den Steckplatz `dashboard.tiles` bei
+([Abschnitt 18](#18-sdk-210-ereignisse-benachrichtigungen-dienste-steuern-und-öffentliche-ansichten)). Für den leeren
+Zustand gibt es `TileEmpty` aus `@hostwerk/ui` – dieselbe Komponente, die Hostwerk selbst nutzt:
+
+```jsx
+import { TileEmpty } from '@hostwerk/ui';
+function NotesTile() {
+  const notes = useNotes();
+  if (!notes.length) return <TileEmpty text="Noch keine Notizen." action="Notiz anlegen" href="#/ext/notizen" />;
+  return <div className="card-body">{notes.map((n) => <div key={n.id} className="list-item">{n.title}</div>)}</div>;
+}
+```
+
+Zeichnet eine native Kachel gar nichts (`return null`), zeigt Hostwerk von selbst den Kachel-Platzhalter mit ihrem Titel
+und „Noch nichts hier.“ – leere Flächen gibt es auf der Übersicht nicht mehr.
 
 ## 10. Erweiterung prüfen
 
@@ -1101,8 +1182,11 @@ Abschnitt oder Kachel – statt als weiterer Eintrag:
 |---|---|---|
 | Webserver, Datenbanken, Minecraft, Projekte, E-Mail, System, KI, Sicherungen | `area:web` … `area:backups` | `web.tabs`, `dbs.tabs`, `minecraft.tabs`, `projects.tabs`, `mail.tabs`, `system.tabs`, `ai.tabs`, `backups.tabs` |
 | Aufgaben (neu) | `area:tasks` | `tasks.tabs` |
+| KI – Medien, Einstellungen, Gedächtnis (SDK 3.10) | `contributes.sections` mit `ai.media` · `ai.settings` · `ai.memory` | `sections` (oder `slots`) mit denselben Namen – Abschnitt 32; `area:ai`/`ai.tabs` erscheinen als Abschnitt unter *Erweiterungen* |
 | Einstellungen – eigener Reiter (SDK 3.8) | – | `settings.tabs` `{ id, title, icon, Component }` – steht vor *Updates*, nie anstelle eines Hostwerk-Reiters; `settings.sections` fügt einem vorhandenen Reiter eine Karte hinzu |
 | Livebetrieb | `area:live` | `live.tabs` mit `group` (`erreichbar`, `schuetzen`, `betrieb`) – **gleiche id** aus mehreren Erweiterungen = ein gemeinsamer Reiter (z. B. `discord`) |
+| Livebetrieb – Online, Zugriff, Schutz, Überwachung, Sicherung (SDK 3.11) | `contributes.sections` mit `live.online` · `live.zugriff` · `live.schutz` · `live.ueberwachung` · `live.sicherung` | `sections` (oder `slots`) mit gleichen Namen – Abschnitt 33; `area:live`/`live.tabs` erscheinen als Abschnitt im Bereich ihrer `group` |
+| Sicherungen und System – je Bereich (SDK 3.12) | `contributes.sections` mit `backups.lage` … `backups.zurueckholen` · `system.lage` … `system.aenderungen` | `sections` (oder `slots`) mit gleichen Namen – Abschnitt 34; `area:backups`/`area:system`, `backups.tabs`/`system.tabs` erscheinen als Abschnitt im Bereich ihrer `group`, sonst unter *Weitere* |
 | Spiele-Server (Erweiterung) | – | `games.tabs` – zeigt „Spiele-Server“ über `useAreaTabs('games')` aus `@hostwerk/kit` |
 | Detailansichten | `contributes.sections` (Abschnitt 21) | `sections` |
 
@@ -1288,7 +1372,7 @@ host.serviceKind({
   iconSources: (id) => [{ file } | { url: 'https://…', color }],  // Bilder (nur https)
   image: (eintrag) => 'repo/image:tag',                  // Docker-Image-Liste für andere Erweiterungen
   tasks: { control: { type: 'game', label, fields, validate, clean, run(aktion, env) } },   // geplante Aufgaben
-  backups: { prefix, list(id), dir(id), create, restore, remove, probe },
+  backups: { prefix, list(id), dir(id), create, restore, remove, probe, schedule }, // schedule(id) seit SDK 3.12 (Abschnitt 34)
   copy: { folder, dir, dirFor, entry, add, place, isRunning, skip, clone, … },   // Umzug, Spiegel, Behalten, Klonen
   headline: () => ({ icon, value, label, sub }), metrics: ['cpu', 'ram', 'players'], …
 });
@@ -1315,6 +1399,8 @@ host.contribute('releaseNotes', { sources: { paper: { label, link: (v) => url, f
 host.contribute('terminal', { detect: (names, has) => ({ id, label, reason, first, recent: /…/, commands: [{ label, cmd, ps, win }] }) });
 host.contribute('advisor', { kind, label, start: /minecraft|…/i, open: { id, route }, what, rules: [[/…/i, 'wahl', 'Begründung']], values: (text) => ({}) });
 host.contribute('clickguard', { block: [/^\/meine-api\/install/] });           // Routen, die der Klick-Roboter nicht auslösen darf
+host.contribute('live.overview', { list: (ctx) => [{ area, level, title, detail, href }] });   // Lage im Livebetrieb (SDK 3.11, Abschnitt 33)
+host.contribute('live.addresses', { list: (ctx) => [{ label, url, kind, state, detail, href }] }); // eigene Adressen (SDK 3.11)
 ```
 
 `emergency`: Der Notfall-Knopf schließt, was deine Erweiterung nach außen geöffnet hat (`step(text, fn)` zählt es mit), und
@@ -1326,7 +1412,8 @@ deine Art (`start`) und öffnet deinen Dialog (`open`, wie `openNew(id, route)`)
 
 `host.aiExtend({ tools({ add, S, L, find, clip }) {…}, groups, modes, assists, about, vocab, speak, context })` – eigene
 KI-Werkzeuge (gleiche Form und Risikoklassen wie Hostwerks eigene), Rollen, Helfer-Texte, Wörter für Spracherkennung und
-Aussprache.
+Aussprache. Seit SDK 3.10: `describe(args)` für die Freigabe in Klartext und `context: { kind, label, search, resolve }` als
+eigene @-Quelle im Chat – siehe [Abschnitt 32](#32-sdk-310-ki-überall--seitenfenster-ki-plätze-und-eigene--quellen).
 
 ### Manifest
 
@@ -1400,6 +1487,10 @@ animate(ref.current, 'shake');
 
 ## 29. SDK 3.7: „KI fragen“ – der Erklären-Knopf wie in Hostwerk
 
+> Seit SDK 3.10 öffnen Knopf, `openAiExplain` und `Hostwerk.ai.explain` das **KI-Seitenfenster** (Strg+J) mit einem neuen
+> Gespräch – Text als Anhang, Frage passend zu `task` – statt eines eigenen Fensters. Am Aufruf ändert sich nichts
+> ([Abschnitt 32](#32-sdk-310-ki-überall--seitenfenster-ki-plätze-und-eigene--quellen)).
+
 Hostwerk 3.1 und neuer (mit SDK 3.7). Nur Ergänzungen. Hostwerk zeigt neben Fehlern, Protokollen und langen Texten einen
 kleinen Funken-Knopf – *Erklären*, *Zusammenfassen*, *Was ist das?*. Ein Klick öffnet das **Fenster „KI fragen“**: Es zeigt
 den Text, holt die kurze Antwort der KI (derselbe Weg wie überall in Hostwerk, `/api/ai/quick`) und bietet *Kopieren*, eine
@@ -1438,6 +1529,17 @@ const aiReady = useAiReady(); // eigene KI-Stellen nur zeigen, solange true (au�
 | `className` | zusätzliche Klassen, z. B. für Abstände |
 
 Die `Console` aus `@hostwerk/kit` hat den *Erklären*-Knopf schon in ihrer Werkzeugleiste.
+
+```jsx
+<Console lines={lines} onCommand={send} historyId={`spiel:${server.id}`} />
+```
+
+| Eigenschaft | Bedeutung |
+|---|---|
+| `lines` | die Zeilen der Ausgabe |
+| `onCommand` | wird mit dem eingegebenen Befehl aufgerufen; ohne `onCommand` keine Eingabezeile |
+| `historyId` | Schlüssel für den Befehlsverlauf (Pfeil hoch/runter) – je Dienst ein eigener, z. B. `spiel:<id>`. Ohne `historyId` gilt die aktuelle Seite (Adresse ohne `?…`); zeigen mehrere Dienste ihre Konsole auf derselben Seite, gib jedem eine eigene, sonst teilen sie sich den Verlauf |
+| `placeholder` · `suggestions` · `onClear` · `height` · `showTime` | Platzhalter der Eingabe, Vorschläge zum Vervollständigen, Knopf *Leeren*, Höhe in Pixeln (Standard 520), Uhrzeit vor jeder Zeile (Standard an) |
 
 ### Seiten im Rahmen (`Hostwerk.ai`)
 
@@ -1518,3 +1620,458 @@ aus `catalog/extension-repos.json` nehmen, sobald die neue Fassung veröffentlic
   Schalter an ist; so wählt man in den Einstellungen, welche deiner Abschnitte man sehen will (z. B. zwei auf `mc.players`).
 - Nativer Steckplatz `settings.tabs` `{ id, title, icon, Component }`: ein eigener Reiter in Hostwerks Einstellungen, vor
   *Updates* – für Dinge, die zur Person gehören und nicht zu einem Bereich (z. B. „Discord-Status“).
+
+---
+
+## 31. SDK 3.9: Leere Kacheln wie Hostwerk
+
+Leere Kacheln sehen überall gleich aus: **Symbol im gestrichelten Kreis, ein Satz, höchstens eine Aktion rechts** – so wie
+„Zuletzt bearbeitete Projekte“, wenn es noch keine gibt. Das ist der Standard für jede Kachel, auch für die von
+Erweiterungen.
+
+| Wo | Was du schreibst |
+|---|---|
+| Seite oder Kachel im Rahmen | `Hostwerk.ui.empty({ text, icon, action })` – in einer Kachel (`Hostwerk.embed === 'widget'`) automatisch die Kachel-Form, auf einer Seite der große leere Zustand |
+| ausdrücklich die Kachel-Form | `Hostwerk.ui.tileEmpty({ text, icon, action })` (neu in 3.9) |
+| native Erweiterung | `<TileEmpty icon={…} text="…" action="…" href="…" />` (oder `onClick`) aus `@hostwerk/ui` |
+| Kachel ohne Inhalt | nichts – Hostwerk zeigt den Platzhalter mit dem Kacheltitel selbst |
+
+`action` ist entweder Markup (`Hostwerk.html`) oder ein Objekt `{ label, href }` bzw. `{ label, onClick }` – Hostwerk
+zeichnet dann den passenden kleinen Knopf. `icon` ist SVG-Markup über `Hostwerk.raw(…)`; ohne Angabe erscheint eine
+Ablage. Die Klassen `tile-empty`, `tile-empty-ico` und `tile-empty-txt` stehen im Baukasten (`/ext-sdk.css`) bereit,
+falls du die Form selbst baust.
+
+```js
+Hostwerk.render('#tile', Hostwerk.ui.tileEmpty({
+  text: 'Noch kein Server verbunden.',
+  icon: Hostwerk.raw('<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/></svg>'),
+  action: { label: 'Verbinden', onClick: () => Hostwerk.settings.open() },
+}));
+```
+
+Texte: ein kurzer Satz, der sagt, **was fehlt** („Noch keine Notizen.“), und eine Aktion, die es **ändert** („Notiz anlegen“).
+Kein „Keine Daten vorhanden“, keine zwei Knöpfe. Setze `"sdkVersion": "3.9"`, wenn du `ui.tileEmpty` oder die
+Objekt-Form von `action` nutzt.
+
+---
+
+## 32. SDK 3.10: KI überall – Seitenfenster, KI-Plätze und eigene @-Quellen
+
+Hostwerk mit SDK 3.10. Nur Ergänzungen – alles aus 3.7 läuft weiter. Die KI hat in Hostwerk jetzt einen Ort je Sache:
+**Gespräche · Automatisch · Medien · Einstellungen**, und auf jeder Seite ist sie einen Tastendruck entfernt
+(**Strg+J** bzw. **⌘J**, oder der ✦-Knopf oben rechts). Erweiterungen hängen sich dort als **Abschnitte** ein, nicht als
+eigene Reiter.
+
+### Das KI-Seitenfenster (Strg+J)
+
+Ein Seitenfenster rechts (etwa 420 px, auf schmalen Bildschirmen ein Vollbild-Blatt) mit dem Gespräch in kompakter Form. Die
+aktuelle Seite hängt automatisch an, „⤢“ öffnet dasselbe Gespräch in *KI → Gespräche*. Bleibt man auf der Seite, geht das
+Gespräch beim nächsten Öffnen weiter; auf einer anderen Seite beginnt ein neues.
+
+Alle bisherigen Wege öffnen jetzt dieses Fenster – auch für Erweiterungen, ohne Änderung am Code:
+
+| Aufruf | Seit | Jetzt |
+|---|---|---|
+| `askAi(frage, kontext, schwerpunkt)` aus `@hostwerk/kit` | 3.4 | neues Gespräch im Seitenfenster mit Frage und Anhang (früher: Sprung auf die KI-Seite) |
+| `AiQuickButton` / `openAiExplain({ task, text, context, label })` | 3.7 | neues Gespräch mit dem Text als Anhang und einer Frage passend zu `task` (früher: eigenes Fenster) |
+| `Hostwerk.ai.explain(text, { task, context, label })` im Rahmen | 3.7 | wie `openAiExplain`, der Anhang nennt deine Erweiterung |
+
+Neu in `@hostwerk/kit` (native Erweiterungen):
+
+```jsx
+import { openAiPanel, useAiContext } from '@hostwerk/kit';
+
+// Was deine Seite gerade zeigt – Strg+J hängt es an (null = nichts). Ohne Meldung hängt Hostwerk den Seitennamen an.
+useAiContext(server ? { kind: 'text', id: `spiel:${server.id}`, label: server.name, text: `Spieleserver ${server.name}, Port ${server.port}` } : null);
+
+// Seitenfenster öffnen – mit Frage beginnt ein neues Gespräch
+openAiPanel({ question: t('Why does the server stop at night?'), context: { kind: 'text', label: server.name, text: log.slice(-4000) } });
+```
+
+Ein Anhang hat dieselbe Form wie im Chat: `{ kind, id, label }`. Hostwerk kennt `service` (`web:<id>`, `dbs:<id>`,
+`app:<id>`), `db`, `web`, `project` (mit `path`), `incident`, `file` (mit `path`) und `text` (mit `text`, höchstens 8000
+Zeichen). Eigene Arten liefert deine Erweiterung über `host.aiExtend({ context })` (unten).
+
+### Plätze im Bereich KI: `ai.media`, `ai.settings`, `ai.memory`
+
+| Platz | Wo | Kontext |
+|---|---|---|
+| `ai.media` | *KI → Medien*, über der einen Mediathek: deine Erzeugen-Werkzeuge (Ergebnisse landen in Hostwerks Mediathek, `POST /ai/media` bzw. Hostwerks Bild-/Video-Wege) | `{ kind: "ai", area: "media" }` |
+| `ai.settings` | *KI → Einstellungen*: ein eigener Abschnitt mit deinem Titel (z. B. *Verbindungen*) | `{ kind: "ai", area: "settings" }` |
+| `ai.memory` | *KI → Einstellungen → Gedächtnis*: eine eigene Ebene neben *Über dich* und *Projekte* (z. B. *Wissen*) | `{ kind: "ai", area: "memory" }` |
+
+Abgeschottete Seiten nehmen `contributes.sections` (wie Abschnitt 21) – `Hostwerk.embed` ist `'section'`,
+`Hostwerk.context` enthält `place` und `section`:
+
+```json
+"sdkVersion": "3.10",
+"contributes": {
+  "sections": [
+    { "id": "connections", "title": { "de": "Verbindungen", "en": "Connections" }, "on": "ai.settings", "file": "page/index.html", "icon": "network" },
+    { "id": "knowledge", "title": { "de": "Wissen", "en": "Knowledge" }, "on": "ai.memory", "file": "page/index.html", "height": 420 }
+  ]
+}
+```
+
+```js
+Hostwerk.ready().then((info) => {
+  if (info.embed === 'section') show(info.context.section);   // 'connections' oder 'knowledge' – kompakt, ohne eigenen Kopf
+});
+```
+
+Native Erweiterungen tragen sie unter `sections` ein (oder unter `slots` mit demselben Namen – gleiche Form):
+
+```jsx
+export default {
+  sections: {
+    'ai.media': [{ id: 'studio', title: 'Images & videos', icon: ImageIcon, Component: CreateTools }],
+  },
+};
+```
+
+Die Komponente bekommt `ctx` (siehe Tabelle) und was die KI-Seite dazugibt (`onCreated(result)` im Medien-Reiter: die
+Mediathek lädt neu). Höchstens zwei Abschnitte je Erweiterung und Platz.
+
+**Ältere Wege:** Reiter mit `"on": "area:ai"` und der native Steckplatz `ai.tabs` laufen weiter – Hostwerk zeigt sie seit
+3.10 als Abschnitt unter *KI → Einstellungen → Erweiterungen*, nicht mehr als eigenen Reiter.
+
+**Zwei Hostwerk-Versionen bedienen:**
+
+- *Abgeschottet:* Ältere Hostwerk-Versionen kennen die Plätze `ai.*` nicht und lehnen ein Paket damit ab. Setze
+  `"sdkVersion": "3.10"` – dann bietet Hostwerk die neue Fassung nur dort an, wo sie läuft; ältere behalten deine
+  vorige Version mit dem `area:ai`-Reiter. `check.js` warnt, wenn `sdkVersion` fehlt.
+- *Nativ:* Steckplätze werden nicht geprüft. Liefere den alten Reiter mit `fallback: true` weiter aus – Hostwerk ab 3.10 lässt
+  ihn weg (der Abschnitt steht ja da), ältere zeigen ihn wie bisher:
+  `slots: { 'ai.tabs': [{ id: 'media', title: 'Images & videos', Component: StudioPage, fallback: true }] }`.
+
+### KI-Werkzeuge mit Klartext-Freigabe (`describe`)
+
+Werkzeuge, die etwas ändern (`risk: 'change'` oder `'system'`), fragen vorher. Damit die Freigabe-Karte in Klartext fragt
+statt mit dem Werkzeugnamen, liefert das Werkzeug `describe(args, ctx)`:
+
+```js
+host.aiExtend({
+  tools({ add }) {
+    add('game_restart', 'games', 'Restart a game server', { id: { type: 'string' } }, ['id'], async ({ id }) => restart(id), {
+      risk: 'change',
+      describe: ({ id }) => ({
+        ask: `Spieleserver „${name(id)}“ neu starten?`,   // die Frage auf der Karte
+        verb: 'Neu starten',                              // Beschriftung des Knopfs
+        effect: 'Spieler werden kurz getrennt.',          // optional: was passiert
+        undo: 'Nicht nötig – der Server läuft danach wieder.', // optional: wie man es rückgängig macht
+      }),
+    });
+  },
+});
+```
+
+Ältere Erweiterungen, deren `describe` nur einen Text liefert, laufen weiter (der Text steht dann als Detail auf der Karte).
+Lesende Werkzeuge (`risk: 'read'`) fragen nie. `check.js` warnt, wenn ändernde Werkzeuge kein `describe` haben.
+
+### Eigene @-Quellen im Chat (`context`)
+
+Im Chat hängt man mit `@` etwas an. Deine Erweiterung kann eigene Quellen beisteuern:
+
+```js
+host.aiExtend({
+  context: {
+    kind: 'game',                                         // eigene Art (a–z, 0–9, -), nicht die des Kerns
+    label: { de: 'Spieleserver', en: 'Game servers' },
+    search: async (q) => list().filter((s) => s.name.includes(q)).map((s) => ({ id: s.id, label: s.name })), // höchstens 20
+    resolve: async (id) => `Spieleserver ${name(id)}\n${await lastLog(id, 60)}`, // Text für die KI (höchstens 8000 Zeichen)
+  },
+});
+```
+
+`context` darf auch eine Liste solcher Quellen sein; die bisherige Form `context(c, run)` (Funktion) bleibt gültig.
+Hostwerk fragt `search` höchstens 2 Sekunden und `resolve` höchstens 8 Sekunden. Die Oberfläche liest die Quellen über
+`GET /api/ai/context-sources?q=…&kind=…` → `{ sources: [{ kind, label, owner }], items: [{ kind, id, label, owner }] }`.
+`check.js` warnt, wenn einer Quelle `resolve` fehlt.
+
+## 33. SDK 3.11: Livebetrieb in fünf Bereichen – Abschnitte, Lage-Punkte und eigene Adressen
+
+Hostwerk mit SDK 3.11. Nur Ergänzungen – alles aus 3.10 läuft weiter. Der *Livebetrieb* hat keine Reiter-Gruppen mehr, sondern
+**Lage · Online · Zugriff · Schutz · Überwachung · Sicherung**. Die Lage liest einen Endpunkt (`GET /api/live/overview`) und
+zeigt vier Karten (Online, Zugriff, Schutz, Überwachung/Sicherung) mit „Nächste Schritte“. Erweiterungen hängen sich als
+**Abschnitte** eines Bereichs ein, liefern **Punkte für die Lage** und **eigene Adressen** für die Adressen-Liste.
+
+### Plätze in den Bereichen des Livebetriebs
+
+| Platz | Wo | Kontext |
+|---|---|---|
+| `live.online` | *Livebetrieb → Online*: Adressen, Domains, Schnell-Links, Tunnel (z. B. Router, DNS, eigene Adress-Arten) | `{ kind: "live", area: "online" }` |
+| `live.zugriff` | *Livebetrieb → Zugriff*: Fernzugriff, Benutzer, Handy, VPN | `{ kind: "live", area: "zugriff" }` |
+| `live.schutz` | *Livebetrieb → Schutz*: Prüfung von außen, Firewall, Sperren | `{ kind: "live", area: "schutz" }` |
+| `live.ueberwachung` | *Livebetrieb → Überwachung*: Wächter, Meldungen, Statusseite | `{ kind: "live", area: "ueberwachung" }` |
+| `live.sicherung` | *Livebetrieb → Sicherung*: Sicherungsziele und Zurückholen | `{ kind: "live", area: "sicherung" }` |
+
+Abgeschottete Pakete nutzen `contributes.sections` (Abschnitt 21), native `sections` (oder `slots` mit gleichem Namen):
+
+```json
+"sdkVersion": "3.11",
+"contributes": {
+  "sections": [
+    { "id": "vpn", "title": { "de": "VPN", "en": "VPN" }, "on": "live.zugriff", "file": "page/index.html", "icon": "network" }
+  ]
+}
+```
+
+```jsx
+export default {
+  sections: { 'live.ueberwachung': [{ id: 'wall', title: 'Uptime-Wand', icon: Activity, Component: Wall }] },
+};
+```
+
+**Ältere Wege laufen weiter:** Reiter mit `"on": "area:live"` und der native Steckplatz `live.tabs` werden ein Abschnitt im
+passenden Bereich, nach ihrer `group`:
+
+| `group` (alt) | Bereich ab 3.11 | Platz |
+|---|---|---|
+| `erreichbar` | Online | `live.online` |
+| `schuetzen` | Schutz | `live.schutz` |
+| `betrieb` | Überwachung | `live.ueberwachung` |
+| keine | Überwachung | `live.ueberwachung` |
+
+Zwei Hostwerk-Versionen bedienen wie in Abschnitt 32: abgeschottete Pakete setzen `"sdkVersion": "3.11"` (ältere Hostwerk-
+Versionen behalten dein voriges Release mit dem `area:live`-Reiter, `check.js` warnt ohne); native Erweiterungen behalten den
+alten `live.tabs`-Eintrag mit `fallback: true` neben dem neuen `live.*`-Abschnitt – Hostwerk 3.11 und neuer lassen ihn weg,
+ältere Versionen zeigen ihn wie bisher.
+
+### Punkte auf der Lage: `host.contribute('live.overview', …)`
+
+```js
+host.contribute('live.overview', {
+  list: (ctx) => [
+    { area: 'access', level: vpn.running ? 'ok' : 'warn', title: 'VPN', detail: `${vpn.peers} Geräte`, href: '#/ext/vpn' },
+  ],
+});
+```
+
+`area` ist `online`, `access`, `protect` oder `run` (Überwachung und Sicherung); `level` ist `ok`, `warn`, `err` oder
+`off`. Deine Punkte stehen in `GET /api/live/overview` unter `extras` (mit `ext` = deine id) und zählen bei der Stufe ihrer
+Karte mit – ein `err` färbt sie rot. Höchstens 10 Punkte je Erweiterung; `href` ist eine Adresse in Hostwerk (`#/…`) oder
+https. Hostwerk hält die Lage 10 Sekunden vor – `list` soll schnell antworten (keine Netzabfragen, eigenen Stand nehmen).
+
+### Eigene Adressen: `host.contribute('live.addresses', …)`
+
+```js
+host.contribute('live.addresses', {
+  list: (ctx) => [
+    { label: 'play.example.org', url: 'minecraft://play.example.org:25565', kind: 'minecraft', state: 'ok', detail: 'Survival · 3 Spieler', href: '#/mc' },
+  ],
+});
+```
+
+Sie erscheinen unter *Livebetrieb → Online* neben Hostwerks eigenen Adressen. `GET /api/live/addresses` gibt jeder Adresse
+dieselben Felder:
+
+```json
+{ "id": "domain:shop.example.org", "kind": "domain", "label": "shop.example.org", "url": "https://shop.example.org",
+  "target": { "kind": "web", "id": "apache", "name": "Apache" },
+  "https": { "days": 61, "staging": false, "auto": true, "force": true }, "dns": { "ok": true, "detail": "shop.example.org → 203.0.113.9" },
+  "outside": { "ok": true, "at": 1761638400000 }, "expiresAt": null, "password": false, "state": "ok", "detail": "…", "href": "#/live/domains" }
+```
+
+`kind` ist `domain`, `quick` (Schnell-Link, mit `expiresAt` und `password`), `named` (dauerhafter Tunnel) oder `ext`
+(deine – mit `ext` = deine id und `extKind` = das übergebene `kind`). Einträge ohne `label` fallen weg, höchstens 20 je
+Erweiterung.
+
+Beide Arten sind neu in SDK 3.11 – ältere Hostwerk-Versionen werfen bei einer unbekannten Art. `"sdkVersion": "3.11"` setzen
+oder den Aufruf in `try { … } catch {}` fassen. `check.js` warnt bei unbekannten `contribute`-Arten.
+
+### Mehr für die neuen Bereiche
+
+- `GET /api/live/watchers` – alle Wächter in einer Liste (`[{ id, kind, name, detail, state, href, editable, ext? }]`,
+  `kind` `uptime`, `tcp`, `ping`, `svc`, `query`, `cert`, `ext`, `logs`). Wächter deiner Erweiterung kommen weiter aus
+  `host.watcher({ id, label, state, detail, href })` (Abschnitt 16).
+- Sicherungsziele deiner Erweiterung (`ctx.offsiteTargets.set('cloud', …)`) bekommen intern eine eindeutige Kennung
+  `<deine id>:cloud`. Dein Code ändert sich nicht: `host.ctx.offsiteTargets` zeigt nur deine eigenen Ziele mit deinen kurzen
+  Kennungen. Zwei Erweiterungen mit gleicher Kennung überschreiben sich nicht mehr; mit der alten Kennung gespeicherte
+  Einstellungen gelten weiter.
+- Die Sicherungs-Routen gibt es auch als `/api/live/backup/…` (`/api/live/monitor/offsite/…` bleibt als Alias).
+
+## 34. SDK 3.12: Sicherungen und System neu – Abschnitte, Lage-Punkte und Zeitplan
+
+Hostwerk mit SDK 3.12. Nur Ergänzungen – alles aus 3.11 läuft weiter. *Sicherungen* und *System* sind gebaut wie der
+Livebetrieb: zuerst eine **Lage**, dann flache Bereiche mit Abschnitten links.
+
+- *Sicherungen*: **Lage · Stände · Zeitplan · Außer Haus · Zurückholen** (`#/sicherungen`, `…/staende`, `…/zeitplan`,
+  `…/ausser-haus`, `…/zurueckholen`). Die Sicherung außer Haus zog aus dem Livebetrieb hierher.
+- *System*: **Lage · Dienste · Leistung · Protokolle · Wartung · Änderungen** (`#/system`, `…/dienste`, `…/leistung`,
+  `…/protokolle`, `…/wartung`, `…/aenderungen`).
+
+### Plätze in Sicherungen und System
+
+| Platz | Wo | Kontext |
+|---|---|---|
+| `backups.lage` | *Sicherungen → Lage*: Ist alles gesichert? | `{ kind: "backups", area: "lage" }` |
+| `backups.staende` | *Sicherungen → Stände*: was liegt da (je Dienst gruppiert) | `{ kind: "backups", area: "staende" }` |
+| `backups.zeitplan` | *Sicherungen → Zeitplan*: regelmäßige Sicherungen, z. B. ein Kalender | `{ kind: "backups", area: "zeitplan" }` |
+| `backups.ausserhaus` | *Sicherungen → Außer Haus*: Ziele (z. B. Cloud), Verschlüsselung, zweiter PC | `{ kind: "backups", area: "ausserhaus" }` |
+| `backups.zurueckholen` | *Sicherungen → Zurückholen*: Probe, einzelne Datei, Zeitmaschine, Umzug | `{ kind: "backups", area: "zurueckholen" }` |
+| `system.lage` | *System → Lage*: Läuft alles? (z. B. Steckbrief des PCs) | `{ kind: "system", area: "lage" }` |
+| `system.dienste` | *System → Dienste*: Ports, installierte und fremde Programme, Selbstheilung | `{ kind: "system", area: "dienste" }` |
+| `system.leistung` | *System → Leistung*: jetzt, Verlauf, Laufwerke, Speicherplatz | `{ kind: "system", area: "leistung" }` |
+| `system.protokolle` | *System → Protokolle*: Protokolle, Vorfälle, Absturzberichte | `{ kind: "system", area: "protokolle" }` |
+| `system.wartung` | *System → Wartung*: Selbstwartung, Gesundheits-Check, Schwachstellen | `{ kind: "system", area: "wartung" }` |
+| `system.aenderungen` | *System → Änderungen*: Zeitachse mit Rückgängig | `{ kind: "system", area: "aenderungen" }` |
+
+Abgeschottete Pakete nutzen `contributes.sections` (Abschnitt 21), native `sections` (oder `slots` mit gleichem Namen):
+
+```json
+"sdkVersion": "3.12",
+"contributes": {
+  "sections": [
+    { "id": "kalender", "title": { "de": "Kalender", "en": "Calendar" }, "on": "backups.zeitplan", "file": "page/index.html", "icon": "calendar" }
+  ]
+}
+```
+
+```jsx
+export default {
+  sections: { 'system.leistung': [{ id: 'laufwerke', title: 'Laufwerke', icon: HardDrive, Component: Drives }] },
+};
+```
+
+**`live.sicherung` bleibt gültig** – als Alias von `backups.ausserhaus`: Abschnitte dort erscheinen ab 3.12 unter
+*Sicherungen → Außer Haus* (Kontext bleibt `{ kind: "live", area: "sicherung" }`). Neue Pakete nehmen `backups.ausserhaus`.
+
+**Ältere Wege laufen weiter:** Reiter mit `"on": "area:backups"` bzw. `"area:system"` und die nativen Steckplätze
+`backups.tabs` / `system.tabs` werden ein Abschnitt – im Bereich, den ihre `group` nennt, sonst unter **Weitere**:
+
+| `group` (nativ) | Bereich ab 3.12 |
+|---|---|
+| `lage`, `staende`, `zeitplan`, `ausserhaus` (oder `ausser-haus`), `zurueckholen` | der gleichnamige Bereich in *Sicherungen* (`backups.…`) |
+| `lage`, `dienste`, `leistung`, `protokolle`, `wartung`, `aenderungen` | der gleichnamige Bereich in *System* (`system.…`) |
+| keine oder unbekannt, `contributes.tabs` mit `area:backups`/`area:system` | **Weitere** |
+
+Zwei Hostwerk-Versionen bedienen wie in Abschnitt 33: abgeschottete Pakete setzen `"sdkVersion": "3.12"` (ältere Versionen
+behalten dein voriges Release, `check.js` warnt ohne); native Erweiterungen behalten den alten Reiter mit `fallback: true`
+neben dem neuen Abschnitt – Hostwerk 3.12 und neuer lassen ihn weg.
+
+### Punkte auf der Lage: `host.contribute('backups.overview', …)` und `host.contribute('system.overview', …)`
+
+```js
+host.contribute('backups.overview', {
+  list: (ctx) => [
+    { area: 'offsite', level: cloud.ok ? 'ok' : 'err', title: 'Cloud', detail: cloud.text, href: '#/ext/cloud',
+      action: { label: 'Erneut', path: '/ext/cloud/api/run', body: {} } },
+  ],
+  // optional: eigene regelmäßige Sicherungen im Zeitplan
+  schedule: (ctx) => [{ label: 'Cloud', what: 'alle Stände', every: 'täglich 04:00', next: cloud.next, last: { t: cloud.last, ok: cloud.ok, error: null }, href: '#/ext/cloud' }],
+});
+host.contribute('system.overview', {
+  list: (ctx) => [{ area: 'load', level: smart.bad ? 'warn' : 'ok', title: 'Laufwerk D:', detail: 'S.M.A.R.T.-Warnung', href: '#/ext/drives' }],
+});
+```
+
+- `level` ist `ok`, `warn`, `err` oder `off`. `warn`/`err` erscheinen zusätzlich in **Braucht dich** (`needs`, bei System mit
+  `source: "ext"`); `action` ist `{ label, href }` oder `{ label, path, body }` (Hostwerk schickt `POST path`). Ohne `action`
+  führt die Zeile zu `href`.
+- `area` (freiwillig) sortiert den Punkt in eine Karte ein und zählt bei deren Stufe mit: bei *Sicherungen* die Kennung
+  eines Bereichs aus `GET /api/backups/overview` (`db`, `snapshot`, die Art deiner Dienste, `src:<quelle>`, `mail`, `time`,
+  `offsite`), bei *System* `services`, `load`, `upkeep` oder `incidents`.
+- Höchstens 10 Punkte (20 Zeitplan-Einträge) je Erweiterung; Hostwerk hält die Lage 10 Sekunden vor – `list` soll schnell
+  antworten. Beide Arten sind neu in 3.12: `"sdkVersion": "3.12"` setzen oder den Aufruf in `try { … } catch {}` fassen.
+
+Dienst-Arten mit Sicherungen (`kind.backups`, Abschnitt 27) erscheinen **von selbst** als eigener Bereich der Lage. Neu und
+freiwillig: `backups.schedule(id) → { enabled, everyHours, hour?, keep?, lastRun, lastError }` – dann zeigt der Zeitplan deine
+nächtliche Sicherung, die Lage misst „zu alt“ daran und meldet einen Fehlschlag (`lastError`) mit „Erneut“.
+
+### Die neuen Endpunkte
+
+- `GET /api/backups/overview` (10 s zwischengespeichert, `?fresh=1` rechnet neu) –
+  `{ at, level, count, areas: [{ id, label, icon, level, count, size, newest, schedule, services, href, missing: [{ svc, svcName, href }],
+  stale: [{ svc, svcName, newest, href }], failed: [{ svc, svcName, t, error, retry: { path, body } | null, href }] }], needs: [{ id,
+  level, text, action }], rule321: { copies, media, offsite, ok }, probe: { ok, total, last } | null, offsite: { enabled, lastRun,
+  lastError, targets }, size: { total, byArea }, ext }`. „Zu alt“ = neuester Stand älter als 2 × der eigene Zeitplan, ohne
+  Zeitplan 7 Tage.
+- `GET /api/backups/schedule` – `{ items: [{ id, kind: task | nightly | offsite | probe | ext, label, what, every, next, last: { t, ok,
+  error } | null, href, taskId? }] }`.
+- `POST /api/backups/schedule` `{ what: { kind: "db" | "snapshot" | <art> | "all-db", svc? }, every: "daily" | "weekly" | "monthly"
+  | "hourly" | "6h" …, time?: "HH:MM", day?: 0–6, keep?: n }` legt eine **normale Aufgabe** an (ohne `svc` eine je Dienst) –
+  `keep` landet als `action.keep` in der Aufgabe (Dienst-Arten lesen es in ihrer Aufgabe `backup` selbst).
+- `POST /api/backups/run` `{ area?, svc? }` – „Jetzt alles sichern“ bzw. ein Bereich oder Dienst als Auftrag mit Fortschritt
+  → `{ ok, jobId }`.
+- `GET /api/system/overview` (10 s, `?fresh=1`) – `{ at, level, services: { level, running, total, failed }, load: { level, cpu,
+  mem: { used, total }, disks: [{ mount, usedPct }] }, upkeep: { level, needYou, lastCheck, score }, incidents: { level, count7d,
+  last }, needs: [{ id, level, source, text, action }], host: { os, cpu, mem, version, uptime }, ext }`. `needs` ist eine Liste
+  aus Diensten, Ports, Absturzberichten, Selbstwartung, Gesundheits-Check und Erweiterungen – dieselbe Ursache steht nur
+  einmal da.
+
+### Alte Fassungen auslaufen lassen (`supportedFrom`)
+
+Hostwerk hält Verträglichkeits-Code für alte Fassungen von Erweiterungen, solange sie noch irgendwo installiert sein können.
+Mit `"supportedFrom"` im Manifest einer **neuen** Fassung sagst du, ab welcher Version deine Erweiterung unterstützt wird –
+ältere Installationen laufen aus:
+
+```json
+{ "id": "meine-ext", "version": "2.1.0", "supportedFrom": "2.0.0", "sdkVersion": "3.12" }
+```
+
+- Der Katalog übernimmt das Feld in den Eintrag. Beim täglichen Update-Lauf aktualisiert Hostwerk jede Installation unter
+  `supportedFrom` auf die neue Fassung – **auch wenn automatische Updates** für diese Erweiterung oder insgesamt **aus** sind,
+  wie immer mit Probe und Rücksprung.
+- Geht das nicht von selbst – die Fassung braucht neue Rechte (oder Webadressen), Abhängigkeiten fehlen, sie passt nicht zu
+  diesem Hostwerk, die Quelle ist nicht der Hostwerk-Katalog, die Probe scheitert oder die Fassung wurde als kaputt
+  übersprungen –, wird die alte Installation **pausiert**: Sie bleibt mit *Update nötig* in der Liste (`offReason: "outdated"`,
+  `outdated: { min, latest, reason }` in `GET /api/extmarket`), aber ohne Seite, Kachel, Code und Beiträge. Die
+  Selbstwartung meldet das einmal. *Aktualisieren* installiert die neue Fassung und hebt die Pause auf.
+- Nur aus Hostwerks eigenen Katalogen (Hostwerk-Katalog, Community), nie aus eigenen Index-Adressen. Höchstens `version`,
+  Form `x.y.z` – `check.js` lehnt alles andere ab. Ältere Hostwerk-Versionen übergehen das Feld.
+- Sparsam einsetzen: `supportedFrom` nur anheben, wenn alte Fassungen wirklich brechen (z. B. alte Datenformate, die du nicht
+  mehr umziehst).
+
+## 35. Checkliste vor dem Veröffentlichen
+
+**Paket und Manifest**
+- [ ] `id` klein, mit Bindestrichen, eindeutig; `version` nach SemVer; `sdkVersion` = kleinste Version, deren Funktionen du nutzt
+- [ ] nur die Rechte, die die Erweiterung wirklich braucht ([Abschnitt 7](#7-rechte)) – jedes Recht steht im Marktplatz
+- [ ] `icon.svg` quadratisch und farbig; Paket unter 10 MB; keine Skripte aus dem Internet
+
+**Aussehen**
+- [ ] nur Baukasten-Klassen und `var(--hw-…)`-Farben, keine festen Farben oder Schriften ([Abschnitt 5](#5-design-baukasten--hostwerks-eigene-klassen))
+- [ ] in **hell und dunkel** angesehen, im schmalen Fenster (Handy-Ansicht) und mit „Bewegung reduzieren“
+- [ ] Laden, Leer und Fehler gestaltet ([Abschnitt 9](#9-kacheln-für-die-übersicht), [Abschnitt 23](#23-sdk-32-laden-wie-eine-eingebaute-seite))
+- [ ] Kachel: eine Aussage, kein eigener Rand, leerer Zustand mit `ui.empty` bzw. `TileEmpty` ([Abschnitt 31](#31-sdk-39-leere-kacheln-wie-hostwerk))
+
+**Texte**
+- [ ] jeder sichtbare Text in `locales/de.json` **und** `locales/en.json` ([Abschnitt 6](#6-übersetzungen-deutsch--englisch))
+- [ ] Knöpfe sagen, was passiert („Server starten“ statt „OK“); Fehlermeldungen sagen, was man tun kann
+
+**Verhalten**
+- [ ] `node check.js <ordner> --strict` ohne Fehler und Hinweise ([Abschnitt 10](#10-erweiterung-prüfen))
+- [ ] Ereignisse statt Dauer-Abfragen; wenn abfragen, dann höchstens alle 10 Sekunden
+- [ ] Aufräumen beim Entfernen bedacht ([Entfernen-Haken, Abschnitt 25](#25-sdk-33-stabile-dienste-statt-kern-interna-spuren-und-entfernen-haken))
+- [ ] README im Repository mit Bildschirmfoto (hell und dunkel): was die Erweiterung tut und welche Rechte sie warum braucht
+
+---
+
+## 36. Häufige Fragen und Fehler
+
+**Meine Seite bleibt bei der Lade-Animation stehen.** Hostwerk wartet auf das erste sichtbare `Hostwerk.render()`. Lädst
+du länger, halte die Animation mit `Hostwerk.holdLoaded()` und rufe danach `Hostwerk.loaded()` auf
+([Abschnitt 23](#23-sdk-32-laden-wie-eine-eingebaute-seite)). Ein Fehler im Skript davor verhindert das Signal – sieh in
+die Konsole.
+
+**`localStorage`, Cookies oder `fetch` auf Hostwerks Adresse gehen nicht.** Die Seite läuft abgeschottet in einem
+eigenen Ursprung. Speichern über `Hostwerk.storage` (Recht `storage`), Hostwerk-Daten über `Hostwerk.get` / `Hostwerk.post`,
+eigene Server-Logik über `Hostwerk.backend()` ([Abschnitt 8](#8-einstellungen-speicher-ereignisse), [Abschnitt 13](#13-sicherheit)).
+
+**`Hostwerk.post` fragt jedes Mal nach.** Das ist Absicht: Änderungen brauchen ein Recht **und** die Bestätigung der
+Person. Lesen (`Hostwerk.get`) fragt nicht.
+
+**Ein Text bleibt auf Englisch (oder Deutsch).** Er fehlt in einer der beiden `locales`-Dateien – `check.js` listet
+fehlende Schlüssel. Texte, die du per Skript einsetzt, laufen über `Hostwerk.render` bzw. `Hostwerk.t()`.
+
+**Die Farben passen im hellen Design nicht.** Feste Farben (`#fff`, `rgb(…)`) statt `var(--hw-…)`. Der Prüfer warnt davor.
+
+**Die Kachel ist leer oder zu hoch.** Leere Kacheln bekommen den Platzhalter ([Abschnitt 31](#31-sdk-39-leere-kacheln-wie-hostwerk));
+lange Listen kürzen (z. B. die fünf neuesten) und auf die Seite verlinken – über 520 px scrollt die Kachel.
+
+**Meine Erweiterung erscheint nicht in der Seitenleiste.** Prüfe `page.nav` ([Abschnitt 24](#24-sdk-32-ohne-eigenen-eintrag-in-der-seitenleiste))
+– Erweiterungen können bewusst ohne eigenen Eintrag laufen, etwa als Reiter in einem anderen Bereich.
+
+**Der Katalog findet das Release nicht.** Das Release braucht das ZIP als Anhang, und das Repository muss öffentlich sein
+([Abschnitt 11](#11-veröffentlichen-repository-release-einreichen)). Gelöschte Repositories markiert die wöchentliche Prüfung
+im Katalog; Autoren ziehen Einträge selbst über das Formular „Erweiterung zurückziehen“ zurück.

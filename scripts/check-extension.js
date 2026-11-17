@@ -110,7 +110,7 @@ function runtime(dir) {
   const raw = (f) => `https://raw.githubusercontent.com/${repo}/main/${f}`;
   const entry = {
     id: m.id, name: m.name, description: m.description || field(body, 'Description', 'Beschreibung'), author: String(m.author || submitter).slice(0, 60),
-    version, page: !!m.page, widget: !!m.widget, service: false, permissions: scopes(m.permissions), hostwerk: m.hostwerk || null,
+    version, page: !!m.page, widget: !!m.widget, service: false, permissions: scopes(m.permissions), hostwerk: m.hostwerk || null, supportedFrom: m.supportedFrom || null,
     homepage: m.homepage || m.repository || null, icon: icon ? raw(icon) : null, download: raw(file),
     sha256: crypto.createHash('sha256').update(buf).digest('hex'), submitter, score: r.score, updated: new Date().toISOString().slice(0, 10),
   };

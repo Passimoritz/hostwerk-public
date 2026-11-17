@@ -22,38 +22,56 @@ components ([section 28](#28-sdk-36-animations-like-hostwerk)).
 
 ## Contents
 
-- **[What extensions may access – and what not](#what-extensions-may-access--and-what-not)** (per permission: may, may not, asks first · "No extension may" · sandboxed or part of Hostwerk)
+### Where to look – I want to …
 
-1. [Quick start (5 minutes)](#1-quick-start-5-minutes)
-2. [The package](#2-the-package)
-3. [manifest.json](#3-manifestjson)
-4. [The SDK – `Hostwerk.*`](#4-the-sdk--hostwerk)
-5. [Design kit](#5-design-kit)
-6. [Translations (German + English)](#6-translations-german--english)
-7. [Permissions](#7-permissions)
-8. [Settings, storage, events](#8-settings-storage-events)
-9. [Dashboard tiles](#9-dashboard-tiles)
-10. [Check your extension](#10-check-your-extension)
-11. [Publish: repository, release, submit](#11-publish-repository-release-submit)
-12. [Trust levels and getting verified](#12-trust-levels-and-getting-verified)
-13. [Security model](#13-security-model)
-14. [Examples](#14-examples)
-15. [SDK 2.7: look, dependencies and native extensions](#15-sdk-27-look-dependencies-and-native-extensions)
-16. [SDK 2.8: built in like Hostwerk itself – and sandboxed](#16-sdk-28-built-in-like-hostwerk-itself--and-sandboxed)
-17. [SDK 2.9: themes, overrides and extending other extensions](#17-sdk-29-themes-overrides-and-extending-other-extensions)
-18. [SDK 2.10: events, notifications, controlling services and public views](#18-sdk-210-events-notifications-controlling-services-and-public-views)
-19. [SDK 3.0: stability and deprecations](#19-sdk-30-stability-and-deprecations)
-20. [SDK 3.1: shared site check and notes in the knowledge graph](#20-sdk-31-shared-site-check-and-notes-in-the-knowledge-graph)
-21. [SDK 3.2: sections instead of tabs, file browser and pages in a web server](#21-sdk-32-sections-instead-of-tabs-file-browser-and-pages-in-a-web-server)
-22. [SDK 3.2: Minecraft server types and networks](#22-sdk-32-minecraft-server-types-and-networks)
-23. [SDK 3.2: loading like a built-in page](#23-sdk-32-loading-like-a-built-in-page)
-24. [SDK 3.2: without an own sidebar entry](#24-sdk-32-without-an-own-sidebar-entry)
-25. [SDK 3.3: stable services instead of core internals, traces and an uninstall hook](#25-sdk-33-stable-services-instead-of-core-internals-traces-and-an-uninstall-hook)
-26. [SDK 3.4: screens of their own and device sign-in](#26-sdk-34-screens-of-their-own-and-device-sign-in)
-27. [SDK 3.5: service kinds, contributions and a core without special cases](#27-sdk-35-service-kinds-contributions-and-a-core-without-special-cases)
-28. [SDK 3.6: animations like Hostwerk](#28-sdk-36-animations-like-hostwerk)
-29. [SDK 3.7: “Ask AI” – the Explain button like Hostwerk](#29-sdk-37-ask-ai--the-explain-button-like-hostwerk)
-30. [SDK 3.8: merging extensions (`replaces`)](#30-sdk-38-merging-extensions-replaces)
+| I want to … | Read |
+|---|---|
+| see a first extension in 5 minutes | [1. Quick start](#1-quick-start-5-minutes) |
+| know which files go into the package and what goes into the manifest | [2. The package](#2-the-package) · [3. manifest.json](#3-manifestjson) |
+| build a page that looks like Hostwerk | [5. Design kit](#5-design-kit--hostwerks-own-classes) · [23. Loading](#23-sdk-32-loading-like-a-built-in-page) · [28. Animations](#28-sdk-36-animations-like-hostwerk) |
+| build a dashboard tile – with loading, empty and error states | [9. Tiles](#9-dashboard-tiles) · [31. Empty tiles](#31-sdk-39-empty-tiles-like-hostwerk) |
+| offer settings, store data, listen to events | [8. Settings, storage, events](#8-settings-storage-events) · [18. Events and services](#18-sdk-210-events-notifications-controlling-services-and-public-views) |
+| read Hostwerk's data or control services | [4. The SDK](#4-the-sdk--hostwerk) · [7. Permissions](#7-permissions) · [25. Stable services](#25-sdk-33-stable-services-instead-of-core-internals-traces-and-an-uninstall-hook) |
+| run my own program in the background (server part) | [15. Native extensions](#15-sdk-27-look-dependencies-and-native-extensions) · [16. Sandboxed](#16-sdk-28-built-in-like-hostwerk-itself--and-sandboxed) |
+| extend Hostwerk's areas (tabs, sections, themes, service kinds) | [17. Themes and overrides](#17-sdk-29-themes-overrides-and-extending-other-extensions) · [21. Sections](#21-sdk-32-sections-instead-of-tabs-file-browser-and-pages-in-a-web-server) · [27. Service kinds](#27-sdk-35-service-kinds-contributions-and-a-core-without-special-cases) |
+| add the “Ask AI” button | [29. Ask AI](#29-sdk-37-ask-ai--the-explain-button-like-hostwerk) |
+| plug into the AI area (Ctrl+J, media, settings, memory, @ sources) | [32. AI everywhere](#32-sdk-310-ai-everywhere--side-panel-ai-places-and-own--sources) |
+| plug into Go live (online, access, protection, monitoring, backup; overview points, own addresses) | [33. Go live in five areas](#33-sdk-311-go-live-in-five-areas--sections-overview-points-and-own-addresses) |
+| plug into Backups or System (overview points, schedule, sections in the areas) | [34. Backups and System rebuilt](#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule) |
+| check and publish | [10. Check](#10-check-your-extension) · [11. Publish](#11-publish-repository-release-submit) · [35. Checklist](#35-checklist-before-publishing) |
+| find out why something does not work | [36. Common questions and mistakes](#36-common-questions-and-mistakes) |
+
+### All sections by topic
+
+**Basics**
+- [What extensions may access – and what not](#what-extensions-may-access--and-what-not) (per permission: may, may not, asks first · "No extension may" · sandboxed or part of Hostwerk)
+- [1. Quick start (5 minutes)](#1-quick-start-5-minutes) · [2. The package](#2-the-package) · [3. manifest.json](#3-manifestjson) · [4. The SDK – `Hostwerk.*`](#4-the-sdk--hostwerk) · [14. Examples](#14-examples)
+
+**Interface and design**
+- [5. Design kit](#5-design-kit--hostwerks-own-classes) · [6. Translations (German + English)](#6-translations-german--english) · [9. Dashboard tiles](#9-dashboard-tiles)
+- [23. Loading like a built-in page](#23-sdk-32-loading-like-a-built-in-page) · [24. Without an own sidebar entry](#24-sdk-32-without-an-own-sidebar-entry)
+- [28. Animations like Hostwerk](#28-sdk-36-animations-like-hostwerk) · [29. “Ask AI” – the Explain button](#29-sdk-37-ask-ai--the-explain-button-like-hostwerk) · [31. Empty tiles like Hostwerk](#31-sdk-39-empty-tiles-like-hostwerk) · [32. AI everywhere – side panel, AI places and own @ sources](#32-sdk-310-ai-everywhere--side-panel-ai-places-and-own--sources) · [33. Go live in five areas – sections, overview points and own addresses](#33-sdk-311-go-live-in-five-areas--sections-overview-points-and-own-addresses) · [34. Backups and System rebuilt – sections, overview points and schedule](#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule)
+
+**Data, permissions and security**
+- [7. Permissions](#7-permissions) · [8. Settings, storage, events](#8-settings-storage-events) · [13. Security model](#13-security-model)
+- [18. Events, notifications, controlling services and public views](#18-sdk-210-events-notifications-controlling-services-and-public-views)
+- [25. Stable services instead of core internals, traces and an uninstall hook](#25-sdk-33-stable-services-instead-of-core-internals-traces-and-an-uninstall-hook)
+
+**Extending Hostwerk (native, contributions, own kinds)**
+- [15. Look, dependencies and native extensions](#15-sdk-27-look-dependencies-and-native-extensions) · [16. Built in like Hostwerk itself – and sandboxed](#16-sdk-28-built-in-like-hostwerk-itself--and-sandboxed)
+- [17. Themes, overrides and extending other extensions](#17-sdk-29-themes-overrides-and-extending-other-extensions) · [20. Shared site check and notes in the knowledge graph](#20-sdk-31-shared-site-check-and-notes-in-the-knowledge-graph)
+- [21. Sections instead of tabs, file browser and pages in a web server](#21-sdk-32-sections-instead-of-tabs-file-browser-and-pages-in-a-web-server) · [22. Minecraft server types and networks](#22-sdk-32-minecraft-server-types-and-networks)
+- [26. Screens of their own and device sign-in](#26-sdk-34-screens-of-their-own-and-device-sign-in) · [27. Service kinds, contributions and a core without special cases](#27-sdk-35-service-kinds-contributions-and-a-core-without-special-cases)
+
+**Check and publish**
+- [10. Check your extension](#10-check-your-extension) · [11. Publish: repository, release, submit](#11-publish-repository-release-submit) · [12. Trust levels and getting verified](#12-trust-levels-and-getting-verified)
+- [35. Checklist before publishing](#35-checklist-before-publishing) · [36. Common questions and mistakes](#36-common-questions-and-mistakes)
+
+**Versions**
+- [19. Stability and deprecations](#19-sdk-30-stability-and-deprecations) · [30. Merging extensions (`replaces`)](#30-sdk-38-merging-extensions-replaces) · [SDK changelog](SDK-CHANGELOG.md)
+
+> Sections 15–32 carry the SDK version that introduced them in their title. All of them still apply – set
+> `"sdkVersion"` in the manifest to the lowest version whose features you use ([section 19](#19-sdk-30-stability-and-deprecations)).
 
 ![From idea to the marketplace](img/lifecycle.svg)
 
@@ -199,6 +217,7 @@ At most 10 MB. No programs (`.exe`, `.sh` …) in page-only packages.
 | `id` | a–z, 0–9 and `-`, 2–40 characters. Stays the same forever. |
 | `name`, `description`, `title`, `label` | Text or `{ "de": …, "en": … }` – the catalog requires both languages. |
 | `version` | `1.2.3`. A higher version shows up as update in Hostwerk. |
+| `supportedFrom` | Optional (SDK 3.12): oldest version that is still supported, e.g. `"2.0.0"` – at most `version`. Older installs are updated even with automatic updates off, or paused until updated – see [section 34](#retiring-old-versions-supportedfrom). |
 | `icon` | Square SVG/PNG in the package – marketplace card and page header. |
 | `page.icon` | **Sidebar icon** – a simple line icon like Hostwerk's own areas. One of: `puzzle users monitor gauge activity chart bell book bot box calendar camera clock cloud code coffee cpu database download file flag gamepad gift globe heart home image inbox key dashboard grid leaf line-chart list lock mail map message music network news package pie-chart radio rocket server settings shield cart sparkles star sun swords table tag terminal timer trophy tv wand wifi wrench zap`. |
 | `sdkVersion` | The SDK the extension was written for, e.g. `"3.0"` – see [section 19](#19-sdk-30-stability-and-deprecations). |
@@ -417,8 +436,73 @@ Ask only for what you need – users see the list before they install. Every cal
 
 ## 9. Dashboard tiles
 
-`widget.file` is a small page without its own padding/background – Hostwerk draws the card. The height follows the
-content automatically. Sizes: `third`, `half`, `full`. Installed tiles appear on the overview; users show, hide and arrange them with *Customize*.
+A tile shows **one thing at a glance** – a number, a state or a short list – and leads to your page for everything else.
+Hostwerk draws the card including its head (icon, title); the height follows the content (at most 520 px, beyond that the
+tile scrolls). Installed tiles appear under *Overview → Customize*, where people show and hide them; arranging happens
+right on the overview (button next to *Customize*).
+
+```json
+"widget": { "file": "widget/index.html", "title": { "de": "Notizen", "en": "Notes" }, "size": "third" }
+```
+
+| Field | Meaning |
+|---|---|
+| `file` | The tile page – small, without its own border, background or title (Hostwerk draws those). |
+| `title` | Title in the tile head and under *Customize*, `{ "de": …, "en": … }`. |
+| `size` | `third`, `half` or `full` – default `third`. People can change the width on the overview. |
+
+**Every tile knows three states** – just like Hostwerk's own:
+
+| State | How | Looks like |
+|---|---|---|
+| **Loading** | automatic until the first `Hostwerk.render()`; for parts loaded later `Hostwerk.ui.load(el, fn)` | Hostwerk's loading animation |
+| **Empty** | `Hostwerk.ui.empty({ text, icon, action })` – inside a tile it becomes the tile placeholder by itself ([section 31](#31-sdk-39-empty-tiles-like-hostwerk)) | icon in a dashed circle, one sentence, at most one action |
+| **Error** | `Hostwerk.ui.load` shows errors by itself, otherwise `Hostwerk.ui.error(el, err, retry)` | message with “Try again” |
+
+```html
+<!-- widget/index.html -->
+<div id="tile"></div>
+<script src="/ext-sdk.js"></script>
+<script>
+  const tile = document.getElementById('tile');
+  async function show() {
+    const notes = await Hostwerk.ui.load(tile, () => Hostwerk.storage.get('notes'));
+    if (notes === undefined) return; // error – ui.load already shows it, with “Try again”
+    if (!notes || !notes.length) {
+      return Hostwerk.render(tile, Hostwerk.ui.empty({ text: 'Noch keine Notizen.', action: { label: 'Notiz anlegen', onClick: () => Hostwerk.navigate('/ext/notizen') } }));
+    }
+    Hostwerk.render(tile, Hostwerk.html`<div class="card-body">${notes.slice(0, 5).map((n) => Hostwerk.html`<div class="list-item">${n.title}</div>`)}</div>`);
+  }
+  Hostwerk.ready().then(show);
+</script>
+```
+
+(Texts are written in German and translated through `locales/en.json` – [section 6](#6-translations-german--english).)
+
+**Good tiles …**
+
+- show **one** statement and link to your own page for details (`Hostwerk.navigate(…)`);
+- have **no border, background or title of their own** and no hard-coded colours – kit classes (`card-body`, `list-item`,
+  `stat`, `badge` …) and `var(--hw-…)`;
+- describe the empty state **in one sentence with an icon** instead of a grey line (“No data”) – `check.js` warns otherwise
+  (rule `text-empty`, [section 10](#10-check-your-extension));
+- poll at most every 10 seconds and prefer events ([section 8](#8-settings-storage-events)).
+
+**Native extensions** add tiles through the `dashboard.tiles` slot
+([section 18](#18-sdk-210-events-notifications-controlling-services-and-public-views)). For the empty state use `TileEmpty`
+from `@hostwerk/ui` – the same component Hostwerk uses itself:
+
+```jsx
+import { TileEmpty } from '@hostwerk/ui';
+function NotesTile() {
+  const notes = useNotes();
+  if (!notes.length) return <TileEmpty text="Noch keine Notizen." action="Notiz anlegen" href="#/ext/notizen" />;
+  return <div className="card-body">{notes.map((n) => <div key={n.id} className="list-item">{n.title}</div>)}</div>;
+}
+```
+
+If a native tile draws nothing at all (`return null`), Hostwerk shows the tile placeholder with its title and “Nothing here
+yet.” by itself – there are no blank areas on the overview any more.
 
 ## 10. Check your extension
 
@@ -1091,8 +1175,11 @@ tile – instead of adding one more sidebar entry:
 |---|---|---|
 | Web server, Databases, Minecraft, Projects, Mail, System, AI, Backups | `area:web` … `area:backups` | `web.tabs`, `dbs.tabs`, `minecraft.tabs`, `projects.tabs`, `mail.tabs`, `system.tabs`, `ai.tabs`, `backups.tabs` |
 | Tasks (new) | `area:tasks` | `tasks.tabs` |
+| AI – media, settings, memory (SDK 3.10) | `contributes.sections` with `ai.media` · `ai.settings` · `ai.memory` | `sections` (or `slots`) with the same names – section 32; `area:ai`/`ai.tabs` show as a section under *Extensions* |
 | Settings – own tab (SDK 3.8) | – | `settings.tabs` `{ id, title, icon, Component }` – shown before *Updates*, never instead of one of Hostwerk's tabs; `settings.sections` adds a card to an existing tab |
 | Go live | `area:live` | `live.tabs` with `group` (`erreichbar`, `schuetzen`, `betrieb`) – the **same id** from several extensions shares one tab (e.g. `discord`) |
+| Go live – online, access, protection, monitoring, backup (SDK 3.11) | `contributes.sections` with `live.online` · `live.zugriff` · `live.schutz` · `live.ueberwachung` · `live.sicherung` | `sections` (or `slots`) with the same names – section 33; `area:live`/`live.tabs` show as a section in the area of their `group` |
+| Backups and System – per area (SDK 3.12) | `contributes.sections` with `backups.lage` … `backups.zurueckholen` · `system.lage` … `system.aenderungen` | `sections` (or `slots`) with the same names – section 34; `area:backups`/`area:system`, `backups.tabs`/`system.tabs` show as a section in the area of their `group`, otherwise under *Weitere* (More) |
 | Game servers (extension) | – | `games.tabs` – shown by "Game servers" through `useAreaTabs('games')` from `@hostwerk/kit` |
 | Detail views | `contributes.sections` (section 21) | `sections` |
 
@@ -1273,7 +1360,7 @@ host.serviceKind({
   iconSources: (id) => [{ file } | { url: 'https://…', color }],  // images (https only)
   image: (entry) => 'repo/image:tag',                    // Docker image list for other extensions
   tasks: { control: { type: 'game', label, fields, validate, clean, run(action, env) } },   // scheduled tasks
-  backups: { prefix, list(id), dir(id), create, restore, remove, probe },
+  backups: { prefix, list(id), dir(id), create, restore, remove, probe, schedule }, // schedule(id) since SDK 3.12 (section 34)
   copy: { folder, dir, dirFor, entry, add, place, isRunning, skip, clone, … },   // move, mirror, keep, clone
   headline: () => ({ icon, value, label, sub }), metrics: ['cpu', 'ram', 'players'], …
 });
@@ -1300,6 +1387,8 @@ host.contribute('releaseNotes', { sources: { paper: { label, link: (v) => url, f
 host.contribute('terminal', { detect: (names, has) => ({ id, label, reason, first, recent: /…/, commands: [{ label, cmd, ps, win }] }) });
 host.contribute('advisor', { kind, label, start: /minecraft|…/i, open: { id, route }, what, rules: [[/…/i, 'choice', 'reason']], values: (text) => ({}) });
 host.contribute('clickguard', { block: [/^\/my-api\/install/] });              // routes the UI click robot must not trigger
+host.contribute('live.overview', { list: (ctx) => [{ area, level, title, detail, href }] });   // go-live overview (SDK 3.11, section 33)
+host.contribute('live.addresses', { list: (ctx) => [{ label, url, kind, state, detail, href }] }); // own addresses (SDK 3.11)
 ```
 
 `emergency`: the emergency button closes what your extension opened to the outside (`step(label, fn)` counts it) and “Restore”
@@ -1311,6 +1400,8 @@ quick commands for folders of your kind (`ps` = PowerShell, `win` = cmd, `cmd` =
 
 `host.aiExtend({ tools({ add, S, L, find, clip }) {…}, groups, modes, assists, about, vocab, speak, context })` – your own AI
 tools (same form and risk classes as Hostwerk's), roles, helper texts, words for speech recognition and pronunciation.
+Since SDK 3.10: `describe(args)` for plain-language approval and `context: { kind, label, search, resolve }` as an own @
+source in the chat – see [section 32](#32-sdk-310-ai-everywhere--side-panel-ai-places-and-own--sources).
 
 ### Manifest
 
@@ -1382,6 +1473,10 @@ animate(ref.current, 'shake');
 
 ## 29. SDK 3.7: “Ask AI” – the Explain button like Hostwerk
 
+> Since SDK 3.10 the button, `openAiExplain` and `Hostwerk.ai.explain` open the **AI side panel** (Ctrl+J) with a new
+> conversation – text attached, a question that fits `task` – instead of an own window. The call stays the same
+> ([section 32](#32-sdk-310-ai-everywhere--side-panel-ai-places-and-own--sources)).
+
 Hostwerk 3.1 and newer (with SDK 3.7). Only additions. Hostwerk shows a small sparkle button next to errors, logs and long
 texts – *Explain*, *Summarise*, *What is this?*. A click opens the **Ask AI window**: it shows the text, fetches the AI's short
 answer (the same path as everywhere in Hostwerk, `/api/ai/quick`), and offers *Copy*, a follow-up question and *Continue in
@@ -1419,6 +1514,17 @@ const aiReady = useAiReady(); // your own AI places: show them only while true (
 | `className` | extra classes, e.g. for spacing |
 
 The `Console` from `@hostwerk/kit` already has the *Explain* button in its toolbar.
+
+```jsx
+<Console lines={lines} onCommand={send} historyId={`game:${server.id}`} />
+```
+
+| Prop | Meaning |
+|---|---|
+| `lines` | the output lines |
+| `onCommand` | called with the command that was typed; without `onCommand` there is no input line |
+| `historyId` | key of the command history (arrow up/down) – one per service, e.g. `game:<id>`. Without `historyId` the current page (address without `?…`) is used; if several services show their console on the same page, give each its own, otherwise they share the history |
+| `placeholder` · `suggestions` · `onClear` · `height` · `showTime` | placeholder of the input, suggestions for completion, *Clear* button, height in pixels (default 520), time in front of each line (default on) |
 
 ### Pages in the frame (`Hostwerk.ai`)
 
@@ -1497,3 +1603,451 @@ new extension. The old data folder stays as it was until the person removes it c
   people choose in the settings which of your sections they want (e.g. two sections on `mc.players`).
 - Native slot `settings.tabs` `{ id, title, icon, Component }`: an own tab in Hostwerk's settings, before *Updates* – for
   things that belong to the person, not to an area (e.g. “Discord status”).
+
+---
+
+## 31. SDK 3.9: empty tiles like Hostwerk
+
+Empty tiles look the same everywhere: **an icon in a dashed circle, one sentence, at most one action on the right** – like
+“Recently edited projects” before there are any. That is the standard for every tile, including those of extensions.
+
+| Where | What you write |
+|---|---|
+| page or tile in the frame | `Hostwerk.ui.empty({ text, icon, action })` – inside a tile (`Hostwerk.embed === 'widget'`) the tile form automatically, on a page the large empty state |
+| explicitly the tile form | `Hostwerk.ui.tileEmpty({ text, icon, action })` (new in 3.9) |
+| native extension | `<TileEmpty icon={…} text="…" action="…" href="…" />` (or `onClick`) from `@hostwerk/ui` |
+| tile without content | nothing – Hostwerk shows the placeholder with the tile title itself |
+
+`action` is either markup (`Hostwerk.html`) or an object `{ label, href }` or `{ label, onClick }` – Hostwerk then draws
+the matching small button. `icon` is SVG markup through `Hostwerk.raw(…)`; without it, an inbox appears. The classes
+`tile-empty`, `tile-empty-ico` and `tile-empty-txt` are part of the kit (`/ext-sdk.css`) in case you build the form yourself.
+
+```js
+Hostwerk.render('#tile', Hostwerk.ui.tileEmpty({
+  text: 'Noch kein Server verbunden.',
+  icon: Hostwerk.raw('<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/></svg>'),
+  action: { label: 'Verbinden', onClick: () => Hostwerk.settings.open() },
+}));
+```
+
+Wording: one short sentence saying **what is missing** (“No notes yet.”) and one action that **changes it** (“Add a note”).
+No “No data available”, no two buttons. Set `"sdkVersion": "3.9"` when you use `ui.tileEmpty` or the object form of `action`.
+
+---
+
+## 32. SDK 3.10: AI everywhere – side panel, AI places and own @ sources
+
+Hostwerk with SDK 3.10. Only additions – everything from 3.7 keeps working. The AI in Hostwerk now has one place per thing:
+**Conversations · Automatic · Media · Settings**, and on every page it is one key press away (**Ctrl+J** or **⌘J**, or the ✦
+button at the top right). Extensions plug in there as **sections**, not as own tabs.
+
+### The AI side panel (Ctrl+J)
+
+A side panel on the right (about 420 px, a full-screen sheet on narrow screens) with the conversation in compact form. The
+current page is attached automatically, “⤢” opens the same conversation in *AI → Conversations*. Stay on the page and the
+conversation continues the next time you open the panel; on another page a new one starts.
+
+Every earlier way now opens this panel – for extensions too, without changing their code:
+
+| Call | Since | Now |
+|---|---|---|
+| `askAi(question, context, focus)` from `@hostwerk/kit` | 3.4 | new conversation in the side panel with question and attachment (before: jump to the AI page) |
+| `AiQuickButton` / `openAiExplain({ task, text, context, label })` | 3.7 | new conversation with the text attached and a question that fits `task` (before: an own window) |
+| `Hostwerk.ai.explain(text, { task, context, label })` in the frame | 3.7 | like `openAiExplain`, the attachment names your extension |
+
+New in `@hostwerk/kit` (native extensions):
+
+```jsx
+import { openAiPanel, useAiContext } from '@hostwerk/kit';
+
+// What your page shows right now – Ctrl+J attaches it (null = nothing). Without it, Hostwerk attaches the page name.
+useAiContext(server ? { kind: 'text', id: `game:${server.id}`, label: server.name, text: `Game server ${server.name}, port ${server.port}` } : null);
+
+// Open the side panel – with a question a new conversation starts
+openAiPanel({ question: t('Why does the server stop at night?'), context: { kind: 'text', label: server.name, text: log.slice(-4000) } });
+```
+
+An attachment has the same form as in the chat: `{ kind, id, label }`. Hostwerk knows `service` (`web:<id>`, `dbs:<id>`,
+`app:<id>`), `db`, `web`, `project` (with `path`), `incident`, `file` (with `path`) and `text` (with `text`, at most 8000
+characters). Your extension adds own kinds with `host.aiExtend({ context })` (below).
+
+### Places in the AI area: `ai.media`, `ai.settings`, `ai.memory`
+
+| Place | Where | Context |
+|---|---|---|
+| `ai.media` | *AI → Media*, above the one media library: your create tools (results land in Hostwerk's media library) | `{ kind: "ai", area: "media" }` |
+| `ai.settings` | *AI → Settings*: an own section with your title (e.g. *Connections*) | `{ kind: "ai", area: "settings" }` |
+| `ai.memory` | *AI → Settings → Memory*: an own layer next to *About you* and *Projects* (e.g. *Knowledge*) | `{ kind: "ai", area: "memory" }` |
+
+Sandboxed pages use `contributes.sections` (like section 21) – `Hostwerk.embed` is `'section'`, `Hostwerk.context` holds
+`place` and `section`:
+
+```json
+"sdkVersion": "3.10",
+"contributes": {
+  "sections": [
+    { "id": "connections", "title": { "de": "Verbindungen", "en": "Connections" }, "on": "ai.settings", "file": "page/index.html", "icon": "network" },
+    { "id": "knowledge", "title": { "de": "Wissen", "en": "Knowledge" }, "on": "ai.memory", "file": "page/index.html", "height": 420 }
+  ]
+}
+```
+
+```js
+Hostwerk.ready().then((info) => {
+  if (info.embed === 'section') show(info.context.section);   // 'connections' or 'knowledge' – compact, without an own header
+});
+```
+
+Native extensions list them under `sections` (or under `slots` with the same name – same form):
+
+```jsx
+export default {
+  sections: {
+    'ai.media': [{ id: 'studio', title: 'Images & videos', icon: ImageIcon, Component: CreateTools }],
+  },
+};
+```
+
+The component gets `ctx` (see the table) and whatever the AI page adds (`onCreated(result)` on the media tab: the library
+reloads). At most two sections per extension and place.
+
+**Older ways:** tabs with `"on": "area:ai"` and the native slot `ai.tabs` keep working – since 3.10 Hostwerk shows them as a
+section under *AI → Settings → Extensions*, no longer as an own tab.
+
+**Serving two Hostwerk versions:**
+
+- *Sandboxed:* older Hostwerk versions do not know the `ai.*` places and refuse a package that uses them. Set
+  `"sdkVersion": "3.10"` – then Hostwerk only offers the new release where it runs; older ones keep your previous release
+  with the `area:ai` tab. `check.js` warns when `sdkVersion` is missing.
+- *Native:* slots are not checked. Keep shipping the old tab with `fallback: true` – Hostwerk 3.10 and newer leave it out
+  (the section is there), older versions show it as before:
+  `slots: { 'ai.tabs': [{ id: 'media', title: 'Images & videos', Component: StudioPage, fallback: true }] }`.
+
+### AI tools with plain-language approval (`describe`)
+
+Tools that change something (`risk: 'change'` or `'system'`) ask first. So that the approval card asks in plain words
+instead of showing the tool name, the tool returns `describe(args, ctx)`:
+
+```js
+host.aiExtend({
+  tools({ add }) {
+    add('game_restart', 'games', 'Restart a game server', { id: { type: 'string' } }, ['id'], async ({ id }) => restart(id), {
+      risk: 'change',
+      describe: ({ id }) => ({
+        ask: `Restart game server “${name(id)}”?`,   // the question on the card
+        verb: 'Restart',                             // the button label
+        effect: 'Players are disconnected briefly.', // optional: what happens
+        undo: 'Not needed – the server runs again afterwards.', // optional: how to undo it
+      }),
+    });
+  },
+});
+```
+
+Older extensions whose `describe` only returns a text keep working (the text shows as a detail on the card). Reading tools
+(`risk: 'read'`) never ask. `check.js` warns when changing tools have no `describe`.
+
+### Own @ sources in the chat (`context`)
+
+In the chat, `@` attaches something. Your extension can add own sources:
+
+```js
+host.aiExtend({
+  context: {
+    kind: 'game',                                         // own kind (a–z, 0–9, -), not one of the core's
+    label: { de: 'Spieleserver', en: 'Game servers' },
+    search: async (q) => list().filter((s) => s.name.includes(q)).map((s) => ({ id: s.id, label: s.name })), // at most 20
+    resolve: async (id) => `Game server ${name(id)}\n${await lastLog(id, 60)}`, // text for the AI (at most 8000 characters)
+  },
+});
+```
+
+`context` may also be a list of such sources; the earlier form `context(c, run)` (a function) stays valid. Hostwerk waits
+at most 2 seconds for `search` and 8 seconds for `resolve`. The interface reads the sources with
+`GET /api/ai/context-sources?q=…&kind=…` → `{ sources: [{ kind, label, owner }], items: [{ kind, id, label, owner }] }`.
+`check.js` warns when a source has no `resolve`.
+
+## 33. SDK 3.11: Go live in five areas – sections, overview points and own addresses
+
+Hostwerk with SDK 3.11. Only additions – everything from 3.10 keeps working. *Go live* no longer has tab groups; it has
+**Overview · Online · Access · Protection · Monitoring · Backup**. The overview reads one endpoint (`GET /api/live/overview`)
+and shows four cards (online, access, protection, monitoring/backup) with “Next steps”. Extensions plug in as **sections**
+of an area, add **points to the overview** and **own addresses** to the address list.
+
+### Places in the go-live areas
+
+| Place | Where | Context |
+|---|---|---|
+| `live.online` | *Go live → Online*: addresses, domains, quick links, tunnels (e.g. router, DNS, own address kinds) | `{ kind: "live", area: "online" }` |
+| `live.zugriff` | *Go live → Access*: remote access, users, phone, VPN | `{ kind: "live", area: "zugriff" }` |
+| `live.schutz` | *Go live → Protection*: check from outside, firewall, blocks | `{ kind: "live", area: "schutz" }` |
+| `live.ueberwachung` | *Go live → Monitoring*: watchers, alerts, status page | `{ kind: "live", area: "ueberwachung" }` |
+| `live.sicherung` | *Go live → Backup*: backup targets and restore | `{ kind: "live", area: "sicherung" }` |
+
+Sandboxed packages use `contributes.sections` (section 21), native ones `sections` (or `slots` with the same name):
+
+```json
+"sdkVersion": "3.11",
+"contributes": {
+  "sections": [
+    { "id": "vpn", "title": { "de": "VPN", "en": "VPN" }, "on": "live.zugriff", "file": "page/index.html", "icon": "network" }
+  ]
+}
+```
+
+```jsx
+export default {
+  sections: { 'live.ueberwachung': [{ id: 'wall', title: 'Uptime wall', icon: Activity, Component: Wall }] },
+};
+```
+
+**Older ways keep working:** tabs with `"on": "area:live"` and the native slot `live.tabs` become a section in the matching
+area, by their `group`:
+
+| `group` (old) | Area since 3.11 | Place |
+|---|---|---|
+| `erreichbar` | Online | `live.online` |
+| `schuetzen` | Protection | `live.schutz` |
+| `betrieb` | Monitoring | `live.ueberwachung` |
+| none | Monitoring | `live.ueberwachung` |
+
+Serving two Hostwerk versions works like in section 32: sandboxed packages set `"sdkVersion": "3.11"` (older Hostwerk
+versions keep your previous release with the `area:live` tab, `check.js` warns without it); native extensions keep the old
+`live.tabs` entry with `fallback: true` next to the new `live.*` section – Hostwerk 3.11 and newer leave it out, older
+versions show it as before.
+
+### Points on the overview: `host.contribute('live.overview', …)`
+
+```js
+host.contribute('live.overview', {
+  list: (ctx) => [
+    { area: 'access', level: vpn.running ? 'ok' : 'warn', title: 'VPN', detail: `${vpn.peers} devices`, href: '#/ext/vpn' },
+  ],
+});
+```
+
+`area` is `online`, `access`, `protect` or `run` (monitoring and backup); `level` is `ok`, `warn`, `err` or `off`.
+Your points appear in `GET /api/live/overview` under `extras` (with `ext` = your id) and count towards the level of their
+card – an `err` turns it red. At most 10 points per extension; `href` is an address inside Hostwerk (`#/…`) or https.
+Hostwerk caches the overview for 10 seconds – `list` should answer quickly (no network calls; use your own cached state).
+
+### Own addresses: `host.contribute('live.addresses', …)`
+
+```js
+host.contribute('live.addresses', {
+  list: (ctx) => [
+    { label: 'play.example.org', url: 'minecraft://play.example.org:25565', kind: 'minecraft', state: 'ok', detail: 'Survival · 3 players', href: '#/mc' },
+  ],
+});
+```
+
+They appear in *Go live → Online* next to Hostwerk's own addresses. `GET /api/live/addresses` gives every address the same
+fields:
+
+```json
+{ "id": "domain:shop.example.org", "kind": "domain", "label": "shop.example.org", "url": "https://shop.example.org",
+  "target": { "kind": "web", "id": "apache", "name": "Apache" },
+  "https": { "days": 61, "staging": false, "auto": true, "force": true }, "dns": { "ok": true, "detail": "shop.example.org → 203.0.113.9" },
+  "outside": { "ok": true, "at": 1761638400000 }, "expiresAt": null, "password": false, "state": "ok", "detail": "…", "href": "#/live/domains" }
+```
+
+`kind` is `domain`, `quick` (quick link, with `expiresAt` and `password`), `named` (permanent tunnel) or `ext`
+(yours – with `ext` = your id and `extKind` = the `kind` you passed). Entries without `label` are skipped, at most 20 per
+extension.
+
+Both types are new in SDK 3.11 – older Hostwerk versions throw on an unknown type. Set `"sdkVersion": "3.11"` or wrap the call
+in `try { … } catch {}`. `check.js` warns about unknown `contribute` types.
+
+### More for the new areas
+
+- `GET /api/live/watchers` – all watchers in one list (`[{ id, kind, name, detail, state, href, editable, ext? }]`, `kind`
+  `uptime`, `tcp`, `ping`, `svc`, `query`, `cert`, `ext`, `logs`). Watchers of your extension still come from
+  `host.watcher({ id, label, state, detail, href })` (section 16).
+- Backup targets of your extension (`ctx.offsiteTargets.set('cloud', …)`) now get a unique internal id `<your id>:cloud`.
+  Your code does not change: `host.ctx.offsiteTargets` shows only your own targets with your short ids. Two extensions with
+  the same id no longer overwrite each other; settings saved with the old id keep working.
+- The backup routes are also available as `/api/live/backup/…` (`/api/live/monitor/offsite/…` stays as an alias).
+
+## 34. SDK 3.12: Backups and System rebuilt – sections, overview points and schedule
+
+Hostwerk with SDK 3.12. Only additions – everything from 3.11 keeps working. *Backups* and *System* are built like Go live:
+an **overview** first, then flat areas with sections on the left.
+
+- *Backups*: **Overview · Backups · Schedule · Off-site · Restore** (`#/sicherungen`, `…/staende`, `…/zeitplan`,
+  `…/ausser-haus`, `…/zurueckholen`). The off-site backup moved here from Go live.
+- *System*: **Overview · Services · Performance · Logs · Upkeep · Changes** (`#/system`, `…/dienste`, `…/leistung`,
+  `…/protokolle`, `…/wartung`, `…/aenderungen`).
+
+### Places in Backups and System
+
+| Place | Where | Context |
+|---|---|---|
+| `backups.lage` | *Backups → Overview*: is everything backed up? | `{ kind: "backups", area: "lage" }` |
+| `backups.staende` | *Backups → Backups*: what is there (grouped by service) | `{ kind: "backups", area: "staende" }` |
+| `backups.zeitplan` | *Backups → Schedule*: regular backups, e.g. a calendar | `{ kind: "backups", area: "zeitplan" }` |
+| `backups.ausserhaus` | *Backups → Off-site*: targets (e.g. cloud), encryption, second PC | `{ kind: "backups", area: "ausserhaus" }` |
+| `backups.zurueckholen` | *Backups → Restore*: test restore, single file, time machine, move | `{ kind: "backups", area: "zurueckholen" }` |
+| `system.lage` | *System → Overview*: is everything running? (e.g. a PC profile) | `{ kind: "system", area: "lage" }` |
+| `system.dienste` | *System → Services*: ports, installed and foreign programs, self-healing | `{ kind: "system", area: "dienste" }` |
+| `system.leistung` | *System → Performance*: now, history, drives, disk space | `{ kind: "system", area: "leistung" }` |
+| `system.protokolle` | *System → Logs*: logs, incidents, crash reports | `{ kind: "system", area: "protokolle" }` |
+| `system.wartung` | *System → Upkeep*: self-maintenance, health check, vulnerabilities | `{ kind: "system", area: "wartung" }` |
+| `system.aenderungen` | *System → Changes*: timeline with undo | `{ kind: "system", area: "aenderungen" }` |
+
+Sandboxed packages use `contributes.sections` (section 21), native ones `sections` (or `slots` with the same name):
+
+```json
+"sdkVersion": "3.12",
+"contributes": {
+  "sections": [
+    { "id": "calendar", "title": { "de": "Kalender", "en": "Calendar" }, "on": "backups.zeitplan", "file": "page/index.html", "icon": "calendar" }
+  ]
+}
+```
+
+```jsx
+export default {
+  sections: { 'system.leistung': [{ id: 'drives', title: 'Drives', icon: HardDrive, Component: Drives }] },
+};
+```
+
+**`live.sicherung` stays valid** – as an alias of `backups.ausserhaus`: from 3.12 on, sections there show under
+*Backups → Off-site* (the context stays `{ kind: "live", area: "sicherung" }`). New packages use `backups.ausserhaus`.
+
+**Older ways keep working:** tabs with `"on": "area:backups"` or `"area:system"` and the native slots `backups.tabs` /
+`system.tabs` become a section – in the area their `group` names, otherwise under **Weitere** (More):
+
+| `group` (native) | Area from 3.12 |
+|---|---|
+| `lage`, `staende`, `zeitplan`, `ausserhaus` (or `ausser-haus`), `zurueckholen` | the area of that name in *Backups* (`backups.…`) |
+| `lage`, `dienste`, `leistung`, `protokolle`, `wartung`, `aenderungen` | the area of that name in *System* (`system.…`) |
+| none or unknown, `contributes.tabs` with `area:backups`/`area:system` | **Weitere** (More) |
+
+Serving two Hostwerk versions works like in section 33: sandboxed packages set `"sdkVersion": "3.12"` (older versions keep
+your previous release, `check.js` warns without it); native extensions keep the old tab with `fallback: true` next to the
+new section – Hostwerk 3.12 and newer leave it out.
+
+### Points on the overview: `host.contribute('backups.overview', …)` and `host.contribute('system.overview', …)`
+
+```js
+host.contribute('backups.overview', {
+  list: (ctx) => [
+    { area: 'offsite', level: cloud.ok ? 'ok' : 'err', title: 'Cloud', detail: cloud.text, href: '#/ext/cloud',
+      action: { label: 'Retry', path: '/ext/cloud/api/run', body: {} } },
+  ],
+  // optional: own regular backups in the schedule
+  schedule: (ctx) => [{ label: 'Cloud', what: 'all backups', every: 'daily 04:00', next: cloud.next, last: { t: cloud.last, ok: cloud.ok, error: null }, href: '#/ext/cloud' }],
+});
+host.contribute('system.overview', {
+  list: (ctx) => [{ area: 'load', level: smart.bad ? 'warn' : 'ok', title: 'Drive D:', detail: 'S.M.A.R.T. warning', href: '#/ext/drives' }],
+});
+```
+
+- `level` is `ok`, `warn`, `err` or `off`. `warn`/`err` also show in **Needs you** (`needs`, for System with
+  `source: "ext"`); `action` is `{ label, href }` or `{ label, path, body }` (Hostwerk sends `POST path`). Without `action`
+  the row leads to `href`.
+- `area` (optional) puts the point on a card and counts towards its level: for *Backups* the id of an area from
+  `GET /api/backups/overview` (`db`, `snapshot`, the kind of your services, `src:<source>`, `mail`, `time`, `offsite`), for
+  *System* `services`, `load`, `upkeep` or `incidents`.
+- At most 10 points (20 schedule entries) per extension; Hostwerk keeps the overview for 10 seconds – `list` should answer
+  quickly. Both types are new in 3.12: set `"sdkVersion": "3.12"` or wrap the call in `try { … } catch {}`.
+
+Service kinds with backups (`kind.backups`, section 27) show up **by themselves** as an own area on the overview. New and
+optional: `backups.schedule(id) → { enabled, everyHours, hour?, keep?, lastRun, lastError }` – then the schedule shows your
+nightly backup, the overview measures “too old” against it and reports a failure (`lastError`) with “Retry”.
+
+### The new endpoints
+
+- `GET /api/backups/overview` (cached for 10 s, `?fresh=1` recalculates) –
+  `{ at, level, count, areas: [{ id, label, icon, level, count, size, newest, schedule, services, href, missing: [{ svc, svcName, href }],
+  stale: [{ svc, svcName, newest, href }], failed: [{ svc, svcName, t, error, retry: { path, body } | null, href }] }], needs: [{ id,
+  level, text, action }], rule321: { copies, media, offsite, ok }, probe: { ok, total, last } | null, offsite: { enabled, lastRun,
+  lastError, targets }, size: { total, byArea }, ext }`. “Too old” = newest backup older than 2 × its own schedule, 7 days
+  without a schedule.
+- `GET /api/backups/schedule` – `{ items: [{ id, kind: task | nightly | offsite | probe | ext, label, what, every, next, last: { t, ok,
+  error } | null, href, taskId? }] }`.
+- `POST /api/backups/schedule` `{ what: { kind: "db" | "snapshot" | <kind> | "all-db", svc? }, every: "daily" | "weekly" | "monthly"
+  | "hourly" | "6h" …, time?: "HH:MM", day?: 0–6, keep?: n }` creates a **normal task** (without `svc` one per service) –
+  `keep` goes into the task as `action.keep` (service kinds read it in their `backup` task themselves).
+- `POST /api/backups/run` `{ area?, svc? }` – “Back up everything now” or one area or service as a job with progress
+  → `{ ok, jobId }`.
+- `GET /api/system/overview` (10 s, `?fresh=1`) – `{ at, level, services: { level, running, total, failed }, load: { level, cpu,
+  mem: { used, total }, disks: [{ mount, usedPct }] }, upkeep: { level, needYou, lastCheck, score }, incidents: { level, count7d,
+  last }, needs: [{ id, level, source, text, action }], host: { os, cpu, mem, version, uptime }, ext }`. `needs` is one list from
+  services, ports, crash reports, self-maintenance, health check and extensions – the same cause shows only once.
+
+### Retiring old versions (`supportedFrom`)
+
+Hostwerk keeps compatibility code for old releases of extensions as long as they may still be installed somewhere. With
+`"supportedFrom"` in the manifest of a **new** release you say from which version on your extension is supported – older
+installs are retired:
+
+```json
+{ "id": "my-ext", "version": "2.1.0", "supportedFrom": "2.0.0", "sdkVersion": "3.12" }
+```
+
+- The catalog copies the field into the entry. With the daily update check Hostwerk updates every install older than
+  `supportedFrom` to the new release – **even when automatic updates are switched off** for this extension or in general, as
+  usual with a probe and rollback.
+- If that cannot happen on its own – the release needs new permissions (or web addresses), dependencies are missing, it does
+  not fit this Hostwerk, the source is not the Hostwerk catalog, the probe failed or that release was skipped as broken – the
+  old install is **paused**: it stays in the list with *Update needed* (`offReason: "outdated"`, `outdated: { min, latest,
+  reason }` in `GET /api/extmarket`), but without page, tile, code or contributions. Self-maintenance reports it once.
+  *Update* installs the new release and lifts the pause.
+- Only from Hostwerk's own catalogs (Hostwerk catalog, Community), never from your own index URLs. At most `version`; must
+  be `x.y.z` – `check.js` rejects anything else. Older Hostwerk versions ignore the field.
+- Use it sparingly: raise `supportedFrom` only when old releases really break (e.g. old data formats you no longer migrate).
+
+## 35. Checklist before publishing
+
+**Package and manifest**
+- [ ] `id` lowercase with dashes and unique; `version` follows SemVer; `sdkVersion` = lowest version whose features you use
+- [ ] only the permissions the extension really needs ([section 7](#7-permissions)) – every permission is listed in the marketplace
+- [ ] `icon.svg` square and coloured; package below 10 MB; no scripts from the internet
+
+**Look**
+- [ ] only kit classes and `var(--hw-…)` colours, no hard-coded colours or fonts ([section 5](#5-design-kit--hostwerks-own-classes))
+- [ ] looked at in **light and dark**, in a narrow window (phone view) and with “Reduce motion”
+- [ ] loading, empty and error states designed ([section 9](#9-dashboard-tiles), [section 23](#23-sdk-32-loading-like-a-built-in-page))
+- [ ] tile: one statement, no own border, empty state with `ui.empty` or `TileEmpty` ([section 31](#31-sdk-39-empty-tiles-like-hostwerk))
+
+**Texts**
+- [ ] every visible text in `locales/de.json` **and** `locales/en.json` ([section 6](#6-translations-german--english))
+- [ ] buttons say what happens (“Start server” instead of “OK”); error messages say what one can do
+
+**Behaviour**
+- [ ] `node check.js <folder> --strict` without errors or hints ([section 10](#10-check-your-extension))
+- [ ] events instead of constant polling; if you poll, at most every 10 seconds
+- [ ] cleaning up on removal considered ([uninstall hook, section 25](#25-sdk-33-stable-services-instead-of-core-internals-traces-and-an-uninstall-hook))
+- [ ] README in the repository with a screenshot (light and dark): what the extension does and which permissions it needs and why
+
+---
+
+## 36. Common questions and mistakes
+
+**My page stays on the loading animation.** Hostwerk waits for the first visible `Hostwerk.render()`. If you load for longer,
+hold the animation with `Hostwerk.holdLoaded()` and call `Hostwerk.loaded()` afterwards
+([section 23](#23-sdk-32-loading-like-a-built-in-page)). An error in the script before that prevents the signal – check the
+console.
+
+**`localStorage`, cookies or `fetch` to Hostwerk's address do not work.** The page runs sandboxed in its own origin. Store
+data with `Hostwerk.storage` (permission `storage`), read Hostwerk's data with `Hostwerk.get` / `Hostwerk.post`, own server
+logic goes through `Hostwerk.backend()` ([section 8](#8-settings-storage-events), [section 13](#13-security-model)).
+
+**`Hostwerk.post` asks every time.** That is on purpose: changes need a permission **and** the person's confirmation.
+Reading (`Hostwerk.get`) does not ask.
+
+**A text stays in English (or German).** It is missing in one of the two `locales` files – `check.js` lists missing keys.
+Texts you insert from script go through `Hostwerk.render` or `Hostwerk.t()`.
+
+**Colours do not fit in the light theme.** Hard-coded colours (`#fff`, `rgb(…)`) instead of `var(--hw-…)`. The check warns about it.
+
+**The tile is empty or too tall.** Empty tiles get the placeholder ([section 31](#31-sdk-39-empty-tiles-like-hostwerk)); shorten
+long lists (e.g. the five newest) and link to your page – above 520 px the tile scrolls.
+
+**My extension does not show in the sidebar.** Check `page.nav` ([section 24](#24-sdk-32-without-an-own-sidebar-entry)) –
+extensions can run without an own entry on purpose, for example as a tab in another area.
+
+**The catalog does not find the release.** The release needs the ZIP as an asset and the repository must be public
+([section 11](#11-publish-repository-release-submit)). The weekly check marks deleted repositories in the catalog; authors
+withdraw entries themselves with the “Withdraw an extension” form.

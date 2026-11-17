@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updated": "2026-10-18",
   "note": "Token-Spar-Werkzeuge für Claude Code. Online-Fassung liegt in hostwerk-public/catalog – neue Einträge erreichen alle Hostwerk-Installationen ohne App-Update. Befehle nur über bekannte Paketverwaltungen (npm, uv/pipx/pip, winget, brew, claude plugin, claude mcp).",
   "tools": [
@@ -20,7 +20,15 @@
       "install": { "win": { "winget": "rtk-ai.rtk" }, "mac": { "brew": "rtk" }, "linux": { "brew": "rtk" } },
       "setup": ["rtk", "init", "-g"],
       "latest": { "github": "rtk-ai/rtk" },
-      "hookMarker": "rtk"
+      "hookMarker": "rtk",
+      "en": {
+        "area": "Command output",
+        "summary": "Shortens the output of commands (git, npm, tests, Docker, ls, grep …) before Claude reads it. A hook quietly rewrites “git status” to “rtk git status”.",
+        "savings": "60–90 % on command output (project’s figure)",
+        "telemetry": "off (opt-in)",
+        "pros": ["A single program file without dependencies", "Over 100 commands supported", "Telemetry stays off unless you turn it on", "“rtk gain” shows the saved tokens"],
+        "cons": ["Only works on Bash commands – not on Claude Code’s Read, Grep and Glob", "Shortened output can hide details", "Parts (engine) are under BUSL-1.1"]
+      }
     },
     {
       "id": "squeez",
@@ -38,7 +46,15 @@
       "install": { "all": { "npm": "squeez" } },
       "setup": ["squeez", "setup"],
       "latest": { "npm": "squeez" },
-      "hookMarker": "squeez"
+      "hookMarker": "squeez",
+      "en": {
+        "area": "Command output",
+        "summary": "Hook compressor for command and read output with duplicate detection. The original is cached – Claude can fetch shortened parts again through a tool.",
+        "savings": "up to 95 % on command output (project’s figure)",
+        "telemetry": "none",
+        "pros": ["Originals stay available (squeez_retrieve)", "Risky commands (rm -rf, push --force) run unchanged", "Checks updates via SHA-256", "Apache-2.0"],
+        "cons": ["Young project with few users", "Works with rules of thumb, does not understand the task", "Changes how commands run"]
+      }
     },
     {
       "id": "context-mode",
@@ -54,7 +70,15 @@
       "telemetry": "keine bekannt",
       "install": { "all": { "mcp": { "name": "context-mode", "command": ["npx", "-y", "context-mode@latest"] } } },
       "latest": { "npm": "context-mode" },
-      "selfUpdate": true
+      "selfUpdate": true,
+      "en": {
+        "area": "Large output",
+        "summary": "MCP server that processes large results (logs, browser snapshots, data queries) in a sandbox and only puts the summary into the context window.",
+        "savings": "up to 98 % on large output (project’s figure)",
+        "telemetry": "none known",
+        "pros": ["Very widespread (around 30,000 GitHub stars)", "Runs on Windows without build tools", "Always starts in the latest version (npx @latest)"],
+        "cons": ["Claude has to actually use the tools – nothing automatic as with hooks", "Elastic License 2.0 (not open source in the strict sense)", "Needs Node.js"]
+      }
     },
     {
       "id": "code-review-graph",
@@ -71,7 +95,15 @@
       "bin": "code-review-graph",
       "install": { "all": { "pypi": "code-review-graph" } },
       "setup": ["code-review-graph", "install", "--platform", "claude-code"],
-      "latest": { "pypi": "code-review-graph" }
+      "latest": { "pypi": "code-review-graph" },
+      "en": {
+        "area": "Reading code",
+        "summary": "Builds a dependency graph per project (Tree-sitter) and tells Claude which few files it really needs to read for a task or a review.",
+        "savings": "6–49× fewer tokens for reviews and large projects (project’s figure)",
+        "telemetry": "none known",
+        "pros": ["Big effect in large codebases", "The graph updates itself on changes", "MIT licence, around 32,000 stars"],
+        "cons": ["Needs Python 3.10+", "Only pays off for larger projects", "The graph has to be built once per project (“code-review-graph build”)"]
+      }
     },
     {
       "id": "caveman",
@@ -86,7 +118,15 @@
       "license": "Apache-2.0",
       "telemetry": "Plugin: keine; CLI: an (wird nicht installiert)",
       "install": { "all": { "plugin": { "marketplace": "JuliusBrussee/caveman", "plugin": "caveman@caveman" } } },
-      "selfUpdate": true
+      "selfUpdate": true,
+      "en": {
+        "area": "Answers",
+        "summary": "Makes Claude answer more briefly – code, commands and error messages stay unchanged. Hostwerk only installs the Claude Code plugin, not the Caveman CLI with cloud features.",
+        "savings": "around 65–75 % fewer answer tokens (project’s figure)",
+        "telemetry": "plugin: none; CLI: on (not installed)",
+        "pros": ["Very widespread (over 100,000 stars)", "Can be switched off any time with “/caveman off”", "Apache-2.0"],
+        "cons": ["Answers read unusually terse at first", "The full CLI has telemetry on and sends requests to the Caveman cloud (hence only the plugin)", "Only saves output tokens, not input tokens"]
+      }
     },
     {
       "id": "serena",
@@ -100,7 +140,15 @@
       "cons": ["Die Werkzeug-Beschreibungen selbst kosten viele Tokens (rund 20 000)", "GPL-3.0", "Einrichtung je Projekt, teils zusätzliche Sprachserver nötig"],
       "license": "GPL-3.0",
       "telemetry": "keine bekannt",
-      "manual": "https://oraios.github.io/serena/02-usage/030_clients.html"
+      "manual": "https://oraios.github.io/serena/02-usage/030_clients.html",
+      "en": {
+        "area": "Reading code",
+        "summary": "Semantic code tools via language servers: find symbols and edit them precisely instead of reading whole files.",
+        "savings": "depends on the project – mainly in large codebases",
+        "telemetry": "none known",
+        "pros": ["Understands many programming languages", "Targeted changes to functions and classes"],
+        "cons": ["The tool descriptions themselves cost many tokens (around 20,000)", "GPL-3.0", "Setup per project, sometimes extra language servers needed"]
+      }
     },
     {
       "id": "headroom",
@@ -114,7 +162,15 @@
       "cons": ["Ein zusätzlicher Dienst, der immer laufen muss", "Ohne Code-Extras kaum Wirkung bei Claude Code", "Mehrere Repositories unter dem Namen – Herkunft prüfen"],
       "license": "Apache-2.0",
       "telemetry": "unbekannt",
-      "manual": "https://github.com/chopratejas/headroom"
+      "manual": "https://github.com/chopratejas/headroom",
+      "en": {
+        "area": "Everything (proxy)",
+        "summary": "Local proxy between Claude Code and the API that compresses the context before sending; originals stay available locally.",
+        "savings": "15–20 % on code, more on structured data (third-party figures)",
+        "telemetry": "unknown",
+        "pros": ["Works on everything sent to the API", "Runs locally"],
+        "cons": ["An extra service that always has to run", "Hardly any effect on Claude Code without the code extras", "Several repositories under that name – check the origin"]
+      }
     },
     {
       "id": "ccusage",
@@ -128,7 +184,15 @@
       "cons": ["Braucht Node.js 20+", "Zeigt nur Claude Code, nicht claude.ai"],
       "license": "MIT",
       "telemetry": "keine",
-      "builtin": true
+      "builtin": true,
+      "en": {
+        "area": "Measuring usage",
+        "summary": "Reads the local Claude Code logs and shows tokens and costs per day and session – so you can see whether a saving tool works. Hostwerk uses it for the usage display at the top.",
+        "savings": "saves nothing itself – makes savings measurable",
+        "telemetry": "none",
+        "pros": ["Only reads local files", "No installation needed (npx)", "Around 11,000 stars"],
+        "cons": ["Needs Node.js 20+", "Only shows Claude Code, not claude.ai"]
+      }
     }
   ],
   "discover": {
@@ -137,9 +201,25 @@
     "maxAgeDays": 120
   },
   "tips": [
-    { "title": "Zwischen Aufgaben /clear oder /compact", "text": "Claude Code schickt bei jeder Nachricht den ganzen Verlauf mit. Ein frischer Verlauf für eine neue Aufgabe spart am meisten." },
-    { "title": "CLAUDE.md kurz halten", "text": "Sie wird bei jedem Start geladen. Hintergründe lieber in eigene Dateien, die Claude nur bei Bedarf liest – der Reiter „Kontextfenster“ zeigt die Größe." },
-    { "title": "Unbenutzte MCP-Server abschalten", "text": "Jeder MCP-Server bringt Werkzeug-Beschreibungen mit, die in jedem Aufruf stecken. Die Liste unten zeigt, welche eingetragen sind." },
-    { "title": "Passendes Modell wählen", "text": "Für einfache Aufgaben reicht ein kleineres Modell oder weniger Denkaufwand – das spart mehr als jedes Werkzeug." }
+    {
+      "title": "Zwischen Aufgaben /clear oder /compact",
+      "text": "Claude Code schickt bei jeder Nachricht den ganzen Verlauf mit. Ein frischer Verlauf für eine neue Aufgabe spart am meisten.",
+      "en": { "title": "/clear or /compact between tasks", "text": "Claude Code sends the whole history with every message. A fresh history for a new task saves the most." }
+    },
+    {
+      "title": "CLAUDE.md kurz halten",
+      "text": "Sie wird bei jedem Start geladen. Hintergründe lieber in eigene Dateien, die Claude nur bei Bedarf liest – der Reiter „Kontextfenster“ zeigt die Größe.",
+      "en": { "title": "Keep CLAUDE.md short", "text": "It is loaded on every start. Put background into separate files that Claude only reads when needed – the “Context window” tab shows the size." }
+    },
+    {
+      "title": "Unbenutzte MCP-Server abschalten",
+      "text": "Jeder MCP-Server bringt Werkzeug-Beschreibungen mit, die in jedem Aufruf stecken. Die Liste unten zeigt, welche eingetragen sind.",
+      "en": { "title": "Switch off unused MCP servers", "text": "Every MCP server brings tool descriptions that are part of every call. The list below shows which ones are registered." }
+    },
+    {
+      "title": "Passendes Modell wählen",
+      "text": "Für einfache Aufgaben reicht ein kleineres Modell oder weniger Denkaufwand – das spart mehr als jedes Werkzeug.",
+      "en": { "title": "Pick the right model", "text": "For simple tasks a smaller model or less thinking is enough – that saves more than any tool." }
+    }
   ]
 }
