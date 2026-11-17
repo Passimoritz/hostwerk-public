@@ -271,11 +271,11 @@
       "en": "Drives"
     },
     "description": {
-      "de": "Wie gesund und wie voll deine Laufwerke sind – unter System → Laufwerke und als Kachel: Temperatur, Abnutzung, geschätzte Restlebensdauer, Lese- und Schreibfehler und Betriebsstunden (S.M.A.R.T.), dazu wie viel Platz jeder Dienst belegt (Daten, Sicherungen, Projekte), wie schnell das Laufwerk wächst und wann es voll ist. Liest die Werte mit einer einzigen Administrator-Rückfrage – auf Wunsch regelmäßig über eine Windows-Aufgabe – und meldet sich über Hostwerks Benachrichtigungen, wenn Fehler wachsen, es zu warm wird oder ein Laufwerk verschleißt.",
-      "en": "How healthy and how full your drives are – under System → Drives and as a tile: temperature, wear, estimated remaining life, read and write errors and power-on hours (S.M.A.R.T.), plus how much space each service takes (data, backups, projects), how fast the drive grows and when it will be full. Reads the values with a single administrator prompt – regularly through a Windows task if you like – and tells you through Hostwerk’s notifications when errors grow, a drive runs hot or wears out."
+      "de": "Wie gesund und wie voll deine Laufwerke sind – unter System → Speicher und als Kachel: Temperatur, Abnutzung, geschätzte Restlebensdauer, Lese- und Schreibfehler und Betriebsstunden (S.M.A.R.T.), dazu wie viel Platz jeder Dienst belegt (Daten, Sicherungen, Projekte), wie schnell das Laufwerk wächst und wann es voll ist, und jede einzelne Datei nach Dienst sortiert – durchsuchen, aufräumen, Doppelte finden. Liest die Werte mit einer einzigen Administrator-Rückfrage – auf Wunsch regelmäßig über eine Windows-Aufgabe – und meldet sich über Hostwerks Benachrichtigungen, wenn Fehler wachsen, es zu warm wird oder ein Laufwerk verschleißt.",
+      "en": "How healthy and how full your drives are – under System → Storage and as a tile: temperature, wear, estimated remaining life, read and write errors and power-on hours (S.M.A.R.T.), plus how much space each service takes (data, backups, projects), how fast the drive grows and when it will be full, and every single file sorted by service – search, clean up, find duplicates. Reads the values with a single administrator prompt – regularly through a Windows task if you like – and tells you through Hostwerk’s notifications when errors grow, a drive runs hot or wears out."
     },
     "author": "Hostwerk",
-    "version": "2.0.0",
+    "version": "2.2.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -286,21 +286,21 @@
     "sdkVersion": "3.8",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-disk-health",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v2.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-disk-health/releases/download/v2.0.0/disk-health-2.0.0.zip",
-    "sha256": "a8a57d0183c34c19ab8e810d679d1ca51b3a07c24b653dec76f1ec161daa58dc",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v2.2.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-disk-health/releases/download/v2.2.0/disk-health-2.2.0.zip",
+    "sha256": "0b6f0b15c1a7eef45eefea96f9c032f6292425b86db8156fe8d9db0585fa6db2",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-17",
     "category": "monitoring",
     "color": "#0e7490",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v2.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v2.2.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [
       "disk-usage"
     ],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v2.0.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-disk-health/v2.2.0/CHANGELOG.md"
   },
   {
     "id": "mail-accounts",
@@ -1281,43 +1281,6 @@
     "replaces": [],
     "native": false,
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-theme-pack/v1.0.1/CHANGELOG.md"
-  },
-  {
-    "id": "vms",
-    "name": {
-      "de": "Virtuelle Maschinen",
-      "en": "Virtual machines"
-    },
-    "description": {
-      "de": "Virtuelle Maschinen wie mit VirtualBox – nur einfacher und schneller: fertige Linux-VMs in rund einer Minute (Cloud-Image mit Benutzer, SSH-Schlüssel und Gast-Agent), Installation von ISO (Windows, Linux, alles andere), Import aus VirtualBox, VMware und Hyper-V. Bildschirm direkt in Hostwerk mit Maus und Tastatur, serielle Konsole, Snapshots auch im laufenden Betrieb, Vorlagen mit verknüpften Klonen in Sekunden, Portweiterleitungen live, Sicherungen, Autostart und Hardware-Beschleunigung (WHPX, KVM, HVF) über QEMU. Vorhandene VirtualBox-VMs gleich mit im Blick.",
-      "en": "Virtual machines like VirtualBox – only simpler and faster: ready-made Linux VMs in about a minute (cloud image with user, SSH key and guest agent), installing from an ISO (Windows, Linux, anything else), import from VirtualBox, VMware and Hyper-V. The screen right inside Hostwerk with mouse and keyboard, serial console, snapshots even while running, templates with linked clones in seconds, live port forwarding, backups, autostart and hardware acceleration (WHPX, KVM, HVF) through QEMU. Existing VirtualBox VMs at a glance as well."
-    },
-    "author": "Hostwerk",
-    "version": "1.0.1",
-    "page": true,
-    "widget": false,
-    "service": false,
-    "permissions": [
-      "native",
-      "use:ai"
-    ],
-    "hostwerk": ">=3.0.0",
-    "sdkVersion": "3.5",
-    "supportedFrom": null,
-    "homepage": "https://github.com/Passimoritz/hostwerk-ext-vms",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.1/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-vms/releases/download/v1.0.1/vms-1.0.1.zip",
-    "sha256": "a869d7393a09a8b56c045f9dbbb5e94e3f30e02cbb3751d0d2fc5bd4d2820053",
-    "score": 100,
-    "released": "2026-11-17",
-    "category": "developer",
-    "color": "#0ea5e9",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.1/banner.svg",
-    "screenshots": [],
-    "requires": {},
-    "replaces": [],
-    "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.1/CHANGELOG.md"
   },
   {
     "id": "visitor-stats",
