@@ -1293,7 +1293,7 @@
       "en": "Virtual machines like VirtualBox – only simpler and faster: ready-made Linux VMs in about a minute (cloud image with user, SSH key and guest agent), installing from an ISO (Windows, Linux, anything else), import from VirtualBox, VMware and Hyper-V. The screen right inside Hostwerk with mouse and keyboard, serial console, snapshots even while running, templates with linked clones in seconds, live port forwarding, backups, autostart and hardware acceleration (WHPX, KVM, HVF) through QEMU. Existing VirtualBox VMs at a glance as well."
     },
     "author": "Hostwerk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -1305,19 +1305,19 @@
     "sdkVersion": "3.5",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-vms",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-vms/releases/download/v1.0.0/vms-1.0.0.zip",
-    "sha256": "9bac67e47ac0e65b341027d78b5361bd4fb50412c83932fc1fcd21dc48f13b53",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-vms/releases/download/v1.0.1/vms-1.0.1.zip",
+    "sha256": "a869d7393a09a8b56c045f9dbbb5e94e3f30e02cbb3751d0d2fc5bd4d2820053",
     "score": 100,
     "released": "2026-11-17",
     "category": "developer",
     "color": "#0ea5e9",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vms/v1.0.1/CHANGELOG.md"
   },
   {
     "id": "visitor-stats",
