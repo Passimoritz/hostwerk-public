@@ -6,35 +6,30 @@ Deine Server aus dem Internet erreichen: Freigaben, IPv6, DynDNS und – nach de
 
 ![Router & Portfreigaben](img/ext-router.jpg)
 
+### Gut zu wissen
+
+- Automatisch freigeben Hostwerk gibt die Ports deiner öffentlichen Dienste (Webseiten mit Domain, Minecraft, Mailserver, Fernzugriff) im Router frei und hält sie aktuell – auch nach neuen Servern oder geänderten Ports.
+- Freigaben automatisch verwalten Prüft alle 30 Minuten und nach dem Start; räumt nicht mehr gebrauchte Hostwerk-Freigaben wieder auf.
+- Tipp für FRITZ!Box In der FRITZ!Box unter Internet → Freigaben → Portfreigaben beim Gerät dieses PCs „Selbstständige Portfreigaben für dieses Gerät erlauben“ einschalten. Sonst lehnt sie automatische Freigaben ab. Router öffnen
+
 ### Bereiche auf dieser Seite
 
-- Router-Zugang
-- IPv6 & Anschlussart
-- FRITZ!Box 7590
 - Automatisch freigeben
 - Ports von Hostwerk
-- Alle Freigaben im Router
 
 ### Was du hier tun kannst
 
-- Anmelden
-- Kopieren
-- Speichern
+- Im Livebetrieb öffnen
+- Anmelden …
+- Jetzt prüfen
+- IPv4 kopieren
+- IPv6 kopieren
+- Anschluss-Details …
 - Neu suchen
-- Router-Oberfläche öffnen
 - Jetzt abgleichen
 - Eigene Freigabe
-- Router öffnen
-- Hinweis ausblenden
+- Router-Oberfläche öffnen
 - Freigeben
 
-### Eingaben
 
-- Benutzer (optional)
-- Kennwort
-- Ports auch für IPv6 öffnen
-- Anbieter
-- Freigaben automatisch verwalten
-
-
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

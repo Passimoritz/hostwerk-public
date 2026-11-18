@@ -1,19 +1,33 @@
-# Backup-Kalender
+# Sicherungs-Kalender
 
 [← Zurück zur Übersicht](README.md)
 
-Alle geplanten Sicherungen der nächsten Tage als Kalender – und ob die letzten geklappt haben. Fehlschläge stehen oben.
+Jede geplante Sicherung in einem Kalender – und ob die letzten geklappt haben.
 
-![Backup-Kalender](img/ext-backup-calendar.jpg)
+![Sicherungs-Kalender](img/ext-backup-calendar.jpg)
 
 ### Gut zu wissen
 
-- Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Aufgaben lesen
+- Sicherungs-Kalender Alle geplanten Sicherungen – Aufgaben, nächtliche Sicherungen, externe Sicherung und Wiederherstellungs-Proben – und ob die letzten geklappt haben. Fehlschläge stehen oben.
+- Kalender teilen Exportieren speichert die nächsten Wochen als .ics-Datei. Mit dem Abo-Link bleiben Outlook, Google, Apple oder Thunderbird aktuell („Kalender abonnieren“ / „Aus URL hinzufügen“). Er funktioniert auf diesem PC – von draußen nur über Hostwerks Fernzugriff. Wer den Link hat, sieht die Namen deiner Sicherungs-Aufgaben.
+
+### Bereiche auf dieser Seite
+
+- Status
+- Nächste 14 Tage
 
 ### Was du hier tun kannst
 
-- Einstellungen
-- Neu laden
+- Cloud-Sicherung
+- Sicherungen einrichten
+- Datenbanken 1 nie gesichert
+- Minecraft alles gesichert
+- Extern nicht eingerichtet
+- Wiederherstellungs-Proben 1 nie gesichert
+- Erweiterungen alles gesichert
+- Vorlagen zeigen
+- Was zählt als Sicherung …
+- Teilen
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

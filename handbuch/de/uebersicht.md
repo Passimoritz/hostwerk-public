@@ -8,27 +8,28 @@
 
 - Webserver
 - Datenbankserver
-- Minecraft
+- Spiele-Server
+- Minecraft-Server
+- Virtuelle Maschinen
+- Mail-Fänger
 - Updates für Komponenten
 
 ### Was du hier tun kannst
 
-- Alles starten
-- Alles stoppen
+- Von der Erweiterung „Meine Anpassung“ – Infos
+- Anpassung abschalten
 - Anpassen
-- Ausblenden, bis etwas Neues dazukommt
-- Nie mehr hier anzeigen
+- Kacheln anordnen
+- Alles starten
 - Neu
 - Alle
 - Bild ändern
-- Starten
+- Installieren
 - Studio
-- Stoppen
-- Sofort beenden (erzwingen)
+- Einrichten
+- Starten
 - Posteingang
-- Alle aktualisieren
 - Erneut prüfen
-- Aktualisieren
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

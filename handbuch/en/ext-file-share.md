@@ -2,25 +2,29 @@
 
 [← Back to the overview](README.md)
 
-Share a folder over SFTP – e.g. so friends can upload worlds, mods or photos. Every user has their own password and folder.
+Share a folder over SFTP or as a download link – for worlds, mods or photos.
 
 ![File share](img/ext-file-share.jpg)
 
 ### Good to know
 
 - Fingerprint On the first connection the SFTP program shows this fingerprint. If it is the same, the connection really goes to this PC.
+- Router Windows may ask once whether Hostwerk may receive connections – allow it for private networks.
 
 ### Areas on this page
 
-- Users
+- Shares
 - Activity
 
 ### What you can do here
 
+- How others connect …
 - Settings
+- Share a folder
 - Start
 - Copy
-- New user
+- Show as QR code
+- Forward port
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

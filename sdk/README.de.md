@@ -1911,7 +1911,8 @@ Livebetrieb: zuerst eine **Lage**, dann flache Bereiche mit Abschnitten links.
 | `backups.zurueckholen` | *Sicherungen → Zurückholen*: Probe, einzelne Datei, Zeitmaschine, Umzug | `{ kind: "backups", area: "zurueckholen" }` |
 | `system.lage` | *System → Lage*: Läuft alles? (z. B. Steckbrief des PCs) | `{ kind: "system", area: "lage" }` |
 | `system.dienste` | *System → Dienste*: Ports, installierte und fremde Programme, Selbstheilung | `{ kind: "system", area: "dienste" }` |
-| `system.leistung` | *System → Leistung*: jetzt, Verlauf, Laufwerke, Speicherplatz | `{ kind: "system", area: "leistung" }` |
+| `system.leistung` | *System → Leistung*: jetzt, Verlauf | `{ kind: "system", area: "leistung" }` |
+| `system.speicher` | *System → Speicher* (seit SDK 3.13, `"sdkVersion": "3.13"`): Laufwerke, Belegung, Dateien je Dienst – ein eigener Reiter ohne eingebaute Abschnitte. Liefert eine Erweiterung denselben Abschnitt (gleiche `id`) zusätzlich in `system.leistung` (Rückfall für Hostwerk mit SDK 3.12), zeigt Hostwerk ihn nur unter Speicher | `{ kind: "system", area: "speicher" }` |
 | `system.protokolle` | *System → Protokolle*: Protokolle, Vorfälle, Absturzberichte | `{ kind: "system", area: "protokolle" }` |
 | `system.wartung` | *System → Wartung*: Selbstwartung, Gesundheits-Check, Schwachstellen | `{ kind: "system", area: "wartung" }` |
 | `system.aenderungen` | *System → Änderungen*: Zeitachse mit Rückgängig | `{ kind: "system", area: "aenderungen" }` |

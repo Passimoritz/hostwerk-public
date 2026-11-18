@@ -12,6 +12,7 @@ Receive webhooks from Stripe, GitHub & co., look inside, check signatures and pa
 - Start receiver
 - Copy
 - Make public
+- Fixed address
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

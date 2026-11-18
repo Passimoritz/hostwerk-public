@@ -2,16 +2,14 @@
 
 [← Back to the overview](README.md)
 
-What every AI knows about you and your projects – and how Claude & co. work with your projects.
+What every AI knows about you and your projects – and how your AI tools work with your projects.
 
 ![AI Connect](img/claude.jpg)
 
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)
-
 ### What you can do here
 
+- From the extension “AI Connect” – info
+- Settings
 - Reload
 
 ## Tabs
@@ -20,33 +18,25 @@ What every AI knows about you and your projects – and how Claude & co. work wi
 
 ![Connect](img/claude--connect.jpg)
 
-> Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “AI Connect” – info · Settings · Reload
 
 ### Save tokens
 
 ![Save tokens](img/claude--save-tokens.jpg)
 
-> Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “AI Connect” – info · Settings · Reload
 
 ### Tips & tricks
 
 ![Tips & tricks](img/claude--tips-tricks.jpg)
 
-> Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “AI Connect” – info · Settings · Reload
 
 ### Log
 
 ![Log](img/claude--log.jpg)
 
-> Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “AI Connect” – info · Settings · Reload
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

@@ -8,17 +8,39 @@ Scripts, commands, backups, checks and restarts on a schedule, on startup or as 
 
 ### Areas on this page
 
-- Scheduled tasks
+- History
 
 ### What you can do here
 
-- Pause all
+- 2 videos
 - Templates
 - New task
-- History
-- Now
+- All 2
+- Error 0
+- Active 2
+- Pause all
+- Sample task Thu 03:00 · Open a web address
+- Second task Thu 04:00 · Open a web address
+- Run now
 - Edit
-- Delete
+- Mark as favorite (then listed at the top)
+- More actions for Sample task
+
+## Tabs
+
+### One click
+
+![One click](img/aufgaben--one-click.jpg)
+
+**Areas on this page:** Modes · Tasks
+
+**What you can do here:** 2 videos · From the extension “One click” – info · From running services · New mode · Web development Web servers, databases and mail catcher · Minecraft night Only the Minecraft servers · Break Everything off – saves power and memory · Mark as favorite (then listed at the top) · Run
+
+### Quick tasks
+
+![Quick tasks](img/aufgaben--quick-tasks.jpg)
+
+**What you can do here:** 2 videos · From the extension “Quick tasks” – info
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

@@ -8,27 +8,32 @@
 
 - Web servers
 - Database servers
-- Minecraft
+- Game servers
+- Minecraft servers
+- Virtual machines
+- Mail catcher
 - Component updates
 
 ### What you can do here
 
-- Start all
-- Stop all
+- From the extension “My override” – info
+- Switch override off
 - Customize
-- Hide until something new comes up
-- Never show here again
+- Arrange tiles
+- Start all
+- Fix
+- Hide
 - New
 - All
 - Change image
-- Start
+- Install
 - Studio
-- Stop
-- Stop immediately (force)
+- Set up
+- Start
 - Inbox
 - Update all
 - Check again
 - Update
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

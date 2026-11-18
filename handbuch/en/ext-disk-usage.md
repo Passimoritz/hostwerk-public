@@ -6,13 +6,10 @@ Space used per service and free space on the drive.
 
 ![Storage per service](img/ext-disk-usage.jpg)
 
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.1.0 · read only Read system health, load and ports
-
 ### What you can do here
 
+- From the extension “Storage per service” – info
 - Reload
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

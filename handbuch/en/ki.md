@@ -1,48 +1,43 @@
-# AI assistant
+# AI
 
 [← Back to the overview](README.md)
 
-Looks into your services, databases, Minecraft servers and projects itself – and only changes something when you confirm it.
+Looks into services and projects – changes things only with your approval.
 
-![AI assistant](img/ki.jpg)
+![AI](img/ki.jpg)
 
 ### What you can do here
 
-- Media library
+- 2 videos
 - Compare
-- Set up AI (approx. 11,1 GB)
+- Quick start (approx. 4,3 GB)
 - Choose another model
-- Program only
-- Use an online provider instead
+- Set up (approx. 11,1 GB)
+- Choose source …
+- Search again
 
 ## Tabs
+
+### Automatic
+
+![Automatic](img/ki--automatic.jpg)
+
+> Everything that happens without a conversation: help right where you are, the AI watch on crashes, your workflows (by hand, on a schedule or on an event) and suggestions from your history.
+
+**Areas on this page:** What the AI does on its own
+
+**What you can do here:** 2 videos · Compare · Describe a workflow
 
 ### Settings
 
 ![Settings](img/ki--settings.jpg)
 
-**Areas on this page:** Startup & behavior
+> The first source answers. If it doesn’t answer, its quota is used up or its monthly limit is reached, the next one takes over. Change the order by dragging or with the arrows. With online sources, questions and data go to that provider – what exactly, you set under Privacy.
+> Hostwerk recognises what you ask and uses the matching provider – e.g. short questions locally, code to a strong model. If it doesn’t answer, the order under “Who answers” applies as usual.
 
-**What you can do here:** Media library · Compare · General Start, conversation, model options · Language model Which AI answers · Quotas Usage, budgets, limits · Images & videos Create and edit · Speaking & listening Voices, speech recognition · Automatic help Watch, explanations, hints · Always up to date Catalog, programs, models · Storage & turn off Remove models, uninstall · Modes Roles for the assistant
+**Areas on this page:** Sources · Sources – who answers, in this order
 
-### Quotas
-
-![Quotas](img/ki--quotas.jpg)
-
-> Before sending to a paid online provider, Hostwerk estimates tokens and cost. Prices come daily from a public model list – new models too, without a Hostwerk update.
-> Hostwerk recognises what you ask and picks the matching provider – e.g. short questions locally, code to a strong model. If it does not answer, the fallback chain steps in as usual.
-
-**Areas on this page:** Cost preview · Automatic choice per task · Ollama
-
-**What you can do here:** Media library · Compare · General Start, conversation, model options · Language model Which AI answers · Quotas Usage, budgets, limits · Images & videos Create and edit · Speaking & listening Voices, speech recognition · Automatic help Watch, explanations, hints · Always up to date Catalog, programs, models · Storage & turn off Remove models, uninstall · Modes Roles for the assistant · Apply
-
-### Connection & memory
-
-![Connection & memory](img/ki--connection-memory.jpg)
-
-> Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)
-
-**What you can do here:** Reload
+**What you can do here:** 2 videos · Compare · Add source · On this PC (Ollama) no default model · on this PC · answers first not installed free · Images & videos Image: off · Video: off
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

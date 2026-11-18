@@ -6,14 +6,11 @@ How many e-mails your projects send – per day, per project, per sender and rec
 
 ![Mail statistics](img/ext-mail-stats.jpg)
 
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.2.0 · read only Read captured e-mails
-
 ### What you can do here
 
+- From the extension “Mail statistics” – info
 - Settings
 - Reload
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

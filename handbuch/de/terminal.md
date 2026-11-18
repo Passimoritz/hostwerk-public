@@ -8,13 +8,14 @@ Auf diesem PC (user@hostwerk-pc) · PowerShell · Markieren kopiert, Rechtsklick
 
 ### Was du hier tun kannst
 
-- Kurz erklärt: Terminal (45 Sekunden)
+- Video
 - Neues Terminal
 - In Projekt öffnen
-- Vollbild
+- Eigenes Fenster
 - Windows-Terminal
 - Terminal auf einem anderen Rechner
 - hostwerk-pc
+- Terminal „hostwerk-pc“ schließen
 - Neues Terminal (PowerShell) · Strg+Umschalt+T
 - Andere Shell wählen
 - Suchen (Strg+Umschalt+F)
@@ -22,32 +23,24 @@ Auf diesem PC (user@hostwerk-pc) · PowerShell · Markieren kopiert, Rechtsklick
 - Schrift größer
 - Farbschema: Hostwerk – klicken zum Wechseln
 - Mitschnitt als Textdatei speichern
+- Eingabe an mehrere Reiter senden (z. B. für mehrere Server gleichzeitig)
+- Sitzung wird beim nächsten Öffnen wiederhergestellt – klicken zum Ausschalten
 - Markiertes kopieren
 - Anzeige leeren
 - Teilen (zweites Terminal daneben)
 - Befehle
-- status
-- log
-- diff
-- pull
-- push
-- branches
-- commit …
-- stash
-- checkout …
-- init
-- install
-- dev
-- build
-- test
-- outdated
-- composer install
-- composer update
-- artisan …
-- phpunit
-- php -v
-- venv
-- pip install -r
+- ls
+- cd ..
+- cat …
+- tail -f …
+- find …
+- ipconfig
+- netstat
+- processes
+- services
+- test port …
+- which …
+- clear
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

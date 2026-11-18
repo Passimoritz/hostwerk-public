@@ -1,18 +1,30 @@
-# Leaderboard
+# Leaderboard → Leaderboard
 
 [← Back to the overview](README.md)
 
-Who plays, mines or dies the most – across all Minecraft servers or per server. With a dashboard tile.
+Who plays, mines, kills or dies the most – across all Minecraft servers or per server, all time or for the week and month, with player search, profile card, badges and history. Right in the “Players” tab of every Minecraft server, as a stream view for OBS and, if you like, as an own web page in your web server.
 
-![Leaderboard](img/ext-player-leaderboard.jpg)
-
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.2.0 · read only Read Minecraft servers, players and stats
+![Leaderboard → Leaderboard](img/ext-player-leaderboard.jpg)
 
 ### What you can do here
 
+- From the extension “Leaderboard” – info
+- Settings
 - Reload
 
+## Tabs
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+### Stream view
+
+![Stream view](img/ext-player-leaderboard--stream-view.jpg)
+
+**What you can do here:** From the extension “Leaderboard” – info · Settings · Reload
+
+### Web page
+
+![Web page](img/ext-player-leaderboard--web-page.jpg)
+
+**What you can do here:** From the extension “Leaderboard” – info · Settings · Reload
+
+
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

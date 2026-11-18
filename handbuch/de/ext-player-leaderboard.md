@@ -1,18 +1,30 @@
-# Bestenliste
+# Bestenliste → Bestenliste
 
 [← Zurück zur Übersicht](README.md)
 
-Wer am meisten spielt, abbaut oder stirbt – über alle Minecraft-Server zusammen oder je Server. Mit Kachel für die Übersicht.
+Wer am meisten spielt, abbaut, besiegt oder stirbt – über alle Minecraft-Server zusammen oder je Server, gesamt oder für Woche und Monat, mit Spielersuche, Profilkarte, Abzeichen und Verlauf. Direkt im Reiter „Spieler“ jedes Minecraft-Servers, als Stream-Ansicht für OBS und auf Wunsch als eigene Webseite in deinem Webserver.
 
-![Bestenliste](img/ext-player-leaderboard.jpg)
-
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Minecraft-Server, Spieler und Statistiken lesen
+![Bestenliste → Bestenliste](img/ext-player-leaderboard.jpg)
 
 ### Was du hier tun kannst
 
+- Von der Erweiterung „Bestenliste“ – Infos
+- Einstellungen
 - Neu laden
 
+## Reiter
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+### Stream-Ansicht
+
+![Stream-Ansicht](img/ext-player-leaderboard--stream-ansicht.jpg)
+
+**Was du hier tun kannst:** Von der Erweiterung „Bestenliste“ – Infos · Einstellungen · Neu laden
+
+### Webseite
+
+![Webseite](img/ext-player-leaderboard--webseite.jpg)
+
+**Was du hier tun kannst:** Von der Erweiterung „Bestenliste“ – Infos · Einstellungen · Neu laden
+
+
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

@@ -1,18 +1,16 @@
-# Notes
+# Notes → Checklist
 
 [← Back to the overview](README.md)
 
 All notes about your services – with search and checklists you can tick off.
 
-![Notes](img/ext-service-notes.jpg)
-
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.1.0 · read only See services and their state Store own data (max. 256 KB)
+![Notes → Checklist](img/ext-service-notes.jpg)
 
 ### What you can do here
 
+- From the extension “Notes” – info
 - Reload
+- From the extension “My add-on” – info
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

@@ -19,15 +19,9 @@ Hostwerk's external backup – encrypted to OneDrive, Google Drive, an S3 bucket
 
 ### What you can do here
 
+- Fold
 - Install rclone
-- Sign in to OneDrive
-- Connect and test
-- Show recovery key
-- Use the cloud for the external backup
-
-### Inputs
-
-- Folder at the target
+- Open
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

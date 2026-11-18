@@ -8,7 +8,7 @@ Shows “Playing Hostwerk” in your Discord profile – even when Hostwerk only
 
 ### Good to know
 
-- What is shared? Only kinds of services (for example web server · database) and how many are running. Never project, server or folder names.
+- What is shared? Only kinds of services (for example web server · database) and how many are running. Never project or folder names – a server name only if you switch it on.
 
 ### Areas on this page
 
@@ -17,14 +17,15 @@ Shows “Playing Hostwerk” in your Discord profile – even when Hostwerk only
 
 ### What you can do here
 
-- Save
-- Open the Discord developer portal
+- Images, own button and application
 
 ### Inputs
 
 - Share status in Discord
 - Show running services
-- Discord application id
+- Show player count
+- Show server name
+- Button “View status”
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

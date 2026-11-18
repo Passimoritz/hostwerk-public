@@ -1,19 +1,42 @@
-# Player Ticker
+# Players → Live
 
 [← Back to the overview](README.md)
 
-Who is on your Minecraft servers right now? Live list with heads, TPS and a playtime ranking – great for streams and Discord screens.
+Who is playing right now and who plays the most – across all Minecraft and game servers.
 
-![Player Ticker](img/ext-player-ticker.jpg)
-
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.2.0 · read only See services and their state Read Minecraft servers, players and stats Store own data (max. 256 KB)
+![Players → Live](img/ext-player-ticker.jpg)
 
 ### What you can do here
 
+- From the extension “Players” – info
 - Settings
 - Reload
 
+## Tabs
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+### Joins and leaves
+
+![Joins and leaves](img/ext-player-ticker--joins-and-leaves.jpg)
+
+**What you can do here:** From the extension “Players” – info · Settings · Reload
+
+### Leaderboard
+
+![Leaderboard](img/ext-player-ticker--leaderboard.jpg)
+
+**What you can do here:** From the extension “Players” – info · Settings · Reload
+
+### Stream view
+
+![Stream view](img/ext-player-ticker--stream-view.jpg)
+
+**What you can do here:** From the extension “Players” – info · Settings · Reload
+
+### Web page
+
+![Web page](img/ext-player-ticker--web-page.jpg)
+
+**What you can do here:** From the extension “Players” – info · Settings · Reload
+
+
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

@@ -1889,7 +1889,8 @@ an **overview** first, then flat areas with sections on the left.
 | `backups.zurueckholen` | *Backups → Restore*: test restore, single file, time machine, move | `{ kind: "backups", area: "zurueckholen" }` |
 | `system.lage` | *System → Overview*: is everything running? (e.g. a PC profile) | `{ kind: "system", area: "lage" }` |
 | `system.dienste` | *System → Services*: ports, installed and foreign programs, self-healing | `{ kind: "system", area: "dienste" }` |
-| `system.leistung` | *System → Performance*: now, history, drives, disk space | `{ kind: "system", area: "leistung" }` |
+| `system.leistung` | *System → Performance*: now, history | `{ kind: "system", area: "leistung" }` |
+| `system.speicher` | *System → Storage* (since SDK 3.13, `"sdkVersion": "3.13"`): drives, used space, files per service – an own tab without built-in sections. If an extension delivers the same section (same `id`) in `system.leistung` too (fallback for Hostwerk with SDK 3.12), Hostwerk only shows it under Storage | `{ kind: "system", area: "speicher" }` |
 | `system.protokolle` | *System → Logs*: logs, incidents, crash reports | `{ kind: "system", area: "protokolle" }` |
 | `system.wartung` | *System → Upkeep*: self-maintenance, health check, vulnerabilities | `{ kind: "system", area: "wartung" }` |
 | `system.aenderungen` | *System → Changes*: timeline with undo | `{ kind: "system", area: "aenderungen" }` |

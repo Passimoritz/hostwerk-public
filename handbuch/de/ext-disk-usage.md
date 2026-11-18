@@ -6,13 +6,10 @@ Belegter Platz je Dienst und freier Platz auf dem Laufwerk.
 
 ![Speicher je Dienst](img/ext-disk-usage.jpg)
 
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.1.0 · nur lesen Systemzustand, Auslastung und Ports lesen
-
 ### Was du hier tun kannst
 
+- Von der Erweiterung „Speicher je Dienst“ – Infos
 - Neu laden
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

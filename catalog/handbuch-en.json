@@ -1,148 +1,8 @@
 {
  "lang": "en",
- "generated": "2026-10-20T06:48:40.680Z",
- "version": "2.10.0",
+ "generated": "2026-11-18T20:19:56.383Z",
+ "version": "3.2.1",
  "pages": [
-  {
-   "route": null,
-   "slug": "help",
-   "title": "Help & known issues",
-   "activeTab": "",
-   "intro": "If something doesn't work, the fix is usually here. If nothing helps: under System → Health → Incidents, “Bug report” opens a prefilled report – without paths, names or secrets, you send it yourself.",
-   "areas": [],
-   "actions": [],
-   "fields": [],
-   "tabs": [
-    "Windows blocks Hostwerk (Smart App Control)",
-    "Port in use",
-    "Virus scanners",
-    "WSL and Docker",
-    "Proxy",
-    "Update stuck or doesn't start",
-    "System requirements",
-    "Known issues in 2.x",
-    "Removing Hostwerk"
-   ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": null,
-   "tabsDetail": [
-    {
-     "label": "Windows blocks Hostwerk (Smart App Control)",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "On Windows 11, Smart App Control can block programs without a known signature. This affects the installer (Hostwerk-Setup-….exe), not Hostwerk itself.",
-      "Use the ZIP version, extract it e.g. to %LOCALAPPDATA%\\Programs\\Hostwerk and start Hostwerk.exe. On first start Hostwerk creates the shortcuts and the entry under “Apps”.",
-      "Hostwerk.exe is the unmodified, official Electron runtime. That's why Task Manager shows “Electron” – this is not an error.",
-      "Programs Hostwerk downloads (e.g. new Apache or PHP builds) are checked after the download. If Windows blocks one, Hostwerk tells you and suggests an alternative (nginx and Caddy have always worked so far)."
-     ],
-     "shot": null
-    },
-    {
-     "label": "Port in use",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "A service doesn't start because “port 80” (or 3306, 25565 …) is already in use.",
-      "System → Health → Ports & services shows which program holds the port. If it's an old Hostwerk service, Hostwerk frees it with one click.",
-      "If it's another program (Skype, IIS, a second XAMPP, your own MariaDB …), simply set a different port for the service – or quit the other program.",
-      "New databases pick a free port on their own."
-     ],
-     "shot": null
-    },
-    {
-     "label": "Virus scanners",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "Virus scanners check every file a web server or database touches. That slows Hostwerk down, and sometimes a program (e.g. php.exe or mysqld.exe) is moved to quarantine.",
-      "Add the Hostwerk folder (default: %USERPROFILE%\\Hostwerk) to your scanner's exclusions.",
-      "If a program suddenly goes missing, Hostwerk downloads it again on the next start (“self-healing”)."
-     ],
-     "shot": null
-    },
-    {
-     "label": "WSL and Docker",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "On Windows, Docker apps and some game servers run in Hostwerk's own WSL environment (“hostwerk-docker”) – you don't need Docker Desktop.",
-      "Requirement: virtualization enabled in BIOS/UEFI and the Windows feature WSL. Hostwerk sets up WSL when needed; Windows asks for administrator rights and usually wants one restart.",
-      "“Timeout” doesn't mean “off”: the first start of a WSL environment sometimes takes Windows more than a minute. Just try again.",
-      "If Docker Desktop is already running, Hostwerk can use its engine."
-     ],
-     "shot": null
-    },
-    {
-     "label": "Proxy",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "Hostwerk doesn't use proxy settings yet. Behind a company proxy that blocks direct connections, downloads (PHP, databases, extensions, updates) fail.",
-      "Everything that works without the internet keeps running. With Settings → Privacy → Offline mode Hostwerk doesn't even try to connect.",
-      "An existing XAMPP installation can be taken over (Web servers → Import) without any download."
-     ],
-     "shot": null
-    },
-    {
-     "label": "Update stuck or doesn't start",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "Downloads resume after an interruption. If an update stands still for long, use Settings → App updates → Check for updates.",
-      "If a new version doesn't start, Hostwerk uses the previous one on the next start and skips the broken one.",
-      "Don't like a new version: Settings → App updates → Back to the previous version.",
-      "If Hostwerk runs as a system service, Live → Service shows “Update service” after an app update."
-     ],
-     "shot": null
-    },
-    {
-     "label": "System requirements",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "Windows: Windows 10 (22H2 or later) or Windows 11, 64-bit (x64). ARM devices are not supported.",
-      "Linux: x64, glibc-based: Ubuntu 22.04/24.04, Debian 12, Fedora 40 or newer (AppImage or .deb).",
-      "Memory: 4 GB is enough for a web server and a database, 8 GB or more for Minecraft, Docker or the local AI helper.",
-      "Disk space: about 500 MB for Hostwerk, plus each service (PHP ~100 MB, a database ~300 MB, a Minecraft server 0.5–5 GB).",
-      "Administrator rights: Not needed to install or use Hostwerk. Windows only asks for: system service, firewall rules, setting up WSL/Docker. On Linux also for ports below 1024 and trusting the local certificate authority."
-     ],
-     "shot": null
-    },
-    {
-     "label": "Known issues in 2.x",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "Task Manager shows Hostwerk as “Electron” (see Smart App Control) – on purpose, so Windows doesn't block Hostwerk.",
-      "No downloads behind a proxy (see Proxy).",
-      "On Linux without a tray (plain GNOME), closing the window minimizes Hostwerk instead of hiding it.",
-      "Apache/PHP builds can occasionally be blocked by Smart App Control – nginx and Caddy are the fallback."
-     ],
-     "shot": null
-    },
-    {
-     "label": "Removing Hostwerk",
-     "areas": [],
-     "actions": [],
-     "fields": [],
-     "tipTexts": [
-      "Settings → Advanced → Remove Hostwerk cleans up everything Hostwerk registered in the system and asks whether your data should stay. If you uninstall through Windows (“Apps”), Hostwerk also removes its traces (autostart, certificates, system service, firewall rules) and keeps your data – a new installation finds it again."
-     ],
-     "shot": null
-    }
-   ],
-   "handwritten": true
-  },
   {
    "route": "",
    "slug": "uebersicht",
@@ -152,22 +12,27 @@
    "areas": [
     "Web servers",
     "Database servers",
-    "Minecraft",
+    "Game servers",
+    "Minecraft servers",
+    "Virtual machines",
+    "Mail catcher",
     "Component updates"
    ],
    "actions": [
-    "Start all",
-    "Stop all",
+    "From the extension “My override” – info",
+    "Switch override off",
     "Customize",
-    "Hide until something new comes up",
-    "Never show here again",
+    "Arrange tiles",
+    "Start all",
+    "Fix",
+    "Hide",
     "New",
     "All",
     "Change image",
-    "Start",
+    "Install",
     "Studio",
-    "Stop",
-    "Stop immediately (force)",
+    "Set up",
+    "Start",
     "Inbox",
     "Update all",
     "Check again",
@@ -181,22 +46,93 @@
    "tabsDetail": []
   },
   {
+   "route": "ki",
+   "slug": "ki",
+   "title": "AI",
+   "activeTab": "Conversations",
+   "intro": "Looks into services and projects – changes things only with your approval.",
+   "areas": [],
+   "actions": [
+    "2 videos",
+    "Compare",
+    "Quick start (approx. 4,3 GB)",
+    "Choose another model",
+    "Set up (approx. 11,1 GB)",
+    "Choose source …",
+    "Search again"
+   ],
+   "fields": [],
+   "tabs": [
+    "Conversations",
+    "Automatic",
+    "Settings"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ki.jpg",
+   "tabsDetail": [
+    {
+     "label": "Automatic",
+     "areas": [
+      "What the AI does on its own"
+     ],
+     "actions": [
+      "2 videos",
+      "Compare",
+      "Describe a workflow"
+     ],
+     "fields": [
+      "Automatic help waiting for a language model",
+      "AI watch"
+     ],
+     "tipTexts": [
+      "Everything that happens without a conversation: help right where you are, the AI watch on crashes, your workflows (by hand, on a schedule or on an event) and suggestions from your history."
+     ],
+     "shot": "img/ki--automatic.jpg"
+    },
+    {
+     "label": "Settings",
+     "areas": [
+      "Sources",
+      "Sources – who answers, in this order"
+     ],
+     "actions": [
+      "2 videos",
+      "Compare",
+      "Add source",
+      "On this PC (Ollama) no default model · on this PC · answers first not installed free",
+      "Images & videos Image: off · Video: off"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "The first source answers. If it doesn’t answer, its quota is used up or its monthly limit is reached, the next one takes over. Change the order by dragging or with the arrows. With online sources, questions and data go to that provider – what exactly, you set under Privacy.",
+      "Hostwerk recognises what you ask and uses the matching provider – e.g. short questions locally, code to a strong model. If it doesn’t answer, the order under “Who answers” applies as usual."
+     ],
+     "shot": "img/ki--settings.jpg"
+    }
+   ]
+  },
+  {
    "route": "web",
    "slug": "web",
    "title": "Web servers",
    "activeTab": "Server",
-   "intro": "Apache, nginx or Caddy – several in parallel, each with its own PHP version.",
+   "intro": "Apache, nginx or Caddy – several in parallel, with or without PHP.",
    "areas": [],
    "actions": [
+    "3 videos",
     "New web server",
     "Change image",
-    "Start"
+    "Install"
    ],
    "fields": [],
    "tabs": [
     "Server",
     "PHP versions",
-    "Import"
+    "Import",
+    "Page check",
+    "Visitors",
+    "Vulnerabilities"
    ],
    "tips": 0,
    "tipTexts": [],
@@ -209,8 +145,9 @@
       "Available (windows.php.net)"
      ],
      "actions": [
+      "3 videos",
       "New web server",
-      "New",
+      "What's new?",
       "Install"
      ],
      "fields": [],
@@ -219,25 +156,37 @@
     },
     {
      "label": "Import",
+     "areas": [],
+     "actions": [
+      "3 videos",
+      "New web server",
+      "Change image",
+      "Install"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/web--import.jpg"
+    },
+    {
+     "label": "Page check",
      "areas": [
-      "Import from XAMPP",
-      "Existing Web servers on this PC",
-      "Apache 2.4.58"
+      "Regular checks",
+      "Before publishing"
      ],
      "actions": [
+      "3 videos",
       "New web server",
-      "Folder",
-      "Search",
-      "Apply",
-      "Search again",
-      "Take over into Hostwerk …"
+      "From the extension “Page check” – info",
+      "Check",
+      "Sample Web",
+      "Save"
      ],
      "fields": [],
      "tipTexts": [
-      "Import – take over existing services Is a web server already running on this PC – e.g. from XAMPP or as a Windows service? Hostwerk takes it over: where it is (nothing is moved) or copied 1:1, tested and with a way back. The same search for all kinds is under System → Foreign services.",
-      "Smart App Control is active Windows only runs programs with a known “reputation”. Brand-new Apache and PHP builds are therefore sometimes blocked – the versions from XAMPP are known and run reliably. Hostwerk checks every new version and otherwise keeps the old one; nginx, Caddy and the databases haven't been affected so far."
+      "Regular checks Hostwerk checks these addresses on its own and tells you when the score drops by 5 points or more.",
+      "Minimum score Publishing extensions (e.g. “Publish pages”) check the page first and stop below this score. 0 = off."
      ],
-     "shot": "img/web--import.jpg"
+     "shot": "img/web--page-check.jpg"
     }
    ]
   },
@@ -249,10 +198,11 @@
    "intro": "MariaDB, MySQL, PostgreSQL, MongoDB and Redis – as many as you like, in different versions.",
    "areas": [],
    "actions": [
+    "2 videos",
     "New database server",
     "Change image",
     "Start",
-    "Studio"
+    "Open in Studio"
    ],
    "fields": [],
    "tabs": [
@@ -268,7 +218,10 @@
      "label": "Studio",
      "areas": [],
      "actions": [
-      "Connection",
+      "2 videos",
+      "New database server",
+      "Turn on write protection",
+      "Connect another database",
       "Start",
       "Server settings"
      ],
@@ -280,9 +233,10 @@
      "label": "Import",
      "areas": [
       "Existing Databases on this PC",
-      "MariaDB 10.4.32"
+      "PostgreSQL 17.12"
      ],
      "actions": [
+      "2 videos",
       "New database server",
       "Search again",
       "Take over into Hostwerk …"
@@ -296,22 +250,106 @@
    ]
   },
   {
+   "route": "spiele",
+   "slug": "spiele",
+   "title": "Game servers",
+   "activeTab": "Servers",
+   "intro": "Valheim, Palworld, Satisfactory, Rust, ARK and every other Steam server tool – through SteamCMD or LinuxGSM, with console, players, backups, updates and forwarding.",
+   "areas": [
+    "Set up your first game server"
+   ],
+   "actions": [
+    "All games …",
+    "Valheim 896660",
+    "Palworld 2394010",
+    "Satisfactory 1690800",
+    "Rust 258550",
+    "7 Days to Die 294420",
+    "Project Zomboid 380870",
+    "Counter-Strike 2 730",
+    "Enshrouded 2278520",
+    "V Rising 1829350",
+    "ARK: Survival Ascended 2430930",
+    "Terraria (tShock) Docker tsserver",
+    "Garry's Mod 4020",
+    "Conan Exiles 443030",
+    "Unturned 1110390",
+    "Space Engineers 298740",
+    "Team Fortress 2 232250"
+   ],
+   "fields": [],
+   "tabs": [
+    "Servers",
+    "Import",
+    "Your games",
+    "Network"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Two ways on Windows Steam server tools run right on this PC (most games have a Windows version). Games that only exist for Linux – and every LinuxGSM game – run in Hostwerk’s own Docker engine; the setup installs it for you when needed."
+   ],
+   "shot": "img/spiele.jpg",
+   "tabsDetail": [
+    {
+     "label": "Import",
+     "areas": [
+      "Game servers on this PC"
+     ],
+     "actions": [
+      "Search a folder …",
+      "Search again"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Import – take over game servers you already have Hostwerk looks in your Steam libraries, in SteamCMD folders, for LinuxGSM instances (Linux) and for Docker containers of game server images – and in a folder you choose. Searching only reads; nothing changes before you confirm. Take over where it is (nothing moves) or copy it into Hostwerk – port, players and the start line come along where Hostwerk finds them."
+     ],
+     "shot": "img/spiele--import.jpg"
+    },
+    {
+     "label": "Your games",
+     "areas": [],
+     "actions": [
+      "From the extension “Game library” – info"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/spiele--your-games.jpg"
+    },
+    {
+     "label": "Network",
+     "areas": [],
+     "actions": [
+      "From the extension “Game servers” – info",
+      "New network",
+      "Create network"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "What belongs in a network? A cluster (ARK, Conan Exiles), several instances of one game, or everything for game night. Starting waits until each server answers the server query before the next one starts."
+     ],
+     "shot": "img/spiele--network.jpg"
+    }
+   ]
+  },
+  {
    "route": "mc",
    "slug": "mc",
    "title": "Minecraft servers",
    "activeTab": "Server",
-   "intro": "Paper, Purpur, Folia, Spigot, Vanilla, mod servers (Fabric, NeoForge, Forge) and ready-made modpacks – with console, marketplace, editor and backups.",
+   "intro": "Paper, Purpur, Folia, Spigot, Vanilla, mod servers (Fabric, NeoForge, Forge), ready modpacks and Bedrock – with console, marketplace, editor and backups.",
    "areas": [],
    "actions": [
     "New server",
     "Change image",
     "Start",
-    "Another Minecraft server Own world, own port – Hostwerk downloads Java and the server software Paper Purpur Vanilla Fabric Modpacks Velocity"
+    "Another Minecraft server Own world, own port – Hostwerk downloads Java and the server software Paper Purpur Vanilla Fabric Modpacks Velocity Bedrock"
    ],
    "fields": [],
    "tabs": [
     "Server",
-    "Import"
+    "Import",
+    "Network & Bedrock",
+    "MOTD studio"
    ],
    "tips": 0,
    "tipTexts": [],
@@ -324,11 +362,277 @@
       "New server",
       "Change image",
       "Start",
-      "Another Minecraft server Own world, own port – Hostwerk downloads Java and the server software Paper Purpur Vanilla Fabric Modpacks Velocity"
+      "Another Minecraft server Own world, own port – Hostwerk downloads Java and the server software Paper Purpur Vanilla Fabric Modpacks Velocity Bedrock"
      ],
      "fields": [],
      "tipTexts": [],
      "shot": "img/mc--import.jpg"
+    },
+    {
+     "label": "Network & Bedrock",
+     "areas": [],
+     "actions": [
+      "New server",
+      "From the extension “Minecraft server network” – info",
+      "New network",
+      "Bedrock only"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "How it fits together A proxy (Velocity) is the one address players connect to; it sends them to your servers and lets them switch with /server. Geyser on the proxy translates for Bedrock players (phone, console, Windows), Floodgate lets them in without a Java account. ViaVersion lets other Minecraft versions in. A Bedrock Dedicated Server is something else: Mojang’s own server with a separate Bedrock-only world."
+     ],
+     "shot": "img/mc--network-bedrock.jpg"
+    },
+    {
+     "label": "MOTD studio",
+     "areas": [],
+     "actions": [
+      "New server",
+      "From the extension “Minecraft servers” – info"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/mc--motd-studio.jpg"
+    }
+   ]
+  },
+  {
+   "route": "vms",
+   "slug": "vms",
+   "title": "Virtual machines",
+   "activeTab": "Machines",
+   "intro": "Whole computers in a window: ready-made Linux in a minute, Windows and every ISO – your VirtualBox VMs right next to them.",
+   "areas": [],
+   "actions": [
+    "New VM …",
+    "Create the first VM …",
+    "Your VirtualBox VMs"
+   ],
+   "fields": [],
+   "tabs": [
+    "Machines",
+    "VirtualBox",
+    "Settings"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/vms.jpg",
+   "tabsDetail": [
+    {
+     "label": "VirtualBox",
+     "areas": [],
+     "actions": [
+      "New VM …",
+      "Change image",
+      "Start",
+      "Take over …"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/vms--virtualbox.jpg"
+    },
+    {
+     "label": "Settings",
+     "areas": [
+      "Engines",
+      "Settings",
+      "Internal networks",
+      "Downloaded images"
+     ],
+     "actions": [
+      "New VM …",
+      "New …"
+     ],
+     "fields": [
+      "QEMU",
+      "UEFI firmware",
+      "ARM64 guests",
+      "Snapshots with memory",
+      "VirtualBox",
+      "Hyper-V",
+      "Allow port forwarding into the home network",
+      "VM folder"
+     ],
+     "tipTexts": [],
+     "shot": "img/vms--settings.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/steam",
+   "slug": "ext-steam",
+   "title": "Game library → Library",
+   "activeTab": "Library",
+   "intro": "Your games from Steam, Epic, GOG and itch.io – with saves, deals and your accounts.",
+   "areas": [],
+   "actions": [
+    "Read again",
+    "What should I play?",
+    "Games 24",
+    "On disk 683,0 GB",
+    "Playtime 2846 h",
+    "Not played yet 1",
+    "Updates ready 1",
+    "Downloading 1",
+    "Clive Barker's Hellraiser: Revival 12 h · 5 days ago",
+    "We Were Here Tomorrow 4.4 h · 6 days ago",
+    "PAYDAY 3 97 h · 10 days ago",
+    "Minecraft Dungeons II 26 h · 13 days ago",
+    "Overwatch® 880 h · 14 days ago",
+    "Dead by Daylight 1277 h · 28 days ago",
+    "PEAK 27 h · 40 days ago",
+    "The Witcher 3: Wild Hunt — Remastered 3.4 h · 42 days ago",
+    "Generation Zero® 49 h · 2 months ago",
+    "Sunset Summit 4 h · 2 months ago",
+    "YAPYAP not played yet · 2 months ago",
+    "Dub Together 1 min · 2 months ago",
+    "RV There Yet? 12 h · 2 months ago",
+    "How to Fish 6.6 h · 2 months ago",
+    "007 First Light 18 h · 3 months ago",
+    "Big Walk 35 min · 3 months ago",
+    "Wallpaper Engine 89 h · 3 months ago",
+    "Update ready Deep Rock Galactic: Rogue Core 10 h · 4 months ago",
+    "Just Shapes & Beats 16 h · 6 months ago",
+    "Supermarket Together 104 h · 7 months ago",
+    "John Carpenter's Toxic Commando 6.9 h · 7 months ago",
+    "s&box 3.5 h · 7 months ago",
+    "Dying Light: The Beast 7 min · 12 months ago",
+    "Updating · 50 % PAYDAY 2 201 h · 16 months ago"
+   ],
+   "fields": [],
+   "tabs": [
+    "Library",
+    "Storage",
+    "Saves",
+    "Deals",
+    "Statistics",
+    "Screenshots",
+    "Accounts"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-steam.jpg",
+   "tabsDetail": [
+    {
+     "label": "Storage",
+     "areas": [],
+     "actions": [
+      "Read again",
+      "What should I play?",
+      "Measure again",
+      "Back up saves",
+      "Show in Steam",
+      "Uninstall …"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "How the storage doctor decides Only from Steam’s own files: size, last played and playtime per game, drives (SSD or hard disk) and folders of games that are gone (workshop, shader cache, Proton, downloads). Hostwerk never deletes anything here – uninstalling and moving is done by Steam, leftovers open in the file manager. Thresholds (e.g. “long unplayed” after 180 days) are in the extension’s settings."
+     ],
+     "shot": "img/ext-steam--storage.jpg"
+    },
+    {
+     "label": "Saves",
+     "areas": [
+      "Backups"
+     ],
+     "actions": [
+      "Read again",
+      "What should I play?",
+      "Load now",
+      "Clive Barker's Hellraiser: Revival location unknown",
+      "We Were Here Tomorrow location unknown",
+      "PAYDAY 3 location unknown",
+      "Minecraft Dungeons II location unknown",
+      "Overwatch® location unknown",
+      "Dead by Daylight location unknown",
+      "PEAK location unknown",
+      "The Witcher 3: Wild Hunt — Remastered location unknown",
+      "Generation Zero® location unknown",
+      "Sunset Summit location unknown",
+      "YAPYAP location unknown",
+      "Dub Together location unknown",
+      "RV There Yet? location unknown",
+      "How to Fish location unknown",
+      "007 First Light location unknown",
+      "Big Walk location unknown",
+      "Wallpaper Engine location unknown",
+      "Deep Rock Galactic: Rogue Core location unknown",
+      "Just Shapes & Beats location unknown",
+      "Supermarket Together location unknown",
+      "John Carpenter's Toxic Commando location unknown",
+      "s&box location unknown",
+      "Dying Light: The Beast location unknown",
+      "PAYDAY 2 location unknown",
+      "Back up now"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "How save backups work Where a game keeps its saves comes from the open Ludusavi index (made from the PCGamingWiki, updated daily) – Hostwerk keeps no list of its own. After every session (Hostwerk sees when a game ends) the saves are backed up automatically. Each file is stored once; unchanged saves cost no space. Backups show up in Hostwerk’s backup center and in the external backup."
+     ],
+     "shot": "img/ext-steam--saves.jpg"
+    },
+    {
+     "label": "Deals",
+     "areas": [],
+     "actions": [
+      "Read again",
+      "What should I play?",
+      "Take over wishlist",
+      "Update prices"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Prices and alerts Prices come from the Steam store (country DE, change it in the extension’s settings), twice a day and without a key. A new sale or your target price sends one bundled notification. Hostwerk remembers every price change and shows the lowest price it has seen."
+     ],
+     "shot": "img/ext-steam--deals.jpg"
+    },
+    {
+     "label": "Statistics",
+     "areas": [
+      "Per week",
+      "This week",
+      "Most played (30 days)",
+      "Recent sessions"
+     ],
+     "actions": [
+      "Read again",
+      "What should I play?"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Where the numbers come from Steam writes the total playtime per game to its files. Hostwerk notes every increase on the day it sees it – so the weeks fill up from the day the extension was installed. Sessions appear when Hostwerk runs while you play."
+     ],
+     "shot": "img/ext-steam--statistics.jpg"
+    },
+    {
+     "label": "Screenshots",
+     "areas": [],
+     "actions": [
+      "Read again",
+      "What should I play?",
+      "Overwatch®, 16/09/2026, 22:47",
+      "PEAK, 17/08/2026, 15:35",
+      "PEAK, 15/08/2026, 23:02"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-steam--screenshots.jpg"
+    },
+    {
+     "label": "Accounts",
+     "areas": [],
+     "actions": [
+      "Read again",
+      "What should I play?",
+      "Sign in through Steam",
+      "Save",
+      "Update all now"
+     ],
+     "fields": [
+      "API key"
+     ],
+     "tipTexts": [],
+     "shot": "img/ext-steam--accounts.jpg"
     }
    ]
   },
@@ -340,6 +644,7 @@
    "intro": "Your projects from web folders, virtual hosts and apps – with Git, .env, packages, tests, publishing. Apps and containers run as services.",
    "areas": [],
    "actions": [
+    "3 videos",
     "New project",
     "Change image"
    ],
@@ -348,7 +653,13 @@
     "Projects",
     "Apps",
     "Docker",
-    "Runtimes"
+    "Runtimes",
+    "Tools",
+    "API tester",
+    "Webhooks",
+    "Publish",
+    "Deploy log",
+    "Knowledge graph"
    ],
    "tips": 0,
    "tipTexts": [],
@@ -358,6 +669,7 @@
      "label": "Apps",
      "areas": [],
      "actions": [
+      "3 videos",
       "New app",
       "Add app",
       "From template"
@@ -370,7 +682,8 @@
      "label": "Docker",
      "areas": [],
      "actions": [
-      "Docker DesktopThe official app with its own interface (approx. 600 MB). Paid for larger companies.Own interface",
+      "3 videos",
+      "Docker Desktop The official app with its own interface (approx. 600 MB). Paid for larger companies. Own interface",
       "Set up Docker Engine",
       "Check again"
      ],
@@ -380,17 +693,112 @@
     },
     {
      "label": "Runtimes",
-     "areas": [
-      "Node.js",
-      "Python"
-     ],
+     "areas": [],
      "actions": [
+      "3 videos",
       "nodejs.org",
-      "python.org"
+      "Details …",
+      "python.org",
+      "bun.sh",
+      "Install",
+      "deno.com",
+      "go.dev",
+      "Get it from the vendor",
+      "dotnet.microsoft.com",
+      "adoptium.net"
      ],
      "fields": [],
      "tipTexts": [],
      "shot": "img/projects--runtimes.jpg"
+    },
+    {
+     "label": "Tools",
+     "areas": [
+      "Package cache"
+     ],
+     "actions": [
+      "3 videos",
+      "Turn on",
+      "Empty"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Package cache A local mirror for npm, yarn, pnpm, pip and Composer: every package comes from the internet once and then stays on this PC. Installs in all projects get faster, and everything downloaded before works offline. Composer talks https to it with a certificate of the local certificate authority – other sources are still checked as usual. Turning it off restores the previous settings."
+     ],
+     "shot": "img/projects--tools.jpg"
+    },
+    {
+     "label": "API tester",
+     "areas": [
+      "Answer"
+     ],
+     "actions": [
+      "3 videos",
+      "From the extension “API tester” – info",
+      "Paste curl",
+      "Import",
+      "New collection",
+      "My first collection",
+      "GET Home page",
+      "New request",
+      "Run collection",
+      "As a task",
+      "Export",
+      "Start page",
+      "no folder",
+      "Measure this request",
+      "Check page",
+      "Copy as curl",
+      "Remove request",
+      "Send",
+      "Sample Web"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Environments Switch between local, staging and live in one go: the values of the chosen environment replace the variables of the collection – {{base}} points to the right server."
+     ],
+     "shot": "img/projects--api-tester.jpg"
+    },
+    {
+     "label": "Webhooks",
+     "areas": [],
+     "actions": [
+      "3 videos",
+      "From the extension “Webhook inbox” – info",
+      "Settings",
+      "Start receiver",
+      "Copy",
+      "Make public",
+      "Fixed address"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--webhooks.jpg"
+    },
+    {
+     "label": "Publish",
+     "areas": [],
+     "actions": [
+      "3 videos",
+      "From the extension “Publish static sites” – info",
+      "Accounts",
+      "New site",
+      "Add account"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--publish.jpg"
+    },
+    {
+     "label": "Deploy log",
+     "areas": [],
+     "actions": [
+      "3 videos",
+      "From the extension “Deploy log” – info"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--deploy-log.jpg"
     }
    ]
   },
@@ -402,9 +810,8 @@
    "intro": "Mail catcher: everything your projects send lands here – nothing goes out.",
    "areas": [],
    "actions": [
-    "What's the difference?",
-    "Stop",
-    "Stop immediately (force)",
+    "2 videos",
+    "Start",
     "Test mail",
     "Forward",
     "Settings",
@@ -415,7 +822,10 @@
    "tabs": [
     "Mail catcher",
     "Mail server",
-    "Import"
+    "Import",
+    "Mailboxes",
+    "Statistics",
+    "Notes"
    ],
    "tips": 1,
    "tipTexts": [
@@ -429,9 +839,10 @@
       "Which mail server should it be?"
      ],
      "actions": [
-      "What's the difference?",
+      "2 videos",
       "Compare all mail options",
-      "Continue to setup"
+      "Continue to setup",
+      "Take over from another computer …"
      ],
      "fields": [
       "Name in Hostwerk"
@@ -445,9 +856,8 @@
      "label": "Import",
      "areas": [],
      "actions": [
-      "What's the difference?",
-      "Stop",
-      "Stop immediately (force)",
+      "2 videos",
+      "Start",
       "Test mail",
       "Forward",
       "Settings",
@@ -459,6 +869,46 @@
       "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
      ],
      "shot": "img/mail--import.jpg"
+    },
+    {
+     "label": "Mailboxes",
+     "areas": [],
+     "actions": [
+      "2 videos",
+      "From the extension “E-mail accounts” – info",
+      "Connect an account"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
+     ],
+     "shot": "img/mail--mailboxes.jpg"
+    },
+    {
+     "label": "Statistics",
+     "areas": [],
+     "actions": [
+      "2 videos",
+      "From the extension “Mail statistics” – info"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
+     ],
+     "shot": "img/mail--statistics.jpg"
+    },
+    {
+     "label": "Notes",
+     "areas": [],
+     "actions": [
+      "2 videos",
+      "From the extension “Service notes” – info"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
+     ],
+     "shot": "img/mail--notes.jpg"
     }
    ]
   },
@@ -466,26 +916,69 @@
    "route": "aufgaben",
    "slug": "aufgaben",
    "title": "Tasks",
-   "activeTab": "",
+   "activeTab": "Tasks",
    "intro": "Scripts, commands, backups, checks and restarts on a schedule, on startup or as a chain.",
    "areas": [
-    "Scheduled tasks"
+    "History"
    ],
    "actions": [
-    "Pause all",
+    "2 videos",
     "Templates",
     "New task",
-    "History",
-    "Now",
+    "All 2",
+    "Error 0",
+    "Active 2",
+    "Pause all",
+    "Sample task Thu 03:00 · Open a web address",
+    "Second task Thu 04:00 · Open a web address",
+    "Run now",
     "Edit",
-    "Delete"
+    "Mark as favorite (then listed at the top)",
+    "More actions for Sample task"
    ],
    "fields": [],
-   "tabs": [],
+   "tabs": [
+    "Tasks",
+    "One click",
+    "Quick tasks"
+   ],
    "tips": 0,
    "tipTexts": [],
    "shot": "img/aufgaben.jpg",
-   "tabsDetail": []
+   "tabsDetail": [
+    {
+     "label": "One click",
+     "areas": [
+      "Modes",
+      "Tasks"
+     ],
+     "actions": [
+      "2 videos",
+      "From the extension “One click” – info",
+      "From running services",
+      "New mode",
+      "Web development Web servers, databases and mail catcher",
+      "Minecraft night Only the Minecraft servers",
+      "Break Everything off – saves power and memory",
+      "Mark as favorite (then listed at the top)",
+      "Run"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/aufgaben--one-click.jpg"
+    },
+    {
+     "label": "Quick tasks",
+     "areas": [],
+     "actions": [
+      "2 videos",
+      "From the extension “Quick tasks” – info"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/aufgaben--quick-tasks.jpg"
+    }
+   ]
   },
   {
    "route": "terminal",
@@ -495,13 +988,14 @@
    "intro": "On this PC (user@hostwerk-pc) · PowerShell · selecting copies, right-click pastes",
    "areas": [],
    "actions": [
-    "Short video: Terminal (45 seconds)",
+    "Video",
     "New terminal",
     "Open in project",
-    "Full screen",
+    "Own window",
     "Windows Terminal",
     "Terminal on another machine",
     "hostwerk-pc",
+    "Close terminal “hostwerk-pc”",
     "New terminal (PowerShell) · Ctrl+Shift+T",
     "Choose another shell",
     "Search (Ctrl+Shift+F)",
@@ -509,32 +1003,24 @@
     "Larger font",
     "Color scheme: Hostwerk – click to switch",
     "Save recording as a text file",
+    "Send input to several tabs (e.g. for several servers at once)",
+    "The session is restored next time – click to turn off",
     "Copy selection",
     "Clear display",
     "Split (second terminal beside it)",
     "Commands",
-    "status",
-    "log",
-    "diff",
-    "pull",
-    "push",
-    "branches",
-    "commit …",
-    "stash",
-    "checkout …",
-    "init",
-    "install",
-    "dev",
-    "build",
-    "test",
-    "outdated",
-    "composer install",
-    "composer update",
-    "artisan …",
-    "phpunit",
-    "php -v",
-    "venv",
-    "pip install -r"
+    "ls",
+    "cd ..",
+    "cat …",
+    "tail -f …",
+    "find …",
+    "ipconfig",
+    "netstat",
+    "processes",
+    "services",
+    "test port …",
+    "which …",
+    "clear"
    ],
    "fields": [],
    "tabs": [],
@@ -548,13 +1034,14 @@
    "slug": "files",
    "title": "Files",
    "activeTab": "",
-   "intro": "",
+   "intro": "Web folders, projects, Minecraft servers and your own folders – with editor, preview and recycle bin.",
    "areas": [],
    "actions": [
+    "Video",
     "Collapse sidebar",
     "Web folder (Sample Web)",
     "Projects",
-    "Sample MC",
+    "Minecraft-Server: Sample MC",
     "Add folder …",
     "Backups",
     "Logs",
@@ -577,479 +1064,1130 @@
    "tabsDetail": []
   },
   {
+   "route": "ext/my-backend",
+   "slug": "ext-my-backend",
+   "title": "My backend",
+   "activeTab": "",
+   "intro": "Counts visits in its own server code, reads the services with the package's permissions and accepts webhooks.",
+   "areas": [],
+   "actions": [
+    "From the extension “My backend” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-my-backend.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "live",
+   "slug": "live",
+   "title": "Production",
+   "activeTab": "Status",
+   "intro": "What is online, who gets in, and how it is protected, monitored and backed up.",
+   "areas": [
+    "Next steps"
+   ],
+   "actions": [
+    "6 videos",
+    "Emergency",
+    "From the extension “router” – info",
+    "Put online",
+    "Fix",
+    "View",
+    "Check again",
+    "1 Enter your own domain",
+    "2 Domain points to this connection (DNS)",
+    "3 Router: forward ports 80 and 443 to this PC",
+    "4 Firewall rule",
+    "5 HTTPS certificate (Let's Encrypt)",
+    "6 Security check",
+    "7 Monitoring and alerts",
+    "8 Run without signing in too (system service)",
+    "Go to web servers",
+    "Next step",
+    "Set up"
+   ],
+   "fields": [],
+   "tabs": [
+    "Status",
+    "Online",
+    "Access",
+    "Protection",
+    "Monitoring"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/live.jpg",
+   "tabsDetail": [
+    {
+     "label": "Online",
+     "areas": [
+      "Addresses",
+      "What is reachable from outside"
+     ],
+     "actions": [
+      "6 videos",
+      "Emergency",
+      "Put online"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Addresses Every address under which something is reachable from the internet – your own domain, a quick link (expires) or the permanent tunnel via Cloudflare."
+     ],
+     "shot": "img/live--online.jpg"
+    },
+    {
+     "label": "Access",
+     "areas": [
+      "Remote access",
+      "Use Hostwerk on the go"
+     ],
+     "actions": [
+      "6 videos",
+      "Emergency",
+      "Pair phone …",
+      "Save"
+     ],
+     "fields": [
+      "User",
+      "Port",
+      "Password (at least 10 characters)",
+      "Own domain (optional)"
+     ],
+     "tipTexts": [],
+     "shot": "img/live--access.jpg"
+    },
+    {
+     "label": "Protection",
+     "areas": [
+      "Security check"
+     ],
+     "actions": [
+      "6 videos",
+      "Emergency",
+      "Reload",
+      "Set a secure password"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/live--protection.jpg"
+    },
+    {
+     "label": "Monitoring",
+     "areas": [
+      "Watchers",
+      "What Hostwerk watches"
+     ],
+     "actions": [
+      "6 videos",
+      "Emergency",
+      "New watcher",
+      "Edit: Sample shop",
+      "Remove: Sample shop",
+      "Edit: Sample count",
+      "Edit: Certificates",
+      "Remove: Certificates",
+      "From the extension “disk-health” – info",
+      "Edit: Drive health",
+      "From the extension “vuln-watch” – info",
+      "Edit: Vulnerabilities"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Watchers Everything Hostwerk watches by itself: sites, ports, services, certificates, queries and logs. If a watcher reports a problem twice in a row, a message goes to your channels – and another one when it is over."
+     ],
+     "shot": "img/live--monitoring.jpg"
+    }
+   ]
+  },
+  {
+   "route": "passwoerter",
+   "slug": "passwoerter",
+   "title": "Passwords",
+   "activeTab": "Vaults",
+   "intro": "Own vault or an existing password manager – with browser extension, security check and import from every common service.",
+   "areas": [],
+   "actions": [
+    "Add"
+   ],
+   "fields": [],
+   "tabs": [
+    "Vaults",
+    "Browser",
+    "Settings"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/passwoerter.jpg",
+   "tabsDetail": [
+    {
+     "label": "Browser",
+     "areas": [
+      "Browser extension"
+     ],
+     "actions": [
+      "Add",
+      "Install in Chrome",
+      "Download ZIP"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "How does Hostwerk install it? If the extension is in the browser’s store, Hostwerk tells the browser about it the official way and opens the store page – one click on “Add”. Otherwise the browser loads it as an “unpacked extension” (developer mode). Either way it pairs itself, without a code.",
+      "The extension only talks to your Hostwerk (127.0.0.1). It finds Hostwerk again by itself after a restart or a port change and pairs again with the file in its folder – no code needed."
+     ],
+     "shot": "img/passwoerter--browser.jpg"
+    },
+    {
+     "label": "Settings",
+     "areas": [
+      "Locking"
+     ],
+     "actions": [
+      "Add",
+      "Locking",
+      "Filling in",
+      "General",
+      "Vaults",
+      "Provider programs",
+      "Generator"
+     ],
+     "fields": [
+      "Lock automatically",
+      "Clear the clipboard"
+     ],
+     "tipTexts": [],
+     "shot": "img/passwoerter--settings.jpg"
+    }
+   ]
+  },
+  {
+   "route": "sicherungen",
+   "slug": "sicherungen",
+   "title": "Backups",
+   "activeTab": "Status",
+   "intro": "6 backups · 414 B",
+   "areas": [
+    "Needs you"
+   ],
+   "actions": [
+    "Back up everything now",
+    "Back up regularly",
+    "Set up"
+   ],
+   "fields": [],
+   "tabs": [
+    "Status",
+    "Versions",
+    "Schedule",
+    "Off-site",
+    "Restore"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/sicherungen.jpg",
+   "tabsDetail": [
+    {
+     "label": "Versions",
+     "areas": [
+      "All versions"
+     ],
+     "actions": [
+      "Back up everything now",
+      "Clean up old ones",
+      "Hostwerk Time machine 2 backups · newest 18/11/2026, 21:06 (auto)",
+      "E-mail accounts Extensions 1 backup · 408 B · newest 18/11/2026, 20:58 (auto)",
+      "Sample MC Minecraft servers 3 backups · 6 B · newest 18/11/2026, 20:57",
+      "Back up now"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/sicherungen--versions.jpg"
+    },
+    {
+     "label": "Schedule",
+     "areas": [
+      "Regular backups"
+     ],
+     "actions": [
+      "Back up everything now",
+      "Back up regularly"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/sicherungen--schedule.jpg"
+    },
+    {
+     "label": "Off-site",
+     "areas": [
+      "Targets",
+      "Where backups go"
+     ],
+     "actions": [
+      "Back up everything now",
+      "Back up now",
+      "Target",
+      "Folder / NAS / USB Main target · no folder"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "3-2-1 rule Three copies, on two different kinds of storage, one of them off-site. Every target gets the same backup; the main target is just the first one.",
+      "Off-site A folder can be a NAS in the same building. Against theft or fire, a target somewhere else helps – an SFTP server, a NAS at a friend’s place or the cloud."
+     ],
+     "shot": "img/sicherungen--off-site.jpg"
+    },
+    {
+     "label": "Restore",
+     "areas": [
+      "Restore test"
+     ],
+     "actions": [
+      "Back up everything now",
+      "Check all",
+      "Check"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "A backup only counts once it can be restored"
+     ],
+     "shot": "img/sicherungen--restore.jpg"
+    }
+   ]
+  },
+  {
+   "route": "system",
+   "slug": "system",
+   "title": "System",
+   "activeTab": "Status",
+   "intro": "Is this PC running well – and what has changed?",
+   "areas": [
+    "Profiles"
+   ],
+   "actions": [
+    "3 videos",
+    "Diagnostic report",
+    "From the extension “disk-health” – info",
+    "Profiles",
+    "From the extension “Server profile” – info"
+   ],
+   "fields": [],
+   "tabs": [
+    "Status",
+    "Services",
+    "Performance",
+    "Storage",
+    "Logs",
+    "Maintenance",
+    "Changes"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/system.jpg",
+   "tabsDetail": [
+    {
+     "label": "Services",
+     "areas": [
+      "Ports & services"
+     ],
+     "actions": [
+      "3 videos",
+      "Diagnostic report",
+      "Check port …",
+      "Check again",
+      "Remove extension",
+      "Change port"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Every service needs its own “door number” (port). If another program uses it or two services want the same one, one cannot start. “Change port” gives a stopped service a port that is really free – a specific one if you like. Right-click a row for more.",
+      "Port overview Everything it could do is here. You no longer need the extension – removing it is safe, Hostwerk services and ports stay unchanged."
+     ],
+     "shot": "img/system--services.jpg"
+    },
+    {
+     "label": "Performance",
+     "areas": [
+      "Now",
+      "Services"
+     ],
+     "actions": [
+      "3 videos",
+      "Diagnostic report",
+      "Measure network"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Disk and network Disk: Windows counts all input and output of the program here – files, but also network and devices. Network: needs administrator rights on Windows – set it up once with “Measure network”."
+     ],
+     "shot": "img/system--performance.jpg"
+    },
+    {
+     "label": "Storage",
+     "areas": [
+      "Drives",
+      "Predator SSD GM7 2TB"
+     ],
+     "actions": [
+      "3 videos",
+      "Diagnostic report",
+      "Drives",
+      "From the extension “Drives” – info",
+      "Check now",
+      "Check with admin rights",
+      "0000_0000_0000_0000_50C6_8E52_7150_2160"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Drives Hostwerk reads the S.M.A.R.T. values of every drive – temperature, wear, errors – and tells you when something gets worse, and shows how full the drive is and who uses the space. Nothing on a drive is ever changed.",
+      "Check regularly with admin rights Hostwerk sets up a Windows task that reads the values every hour with administrator rights. Windows asks for permission once. The task only reads and removes itself when you uninstall the extension.",
+      "Why administrator rights? Without administrator rights Windows only shows whether a drive is healthy. Temperature, wear and error counters are read in a single check – Windows asks for permission once. Hostwerk itself keeps running without admin rights.",
+      "Notifications Warnings go to Hostwerk’s notifications (push, Discord, ntfy, mail) and appear under Go live → Monitoring → Watchers."
+     ],
+     "shot": "img/system--storage.jpg"
+    },
+    {
+     "label": "Logs",
+     "areas": [
+      "Logs"
+     ],
+     "actions": [
+      "3 videos",
+      "Diagnostic report",
+      "every",
+      "Regular expression",
+      "All machines",
+      "Save filter",
+      "Log watch",
+      "Pause",
+      "Scroll to bottom automatically",
+      "Save as text file"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/system--logs.jpg"
+    },
+    {
+     "label": "Maintenance",
+     "areas": [
+      "Self-maintenance",
+      "What Hostwerk takes care of by itself",
+      "Self-maintenance log"
+     ],
+     "actions": [
+      "3 videos",
+      "Diagnostic report",
+      "More maintenance …",
+      "Check everything now",
+      "Open area: Hostwerk itself",
+      "Open area: PHP (patch versions)",
+      "Open area: Databases (patch versions)",
+      "Open area: Web servers (patch versions)",
+      "Open area: Certificates (Let’s Encrypt, local CA)",
+      "Open area: AI programs and models",
+      "Open area: Runtime (Node/Electron)",
+      "Open area: Restore test",
+      "Open area: Health check",
+      "Open area: Cleanup (leftovers, cache, trash)",
+      "Open area: Self-healing (restart services)",
+      "Open area: Download sources",
+      "Open area: Logs",
+      "Open area: Disk space",
+      "Open area: Extensions",
+      "Open area: Docker engine and images",
+      "Open area: Signing / Windows app (MSIX)",
+      "Open area: Geyser/Floodgate",
+      "Open area: Router port forwards & DynDNS",
+      "Open area: Backups",
+      "Open area: End of life of versions",
+      "Open area: Minecraft plugins/mods",
+      "Open area: Operating system updates"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Hostwerk keeps itself up to date without a new version: updates of other programs only go live after a trial run, on errors the last working version stays. If a download source disappears, Hostwerk takes a replacement source. “Check everything now” starts all checks right away (up to a minute) – otherwise they run on schedule.",
+      "Per task: whether it currently runs by itself, when something last happened and roughly when next. The switch is the same as in the settings. The ⓘ per row explains what exactly happens and what you can do yourself.",
+      "Hostwerk itself New versions are downloaded in the background and become active on the next start (incl. runtime). Hostwerk checks daily for new versions, downloads them in the background and swaps them on the next start. If the new version doesn’t start cleanly, the previous one keeps running automatically. What you can do: Nothing – unless you want to skip versions (Settings → Updates).",
+      "PHP (patch versions) Security updates with a trial run and rollback. Every 6 hours Hostwerk looks for security updates within your PHP series (e.g. 8.3.x). The new version is installed next to the old one, tested with a trial run and only then activated. If the test fails, the old one stays. What you can do: You decide on bigger jumps (8.3 → 8.4) yourself – Hostwerk only suggests them.",
+      "Databases (patch versions) Security updates with a trial run and rollback. Like PHP: patch versions of MariaDB, MySQL and PostgreSQL are checked, installed with a trial run and rolled back on errors. What you can do: You switch major versions yourself in the database area.",
+      "Web servers (patch versions) Security updates with a trial run. Apache, nginx and Caddy get security updates within their series – with a trial run; the old version stays as a way back. What you can do: Nothing.",
+      "Certificates (Let’s Encrypt, local CA) Renewed after 1/3 of the lifetime or on expiry. HTTPS certificates (Let’s Encrypt and Hostwerk’s local certificate authority) are renewed in time. What you can do: Nothing – Hostwerk reports any error.",
+      "AI programs and models Ollama, sd.cpp, whisper, Pocket TTS and models with a trial run; catalogs daily. Ollama, image models, speech recognition and voices are updated with a trial run; the model catalogs arrive online daily. What you can do: If AI is turned off, there is nothing to do here.",
+      "Runtime (Node/Electron) Self-test before swapping, rollback on error. Node.js and Electron, which Hostwerk runs on, are swapped with the app update – after a self-test. What you can do: Nothing.",
+      "Restore test Test-restore every 7 days. The latest backup is regularly restored into a throwaway environment and checked. That way a broken backup is noticed before you need it. What you can do: Nothing.",
+      "Health check Monthly report on all computers with workflow suggestions. A report on all computers: services, backups, certificates, storage, OS updates – with a score and suggestions. What you can do: Turn on the schedule (daily, weekly or monthly) or use “Check now” when needed.",
+      "Cleanup (leftovers, cache, trash) Daily: installation leftovers, old downloads, trash after 30 days. Hostwerk cleans up installation leftovers and old downloads daily; the trash is emptied after 30 days. What you can do: Nothing."
+     ],
+     "shot": "img/system--maintenance.jpg"
+    },
+    {
+     "label": "Changes",
+     "areas": [
+      "Timeline",
+      "What happened when"
+     ],
+     "actions": [
+      "3 videos",
+      "Diagnostic report",
+      "More actions",
+      "Restore …"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Every change to services, shares and settings – whether in the app, via remote access, from another computer, the AI or a task. Entries with “Undo” can be reverted one by one. The camera icon marks a state you can return to under Backups → Restore. Kept for 90 days."
+     ],
+     "shot": "img/system--changes.jpg"
+    }
+   ]
+  },
+  {
    "route": "ext",
    "slug": "ext",
    "title": "Extensions",
    "activeTab": "My extensions",
-   "intro": "",
-   "areas": [
-    "Games & Minecraft 7",
-    "Network & machines 4",
-    "Security & access 3",
-    "Monitoring & status 5",
-    "Developer tools 7",
-    "AI & media 3",
-    "Mail & communication 3",
-    "Other 3"
-   ],
+   "intro": "More features for Hostwerk – checked, sandboxed or as part of Hostwerk from its own catalogue.",
+   "areas": [],
    "actions": [
-    "35 installed",
-    "0 Updates",
-    "33 in the catalogue",
+    "What extensions may never do",
     "Add",
-    "All 35",
-    "Games & Minecraft 7",
-    "Network & machines 4",
-    "Security & access 3",
-    "Monitoring & status 5",
-    "Developer tools 7",
-    "AI & media 3",
-    "Mail & communication 3",
-    "Other 3",
-    "Bedrock bridge – details",
+    "Filter",
     "Open",
-    "Game server network – details",
-    "Game servers – details",
-    "MOTD studio – details",
-    "Player leaderboard – details",
-    "Player Ticker – details",
-    "Schematics in 3D – details",
-    "File share (SFTP) – details",
-    "Hostwerk network – details",
-    "Port map – details",
-    "Router & port forwarding – details",
-    "Certificate watch – details",
-    "Password manager – details",
-    "Team & roles – details",
-    "Backup calendar – details",
-    "Server profile – details",
-    "Status Wall – details",
-    "Storage per service – details",
-    "Uptime wall – details",
-    "API tester – details",
-    "Page check – details",
-    "Profiler – details",
-    "Publish static sites – details",
-    "Quick tasks – details",
-    "Webhook inbox – details",
-    "My Extension – details"
+    "Game servers – more actions",
+    "Minecraft server network – more actions",
+    "Minecraft servers – more actions",
+    "MOTD studio – more actions",
+    "Player leaderboard – more actions",
+    "Players – more actions",
+    "Schematics in 3D – more actions",
+    "Game library – more actions",
+    "DNS management – more actions",
+    "File share (SFTP) – more actions",
+    "Hostwerk network – more actions",
+    "Port map – more actions",
+    "Router & port forwarding – more actions",
+    "VPN access – more actions",
+    "Certificate watch – more actions",
+    "Password manager – more actions",
+    "Hostwerk app – more actions",
+    "Team & roles – more actions",
+    "Vulnerability watch – more actions",
+    "Backup calendar & cloud – more actions",
+    "Drives – more actions",
+    "Storage per service How much space each service takes – data, backups, projects – and how full the drive is. With a dashboard tile.",
+    "Storage per service – more actions",
+    "Server profile – more actions",
+    "Status Wall – more actions",
+    "Uptime wall – more actions",
+    "Visitor stats – more actions",
+    "API tester – more actions",
+    "Deploy log – more actions",
+    "My backend Template for own server code: runs sandboxed in its own process, offers own routes and stores data in its own folder.",
+    "My backend – more actions",
+    "My Extension Starting point for your own Hostwerk extensions: page, tile, settings and translations.",
+    "My Extension – more actions",
+    "Page check – more actions",
+    "Profiler – more actions",
+    "Quick tasks Your tasks as big buttons – one click runs a backup, a report or a script (Hostwerk asks first). Pin favourites, also as a tile."
    ],
    "fields": [],
    "tabs": [
     "My extensions",
     "Discover",
+    "Ideas & synergies",
     "For developers"
    ],
-   "tips": 0,
-   "tipTexts": [],
+   "tips": 1,
+   "tipTexts": [
+    "How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum."
+   ],
    "shot": "img/ext.jpg",
    "tabsDetail": [
     {
      "label": "Discover",
-     "areas": [
-      "Games & Minecraft 7",
-      "Network & machines 4",
-      "Security & access 3",
-      "Monitoring & status 5",
-      "Developer tools 7",
-      "AI & media 3",
-      "Mail & communication 3",
-      "Other 3"
-     ],
+     "areas": [],
      "actions": [
-      "35 installed",
-      "0 Updates",
-      "33 in the catalogue",
+      "What extensions may never do",
       "Add",
-      "All 35",
-      "Games & Minecraft 7",
-      "Network & machines 4",
-      "Security & access 3",
-      "Monitoring & status 5",
-      "Developer tools 7",
-      "AI & media 3",
-      "Mail & communication 3",
-      "Other 3",
-      "Bedrock bridge – details",
-      "Open",
-      "Game server network – details",
-      "Game servers – details",
-      "MOTD studio – details",
-      "Player leaderboard – details",
-      "Player Ticker – details",
-      "Schematics in 3D – details",
-      "File share (SFTP) – details",
-      "Hostwerk network – details",
-      "Port map – details",
-      "Router & port forwarding – details",
-      "Certificate watch – details",
-      "Password manager – details",
-      "Team & roles – details",
-      "Backup calendar – details",
-      "Server profile – details",
-      "Status Wall – details",
-      "Storage per service – details",
-      "Uptime wall – details",
-      "API tester – details",
-      "Page check – details",
-      "Profiler – details",
-      "Publish static sites – details",
-      "Quick tasks – details",
-      "Webhook inbox – details",
-      "My Extension – details"
+      "Filter",
+      "38 extensions already installed – under “My extensions”"
      ],
      "fields": [],
-     "tipTexts": [],
+     "tipTexts": [
+      "How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum."
+     ],
      "shot": "img/ext--discover.jpg"
+    },
+    {
+     "label": "Ideas & synergies",
+     "areas": [],
+     "actions": [
+      "What extensions may never do",
+      "Add",
+      "Open guide"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum.",
+      "Websites for clients Build, check, publish and keep an eye on sites.",
+      "Developing APIs Test requests, receive webhooks, store credentials safely.",
+      "Game servers for friends Start servers, make them reachable from outside, see players.",
+      "Safely backed up Planned backups, an off-site copy, space at a glance.",
+      "Small team Several machines, shared logins, file sharing.",
+      "Developing with AI Connect Claude and give it project knowledge.",
+      "Replay webhooks “Open in API tester” in the webhook inbox: the received call lands with headers and body in the collection “Webhook inbox” – change it there and send it to your project again.",
+      "Reachable and good The uptime wall shows whether a page answers – the page check whether it is also fast, accessible and free of broken links.",
+      "One view for going live Both read Hostwerk’s own live data – pinned side by side you see expiring certificates and failed pages at a glance. Warnings still come from Hostwerk’s watchers.",
+      "Check first, then publish Run the page check before publishing to GitHub/Cloudflare Pages.",
+      "Files between machines Turn on the file share (SFTP) in the home network on every machine paired in the Hostwerk network – the machines then reach each other by their LAN address. Set up on each machine."
+     ],
+     "shot": "img/ext--ideas-synergies.jpg"
     },
     {
      "label": "For developers",
      "areas": [
-      "Developer mode",
-      "Extensions – how they are checked"
+      "Developer mode"
      ],
      "actions": [
-      "35 installed",
-      "0 Updates",
-      "33 in the catalogue",
+      "What extensions may never do",
       "Add",
+      "New extension",
       "Guide Package, SDK, design, permissions, translations, dependencies, native extensions, check.",
       "Template on GitHub “Use this template” – with a check action and automatic releases.",
-      "Create here Folder with a sample page, texts (de/en) and icon – visible right away.",
-      "Developer guide",
-      "Apply for verification",
+      "How it is checked …",
       "Manage more catalogues (sources)"
      ],
      "fields": [
       "Allow native extensions from files and folders"
      ],
      "tipTexts": [
-      "What is an extension? An extension adds its own page, a tile for the overview and/or its own service to Hostwerk. Pages run isolated (own origin, no access to your login), only see what their permissions allow and only change things after you confirm each time. Colors and fonts come from Hostwerk – so every extension fits the design."
+      "How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum."
      ],
      "shot": "img/ext--for-developers.jpg"
     }
    ]
   },
   {
-   "route": "ext/ai-media",
-   "slug": "ext-ai-media",
-   "title": "Image & video studio",
-   "activeTab": "",
-   "intro": "Describe it – Hostwerk creates the picture or video with the model you chose in the AI helper. Everything lands in the media library.",
+   "route": "settings",
+   "slug": "settings",
+   "title": "Settings",
+   "activeTab": "General",
+   "intro": "Adapt Hostwerk to the way you work.",
    "areas": [
-    "Create",
-    "Media library"
+    "Appearance",
+    "Your name"
    ],
    "actions": [
-    "Models & budget",
-    "Open AI settings"
+    "3 videos",
+    "What did I change?",
+    "Export",
+    "Import …",
+    "General",
+    "Behavior",
+    "Sidebar",
+    "Startup & services",
+    "Notifications",
+    "Keyboard shortcuts",
+    "Move & share",
+    "Updates",
+    "Advanced",
+    "Privacy",
+    "About Hostwerk",
+    "Hostwerk purple",
+    "Indigo",
+    "Blue",
+    "Cyan",
+    "Turquoise",
+    "Green",
+    "Amber",
+    "Orange",
+    "Red",
+    "Pink",
+    "Fuchsia",
+    "Slate gray",
+    "Smaller",
+    "Larger"
    ],
    "fields": [
-    "What should the picture show?"
+    "Language",
+    "Appearance",
+    "Theme",
+    "Accent color",
+    "Interface zoom",
+    "Density",
+    "Reduce animations",
+    "What should Hostwerk call you?",
+    "Greeting",
+    "In the AI helper",
+    "For extensions"
    ],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Pictures and videos from the studio and from the AI chat. Use one as the start for the next, or name its ID in the chat."
-   ],
-   "shot": "img/ext-ai-media.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/api-tester",
-   "slug": "ext-api-tester",
-   "title": "API tester → Headers (0)",
-   "activeTab": "Headers (0)",
-   "intro": "Send requests to your projects, save them in collections and reuse them.",
-   "areas": [
-    "Answer"
-   ],
-   "actions": [
-    "Paste curl",
-    "New collection",
-    "Meine erste Sammlung",
-    "GET Startseite",
-    "New request",
-    "Startseite",
-    "Copy as curl",
-    "Remove request",
-    "Send",
-    "Sample Web"
-   ],
-   "fields": [],
    "tabs": [
-    "Headers (0)",
-    "Body",
-    "Variables (1)"
+    "General",
+    "Behavior",
+    "Sidebar",
+    "Startup & services",
+    "Notifications",
+    "Keyboard shortcuts",
+    "Move & share",
+    "Updates",
+    "Advanced",
+    "Privacy",
+    "About Hostwerk"
    ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-api-tester.jpg",
+   "tips": 4,
+   "tipTexts": [
+    "Themes from extensions A theme changes colours, font, rounding and spacing – only through checked values. Hostwerk only applies it if texts and controls stay easy to read (WCAG 2.2 AA). If the extension is removed, Hostwerk’s own look returns.",
+    "Accent color Color for buttons, marks and highlights – you see it everywhere right away. Extensions adopt it. With custom colors Hostwerk adjusts buttons and text so everything stays readable.",
+    "Interface zoom Makes text and controls larger or smaller everywhere – up to 200 % without cutting anything off. Applies wherever you open Hostwerk – in the browser and on your phone too.",
+    "Your name Stays in the settings on this computer – not in setup files, exports or logs; error reports replace it with “<name>”. It is only used where you turn it on below."
+   ],
+   "shot": "img/settings.jpg",
    "tabsDetail": [
     {
-     "label": "Body",
+     "label": "Behavior",
      "areas": [
-      "Answer"
+      "Behavior"
      ],
      "actions": [
-      "Paste curl",
-      "New collection",
-      "Meine erste Sammlung",
-      "GET Startseite",
-      "New request",
-      "Startseite",
-      "Copy as curl",
-      "Remove request",
-      "Send",
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Automatic (VS Code)",
+      "Search again (e.g. after an installation)",
+      "Add your own program as editor",
+      "Top left",
+      "Top right",
+      "Bottom left",
+      "Bottom right",
+      "Open"
+     ],
+     "fields": [
+      "Start page",
+      "Code editor",
+      "Show tips",
+      "Ask before stopping",
+      "Show download speed",
+      "Limit download speed",
+      "Notification position",
+      "Change shortcuts",
+      "Customize sidebar"
+     ],
+     "tipTexts": [],
+     "shot": "img/settings--behavior.jpg"
+    },
+    {
+     "label": "Sidebar",
+     "areas": [
+      "Sidebar"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Default",
+      "Move area “Server” up",
+      "Move area “Server” down",
+      "Move “Web servers” up",
+      "Move “Web servers” down",
+      "More for “Web servers”",
+      "Move “Databases” up",
+      "Move “Databases” down",
+      "More for “Databases”",
+      "Move “Game servers” up",
+      "Move “Game servers” down",
+      "More for “Game servers”",
+      "Move “Minecraft” up",
+      "Move “Minecraft” down",
+      "More for “Minecraft”",
+      "Move “Virtual machines” up",
+      "Move “Virtual machines” down",
+      "More for “Virtual machines”",
+      "Move “Certificate watch” up",
+      "Move “Certificate watch” down",
+      "More for “Certificate watch”",
+      "Move “DNS” up",
+      "Move “DNS” down",
+      "More for “DNS”"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Sidebar Order and visibility of all entries. Hidden items are not deleted – switch them back on and they return. You can also drag entries directly in the sidebar; extensions can bring their own sections.",
+      "Without own entry These areas live inside other pages (e.g. apps under “Projects & apps”). Hidden, they also disappear from the dashboard, the New menu and the setup."
+     ],
+     "shot": "img/settings--sidebar.jpg"
+    },
+    {
+     "label": "Startup & services",
+     "areas": [
+      "When Hostwerk starts",
+      "Which services start automatically?"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "All",
+      "None"
+     ],
+     "fields": [
+      "Start services automatically",
+      "Restore last running services",
+      "Start one after another",
+      "Delay",
+      "Start Hostwerk with Windows",
+      "Start minimized",
+      "Stay in the system tray when closed",
+      "Automatically restart crashed services",
+      "Sample DB",
+      "Mail catcher",
       "Sample Web"
+     ],
+     "tipTexts": [],
+     "shot": "img/settings--startup-services.jpg"
+    },
+    {
+     "label": "Notifications",
+     "areas": [
+      "When should Hostwerk let you know?",
+      "Messages to your phone, by e-mail or chat"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "From the extension “DNS management” – info",
+      "From the extension “E-mail accounts” – info",
+      "From the extension “Minecraft server network” – info",
+      "From the extension “Game library” – info",
+      "From the extension “Virtual machines” – info",
+      "From the extension “VPN access” – info",
+      "From the extension “Vulnerability watch” – info",
+      "From the extension “Certificate watch” – info",
+      "From the extension “AI Connect” – info",
+      "From the extension “Drives” – info",
+      "Set up messages → Live operation"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Windows Only available in the desktop app."
+     ],
+     "shot": "img/settings--notifications.jpg"
+    },
+    {
+     "label": "Keyboard shortcuts",
+     "areas": [
+      "Keyboard shortcuts"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Press shortcut",
+      "All 39",
+      "Changed 0",
+      "Off 2",
+      "conflicts 3",
+      "Ctrl K",
+      "Switch off shortcut for “Search & commands (projects, servers, actions)”",
+      "Ctrl J",
+      "Switch off shortcut for “Ask AI (side panel with the current page)”",
+      "Ctrl N",
+      "Switch off shortcut for “New project from template”",
+      "Ctrl ⇧ S",
+      "Switch off shortcut for “Start all services”",
+      "Ctrl ⇧ X",
+      "Switch off shortcut for “Stop all services”",
+      "Ctrl ,",
+      "Switch off shortcut for “Settings”",
+      "Alt ←",
+      "Switch off shortcut for “Back to the previous page”",
+      "Alt →",
+      "Switch off shortcut for “Forward to the next page”",
+      "Ctrl R",
+      "Switch off shortcut for “Reload the interface (services keep running)”",
+      "Ctrl ⇧ R"
      ],
      "fields": [],
      "tipTexts": [],
-     "shot": "img/ext-api-tester--body.jpg"
+     "shot": "img/settings--keyboard-shortcuts.jpg"
     },
     {
-     "label": "Variables (1)",
+     "label": "Move & share",
      "areas": [
-      "Answer"
+      "Which way fits?",
+      "TAKE FROM HERE",
+      "Setup file",
+      "Export as Docker Compose",
+      "BRING HERE"
      ],
      "actions": [
-      "Paste curl",
-      "New collection",
-      "Meine erste Sammlung",
-      "GET Startseite",
-      "New request",
-      "Startseite",
-      "Copy as curl",
-      "Remove request",
-      "Send",
-      "Sample Web",
-      "Remove",
-      "Remove collection"
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Export setup",
+      "All (4)",
+      "Preview",
+      "Download ZIP",
+      "Read setup file …"
      ],
-     "fields": [],
-     "tipTexts": [
-      "Variables They belong to the collection, so every request in it uses the same values."
+     "fields": [
+      "Which services?"
      ],
-     "shot": "img/ext-api-tester--variables-1.jpg"
-    }
-   ]
-  },
-  {
-   "route": "ext/backup-calendar",
-   "slug": "ext-backup-calendar",
-   "title": "Backup calendar",
-   "activeTab": "",
-   "intro": "All scheduled backups of the coming days as a calendar – and whether the last ones worked. Failures come first.",
-   "areas": [],
-   "actions": [
-    "Settings",
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only Read scheduled tasks"
-   ],
-   "shot": "img/ext-backup-calendar.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/bedrock-bridge",
-   "slug": "ext-bedrock-bridge",
-   "title": "Bedrock bridge",
-   "activeTab": "",
-   "intro": "Friends on phones, consoles and the Windows edition play on your Java servers – Geyser and Floodgate with one click.",
-   "areas": [
-    "Sample MC"
-   ],
-   "actions": [
-    "Allow phone & console players (Bedrock)",
-    "Open server"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "How it works Geyser translates between Bedrock and Java, Floodgate lets Bedrock players in without a Java account. Hostwerk picks a free UDP port (19132, 19133 …), sets everything up and keeps both up to date: new builds are downloaded in the background and put in place at the next restart – or right away when nobody is online."
-   ],
-   "shot": "img/ext-bedrock-bridge.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/cert-watch",
-   "slug": "ext-cert-watch",
-   "title": "Certificate watch",
-   "activeTab": "",
-   "intro": "Days left for every certificate – Let’s Encrypt, local certificate and local CA.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only Read certificates and uptime checks"
-   ],
-   "shot": "img/ext-cert-watch.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/cloud-backup",
-   "slug": "ext-cloud-backup",
-   "title": "Cloud backup",
-   "activeTab": "",
-   "intro": "Hostwerk's external backup – encrypted to OneDrive, Google Drive, an S3 bucket, Nextcloud or an SFTP server.",
-   "areas": [
-    "1. Program",
-    "2. Target",
-    "3. Recovery key",
-    "4. Use for the external backup"
-   ],
-   "actions": [
-    "Install rclone",
-    "Sign in to OneDrive",
-    "Connect and test",
-    "Show recovery key",
-    "Use the cloud for the external backup"
-   ],
-   "fields": [
-    "Folder at the target"
-   ],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "How it works Hostwerk keeps doing the backups (databases, Minecraft worlds, web pages) on its schedule. This extension only brings the cloud target: rclone uploads them, encrypted on this PC – the provider never sees the content."
-   ],
-   "shot": "img/ext-cloud-backup.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/discord-status",
-   "slug": "ext-discord-status",
-   "title": "Discord status",
-   "activeTab": "",
-   "intro": "Shows “Playing Hostwerk” in your Discord profile – even when Hostwerk only runs in the tray.",
-   "areas": [
-    "Settings",
-    "How it looks"
-   ],
-   "actions": [
-    "Save",
-    "Open the Discord developer portal"
-   ],
-   "fields": [
-    "Share status in Discord",
-    "Show running services",
-    "Discord application id"
-   ],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "What is shared? Only kinds of services (for example web server · database) and how many are running. Never project, server or folder names."
-   ],
-   "shot": "img/ext-discord-status.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/disk-usage",
-   "slug": "ext-disk-usage",
-   "title": "Storage per service",
-   "activeTab": "",
-   "intro": "Space used per service and free space on the drive.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.1.0 · read only Read system health, load and ports"
-   ],
-   "shot": "img/ext-disk-usage.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/file-share",
-   "slug": "ext-file-share",
-   "title": "File share",
-   "activeTab": "",
-   "intro": "Share a folder over SFTP – e.g. so friends can upload worlds, mods or photos. Every user has their own password and folder.",
-   "areas": [
-    "Users",
-    "Activity"
-   ],
-   "actions": [
-    "Settings",
-    "Start",
-    "Copy",
-    "New user"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Fingerprint On the first connection the SFTP program shows this fingerprint. If it is the same, the connection really goes to this PC."
-   ],
-   "shot": "img/ext-file-share.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/game-network",
-   "slug": "ext-game-network",
-   "title": "Game server network",
-   "activeTab": "",
-   "intro": "Group game and Minecraft servers – start and stop them together, in the right order, and see who plays where.",
-   "areas": [],
-   "actions": [
-    "New network",
-    "Create network"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "How the order works Starting brings up every backend first and the proxy (Velocity) last, with the pause you chose in between. Stopping goes the other way round: the proxy first, so nobody lands on a server that is going down."
-   ],
-   "shot": "img/ext-game-network.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/game-servers",
-   "slug": "ext-game-servers",
-   "title": "Game servers → Servers",
-   "activeTab": "Servers",
-   "intro": "Valheim, Terraria, Palworld, Satisfactory, Rust, ARK and more than 100 others – through LinuxGSM, with console, players, backup, updates and forwarding.",
-   "areas": [],
-   "actions": [],
-   "fields": [],
-   "tabs": [
-    "Servers",
-    "Import"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "Only on Linux – or with Docker LinuxGSM (linuxgsm.com) only runs on Linux. Three ways: Own server (VPS) – set it up with the Hostwerk network extension; this page is then ready there (switch the machine at the top). Linux PC at home – install Hostwerk for Linux and pair it. Docker here – set up the Hostwerk Docker engine under Projects & apps → Docker; then game servers run as containers on this PC. Minecraft servers keep running right here on Windows."
-   ],
-   "shot": "img/ext-game-servers.jpg",
-   "tabsDetail": [
+     "tipTexts": [],
+     "shot": "img/settings--move-share.jpg"
+    },
     {
-     "label": "Import",
-     "areas": [],
-     "actions": [],
+     "label": "Updates",
+     "areas": [
+      "App updates",
+      "Security updates"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Check"
+     ],
+     "fields": [
+      "Update channel",
+      "Update automatically",
+      "Show component updates"
+     ],
+     "tipTexts": [
+      "“Stable” only gets finished versions, and new versions arrive step by step – first for a few, then for everyone. “Preview” also gets test versions right away as soon as they appear. You can switch back to “Stable” at any time; an installed test version stays until a newer stable one arrives.",
+      "Small updates within the same version (e.g. PHP 8.4.11 → 8.4.12). Hostwerk downloads the new version next to the old one, switches over and quickly checks that everything runs. If it doesn’t, the old version stays active. Hostwerk never makes big version jumps on its own."
+     ],
+     "shot": "img/settings--updates.jpg"
+    },
+    {
+     "label": "Advanced",
+     "areas": [
+      "Location & access",
+      "Java runtimes",
+      "Cache & temporary files",
+      "Hostwerk",
+      "Maintenance & installation"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Open",
+      "Delete 716,8 KB",
+      "Measure again",
+      "Clean up now",
+      "Reload",
+      "Open maintenance",
+      "Next start without extensions"
+     ],
+     "fields": [
+      "Hostwerk folder",
+      "Open in browser",
+      "Reload interface"
+     ],
+     "tipTexts": [
+      "Cache Hostwerk reloads everything here when needed. Projects, databases, backups and settings stay untouched.",
+      "Maintenance Maintenance runs as its own window and loads no extension – so none can interfere. There you turn extensions off, roll them back or remove them, and update, repair or remove Hostwerk. If Hostwerk no longer starts: Start menu → “Hostwerk – Maintenance” or press F8 while it starts."
+     ],
+     "shot": "img/settings--advanced.jpg"
+    },
+    {
+     "label": "Privacy",
+     "areas": [
+      "Offline mode",
+      "Your name",
+      "Outgoing connections"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Change",
+      "Block"
+     ],
+     "fields": [
+      "No outgoing connections"
+     ],
+     "tipTexts": [],
+     "shot": "img/settings--privacy.jpg"
+    },
+    {
+     "label": "About Hostwerk",
+     "areas": [
+      "License",
+      "Third parties"
+     ],
+     "actions": [
+      "3 videos",
+      "What did I change?",
+      "Export",
+      "Import …",
+      "General",
+      "Behavior",
+      "Sidebar",
+      "Startup & services",
+      "Notifications",
+      "Keyboard shortcuts",
+      "Move & share",
+      "Discord status",
+      "Updates",
+      "Advanced",
+      "Privacy",
+      "About Hostwerk",
+      "Project page",
+      "284 third-party packages …"
+     ],
      "fields": [],
      "tipTexts": [
-      "Only on Linux – or with Docker LinuxGSM (linuxgsm.com) only runs on Linux. Three ways: Own server (VPS) – set it up with the Hostwerk network extension; this page is then ready there (switch the machine at the top). Linux PC at home – install Hostwerk for Linux and pair it. Docker here – set up the Hostwerk Docker engine under Projects & apps → Docker; then game servers run as containers on this PC. Minecraft servers keep running right here on Windows."
+      "Libraries from other projects that are part of Hostwerk – each under its own license. The list is generated automatically during the build."
      ],
-     "shot": "img/ext-game-servers--import.jpg"
+     "shot": "img/settings--about-hostwerk.jpg"
     }
    ]
   },
   {
-   "route": "ext/hostwerk-network",
-   "slug": "ext-hostwerk-network",
+   "route": "mail/server",
+   "slug": "mail-server",
+   "title": "Mail server",
+   "activeTab": "",
+   "intro": "Real mailboxes for your domain – Stalwart or Apache James, set up and maintained by Hostwerk.",
+   "areas": [
+    "Which mail server should it be?"
+   ],
+   "actions": [
+    "Compare all mail options",
+    "Continue to setup",
+    "Take over from another computer …"
+   ],
+   "fields": [
+    "Name in Hostwerk"
+   ],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/mail-server.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "server",
+   "slug": "server",
    "title": "Hostwerk network",
    "activeTab": "",
    "intro": "More PCs and servers with Hostwerk – operate all of them from here, move projects and game servers, put backups back.",
@@ -1071,1362 +2209,23 @@
    "tabs": [],
    "tips": 3,
    "tipTexts": [
-    "How it works Install Hostwerk on the other machine (Windows or Linux; a rented server works with “Own server with one click”), switch on remote access there and enter the pairing code here. Then switch between the devices in the machine bar at the top – services, files, terminal and AI then run on the chosen machine. Linux servers in a data centre · Windows or Linux PCs at home · Phone: under Go live → Remote access",
+    "How it works Install Hostwerk on the other machine (Windows or Linux; a rented server works with “Own server with one click”), switch on remote access there and enter the pairing code here. Then switch between the devices in the machine bar at the top – services, files, terminal and AI then run on the chosen machine. Linux servers in a data centre · Windows or Linux PCs at home · Phone: under Go live → Access → Remote access",
     "Rented server (e.g. at Hetzner, Netcup, IONOS) or a home server with Ubuntu, Debian or Fedora: Hostwerk sets itself up there – Node.js, Hostwerk without a window as a service, remote access with two-factor, firewall – and then shows up here as a machine. Your SSH sign-in is only used for the setup and never stored.",
     "Another Hostwerk PC can then operate this machine – through remote access (HTTPS) with its own key that you can revoke at any time. The key is shown only once."
    ],
-   "shot": "img/ext-hostwerk-network.jpg",
+   "shot": "img/server.jpg",
    "tabsDetail": []
-  },
-  {
-   "route": "ext/knowledge-graph",
-   "slug": "ext-knowledge-graph",
-   "title": "Knowledge graph → Graph",
-   "activeTab": "Graph",
-   "intro": "Code, docs and notes as a graph – ask questions, see connections, connect Claude and forget it again.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [
-    "Graph",
-    "Ask",
-    "Report",
-    "Obsidian",
-    "Claude"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)"
-   ],
-   "shot": "img/ext-knowledge-graph.jpg",
-   "tabsDetail": [
-    {
-     "label": "Ask",
-     "areas": [],
-     "actions": [
-      "Reload"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)"
-     ],
-     "shot": "img/ext-knowledge-graph--ask.jpg"
-    },
-    {
-     "label": "Report",
-     "areas": [],
-     "actions": [
-      "Reload"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)"
-     ],
-     "shot": "img/ext-knowledge-graph--report.jpg"
-    },
-    {
-     "label": "Obsidian",
-     "areas": [],
-     "actions": [
-      "Reload"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)"
-     ],
-     "shot": "img/ext-knowledge-graph--obsidian.jpg"
-    },
-    {
-     "label": "Claude",
-     "areas": [],
-     "actions": [
-      "Reload"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)"
-     ],
-     "shot": "img/ext-knowledge-graph--claude.jpg"
-    }
-   ]
-  },
-  {
-   "route": "ext/mail-server",
-   "slug": "ext-mail-server",
-   "title": "Mail server",
-   "activeTab": "",
-   "intro": "Real mailboxes for your domain – Stalwart or Apache James, set up and maintained by Hostwerk.",
-   "areas": [
-    "Which mail server should it be?"
-   ],
-   "actions": [
-    "Compare all mail options",
-    "Continue to setup"
-   ],
-   "fields": [
-    "Name in Hostwerk"
-   ],
-   "tabs": [],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-mail-server.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/mail-stats",
-   "slug": "ext-mail-stats",
-   "title": "Mail statistics",
-   "activeTab": "",
-   "intro": "How many e-mails your projects send – per day, per project, per sender and recipient. Data from the mail catcher.",
-   "areas": [],
-   "actions": [
-    "Settings",
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only Read captured e-mails"
-   ],
-   "shot": "img/ext-mail-stats.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/motd-studio",
-   "slug": "ext-motd-studio",
-   "title": "MOTD studio → Editor",
-   "activeTab": "Editor",
-   "intro": "Design the description in the server list – colours, formats, preview. Saving asks first.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [
-    "Editor",
-    "Colour codes"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.1.0 · may change things after asking Read Minecraft servers, players and stats Change Minecraft settings (asks first)"
-   ],
-   "shot": "img/ext-motd-studio.jpg",
-   "tabsDetail": [
-    {
-     "label": "Colour codes",
-     "areas": [],
-     "actions": [
-      "Reload"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.1.0 · may change things after asking Read Minecraft servers, players and stats Change Minecraft settings (asks first)"
-     ],
-     "shot": "img/ext-motd-studio--colour-codes.jpg"
-    }
-   ]
-  },
-  {
-   "route": "ext/page-check",
-   "slug": "ext-page-check",
-   "title": "Page check",
-   "activeTab": "",
-   "intro": "How fast is the page, what do search engines see and can everyone use it? With concrete tips.",
-   "areas": [],
-   "actions": [
-    "Check",
-    "Sample Web"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-page-check.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/passwords",
-   "slug": "ext-passwords",
-   "title": "Passwords → Vaults",
-   "activeTab": "Vaults",
-   "intro": "Own vault or an existing password manager – with browser extension, security check and import from every common service.",
-   "areas": [],
-   "actions": [
-    "Add"
-   ],
-   "fields": [],
-   "tabs": [
-    "Vaults",
-    "Browser",
-    "Settings"
-   ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-passwords.jpg",
-   "tabsDetail": [
-    {
-     "label": "Browser",
-     "areas": [
-      "Browser extension"
-     ],
-     "actions": [
-      "Add",
-      "Install in Chrome",
-      "Download ZIP",
-      "Show pairing code"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "How does Hostwerk install it? If the extension is in the browser’s store, Hostwerk tells the browser about it the official way and opens the store page – one click on “Add”. Otherwise the browser loads it as an “unpacked extension” (developer mode). Either way it pairs itself, without a code.",
-      "The extension only talks to your Hostwerk (127.0.0.1)."
-     ],
-     "shot": "img/ext-passwords--browser.jpg"
-    },
-    {
-     "label": "Settings",
-     "areas": [
-      "Behaviour",
-      "Manage vaults",
-      "Provider programs"
-     ],
-     "actions": [
-      "Add",
-      "Download"
-     ],
-     "fields": [
-      "Lock automatically",
-      "Auto sign-in in the browser",
-      "Suggestions in the sign-in field",
-      "Fill in on load",
-      "Suggest strong passwords",
-      "Offer to save new logins",
-      "Leak check (Have I Been Pwned)",
-      "Default vault"
-     ],
-     "tipTexts": [
-      "No maintenance: provider programs are checked every day and updated with a test run, new import formats and services come through the online catalogue. The AI helper has no access at all to vaults, items or vault files – neither reading nor searching.",
-      "Self-maintenance: version check every day, update with a test run."
-     ],
-     "shot": "img/ext-passwords--settings.jpg"
-    }
-   ]
-  },
-  {
-   "route": "ext/player-leaderboard",
-   "slug": "ext-player-leaderboard",
-   "title": "Leaderboard",
-   "activeTab": "",
-   "intro": "Who plays, mines or dies the most – across all Minecraft servers or per server. With a dashboard tile.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only Read Minecraft servers, players and stats"
-   ],
-   "shot": "img/ext-player-leaderboard.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/player-ticker",
-   "slug": "ext-player-ticker",
-   "title": "Player Ticker",
-   "activeTab": "",
-   "intro": "Who is on your Minecraft servers right now? Live list with heads, TPS and a playtime ranking – great for streams and Discord screens.",
-   "areas": [],
-   "actions": [
-    "Settings",
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only See services and their state Read Minecraft servers, players and stats Store own data (max. 256 KB)"
-   ],
-   "shot": "img/ext-player-ticker.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/port-map",
-   "slug": "ext-port-map",
-   "title": "Ports",
-   "activeTab": "",
-   "intro": "All ports of your services in one list: what runs, what another program blocks, where two services want the same port – with free suggestions.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only Read system health, load and ports"
-   ],
-   "shot": "img/ext-port-map.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/profiler",
-   "slug": "ext-profiler",
-   "title": "Profiler",
-   "activeTab": "",
-   "intro": "Find out why a page or app is slow – which functions and database queries take the time.",
-   "areas": [
-    "Projects",
-    "Latest measurements"
-   ],
-   "actions": [],
-   "fields": [],
-   "tabs": [],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-profiler.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/quick-tasks",
-   "slug": "ext-quick-tasks",
-   "title": "Quick tasks",
-   "activeTab": "",
-   "intro": "Your tasks as big buttons – one click runs a backup, a report or a script (Hostwerk asks first). Pin favourites, also as a tile.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read scheduled tasks Run scheduled tasks (asks first) Store own data (max. 256 KB)"
-   ],
-   "shot": "img/ext-quick-tasks.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/router",
-   "slug": "ext-router",
-   "title": "Router & port forwarding",
-   "activeTab": "",
-   "intro": "Reach your servers from the internet: forwardings, IPv6, DynDNS and – after signing in – devices and Wi-Fi of your router.",
-   "areas": [
-    "Router access",
-    "IPv6 & connection type",
-    "FRITZ!Box 7590",
-    "Forward automatically",
-    "Hostwerk's ports",
-    "All forwardings in the router"
-   ],
-   "actions": [
-    "Sign in",
-    "Copy",
-    "Save",
-    "Search again",
-    "Open the router interface",
-    "Sync now",
-    "Own forwarding",
-    "Open router",
-    "Hide tip",
-    "Forward"
-   ],
-   "fields": [
-    "User (optional)",
-    "Password",
-    "Open ports for IPv6 too",
-    "Provider",
-    "Manage forwardings automatically"
-   ],
-   "tabs": [],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-router.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/schematics-3d",
-   "slug": "ext-schematics-3d",
-   "title": "Schematics in 3D",
-   "activeTab": "",
-   "intro": "Look at Minecraft builds before you place them – from WorldEdit, Litematica and MCEdit.",
-   "areas": [],
-   "actions": [
-    "Open files"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Where do the files come from? Hostwerk looks through the folders of your Minecraft servers (for example plugins/WorldEdit/schematics or schematics/). Any build file in the file browser opens in 3D as well."
-   ],
-   "shot": "img/ext-schematics-3d.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/server-card",
-   "slug": "ext-server-card",
-   "title": "Server profile",
-   "activeTab": "",
-   "intro": "Everything important about this PC and its services on one page – processor, memory, uptime, services with ports and addresses. Print it or copy it as text.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only Read system health, load and ports See services and their state"
-   ],
-   "shot": "img/ext-server-card.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/service-notes",
-   "slug": "ext-service-notes",
-   "title": "Notes",
-   "activeTab": "",
-   "intro": "All notes about your services – with search and checklists you can tick off.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.1.0 · read only See services and their state Store own data (max. 256 KB)"
-   ],
-   "shot": "img/ext-service-notes.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/static-publish",
-   "slug": "ext-static-publish",
-   "title": "Publish static sites",
-   "activeTab": "",
-   "intro": "Put a project online with one click – on GitHub Pages or Cloudflare Pages, free and with HTTPS.",
-   "areas": [],
-   "actions": [
-    "Accounts",
-    "New site",
-    "Add account"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-static-publish.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/status-wall",
-   "slug": "ext-status-wall",
-   "title": "Status Wall",
-   "activeTab": "",
-   "intro": "All services big and colourful at a glance – ideal for a second screen or a tablet on the wall. One click restarts what stopped (asks first).",
-   "areas": [],
-   "actions": [
-    "Settings",
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking See services and their state Start, stop, restart services (asks first)"
-   ],
-   "shot": "img/ext-status-wall.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ext/team",
-   "slug": "ext-team",
-   "title": "Team & roles → Users",
-   "activeTab": "Users",
-   "intro": "Let friends and colleagues in – each with their own sign-in and only the rights they need.",
-   "areas": [
-    "Users"
-   ],
-   "actions": [
-    "Add user"
-   ],
-   "fields": [],
-   "tabs": [
-    "Users",
-    "Team setup"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "How roles work Every person signs in to remote access with their own name and password (or passkey). Members only see and control the services and areas you share – for example “start the survival server and manage players”. The change log shows who did what."
-   ],
-   "shot": "img/ext-team.jpg",
-   "tabsDetail": [
-    {
-     "label": "Team setup",
-     "areas": [
-      "Team setup"
-     ],
-     "actions": [
-      "Folder",
-      "Connect"
-     ],
-     "fields": [
-      "Folder"
-     ],
-     "tipTexts": [
-      "What is a team setup? One shared setup for everyone in the team: it lives in a shared folder (OneDrive, network drive, Git repository) or at an address. Hostwerk checks every 15 minutes for changes and asks before taking anything over – it only adds what is missing."
-     ],
-     "shot": "img/ext-team--team-setup.jpg"
-    }
-   ]
-  },
-  {
-   "route": "ext/uptime-wall",
-   "slug": "ext-uptime-wall",
-   "title": "Uptime wall → Wall",
-   "activeTab": "Wall",
-   "intro": "Uptime of all monitors at a glance.",
-   "areas": [],
-   "actions": [
-    "Reload"
-   ],
-   "fields": [],
-   "tabs": [
-    "Wall",
-    "Public status page"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · read only Read certificates and uptime checks Set up the public status page (asks first)"
-   ],
-   "shot": "img/ext-uptime-wall.jpg",
-   "tabsDetail": [
-    {
-     "label": "Public status page",
-     "areas": [],
-     "actions": [
-      "Reload"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.2.0 · read only Read certificates and uptime checks Set up the public status page (asks first)"
-     ],
-     "shot": "img/ext-uptime-wall--public-status-page.jpg"
-    }
-   ]
-  },
-  {
-   "route": "ext/webhook-inbox",
-   "slug": "ext-webhook-inbox",
-   "title": "Webhook inbox",
-   "activeTab": "",
-   "intro": "Receive webhooks from Stripe, GitHub & co., look inside, check signatures and pass them on to your project.",
-   "areas": [],
-   "actions": [
-    "Settings",
-    "Start receiver",
-    "Copy",
-    "Make public"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ext-webhook-inbox.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "ki",
-   "slug": "ki",
-   "title": "AI assistant",
-   "activeTab": "Chat",
-   "intro": "Looks into your services, databases, Minecraft servers and projects itself – and only changes something when you confirm it.",
-   "areas": [],
-   "actions": [
-    "Media library",
-    "Compare",
-    "Set up AI (approx. 11,1 GB)",
-    "Choose another model",
-    "Program only",
-    "Use an online provider instead"
-   ],
-   "fields": [],
-   "tabs": [
-    "Chat",
-    "Settings",
-    "Quotas",
-    "Connection & memory"
-   ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/ki.jpg",
-   "tabsDetail": [
-    {
-     "label": "Settings",
-     "areas": [
-      "Startup & behavior"
-     ],
-     "actions": [
-      "Media library",
-      "Compare",
-      "General Start, conversation, model options",
-      "Language model Which AI answers",
-      "Quotas Usage, budgets, limits",
-      "Images & videos Create and edit",
-      "Speaking & listening Voices, speech recognition",
-      "Automatic help Watch, explanations, hints",
-      "Always up to date Catalog, programs, models",
-      "Storage & turn off Remove models, uninstall",
-      "Modes Roles for the assistant"
-     ],
-     "fields": [
-      "Start AI assistant with Hostwerk",
-      "Preload default model",
-      "Model for conversations"
-     ],
-     "tipTexts": [],
-     "shot": "img/ki--settings.jpg"
-    },
-    {
-     "label": "Quotas",
-     "areas": [
-      "Cost preview",
-      "Automatic choice per task",
-      "Ollama"
-     ],
-     "actions": [
-      "Media library",
-      "Compare",
-      "General Start, conversation, model options",
-      "Language model Which AI answers",
-      "Quotas Usage, budgets, limits",
-      "Images & videos Create and edit",
-      "Speaking & listening Voices, speech recognition",
-      "Automatic help Watch, explanations, hints",
-      "Always up to date Catalog, programs, models",
-      "Storage & turn off Remove models, uninstall",
-      "Modes Roles for the assistant",
-      "Apply"
-     ],
-     "fields": [
-      "Ask from (US dollars per message)",
-      "Limit per chat (US dollars)"
-     ],
-     "tipTexts": [
-      "Before sending to a paid online provider, Hostwerk estimates tokens and cost. Prices come daily from a public model list – new models too, without a Hostwerk update.",
-      "Hostwerk recognises what you ask and picks the matching provider – e.g. short questions locally, code to a strong model. If it does not answer, the fallback chain steps in as usual."
-     ],
-     "shot": "img/ki--quotas.jpg"
-    },
-    {
-     "label": "Connection & memory",
-     "areas": [],
-     "actions": [
-      "Reload"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)"
-     ],
-     "shot": "img/ki--connection-memory.jpg"
-    }
-   ]
-  },
-  {
-   "route": "live",
-   "slug": "live",
-   "title": "Production",
-   "activeTab": "Guide",
-   "intro": "Everything to make Hostwerk reliably and securely reachable on the internet – domains with HTTPS, running without login, remote access, alerts and backups.",
-   "areas": [
-    "Website with your own domain"
-   ],
-   "actions": [
-    "Emergency",
-    "Website with your own domain Permanently at www.yourdomain.com – with HTTPS, monitoring and security check.",
-    "Share quickly – no router A random https address in seconds, e.g. to show something to friends or clients.",
-    "Minecraft for friends Let friends join your server over the internet – safely with online mode and whitelist.",
-    "Check again",
-    "Go to web servers",
-    "Copy IP",
-    "Forward automatically",
-    "Firewall",
-    "Set up HTTPS",
-    "View",
-    "Monitoring",
-    "System service"
-   ],
-   "fields": [],
-   "tabs": [
-    "Guide",
-    "Share a page (tunnel)",
-    "Router",
-    "Domains & HTTPS",
-    "Remote access"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "Next: Enter your own domain Add an address with your domain to your web server under “Addresses” (e.g. www.mycompany.com) – not .localhost. After that: Domain points to this connection (DNS) · Router: forward ports 80 and 443 to this PC · Firewall rule · HTTPS certificate (Let's Encrypt) · Security check"
-   ],
-   "shot": "img/live.jpg",
-   "tabsDetail": [
-    {
-     "label": "Share a page (tunnel)",
-     "areas": [
-      "One-time setup"
-     ],
-     "actions": [
-      "Emergency",
-      "Install cloudflared"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "How it works Hostwerk builds an encrypted connection to Cloudflare. There you get a random address like xyz.trycloudflare.com, which points straight at your local site – handy for showing it to someone or testing on your phone."
-     ],
-     "shot": "img/live--share-a-page-tunnel.jpg"
-    },
-    {
-     "label": "Router",
-     "areas": [
-      "Router access",
-      "IPv6 & connection type",
-      "FRITZ!Box 7590",
-      "Forward automatically",
-      "Hostwerk's ports",
-      "All forwardings in the router"
-     ],
-     "actions": [
-      "Emergency",
-      "Sign in",
-      "Copy",
-      "Save",
-      "Search again",
-      "Open the router interface",
-      "Sync now",
-      "Own forwarding",
-      "Open router",
-      "Hide tip",
-      "Forward"
-     ],
-     "fields": [
-      "User (optional)",
-      "Password",
-      "Open ports for IPv6 too",
-      "Provider",
-      "Manage forwardings automatically"
-     ],
-     "tipTexts": [],
-     "shot": "img/live--router.jpg"
-    },
-    {
-     "label": "Domains & HTTPS",
-     "areas": [
-      "HTTPS for local addresses (without browser warning)",
-      "Domains"
-     ],
-     "actions": [
-      "Emergency",
-      "Mark as trusted",
-      "Download certificate",
-      "Add domain",
-      "Go to web servers"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "How to make a site public 1. At your domain provider create an A record pointing to your public IP. 2. In your router forward port 80 and 443 to this PC. 3. Under Web servers → Addresses create the real domain as an address (e.g. www.mycompany.com). 4. Click “Set up HTTPS” here – Hostwerk gets a free certificate from Let's Encrypt and renews it automatically."
-     ],
-     "shot": "img/live--domains-https.jpg"
-    },
-    {
-     "label": "Remote access",
-     "areas": [
-      "Use Hostwerk on the go",
-      "Two-factor login",
-      "Hostwerk on your phone",
-      "Sign in with passkey"
-     ],
-     "actions": [
-      "Emergency",
-      "Save",
-      "Set up",
-      "Set up password and two-factor",
-      "Hide tip",
-      "Add passkey"
-     ],
-     "fields": [
-      "User",
-      "Port",
-      "Password (at least 10 characters)",
-      "Own domain (optional)"
-     ],
-     "tipTexts": [],
-     "shot": "img/live--remote-access.jpg"
-    }
-   ]
-  },
-  {
-   "route": "sicherungen",
-   "slug": "sicherungen",
-   "title": "Backups",
-   "activeTab": "",
-   "intro": "All versions in one place – databases, Minecraft worlds, projects and the time machine. New backups and restoring at the service itself.",
-   "areas": [
-    "Off-site backup",
-    "Restore test"
-   ],
-   "actions": [
-    "Set up",
-    "View",
-    "Open: Hostwerk",
-    "Open: Sample MC"
-   ],
-   "fields": [],
-   "tabs": [],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/sicherungen.jpg",
-   "tabsDetail": []
-  },
-  {
-   "route": "system",
-   "slug": "system",
-   "title": "System",
-   "activeTab": "Health",
-   "intro": "State, logs, resources and history of all services at a glance.",
-   "areas": [
-    "Ports",
-    "Self-healing",
-    "Phone & web app",
-    "Windows protection (Smart App Control)",
-    "Diagnostic report"
-   ],
-   "actions": [
-    "Check again",
-    "QR code for the phone",
-    "Try the phone view here",
-    "Save full report"
-   ],
-   "fields": [
-    "Automatically restart crashed services"
-   ],
-   "tabs": [
-    "Health",
-    "Logs",
-    "Resources",
-    "History",
-    "Programs",
-    "Self-maintenance"
-   ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/system.jpg",
-   "tabsDetail": [
-    {
-     "label": "Logs",
-     "areas": [],
-     "actions": [
-      "every",
-      "Regular expression",
-      "All machines",
-      "Pause",
-      "Scroll to bottom automatically",
-      "Save as text file"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/system--logs.jpg"
-    },
-    {
-     "label": "Resources",
-     "areas": [
-      "Services",
-      "History"
-     ],
-     "actions": [
-      "Stop",
-      "Force"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/system--resources.jpg"
-    },
-    {
-     "label": "History",
-     "areas": [
-      "Time machine"
-     ],
-     "actions": [
-      "Compare",
-      "Back up now",
-      "08:35 Test",
-      "Save as CSV",
-      "Clear log"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/system--history.jpg"
-    },
-    {
-     "label": "Programs",
-     "areas": [
-      "Installed"
-     ],
-     "actions": [
-      "Clean up now",
-      "Now",
-      "Recalculate",
-      "Empty"
-     ],
-     "fields": [
-      "Clean up leftovers automatically"
-     ],
-     "tipTexts": [],
-     "shot": "img/system--programs.jpg"
-    },
-    {
-     "label": "Self-maintenance",
-     "areas": [
-      "Security updates",
-      "Restore test",
-      "Hostwerk without maintenance",
-      "Monthly maintenance run",
-      "Online catalogs"
-     ],
-     "actions": [
-      "Check everything now",
-      "Check",
-      "Check all",
-      "Open area",
-      "Startzeit Server ready after 0,7 s 20.10.26, 08:35"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "What does “maintenance-free” mean? Hostwerk keeps itself and your services up to date: updates with a trial run and a way back, renewals, cleanup, restarts after crashes. Here you see per area whether that already runs on its own – clicking ⓘ explains exactly what happens and what is left for you.",
-      "Hostwerk itself Hostwerk checks daily for new versions, downloads them in the background and swaps them on the next start. If the new version doesn’t start cleanly, the previous one keeps running automatically. What you can do: Nothing – unless you want to skip versions (Settings → Updates).",
-      "PHP (patch versions) Every 6 hours Hostwerk looks for security updates within your PHP series (e.g. 8.3.x). The new version is installed next to the old one, tested with a trial run and only then activated. If the test fails, the old one stays. What you can do: You decide on bigger jumps (8.3 → 8.4) yourself – Hostwerk only suggests them.",
-      "Databases (patch versions) Like PHP: patch versions of MariaDB, MySQL and PostgreSQL are checked, installed with a trial run and rolled back on errors. What you can do: You switch major versions yourself in the database area.",
-      "Web servers (patch versions) Apache, nginx and Caddy get security updates within their series – with a trial run; the old version stays as a way back. What you can do: Nothing.",
-      "Geyser/Floodgate Geyser and Floodgate (Bedrock players) are updated and tested automatically. What you can do: Nothing.",
-      "Certificates (Let’s Encrypt, local CA) HTTPS certificates (Let’s Encrypt and Hostwerk’s local certificate authority) are renewed in time. What you can do: Nothing – Hostwerk reports any error.",
-      "AI programs and models Ollama, image models, speech recognition and voices are updated with a trial run; the model catalogs arrive online daily. What you can do: If AI is turned off, there is nothing to do here.",
-      "Runtime (Node/Electron) Node.js and Electron, which Hostwerk runs on, are swapped with the app update – after a self-test. What you can do: Nothing.",
-      "Restore test The latest backup is regularly restored into a throwaway environment and checked. That way a broken backup is noticed before you need it. What you can do: Nothing.",
-      "Cleanup (leftovers, cache, trash) Hostwerk cleans up installation leftovers and old downloads daily; the trash is emptied after 30 days. What you can do: Nothing.",
-      "Self-healing (restart services) If a service crashes or stops responding, Hostwerk restarts it (with a pause so it doesn’t restart endlessly). What you can do: Nothing – incidents are listed under System → Incidents."
-     ],
-     "shot": "img/system--self-maintenance.jpg"
-    }
-   ]
-  },
-  {
-   "route": "settings",
-   "slug": "settings",
-   "title": "Settings",
-   "activeTab": "General",
-   "intro": "Adapt Hostwerk to the way you work.",
-   "areas": [
-    "What do you use Hostwerk for?",
-    "Appearance",
-    "Sections in the sidebar"
-   ],
-   "actions": [
-    "Websites & apps",
-    "Game servers",
-    "AI",
-    "Going online & team",
-    "Search again (e.g. after an installation)",
-    "Add your own program as editor",
-    "Hostwerk purple",
-    "Blue",
-    "Sky blue",
-    "Turquoise",
-    "Green",
-    "Amber",
-    "Orange",
-    "Red",
-    "Pink",
-    "Show again"
-   ],
-   "fields": [
-    "Language · Language",
-    "Code editor",
-    "Accent color",
-    "Appearance",
-    "Start page",
-    "Compact view",
-    "Reduce animations",
-    "Hidden tips",
-    "Ask before stopping",
-    "Show download speed",
-    "Projects",
-    "Apps",
-    "Email",
-    "Tasks",
-    "Files",
-    "Minecraft",
-    "AI",
-    "Claude mind map",
-    "Production",
-    "Backups"
-   ],
-   "tabs": [
-    "General",
-    "Startup & services",
-    "Notifications & logs",
-    "Pass on profiles",
-    "Updates",
-    "Advanced"
-   ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/settings.jpg",
-   "tabsDetail": [
-    {
-     "label": "Startup & services",
-     "areas": [
-      "When Hostwerk starts",
-      "Which services start automatically?"
-     ],
-     "actions": [
-      "All",
-      "None"
-     ],
-     "fields": [
-      "Start services automatically",
-      "Restore last running services",
-      "Start one after another",
-      "Delay",
-      "Start Hostwerk with Windows",
-      "Start minimized",
-      "Stay in the system tray when closed",
-      "Automatically restart crashed services",
-      "Sample DB",
-      "Mail catcher",
-      "Sample Web",
-      "Sample MC"
-     ],
-     "tipTexts": [],
-     "shot": "img/settings--startup-services.jpg"
-    },
-    {
-     "label": "Notifications & logs",
-     "areas": [
-      "Phone notifications",
-      "Alerts",
-      "Windows notifications",
-      "Logs"
-     ],
-     "actions": [
-      "Send test",
-      "Test",
-      "Save",
-      "Check now"
-     ],
-     "fields": [
-      "Discord-Webhook",
-      "ntfy (push to phone)",
-      "Email",
-      "Crashes and start errors",
-      "Website unreachable / back again",
-      "Backup failed",
-      "Certificate problems and upcoming expiry",
-      "Saved query over its threshold",
-      "Remind before certificates expire",
-      "Show notifications",
-      "Crashes and errors",
-      "Backups",
-      "Scheduled tasks",
-      "New emails",
-      "Updates",
-      "Keep logs"
-     ],
-     "tipTexts": [],
-     "shot": "img/settings--notifications-logs.jpg"
-    },
-    {
-     "label": "Pass on profiles",
-     "areas": [
-      "Profiles",
-      "Export as Docker Compose",
-      "Share setup"
-     ],
-     "actions": [
-      "From running services",
-      "New profile",
-      "Preview",
-      "Download ZIP",
-      "Export setup"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/settings--pass-on-profiles.jpg"
-    },
-    {
-     "label": "Updates",
-     "areas": [
-      "App updates",
-      "Security updates"
-     ],
-     "actions": [
-      "Check"
-     ],
-     "fields": [
-      "Update automatically",
-      "Show component updates"
-     ],
-     "tipTexts": [
-      "Automatic updates are only available in the installed desktop app."
-     ],
-     "shot": "img/settings--updates.jpg"
-    },
-    {
-     "label": "Advanced",
-     "areas": [
-      "Hostwerk",
-      "Java runtimes",
-      "Cache & temporary files",
-      "Remove Hostwerk",
-      "Location & access"
-     ],
-     "actions": [
-      "Reload",
-      "Delete 1,0 MB",
-      "Measure again",
-      "Clean up now",
-      "Remove Hostwerk …",
-      "Open in default browser"
-     ],
-     "fields": [
-      "Hostwerk folder",
-      "Open in browser"
-     ],
-     "tipTexts": [
-      "Only reloads the interface – services keep running undisturbed. Helps when a view hangs or looks outdated after an update.",
-      "Hostwerk reloads everything here when needed. Projects, databases, backups and settings stay untouched.",
-      "Every 6 hours, shortly after start and after deleting, creating or updating services: long-unused images, old video versions, old downloads and leftovers are removed – nothing that is currently needed."
-     ],
-     "shot": "img/settings--advanced.jpg"
-    }
-   ]
-  },
-  {
-   "route": "apps",
-   "slug": "apps",
-   "title": "Apps",
-   "activeTab": "Apps",
-   "intro": "Node.js, Python and your own programs as services – plus extensions for more service types.",
-   "areas": [],
-   "actions": [
-    "New app",
-    "Add app",
-    "From template"
-   ],
-   "fields": [],
-   "tabs": [
-    "Apps",
-    "Runtimes",
-    "Extensions",
-    "Docker",
-    "Import"
-   ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/apps.jpg",
-   "tabsDetail": [
-    {
-     "label": "Runtimes",
-     "areas": [
-      "Node.js",
-      "Python"
-     ],
-     "actions": [
-      "New app",
-      "nodejs.org",
-      "python.org"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/apps--runtimes.jpg"
-    },
-    {
-     "label": "Extensions",
-     "areas": [
-      "Games & Minecraft 7",
-      "Network & machines 4",
-      "Security & access 3",
-      "Monitoring & status 5",
-      "Developer tools 7",
-      "AI & media 3",
-      "Mail & communication 3",
-      "Other 3"
-     ],
-     "actions": [
-      "35 installed",
-      "0 Updates",
-      "33 in the catalogue",
-      "Add",
-      "All 35",
-      "Games & Minecraft 7",
-      "Network & machines 4",
-      "Security & access 3",
-      "Monitoring & status 5",
-      "Developer tools 7",
-      "AI & media 3",
-      "Mail & communication 3",
-      "Other 3",
-      "Bedrock bridge – details",
-      "Open",
-      "Game server network – details",
-      "Game servers – details",
-      "MOTD studio – details",
-      "Player leaderboard – details",
-      "Player Ticker – details",
-      "Schematics in 3D – details",
-      "File share (SFTP) – details",
-      "Hostwerk network – details",
-      "Port map – details",
-      "Router & port forwarding – details",
-      "Certificate watch – details",
-      "Password manager – details",
-      "Team & roles – details",
-      "Backup calendar – details",
-      "Server profile – details",
-      "Status Wall – details",
-      "Storage per service – details",
-      "Uptime wall – details",
-      "API tester – details",
-      "Page check – details",
-      "Profiler – details",
-      "Publish static sites – details",
-      "Quick tasks – details",
-      "Webhook inbox – details",
-      "My Extension – details"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/apps--extensions.jpg"
-    },
-    {
-     "label": "Docker",
-     "areas": [],
-     "actions": [
-      "New app",
-      "Docker DesktopThe official app with its own interface (approx. 600 MB). Paid for larger companies.Own interface",
-      "Set up Docker Engine",
-      "Check again"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/apps--docker.jpg"
-    },
-    {
-     "label": "Import",
-     "areas": [],
-     "actions": [
-      "New app",
-      "Add app",
-      "From template"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/apps--import.jpg"
-    }
-   ]
-  },
-  {
-   "route": "live/waechter",
-   "slug": "live-waechter",
-   "title": "Production → Watchers",
-   "activeTab": "Watchers",
-   "intro": "Everything to make Hostwerk reliably and securely reachable on the internet – domains with HTTPS, running without login, remote access, alerts and backups.",
-   "areas": [
-    "Watchers"
-   ],
-   "actions": [
-    "Emergency",
-    "New watcher",
-    "Edit: Probe shop",
-    "Edit: Probe count",
-    "Edit: Certificates"
-   ],
-   "fields": [],
-   "tabs": [
-    "System service",
-    "Monitoring",
-    "Watchers",
-    "Off-site backup"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "What are watchers? Everything Hostwerk watches by itself: pages, services, queries and certificates. Where alerts go is set under Settings → Notifications."
-   ],
-   "shot": "img/live-waechter.jpg",
-   "tabsDetail": [
-    {
-     "label": "Monitoring",
-     "areas": [
-      "Thresholds for services",
-      "Alerts",
-      "Uptime checks"
-     ],
-     "actions": [
-      "Emergency",
-      "Threshold",
-      "Set up",
-      "Add check"
-     ],
-     "fields": [
-      "Address",
-      "Name (optional)",
-      "Must contain (optional)"
-     ],
-     "tipTexts": [
-      "Hostwerk checks CPU, memory, players, TPS or response time every 30 seconds and lets you know when a value stays above or below the threshold for a while – and when it is fine again."
-     ],
-     "shot": "img/live-waechter--monitoring.jpg"
-    },
-    {
-     "label": "Off-site backup",
-     "areas": [
-      "Backup outside this PC",
-      "Last backups",
-      "What is backed up",
-      "Restore test"
-     ],
-     "actions": [
-      "Emergency",
-      "Folder",
-      "Save",
-      "Check connection",
-      "Back up now",
-      "Check all",
-      "Check"
-     ],
-     "fields": [
-      "Target",
-      "Folder",
-      "How often?",
-      "Keep"
-     ],
-     "tipTexts": [],
-     "shot": "img/live-waechter--off-site-backup.jpg"
-    }
-   ]
   },
   {
    "route": "claude",
    "slug": "claude",
    "title": "AI Connect",
    "activeTab": "",
-   "intro": "What every AI knows about you and your projects – and how Claude & co. work with your projects.",
+   "intro": "What every AI knows about you and your projects – and how your AI tools work with your projects.",
    "areas": [],
    "actions": [
+    "From the extension “AI Connect” – info",
+    "Settings",
     "Reload"
    ],
    "fields": [],
@@ -2437,155 +2236,59 @@
     "Tips & tricks",
     "Log"
    ],
-   "tips": 1,
-   "tipTexts": [
-    "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)"
-   ],
+   "tips": 0,
+   "tipTexts": [],
    "shot": "img/claude.jpg",
    "tabsDetail": [
     {
      "label": "Connect",
      "areas": [],
      "actions": [
+      "From the extension “AI Connect” – info",
+      "Settings",
       "Reload"
      ],
      "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)"
-     ],
+     "tipTexts": [],
      "shot": "img/claude--connect.jpg"
     },
     {
      "label": "Save tokens",
      "areas": [],
      "actions": [
+      "From the extension “AI Connect” – info",
+      "Settings",
       "Reload"
      ],
      "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)"
-     ],
+     "tipTexts": [],
      "shot": "img/claude--save-tokens.jpg"
     },
     {
      "label": "Tips & tricks",
      "areas": [],
      "actions": [
+      "From the extension “AI Connect” – info",
+      "Settings",
       "Reload"
      ],
      "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)"
-     ],
+     "tipTexts": [],
      "shot": "img/claude--tips-tricks.jpg"
     },
     {
      "label": "Log",
      "areas": [],
      "actions": [
+      "From the extension “AI Connect” – info",
+      "Settings",
       "Reload"
      ],
      "fields": [],
-     "tipTexts": [
-      "Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read Claude status, projects, memory context, token-saving tools and usage Set up Claude: context in project files, token-saving tools (asks first) Type commands into the terminal (you confirm) Read the knowledge graph (projects, graph, report, memory, Claude status) Connect Claude and forget it again (asks first) Store own data (max. 256 KB)"
-     ],
+     "tipTexts": [],
      "shot": "img/claude--log.jpg"
     }
    ]
-  },
-  {
-   "route": "live/sicherheit",
-   "slug": "live-sicherheit",
-   "title": "Production → Security",
-   "activeTab": "Security",
-   "intro": "Everything to make Hostwerk reliably and securely reachable on the internet – domains with HTTPS, running without login, remote access, alerts and backups.",
-   "areas": [
-    "Security check",
-    "Firewall"
-   ],
-   "actions": [
-    "Emergency",
-    "Set a secure password",
-    "Manage firewall"
-   ],
-   "fields": [],
-   "tabs": [
-    "Security",
-    "Firewall",
-    "Users"
-   ],
-   "tips": 0,
-   "tipTexts": [],
-   "shot": "img/live-sicherheit.jpg",
-   "tabsDetail": [
-    {
-     "label": "Firewall",
-     "areas": [
-      "Ports of public services",
-      "Own rule",
-      "Rules by Hostwerk"
-     ],
-     "actions": [
-      "Emergency",
-      "Create / renew rules",
-      "Create rule",
-      "Lock",
-      "Re-read",
-      "Remove rule"
-     ],
-     "fields": [
-      "Port",
-      "Log",
-      "Action",
-      "Only from (optional)",
-      "Label"
-     ],
-     "tipTexts": [],
-     "shot": "img/live-sicherheit--firewall.jpg"
-    },
-    {
-     "label": "Users",
-     "areas": [
-      "Users"
-     ],
-     "actions": [
-      "Emergency",
-      "Add user"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "How roles work Every person signs in to remote access with their own name and password (or passkey). Members only see and control the services and areas you share – for example “start the survival server and manage players”. The change log shows who did what."
-     ],
-     "shot": "img/live-sicherheit--users.jpg"
-    }
-   ]
-  },
-  {
-   "route": "live/dienst",
-   "slug": "live-dienst",
-   "title": "Production → System service",
-   "activeTab": "System service",
-   "intro": "Everything to make Hostwerk reliably and securely reachable on the internet – domains with HTTPS, running without login, remote access, alerts and backups.",
-   "areas": [
-    "Hostwerk as a system service",
-    "Good to know"
-   ],
-   "actions": [
-    "Emergency"
-   ],
-   "fields": [],
-   "tabs": [
-    "System service",
-    "Monitoring",
-    "Watchers",
-    "Off-site backup"
-   ],
-   "tips": 1,
-   "tipTexts": [
-    "Switching is only possible in the desktop app."
-   ],
-   "shot": "img/live-dienst.jpg",
-   "tabsDetail": []
   },
   {
    "route": "web/probe-web",
@@ -2596,69 +2299,101 @@
    "areas": [
     "Addresses",
     "Projects in the web folder",
-    "Settings",
     "Version & management"
    ],
    "actions": [
     "Change image",
     "Mark as favorite (then listed at the top)",
+    "3 videos",
     "nginx.org",
-    "Start",
+    "Install",
     "New in 1.29.1",
     "Other web servers",
     "Test configuration",
     "Share publicly (link for the internet)",
     "Open",
     "New project",
-    "Folder",
-    "Apply",
     "Check again",
-    "Remove web server"
+    "Remove web server",
+    "Leaderboard",
+    "Who is online?"
    ],
-   "fields": [
-    "Name",
-    "HTTP-Port",
-    "HTTPS-Port",
-    "Web folder",
-    "PHP version",
-    "HTTPS",
-    "Directory listing",
-    "Start with Hostwerk"
-   ],
+   "fields": [],
    "tabs": [
     "Overview",
-    "Virtual hosts",
+    "Pages",
+    "Settings",
     "Configuration",
     "Logs",
     "Notes"
    ],
-   "tips": 0,
-   "tipTexts": [],
+   "tips": 1,
+   "tipTexts": [
+    "What is this? Extensions like the leaderboard can put their own page into this web server – Hostwerk writes it into a subfolder and keeps it up to date at the chosen interval."
+   ],
    "shot": "img/web-probe-web.jpg",
    "tabsDetail": [
     {
-     "label": "Virtual hosts",
+     "label": "Pages",
      "areas": [
-      "New virtual host",
-      "Virtual hosts"
+      "New site",
+      "Pages"
      ],
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
+      "3 videos",
       "nginx.org",
-      "Start",
+      "Install",
+      "Static site",
+      "PHP",
+      "Forward to app",
+      "Single-page app",
+      "File share",
       "Folder",
-      "Create"
+      "Create site"
      ],
      "fields": [
-      "Domain",
-      "Folder",
-      "PHP version"
+      "Address",
+      "Folder"
      ],
      "tipTexts": [
-      "Tip: domains ending in .localhost Addresses like myproject.localhost work in Chrome, Edge and Firefox without an entry in the hosts file."
+      "Tip: addresses ending in .localhost Addresses like myproject.localhost work in Chrome, Edge and Firefox without an entry in the hosts file. With *.project.localhost all subaddresses end up at the same site.",
+      "Each site has its own address on this server. You set up the main site (localhost) under “Overview”."
      ],
-     "shot": "img/web-probe-web--virtual-hosts.jpg"
+     "shot": "img/web-probe-web--pages.jpg"
+    },
+    {
+     "label": "Settings",
+     "areas": [
+      "Settings",
+      "HTTPS for local addresses (without browser warning)"
+     ],
+     "actions": [
+      "Change image",
+      "Mark as favorite (then listed at the top)",
+      "3 videos",
+      "nginx.org",
+      "Install",
+      "Folder",
+      "Apply",
+      "Delivery …",
+      "Mark as trusted",
+      "Download certificate"
+     ],
+     "fields": [
+      "Name",
+      "HTTP-Port",
+      "HTTPS-Port",
+      "Web folder",
+      "Main site (localhost)",
+      "PHP",
+      "HTTPS",
+      "Directory listing",
+      "Start with Hostwerk"
+     ],
+     "tipTexts": [],
+     "shot": "img/web-probe-web--settings.jpg"
     },
     {
      "label": "Configuration",
@@ -2666,8 +2401,9 @@
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
+      "3 videos",
       "nginx.org",
-      "Start",
+      "Install",
       "Documentation for nginx",
       "Save & check"
      ],
@@ -2681,8 +2417,9 @@
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
+      "3 videos",
       "nginx.org",
-      "Start",
+      "Install",
       "Everything",
       "Show time",
       "Larger font",
@@ -2703,8 +2440,9 @@
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
+      "3 videos",
       "nginx.org",
-      "Start"
+      "Install"
      ],
      "fields": [],
      "tipTexts": [],
@@ -2720,44 +2458,31 @@
    "intro": "MariaDB 11.8.3 · Port 13390 · user root · without password mariadb.org",
    "areas": [
     "Backups",
-    "Log",
-    "Settings",
-    "Version",
-    "Remove"
+    "Version"
    ],
    "actions": [
     "Change image",
     "Mark as favorite (then listed at the top)",
+    "2 videos",
     "mariadb.org",
     "New in 11.8.3",
     "Other databases",
     "Open in Studio",
-    "Start",
     "Copy",
+    "Schedule →",
     "Start Server",
+    "Upload dump",
     "Back up now",
-    "Everything",
-    "Show time",
-    "Larger font",
-    "Wrap long lines",
-    "Save as text file",
-    "Empty",
-    "Pause",
-    "Live",
-    "Apply",
-    "Change",
     "Update",
-    "Remove server …"
+    "Other version …"
    ],
    "fields": [
-    "Back up automatically",
-    "Name",
-    "Port",
-    "Start with Hostwerk",
-    "Password"
+    "Back up automatically"
    ],
    "tabs": [
     "Overview",
+    "Settings",
+    "Log",
     "Notes"
    ],
    "tips": 0,
@@ -2765,45 +2490,83 @@
    "shot": "img/dbs-probe-db.jpg",
    "tabsDetail": [
     {
-     "label": "Notes",
+     "label": "Settings",
      "areas": [
-      "Backups",
-      "Log",
       "Settings",
-      "Version",
+      "Fine-tuning",
       "Remove"
      ],
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
+      "2 videos",
       "mariadb.org",
       "New in 11.8.3",
       "Other databases",
       "Open in Studio",
-      "Start",
-      "Copy",
+      "Apply",
+      "Change",
       "Start Server",
-      "Back up now",
+      "Save",
+      "Remove server …"
+     ],
+     "fields": [
+      "Name",
+      "Port",
+      "Start with Hostwerk",
+      "Password",
+      "Reachable from the network",
+      "Buffer (MB)",
+      "Max. connections",
+      "Character set",
+      "Record slow queries"
+     ],
+     "tipTexts": [
+      "Hostwerk writes the server configuration from this. Changes take effect after a restart – if the server is running, Hostwerk restarts it when saving.",
+      "innodb_buffer_pool_size: memory for tables and indexes. The larger, the less often the disk is needed. Hostwerk default: 256 MB.",
+      "How many programs may be connected at the same time. Empty = database default (usually 100 or 151).",
+      "Applies to new databases and tables without their own setting. utf8mb4 supports all characters including emojis."
+     ],
+     "shot": "img/dbs-probe-db--settings.jpg"
+    },
+    {
+     "label": "Log",
+     "areas": [],
+     "actions": [
+      "Change image",
+      "Mark as favorite (then listed at the top)",
+      "2 videos",
+      "mariadb.org",
+      "New in 11.8.3",
+      "Other databases",
+      "Open in Studio",
       "Everything",
       "Show time",
       "Larger font",
       "Wrap long lines",
+      "Copy",
       "Save as text file",
       "Empty",
       "Pause",
-      "Live",
-      "Apply",
-      "Change",
-      "Update",
-      "Remove server …"
+      "Live"
      ],
-     "fields": [
-      "Back up automatically",
-      "Name",
-      "Port",
-      "Start with Hostwerk",
-      "Password"
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/dbs-probe-db--log.jpg"
+    },
+    {
+     "label": "Notes",
+     "areas": [],
+     "actions": [
+      "Change image",
+      "Mark as favorite (then listed at the top)",
+      "2 videos",
+      "mariadb.org",
+      "New in 11.8.3",
+      "Other databases",
+      "Open in Studio"
      ],
+     "fields": [],
      "tipTexts": [],
      "shot": "img/dbs-probe-db--notes.jpg"
     }
@@ -2818,7 +2581,7 @@
    "areas": [
     "Health",
     "Online (0)",
-    "This is how players see your server"
+    "Server icon"
    ],
    "actions": [
     "Change image",
@@ -2826,31 +2589,15 @@
     "papermc.io",
     "Start",
     "measure",
+    "Details",
     "Copy",
-    "Allow phone & console players (Bedrock)",
+    "Allow Bedrock",
     "Player management",
-    "§0",
-    "§1",
-    "§2",
-    "§3",
-    "§4",
-    "§5",
-    "§6",
-    "§7",
-    "§8",
-    "§9",
-    "§a",
-    "§b",
-    "§c",
-    "§d",
-    "§e",
-    "§f",
-    "Save",
-    "Choose icon"
+    "Choose icon …",
+    "From the extension “Minecraft servers” – info",
+    "From the extension “MOTD studio” – info"
    ],
-   "fields": [
-    "Description (MOTD)"
-   ],
+   "fields": [],
    "tabs": [
     "Overview",
     "Console",
@@ -2893,13 +2640,19 @@
       "Online",
       "Operators",
       "Whitelist",
-      "Banned"
+      "Banned",
+      "Leaderboard",
+      "Online now"
      ],
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
       "papermc.io",
-      "Start"
+      "Start",
+      "Leaderboard",
+      "From the extension “Player leaderboard” – info",
+      "Online now",
+      "From the extension “Players” – info"
      ],
      "fields": [],
      "tipTexts": [
@@ -2910,22 +2663,19 @@
     {
      "label": "Plugins",
      "areas": [
-      "Plugin live update",
       "Installed",
-      "More sources",
-      "Quick search"
+      "Plugin live update",
+      "More sources"
      ],
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
       "papermc.io",
       "Start",
+      "Add plugin …",
       "Turn on live update",
       "Find projects",
-      "Link",
-      "Go to marketplace",
-      "Search",
-      "Install"
+      "Link"
      ],
      "fields": [],
      "tipTexts": [],
@@ -2942,6 +2692,8 @@
       "Mark as favorite (then listed at the top)",
       "papermc.io",
       "Start",
+      "Upload world …",
+      "Pre-generate …",
       "Reload"
      ],
      "fields": [],
@@ -2951,42 +2703,32 @@
     {
      "label": "Settings",
      "areas": [
-      "Game (server.properties)",
-      "Performance & start",
-      "All properties"
+      "Memory & Java"
      ],
      "actions": [
       "Change image",
       "Mark as favorite (then listed at the top)",
       "papermc.io",
       "Start",
-      "Save",
-      "Browse",
-      "server.properties in the editor"
+      "Memory & Java",
+      "Automation",
+      "General",
+      "World & game",
+      "Performance",
+      "Tech",
+      "Resource pack",
+      "Chat & more",
+      "All properties",
+      "Browse"
      ],
      "fields": [
-      "Description (MOTD)",
-      "Port",
-      "Max. players",
-      "Kick idle players (min.)",
-      "Pause without players (s)",
-      "Online mode",
-      "Whitelist",
-      "Strict whitelist",
-      "Visible in the server list",
-      "Hide player list",
       "Name",
       "Max. RAM: 2,0 GB",
       "Start RAM (MB)",
       "Java version",
       "JVM optimization",
       "Additional JVM arguments",
-      "Custom Java path (optional)",
-      "Start with Hostwerk",
-      "Restart after crash",
-      "Update server software automatically",
-      "Update plugins automatically",
-      "Check after every start"
+      "Custom Java path (optional)"
      ],
      "tipTexts": [],
      "shot": "img/mc-probe-mc--settings.jpg"
@@ -3026,6 +2768,1182 @@
      "shot": "img/mc-probe-mc--notes.jpg"
     }
    ]
+  },
+  {
+   "route": "ext/ai-media",
+   "slug": "ext-ai-media",
+   "title": "Image & video studio",
+   "activeTab": "",
+   "intro": "Describe it – Hostwerk creates the picture or video with the model you chose in the AI helper. Everything lands in the media library.",
+   "areas": [
+    "Create",
+    "Media library"
+   ],
+   "actions": [
+    "Models & budget",
+    "Open AI settings",
+    "Select"
+   ],
+   "fields": [
+    "What should the picture show?"
+   ],
+   "tabs": [],
+   "tips": 2,
+   "tipTexts": [
+    "Variants Several pictures from the same description in one go – pick the best one. Each one costs the same as a single picture.",
+    "Pictures and videos from the studio and from the AI chat. Use one as the start for the next, or name its ID in the chat."
+   ],
+   "shot": "img/ext-ai-media.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/api-tester",
+   "slug": "ext-api-tester",
+   "title": "API tester → Headers (0)",
+   "activeTab": "Headers (0)",
+   "intro": "Send requests to your projects, save them in collections and reuse them.",
+   "areas": [
+    "Answer"
+   ],
+   "actions": [
+    "Paste curl",
+    "Import",
+    "New collection",
+    "My first collection",
+    "GET Home page",
+    "New request",
+    "Run collection",
+    "As a task",
+    "Export",
+    "Start page",
+    "no folder",
+    "Measure this request",
+    "Check page",
+    "Copy as curl",
+    "Remove request",
+    "Send",
+    "Sample Web"
+   ],
+   "fields": [],
+   "tabs": [
+    "Headers (0)",
+    "Body",
+    "Checks (1)",
+    "Variables (1)",
+    "Settings"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "Environments Switch between local, staging and live in one go: the values of the chosen environment replace the variables of the collection – {{base}} points to the right server."
+   ],
+   "shot": "img/ext-api-tester.jpg",
+   "tabsDetail": [
+    {
+     "label": "Body",
+     "areas": [
+      "Answer"
+     ],
+     "actions": [
+      "Paste curl",
+      "Import",
+      "New collection",
+      "My first collection",
+      "GET Home page",
+      "New request",
+      "Run collection",
+      "As a task",
+      "Export",
+      "Start page",
+      "no folder",
+      "Measure this request",
+      "Check page",
+      "Copy as curl",
+      "Remove request",
+      "Send",
+      "Sample Web"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Environments Switch between local, staging and live in one go: the values of the chosen environment replace the variables of the collection – {{base}} points to the right server."
+     ],
+     "shot": "img/ext-api-tester--body.jpg"
+    },
+    {
+     "label": "Checks (1)",
+     "areas": [
+      "Answer"
+     ],
+     "actions": [
+      "Paste curl",
+      "Import",
+      "New collection",
+      "My first collection",
+      "GET Home page",
+      "New request",
+      "Run collection",
+      "As a task",
+      "Export",
+      "Start page",
+      "no folder",
+      "Measure this request",
+      "Check page",
+      "Copy as curl",
+      "Remove request",
+      "Send",
+      "Sample Web",
+      "Remove",
+      "Add check"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Environments Switch between local, staging and live in one go: the values of the chosen environment replace the variables of the collection – {{base}} points to the right server."
+     ],
+     "shot": "img/ext-api-tester--checks-1.jpg"
+    },
+    {
+     "label": "Variables (1)",
+     "areas": [
+      "Answer"
+     ],
+     "actions": [
+      "Paste curl",
+      "Import",
+      "New collection",
+      "My first collection",
+      "GET Home page",
+      "New request",
+      "Run collection",
+      "As a task",
+      "Export",
+      "Start page",
+      "no folder",
+      "Measure this request",
+      "Check page",
+      "Copy as curl",
+      "Remove request",
+      "Send",
+      "Sample Web",
+      "Mark as secret",
+      "Remove",
+      "New environment",
+      "Remove environment",
+      "Remove collection"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Environments Switch between local, staging and live in one go: the values of the chosen environment replace the variables of the collection – {{base}} points to the right server.",
+      "Variables They belong to the collection, so every request in it uses the same values. Secret values (lock) are stored sealed on this PC and only shown masked – the history never keeps them."
+     ],
+     "shot": "img/ext-api-tester--variables-1.jpg"
+    },
+    {
+     "label": "Settings",
+     "areas": [
+      "Answer"
+     ],
+     "actions": [
+      "Paste curl",
+      "Import",
+      "New collection",
+      "My first collection",
+      "GET Home page",
+      "New request",
+      "Run collection",
+      "As a task",
+      "Export",
+      "Start page",
+      "no folder",
+      "Measure this request",
+      "Check page",
+      "Copy as curl",
+      "Remove request",
+      "Send",
+      "Sample Web"
+     ],
+     "fields": [
+      "Follow redirects",
+      "Time limit (seconds)",
+      "Remember cookies"
+     ],
+     "tipTexts": [
+      "Environments Switch between local, staging and live in one go: the values of the chosen environment replace the variables of the collection – {{base}} points to the right server."
+     ],
+     "shot": "img/ext-api-tester--settings.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/backup-calendar",
+   "slug": "ext-backup-calendar",
+   "title": "Backup calendar",
+   "activeTab": "",
+   "intro": "Every planned backup in one calendar – and whether the last ones worked.",
+   "areas": [
+    "Status",
+    "Next 14 days"
+   ],
+   "actions": [
+    "Cloud backup",
+    "Set up backups",
+    "Databases 1 never backed up",
+    "Minecraft all backed up",
+    "External not set up",
+    "Restore probes 1 never backed up",
+    "Extensions all backed up",
+    "Show templates",
+    "Which tasks count …",
+    "Share"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 2,
+   "tipTexts": [
+    "Backup calendar All scheduled backups – tasks, nightly backups, external backup and restore probes – and whether the last ones worked. Failures come first.",
+    "Share the calendar Export saves the next weeks as a .ics file. The subscription link keeps Outlook, Google, Apple or Thunderbird up to date (“subscribe to calendar” / “add from URL”). It works on this PC – from outside only through Hostwerk’s remote access. Anyone with the link sees the names of your backup tasks."
+   ],
+   "shot": "img/ext-backup-calendar.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/cert-watch",
+   "slug": "ext-cert-watch",
+   "title": "Certificate watch",
+   "activeTab": "",
+   "intro": "How long every certificate is still valid – Hostwerk’s own and any host you add.",
+   "areas": [
+    "All certificates"
+   ],
+   "actions": [
+    "Check all",
+    "Thresholds",
+    "Watch",
+    "Set up reminders"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Any host and port Hostwerk opens a TLS connection and reads the certificate – web pages (443), mail (465, 993, 995 and 25/587 with STARTTLS), router or NAS. Nothing else is sent."
+   ],
+   "shot": "img/ext-cert-watch.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/cloud-backup",
+   "slug": "ext-cloud-backup",
+   "title": "Cloud backup",
+   "activeTab": "",
+   "intro": "Hostwerk's external backup – encrypted to OneDrive, Google Drive, an S3 bucket, Nextcloud or an SFTP server.",
+   "areas": [
+    "1. Program",
+    "2. Target",
+    "3. Recovery key",
+    "4. Use for the external backup"
+   ],
+   "actions": [
+    "Fold",
+    "Install rclone",
+    "Open"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "How it works Hostwerk keeps doing the backups (databases, Minecraft worlds, web pages) on its schedule. This extension only brings the cloud target: rclone uploads them, encrypted on this PC – the provider never sees the content."
+   ],
+   "shot": "img/ext-cloud-backup.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/deploy-log",
+   "slug": "ext-deploy-log",
+   "title": "Deploy log",
+   "activeTab": "",
+   "intro": "What was published when – with commit and snapshot, and one click back to an earlier state.",
+   "areas": [],
+   "actions": [],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-deploy-log.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/discord-bot",
+   "slug": "ext-discord-bot",
+   "title": "Discord control",
+   "activeTab": "",
+   "intro": "Your own Discord bot: /status, /players, /start, /stop and /restart from your Discord server.",
+   "areas": [
+    "Set up your bot",
+    "Who may do what",
+    "Services in Discord"
+   ],
+   "actions": [
+    "Open the developer portal",
+    "Save token"
+   ],
+   "fields": [
+    "May start, stop and restart",
+    "May see status and players",
+    "Server admins may always",
+    "Ask before starting too"
+   ],
+   "tabs": [],
+   "tips": 5,
+   "tipTexts": [
+    "Commands /status – which services run · /players – who is online · /start, /stop, /restart <service> – with a confirm button for stop and restart. German Discord shows /spieler and /neustart.",
+    "Your own bot The bot belongs to you: Hostwerk logs in with your token, the token stays encrypted on this PC and only goes to Discord.",
+    "How to get the token Open the Discord developer portal and create a “New Application” – its name is what people see in Discord, for example “Hostwerk”. Under “Bot” click “Reset Token” and copy the token. No special intents are needed. Paste the token here.",
+    "Rights Everyone on your Discord server may use /status and /players. Starting, stopping and restarting is only for the roles chosen here, server admins (if allowed) and linked team members – for exactly the services shared with them in the Team extension.",
+    "Shared services Only these appear in /status and can be started or stopped from Discord. Others stay invisible there – even for admins."
+   ],
+   "shot": "img/ext-discord-bot.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/discord-status",
+   "slug": "ext-discord-status",
+   "title": "Discord status",
+   "activeTab": "",
+   "intro": "Shows “Playing Hostwerk” in your Discord profile – even when Hostwerk only runs in the tray.",
+   "areas": [
+    "Settings",
+    "How it looks"
+   ],
+   "actions": [
+    "Images, own button and application"
+   ],
+   "fields": [
+    "Share status in Discord",
+    "Show running services",
+    "Show player count",
+    "Show server name",
+    "Button “View status”"
+   ],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "What is shared? Only kinds of services (for example web server · database) and how many are running. Never project or folder names – a server name only if you switch it on."
+   ],
+   "shot": "img/ext-discord-status.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/disk-health",
+   "slug": "ext-disk-health",
+   "title": "Drives",
+   "activeTab": "",
+   "intro": "How healthy and how full your drives are – checked regularly.",
+   "areas": [
+    "Predator SSD GM7 2TB"
+   ],
+   "actions": [
+    "Check now",
+    "Check with admin rights",
+    "0000_0000_0000_0000_50C6_8E52_7150_2160"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 4,
+   "tipTexts": [
+    "Drives Hostwerk reads the S.M.A.R.T. values of every drive – temperature, wear, errors – and tells you when something gets worse, and shows how full the drive is and who uses the space. Nothing on a drive is ever changed.",
+    "Check regularly with admin rights Hostwerk sets up a Windows task that reads the values every hour with administrator rights. Windows asks for permission once. The task only reads and removes itself when you uninstall the extension.",
+    "Why administrator rights? Without administrator rights Windows only shows whether a drive is healthy. Temperature, wear and error counters are read in a single check – Windows asks for permission once. Hostwerk itself keeps running without admin rights.",
+    "Notifications Warnings go to Hostwerk’s notifications (push, Discord, ntfy, mail) and appear under Go live → Monitoring → Watchers."
+   ],
+   "shot": "img/ext-disk-health.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/disk-usage",
+   "slug": "ext-disk-usage",
+   "title": "Storage per service",
+   "activeTab": "",
+   "intro": "Space used per service and free space on the drive.",
+   "areas": [],
+   "actions": [
+    "From the extension “Storage per service” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-disk-usage.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/dns",
+   "slug": "ext-dns",
+   "title": "DNS → Names",
+   "activeTab": "Names",
+   "intro": "Names for this connection – free or with your own domain – and all records at your provider, kept up to date by themselves.",
+   "areas": [
+    "This connection",
+    "Names that follow this connection"
+   ],
+   "actions": [
+    "Add provider",
+    "Set up a name"
+   ],
+   "fields": [],
+   "tabs": [
+    "Names",
+    "Records",
+    "Providers"
+   ],
+   "tips": 2,
+   "tipTexts": [
+    "This connection The address the internet sees. Hostwerk asks several services (no account needed) and only trusts an address two of them agree on. For IPv6 it uses this PC’s fixed address, not the changing privacy address.",
+    "Maintenance-free Every 5 minutes Hostwerk checks the address and updates a name only when it changed. Every 6 hours it checks that the world really sees this connection. Problems come as one notification; a provider that is down is retried with growing pauses."
+   ],
+   "shot": "img/ext-dns.jpg",
+   "tabsDetail": [
+    {
+     "label": "Records",
+     "areas": [],
+     "actions": [
+      "Add provider",
+      "Set up a name"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-dns--records.jpg"
+    },
+    {
+     "label": "Providers",
+     "areas": [
+      "Providers",
+      "Mail server records"
+     ],
+     "actions": [
+      "Add provider",
+      "Set up a name"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Mail server records MX, SPF, DKIM and DMARC from the extension “Mail server”. Records that are missing at your provider are set with one click; existing SPF/DMARC records are replaced, nothing else is touched."
+     ],
+     "shot": "img/ext-dns--providers.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/file-share",
+   "slug": "ext-file-share",
+   "title": "File share",
+   "activeTab": "",
+   "intro": "Share a folder over SFTP or as a download link – for worlds, mods or photos.",
+   "areas": [
+    "Shares",
+    "Activity"
+   ],
+   "actions": [
+    "How others connect …",
+    "Settings",
+    "Share a folder",
+    "Start",
+    "Copy",
+    "Show as QR code",
+    "Forward port"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 2,
+   "tipTexts": [
+    "Fingerprint On the first connection the SFTP program shows this fingerprint. If it is the same, the connection really goes to this PC.",
+    "Router Windows may ask once whether Hostwerk may receive connections – allow it for private networks."
+   ],
+   "shot": "img/ext-file-share.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/knowledge-graph",
+   "slug": "ext-knowledge-graph",
+   "title": "Knowledge graph → Graph",
+   "activeTab": "Graph",
+   "intro": "Code, docs and notes as a graph – ask questions, see connections, connect Claude and forget it again.",
+   "areas": [],
+   "actions": [
+    "From the extension “Knowledge graph” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [
+    "Graph",
+    "Ask",
+    "Report",
+    "Obsidian",
+    "Claude"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-knowledge-graph.jpg",
+   "tabsDetail": [
+    {
+     "label": "Ask",
+     "areas": [],
+     "actions": [
+      "From the extension “Knowledge graph” – info",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-knowledge-graph--ask.jpg"
+    },
+    {
+     "label": "Report",
+     "areas": [],
+     "actions": [
+      "From the extension “Knowledge graph” – info",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-knowledge-graph--report.jpg"
+    },
+    {
+     "label": "Obsidian",
+     "areas": [],
+     "actions": [
+      "From the extension “Knowledge graph” – info",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-knowledge-graph--obsidian.jpg"
+    },
+    {
+     "label": "Claude",
+     "areas": [],
+     "actions": [
+      "From the extension “Knowledge graph” – info",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-knowledge-graph--claude.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/mail-stats",
+   "slug": "ext-mail-stats",
+   "title": "Mail statistics",
+   "activeTab": "",
+   "intro": "How many e-mails your projects send – per day, per project, per sender and recipient. Data from the mail catcher.",
+   "areas": [],
+   "actions": [
+    "From the extension “Mail statistics” – info",
+    "Settings",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-mail-stats.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/mc-network",
+   "slug": "ext-mc-network",
+   "title": "Minecraft server network",
+   "activeTab": "",
+   "intro": "Several servers behind one address, Java and Bedrock together – kept up to date by itself.",
+   "areas": [],
+   "actions": [
+    "New network",
+    "Bedrock only"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "How it fits together A proxy (Velocity) is the one address players connect to; it sends them to your servers and lets them switch with /server. Geyser on the proxy translates for Bedrock players (phone, console, Windows), Floodgate lets them in without a Java account. ViaVersion lets other Minecraft versions in. A Bedrock Dedicated Server is something else: Mojang’s own server with a separate Bedrock-only world."
+   ],
+   "shot": "img/ext-mc-network.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/modes",
+   "slug": "ext-modes",
+   "title": "One click",
+   "activeTab": "",
+   "intro": "Services for one job and your tasks – each with one click.",
+   "areas": [
+    "Modes",
+    "Tasks"
+   ],
+   "actions": [
+    "From running services",
+    "New mode",
+    "Web development Web servers, databases and mail catcher",
+    "Minecraft night Only the Minecraft servers",
+    "Break Everything off – saves power and memory",
+    "Mark as favorite (then listed at the top)",
+    "Run"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-modes.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/motd-studio",
+   "slug": "ext-motd-studio",
+   "title": "MOTD studio → Editor",
+   "activeTab": "Editor",
+   "intro": "Design the description and icon in the server list – colours, templates, preview. Saving and restarting ask first.",
+   "areas": [],
+   "actions": [
+    "From the extension “MOTD studio” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [
+    "Editor",
+    "Colour codes"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-motd-studio.jpg",
+   "tabsDetail": [
+    {
+     "label": "Colour codes",
+     "areas": [],
+     "actions": [
+      "From the extension “MOTD studio” – info",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-motd-studio--colour-codes.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/my-addon",
+   "slug": "ext-my-addon",
+   "title": "My add-on",
+   "activeTab": "",
+   "intro": "Notes for “My Extension” – also right there as an own tab.",
+   "areas": [],
+   "actions": [
+    "From the extension “My add-on” – info",
+    "Settings",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-my-addon.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/my-service-tab",
+   "slug": "ext-my-service-tab",
+   "title": "My service tab",
+   "activeTab": "",
+   "intro": "All notes on your services at a glance.",
+   "areas": [],
+   "actions": [
+    "From the extension “My service tab” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-my-service-tab.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/page-check",
+   "slug": "ext-page-check",
+   "title": "Page check",
+   "activeTab": "",
+   "intro": "How fast is the page, what do search engines see, can everyone use it and is it safe? With concrete tips.",
+   "areas": [
+    "Regular checks",
+    "Before publishing"
+   ],
+   "actions": [
+    "Check",
+    "Sample Web",
+    "Save"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 2,
+   "tipTexts": [
+    "Regular checks Hostwerk checks these addresses on its own and tells you when the score drops by 5 points or more.",
+    "Minimum score Publishing extensions (e.g. “Publish pages”) check the page first and stop below this score. 0 = off."
+   ],
+   "shot": "img/ext-page-check.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/player-leaderboard",
+   "slug": "ext-player-leaderboard",
+   "title": "Leaderboard → Leaderboard",
+   "activeTab": "Leaderboard",
+   "intro": "Who plays, mines, kills or dies the most – across all Minecraft servers or per server, all time or for the week and month, with player search, profile card, badges and history. Right in the “Players” tab of every Minecraft server, as a stream view for OBS and, if you like, as an own web page in your web server.",
+   "areas": [],
+   "actions": [
+    "From the extension “Leaderboard” – info",
+    "Settings",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [
+    "Leaderboard",
+    "Stream view",
+    "Web page"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-player-leaderboard.jpg",
+   "tabsDetail": [
+    {
+     "label": "Stream view",
+     "areas": [],
+     "actions": [
+      "From the extension “Leaderboard” – info",
+      "Settings",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-player-leaderboard--stream-view.jpg"
+    },
+    {
+     "label": "Web page",
+     "areas": [],
+     "actions": [
+      "From the extension “Leaderboard” – info",
+      "Settings",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-player-leaderboard--web-page.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/player-ticker",
+   "slug": "ext-player-ticker",
+   "title": "Players → Live",
+   "activeTab": "Live",
+   "intro": "Who is playing right now and who plays the most – across all Minecraft and game servers.",
+   "areas": [],
+   "actions": [
+    "From the extension “Players” – info",
+    "Settings",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [
+    "Live",
+    "Joins and leaves",
+    "Leaderboard",
+    "Stream view",
+    "Web page"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-player-ticker.jpg",
+   "tabsDetail": [
+    {
+     "label": "Joins and leaves",
+     "areas": [],
+     "actions": [
+      "From the extension “Players” – info",
+      "Settings",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-player-ticker--joins-and-leaves.jpg"
+    },
+    {
+     "label": "Leaderboard",
+     "areas": [],
+     "actions": [
+      "From the extension “Players” – info",
+      "Settings",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-player-ticker--leaderboard.jpg"
+    },
+    {
+     "label": "Stream view",
+     "areas": [],
+     "actions": [
+      "From the extension “Players” – info",
+      "Settings",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-player-ticker--stream-view.jpg"
+    },
+    {
+     "label": "Web page",
+     "areas": [],
+     "actions": [
+      "From the extension “Players” – info",
+      "Settings",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-player-ticker--web-page.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/port-map",
+   "slug": "ext-port-map",
+   "title": "Ports",
+   "activeTab": "",
+   "intro": "Now built into Hostwerk (System → Services → Ports & services). All ports of your services in one list: what runs, what another program blocks, where two services want the same port, what the router forwards – “change port” with one click, a free check and free suggestions to copy.",
+   "areas": [],
+   "actions": [
+    "From the extension “Ports” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-port-map.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/profiler",
+   "slug": "ext-profiler",
+   "title": "Profiler",
+   "activeTab": "",
+   "intro": "Find out why a page or app is slow – which functions and database queries take the time.",
+   "areas": [
+    "Projects",
+    "Latest measurements"
+   ],
+   "actions": [],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-profiler.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/quick-tasks",
+   "slug": "ext-quick-tasks",
+   "title": "Quick tasks",
+   "activeTab": "",
+   "intro": "Your tasks as big buttons – one click runs a backup, a report or a script (Hostwerk asks first). Pin favourites, also as a tile.",
+   "areas": [],
+   "actions": [
+    "From the extension “Quick tasks” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-quick-tasks.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/router",
+   "slug": "ext-router",
+   "title": "Router & port forwarding",
+   "activeTab": "",
+   "intro": "Reach your servers from the internet: forwardings, IPv6, DynDNS and – after signing in – devices and Wi-Fi of your router.",
+   "areas": [
+    "Forward automatically",
+    "Hostwerk's ports"
+   ],
+   "actions": [
+    "Open in Go live",
+    "Sign in …",
+    "Check now",
+    "Copy IPv4",
+    "Copy IPv6",
+    "Connection details …",
+    "Search again",
+    "Sync now",
+    "Own forwarding",
+    "Open the router interface",
+    "Forward"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 3,
+   "tipTexts": [
+    "Forward automatically Hostwerk forwards the ports of your public services (websites with a domain, Minecraft, mail server, remote access) in the router and keeps them up to date – also after new servers or changed ports.",
+    "Manage forwardings automatically Checks every 30 minutes and after the start; cleans up Hostwerk forwardings that are no longer needed.",
+    "Tip for FRITZ!Box On the FRITZ!Box under Internet → Permit Access → Port Sharing, switch on \"Permit independent port sharing for this device\" for this PC. Otherwise it refuses automatic forwardings. Open router"
+   ],
+   "shot": "img/ext-router.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/schematics-3d",
+   "slug": "ext-schematics-3d",
+   "title": "Schematics in 3D",
+   "activeTab": "",
+   "intro": "Look at Minecraft builds before you place them – from WorldEdit, Litematica, MCEdit and structure blocks.",
+   "areas": [],
+   "actions": [
+    "Open files"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Where do the files come from? Hostwerk looks through the folders of your Minecraft servers (for example plugins/WorldEdit/schematics, schematics/ or structures/). Any build file in the file browser opens in 3D as well."
+   ],
+   "shot": "img/ext-schematics-3d.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/service-notes",
+   "slug": "ext-service-notes",
+   "title": "Notes → Checklist",
+   "activeTab": "Checklist",
+   "intro": "All notes about your services – with search and checklists you can tick off.",
+   "areas": [],
+   "actions": [
+    "From the extension “Notes” – info",
+    "Reload",
+    "From the extension “My add-on” – info"
+   ],
+   "fields": [],
+   "tabs": [
+    "Checklist"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-service-notes.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/static-publish",
+   "slug": "ext-static-publish",
+   "title": "Publish static sites",
+   "activeTab": "",
+   "intro": "Put a project online with one click – on GitHub Pages, Cloudflare Pages, Codeberg Pages or your own server.",
+   "areas": [],
+   "actions": [
+    "Accounts",
+    "New site",
+    "Add account"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-static-publish.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/team",
+   "slug": "ext-team",
+   "title": "Team & roles → Users",
+   "activeTab": "Users",
+   "intro": "Let friends and colleagues in – each with their own sign-in and only the rights they need.",
+   "areas": [
+    "Users"
+   ],
+   "actions": [
+    "Add user"
+   ],
+   "fields": [],
+   "tabs": [
+    "Users",
+    "Activity",
+    "Team setup"
+   ],
+   "tips": 1,
+   "tipTexts": [
+    "How roles work Every person signs in to remote access with their own name and password (or passkey). Members only see and control the services and areas you share – for example “start the survival server and manage players”. The change log shows who did what."
+   ],
+   "shot": "img/ext-team.jpg",
+   "tabsDetail": [
+    {
+     "label": "Activity",
+     "areas": [
+      "Activity"
+     ],
+     "actions": [],
+     "fields": [],
+     "tipTexts": [
+      "Activity What members changed (from Hostwerk's change log) and what they tried without permission. Refused attempts are kept here – the last 200."
+     ],
+     "shot": "img/ext-team--activity.jpg"
+    },
+    {
+     "label": "Team setup",
+     "areas": [
+      "Team setup"
+     ],
+     "actions": [
+      "Folder",
+      "Connect"
+     ],
+     "fields": [
+      "Folder"
+     ],
+     "tipTexts": [
+      "What is a team setup? One shared setup for everyone in the team: it lives in a shared folder (OneDrive, network drive, Git repository) or at an address. Hostwerk checks every 15 minutes for changes and asks before taking anything over – it only adds what is missing."
+     ],
+     "shot": "img/ext-team--team-setup.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/uptime-wall",
+   "slug": "ext-uptime-wall",
+   "title": "Uptime wall → Wall",
+   "activeTab": "Wall",
+   "intro": "Uptime of all monitors at a glance.",
+   "areas": [],
+   "actions": [
+    "From the extension “Uptime wall” – info",
+    "Reload"
+   ],
+   "fields": [],
+   "tabs": [
+    "Wall",
+    "Public status page"
+   ],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-uptime-wall.jpg",
+   "tabsDetail": [
+    {
+     "label": "Public status page",
+     "areas": [],
+     "actions": [
+      "From the extension “Uptime wall” – info",
+      "Reload"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/ext-uptime-wall--public-status-page.jpg"
+    }
+   ]
+  },
+  {
+   "route": "ext/visitor-stats",
+   "slug": "ext-visitor-stats",
+   "title": "Visitor stats",
+   "activeTab": "",
+   "intro": "Visitors of your sites – from the web server logs, without cookies.",
+   "areas": [],
+   "actions": [
+    "Read new log lines now",
+    "Set up …"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "Privacy No cookies, no fingerprint. IP addresses are shortened (the last part removed) and turned into a hash that changes every day – after two days not even this PC can link visits. Bots, crawlers, uptime checks, images and scripts are left out. Nothing leaves this PC."
+   ],
+   "shot": "img/ext-visitor-stats.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/vpn",
+   "slug": "ext-vpn",
+   "title": "VPN",
+   "activeTab": "",
+   "intro": "Reach this PC from anywhere – one port forwarding instead of many, everything else stays private.",
+   "areas": [],
+   "actions": [
+    "Settings",
+    "New access",
+    "How to install it …",
+    "Check again"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 1,
+   "tipTexts": [
+    "WireGuard is missing You can already create accesses – the configurations work as soon as the tunnel runs."
+   ],
+   "shot": "img/ext-vpn.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/vuln-watch",
+   "slug": "ext-vuln-watch",
+   "title": "Vulnerabilities",
+   "activeTab": "",
+   "intro": "Known vulnerabilities of everything Hostwerk runs – matched to the installed version, ordered by severity.",
+   "areas": [
+    "Hostwerk (Node.js) 24.18.0"
+   ],
+   "actions": [
+    "Check now",
+    "Critical 5",
+    "High 12",
+    "Medium 11",
+    "Low 0",
+    "Exploited 1",
+    "End of life 0",
+    "Hostwerk can fix 0",
+    "What is checked: 4 services …",
+    "Only exploited",
+    "Only fixable",
+    "Show ignored",
+    "Hostwerk (Node.js) 24.18.0 1 1 Critical 1 High 2 Medium",
+    "Sample DB 11.8.3 4 Critical 11 High 9 Medium",
+    "Open",
+    "High 8.4 A flaw in Node.js Permission Model enforcement can over-grant filesystem access across radix-tree prefix boundaries. CVE-2026-58043"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 2,
+   "tipTexts": [
+    "Act now There are critical or actively exploited vulnerabilities.",
+    "Sources Free databases without a key: OSV.dev, the NVD (by CPE), CISA’s list of exploited vulnerabilities and FIRST’s EPSS. Hostwerk asks once a day, bundled and throttled, and keeps the answers – if a source is down, the last state stays. New critical or exploited findings go to Hostwerk’s notifications (Settings → Notifications)."
+   ],
+   "shot": "img/ext-vuln-watch.jpg",
+   "tabsDetail": []
+  },
+  {
+   "route": "ext/webhook-inbox",
+   "slug": "ext-webhook-inbox",
+   "title": "Webhook inbox",
+   "activeTab": "",
+   "intro": "Receive webhooks from Stripe, GitHub & co., look inside, check signatures and pass them on to your project.",
+   "areas": [],
+   "actions": [
+    "Settings",
+    "Start receiver",
+    "Copy",
+    "Make public",
+    "Fixed address"
+   ],
+   "fields": [],
+   "tabs": [],
+   "tips": 0,
+   "tipTexts": [],
+   "shot": "img/ext-webhook-inbox.jpg",
+   "tabsDetail": []
   }
  ]
 }

@@ -6,12 +6,9 @@ Code, Doku und Notizen als Graph – Fragen stellen, Zusammenhänge sehen, Claud
 
 ![Wissensgraph → Graph](img/ext-knowledge-graph.jpg)
 
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)
-
 ### Was du hier tun kannst
 
+- Von der Erweiterung „Wissensgraph“ – Infos
 - Neu laden
 
 ## Reiter
@@ -20,33 +17,25 @@ Code, Doku und Notizen als Graph – Fragen stellen, Zusammenhänge sehen, Claud
 
 ![Fragen](img/ext-knowledge-graph--fragen.jpg)
 
-> Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)
-
-**Was du hier tun kannst:** Neu laden
+**Was du hier tun kannst:** Von der Erweiterung „Wissensgraph“ – Infos · Neu laden
 
 ### Bericht
 
 ![Bericht](img/ext-knowledge-graph--bericht.jpg)
 
-> Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)
-
-**Was du hier tun kannst:** Neu laden
+**Was du hier tun kannst:** Von der Erweiterung „Wissensgraph“ – Infos · Neu laden
 
 ### Obsidian
 
 ![Obsidian](img/ext-knowledge-graph--obsidian.jpg)
 
-> Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)
-
-**Was du hier tun kannst:** Neu laden
+**Was du hier tun kannst:** Von der Erweiterung „Wissensgraph“ – Infos · Neu laden
 
 ### Claude
 
 ![Claude](img/ext-knowledge-graph--claude.jpg)
 
-> Abgeschottete Erweiterung von Hostwerk · v1.4.0 · darf nach Rückfrage ändern Wissensgraph lesen (Projekte, Graph, Bericht, Gedächtnis, Claude-Status) Wissensgraph bauen und abfragen, Gedächtnis pflegen, Obsidian-Export Claude einbinden und wieder vergessen (mit Rückfrage)
-
-**Was du hier tun kannst:** Neu laden
+**Was du hier tun kannst:** Von der Erweiterung „Wissensgraph“ – Infos · Neu laden
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

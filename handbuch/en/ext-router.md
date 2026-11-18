@@ -6,35 +6,30 @@ Reach your servers from the internet: forwardings, IPv6, DynDNS and – after si
 
 ![Router & port forwarding](img/ext-router.jpg)
 
+### Good to know
+
+- Forward automatically Hostwerk forwards the ports of your public services (websites with a domain, Minecraft, mail server, remote access) in the router and keeps them up to date – also after new servers or changed ports.
+- Manage forwardings automatically Checks every 30 minutes and after the start; cleans up Hostwerk forwardings that are no longer needed.
+- Tip for FRITZ!Box On the FRITZ!Box under Internet → Permit Access → Port Sharing, switch on "Permit independent port sharing for this device" for this PC. Otherwise it refuses automatic forwardings. Open router
+
 ### Areas on this page
 
-- Router access
-- IPv6 & connection type
-- FRITZ!Box 7590
 - Forward automatically
 - Hostwerk's ports
-- All forwardings in the router
 
 ### What you can do here
 
-- Sign in
-- Copy
-- Save
+- Open in Go live
+- Sign in …
+- Check now
+- Copy IPv4
+- Copy IPv6
+- Connection details …
 - Search again
-- Open the router interface
 - Sync now
 - Own forwarding
-- Open router
-- Hide tip
+- Open the router interface
 - Forward
 
-### Inputs
 
-- User (optional)
-- Password
-- Open ports for IPv6 too
-- Provider
-- Manage forwardings automatically
-
-
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

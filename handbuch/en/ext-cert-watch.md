@@ -2,17 +2,24 @@
 
 [← Back to the overview](README.md)
 
-Days left for every certificate – Let’s Encrypt, local certificate and local CA.
+How long every certificate is still valid – Hostwerk’s own and any host you add.
 
 ![Certificate watch](img/ext-cert-watch.jpg)
 
 ### Good to know
 
-- Sandboxed extension by Hostwerk · v1.2.0 · read only Read certificates and uptime checks
+- Any host and port Hostwerk opens a TLS connection and reads the certificate – web pages (443), mail (465, 993, 995 and 25/587 with STARTTLS), router or NAS. Nothing else is sent.
+
+### Areas on this page
+
+- All certificates
 
 ### What you can do here
 
-- Reload
+- Check all
+- Thresholds
+- Watch
+- Set up reminders
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

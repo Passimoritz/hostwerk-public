@@ -1,0 +1,24 @@
+# Mailserver
+
+[← Zurück zur Übersicht](README.md)
+
+Echte Postfächer für deine Domain – Stalwart oder Apache James, eingerichtet und gepflegt von Hostwerk.
+
+![Mailserver](img/mail-server.jpg)
+
+### Bereiche auf dieser Seite
+
+- Welcher Mailserver soll es sein?
+
+### Was du hier tun kannst
+
+- Alle E-Mail-Varianten vergleichen
+- Weiter zur Einrichtung
+- Von einem anderen Rechner übernehmen …
+
+### Eingaben
+
+- Name in Hostwerk
+
+
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

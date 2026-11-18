@@ -2,16 +2,13 @@
 
 [← Zurück zur Übersicht](README.md)
 
-Beschreibung in der Serverliste gestalten – Farben, Formate, Vorschau. Speichern fragt vorher.
+Beschreibung und Symbol in der Serverliste gestalten – Farben, Vorlagen, Vorschau. Speichern und Neustart fragen vorher.
 
 ![MOTD-Studio → Editor](img/ext-motd-studio.jpg)
 
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.1.0 · darf nach Rückfrage ändern Minecraft-Server, Spieler und Statistiken lesen Minecraft-Einstellungen ändern (mit Rückfrage)
-
 ### Was du hier tun kannst
 
+- Von der Erweiterung „MOTD-Studio“ – Infos
 - Neu laden
 
 ## Reiter
@@ -20,9 +17,7 @@ Beschreibung in der Serverliste gestalten – Farben, Formate, Vorschau. Speiche
 
 ![Farbcodes](img/ext-motd-studio--farbcodes.jpg)
 
-> Abgeschottete Erweiterung von Hostwerk · v1.1.0 · darf nach Rückfrage ändern Minecraft-Server, Spieler und Statistiken lesen Minecraft-Einstellungen ändern (mit Rückfrage)
-
-**Was du hier tun kannst:** Neu laden
+**Was du hier tun kannst:** Von der Erweiterung „MOTD-Studio“ – Infos · Neu laden
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

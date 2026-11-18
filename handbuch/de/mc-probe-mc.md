@@ -10,7 +10,7 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 
 - Zustand
 - Online (0)
-- So sehen Spieler deinen Server
+- Server-Symbol
 
 ### Was du hier tun kannst
 
@@ -19,31 +19,13 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 - papermc.io
 - Starten
 - messen
+- Details
 - Kopieren
-- Handy- & Konsolen-Spieler erlauben (Bedrock)
+- Bedrock zulassen
 - Spielerverwaltung
-- §0
-- §1
-- §2
-- §3
-- §4
-- §5
-- §6
-- §7
-- §8
-- §9
-- §a
-- §b
-- §c
-- §d
-- §e
-- §f
-- Speichern
-- Symbol wählen
-
-### Eingaben
-
-- Beschreibung (MOTD)
+- Symbol wählen …
+- Von der Erweiterung „Minecraft-Server“ – Infos
+- Von der Erweiterung „MOTD-Studio“ – Infos
 
 ## Reiter
 
@@ -59,17 +41,17 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 
 > Spieler hinzufügen/entfernen geht über die Konsole und ist daher nur bei laufendem Server möglich.
 
-**Bereiche auf dieser Seite:** Online · Operatoren · Whitelist · Gebannt
+**Bereiche auf dieser Seite:** Online · Operatoren · Whitelist · Gebannt · Bestenliste · Gerade online
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Bestenliste · Von der Erweiterung „Spieler-Bestenliste“ – Infos · Gerade online · Von der Erweiterung „Spieler“ – Infos
 
 ### Plugins
 
 ![Plugins](img/mc-probe-mc--plugins.jpg)
 
-**Bereiche auf dieser Seite:** Plugin-Live-Update · Installiert · Weitere Quellen · Schnellsuche
+**Bereiche auf dieser Seite:** Installiert · Plugin-Live-Update · Weitere Quellen
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Live-Update einschalten · Projekte suchen · Verknüpfen · Zum Marktplatz · Suchen · Installieren
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Plugin hinzufügen … · Live-Update einschalten · Projekte suchen · Verknüpfen
 
 ### Welt
 
@@ -77,15 +59,15 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 
 **Bereiche auf dieser Seite:** Welten · Spielregeln
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Neu laden
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Welt hochladen … · Vorgenerieren … · Neu laden
 
 ### Einstellungen
 
 ![Einstellungen](img/mc-probe-mc--einstellungen.jpg)
 
-**Bereiche auf dieser Seite:** Spiel (server.properties) · Leistung & Start · Alle Eigenschaften
+**Bereiche auf dieser Seite:** Speicher & Java
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Speichern · Durchsuchen · server.properties im Editor
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Speicher & Java · Automatik · Allgemein · Welt & Spiel · Leistung · Technik · Ressourcenpaket · Chat & Sonstiges · Alle Eigenschaften · Durchsuchen
 
 ### Dateien
 
@@ -100,4 +82,4 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 **Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

@@ -2,17 +2,14 @@
 
 [← Back to the overview](README.md)
 
-All ports of your services in one list: what runs, what another program blocks, where two services want the same port – with free suggestions.
+Now built into Hostwerk (System → Services → Ports & services). All ports of your services in one list: what runs, what another program blocks, where two services want the same port, what the router forwards – “change port” with one click, a free check and free suggestions to copy.
 
 ![Ports](img/ext-port-map.jpg)
 
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.2.0 · read only Read system health, load and ports
-
 ### What you can do here
 
+- From the extension “Ports” – info
 - Reload
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

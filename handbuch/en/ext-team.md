@@ -20,6 +20,14 @@ Let friends and colleagues in – each with their own sign-in and only the right
 
 ## Tabs
 
+### Activity
+
+![Activity](img/ext-team--activity.jpg)
+
+> Activity What members changed (from Hostwerk's change log) and what they tried without permission. Refused attempts are kept here – the last 200.
+
+**Areas on this page:** Activity
+
 ### Team setup
 
 ![Team setup](img/ext-team--team-setup.jpg)
@@ -31,4 +39,4 @@ Let friends and colleagues in – each with their own sign-in and only the right
 **What you can do here:** Folder · Connect
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

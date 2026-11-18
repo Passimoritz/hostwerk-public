@@ -19,15 +19,9 @@ Hostwerks externe Sicherung – verschlüsselt auf OneDrive, Google Drive, in ei
 
 ### Was du hier tun kannst
 
+- Zuklappen
 - rclone installieren
-- Bei OneDrive anmelden
-- Verbinden und prüfen
-- Wiederherstellungs-Schlüssel zeigen
-- Cloud für die externe Sicherung nutzen
-
-### Eingaben
-
-- Ordner am Ziel
+- Öffnen
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

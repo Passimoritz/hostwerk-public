@@ -6,13 +6,10 @@ Deine Aufgaben als große Knöpfe – ein Klick startet ein Backup, einen Berich
 
 ![Schnell-Aufgaben](img/ext-quick-tasks.jpg)
 
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.2.0 · darf nach Rückfrage ändern Aufgaben lesen Aufgaben ausführen (mit Rückfrage) Eigene Daten speichern (max. 256 KB)
-
 ### Was du hier tun kannst
 
+- Von der Erweiterung „Schnell-Aufgaben“ – Infos
 - Neu laden
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

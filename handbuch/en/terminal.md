@@ -8,13 +8,14 @@ On this PC (user@hostwerk-pc) · PowerShell · selecting copies, right-click pas
 
 ### What you can do here
 
-- Short video: Terminal (45 seconds)
+- Video
 - New terminal
 - Open in project
-- Full screen
+- Own window
 - Windows Terminal
 - Terminal on another machine
 - hostwerk-pc
+- Close terminal “hostwerk-pc”
 - New terminal (PowerShell) · Ctrl+Shift+T
 - Choose another shell
 - Search (Ctrl+Shift+F)
@@ -22,32 +23,24 @@ On this PC (user@hostwerk-pc) · PowerShell · selecting copies, right-click pas
 - Larger font
 - Color scheme: Hostwerk – click to switch
 - Save recording as a text file
+- Send input to several tabs (e.g. for several servers at once)
+- The session is restored next time – click to turn off
 - Copy selection
 - Clear display
 - Split (second terminal beside it)
 - Commands
-- status
-- log
-- diff
-- pull
-- push
-- branches
-- commit …
-- stash
-- checkout …
-- init
-- install
-- dev
-- build
-- test
-- outdated
-- composer install
-- composer update
-- artisan …
-- phpunit
-- php -v
-- venv
-- pip install -r
+- ls
+- cd ..
+- cat …
+- tail -f …
+- find …
+- ipconfig
+- netstat
+- processes
+- services
+- test port …
+- which …
+- clear
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

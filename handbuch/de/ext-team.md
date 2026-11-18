@@ -20,6 +20,14 @@ Freunde und Kollegen hereinlassen – jede Person mit eigener Anmeldung und nur 
 
 ## Reiter
 
+### Protokoll
+
+![Protokoll](img/ext-team--protokoll.jpg)
+
+> Protokoll Was Mitglieder geändert haben (aus Hostwerks Änderungs-Protokoll) und was sie ohne Berechtigung versucht haben. Abgelehnte Versuche bewahrt diese Erweiterung auf – die letzten 200.
+
+**Bereiche auf dieser Seite:** Protokoll
+
 ### Team-Setup
 
 ![Team-Setup](img/ext-team--team-setup.jpg)
@@ -31,4 +39,4 @@ Freunde und Kollegen hereinlassen – jede Person mit eigener Anmeldung und nur 
 **Was du hier tun kannst:** Ordner · Verbinden
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

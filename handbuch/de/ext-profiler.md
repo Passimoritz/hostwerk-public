@@ -12,4 +12,4 @@ Herausfinden, warum eine Seite oder App langsam ist – welche Funktionen und Da
 - Letzte Messungen
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

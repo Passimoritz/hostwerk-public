@@ -12,9 +12,8 @@ Mail catcher: everything your projects send lands here – nothing goes out.
 
 ### What you can do here
 
-- What's the difference?
-- Stop
-- Stop immediately (force)
+- 2 videos
+- Start
 - Test mail
 - Forward
 - Settings
@@ -31,7 +30,7 @@ Mail catcher: everything your projects send lands here – nothing goes out.
 
 **Areas on this page:** Which mail server should it be?
 
-**What you can do here:** What's the difference? · Compare all mail options · Continue to setup
+**What you can do here:** 2 videos · Compare all mail options · Continue to setup · Take over from another computer …
 
 ### Import
 
@@ -39,7 +38,31 @@ Mail catcher: everything your projects send lands here – nothing goes out.
 
 > Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James).
 
-**What you can do here:** What's the difference? · Stop · Stop immediately (force) · Test mail · Forward · Settings · Mark all as read · Delete all
+**What you can do here:** 2 videos · Start · Test mail · Forward · Settings · Mark all as read · Delete all
+
+### Mailboxes
+
+![Mailboxes](img/mail--mailboxes.jpg)
+
+> Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James).
+
+**What you can do here:** 2 videos · From the extension “E-mail accounts” – info · Connect an account
+
+### Statistics
+
+![Statistics](img/mail--statistics.jpg)
+
+> Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James).
+
+**What you can do here:** 2 videos · From the extension “Mail statistics” – info
+
+### Notes
+
+![Notes](img/mail--notes.jpg)
+
+> Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James).
+
+**What you can do here:** 2 videos · From the extension “Service notes” – info
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

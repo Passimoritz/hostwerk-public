@@ -1,18 +1,16 @@
-# Notizen
+# Notizen → Merkliste
 
 [← Zurück zur Übersicht](README.md)
 
 Alle Notizen zu deinen Diensten – mit Suche und abhakbaren Checklisten.
 
-![Notizen](img/ext-service-notes.jpg)
-
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.1.0 · nur lesen Dienste und ihren Zustand sehen Eigene Daten speichern (max. 256 KB)
+![Notizen → Merkliste](img/ext-service-notes.jpg)
 
 ### Was du hier tun kannst
 
+- Von der Erweiterung „Notizen“ – Infos
 - Neu laden
+- Von der Erweiterung „Mein Zusatz“ – Infos
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

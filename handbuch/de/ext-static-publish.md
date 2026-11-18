@@ -2,7 +2,7 @@
 
 [← Zurück zur Übersicht](README.md)
 
-Ein Projekt mit einem Klick online bringen – auf GitHub Pages oder Cloudflare Pages, kostenlos und mit HTTPS.
+Ein Projekt mit einem Klick online bringen – auf GitHub Pages, Cloudflare Pages, Codeberg Pages oder deinen eigenen Server.
 
 ![Seiten veröffentlichen](img/ext-static-publish.jpg)
 
@@ -13,4 +13,4 @@ Ein Projekt mit einem Klick online bringen – auf GitHub Pages oder Cloudflare 
 - Zugang hinzufügen
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

@@ -6,70 +6,71 @@ nginx 1.29.1 · Port 18090 · ohne PHP nginx.org
 
 ![Sample Web → Übersicht](img/web-probe-web.jpg)
 
+### Gut zu wissen
+
+- Was ist das? Erweiterungen wie die Bestenliste können eine eigene Seite in diesen Webserver legen – Hostwerk schreibt sie in einen Unterordner und hält sie im gewählten Takt aktuell.
+
 ### Bereiche auf dieser Seite
 
 - Adressen
 - Projekte im Webordner
-- Einstellungen
 - Version & Verwaltung
 
 ### Was du hier tun kannst
 
 - Bild ändern
 - Als Favorit markieren (steht dann in Listen oben)
+- 3 Videos
 - nginx.org
-- Starten
+- Installieren
 - Neu in 1.29.1
 - Andere Webserver
 - Konfiguration testen
 - Öffentlich teilen (Link fürs Internet)
 - Öffnen
 - Neues Projekt
-- Ordner
-- Übernehmen
-- Erneut prüfen
 - Webserver entfernen
-
-### Eingaben
-
-- Name
-- HTTP-Port
-- HTTPS-Port
-- Webordner
-- PHP-Version
-- HTTPS
-- Verzeichnisauflistung
-- Mit Hostwerk starten
+- Bestenliste
+- Wer ist online?
 
 ## Reiter
 
-### Virtuelle Hosts
+### Seiten
 
-![Virtuelle Hosts](img/web-probe-web--virtuelle-hosts.jpg)
+![Seiten](img/web-probe-web--seiten.jpg)
 
-> Tipp: Domains auf .localhost Adressen wie meinprojekt.localhost funktionieren in Chrome, Edge und Firefox ohne Eintrag in der hosts-Datei.
+> Tipp: Adressen auf .localhost Adressen wie meinprojekt.localhost funktionieren in Chrome, Edge und Firefox ohne Eintrag in der hosts-Datei. Mit *.projekt.localhost landen alle Unteradressen bei derselben Seite.
+> Jede Seite hat eine eigene Adresse auf diesem Server. Die Hauptseite (localhost) stellst du unter „Übersicht“ ein.
 
-**Bereiche auf dieser Seite:** Neuer virtueller Host · Virtuelle Hosts
+**Bereiche auf dieser Seite:** Neue Seite · Seiten
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · nginx.org · Starten · Ordner · Anlegen
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · 3 Videos · nginx.org · Installieren · Statische Seite · PHP · Weiterleitung zu App · Single-Page-App · Dateiablage · Ordner · Seite anlegen
+
+### Einstellungen
+
+![Einstellungen](img/web-probe-web--einstellungen.jpg)
+
+**Bereiche auf dieser Seite:** Einstellungen · HTTPS für lokale Adressen (ohne Browser-Warnung)
+
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · 3 Videos · nginx.org · Installieren · Ordner · Übernehmen · Auslieferung … · Als vertrauenswürdig eintragen · Zertifikat herunterladen
 
 ### Konfiguration
 
 ![Konfiguration](img/web-probe-web--konfiguration.jpg)
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · nginx.org · Starten · Anleitung zu nginx · Speichern & prüfen
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · 3 Videos · nginx.org · Installieren · Anleitung zu nginx · Speichern & prüfen
 
 ### Protokolle
 
 ![Protokolle](img/web-probe-web--protokolle.jpg)
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · nginx.org · Starten · Alles · Uhrzeit anzeigen · Größere Schrift · Lange Zeilen umbrechen · Kopieren · Als Textdatei speichern · Leeren · Anhalten · Live
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · 3 Videos · nginx.org · Installieren · Alles · Uhrzeit anzeigen · Größere Schrift · Lange Zeilen umbrechen · Kopieren · Als Textdatei speichern · Leeren · Anhalten · Live
 
 ### Notizen
 
 ![Notizen](img/web-probe-web--notizen.jpg)
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · nginx.org · Starten
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · 3 Videos · nginx.org · Installieren
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

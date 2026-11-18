@@ -8,7 +8,7 @@ Zeigt in deinem Discord-Profil „Spielt Hostwerk“ – auch wenn Hostwerk nur 
 
 ### Gut zu wissen
 
-- Was wird geteilt? Nur Dienstarten (z. B. Webserver · Datenbank) und wie viele laufen. Nie Projekt-, Server- oder Ordnernamen.
+- Was wird geteilt? Nur Dienstarten (z. B. Webserver · Datenbank) und wie viele laufen. Nie Projekt- oder Ordnernamen – einen Servernamen nur, wenn du ihn einschaltest.
 
 ### Bereiche auf dieser Seite
 
@@ -17,14 +17,15 @@ Zeigt in deinem Discord-Profil „Spielt Hostwerk“ – auch wenn Hostwerk nur 
 
 ### Was du hier tun kannst
 
-- Speichern
-- Discord Developer Portal öffnen
+- Bilder, eigener Knopf und eigene Anwendung
 
 ### Eingaben
 
 - Status in Discord teilen
 - Laufende Dienste zeigen
-- Discord-Anwendungs-ID
+- Spielerzahl zeigen
+- Servernamen zeigen
+- Knopf „Status ansehen“
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

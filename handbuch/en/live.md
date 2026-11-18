@@ -2,71 +2,72 @@
 
 [← Back to the overview](README.md)
 
-Everything to make Hostwerk reliably and securely reachable on the internet – domains with HTTPS, running without login, remote access, alerts and backups.
+What is online, who gets in, and how it is protected, monitored and backed up.
 
 ![Production](img/live.jpg)
 
-### Good to know
-
-- Next: Enter your own domain Add an address with your domain to your web server under “Addresses” (e.g. www.mycompany.com) – not .localhost. After that: Domain points to this connection (DNS) · Router: forward ports 80 and 443 to this PC · Firewall rule · HTTPS certificate (Let's Encrypt) · Security check
-
 ### Areas on this page
 
-- Website with your own domain
+- Next steps
 
 ### What you can do here
 
+- 6 videos
 - Emergency
-- Website with your own domain Permanently at www.yourdomain.com – with HTTPS, monitoring and security check.
-- Share quickly – no router A random https address in seconds, e.g. to show something to friends or clients.
-- Minecraft for friends Let friends join your server over the internet – safely with online mode and whitelist.
-- Check again
-- Go to web servers
-- Copy IP
-- Forward automatically
-- Firewall
-- Set up HTTPS
+- From the extension “router” – info
+- Put online
+- Fix
 - View
-- Monitoring
-- System service
+- Check again
+- 1 Enter your own domain
+- 2 Domain points to this connection (DNS)
+- 3 Router: forward ports 80 and 443 to this PC
+- 4 Firewall rule
+- 5 HTTPS certificate (Let's Encrypt)
+- 6 Security check
+- 7 Monitoring and alerts
+- 8 Run without signing in too (system service)
+- Go to web servers
+- Next step
+- Set up
 
 ## Tabs
 
-### Share a page (tunnel)
+### Online
 
-![Share a page (tunnel)](img/live--share-a-page-tunnel.jpg)
+![Online](img/live--online.jpg)
 
-> How it works Hostwerk builds an encrypted connection to Cloudflare. There you get a random address like xyz.trycloudflare.com, which points straight at your local site – handy for showing it to someone or testing on your phone.
+> Addresses Every address under which something is reachable from the internet – your own domain, a quick link (expires) or the permanent tunnel via Cloudflare.
 
-**Areas on this page:** One-time setup
+**Areas on this page:** Addresses · What is reachable from outside
 
-**What you can do here:** Emergency · Install cloudflared
+**What you can do here:** 6 videos · Emergency · Put online
 
-### Router
+### Access
 
-![Router](img/live--router.jpg)
+![Access](img/live--access.jpg)
 
-**Areas on this page:** Router access · IPv6 & connection type · FRITZ!Box 7590 · Forward automatically · Hostwerk's ports · All forwardings in the router
+**Areas on this page:** Remote access · Use Hostwerk on the go
 
-**What you can do here:** Emergency · Sign in · Copy · Save · Search again · Open the router interface · Sync now · Own forwarding · Open router · Hide tip · Forward
+**What you can do here:** 6 videos · Emergency · Pair phone … · Save
 
-### Domains & HTTPS
+### Protection
 
-![Domains & HTTPS](img/live--domains-https.jpg)
+![Protection](img/live--protection.jpg)
 
-> How to make a site public 1. At your domain provider create an A record pointing to your public IP. 2. In your router forward port 80 and 443 to this PC. 3. Under Web servers → Addresses create the real domain as an address (e.g. www.mycompany.com). 4. Click “Set up HTTPS” here – Hostwerk gets a free certificate from Let's Encrypt and renews it automatically.
+**Areas on this page:** Security check
 
-**Areas on this page:** HTTPS for local addresses (without browser warning) · Domains
+**What you can do here:** 6 videos · Emergency · Reload · Set a secure password
 
-**What you can do here:** Emergency · Mark as trusted · Download certificate · Add domain · Go to web servers
+### Monitoring
 
-### Remote access
+![Monitoring](img/live--monitoring.jpg)
 
-![Remote access](img/live--remote-access.jpg)
+> Watchers Everything Hostwerk watches by itself: sites, ports, services, certificates, queries and logs. If a watcher reports a problem twice in a row, a message goes to your channels – and another one when it is over.
 
-**Areas on this page:** Use Hostwerk on the go · Two-factor login · Hostwerk on your phone · Sign in with passkey
+**Areas on this page:** Watchers · What Hostwerk watches
 
-**What you can do here:** Emergency · Save · Set up · Set up password and two-factor · Hide tip · Add passkey
+**What you can do here:** 6 videos · Emergency · New watcher · Edit: Sample shop · Remove: Sample shop · Edit: Sample count · Edit: Certificates · Remove: Certificates · From the extension “disk-health” – info · Edit: Drive health · From the extension “vuln-watch” – info · Edit: Vulnerabilities
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

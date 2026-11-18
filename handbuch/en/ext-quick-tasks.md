@@ -6,13 +6,10 @@ Your tasks as big buttons – one click runs a backup, a report or a script (Hos
 
 ![Quick tasks](img/ext-quick-tasks.jpg)
 
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.2.0 · may change things after asking Read scheduled tasks Run scheduled tasks (asks first) Store own data (max. 256 KB)
-
 ### What you can do here
 
+- From the extension “Quick tasks” – info
 - Reload
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

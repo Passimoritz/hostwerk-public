@@ -6,12 +6,9 @@ Code, docs and notes as a graph – ask questions, see connections, connect Clau
 
 ![Knowledge graph → Graph](img/ext-knowledge-graph.jpg)
 
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)
-
 ### What you can do here
 
+- From the extension “Knowledge graph” – info
 - Reload
 
 ## Tabs
@@ -20,33 +17,25 @@ Code, docs and notes as a graph – ask questions, see connections, connect Clau
 
 ![Ask](img/ext-knowledge-graph--ask.jpg)
 
-> Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “Knowledge graph” – info · Reload
 
 ### Report
 
 ![Report](img/ext-knowledge-graph--report.jpg)
 
-> Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “Knowledge graph” – info · Reload
 
 ### Obsidian
 
 ![Obsidian](img/ext-knowledge-graph--obsidian.jpg)
 
-> Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “Knowledge graph” – info · Reload
 
 ### Claude
 
 ![Claude](img/ext-knowledge-graph--claude.jpg)
 
-> Sandboxed extension by Hostwerk · v1.4.0 · may change things after asking Read the knowledge graph (projects, graph, report, memory, Claude status) Build and query the knowledge graph, edit memory, Obsidian export Connect Claude and forget it again (asks first)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “Knowledge graph” – info · Reload
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

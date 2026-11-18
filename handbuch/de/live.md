@@ -2,71 +2,71 @@
 
 [← Zurück zur Übersicht](README.md)
 
-Alles, damit Hostwerk zuverlässig und sicher im Internet erreichbar ist – Domains mit HTTPS, Betrieb ohne Anmeldung, Fernzugriff, Alarme und Sicherungen.
+Was online ist, wer hineinkommt, wie es geschützt, überwacht und gesichert ist.
 
 ![Livebetrieb](img/live.jpg)
 
-### Gut zu wissen
-
-- Als Nächstes: Eigene Domain eintragen Lege bei deinem Webserver unter „Adressen“ eine Adresse mit deiner Domain an (z. B. www.meinefirma.de) – nicht .localhost. Danach noch: Domain zeigt auf diesen Anschluss (DNS) · Router: Port 80 und 443 an diesen PC weiterleiten · Firewall-Freigabe · HTTPS-Zertifikat (Let's Encrypt) · Sicherheits-Check
-
 ### Bereiche auf dieser Seite
 
-- Webseite mit eigener Domain
+- Nächste Schritte
 
 ### Was du hier tun kannst
 
+- 6 Videos
 - Notfall
-- Webseite mit eigener Domain Dauerhaft unter www.deinedomain.de – mit HTTPS, Überwachung und Sicherheits-Check.
-- Schnell teilen – ohne Router Zufällige https-Adresse in Sekunden, z. B. um Freunden oder Kunden etwas zu zeigen.
-- Minecraft für Freunde Freunde über das Internet auf deinen Server lassen – sicher mit Online-Modus und Whitelist.
-- Neu prüfen
-- Zu den Webservern
-- IP kopieren
-- Automatisch freigeben
-- Firewall
-- HTTPS einrichten
+- Online stellen
+- Beheben
 - Ansehen
-- Überwachung
-- Systemdienst
+- Neu prüfen
+- 1 Eigene Domain eintragen
+- 2 Domain zeigt auf diesen Anschluss (DNS)
+- 3 Router: Port 80 und 443 an diesen PC weiterleiten
+- 4 Firewall-Freigabe
+- 5 HTTPS-Zertifikat (Let's Encrypt)
+- 6 Sicherheits-Check
+- 7 Überwachung und Alarm
+- 8 Auch ohne Anmeldung laufen (Systemdienst)
+- Zu den Webservern
+- Nächster Schritt
+- Einrichten
 
 ## Reiter
 
-### Seite teilen (Tunnel)
+### Online
 
-![Seite teilen (Tunnel)](img/live--seite-teilen-tunnel.jpg)
+![Online](img/live--online.jpg)
 
-> So funktioniert's Hostwerk baut eine verschlüsselte Verbindung zu Cloudflare auf. Dort bekommst du eine zufällige Adresse wie xyz.trycloudflare.com, die direkt auf deine lokale Seite zeigt – praktisch, um sie jemandem zu zeigen oder auf dem Handy zu testen.
+> Adressen Jede Adresse, unter der etwas aus dem Internet erreichbar ist – eine eigene Domain, ein Schnell-Link (läuft ab) oder der dauerhafte Tunnel über Cloudflare.
 
-**Bereiche auf dieser Seite:** Einmalig einrichten
+**Bereiche auf dieser Seite:** Adressen · Was von außen erreichbar ist
 
-**Was du hier tun kannst:** Notfall · cloudflared installieren
+**Was du hier tun kannst:** 6 Videos · Notfall · Online stellen
 
-### Router
+### Zugriff
 
-![Router](img/live--router.jpg)
+![Zugriff](img/live--zugriff.jpg)
 
-**Bereiche auf dieser Seite:** Router-Zugang · IPv6 & Anschlussart · FRITZ!Box 7590 · Automatisch freigeben · Ports von Hostwerk · Alle Freigaben im Router
+**Bereiche auf dieser Seite:** Fernzugriff · Hostwerk von unterwegs bedienen
 
-**Was du hier tun kannst:** Notfall · Anmelden · Kopieren · Speichern · Neu suchen · Router-Oberfläche öffnen · Jetzt abgleichen · Eigene Freigabe · Router öffnen · Hinweis ausblenden · Freigeben
+**Was du hier tun kannst:** 6 Videos · Notfall · Handy koppeln … · Speichern
 
-### Domains & HTTPS
+### Schutz
 
-![Domains & HTTPS](img/live--domains-https.jpg)
+![Schutz](img/live--schutz.jpg)
 
-> So machst du eine Seite öffentlich 1. Beim Domain-Anbieter einen A-Eintrag auf deine öffentliche IP setzen. 2. Im Router Port 80 und 443 an diesen PC weiterleiten. 3. Unter Webserver → Adressen die echte Domain als Adresse anlegen (z. B. www.meinefirma.de). 4. Hier auf „HTTPS einrichten“ klicken – Hostwerk holt ein kostenloses Zertifikat von Let's Encrypt und erneuert es automatisch.
+**Bereiche auf dieser Seite:** Sicherheits-Check
 
-**Bereiche auf dieser Seite:** HTTPS für lokale Adressen (ohne Browser-Warnung) · Domains
+**Was du hier tun kannst:** 6 Videos · Notfall · Neu laden · Sicheres Passwort setzen
 
-**Was du hier tun kannst:** Notfall · Als vertrauenswürdig eintragen · Zertifikat herunterladen · Domain hinzufügen · Zu den Webservern
+### Überwachung
 
-### Fernzugriff
+![Überwachung](img/live--ueberwachung.jpg)
 
-![Fernzugriff](img/live--fernzugriff.jpg)
+> Wächter Alles, was Hostwerk von selbst beobachtet: Seiten, Ports, Dienste, Zertifikate, Abfragen und Protokolle. Meldet ein Wächter zweimal hintereinander ein Problem, geht eine Meldung an deine Kanäle – und wieder eine, wenn es vorbei ist.
 
-**Bereiche auf dieser Seite:** Hostwerk von unterwegs bedienen · Zwei-Faktor-Anmeldung · Hostwerk auf dem Handy · Anmelden mit Passkey
+**Bereiche auf dieser Seite:** Wächter · Was Hostwerk beobachtet
 
-**Was du hier tun kannst:** Notfall · Speichern · Einrichten · Passwort und Zwei-Faktor einrichten · Hinweis ausblenden · Passkey hinzufügen
+**Was du hier tun kannst:** 6 Videos · Notfall · Neuer Wächter · Bearbeiten: Sample shop · Entfernen: Sample shop · Bearbeiten: Sample count · Bearbeiten: Zertifikate · Entfernen: Zertifikate · Von der Erweiterung „disk-health“ – Infos · Bearbeiten: Festplatten-Gesundheit · Von der Erweiterung „vuln-watch“ – Infos · Bearbeiten: Schwachstellen
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

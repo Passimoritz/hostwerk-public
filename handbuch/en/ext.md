@@ -2,61 +2,56 @@
 
 [← Back to the overview](README.md)
 
+More features for Hostwerk – checked, sandboxed or as part of Hostwerk from its own catalogue.
+
 ![Extensions](img/ext.jpg)
 
-### Areas on this page
+### Good to know
 
-- Games & Minecraft 7
-- Network & machines 4
-- Security & access 3
-- Monitoring & status 5
-- Developer tools 7
-- AI & media 3
-- Mail & communication 3
-- Other 3
+- How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum.
 
 ### What you can do here
 
-- 35 installed
-- 0 Updates
-- 33 in the catalogue
+- What extensions may never do
 - Add
-- All 35
-- Games & Minecraft 7
-- Network & machines 4
-- Security & access 3
-- Monitoring & status 5
-- Developer tools 7
-- AI & media 3
-- Mail & communication 3
-- Other 3
-- Bedrock bridge – details
+- Filter
 - Open
-- Game server network – details
-- Game servers – details
-- MOTD studio – details
-- Player leaderboard – details
-- Player Ticker – details
-- Schematics in 3D – details
-- File share (SFTP) – details
-- Hostwerk network – details
-- Port map – details
-- Router & port forwarding – details
-- Certificate watch – details
-- Password manager – details
-- Team & roles – details
-- Backup calendar – details
-- Server profile – details
-- Status Wall – details
-- Storage per service – details
-- Uptime wall – details
-- API tester – details
-- Page check – details
-- Profiler – details
-- Publish static sites – details
-- Quick tasks – details
-- Webhook inbox – details
-- My Extension – details
+- Game servers – more actions
+- Minecraft server network – more actions
+- Minecraft servers – more actions
+- MOTD studio – more actions
+- Player leaderboard – more actions
+- Players – more actions
+- Schematics in 3D – more actions
+- Game library – more actions
+- DNS management – more actions
+- File share (SFTP) – more actions
+- Hostwerk network – more actions
+- Port map – more actions
+- Router & port forwarding – more actions
+- VPN access – more actions
+- Certificate watch – more actions
+- Password manager – more actions
+- Hostwerk app – more actions
+- Team & roles – more actions
+- Vulnerability watch – more actions
+- Backup calendar & cloud – more actions
+- Drives – more actions
+- Storage per service How much space each service takes – data, backups, projects – and how full the drive is. With a dashboard tile.
+- Storage per service – more actions
+- Server profile – more actions
+- Status Wall – more actions
+- Uptime wall – more actions
+- Visitor stats – more actions
+- API tester – more actions
+- Deploy log – more actions
+- My backend Template for own server code: runs sandboxed in its own process, offers own routes and stores data in its own folder.
+- My backend – more actions
+- My Extension Starting point for your own Hostwerk extensions: page, tile, settings and translations.
+- My Extension – more actions
+- Page check – more actions
+- Profiler – more actions
+- Quick tasks Your tasks as big buttons – one click runs a backup, a report or a script (Hostwerk asks first). Pin favourites, also as a tile.
 
 ## Tabs
 
@@ -64,19 +59,38 @@
 
 ![Discover](img/ext--discover.jpg)
 
-**Areas on this page:** Games & Minecraft 7 · Network & machines 4 · Security & access 3 · Monitoring & status 5 · Developer tools 7 · AI & media 3 · Mail & communication 3 · Other 3
+> How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum.
 
-**What you can do here:** 35 installed · 0 Updates · 33 in the catalogue · Add · All 35 · Games & Minecraft 7 · Network & machines 4 · Security & access 3 · Monitoring & status 5 · Developer tools 7 · AI & media 3 · Mail & communication 3 · Other 3 · Bedrock bridge – details · Open · Game server network – details · Game servers – details · MOTD studio – details · Player leaderboard – details · Player Ticker – details · Schematics in 3D – details · File share (SFTP) – details · Hostwerk network – details · Port map – details · Router & port forwarding – details · Certificate watch – details · Password manager – details · Team & roles – details · Backup calendar – details · Server profile – details · Status Wall – details · Storage per service – details · Uptime wall – details · API tester – details · Page check – details · Profiler – details · Publish static sites – details · Quick tasks – details · Webhook inbox – details · My Extension – details
+**What you can do here:** What extensions may never do · Add · Filter · 38 extensions already installed – under “My extensions”
+
+### Ideas & synergies
+
+![Ideas & synergies](img/ext--ideas-synergies.jpg)
+
+> How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum.
+> Websites for clients Build, check, publish and keep an eye on sites.
+> Developing APIs Test requests, receive webhooks, store credentials safely.
+> Game servers for friends Start servers, make them reachable from outside, see players.
+> Safely backed up Planned backups, an off-site copy, space at a glance.
+> Small team Several machines, shared logins, file sharing.
+> Developing with AI Connect Claude and give it project knowledge.
+> Replay webhooks “Open in API tester” in the webhook inbox: the received call lands with headers and body in the collection “Webhook inbox” – change it there and send it to your project again.
+> Reachable and good The uptime wall shows whether a page answers – the page check whether it is also fast, accessible and free of broken links.
+> One view for going live Both read Hostwerk’s own live data – pinned side by side you see expiring certificates and failed pages at a glance. Warnings still come from Hostwerk’s watchers.
+> Check first, then publish Run the page check before publishing to GitHub/Cloudflare Pages.
+> Files between machines Turn on the file share (SFTP) in the home network on every machine paired in the Hostwerk network – the machines then reach each other by their LAN address. Set up on each machine.
+
+**What you can do here:** What extensions may never do · Add · Open guide
 
 ### For developers
 
 ![For developers](img/ext--for-developers.jpg)
 
-> What is an extension? An extension adds its own page, a tile for the overview and/or its own service to Hostwerk. Pages run isolated (own origin, no access to your login), only see what their permissions allow and only change things after you confirm each time. Colors and fonts come from Hostwerk – so every extension fits the design.
+> How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum.
 
-**Areas on this page:** Developer mode · Extensions – how they are checked
+**Areas on this page:** Developer mode
 
-**What you can do here:** 35 installed · 0 Updates · 33 in the catalogue · Add · Guide Package, SDK, design, permissions, translations, dependencies, native extensions, check. · Template on GitHub “Use this template” – with a check action and automatic releases. · Create here Folder with a sample page, texts (de/en) and icon – visible right away. · Developer guide · Apply for verification · Manage more catalogues (sources)
+**What you can do here:** What extensions may never do · Add · New extension · Guide Package, SDK, design, permissions, translations, dependencies, native extensions, check. · Template on GitHub “Use this template” – with a check action and automatic releases. · How it is checked … · Manage more catalogues (sources)
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

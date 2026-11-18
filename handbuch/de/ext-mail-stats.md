@@ -6,14 +6,11 @@ Wie viele Mails deine Projekte verschicken – je Tag, je Projekt, je Absender u
 
 ![Mail-Statistik](img/ext-mail-stats.jpg)
 
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Abgefangene E-Mails lesen
-
 ### Was du hier tun kannst
 
+- Von der Erweiterung „Mail-Statistik“ – Infos
 - Einstellungen
 - Neu laden
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

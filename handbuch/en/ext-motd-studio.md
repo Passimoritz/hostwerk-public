@@ -2,16 +2,13 @@
 
 [← Back to the overview](README.md)
 
-Design the description in the server list – colours, formats, preview. Saving asks first.
+Design the description and icon in the server list – colours, templates, preview. Saving and restarting ask first.
 
 ![MOTD studio → Editor](img/ext-motd-studio.jpg)
 
-### Good to know
-
-- Sandboxed extension by Hostwerk · v1.1.0 · may change things after asking Read Minecraft servers, players and stats Change Minecraft settings (asks first)
-
 ### What you can do here
 
+- From the extension “MOTD studio” – info
 - Reload
 
 ## Tabs
@@ -20,9 +17,7 @@ Design the description in the server list – colours, formats, preview. Saving 
 
 ![Colour codes](img/ext-motd-studio--colour-codes.jpg)
 
-> Sandboxed extension by Hostwerk · v1.1.0 · may change things after asking Read Minecraft servers, players and stats Change Minecraft settings (asks first)
-
-**What you can do here:** Reload
+**What you can do here:** From the extension “MOTD studio” – info · Reload
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

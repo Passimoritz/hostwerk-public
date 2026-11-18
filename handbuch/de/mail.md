@@ -12,9 +12,8 @@ Mail-Fänger: alles, was deine Projekte verschicken, landet hier – nichts geht
 
 ### Was du hier tun kannst
 
-- Was ist der Unterschied?
-- Stoppen
-- Sofort beenden (erzwingen)
+- 2 Videos
+- Starten
 - Test-Mail
 - Weiterleiten
 - Einstellungen
@@ -31,7 +30,7 @@ Mail-Fänger: alles, was deine Projekte verschicken, landet hier – nichts geht
 
 **Bereiche auf dieser Seite:** Welcher Mailserver soll es sein?
 
-**Was du hier tun kannst:** Was ist der Unterschied? · Alle E-Mail-Varianten vergleichen · Weiter zur Einrichtung
+**Was du hier tun kannst:** 2 Videos · Alle E-Mail-Varianten vergleichen · Weiter zur Einrichtung · Von einem anderen Rechner übernehmen …
 
 ### Import
 
@@ -39,7 +38,31 @@ Mail-Fänger: alles, was deine Projekte verschicken, landet hier – nichts geht
 
 > Mail-Fänger oder Mailserver? Der Mail-Fänger ist zum Entwickeln: Er fängt jede Mail ab, die ein Projekt verschickt (Registrierung, Bestellbestätigung …) – du liest sie hier, nichts verlässt den PC. Der Mailserver ist für echte Postfächer wie info@deine-domain.de mit IMAP und Versand ins Internet (Stalwart oder Apache James).
 
-**Was du hier tun kannst:** Was ist der Unterschied? · Stoppen · Sofort beenden (erzwingen) · Test-Mail · Weiterleiten · Einstellungen · Alle als gelesen markieren · Alle löschen
+**Was du hier tun kannst:** 2 Videos · Starten · Test-Mail · Weiterleiten · Einstellungen · Alle als gelesen markieren · Alle löschen
+
+### Postfächer
+
+![Postfächer](img/mail--postfaecher.jpg)
+
+> Mail-Fänger oder Mailserver? Der Mail-Fänger ist zum Entwickeln: Er fängt jede Mail ab, die ein Projekt verschickt (Registrierung, Bestellbestätigung …) – du liest sie hier, nichts verlässt den PC. Der Mailserver ist für echte Postfächer wie info@deine-domain.de mit IMAP und Versand ins Internet (Stalwart oder Apache James).
+
+**Was du hier tun kannst:** 2 Videos · Von der Erweiterung „E-Mail-Konten“ – Infos · Konto verbinden
+
+### Statistik
+
+![Statistik](img/mail--statistik.jpg)
+
+> Mail-Fänger oder Mailserver? Der Mail-Fänger ist zum Entwickeln: Er fängt jede Mail ab, die ein Projekt verschickt (Registrierung, Bestellbestätigung …) – du liest sie hier, nichts verlässt den PC. Der Mailserver ist für echte Postfächer wie info@deine-domain.de mit IMAP und Versand ins Internet (Stalwart oder Apache James).
+
+**Was du hier tun kannst:** 2 Videos · Von der Erweiterung „Mail-Statistik“ – Infos
+
+### Notizen
+
+![Notizen](img/mail--notizen.jpg)
+
+> Mail-Fänger oder Mailserver? Der Mail-Fänger ist zum Entwickeln: Er fängt jede Mail ab, die ein Projekt verschickt (Registrierung, Bestellbestätigung …) – du liest sie hier, nichts verlässt den PC. Der Mailserver ist für echte Postfächer wie info@deine-domain.de mit IMAP und Versand ins Internet (Stalwart oder Apache James).
+
+**Was du hier tun kannst:** 2 Videos · Von der Erweiterung „Dienst-Notizen“ – Infos
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

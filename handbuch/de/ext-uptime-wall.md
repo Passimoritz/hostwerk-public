@@ -6,12 +6,9 @@ Erreichbarkeit aller Überwachungen auf einen Blick.
 
 ![Uptime-Wand → Wand](img/ext-uptime-wall.jpg)
 
-### Gut zu wissen
-
-- Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Zertifikate und Erreichbarkeit (Überwachung) lesen Öffentliche Statusseite einrichten (mit Rückfrage)
-
 ### Was du hier tun kannst
 
+- Von der Erweiterung „Uptime-Wand“ – Infos
 - Neu laden
 
 ## Reiter
@@ -20,9 +17,7 @@ Erreichbarkeit aller Überwachungen auf einen Blick.
 
 ![Öffentliche Statusseite](img/ext-uptime-wall--oeffentliche-statusseite.jpg)
 
-> Abgeschottete Erweiterung von Hostwerk · v1.2.0 · nur lesen Zertifikate und Erreichbarkeit (Überwachung) lesen Öffentliche Statusseite einrichten (mit Rückfrage)
-
-**Was du hier tun kannst:** Neu laden
+**Was du hier tun kannst:** Von der Erweiterung „Uptime-Wand“ – Infos · Neu laden
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>

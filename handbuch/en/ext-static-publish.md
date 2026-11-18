@@ -2,7 +2,7 @@
 
 [← Back to the overview](README.md)
 
-Put a project online with one click – on GitHub Pages or Cloudflare Pages, free and with HTTPS.
+Put a project online with one click – on GitHub Pages, Cloudflare Pages, Codeberg Pages or your own server.
 
 ![Publish static sites](img/ext-static-publish.jpg)
 
@@ -13,4 +13,4 @@ Put a project online with one click – on GitHub Pages or Cloudflare Pages, fre
 - Add account
 
 
-<sub>Generated on 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>

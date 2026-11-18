@@ -8,10 +8,11 @@ MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschieden
 
 ### Was du hier tun kannst
 
+- 2 Videos
 - Neuer Datenbankserver
 - Bild ändern
 - Starten
-- Studio
+- Im Studio öffnen
 
 ## Reiter
 
@@ -19,7 +20,7 @@ MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschieden
 
 ![Studio](img/dbs--studio.jpg)
 
-**Was du hier tun kannst:** Verbindung · Starten · Servereinstellungen
+**Was du hier tun kannst:** 2 Videos · Neuer Datenbankserver · Schreibschutz einschalten · Andere Datenbank verbinden · Starten · Servereinstellungen
 
 ### Import
 
@@ -27,9 +28,9 @@ MariaDB, MySQL, PostgreSQL, MongoDB und Redis – beliebig viele, in verschieden
 
 > Import – vorhandene Dienste übernehmen Vorhandene MySQL-, MariaDB-, PostgreSQL-, MongoDB- oder Redis-Server übernehmen – am bisherigen Ort oder als Kopie mit allen Daten, getestet und mit Rückweg. Dieselbe Suche gibt es für alle Arten unter System → Fremde Dienste.
 
-**Bereiche auf dieser Seite:** Vorhandene Datenbanken auf diesem PC · MariaDB 10.4.32
+**Bereiche auf dieser Seite:** Vorhandene Datenbanken auf diesem PC · PostgreSQL 17.12
 
-**Was du hier tun kannst:** Neuer Datenbankserver · Erneut suchen · In Hostwerk übernehmen …
+**Was du hier tun kannst:** 2 Videos · Neuer Datenbankserver · Erneut suchen · In Hostwerk übernehmen …
 
 
-<sub>Erzeugt am 2026-10-20 · Hostwerk 2.10.0</sub>
+<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
