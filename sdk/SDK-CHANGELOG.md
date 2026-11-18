@@ -5,18 +5,6 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
-## 3.13.0 – 2026-11-17
-
-System gets an own tab *Storage* ([section 34 of the guide](README.md#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule)). Only additions.
-
-- New section place `system.speicher` for `contributes.sections` and native `sections` (context `{ kind: "system", area: "speicher" }`):
-  *System → Storage* – drives, used space, files per service. Hostwerk has no built-in sections there. Needs `"sdkVersion": "3.13"`.
-- An extension may deliver the same section (same `id`) in `system.leistung` as a fallback for older Hostwerk – with SDK 3.13
-  it only shows under Storage, and old addresses (`#/system/leistung/<id>`) lead there. `SYSTEM_LEGACY_GROUPS` knows `speicher`.
-
-> DE: Neuer Platz `system.speicher` – eigener Reiter *System → Speicher* (Laufwerke, Belegung, Dateien). Derselbe Abschnitt
-> zusätzlich in `system.leistung` (Rückfall für ältere Hostwerk) erscheint nur unter Speicher.
-
 ## 3.12.0 – 2026-10-29
 
 Backups and System rebuilt ([section 34 of the guide](README.md#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule)). Only additions.
