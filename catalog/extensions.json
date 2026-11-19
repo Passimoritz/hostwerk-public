@@ -772,6 +772,49 @@
     "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.0/CHANGELOG.md"
   },
   {
+    "id": "office",
+    "name": {
+      "de": "Office",
+      "en": "Office"
+    },
+    "description": {
+      "de": "Dokumente, Tabellen, Präsentationen und PDFs direkt in Hostwerks „Dateien“ erstellen, bearbeiten und lesen – Microsoft Office (docx, xlsx, pptx, auch alte doc/xls/ppt), OpenDocument (odt, ods, odp), Google-Dateien, RTF, Markdown, CSV und mehr. Ein Klick öffnet die Datei, „Neu“ legt Dokumente an, Hostwerk erscheint unter „Öffnen mit“ und wird auf Wunsch Standard-App. Mit Vorlagen, Versionen, Suche, Umwandeln, Teilen und Einstellungen.",
+      "en": "Create, edit and read documents, spreadsheets, presentations and PDFs right in Hostwerk's Files – Microsoft Office (docx, xlsx, pptx, also legacy doc/xls/ppt), OpenDocument (odt, ods, odp), Google files, RTF, Markdown, CSV and more. A click opens the file, “New” creates documents, Hostwerk appears under “Open with” and can be the default app. With templates, versions, search, conversion, sharing and settings."
+    },
+    "author": "Hostwerk",
+    "version": "1.0.1",
+    "page": true,
+    "widget": false,
+    "service": false,
+    "permissions": [
+      "native"
+    ],
+    "hostwerk": ">=3.2.2",
+    "sdkVersion": "3.15",
+    "supportedFrom": null,
+    "homepage": "https://github.com/Passimoritz/hostwerk-ext-office",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-office/releases/download/v1.0.1/office-1.0.1.zip",
+    "sha256": "348bba9dff65cee8c9706b70836e263ad9ec9fc8a8460bd8cc458891aabcfb12",
+    "score": 100,
+    "released": "2026-11-19",
+    "category": "other",
+    "color": "#2563eb",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/banner.svg",
+    "screenshots": [
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/docs/screenshot.de.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/docs/screenshot-docs.webp",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/docs/screenshot-sheets.webp",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/docs/screenshot-slides.webp",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/docs/screenshot-pdf.webp"
+    ],
+    "requires": {},
+    "replaces": [],
+    "native": true,
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-office/v1.0.1/CHANGELOG.md"
+  },
+  {
     "id": "modes",
     "name": {
       "de": "Ein-Klick",
