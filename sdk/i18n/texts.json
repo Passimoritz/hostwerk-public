@@ -13311,7 +13311,7 @@
     "Abgemeldet": "Removed",
     "Bitte das Standard-Programm in den Systemeinstellungen wählen.": "Please choose the default program in the system settings.",
     "Keine Erweiterung öffnet Dateien in „Dateien“.": "No extension opens files in “Files”.",
-    "Öffnet passende Dateien in „Dateien“ per Klick. Aus: Hostwerks Vorschau – die Erweiterung bleibt im Rechtsklick-Menü.": "Opens matching files in “Files” on click. Off: Hostwerk’s preview – the extension stays in the right-click menu.",
+    "Öffnet passende Dateien per Klick (aus: Hostwerks Vorschau).": "Opens matching files on click (off: Hostwerk’s preview).",
     "„Öffnen mit“ im System": "“Open with” in the system",
     "Auf diesem System nicht möglich.": "Not possible on this system.",
     "Nur in der Desktop-App.": "Desktop app only.",
@@ -13324,7 +13324,21 @@
     "Als Standard wählen …": "Set as default …",
     "Standard-Programm: in Windows unter Einstellungen → Apps → Standard-Apps „Hostwerk …“ wählen – oder im Explorer per Rechtsklick „Öffnen mit → Andere App auswählen → Hostwerk → Immer“.": "Default program: in Windows choose “Hostwerk …” under Settings → Apps → Default apps – or in Explorer right-click “Open with → Choose another app → Hostwerk → Always”.",
     "Geöffnete Dateien": "Opened files",
-    "Dateitypen": "File types"
+    "Dateitypen": "File types",
+    "Office-Erweiterung im Katalog": "Office extension in the catalog",
+    "Dokumente, Tabellen, Präsentationen und PDFs direkt in Hostwerk erstellen, bearbeiten und lesen – Microsoft Office, OpenDocument, Google, Apple iWork und offene Formate, mit verlustfreiem Speichern, Versionen und eigener Office-Engine.": "Create, edit and read documents, spreadsheets, presentations and PDFs right in Hostwerk – Microsoft Office, OpenDocument, Google, Apple iWork and open formats, with lossless saving, versions and its own office engine.",
+    "Erweiterungen direkt in den Dateien": "Extensions right inside Files",
+    "Erweiterungen öffnen passende Dateien per Klick, ergänzen das Menü „Neu“ und bringen eigene Ordner in die Dateien mit – ohne eigenen Seitenleisten-Eintrag (Erweiterungs-SDK 3.15).": "Extensions open matching files with a click, add to the “New” menu and bring their own folders into Files – without a sidebar entry of their own (extension SDK 3.15).",
+    "„Öffnen mit“ Hostwerk": "“Open with” Hostwerk",
+    "Hostwerk kann sich unter Windows und Linux für Dateitypen eintragen: Dateien aus dem Explorer öffnen sich direkt in Hostwerk. Was eingetragen ist, steht unter Einstellungen → Erweitert und lässt sich dort wieder entfernen.": "Hostwerk can register itself for file types on Windows and Linux: files from Explorer open right in Hostwerk. What is registered is listed under Settings → Advanced and can be removed there.",
+    "Webseiten in Hostwerk statt im Browser": "Web pages inside Hostwerk instead of the browser",
+    "Links und Anmeldeseiten öffnen sich in einem eigenen Hostwerk-Fenster statt im Standard-Browser – abschaltbar unter Einstellungen → Bedienung (Erweiterungs-SDK 3.14).": "Links and sign-in pages open in a Hostwerk window instead of the default browser – can be turned off under Settings → Behavior (extension SDK 3.14).",
+    "System → Speicher aufgeräumt": "System → Storage tidied up",
+    "Jeder Abschnitt einer Erweiterung ist ein eigener Eintrag (bis zu sechs je Erweiterung), ohne doppelten Rahmen und Titel.": "Every section of an extension is its own entry (up to six per extension), without a second frame and title.",
+    "Schmale Fenster": "Narrow windows",
+    "Auf dem Handy und in schmalen Fenstern ist die Seitenleiste eine kompakte Zeile – die Seite beginnt direkt darunter statt in der unteren Bildschirmhälfte.": "On phones and in narrow windows the sidebar is one compact row – the page starts right below it instead of in the lower half of the screen.",
+    "Meldungen von Erweiterungen vollständig": "Complete notifications for extensions",
+    "Erweiterungen können Warnungen, „Fertig“-Meldungen mit Knopf und das Ausblenden von Meldungen wie Hostwerk selbst nutzen.": "Extensions can use warnings, “done” notices with a button and dismissing notices just like Hostwerk itself."
   },
   "patterns": [
     [

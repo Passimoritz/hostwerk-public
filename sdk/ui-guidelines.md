@@ -127,7 +127,10 @@ Ruhig bleiben: einmal beim ersten Zeichnen oder bei einer Änderung, nie bei jed
   Karten-Köpfen, 22 im Seitenkopf, ab 24 nur auf Bühnen (Leerzustand, Logos).
 - Schrift, Rundung, Abstand nur als Stufe: `var(--fs-*)`, `var(--r-*)`, `var(--sp-*)`.
 - Farben nur als Token (`--text`, `--muted`, `--surface`, `--accent*`, `--ok/--warn/--err` + `-text`/`-soft`). Weiß auf
-  einer farbigen Kachel ist erlaubt. Bewusste Ausnahme je Datei: `/* hostwerk-allow: colors – Grund */`.
+  einer farbigen Kachel ist erlaubt. Bewusste Ausnahme je Datei: `/* hostwerk-allow: colors – Grund */`; ebenso
+  `scale` (px-Schrift/-Rundung, Schriftgröße als Zahl im `style`) und `tables` (`<table>` ohne Klasse `table`), z. B.
+  für „Papier“, das in beiden Designs weiß bleibt, kopiertes CSS einer Bibliothek oder HTML für andere Programme – immer
+  mit Begründung. Gebautes (`ui/index.*`, Bündel mit Bau-Kopf „… – built with …“) wird nicht geprüft, nur seine Quelle.
 - CSS-Klassen englisch; keine Bauteil-Klasse heißt wie ein Zustand (`empty`, `ok`, `error` …).
 
 ## 8. Wörter

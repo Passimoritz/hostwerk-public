@@ -724,9 +724,11 @@ const UI_HINTS = [
   { id: 'label-colon', kind: ['code'], msg: 'label ending with ":" – Hostwerk labels stand above the field without a colon.',
     find: (s) => all(/<Field\s+label=["']([^"']*):["']|<label\b[^>]*>([^<{]{2,40}):\s*<\/label>/g, s) },
   { id: 'table-class', kind: ['code'], msg: '<table> without class "table" – the kit class gives header, row lines, hover and numbers right-aligned (td.num).',
-    find: (s) => all(/<table(?![^>]*\bclass(Name)?=\{?["'`][^"'`]*\btable\b)[^>]*>/g, s) },
+    // nur das HTML-Element: <table:table> (OpenDocument), <tableColumn> (Excel-XML) und /<table\b/ in Mustern sind keins
+    find: (s) => all(/<table(?=[\s>])(?![^>]*\bclass(Name)?=\{?["'`][^"'`]*\btable\b)[^>]*>/g, s) },
   { id: 'inline-font', kind: ['code'], msg: 'font size as a number in style={…} – use a class (small, tiny) or var(--fs-…).',
-    find: (s) => all(/fontSize:\s*['"]?\d+(px)?['"]?/g, s) },
+    // nur in Stilangaben (style={{ … }}, style: { … }, el.style.fontSize = …) – fontSize: 11 in Einstellungen oder '11pt' im Dokument ist keine
+    find: (s) => all(/\bstyle(?:=\{\{|:\s*\{)[^{}]*?\bfontSize:\s*['"]?\d+(px)?['"]?(?=\s*[,}])|\.style\.fontSize\s*=\s*['"`]?\d+(px)?\b/g, s) },
   { id: 'icon-size', kind: ['code'], msg: 'small icon off the scale – 12/13/14/16 next to text (like the font size), 18 in card heads, 22 in the page head.',
     find: (s) => (/lucide-react/.test(s) ? all(/\bsize=\{(\d+)\}/g, s).filter((x) => { const n = Number(/\d+/.exec(x.s)[0]); return n < 20 && !ICON_SIZES.has(n); }) : []) },
   { id: 'own-spinner', kind: ['code', 'css'], msg: 'own spinner – use <Loading>, <Spinner> or the busy state of <Btn> (spins by itself while the click runs).',
@@ -740,16 +742,40 @@ const UI_HINTS = [
   { id: 'term', kind: ['de'], msg: 'different word for the same thing – Hostwerk glossary (docs/ui-guidelines.md, section "Wörter").',
     find: (s) => GLOSSARY.flatMap((g) => all(g.re, s).map((x) => ({ ...x, s: `${x.s} → ${g.use}` }))) },
 ];
+/*
+ * Bewusste Ausnahme je Datei, immer mit Begründung – ein Block-Kommentar „hostwerk-allow: colors, scale – das Papier bleibt weiß“
+ * (Kommentar in CSS oder Code). colors = feste Farben, scale = px-Schriftgrößen/-Rundungen und Schriftgröße als Zahl im style,
+ * tables = <table> ohne Klasse „table“ (z. B. HTML für die Zwischenablage anderer Programme, Nachbildung eines Tabellenblatts).
+ */
+const UI_ALLOW = { colors: ['css-color'], scale: ['css-scale', 'inline-font'], tables: ['table-class'] };
+function uiAllowed(src) {
+  const out = new Set();
+  for (const m of String(src).matchAll(/hostwerk-allow:\s*([a-z, ]+)[–-]\s*\S[^\n]{9,}/gi)) {
+    for (const w of m[1].split(/[\s,]+/)) for (const id of UI_ALLOW[w.toLowerCase()] || []) out.add(id);
+  }
+  return out;
+}
+/*
+ * Gebaute Oberfläche – Bündel aus ui/src (samt Fremdbibliotheken), deren Quellen ohnehin geprüft werden: ui/index.js/.css,
+ * *.min.js und jede Datei, die mit dem Bau-Kopf beginnt (Block-Kommentar „… – built with …“ in der ersten Zeile, wie build-native.js und die Bau-Skripte
+ * von Erweiterungen ihn schreiben, z. B. nachgeladene Editor-Teile unter ui/assets/).
+ */
+const BUILT_HEAD = /^﻿?\/\*[^\n]*?\bbuilt with\b[^\n]*?\*\//;
+function isBuiltUi(rel, src) {
+  return /^ui\/index\.(js|css)$/.test(rel) || /\.min\.js$/.test(rel) || BUILT_HEAD.test(String(src || '').slice(0, 400));
+}
 /**
  * Gestaltungs-Hinweise für eine Datei. kinds: z. B. ['code', 'ext-code'] für eine Erweiterungs-Oberfläche.
  * Liefert [{ id, line, s }]. Kommentare im Code (Zeilen- und Blockkommentare) werden vorher ausgeblendet, damit sie nichts melden.
+ * Regeln, die die Datei per hostwerk-allow (mit Begründung) ausnimmt, melden nichts.
  */
 function uiHintsFor(src, kinds) {
   let s = String(src);
+  const allowed = uiAllowed(s);
   if (kinds.includes('code') || kinds.includes('css')) s = s.replace(/\/\*[\s\S]*?\*\//g, (c) => (/hostwerk-allow:/.test(c) ? c : c.replace(/[^\n]/g, ' '))).replace(/(^|[^:'"`\\])\/\/[^\n]*/g, (c, a) => a + ' '.repeat(c.length - a.length));
   const out = [];
   for (const r of UI_HINTS) {
-    if (!r.kind.some((k) => kinds.includes(k))) continue;
+    if (!r.kind.some((k) => kinds.includes(k)) || allowed.has(r.id)) continue;
     for (const x of r.find(s)) out.push({ id: r.id, line: s.slice(0, x.i).split('\n').length, s: x.s });
   }
   return out;
@@ -1304,10 +1330,11 @@ function checkPackage(dir, { strict = false } = {}) {
   const hintCount = new Map();
   for (const f of files) {
     // gebaute Oberfläche (ui/index.js) nicht doppelt, Tests/Server-Code sind keine Oberfläche
-    const ui = !/^(tests|scripts|backend|server|browser-extension|node_modules)\//.test(f) && f !== 'ui/index.js' && f !== 'ui/index.css' && !/\.min\.js$/.test(f);
+    const ui = !/^(tests|scripts|backend|server|browser-extension|node_modules)\//.test(f);
     const kinds = !ui ? null : /\.(jsx?|mjs|html?)$/i.test(f) ? ['code', 'ext-code'] : /\.css$/i.test(f) ? ['css'] : f === 'locales/de.json' ? ['de'] : null;
     if (!kinds) continue;
     const raw = fs.readFileSync(path.join(dir, f), 'utf8');
+    if (isBuiltUi(f, raw)) continue;
     for (const h of uiHintsFor(kinds[0] === 'de' ? deValues(raw) : raw, kinds)) {
       const c = hintCount.get(h.id) || { n: 0, at: [] };
       c.n++; if (c.at.length < 3) c.at.push(kinds[0] === 'de' ? `${f} („${h.s}“)` : `${f}:${h.line}`);
@@ -1359,7 +1386,7 @@ function checkPackage(dir, { strict = false } = {}) {
 
 module.exports = { checkPackage, HIDING_KEYS, TAMPER_RE, PERMISSIONS, NEVER, LEGACY, scopes, allows, quiet, text, SDK_VERSION, ID_RE, SIDEBAR_ICONS, SDK_MEMBERS, CATEGORIES, satisfies, cmpVer, RANGE_RE, AREAS, NAV_GROUPS, NAV_GROUP_RE, SETTINGS_TABS, shortcutCombo, SHORTCUT_RESERVED, SHORTCUT_HOSTWERK,
   // SDK 3.3
-  INTERNALS, TRACE_PATTERNS, UI_HINTS, GLOSSARY, ICON_SIZES, uiHintsFor, deValues,
+  INTERNALS, TRACE_PATTERNS, UI_HINTS, GLOSSARY, ICON_SIZES, uiHintsFor, deValues, isBuiltUi,
   // SDK 3.0
   SDK_MAJOR, SDK_MINOR, DEPRECATIONS, EXPERIMENTAL, deprecationText, parseSdk, sdkFits, hostwerkRange, hostwerkFits, hostwerkLabel,
   // SDK 2.9
