@@ -38,6 +38,8 @@ SDK 3.6): Lade-Linie, Kreisel, Einblenden, Puls, gezeichneter Haken und hochzäh
 | mich in den Bereich KI einhängen (Strg+J, Medien, Einstellungen, Gedächtnis, @-Quellen) | [32. KI überall](#32-sdk-310-ki-überall--seitenfenster-ki-plätze-und-eigene--quellen) |
 | mich in den Livebetrieb einhängen (Online, Zugriff, Schutz, Überwachung, Sicherung; Lage-Punkte, eigene Adressen) | [33. Livebetrieb in fünf Bereichen](#33-sdk-311-livebetrieb-in-fünf-bereichen--abschnitte-lage-punkte-und-eigene-adressen) |
 | mich in Sicherungen oder System einhängen (Lage-Punkte, Zeitplan, Abschnitte in den Bereichen) | [34. Sicherungen und System neu](#34-sdk-312-sicherungen-und-system-neu--abschnitte-lage-punkte-und-zeitplan) |
+| eine Webseite oder Anmeldung in Hostwerk statt im Browser öffnen | [26. Webseiten in Hostwerk](#webseiten-in-hostwerk-sdk-314) |
+| in „Dateien“ leben (Dateien öffnen, Menü „Neu“, eigener Bereich) und unter „Öffnen mit“ erscheinen | [21. Dateien öffnen und „Öffnen mit“](#dateien-öffnen-menü-neu-eigene-bereiche-und-öffnen-mit-sdk-315) |
 | prüfen und veröffentlichen | [10. Prüfen](#10-erweiterung-prüfen) · [11. Veröffentlichen](#11-veröffentlichen-repository-release-einreichen) · [35. Checkliste](#35-checkliste-vor-dem-veröffentlichen) |
 | wissen, warum etwas nicht geht | [36. Häufige Fragen und Fehler](#36-häufige-fragen-und-fehler) |
 
@@ -1047,7 +1049,8 @@ slots: {
 
 - `files.actions`: Einträge im Rechtsklick-Menü (Eintrag und freie Fläche = offener Ordner). `e = { root, path, dir, name, open() }`
   – `open()` zeigt die Datei in Hostwerks Vorschau.
-- `files.marks`: kleines Zeichen hinter dem Namen (mit Tooltip) – neu laden mit `window.dispatchEvent(new Event('hw:files-marks'))`.
+- `files.marks`: kleines Zeichen hinter dem Namen (mit Tooltip) – neu laden mit `window.dispatchEvent(new Event('hw:files-marks'))`; die Liste
+  des offenen Ordners mit `window.dispatchEvent(new Event('hw:files-reload'))` (SDK 3.15, z. B. nachdem neben einer Datei eine neue entstand).
 - Abgeschottet: `contributes.actions` mit `"on": ["folder"]` bzw. `["file"]` – öffnet die eigene Seite mit
   `?action=<id>&kind=folder&target=<root>:<pfad>` (wie die Rechtsklick-Aktionen von Diensten).
 - Vorschau für Dateiarten wie bisher über `files.preview` (`{ id, title, match: /…/, Component({ root, path }) }`).
@@ -1073,6 +1076,77 @@ host.sites.remove(id); await host.sites.publish(id);
 - Die eigene Seite öffnet Hostwerk mit Aktion über `?action=site&target=<seiten-id>` (Knopf „Einstellungen“ in der Liste).
 - Läuft die Erweiterung nicht, bleibt die Seite auf dem letzten Stand (Hinweis in der Liste). Gibt es `host.sites` nicht
   (älteres Hostwerk, abgeschottet laufend), einfach weglassen.
+
+### Dateien öffnen, Menü „Neu“, eigene Bereiche und „Öffnen mit“ (SDK 3.15)
+
+Hostwerk 3.0 und neuer mit SDK 3.15, *nativ*. Eine Erweiterung wie Office braucht keinen eigenen Eintrag in der Seitenleiste:
+sie lebt in *Dateien* – öffnet passende Dateien per Klick, bringt „Neues Dokument“ ins Menü „Neu“, zeigt ihren Ordner als
+eigenen Bereich und meldet Hostwerk im Betriebssystem unter „Öffnen mit“ an.
+
+```js
+// ui-Modul (export default { slots: { … } })
+'files.open': [{ id: 'office', title: 'Office', icon: FileText, priority: 10,
+  match: /\.(docx?|xlsx?|pptx?|odt|ods|odp|rtf|pdf)$/i,          // oder { test: (name) => … }
+  open: ({ root, path, name, dir, back, from }) => { location.hash = `/office-edit?root=${encodeURIComponent(root)}&target=${encodeURIComponent(path)}`; } }],
+'files.new': [{ id: 'doc', title: 'New document', icon: FileText, group: 'office', order: 1,
+  run: async ({ root, path }) => { /* Datei im offenen Ordner anlegen, z. B. über die eigene API */ } }],
+```
+
+- `files.open`: Klick oder Enter auf eine passende Datei ruft `open()` statt Hostwerks Vorschau oder Editor. Mehrere passende:
+  die höchste `priority` gewinnt (Gleichstand: die Erweiterung, der der Dateityp unter „Öffnen mit“ gehört), die übrigen stehen
+  im Rechtsklick-Menü als *Mit „…“ öffnen*; *Vorschau* bzw. *Im Editor öffnen* bleibt immer dort. Der Nutzer schaltet das je
+  Erweiterung ab (*Einstellungen → Erweitert → Dateien öffnen*, `general.ui.filesOpenOff`). `from` ist `'files'` (Klick) oder
+  `'os'` (aus dem Explorer). `back` ist die Adresse zurück in genau diesen Ordner mit markierter Datei
+  (`#/files?root=…&path=…&select=…`) – für einen eigenen „Zurück“-Knopf einer Vollbild-Ansicht (`screens`, Abschnitt 26).
+  *Dateien* hält Bereich und Ordner selbst in der Adresse, darum führt auch der normale Zurück-Weg dorthin.
+- `files.new`: Einträge im Menü „Neu“ (Knopf *Neu …* und Rechtsklick auf die freie Fläche) für den offenen Ordner. Nach `run()`
+  lädt die Liste neu. Höchstens 12 je Erweiterung. Fehler in `open()`/`run()` zeigt Hostwerk als Meldung.
+- Ein Reiter `area:files` ist nicht nötig (und nicht vorgesehen) – *Dateien* hat keine Reiter; Steckplätze und ein eigener
+  Bereich reichen.
+
+**Eigener Bereich in Dateien** (Server-Teil, `host.supports('files.roots')`):
+
+```js
+const { root } = host.files.addRoot({ id: 'library', label: host.t('Office documents'), path: libraryDir, icon: 'file', create: true });
+// root = 'ext:office:library' – damit gehen alle Hostwerk-Dateirouten (root + path)
+host.files.removeRoot('library'); host.files.roots();
+```
+
+Gleiche Regeln wie für eigene Ordner: vorhandener Ordner (mit `create: true` angelegt), kein ganzes Laufwerk, nie Hostwerks
+eigener Ordner oder einer darüber. `icon` ist ein Name aus der Symbol-Liste der Seitenleiste. Der Bereich steht in *Dateien*
+unter „Aus Erweiterungen“ und verschwindet, wenn die Erweiterung ausgeschaltet oder entfernt wird – `addRoot` also in
+`activate()` aufrufen (bei geänderter Einstellung einfach erneut).
+
+**„Öffnen mit“ im Betriebssystem** (Server-Teil, nur Desktop-App unter Windows und Linux, `host.supports('fileTypes')`):
+
+```js
+if (host.supports('fileTypes')) {
+  const st = await host.fileTypes.register({
+    id: 'office', appName: 'Hostwerk Office', description: 'Documents, spreadsheets and presentations in Hostwerk',
+    icon: 'assets/office.ico',                                   // freiwillig: .ico (Windows) bzw. .png/.svg (Linux) im eigenen Paket
+    types: [{ ext: 'docx', progIdLabel: 'Word-Dokument (Hostwerk)', mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', kind: 'docs' }],
+  });
+  // st = { id, registered, stale, dev, types: [{ ext, progId, registered, isDefault, userChoice }] }
+  await host.fileTypes.state('office'); await host.fileTypes.openDefaultsSettings('office'); await host.fileTypes.unregister('office');
+}
+```
+
+- **Windows** (je Benutzer, ohne Admin): ProgID `Hostwerk.<id>.<ext>` (Name, Symbol, `"<Hostwerk.exe>" --open-file "%1"`),
+  `.<ext>\OpenWithProgids` (Hostwerk erscheint unter „Öffnen mit“, Office/LibreOffice bleiben Standard), `Applications\Hostwerk.exe\SupportedTypes`
+  sowie `Software\Hostwerk\<id>\Capabilities` + `RegisteredApplications` (Eintrag unter *Einstellungen → Apps → Standard-Apps*).
+  Den Standard setzt Windows 10/11 nur der Nutzer selbst – `openDefaultsSettings()` öffnet die passende Seite der
+  Windows-Einstellungen; `state()` liest die Wahl (UserChoice) nur. Entfernt wird genau, was geschrieben wurde.
+- **Linux**: `~/.local/share/applications/hostwerk-<id>.desktop` mit `MimeType` (jede Art braucht `mime`) und
+  `Exec=… --open-file %f`; `{ setDefault: true }` setzt zusätzlich `xdg-mime default` (beim Entfernen zurück auf den vorigen).
+- **macOS**: zur Laufzeit nicht möglich (`ENOTSUPPORTED`) – Dateiarten kämen über die Info.plist der App.
+- Fehler: `ENODESKTOP` (eigenständiger Server, Systemdienst), `ESTORE` (Store-Fassung), `EDEVBUILD` (Entwicklerstart ohne
+  `{ allowDev: true }` – so landet nie still ein Entwicklerpfad im System). Programm- und Skripttypen (`.exe`, `.lnk`, `.js` …)
+  lehnt Hostwerk ab.
+- Eine Datei aus dem Explorer geht an den `files.open`-Eintrag der Erweiterung, die die Art angemeldet hat (`from: 'os'`), sonst
+  an *Dateien* mit markierter Datei. Liegt sie in keinem Bereich, legt Hostwerk für ihren Ordner einen Bereich „Geöffnete
+  Dateien“ an (entfernbar, höchstens 20) – Lesen und Schreiben gehen dann über dieselben `root` + `path` wie überall.
+- Hostwerk meldet beim Entfernen der Erweiterung alles selbst ab (auch ohne `exports.uninstall`), jede An- und Abmeldung steht im
+  Aktivitätsprotokoll, und unter *Einstellungen → Erweitert → Dateien öffnen* sieht und entfernt der Nutzer alle Anmeldungen.
 
 ---
 
@@ -1347,6 +1421,46 @@ Regeln für den eigenen Zugang (der Prüfer sieht sie nicht, die Katalog-Prüfun
 Cookie `HttpOnly; Secure; SameSite`, Anfragen fremder Seiten abweisen (`Sec-Fetch-Site` außer `same-origin`/`none`), bei
 Passwortwechsel ungültig machen, falsche Codes mit `ctx.remote.fail(ip)` zählen, Sitzungen mit `ctx.remote.dropSessions(s => …)`
 beenden.
+
+### Webseiten in Hostwerk (SDK 3.14)
+
+Hostwerk 3.0 und neuer mit SDK 3.14, nur in der Desktop-App. Für native Erweiterungen: Anmeldeseite (OAuth), Hilfeseite oder
+Dokument in einem Hostwerk-Fenster statt im Browser des Nutzers öffnen. Das Fenster hat Hostwerks Symbol, kein Menü, den
+Hostnamen als Titel, läuft abgeschottet (`sandbox`, `contextIsolation`, kein Preload, kein Node) und lädt nur http(s). Popups der
+Seite (die Google-Anmeldung öffnet welche) bleiben in solchen Fenstern. Jeder Zweck bekommt eine eigene, dauerhafte Sitzung
+(`partition`) – Anmeldungen bleiben erhalten, Hostwerks eigene Sitzung ist nie erreichbar.
+
+```js
+// Server-Teil (backend) – zuerst nachfragen
+if (host.supports('webWindow')) {
+  const back = await host.webWindow.open({
+    url: authUrl,                                  // nur http(s)
+    title: 'Bei Google anmelden',                  // freiwillig, bis die Seite einen eigenen Titel hat
+    partition: 'persist:hw-auth-google',           // freiwillig, "persist:hw-<a-z 0-9 ->", Standard "persist:hw-web"
+    width: 520, height: 720,                       // freiwillig
+    waitFor: 'http://127.0.0.1:53682/callback',    // freiwillig: Adress-Präfix deiner Weiterleitung / Loopback
+  });
+  // back = die volle Adresse, die waitFor erreicht hat (mit ?code=…) – das Fenster geht zu, die Adresse wird NICHT geladen;
+  //        null, wenn der Nutzer das Fenster geschlossen hat (ohne waitFor immer null beim Schließen)
+} else {
+  // eigenständiger Server, Systemdienst oder älteres Hostwerk: selbst ausweichen (Adresse zeigen, Gerätecode …)
+}
+```
+
+`host.ctx.app.openWebWindow(opts)` ist derselbe Aufruf (Kern-Kontext); `host.ctx.app.webWindow` ist in der Desktop-App `true`.
+Ohne Electron scheitert der Aufruf mit `code: 'ENODESKTOP'` (Status 409) – `try/catch` geht also genauso wie `supports`.
+
+In der Oberfläche einer nativen Erweiterung (und in Hostwerks eigener) über `@hostwerk/api`:
+
+```js
+import { openInApp, canOpenInApp } from '@hostwerk/api';
+await openInApp('https://example.com/docs');                       // oder dieselben Optionen wie oben
+const url = await openInApp({ url: authUrl, waitFor: 'https://my.app/redirect' });
+```
+
+`canOpenInApp()` ist in der Desktop-App `true`; im normalen Browser öffnet `openInApp` einen neuen Tab und liefert `null`.
+Auch `openExternal` und fremde Links landen standardmäßig dort (*Einstellungen → Bedienung → Links in Hostwerk öffnen*,
+`general.linksInApp`); wer lieber den System-Browser nutzt, schaltet es dort aus.
 
 ## 27. SDK 3.5: Dienst-Arten, Beiträge und ein Kern ohne Sonderfälle
 
@@ -1911,7 +2025,8 @@ Livebetrieb: zuerst eine **Lage**, dann flache Bereiche mit Abschnitten links.
 | `backups.zurueckholen` | *Sicherungen → Zurückholen*: Probe, einzelne Datei, Zeitmaschine, Umzug | `{ kind: "backups", area: "zurueckholen" }` |
 | `system.lage` | *System → Lage*: Läuft alles? (z. B. Steckbrief des PCs) | `{ kind: "system", area: "lage" }` |
 | `system.dienste` | *System → Dienste*: Ports, installierte und fremde Programme, Selbstheilung | `{ kind: "system", area: "dienste" }` |
-| `system.leistung` | *System → Leistung*: jetzt, Verlauf, Laufwerke, Speicherplatz | `{ kind: "system", area: "leistung" }` |
+| `system.leistung` | *System → Leistung*: jetzt, Verlauf | `{ kind: "system", area: "leistung" }` |
+| `system.speicher` | *System → Speicher* (seit SDK 3.13, `"sdkVersion": "3.13"`): Laufwerke, Belegung, Dateien je Dienst – ein eigener Reiter ohne eingebaute Abschnitte. Liefert eine Erweiterung denselben Abschnitt (gleiche `id`) zusätzlich in `system.leistung` (Rückfall für Hostwerk mit SDK 3.12), zeigt Hostwerk ihn nur unter Speicher | `{ kind: "system", area: "speicher" }` |
 | `system.protokolle` | *System → Protokolle*: Protokolle, Vorfälle, Absturzberichte | `{ kind: "system", area: "protokolle" }` |
 | `system.wartung` | *System → Wartung*: Selbstwartung, Gesundheits-Check, Schwachstellen | `{ kind: "system", area: "wartung" }` |
 | `system.aenderungen` | *System → Änderungen*: Zeitachse mit Rückgängig | `{ kind: "system", area: "aenderungen" }` |

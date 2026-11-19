@@ -5,6 +5,63 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
+## 3.15.0 – 2026-11-19
+
+Extensions inside *Files* and Hostwerk under the system's "Open with" ([section 21 of the guide](README.md#files-open-new-menu-own-roots-and-open-with-sdk-315)). Only additions.
+
+- New native slots in the file browser: `files.open` (`{ id, title, icon, match, priority, open({ root, path, name, dir, back, from }) }`) –
+  a click / Enter on a matching file calls `open()` instead of Hostwerk's preview; several matches: the highest `priority` wins, the
+  others are in the right-click menu as *Open with "…"*, *Preview* stays there too. Users turn it off per extension
+  (*Settings → Advanced → Open files*, `general.ui.filesOpenOff`). `files.new` (`{ id, title, icon, group, order, run({ root, path }) }`)
+  adds entries to the browser's *New* menu.
+- Native: `host.files.addRoot({ id, label, path, icon, create })` → `{ root: 'ext:<id>:<root>' }` – an own root in *Files* (same path
+  rules as other roots, never Hostwerk's own folder); gone when the extension is turned off or removed. `host.files.removeRoot(id)`,
+  `host.files.roots()`. Detection: `host.supports('files.roots')`.
+- Native, desktop app on Windows/Linux: `host.fileTypes.register({ id, appName, description, icon, types: [{ ext, progIdLabel, mime, kind, icon }] }, { allowDev, setDefault })`,
+  `unregister(id)`, `state(id)`, `list()`, `openDefaultsSettings(id)` – Hostwerk under "Open with" (Windows: per user under HKCU, no admin;
+  the default stays the user's choice), files arrive as `files.open` with `from: 'os'`, otherwise *Files* shows them (unknown folders as a
+  root *Opened files*). Detection: `host.supports('fileTypes')`; errors `ENODESKTOP`, `ESTORE`, `ENOTSUPPORTED` (macOS), `EDEVBUILD`.
+  Hostwerk removes the registrations itself when the extension is removed; every registration/removal is in the activity log.
+- `#/files?root=&path=&select=` – *Files* keeps root and folder in the address, so *Back* from an extension view returns to the same folder.
+- `window.dispatchEvent(new Event('hw:files-reload'))` reloads the list of the open folder in *Files*.
+- Native: the translated `toast` of `@hostwerk/ui` also has `toast.warn(text)`, `toast.dismiss(id)` and `toast.done(text, { label, href })` (like Hostwerk's own).
+
+> DE: Erweiterungen in *Dateien* und „Öffnen mit“ – neue Steckplätze `files.open` (Klick öffnet passende Dateien in der Erweiterung,
+> abschaltbar je Erweiterung) und `files.new` (Menü „Neu“), eigener Bereich mit `host.files.addRoot` (`supports('files.roots')`),
+> Hostwerk unter „Öffnen mit“ mit `host.fileTypes.register/unregister/state/openDefaultsSettings` (`supports('fileTypes')`, nur
+> Desktop-App unter Windows/Linux). Beim Entfernen meldet Hostwerk die Dateitypen selbst ab; alles steht im Aktivitätsprotokoll.
+
+## 3.14.0 – 2026-11-18
+
+Web pages inside Hostwerk instead of the external browser ([section 26 of the guide](README.md#web-pages-inside-hostwerk-sdk-314)). Only additions.
+
+- Native extensions: `host.webWindow.open({ url, title, partition, width, height, waitFor })` opens an http(s) page in a sandboxed
+  Hostwerk window with its own persistent session (`partition: "persist:hw-<name>"`, default `persist:hw-web`); pop-ups stay in
+  such windows. `waitFor` (address prefix) resolves with the matching address and closes the window (OAuth redirect / loopback),
+  otherwise the promise resolves `null` when the window is closed. Same call: `host.ctx.app.openWebWindow(opts)`.
+- Detection: `host.supports('webWindow')` – `true` only in the desktop app. Without Electron (standalone server, system service)
+  the call fails with `code: 'ENODESKTOP'`.
+- Interface: `openInApp(urlOrOpts)` and `canOpenInApp()` from `@hostwerk/api` (desktop app: `window.hostwerk.openWebWindow`;
+  in a browser a new tab, result `null`).
+- New setting `general.linksInApp` (*Settings → Behavior → Open links inside Hostwerk*, on by default): foreign links and
+  `openExternal` then open in such a window too.
+
+> DE: Webseiten in Hostwerk statt im fremden Browser – `host.webWindow.open({ url, title, partition, width, height, waitFor })`
+> (auch `host.ctx.app.openWebWindow`), erkennbar an `host.supports('webWindow')` (nur Desktop-App, sonst `ENODESKTOP`). In der
+> Oberfläche `openInApp()` / `canOpenInApp()` aus `@hostwerk/api`. Neue Einstellung `general.linksInApp` (*Links in Hostwerk öffnen*, standardmäßig an).
+
+## 3.13.0 – 2026-11-17
+
+System gets an own tab *Storage* ([section 34 of the guide](README.md#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule)). Only additions.
+
+- New section place `system.speicher` for `contributes.sections` and native `sections` (context `{ kind: "system", area: "speicher" }`):
+  *System → Storage* – drives, used space, files per service. Hostwerk has no built-in sections there. Needs `"sdkVersion": "3.13"`.
+- An extension may deliver the same section (same `id`) in `system.leistung` as a fallback for older Hostwerk – with SDK 3.13
+  it only shows under Storage, and old addresses (`#/system/leistung/<id>`) lead there. `SYSTEM_LEGACY_GROUPS` knows `speicher`.
+
+> DE: Neuer Platz `system.speicher` – eigener Reiter *System → Speicher* (Laufwerke, Belegung, Dateien). Derselbe Abschnitt
+> zusätzlich in `system.leistung` (Rückfall für ältere Hostwerk) erscheint nur unter Speicher.
+
 ## 3.12.0 – 2026-10-29
 
 Backups and System rebuilt ([section 34 of the guide](README.md#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule)). Only additions.

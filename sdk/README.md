@@ -38,6 +38,8 @@ components ([section 28](#28-sdk-36-animations-like-hostwerk)).
 | plug into the AI area (Ctrl+J, media, settings, memory, @ sources) | [32. AI everywhere](#32-sdk-310-ai-everywhere--side-panel-ai-places-and-own--sources) |
 | plug into Go live (online, access, protection, monitoring, backup; overview points, own addresses) | [33. Go live in five areas](#33-sdk-311-go-live-in-five-areas--sections-overview-points-and-own-addresses) |
 | plug into Backups or System (overview points, schedule, sections in the areas) | [34. Backups and System rebuilt](#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule) |
+| open a web page or sign-in inside Hostwerk instead of the browser | [26. Web pages inside Hostwerk](#web-pages-inside-hostwerk-sdk-314) |
+| live inside *Files* (open files, "New" menu, own root) and show up under "Open with" | [21. Files and "Open with"](#files-open-new-menu-own-roots-and-open-with-sdk-315) |
 | check and publish | [10. Check](#10-check-your-extension) · [11. Publish](#11-publish-repository-release-submit) · [35. Checklist](#35-checklist-before-publishing) |
 | find out why something does not work | [36. Common questions and mistakes](#36-common-questions-and-mistakes) |
 
@@ -1040,7 +1042,8 @@ slots: {
 
 - `files.actions`: entries in the right-click menu (entry, and empty space = open folder). `e = { root, path, dir, name, open() }`
   – `open()` shows the file in Hostwerk's preview.
-- `files.marks`: small mark after the name (with tooltip) – reload with `window.dispatchEvent(new Event('hw:files-marks'))`.
+- `files.marks`: small mark after the name (with tooltip) – reload with `window.dispatchEvent(new Event('hw:files-marks'))`; the list
+  of the open folder with `window.dispatchEvent(new Event('hw:files-reload'))` (SDK 3.15, e.g. after creating a file next to another one).
 - Sandboxed: `contributes.actions` with `"on": ["folder"]` or `["file"]` – opens the own page with
   `?action=<id>&kind=folder&target=<root>:<path>` (like the right-click actions of services).
 - Previews for file types as before through `files.preview` (`{ id, title, match: /…/, Component({ root, path }) }`).
@@ -1066,6 +1069,74 @@ host.sites.remove(id); await host.sites.publish(id);
 - Hostwerk opens the own page with an action through `?action=site&target=<page id>` (button “Settings” in the list).
 - While the extension is not running, the page keeps its last state (note in the list). Without `host.sites` (older
   Hostwerk, running sandboxed) simply skip it.
+
+### Files: open, "New" menu, own roots and "Open with" (SDK 3.15)
+
+Hostwerk 3.0 and newer with SDK 3.15, *native*. An extension like Office needs no own sidebar entry: it lives in *Files* –
+opens matching files on click, adds "New document" to the *New* menu, shows its folder as an own root and registers Hostwerk
+under the system's "Open with".
+
+```js
+// ui module (export default { slots: { … } })
+'files.open': [{ id: 'office', title: 'Office', icon: FileText, priority: 10,
+  match: /\.(docx?|xlsx?|pptx?|odt|ods|odp|rtf|pdf)$/i,          // or { test: (name) => … }
+  open: ({ root, path, name, dir, back, from }) => { location.hash = `/office-edit?root=${encodeURIComponent(root)}&target=${encodeURIComponent(path)}`; } }],
+'files.new': [{ id: 'doc', title: 'New document', icon: FileText, group: 'office', order: 1,
+  run: async ({ root, path }) => { /* create the file in the open folder, e.g. through your own API */ } }],
+```
+
+- `files.open`: a click or Enter on a matching file calls `open()` instead of Hostwerk's preview or editor. Several matches: the
+  highest `priority` wins (tie: the extension that owns the type under "Open with"), the others are in the right-click menu as
+  *Open with "…"*; *Preview* / *Open in editor* always stays there. Users turn it off per extension (*Settings → Advanced → Open
+  files*, `general.ui.filesOpenOff`). `from` is `'files'` (click) or `'os'` (from Explorer). `back` is the address back into exactly
+  this folder with the file selected (`#/files?root=…&path=…&select=…`) – for an own "Back" button of a full-screen view
+  (`screens`, section 26). *Files* keeps root and folder in the address itself, so the normal Back also returns there.
+- `files.new`: entries in the *New* menu (button *New …* and right-click on empty space) for the open folder. The list reloads
+  after `run()`. At most 12 per extension. Errors in `open()`/`run()` show as a message.
+- A tab `area:files` is not needed (and not offered) – *Files* has no tabs; slots and an own root are enough.
+
+**Own root in Files** (server part, `host.supports('files.roots')`):
+
+```js
+const { root } = host.files.addRoot({ id: 'library', label: host.t('Office documents'), path: libraryDir, icon: 'file', create: true });
+// root = 'ext:office:library' – all of Hostwerk's file routes work with it (root + path)
+host.files.removeRoot('library'); host.files.roots();
+```
+
+Same rules as own folders: an existing folder (created with `create: true`), never a whole drive, never Hostwerk's own folder or
+one above it. `icon` is a name from the sidebar icon list. The root shows in *Files* under "From extensions" and disappears
+when the extension is turned off or removed – so call `addRoot` in `activate()` (again when the setting changes).
+
+**"Open with" in the operating system** (server part, desktop app on Windows and Linux only, `host.supports('fileTypes')`):
+
+```js
+if (host.supports('fileTypes')) {
+  const st = await host.fileTypes.register({
+    id: 'office', appName: 'Hostwerk Office', description: 'Documents, spreadsheets and presentations in Hostwerk',
+    icon: 'assets/office.ico',                                   // optional: .ico (Windows) / .png/.svg (Linux) inside your package
+    types: [{ ext: 'docx', progIdLabel: 'Word document (Hostwerk)', mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', kind: 'docs' }],
+  });
+  // st = { id, registered, stale, dev, types: [{ ext, progId, registered, isDefault, userChoice }] }
+  await host.fileTypes.state('office'); await host.fileTypes.openDefaultsSettings('office'); await host.fileTypes.unregister('office');
+}
+```
+
+- **Windows** (per user, no admin): ProgID `Hostwerk.<id>.<ext>` (name, icon, `"<Hostwerk.exe>" --open-file "%1"`),
+  `.<ext>\OpenWithProgids` (Hostwerk shows under "Open with", Office/LibreOffice stay the default), `Applications\Hostwerk.exe\SupportedTypes`
+  and `Software\Hostwerk\<id>\Capabilities` + `RegisteredApplications` (entry under *Settings → Apps → Default apps*). Windows 10/11
+  only lets the user set the default – `openDefaultsSettings()` opens the matching Windows settings page; `state()` only reads the
+  choice (UserChoice). Removal deletes exactly what was written.
+- **Linux**: `~/.local/share/applications/hostwerk-<id>.desktop` with `MimeType` (every type needs `mime`) and
+  `Exec=… --open-file %f`; `{ setDefault: true }` also runs `xdg-mime default` (reset to the previous one on removal).
+- **macOS**: not possible at runtime (`ENOTSUPPORTED`) – file types would come from the app's Info.plist.
+- Errors: `ENODESKTOP` (standalone server, system service), `ESTORE` (Store version), `EDEVBUILD` (developer start without
+  `{ allowDev: true }` – so a developer path never ends up in the system silently). Program and script types (`.exe`, `.lnk`, `.js` …)
+  are refused.
+- A file from Explorer goes to the `files.open` entry of the extension that registered the type (`from: 'os'`), otherwise to *Files*
+  with the file selected. If it is in no root, Hostwerk adds a root "Opened files" for its folder (removable, at most 20) – reading
+  and writing then use the same `root` + `path` as everywhere.
+- Hostwerk removes everything itself when the extension is removed (even without `exports.uninstall`), every registration and
+  removal is in the activity log, and *Settings → Advanced → Open files* shows and removes all registrations.
 
 ---
 
@@ -1336,6 +1407,46 @@ of the account **at that moment** – never one stored on the device. Check with
 Rules for your own credential (the checker cannot see them, the catalogue review does): store only hashes of secrets, cookie
 `HttpOnly; Secure; SameSite`, refuse requests another site started (`Sec-Fetch-Site` other than `same-origin`/`none`), invalidate
 on a password change, count wrong codes with `ctx.remote.fail(ip)`, end sessions with `ctx.remote.dropSessions(s => …)`.
+
+### Web pages inside Hostwerk (SDK 3.14)
+
+Hostwerk 3.0 and newer with SDK 3.14, desktop app only. For native extensions: open a sign-in page (OAuth), a help page or a
+document in a Hostwerk window instead of the user's browser. The window has Hostwerk's icon, no menu, the host name as title,
+runs sandboxed (`sandbox`, `contextIsolation`, no preload, no Node) and only loads http(s). Pop-ups from the page (Google sign-in
+opens some) stay in such windows. Each purpose gets its own persistent session (`partition`), so sign-ins are kept – Hostwerk's
+own session is never reachable.
+
+```js
+// Server part (backend) – feature detection first
+if (host.supports('webWindow')) {
+  const back = await host.webWindow.open({
+    url: authUrl,                                  // http(s) only
+    title: 'Sign in to Google',                    // optional, until the page has its own title
+    partition: 'persist:hw-auth-google',           // optional, "persist:hw-<a-z 0-9 ->", default "persist:hw-web"
+    width: 520, height: 720,                       // optional
+    waitFor: 'http://127.0.0.1:53682/callback',    // optional: address prefix of your redirect / loopback
+  });
+  // back = the full address that matched waitFor (with ?code=…) – the window closes and the address is NOT loaded;
+  //        null when the user closed the window (without waitFor: always null, once it is closed)
+} else {
+  // standalone server, system service or older Hostwerk: fall back (show the address, device code …)
+}
+```
+
+`host.ctx.app.openWebWindow(opts)` is the same call (core context); `host.ctx.app.webWindow` is `true` in the desktop app.
+Without Electron the call fails with `code: 'ENODESKTOP'` (status 409), so `try/catch` works as well as `supports`.
+
+In the interface of a native extension (and in Hostwerk's own UI) use `@hostwerk/api`:
+
+```js
+import { openInApp, canOpenInApp } from '@hostwerk/api';
+await openInApp('https://example.com/docs');                       // or the same options as above
+const url = await openInApp({ url: authUrl, waitFor: 'https://my.app/redirect' });
+```
+
+`canOpenInApp()` is `true` in the desktop app; in a normal browser `openInApp` opens a new tab and returns `null`. `openExternal`
+and foreign links also open there by default (*Settings → Behavior → Open links inside Hostwerk*, `general.linksInApp`); the
+user can switch that off to use the system browser again.
 
 ## 27. SDK 3.5: service kinds, contributions and a core without special cases
 
@@ -1889,7 +2000,8 @@ an **overview** first, then flat areas with sections on the left.
 | `backups.zurueckholen` | *Backups → Restore*: test restore, single file, time machine, move | `{ kind: "backups", area: "zurueckholen" }` |
 | `system.lage` | *System → Overview*: is everything running? (e.g. a PC profile) | `{ kind: "system", area: "lage" }` |
 | `system.dienste` | *System → Services*: ports, installed and foreign programs, self-healing | `{ kind: "system", area: "dienste" }` |
-| `system.leistung` | *System → Performance*: now, history, drives, disk space | `{ kind: "system", area: "leistung" }` |
+| `system.leistung` | *System → Performance*: now, history | `{ kind: "system", area: "leistung" }` |
+| `system.speicher` | *System → Storage* (since SDK 3.13, `"sdkVersion": "3.13"`): drives, used space, files per service – an own tab without built-in sections. If an extension delivers the same section (same `id`) in `system.leistung` too (fallback for Hostwerk with SDK 3.12), Hostwerk only shows it under Storage | `{ kind: "system", area: "speicher" }` |
 | `system.protokolle` | *System → Logs*: logs, incidents, crash reports | `{ kind: "system", area: "protokolle" }` |
 | `system.wartung` | *System → Upkeep*: self-maintenance, health check, vulnerabilities | `{ kind: "system", area: "wartung" }` |
 | `system.aenderungen` | *System → Changes*: timeline with undo | `{ kind: "system", area: "aenderungen" }` |

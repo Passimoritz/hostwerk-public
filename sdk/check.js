@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SDK_VERSION = '3.12.0';
+const SDK_VERSION = '3.15.0';
 /*
  * Stabilitätsversprechen (SDK 3.0, Anleitung Abschnitt 18 „Stabilität und Abkündigungen“):
  *  - SemVer: Alles, was SDK 3.0 dokumentiert (window.Hostwerk, Manifest-Felder, Rechte, contributes), läuft mit jeder
@@ -509,6 +509,8 @@ const SECTION_PLACES = {
   'system.lage': { de: 'System · Lage (Läuft alles?)', en: 'System · Overview (is everything running?)', ctx: '{ kind: "system", area: "lage" }', sdk: '3.12' },
   'system.dienste': { de: 'System · Dienste (Ports, Programme, Selbstheilung)', en: 'System · Services (ports, programs, self-healing)', ctx: '{ kind: "system", area: "dienste" }', sdk: '3.12' },
   'system.leistung': { de: 'System · Leistung (jetzt, Verlauf, Laufwerke)', en: 'System · Performance (now, history, drives)', ctx: '{ kind: "system", area: "leistung" }', sdk: '3.12' },
+  // SDK 3.13: eigener Reiter „Speicher“ (Laufwerke, Belegung, Dateien je Dienst)
+  'system.speicher': { de: 'System · Speicher (Laufwerke, Belegung, Dateien)', en: 'System · Storage (drives, used space, files)', ctx: '{ kind: "system", area: "speicher" }', sdk: '3.13' },
   'system.protokolle': { de: 'System · Protokolle (Vorfälle, Absturzberichte)', en: 'System · Logs (incidents, crash reports)', ctx: '{ kind: "system", area: "protokolle" }', sdk: '3.12' },
   'system.wartung': { de: 'System · Wartung (Selbstwartung, Gesundheits-Check)', en: 'System · Upkeep (self-maintenance, health check)', ctx: '{ kind: "system", area: "wartung" }', sdk: '3.12' },
   'system.aenderungen': { de: 'System · Änderungen (Zeitachse, Rückgängig)', en: 'System · Changes (timeline, undo)', ctx: '{ kind: "system", area: "aenderungen" }', sdk: '3.12' },
@@ -528,7 +530,7 @@ const LIVE_LEGACY_DEFAULT = 'live.ueberwachung';
  * ohne passende group unter „Weitere“ (LEGACY_OTHER). Die Oberfläche ordnet genauso zu.
  */
 const BACKUPS_LEGACY_GROUPS = { lage: 'backups.lage', staende: 'backups.staende', zeitplan: 'backups.zeitplan', ausserhaus: 'backups.ausserhaus', 'ausser-haus': 'backups.ausserhaus', zurueckholen: 'backups.zurueckholen' };
-const SYSTEM_LEGACY_GROUPS = { lage: 'system.lage', dienste: 'system.dienste', leistung: 'system.leistung', protokolle: 'system.protokolle', wartung: 'system.wartung', aenderungen: 'system.aenderungen' };
+const SYSTEM_LEGACY_GROUPS = { lage: 'system.lage', dienste: 'system.dienste', leistung: 'system.leistung', speicher: 'system.speicher', protokolle: 'system.protokolle', wartung: 'system.wartung', aenderungen: 'system.aenderungen' };
 const LEGACY_OTHER = 'weitere';
 /** Bereiche für host.contribute(type, def) – gleiche Liste wie TYPES in server/core/contrib.js (check.js läuft auch allein, ohne Kern). */
 const CONTRIB_TYPES = ['keeper', 'health', 'search', 'guide', 'audit', 'icons', 'connections', 'emergency', 'releaseNotes', 'clickguard', 'terminal', 'advisor', 'live.overview', 'live.addresses', 'backups.overview', 'system.overview'];
