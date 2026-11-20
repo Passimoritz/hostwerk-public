@@ -39,4 +39,4 @@ Let friends and colleagues in – each with their own sign-in and only the right
 **What you can do here:** Folder · Connect
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

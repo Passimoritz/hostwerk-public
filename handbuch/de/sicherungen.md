@@ -2,7 +2,7 @@
 
 [← Zurück zur Übersicht](README.md)
 
-6 Stände · 436 B
+5 Stände · 414 B
 
 ![Sicherungen](img/sicherungen.jpg)
 
@@ -24,7 +24,7 @@
 
 **Bereiche auf dieser Seite:** Alle Stände
 
-**Was du hier tun kannst:** Jetzt alles sichern · Alte aufräumen · Office Erweiterungen 1 Stand · 22 B · neuester 20.11.2026, 13:14 (auto) · E-Mail-Konten Erweiterungen 1 Stand · 408 B · neuester 20.11.2026, 13:13 (auto) · Hostwerk Zeitmaschine 1 Stand · neuester 20.11.2026, 13:12 (auto) · Sample MC Minecraft-Server 3 Stände · 6 B · neuester 20.11.2026, 13:12 · Jetzt sichern
+**Was du hier tun kannst:** Jetzt alles sichern · Alte aufräumen · E-Mail-Konten Erweiterungen 1 Stand · 408 B · neuester 20.11.2026, 19:16 (auto) · Hostwerk Zeitmaschine 1 Stand · neuester 20.11.2026, 19:15 (auto) · Sample MC Minecraft-Server 3 Stände · 6 B · neuester 20.11.2026, 19:15 · Jetzt sichern
 
 ### Zeitplan
 
@@ -56,4 +56,4 @@
 **Was du hier tun kannst:** Jetzt alles sichern · Alle prüfen · Prüfen
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

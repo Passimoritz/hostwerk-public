@@ -31,6 +31,7 @@ Adapt Hostwerk to the way you work.
 - Notifications
 - Keyboard shortcuts
 - Move & share
+- Discord status
 - Updates
 - Advanced
 - Privacy
@@ -72,7 +73,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** Behavior
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Automatic (VS Code) · Search again (e.g. after an installation) · Add your own program as editor · Top left · Top right · Bottom left · Bottom right · Open
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Automatic (VS Code) · Search again (e.g. after an installation) · Add your own program as editor · Top left · Top right · Bottom left · Bottom right · Open
 
 ### Sidebar
 
@@ -83,7 +84,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** Sidebar
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Default · Move area “Server” up · Move area “Server” down · Move “Web servers” up · Move “Web servers” down · More for “Web servers” · Move “Databases” up · Move “Databases” down · More for “Databases” · Move “Game servers” up · Move “Game servers” down · More for “Game servers” · Move “Minecraft” up · Move “Minecraft” down · More for “Minecraft” · Move “Virtual machines” up · Move “Virtual machines” down · More for “Virtual machines” · Move “Certificate watch” up · Move “Certificate watch” down · More for “Certificate watch” · Move “DNS” up · Move “DNS” down
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Default · Move area “Server” up · Move area “Server” down · Move “Web servers” up · Move “Web servers” down · More for “Web servers” · Move “Databases” up · Move “Databases” down · More for “Databases” · Move “Game servers” up · Move “Game servers” down · More for “Game servers” · Move “Minecraft” up · Move “Minecraft” down · More for “Minecraft” · Move “Virtual machines” up · Move “Virtual machines” down · More for “Virtual machines” · Move “Certificate watch” up · Move “Certificate watch” down · More for “Certificate watch” · Move “DNS” up · Move “DNS” down · More for “DNS”
 
 ### Startup & services
 
@@ -91,7 +92,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** When Hostwerk starts · Which services start automatically?
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · All · None
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · All · None
 
 ### Notifications
 
@@ -101,7 +102,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** When should Hostwerk let you know? · Messages to your phone, by e-mail or chat
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · From the extension “DNS management” – info · From the extension “E-mail accounts” – info · From the extension “Minecraft server network” – info · From the extension “Game library” – info · From the extension “Virtual machines” – info · From the extension “VPN access” – info · From the extension “Vulnerability watch” – info · From the extension “Certificate watch” – info · From the extension “AI Connect” – info · From the extension “Drives” – info · Set up messages → Live operation
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · From the extension “DNS management” – info · From the extension “E-mail accounts” – info · From the extension “Minecraft server network” – info · From the extension “Game library” – info · From the extension “Virtual machines” – info · From the extension “VPN access” – info · From the extension “Vulnerability watch” – info · From the extension “Certificate watch” – info · From the extension “AI Connect” – info · From the extension “Drives” – info · Set up messages → Live operation
 
 ### Keyboard shortcuts
 
@@ -109,7 +110,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** Keyboard shortcuts
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Press shortcut · All 44 · Changed 0 · Off 6 · conflicts 3 · Ctrl K · Switch off shortcut for “Search & commands (projects, servers, actions)” · Ctrl J · Switch off shortcut for “Ask AI (side panel with the current page)” · Ctrl N · Switch off shortcut for “New project from template” · Ctrl ⇧ S · Switch off shortcut for “Start all services” · Ctrl ⇧ X · Switch off shortcut for “Stop all services” · Ctrl , · Switch off shortcut for “Settings” · Alt ← · Switch off shortcut for “Back to the previous page” · Alt → · Switch off shortcut for “Forward to the next page” · Ctrl R · Switch off shortcut for “Reload the interface (services keep running)”
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Press shortcut · All 39 · Changed 0 · Off 2 · conflicts 3 · Ctrl K · Switch off shortcut for “Search & commands (projects, servers, actions)” · Ctrl J · Switch off shortcut for “Ask AI (side panel with the current page)” · Ctrl N · Switch off shortcut for “New project from template” · Ctrl ⇧ S · Switch off shortcut for “Start all services” · Ctrl ⇧ X · Switch off shortcut for “Stop all services” · Ctrl , · Switch off shortcut for “Settings” · Alt ← · Switch off shortcut for “Back to the previous page” · Alt → · Switch off shortcut for “Forward to the next page” · Ctrl R · Switch off shortcut for “Reload the interface (services keep running)” · Ctrl ⇧ R
 
 ### Move & share
 
@@ -117,7 +118,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** Which way fits? · TAKE FROM HERE · Setup file · Export as Docker Compose · BRING HERE
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Export setup · All (4) · Preview · Download ZIP · Read setup file …
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Export setup · All (4) · Preview · Download ZIP · Read setup file …
 
 ### Updates
 
@@ -128,7 +129,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** App updates · Security updates
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Check
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Check
 
 ### Advanced
 
@@ -139,7 +140,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** Location & access · Java runtimes · Open Files · Cache & temporary files · Hostwerk · Maintenance & installation
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Open · Delete 623,4 KB · Measure again · Clean up now · Reload · Open maintenance · Next start without extensions
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Open · Delete 755,5 KB · Measure again · Clean up now · Reload · Open maintenance · Next start without extensions
 
 ### Privacy
 
@@ -147,7 +148,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** Offline mode · Your name · Outgoing connections
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Change · Block
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Change · Block
 
 ### About Hostwerk
 
@@ -157,7 +158,7 @@ Adapt Hostwerk to the way you work.
 
 **Areas on this page:** License · Third parties
 
-**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Office · Discord status · Updates · Advanced · Privacy · About Hostwerk · Project page · 284 third-party packages …
+**What you can do here:** 3 videos · What did I change? · Export · Import … · General · Behavior · Sidebar · Startup & services · Notifications · Keyboard shortcuts · Move & share · Discord status · Updates · Advanced · Privacy · About Hostwerk · Project page · 284 third-party packages …
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

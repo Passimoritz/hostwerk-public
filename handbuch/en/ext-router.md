@@ -32,4 +32,4 @@ Reach your servers from the internet: forwardings, IPv6, DynDNS and – after si
 - Forward
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

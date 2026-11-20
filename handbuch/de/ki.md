@@ -40,4 +40,4 @@ Sieht in Diensten und Projekten nach – ändert nur mit deiner Freigabe.
 **Was du hier tun kannst:** 2 Videos · Vergleichen · Quelle hinzufügen · Auf diesem PC (Ollama) kein Standard-Modell · auf diesem PC · antwortet zuerst nicht installiert kostenlos · Bilder & Videos Bild: aus · Video: aus
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -15,4 +15,4 @@ Receive webhooks from Stripe, GitHub & co., look inside, check signatures and pa
 - Fixed address
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

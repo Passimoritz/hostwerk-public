@@ -1,7 +1,7 @@
 {
  "lang": "de",
- "generated": "2026-11-20T12:12:43.270Z",
- "version": "3.2.2",
+ "generated": "2026-11-20T18:15:55.650Z",
+ "version": "3.3.0",
  "pages": [
   {
    "route": "",
@@ -22,6 +22,8 @@
     "Anpassen",
     "Kacheln anordnen",
     "Alles starten",
+    "Beheben",
+    "Ausblenden",
     "Neu",
     "Alle",
     "Bild ändern",
@@ -123,7 +125,10 @@
    "tabs": [
     "Server",
     "PHP-Versionen",
-    "Import"
+    "Import",
+    "Seiten-Check",
+    "Besucher",
+    "Schwachstellen"
    ],
    "tips": 0,
    "tipTexts": [],
@@ -157,6 +162,56 @@
      "fields": [],
      "tipTexts": [],
      "shot": "img/web--import.jpg"
+    },
+    {
+     "label": "Seiten-Check",
+     "areas": [
+      "Regelmäßige Prüfungen",
+      "Vor dem Veröffentlichen"
+     ],
+     "actions": [
+      "3 Videos",
+      "Neuer Webserver",
+      "Von der Erweiterung „Seiten-Check“ – Infos",
+      "Prüfen",
+      "Sample Web",
+      "Speichern"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Regelmäßige Prüfungen Hostwerk prüft diese Adressen von selbst und meldet sich, wenn die Punktzahl um 5 oder mehr fällt.",
+      "Mindestpunktzahl Erweiterungen zum Veröffentlichen (z. B. „Seiten veröffentlichen“) prüfen die Seite vorher und halten unter dieser Punktzahl an. 0 = aus."
+     ],
+     "shot": "img/web--seiten-check.jpg"
+    },
+    {
+     "label": "Besucher",
+     "areas": [],
+     "actions": [
+      "3 Videos",
+      "Neuer Webserver",
+      "Von der Erweiterung „Besucher-Statistik“ – Infos",
+      "Neue Protokollzeilen jetzt lesen",
+      "Einrichten …"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Datenschutz Keine Cookies, kein Fingerabdruck. IP-Adressen werden gekürzt (der letzte Teil fällt weg) und in einen Hash verwandelt, der sich jeden Tag ändert – nach zwei Tagen kann nicht einmal dieser PC Besuche miteinander verbinden. Bots, Crawler, Erreichbarkeits-Prüfungen, Bilder und Skripte bleiben draußen. Nichts verlässt diesen PC."
+     ],
+     "shot": "img/web--besucher.jpg"
+    },
+    {
+     "label": "Schwachstellen",
+     "areas": [],
+     "actions": [
+      "3 Videos",
+      "Neuer Webserver",
+      "Von der Erweiterung „Schwachstellen-Wache“ – Infos",
+      "Öffnen"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/web--schwachstellen.jpg"
     }
    ]
   },
@@ -178,7 +233,8 @@
    "tabs": [
     "Server",
     "Studio",
-    "Import"
+    "Import",
+    "Schwachstellen"
    ],
    "tips": 0,
    "tipTexts": [],
@@ -201,17 +257,34 @@
     },
     {
      "label": "Import",
+     "areas": [
+      "Vorhandene Datenbanken auf diesem PC",
+      "PostgreSQL 17.12"
+     ],
+     "actions": [
+      "2 Videos",
+      "Neuer Datenbankserver",
+      "Erneut suchen",
+      "In Hostwerk übernehmen …"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Import – vorhandene Dienste übernehmen Vorhandene MySQL-, MariaDB-, PostgreSQL-, MongoDB- oder Redis-Server übernehmen – am bisherigen Ort oder als Kopie mit allen Daten, getestet und mit Rückweg. Dieselbe Suche gibt es für alle Arten unter System → Fremde Dienste."
+     ],
+     "shot": "img/dbs--import.jpg"
+    },
+    {
+     "label": "Schwachstellen",
      "areas": [],
      "actions": [
       "2 Videos",
       "Neuer Datenbankserver",
-      "Bild ändern",
-      "Starten",
-      "Im Studio öffnen"
+      "Von der Erweiterung „Schwachstellen-Wache“ – Infos",
+      "Öffnen"
      ],
      "fields": [],
      "tipTexts": [],
-     "shot": "img/dbs--import.jpg"
+     "shot": "img/dbs--schwachstellen.jpg"
     }
    ]
   },
@@ -263,7 +336,9 @@
      ],
      "actions": [
       "Ordner durchsuchen …",
-      "Erneut suchen"
+      "Erneut suchen",
+      "Übernehmen",
+      "In Hostwerk kopieren"
      ],
      "fields": [],
      "tipTexts": [
@@ -275,10 +350,14 @@
      "label": "Deine Spiele",
      "areas": [],
      "actions": [
-      "Von der Erweiterung „Spielebibliothek“ – Infos"
+      "Von der Erweiterung „Spielebibliothek“ – Infos",
+      "Eigenen Server starten …",
+      "Counter-Strike 2 spielen"
      ],
      "fields": [],
-     "tipTexts": [],
+     "tipTexts": [
+      "Eigener Server zu deinen Spielen Gefunden, indem Hostwerk deine installierten Steam-Spiele mit den Server-Tools aus „Spiele-Server“ vergleicht. Ein Klick richtet den Server über SteamCMD ein; Freunde verbinden sich mit der Adresse auf der Seite des Servers."
+     ],
      "shot": "img/spiele--deine-spiele.jpg"
     },
     {
@@ -434,10 +513,12 @@
    "actions": [
     "Neu gelesen",
     "Was spiele ich heute?",
-    "Spiele 22",
-    "Auf der Platte 540,6 GB",
-    "Spielzeit 2833 Std.",
+    "Spiele 23",
+    "Auf der Platte 607,4 GB",
+    "Spielzeit 4058 Std.",
     "Noch nicht gespielt 1",
+    "Updates bereit 1",
+    "Eigener Server möglich 1",
     "We Were Here Tomorrow 6.4 Std. · heute",
     "PAYDAY 3 97 Std. · vor 12 Tagen",
     "Minecraft Dungeons II 26 Std. · vor 15 Tagen",
@@ -449,17 +530,18 @@
     "YAPYAP noch nicht gespielt · vor 2 Monaten",
     "Dub Together 1 Min. · vor 2 Monaten",
     "RV There Yet? 12 Std. · vor 2 Monaten",
-    "How to Fish 6.6 Std. · vor 2 Monaten",
+    "How to Fish 6.6 Std. · vor 3 Monaten",
     "007 First Light 18 Std. · vor 3 Monaten",
     "Big Walk 35 Min. · vor 3 Monaten",
     "Wallpaper Engine 89 Std. · vor 3 Monaten",
     "Deep Rock Galactic: Rogue Core 10 Std. · vor 4 Monaten",
     "Just Shapes & Beats 16 Std. · vor 6 Monaten",
-    "Supermarket Together 104 Std. · vor 7 Monaten",
+    "Update bereit Supermarket Together 104 Std. · vor 7 Monaten",
     "John Carpenter's Toxic Commando 6.9 Std. · vor 7 Monaten",
     "s&box 3.5 Std. · vor 7 Monaten",
     "Dying Light: The Beast 7 Min. · vor 12 Monaten",
-    "PAYDAY 2 201 Std. · vor 16 Monaten"
+    "PAYDAY 2 201 Std. · vor 16 Monaten",
+    "Counter-Strike 2 1225 Std. · vor 2 Jahren"
    ],
    "fields": [],
    "tabs": [
@@ -523,6 +605,7 @@
       "s&box Ort unbekannt",
       "Dying Light: The Beast Ort unbekannt",
       "PAYDAY 2 Ort unbekannt",
+      "Counter-Strike 2 Ort unbekannt",
       "Jetzt sichern"
      ],
      "fields": [],
@@ -1018,13 +1101,24 @@
     "Protokolle",
     "Konfiguration",
     "Papierkorb",
-    "Wurzel",
-    "Neu …",
-    "Neuer Ordner",
+    "Zurück",
+    "Vor",
+    "Nach oben",
+    "Aktualisieren",
+    "Wurzel des Bereichs",
+    "Neu",
+    "Hochladen",
+    "Ausschneiden",
+    "Kopieren",
+    "Einfügen",
+    "Umbenennen",
+    "Verschieben nach …",
+    "Löschen",
+    "Name",
     "Kacheln",
     "Mehr",
-    "Name",
-    "Geändert",
+    "Änderungsdatum",
+    "Typ",
     "Größe"
    ],
    "fields": [],
@@ -1238,7 +1332,7 @@
    "slug": "sicherungen",
    "title": "Sicherungen",
    "activeTab": "Lage",
-   "intro": "6 Stände · 436 B",
+   "intro": "5 Stände · 414 B",
    "areas": [
     "Braucht dich"
    ],
@@ -1267,10 +1361,9 @@
      "actions": [
       "Jetzt alles sichern",
       "Alte aufräumen",
-      "Office Erweiterungen 1 Stand · 22 B · neuester 20.11.2026, 13:14 (auto)",
-      "E-Mail-Konten Erweiterungen 1 Stand · 408 B · neuester 20.11.2026, 13:13 (auto)",
-      "Hostwerk Zeitmaschine 1 Stand · neuester 20.11.2026, 13:12 (auto)",
-      "Sample MC Minecraft-Server 3 Stände · 6 B · neuester 20.11.2026, 13:12",
+      "E-Mail-Konten Erweiterungen 1 Stand · 408 B · neuester 20.11.2026, 19:16 (auto)",
+      "Hostwerk Zeitmaschine 1 Stand · neuester 20.11.2026, 19:15 (auto)",
+      "Sample MC Minecraft-Server 3 Stände · 6 B · neuester 20.11.2026, 19:15",
       "Jetzt sichern"
      ],
      "fields": [],
@@ -1578,7 +1671,9 @@
       "Was Erweiterungen nie dürfen",
       "Hinzufügen",
       "Filter",
-      "39 Erweiterungen schon installiert – unter „Meine Erweiterungen“"
+      "Installieren",
+      "Office – weitere Aktionen",
+      "38 Erweiterungen schon installiert – unter „Meine Erweiterungen“"
      ],
      "fields": [],
      "tipTexts": [
@@ -1657,7 +1752,6 @@
     "Benachrichtigungen",
     "Tastenkürzel",
     "Umziehen & teilen",
-    "Office",
     "Discord-Status",
     "Updates",
     "Erweitert",
@@ -1699,7 +1793,6 @@
     "Benachrichtigungen",
     "Tastenkürzel",
     "Umziehen & teilen",
-    "Office",
     "Discord-Status",
     "Updates",
     "Erweitert",
@@ -1732,7 +1825,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -1779,7 +1871,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -1807,7 +1898,8 @@
       "„Zertifikats-Wache“ nach unten",
       "Mehr zu „Zertifikats-Wache“",
       "„DNS“ nach oben",
-      "„DNS“ nach unten"
+      "„DNS“ nach unten",
+      "Mehr zu „DNS“"
      ],
      "fields": [],
      "tipTexts": [
@@ -1834,7 +1926,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -1877,7 +1968,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -1918,16 +2008,15 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
       "Datenschutz",
       "Über Hostwerk",
       "Kürzel drücken",
-      "Alle 44",
+      "Alle 39",
       "Geändert 0",
-      "Aus 6",
+      "Aus 2",
       "Konflikte 3",
       "Strg K",
       "Kürzel für „Suchen & Befehle (Projekte, Server, Aktionen)“ ausschalten",
@@ -1946,7 +2035,8 @@
       "Alt →",
       "Kürzel für „Vorwärts zur nächsten Seite“ ausschalten",
       "Strg R",
-      "Kürzel für „Oberfläche neu laden (Dienste laufen weiter)“ ausschalten"
+      "Kürzel für „Oberfläche neu laden (Dienste laufen weiter)“ ausschalten",
+      "Strg ⇧ R"
      ],
      "fields": [],
      "tipTexts": [],
@@ -1973,7 +2063,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -1990,58 +2079,6 @@
      ],
      "tipTexts": [],
      "shot": "img/settings--umziehen-teilen.jpg"
-    },
-    {
-     "label": "Office",
-     "areas": [
-      "Hostwerk als Standard-App für Office-Dateien",
-      "Speichern",
-      "Schreiben",
-      "In „Dateien“"
-     ],
-     "actions": [
-      "3 Videos",
-      "Was habe ich geändert?",
-      "Exportieren",
-      "Importieren …",
-      "Allgemein",
-      "Bedienung",
-      "Seitenleiste",
-      "Start & Dienste",
-      "Benachrichtigungen",
-      "Tastenkürzel",
-      "Umziehen & teilen",
-      "Office",
-      "Discord-Status",
-      "Updates",
-      "Erweitert",
-      "Datenschutz",
-      "Über Hostwerk",
-      "Neu prüfen",
-      "Ordner & Speicher",
-      "Dokumente",
-      "Tabellen",
-      "Präsentationen",
-      "PDF",
-      "Umwandeln & Programme",
-      "Integrationen",
-      "Teilen",
-      "Auf Standard zurücksetzen"
-     ],
-     "fields": [
-      "Automatisch speichern",
-      "Warten vor dem Speichern",
-      "Format neuer Dateien",
-      "Vor dem Verschieben in den Papierkorb fragen",
-      "Name als Autor",
-      "Rechtschreibung prüfen",
-      "Sprache der Dokumente",
-      "Maßeinheit",
-      "Office-Dateien in Office öffnen",
-      "Zuletzt geöffnete Dateien im Office-Abschnitt"
-     ],
-     "tipTexts": [],
-     "shot": "img/settings--office.jpg"
     },
     {
      "label": "Discord-Status",
@@ -2061,7 +2098,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -2082,6 +2118,88 @@
      "shot": "img/settings--discord-status.jpg"
     },
     {
+     "label": "Updates",
+     "areas": [
+      "App-Updates",
+      "Sicherheits-Updates"
+     ],
+     "actions": [
+      "3 Videos",
+      "Was habe ich geändert?",
+      "Exportieren",
+      "Importieren …",
+      "Allgemein",
+      "Bedienung",
+      "Seitenleiste",
+      "Start & Dienste",
+      "Benachrichtigungen",
+      "Tastenkürzel",
+      "Umziehen & teilen",
+      "Discord-Status",
+      "Updates",
+      "Erweitert",
+      "Datenschutz",
+      "Über Hostwerk",
+      "Prüfen"
+     ],
+     "fields": [
+      "Update-Kanal",
+      "Automatisch aktualisieren",
+      "Komponenten-Updates anzeigen"
+     ],
+     "tipTexts": [
+      "„Stabil“ bekommt nur fertige Versionen, und neue Versionen kommen schrittweise an – erst bei wenigen, dann bei allen. „Vorab“ bekommt auch Testversionen sofort, sobald sie erscheinen. Zurück zu „Stabil“ geht jederzeit; eine schon installierte Testversion bleibt, bis eine neuere stabile kommt.",
+      "Kleine Updates innerhalb derselben Version (z. B. PHP 8.4.11 → 8.4.12). Hostwerk lädt die neue Version neben die alte, schaltet um und prüft kurz, ob alles läuft. Klappt das nicht, bleibt die alte Version aktiv. Große Versionssprünge macht Hostwerk nie von selbst."
+     ],
+     "shot": "img/settings--updates.jpg"
+    },
+    {
+     "label": "Erweitert",
+     "areas": [
+      "Speicherort & Zugriff",
+      "Java-Laufzeiten",
+      "Dateien öffnen",
+      "Zwischenspeicher & temporäre Dateien",
+      "Hostwerk",
+      "Wartung & Installation"
+     ],
+     "actions": [
+      "3 Videos",
+      "Was habe ich geändert?",
+      "Exportieren",
+      "Importieren …",
+      "Allgemein",
+      "Bedienung",
+      "Seitenleiste",
+      "Start & Dienste",
+      "Benachrichtigungen",
+      "Tastenkürzel",
+      "Umziehen & teilen",
+      "Discord-Status",
+      "Updates",
+      "Erweitert",
+      "Datenschutz",
+      "Über Hostwerk",
+      "Öffnen",
+      "625,5 KB löschen",
+      "Neu messen",
+      "Jetzt aufräumen",
+      "Neu laden",
+      "Wartung öffnen",
+      "Nächster Start ohne Erweiterungen"
+     ],
+     "fields": [
+      "Hostwerk-Ordner",
+      "Im Browser öffnen",
+      "Oberfläche neu laden"
+     ],
+     "tipTexts": [
+      "Zwischenspeicher Alles hier lädt Hostwerk bei Bedarf neu. Projekte, Datenbanken, Sicherungen und Einstellungen bleiben unberührt.",
+      "Wartung Die Wartung läuft als eigenes Fenster und lädt keine Erweiterung – so kann keine sie stören. Dort schaltest du Erweiterungen aus, setzt sie zurück oder entfernst sie, aktualisierst, reparierst oder entfernst Hostwerk. Startet Hostwerk nicht mehr: Startmenü → „Hostwerk – Wartung“ oder beim Start F8 drücken."
+     ],
+     "shot": "img/settings--erweitert.jpg"
+    },
+    {
      "label": "Datenschutz",
      "areas": [
       "Offline-Modus",
@@ -2100,7 +2218,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -2133,7 +2250,6 @@
       "Benachrichtigungen",
       "Tastenkürzel",
       "Umziehen & teilen",
-      "Office",
       "Discord-Status",
       "Updates",
       "Erweitert",
@@ -2172,113 +2288,6 @@
    "tipTexts": [],
    "shot": "img/mail-server.jpg",
    "tabsDetail": []
-  },
-  {
-   "route": "settings/updates",
-   "slug": "settings-updates",
-   "title": "Einstellungen → Updates",
-   "activeTab": "Updates",
-   "intro": "Hostwerk an deine Arbeitsweise anpassen.",
-   "areas": [
-    "App-Updates",
-    "Sicherheits-Updates"
-   ],
-   "actions": [
-    "3 Videos",
-    "Was habe ich geändert?",
-    "Exportieren",
-    "Importieren …",
-    "Allgemein",
-    "Bedienung",
-    "Seitenleiste",
-    "Start & Dienste",
-    "Benachrichtigungen",
-    "Tastenkürzel",
-    "Umziehen & teilen",
-    "Office",
-    "Discord-Status",
-    "Updates",
-    "Erweitert",
-    "Datenschutz",
-    "Über Hostwerk",
-    "Prüfen"
-   ],
-   "fields": [
-    "Update-Kanal",
-    "Automatisch aktualisieren",
-    "Komponenten-Updates anzeigen"
-   ],
-   "tabs": [
-    "Allgemein",
-    "Bedienung",
-    "Seitenleiste",
-    "Start & Dienste",
-    "Benachrichtigungen",
-    "Tastenkürzel",
-    "Umziehen & teilen",
-    "Office",
-    "Discord-Status",
-    "Updates",
-    "Erweitert",
-    "Datenschutz",
-    "Über Hostwerk"
-   ],
-   "tips": 2,
-   "tipTexts": [
-    "„Stabil“ bekommt nur fertige Versionen, und neue Versionen kommen schrittweise an – erst bei wenigen, dann bei allen. „Vorab“ bekommt auch Testversionen sofort, sobald sie erscheinen. Zurück zu „Stabil“ geht jederzeit; eine schon installierte Testversion bleibt, bis eine neuere stabile kommt.",
-    "Kleine Updates innerhalb derselben Version (z. B. PHP 8.4.11 → 8.4.12). Hostwerk lädt die neue Version neben die alte, schaltet um und prüft kurz, ob alles läuft. Klappt das nicht, bleibt die alte Version aktiv. Große Versionssprünge macht Hostwerk nie von selbst."
-   ],
-   "shot": "img/settings-updates.jpg",
-   "tabsDetail": [
-    {
-     "label": "Erweitert",
-     "areas": [
-      "Speicherort & Zugriff",
-      "Java-Laufzeiten",
-      "Dateien öffnen",
-      "Zwischenspeicher & temporäre Dateien",
-      "Hostwerk",
-      "Wartung & Installation"
-     ],
-     "actions": [
-      "3 Videos",
-      "Was habe ich geändert?",
-      "Exportieren",
-      "Importieren …",
-      "Allgemein",
-      "Bedienung",
-      "Seitenleiste",
-      "Start & Dienste",
-      "Benachrichtigungen",
-      "Tastenkürzel",
-      "Umziehen & teilen",
-      "Office",
-      "Discord-Status",
-      "Updates",
-      "Erweitert",
-      "Datenschutz",
-      "Über Hostwerk",
-      "Öffnen",
-      "587,3 KB löschen",
-      "Neu messen",
-      "Jetzt aufräumen",
-      "Neu laden",
-      "Wartung öffnen",
-      "Nächster Start ohne Erweiterungen"
-     ],
-     "fields": [
-      "Hostwerk-Ordner",
-      "Im Browser öffnen",
-      "Office",
-      "Oberfläche neu laden"
-     ],
-     "tipTexts": [
-      "Zwischenspeicher Alles hier lädt Hostwerk bei Bedarf neu. Projekte, Datenbanken, Sicherungen und Einstellungen bleiben unberührt.",
-      "Wartung Die Wartung läuft als eigenes Fenster und lädt keine Erweiterung – so kann keine sie stören. Dort schaltest du Erweiterungen aus, setzt sie zurück oder entfernst sie, aktualisierst, reparierst oder entfernst Hostwerk. Startet Hostwerk nicht mehr: Startmenü → „Hostwerk – Wartung“ oder beim Start F8 drücken."
-     ],
-     "shot": "img/settings-updates--erweitert.jpg"
-    }
-   ]
   },
   {
    "route": "server",
@@ -2836,13 +2845,24 @@
       "Als Favorit markieren (steht dann in Listen oben)",
       "papermc.io",
       "Starten",
-      "Wurzel",
-      "Neu …",
-      "Neuer Ordner",
+      "Zurück",
+      "Vor",
+      "Nach oben",
+      "Aktualisieren",
+      "Wurzel des Bereichs",
+      "Neu",
+      "Hochladen",
+      "Ausschneiden",
+      "Kopieren",
+      "Einfügen",
+      "Umbenennen",
+      "Verschieben nach …",
+      "Löschen",
+      "Name",
       "Kacheln",
       "Mehr",
-      "Name",
-      "Geändert",
+      "Änderungsdatum",
+      "Typ",
       "Größe"
      ],
      "fields": [],

@@ -5,6 +5,25 @@ Since 3.0 the SDK follows semantic versioning – see [section 19 of the guide](
 
 **English** · Kurz auf Deutsch steht jeder Eintrag darunter.
 
+## 3.16.0 – 2026-11-20
+
+Coloured file icons, thumbnails and a grid view in *Files* ([section 21 of the guide](README.md#file-icons-and-thumbnails-in-files-sdk-316)). Only additions.
+
+- New native slots: `files.icon` (`{ id, match, order, icon({ name, path, root, dir }) → { svg | Component, color, label, badge } | null }`) –
+  an own icon or just a colour/label for matching files, wins over Hostwerk's own set (short form
+  `{ id, match, Component, info(name) → { color, label, badge } }`); `files.thumb`
+  (`{ id, match, order, thumb({ root, path, name, mtime, size }) → url | { url, fit } | null }`, may be async) – thumbnails for the
+  grid view, only for visible tiles, at most four at a time, cached per file + modification time + size
+  (`window.dispatchEvent(new Event('hw:files-thumbs'))` clears the cache).
+- Colour groups as tokens that follow light/dark: `doc`, `sheet`, `slides`, `pdf`, `image`, `audio`, `video`, `archive`, `code`,
+  `config`, `data`, `font`, `model`, `key`, `app`, `mail`, `text`, `folder` (CSS `var(--ft-<group>)`).
+- `@hostwerk/kit`: `FileIcon`, `FileThumb`, `fileLabel`, `fileTypeOf` – the same icons in an extension's own UI.
+- Detection: `host.supports('files.icons')`.
+
+> DE: Farbige Dateisymbole, Vorschaubilder und Kachel-Ansicht in *Dateien* – neue Steckplätze `files.icon` (eigenes Symbol oder nur
+> Farbe/Bezeichnung, geht Hostwerks Satz vor) und `files.thumb` (Vorschaubild nur für sichtbare Kacheln, zwischengespeichert),
+> Farbgruppen als Tokens `var(--ft-…)`, im Baukasten `FileIcon`/`FileThumb`/`fileTypeOf`, erkennbar an `host.supports('files.icons')`.
+
 ## 3.15.0 – 2026-11-19
 
 Extensions inside *Files* and Hostwerk under the system's "Open with" ([section 21 of the guide](README.md#files-open-new-menu-own-roots-and-open-with-sdk-315)). Only additions.

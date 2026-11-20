@@ -40,6 +40,7 @@ components ([section 28](#28-sdk-36-animations-like-hostwerk)).
 | plug into Backups or System (overview points, schedule, sections in the areas) | [34. Backups and System rebuilt](#34-sdk-312-backups-and-system-rebuilt--sections-overview-points-and-schedule) |
 | open a web page or sign-in inside Hostwerk instead of the browser | [26. Web pages inside Hostwerk](#web-pages-inside-hostwerk-sdk-314) |
 | live inside *Files* (open files, "New" menu, own root) and show up under "Open with" | [21. Files and "Open with"](#files-open-new-menu-own-roots-and-open-with-sdk-315) |
+| show own file icons and thumbnails in *Files* | [21. File icons and thumbnails](#file-icons-and-thumbnails-in-files-sdk-316) |
 | check and publish | [10. Check](#10-check-your-extension) · [11. Publish](#11-publish-repository-release-submit) · [35. Checklist](#35-checklist-before-publishing) |
 | find out why something does not work | [36. Common questions and mistakes](#36-common-questions-and-mistakes) |
 
@@ -1138,6 +1139,40 @@ if (host.supports('fileTypes')) {
 - Hostwerk removes everything itself when the extension is removed (even without `exports.uninstall`), every registration and
   removal is in the activity log, and *Settings → Advanced → Open files* shows and removes all registrations.
 
+
+### File icons and thumbnails in Files (SDK 3.16)
+
+Hostwerk 3.3 and newer with SDK 3.16, *native*. *Files* shows every file with a coloured icon (documents blue, spreadsheets green,
+presentations orange, PDF red, images purple, audio/video pink, archives brown, code in the colour of its language, text grey,
+folders in the accent colour) and has a **grid view** with thumbnails next to the list. An extension brings its own icons and
+thumbnails for its file types – they win over Hostwerk's own set:
+
+```js
+// ui module (export default { slots: { … } })
+'files.icon': [
+  { id: 'office', match: /\.(docx?|odt|rtf)$/i, icon: ({ name, path, root, dir }) => ({ color: 'doc', label: 'Word document' }) }, // colour only: Hostwerk's shape
+  { id: 'cad', match: /\.dwg$/i, icon: () => ({ svg: '<svg viewBox="0 0 24 24">…</svg>', label: 'CAD drawing', badge: 'DWG' }) },   // or Component
+],
+'files.thumb': [{ id: 'office', match: /\.(docx|xlsx|pptx|pdf)$/i,
+  thumb: async ({ root, path, name, mtime, size }) => `/api/ext/office/thumb?root=${encodeURIComponent(root)}&path=${encodeURIComponent(path)}&v=${mtime}` }],
+```
+
+- `files.icon`: `icon()` runs synchronously and returns `{ svg | Component, color, label, badge }` or `null` (Hostwerk's icon then).
+  `svg` is SVG text (at most 32 KB, shown as an image – scripts in it never run), `Component` a React component (`{ size, color, name }`).
+  `color` (and `label`) alone recolours Hostwerk's shape. `color` is a group (`doc`, `sheet`, `slides`, `pdf`, `image`, `audio`,
+  `video`, `archive`, `code`, `text`, `folder` …, follows light/dark) or a plain CSS colour. `label` (English, Hostwerk translates it
+  with your `locales/de.json`) is the file type in the tooltip and the *Type* column; `badge` (≤ 5 characters) replaces the extension
+  badge on the tile. Several matches: by `order`, the first with a result wins. Short form without `icon()`:
+  `{ id, match, Component, info(name) → { color, label, badge } }` – `Component` gets `{ name, size, color, entry }`.
+- `files.thumb`: only for **visible** tiles (not in the list), 90 ms after they appear, at most four at a time, 8 s timeout.
+  Answer: an address (`/api/…`, `https://…`, `blob:`, `data:image/…`) or `{ url, fit: 'cover' | 'contain' }` or `null`. Hostwerk caches
+  the image per file + modification time + size – a new version asks again; `window.dispatchEvent(new Event('hw:files-thumbs'))`
+  clears the cache. Image files are shown by Hostwerk itself.
+- Until the image is there the tile shows the icon on a fixed area with a soft shimmer – nothing jumps.
+- The same icons in your own UI: `import { FileIcon, FileThumb, fileTypeOf } from '@hostwerk/kit'` – `<FileIcon name="Letter.docx" size={18} />`,
+  from 32 px with `badge` the extension badge (e.g. in "Recent" lists). Detection: `host.supports('files.icons')` in the server part
+  or `FileIcon` in the kit.
+- Errors in `icon()`/`thumb()` stay with the extension: Hostwerk's icon is used.
 ---
 
 ## 22. SDK 3.2: Minecraft server types and networks

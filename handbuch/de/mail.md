@@ -65,4 +65,4 @@ Mail-Fänger: alles, was deine Projekte verschicken, landet hier – nichts geht
 **Was du hier tun kannst:** 2 Videos · Von der Erweiterung „Dienst-Notizen“ – Infos
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

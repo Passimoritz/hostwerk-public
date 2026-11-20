@@ -13338,7 +13338,60 @@
     "Schmale Fenster": "Narrow windows",
     "Auf dem Handy und in schmalen Fenstern ist die Seitenleiste eine kompakte Zeile – die Seite beginnt direkt darunter statt in der unteren Bildschirmhälfte.": "On phones and in narrow windows the sidebar is one compact row – the page starts right below it instead of in the lower half of the screen.",
     "Meldungen von Erweiterungen vollständig": "Complete notifications for extensions",
-    "Erweiterungen können Warnungen, „Fertig“-Meldungen mit Knopf und das Ausblenden von Meldungen wie Hostwerk selbst nutzen.": "Extensions can use warnings, “done” notices with a button and dismissing notices just like Hostwerk itself."
+    "Erweiterungen können Warnungen, „Fertig“-Meldungen mit Knopf und das Ausblenden von Meldungen wie Hostwerk selbst nutzen.": "Extensions can use warnings, “done” notices with a button and dismissing notices just like Hostwerk itself.",
+    "Textdatei": "Text file",
+    "Änderungsdatum": "Date modified",
+    "Neue Textdatei": "New text file",
+    "Sortieren nach …": "Sort by …",
+    "Sortieren nach": "Sort by",
+    "Zurück (Alt+←)": "Back (Alt+←)",
+    "Vor (Alt+→)": "Forward (Alt+→)",
+    "Vor": "Forward",
+    "Nach oben (Alt+↑)": "Up one level (Alt+↑)",
+    "Aktualisieren (F5)": "Refresh (F5)",
+    "Ordner im Bereich": "Folder in this area",
+    "Klicken, um einen Pfad einzutippen (Strg+L)": "Click to type a path (Ctrl+L)",
+    "Wurzel des Bereichs": "Top of this area",
+    "Neuer Ordner, neue Datei …": "New folder, new file …",
+    "Einfügen (Strg+V)": "Paste (Ctrl+V)",
+    "Dieser Ordner ist leer. Dateien oder ganze Ordner hierher ziehen zum Hochladen.": "This folder is empty. Drag files or whole folders here to upload.",
+    "Breite der Liste": "List width",
+    "Aufsteigend": "Ascending",
+    "Absteigend": "Descending",
+    "Ausgeschnitten": "Cut",
+    "aufsteigend (1)": "ascending (1)",
+    "absteigend (-1)": "descending (-1)",
+    "aufsteigend": "ascending",
+    "absteigend": "descending",
+    "Präsentation": "Presentation",
+    "PDF-Dokument": "PDF document",
+    "Audiodatei": "Audio file",
+    "Archiv": "Archive",
+    "Quelltext": "Source code",
+    "Schriftart": "Font",
+    "3D-Modell": "3D model",
+    "Schlüssel/Zertifikat": "Key/certificate",
+    "Markdown": "Markdown",
+    "Tabellenkalkulation": "Spreadsheet",
+    "Doppelklick auf eine Datei links öffnet sie hier.": "Double-click a file on the left to open it here.",
+    "Farbige Dateisymbole": "Coloured file icons",
+    "Dateien zeigt jede Datei mit einem klaren, farbigen Symbol: Dokumente blau, Tabellen grün, Präsentationen orange, PDFs rot, Bilder lila, Audio und Video pink, Archive braun und Quelltext in der Farbe seiner Sprache – im hellen und im dunklen Design.": "Files shows every file with a clear, coloured icon: documents blue, spreadsheets green, presentations orange, PDFs red, images purple, audio and video pink, archives brown and source code in the colour of its language – in the light and the dark theme.",
+    "Kacheln mit Vorschaubildern": "Tiles with thumbnails",
+    "In der Kachel-Ansicht erscheinen Bilder als Vorschau auf einer festen Fläche – nichts springt beim Nachladen. Mit einem Rahmen auf der freien Fläche wählst du mehrere Dateien auf einmal aus.": "In the tile view images show as thumbnails on a fixed area – nothing jumps while they load. Drag a frame on the free area to select several files at once.",
+    "Mehr Platz für Erweiterungen in Dateien": "More room for extensions in Files",
+    "Bringt eine Erweiterung wie Office einen eigenen Bereich mit, bekommt er die rechte Seite mit verstellbarer, gemerkter Breite – ohne den doppelten Hinweis „Keine Datei geöffnet“.": "When an extension like Office brings its own section, it gets the right side with an adjustable, remembered width – without the duplicate “No file open” notice.",
+    "Eigene Dateisymbole aus Erweiterungen": "Own file icons from extensions",
+    "Erweiterungen bringen für ihre Dateiarten eigene Symbole und Vorschaubilder mit und nutzen Hostwerks Symbole in der eigenen Oberfläche (Erweiterungs-SDK 3.16).": "Extensions bring their own icons and thumbnails for their file types and use Hostwerk's icons in their own interface (extension SDK 3.16).",
+    "Dateien wie im Explorer": "Files like in Explorer",
+    "Dateien ist neu gebaut: Spalten Name, Änderungsdatum, Typ und Größe, Sortierung wie im Windows-Explorer (Zahlen als Zahlen, Umlaute beim Grundbuchstaben, Ordner immer oben), Doppelklick öffnet, Umbenennen direkt in der Zeile (F2), Tippen springt zum Namen. Auch Ordner mit Tausenden Dateien bleiben flüssig.": "Files has been rebuilt: columns Name, Date modified, Type and Size, sorting like Windows Explorer (numbers as numbers, accented letters with their base letter, folders always on top), double-click opens, rename right in the row (F2), typing jumps to a name. Folders with thousands of files stay smooth.",
+    "Zurück und Vor in Dateien": "Back and forward in Files",
+    "Zurück und Vor gehen jetzt zuverlässig Ordner für Ordner – über die Knöpfe, Alt+← und Alt+→ und die Seitentasten der Maus. Ein Bereichswechsel fragt nach, wenn im Editor noch etwas ungespeichert ist.": "Back and forward now reliably go folder by folder – with the buttons, Alt+← and Alt+→ and the side buttons of the mouse. Switching areas asks first if the editor has unsaved changes.",
+    "Markdown öffnet im Editor": "Markdown opens in the editor",
+    "Markdown-Dateien öffnen sich per Klick in Hostwerks Editor mit Vorschau statt in Office; Office bleibt im Rechtsklick-Menü.": "Markdown files open in Hostwerk’s editor with preview instead of Office; Office stays in the right-click menu.",
+    "Keine leeren Ordner mehr durch alte Links": "No more empty folders from old links",
+    "Ein Link auf einen gelöschten Ordner legte ihn beim Öffnen still neu an. Jetzt zeigt Dateien den nächsten vorhandenen Ordner darüber.": "A link to a deleted folder silently recreated it when opened. Files now shows the nearest existing folder above instead.",
+    "PostgreSQL schneller installiert": "Faster PostgreSQL install",
+    "Unter Windows entpackt Hostwerk nur Server und Werkzeuge statt des ganzen Pakets mit pgAdmin (über 1 GB). Kurze Aussetzer beim Verbindungsaufbau lösen keinen Neustart mehr aus.": "On Windows, Hostwerk unpacks only the server and tools instead of the whole package with pgAdmin (over 1 GB). Brief connection hiccups no longer trigger a restart."
   },
   "patterns": [
     [
@@ -23504,6 +23557,26 @@
     [
       "„{}“ abmelden?",
       "Remove “{}”?"
+    ],
+    [
+      "Einfügen in „{}“",
+      "Paste into “{}”"
+    ],
+    [
+      "In „{}“ suchen …",
+      "Search in “{}” …"
+    ],
+    [
+      "{} Element",
+      "{} item"
+    ],
+    [
+      "{} Elemente",
+      "{} items"
+    ],
+    [
+      "{} versteckt",
+      "{} hidden"
     ]
   ]
 }

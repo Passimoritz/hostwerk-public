@@ -17,7 +17,7 @@
 (() => {
   'use strict';
   if (window.Hostwerk && window.Hostwerk.sdk) return;
-  const VERSION = '3.15.0';
+  const VERSION = '3.16.0';
   let seq = 0;
   const pending = new Map();
   const listeners = new Map();

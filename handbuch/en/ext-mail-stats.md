@@ -13,4 +13,4 @@ How many e-mails your projects send – per day, per project, per sender and rec
 - Reload
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

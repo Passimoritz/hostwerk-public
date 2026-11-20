@@ -18,14 +18,25 @@ Webordner, Projekte, Minecraft-Server und eigene Ordner – mit Editor, Vorschau
 - Protokolle
 - Konfiguration
 - Papierkorb
-- Wurzel
-- Neu …
-- Neuer Ordner
+- Zurück
+- Vor
+- Nach oben
+- Aktualisieren
+- Wurzel des Bereichs
+- Neu
+- Hochladen
+- Ausschneiden
+- Kopieren
+- Einfügen
+- Umbenennen
+- Verschieben nach …
+- Löschen
+- Name
 - Kacheln
 - Mehr
-- Name
-- Geändert
+- Änderungsdatum
+- Typ
 - Größe
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

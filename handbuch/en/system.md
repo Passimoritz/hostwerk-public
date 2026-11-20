@@ -93,4 +93,4 @@ Is this PC running well – and what has changed?
 **What you can do here:** 3 videos · Diagnostic report · More actions · Restore …
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -36,4 +36,4 @@ Paper, Purpur, Folia, Spigot, Vanilla, Mod-Server (Fabric, NeoForge, Forge), fer
 **Was du hier tun kannst:** Neuer Server · Von der Erweiterung „Minecraft-Server“ – Infos
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

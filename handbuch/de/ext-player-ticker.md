@@ -39,4 +39,4 @@ Wer gerade spielt und wer am meisten spielt – über alle Minecraft- und Spiele
 **Was du hier tun kannst:** Von der Erweiterung „Spieler“ – Infos · Einstellungen · Neu laden
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

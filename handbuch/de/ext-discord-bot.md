@@ -33,4 +33,4 @@ Dein eigener Discord-Bot: /status, /spieler, /start, /stop und /neustart von dei
 - Auch vor dem Starten fragen
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

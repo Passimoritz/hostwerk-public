@@ -78,4 +78,4 @@ Send requests to your projects, save them in collections and reuse them.
 **What you can do here:** Paste curl · Import · New collection · My first collection · GET Home page · New request · Run collection · As a task · Export · Start page · no folder · Measure this request · Check page · Copy as curl · Remove request · Send · Sample Web
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

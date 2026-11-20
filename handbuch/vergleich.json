@@ -1,0 +1,170 @@
+{
+ "compared": 323,
+ "changed": [
+  {
+   "key": "en/ext-steam.jpg",
+   "pct": 34.98
+  },
+  {
+   "key": "de/spiele--import.jpg",
+   "pct": 6.12
+  },
+  {
+   "key": "en/ext-motd-studio.jpg",
+   "pct": 5.02
+  },
+  {
+   "key": "de/claude--token-sparen.jpg",
+   "pct": 5
+  },
+  {
+   "key": "en/claude--save-tokens.jpg",
+   "pct": 4.57
+  },
+  {
+   "key": "de/claude--tipps-tricks.jpg",
+   "pct": 4.24
+  },
+  {
+   "key": "de/dbs--import.jpg",
+   "pct": 3.98
+  },
+  {
+   "key": "de/sicherungen.jpg",
+   "pct": 3.95
+  },
+  {
+   "key": "en/settings--advanced.jpg",
+   "pct": 3.47
+  },
+  {
+   "key": "de/claude--verbinden.jpg",
+   "pct": 3.4
+  },
+  {
+   "key": "en/claude--connect.jpg",
+   "pct": 3.19
+  },
+  {
+   "key": "en/files.jpg",
+   "pct": 2.82
+  },
+  {
+   "key": "en/ext-disk-usage.jpg",
+   "pct": 2.21
+  },
+  {
+   "key": "en/ext-steam--saves.jpg",
+   "pct": 2.17
+  },
+  {
+   "key": "de/mc-probe-mc--dateien.jpg",
+   "pct": 1.86
+  },
+  {
+   "key": "en/mc-probe-mc--files.jpg",
+   "pct": 1.72
+  },
+  {
+   "key": "de/files.jpg",
+   "pct": 1.71
+  },
+  {
+   "key": "en/dbs--import.jpg",
+   "pct": 1.46
+  },
+  {
+   "key": "en/ext-port-map.jpg",
+   "pct": 1.45
+  },
+  {
+   "key": "en/ext.jpg",
+   "pct": 1.4
+  },
+  {
+   "key": "en/ext--discover.jpg",
+   "pct": 1.29
+  },
+  {
+   "key": "en/sicherungen.jpg",
+   "pct": 1.27
+  },
+  {
+   "key": "de/ext--entdecken.jpg",
+   "pct": 1.1
+  },
+  {
+   "key": "en/ext-backup-calendar.jpg",
+   "pct": 0.99
+  },
+  {
+   "key": "de/spiele--deine-spiele.jpg",
+   "pct": 0.96
+  },
+  {
+   "key": "en/ext-motd-studio--colour-codes.jpg",
+   "pct": 0.96
+  },
+  {
+   "key": "en/ext-player-leaderboard.jpg",
+   "pct": 0.96
+  },
+  {
+   "key": "de/ext-backup-calendar.jpg",
+   "pct": 0.92
+  },
+  {
+   "key": "en/ext-knowledge-graph.jpg",
+   "pct": 0.9
+  },
+  {
+   "key": "en/ext-quick-tasks.jpg",
+   "pct": 0.89
+  },
+  {
+   "key": "en/sicherungen--versions.jpg",
+   "pct": 0.88
+  },
+  {
+   "key": "de/ext-steam--speicher.jpg",
+   "pct": 0.86
+  },
+  {
+   "key": "de/sicherungen--staende.jpg",
+   "pct": 0.84
+  },
+  {
+   "key": "en/ext-steam--storage.jpg",
+   "pct": 0.84
+  },
+  {
+   "key": "en/spiele--import.jpg",
+   "pct": 0.82
+  },
+  {
+   "key": "de/ext.jpg",
+   "pct": 0.78
+  },
+  {
+   "key": "en/ext-mail-stats.jpg",
+   "pct": 0.56
+  },
+  {
+   "key": "en/ext-service-notes.jpg",
+   "pct": 0.55
+  }
+ ],
+ "added": [
+  "de/settings--erweitert.jpg",
+  "de/settings--updates.jpg",
+  "en/mail--statistics.jpg"
+ ],
+ "removed": [
+  "de/settings--discord-status.jpg",
+  "de/settings--office.jpg",
+  "de/settings-updates--erweitert.jpg",
+  "de/settings-updates.jpg",
+  "en/mail--import.jpg"
+ ],
+ "threshold": 0.5
+}

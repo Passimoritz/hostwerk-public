@@ -28,4 +28,4 @@ Zeigt in deinem Discord-Profil „Spielt Hostwerk“ – auch wenn Hostwerk nur 
 - Knopf „Status ansehen“
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

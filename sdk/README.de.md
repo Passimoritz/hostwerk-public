@@ -40,6 +40,7 @@ SDK 3.6): Lade-Linie, Kreisel, Einblenden, Puls, gezeichneter Haken und hochzäh
 | mich in Sicherungen oder System einhängen (Lage-Punkte, Zeitplan, Abschnitte in den Bereichen) | [34. Sicherungen und System neu](#34-sdk-312-sicherungen-und-system-neu--abschnitte-lage-punkte-und-zeitplan) |
 | eine Webseite oder Anmeldung in Hostwerk statt im Browser öffnen | [26. Webseiten in Hostwerk](#webseiten-in-hostwerk-sdk-314) |
 | in „Dateien“ leben (Dateien öffnen, Menü „Neu“, eigener Bereich) und unter „Öffnen mit“ erscheinen | [21. Dateien öffnen und „Öffnen mit“](#dateien-öffnen-menü-neu-eigene-bereiche-und-öffnen-mit-sdk-315) |
+| eigene Dateisymbole und Vorschaubilder in „Dateien“ zeigen | [21. Dateisymbole und Vorschaubilder](#dateisymbole-und-vorschaubilder-in-dateien-sdk-316) |
 | prüfen und veröffentlichen | [10. Prüfen](#10-erweiterung-prüfen) · [11. Veröffentlichen](#11-veröffentlichen-repository-release-einreichen) · [35. Checkliste](#35-checkliste-vor-dem-veröffentlichen) |
 | wissen, warum etwas nicht geht | [36. Häufige Fragen und Fehler](#36-häufige-fragen-und-fehler) |
 
@@ -1148,6 +1149,41 @@ if (host.supports('fileTypes')) {
 - Hostwerk meldet beim Entfernen der Erweiterung alles selbst ab (auch ohne `exports.uninstall`), jede An- und Abmeldung steht im
   Aktivitätsprotokoll, und unter *Einstellungen → Erweitert → Dateien öffnen* sieht und entfernt der Nutzer alle Anmeldungen.
 
+
+### Dateisymbole und Vorschaubilder in Dateien (SDK 3.16)
+
+Hostwerk 3.3 und neuer mit SDK 3.16, *nativ*. *Dateien* zeigt jede Datei mit einem farbigen Symbol (Dokumente blau, Tabellen
+grün, Präsentationen orange, PDF rot, Bilder lila, Audio/Video pink, Archive braun, Quelltext in der Farbe der Sprache, Text
+grau, Ordner in der Akzentfarbe) und hat neben der Liste eine **Kachel-Ansicht** mit Vorschaubildern. Eine Erweiterung bringt
+für ihre Dateiarten eigene Symbole und Vorschaubilder mit – sie gehen Hostwerks eigenem Satz vor:
+
+```js
+// ui-Modul (export default { slots: { … } })
+'files.icon': [
+  { id: 'office', match: /\.(docx?|odt|rtf)$/i, icon: ({ name, path, root, dir }) => ({ color: 'doc', label: 'Word document' }) }, // nur Farbe: Hostwerks Form
+  { id: 'cad', match: /\.dwg$/i, icon: () => ({ svg: '<svg viewBox="0 0 24 24">…</svg>', label: 'CAD drawing', badge: 'DWG' }) },   // oder Component
+],
+'files.thumb': [{ id: 'office', match: /\.(docx|xlsx|pptx|pdf)$/i,
+  thumb: async ({ root, path, name, mtime, size }) => `/api/ext/office/thumb?root=${encodeURIComponent(root)}&path=${encodeURIComponent(path)}&v=${mtime}` }],
+```
+
+- `files.icon`: `icon()` läuft synchron und liefert `{ svg | Component, color, label, badge }` oder `null` (dann gilt
+  Hostwerks Symbol). `svg` ist ein SVG-Text (höchstens 32 KB, als Bild gezeigt – Skripte darin laufen nicht), `Component` eine
+  React-Komponente (`{ size, color, name }`). Nur `color` (und `label`) färbt Hostwerks Form um. `color` ist eine Gruppe
+  (`doc`, `sheet`, `slides`, `pdf`, `image`, `audio`, `video`, `archive`, `code`, `text`, `folder` …, folgt hell/dunkel) oder eine
+  einfache CSS-Farbe. `label` (Englisch, Hostwerk übersetzt mit der eigenen `locales/de.json`) steht als Dateiart im Tooltip
+  und in der Spalte *Typ*; `badge` (≤ 5 Zeichen) ersetzt das Endungs-Schild auf der Kachel. Mehrere passende: nach `order`, die
+  erste mit Ergebnis gewinnt. Kurzform ohne `icon()`: `{ id, match, Component, info(name) → { color, label, badge } }` –
+  `Component` bekommt `{ name, size, color, entry }`.
+- `files.thumb`: nur für **sichtbare** Kacheln (nicht in der Liste), 90 ms nach dem Einblenden, höchstens vier gleichzeitig,
+  8 s Zeitlimit. Antwort: Adresse (`/api/…`, `https://…`, `blob:`, `data:image/…`) oder `{ url, fit: 'cover' | 'contain' }`
+  oder `null`. Hostwerk merkt sich das Bild je Datei + Änderungszeit + Größe – eine neue Fassung fragt neu;
+  `window.dispatchEvent(new Event('hw:files-thumbs'))` leert den Zwischenspeicher. Bild-Dateien zeigt Hostwerk selbst.
+- Bis das Bild da ist, zeigt die Kachel das Symbol auf einer festen Fläche mit sanftem Schimmern – nichts springt.
+- Dieselben Symbole in der eigenen Oberfläche: `import { FileIcon, FileThumb, fileTypeOf } from '@hostwerk/kit'` –
+  `<FileIcon name="Brief.docx" size={18} />`, ab 32 px mit `badge` das Endungs-Schild (z. B. in Listen „Zuletzt geöffnet“).
+  Erkennen: `host.supports('files.icons')` im Server-Teil bzw. `FileIcon` im Baukasten.
+- Fehler in `icon()`/`thumb()` bleiben bei der Erweiterung: es gilt einfach Hostwerks Symbol.
 ---
 
 ## 22. SDK 3.2: Minecraft-Servertypen und Netzwerke

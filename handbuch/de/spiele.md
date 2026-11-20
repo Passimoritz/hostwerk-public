@@ -44,13 +44,15 @@ Valheim, Palworld, Satisfactory, Rust, ARK und jedes andere Steam-Server-Tool �
 
 **Bereiche auf dieser Seite:** Spiele-Server auf diesem PC
 
-**Was du hier tun kannst:** Ordner durchsuchen … · Erneut suchen
+**Was du hier tun kannst:** Ordner durchsuchen … · Erneut suchen · Übernehmen · In Hostwerk kopieren
 
 ### Deine Spiele
 
 ![Deine Spiele](img/spiele--deine-spiele.jpg)
 
-**Was du hier tun kannst:** Von der Erweiterung „Spielebibliothek“ – Infos
+> Eigener Server zu deinen Spielen Gefunden, indem Hostwerk deine installierten Steam-Spiele mit den Server-Tools aus „Spiele-Server“ vergleicht. Ein Klick richtet den Server über SteamCMD ein; Freunde verbinden sich mit der Adresse auf der Seite des Servers.
+
+**Was du hier tun kannst:** Von der Erweiterung „Spielebibliothek“ – Infos · Eigenen Server starten … · Counter-Strike 2 spielen
 
 ### Netzwerk
 
@@ -61,4 +63,4 @@ Valheim, Palworld, Satisfactory, Rust, ARK und jedes andere Steam-Server-Tool �
 **Was du hier tun kannst:** Von der Erweiterung „Spiele-Server“ – Infos · Neuer Verbund · Verbund anlegen
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -40,6 +40,22 @@ Mail catcher: everything your projects send lands here – nothing goes out.
 
 **What you can do here:** 2 videos · Start · Test mail · Forward · Settings · Mark all as read · Delete all
 
+### Mailboxes
+
+![Mailboxes](img/mail--mailboxes.jpg)
+
+> Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James).
+
+**What you can do here:** 2 videos · From the extension “E-mail accounts” – info · Connect an account
+
+### Statistics
+
+![Statistics](img/mail--statistics.jpg)
+
+> Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James).
+
+**What you can do here:** 2 videos · From the extension “Mail statistics” – info
+
 ### Notes
 
 ![Notes](img/mail--notes.jpg)
@@ -49,4 +65,4 @@ Mail catcher: everything your projects send lands here – nothing goes out.
 **What you can do here:** 2 videos · From the extension “Service notes” – info
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -24,4 +24,4 @@ How healthy and how full your drives are – checked regularly.
 - 0000_0000_0000_0000_50C6_8E52_7150_2160
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -78,4 +78,4 @@ Anfragen an deine Projekte senden, in Sammlungen speichern und wiederverwenden.
 **Was du hier tun kannst:** curl einfügen · Importieren · Neue Sammlung · Meine erste Sammlung · GET Startseite · Neue Anfrage · Sammlung ausführen · Als Aufgabe · Exportieren · Startseite · kein Ordner · Diese Anfrage messen · Seite prüfen · Als curl kopieren · Anfrage entfernen · Senden · Sample Web
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -13,4 +13,4 @@ Put a project online with one click – on GitHub Pages, Cloudflare Pages, Codeb
 - Add account
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -1,7 +1,7 @@
 {
  "lang": "en",
- "generated": "2026-11-20T12:37:24.019Z",
- "version": "3.2.2",
+ "generated": "2026-11-20T18:35:39.488Z",
+ "version": "3.3.0",
  "pages": [
   {
    "route": "",
@@ -19,9 +19,12 @@
    "actions": [
     "From the extension “My override” – info",
     "Switch override off",
+    "Mode",
     "Customize",
     "Arrange tiles",
     "Start all",
+    "Fix",
+    "Hide",
     "New",
     "All",
     "Change image",
@@ -30,7 +33,9 @@
     "Set up",
     "Start",
     "Inbox",
-    "Check again"
+    "Update all",
+    "Check again",
+    "Update"
    ],
    "fields": [],
    "tabs": [],
@@ -123,7 +128,10 @@
    "tabs": [
     "Server",
     "PHP versions",
-    "Import"
+    "Import",
+    "Page check",
+    "Visitors",
+    "Vulnerabilities"
    ],
    "tips": 0,
    "tipTexts": [],
@@ -147,22 +155,15 @@
     },
     {
      "label": "Import",
-     "areas": [
-      "Import from XAMPP",
-      "Existing Web servers on this PC"
-     ],
+     "areas": [],
      "actions": [
       "3 videos",
       "New web server",
-      "Folder",
-      "Search",
-      "Apply",
-      "Search again"
+      "Change image",
+      "Install"
      ],
      "fields": [],
-     "tipTexts": [
-      "Import – take over existing services Is a web server already running on this PC – e.g. from XAMPP or as a Windows service? Hostwerk takes it over: where it is (nothing is moved) or copied 1:1, tested and with a way back. The same search for all kinds is under System → Foreign services."
-     ],
+     "tipTexts": [],
      "shot": "img/web--import.jpg"
     }
    ]
@@ -209,12 +210,14 @@
     {
      "label": "Import",
      "areas": [
-      "Existing Databases on this PC"
+      "Existing Databases on this PC",
+      "PostgreSQL 17.12"
      ],
      "actions": [
       "2 videos",
       "New database server",
-      "Search again"
+      "Search again",
+      "Take over into Hostwerk …"
      ],
      "fields": [],
      "tipTexts": [
@@ -450,12 +453,11 @@
     "Read again",
     "What should I play?",
     "Games 23",
-    "On disk 540,6 GB",
+    "On disk 607,4 GB",
     "Playtime 4058 h",
     "Not played yet 1",
-    "Downloading 1",
+    "Updates ready 1",
     "Own server possible 1",
-    "Updating · 0 % Counter-Strike 2 1225 h · today",
     "We Were Here Tomorrow 6.4 h · today",
     "PAYDAY 3 97 h · 12 days ago",
     "Minecraft Dungeons II 26 h · 15 days ago",
@@ -467,17 +469,18 @@
     "YAPYAP not played yet · 2 months ago",
     "Dub Together 1 min · 2 months ago",
     "RV There Yet? 12 h · 2 months ago",
-    "How to Fish 6.6 h · 2 months ago",
+    "How to Fish 6.6 h · 3 months ago",
     "007 First Light 18 h · 3 months ago",
     "Big Walk 35 min · 3 months ago",
     "Wallpaper Engine 89 h · 3 months ago",
     "Deep Rock Galactic: Rogue Core 10 h · 4 months ago",
     "Just Shapes & Beats 16 h · 6 months ago",
-    "Supermarket Together 104 h · 7 months ago",
+    "Update ready Supermarket Together 104 h · 7 months ago",
     "John Carpenter's Toxic Commando 6.9 h · 7 months ago",
     "s&box 3.5 h · 7 months ago",
     "Dying Light: The Beast 7 min · 12 months ago",
-    "PAYDAY 2 201 h · 16 months ago"
+    "PAYDAY 2 201 h · 16 months ago",
+    "Counter-Strike 2 1225 h · 2 years ago"
    ],
    "fields": [],
    "tabs": [
@@ -519,7 +522,6 @@
       "Read again",
       "What should I play?",
       "Load now",
-      "Counter-Strike 2 location unknown",
       "We Were Here Tomorrow location unknown",
       "PAYDAY 3 location unknown",
       "Minecraft Dungeons II location unknown",
@@ -542,6 +544,7 @@
       "s&box location unknown",
       "Dying Light: The Beast location unknown",
       "PAYDAY 2 location unknown",
+      "Counter-Strike 2 location unknown",
       "Back up now"
      ],
      "fields": [],
@@ -635,6 +638,8 @@
     "Runtimes",
     "Tools",
     "API tester",
+    "Webhooks",
+    "Publish",
     "Deploy log",
     "Knowledge graph"
    ],
@@ -765,6 +770,28 @@
      "fields": [],
      "tipTexts": [],
      "shot": "img/projects--publish.jpg"
+    },
+    {
+     "label": "Deploy log",
+     "areas": [],
+     "actions": [
+      "3 videos",
+      "From the extension “Deploy log” – info"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--deploy-log.jpg"
+    },
+    {
+     "label": "Knowledge graph",
+     "areas": [],
+     "actions": [
+      "3 videos",
+      "From the extension “Knowledge graph” – info"
+     ],
+     "fields": [],
+     "tipTexts": [],
+     "shot": "img/projects--knowledge-graph.jpg"
     }
    ]
   },
@@ -787,7 +814,9 @@
    "fields": [],
    "tabs": [
     "Mail catcher",
+    "Mail server",
     "Import",
+    "Mailboxes",
     "Statistics",
     "Notes"
    ],
@@ -833,6 +862,33 @@
       "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
      ],
      "shot": "img/mail--import.jpg"
+    },
+    {
+     "label": "Mailboxes",
+     "areas": [],
+     "actions": [
+      "2 videos",
+      "From the extension “E-mail accounts” – info",
+      "Connect an account"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
+     ],
+     "shot": "img/mail--mailboxes.jpg"
+    },
+    {
+     "label": "Statistics",
+     "areas": [],
+     "actions": [
+      "2 videos",
+      "From the extension “Mail statistics” – info"
+     ],
+     "fields": [],
+     "tipTexts": [
+      "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
+     ],
+     "shot": "img/mail--statistics.jpg"
     },
     {
      "label": "Notes",
@@ -972,33 +1028,37 @@
    "title": "Files",
    "activeTab": "",
    "intro": "Web folders, projects, Minecraft servers and your own folders – with editor, preview and recycle bin.",
-   "areas": [
-    "Office"
-   ],
+   "areas": [],
    "actions": [
     "Video",
     "Collapse sidebar",
     "Web folder (Sample Web)",
     "Projects",
     "Minecraft-Server: Sample MC",
-    "Office documents",
     "Add folder …",
     "Backups",
     "Logs",
     "Configuration",
     "Trash",
-    "Root",
-    "New …",
-    "New folder",
+    "Back",
+    "Forward",
+    "Move up",
+    "Update",
+    "Top of this area",
+    "New",
+    "Upload",
+    "Cut",
+    "Copy",
+    "Paste",
+    "Rename",
+    "Move to …",
+    "Delete",
+    "Name",
     "Tiles",
     "More",
-    "Office",
-    "From the extension “Office” – info",
-    "Document",
-    "Spreadsheet",
-    "Presentation",
-    "PDF",
-    "Template …"
+    "Date modified",
+    "Type",
+    "Size"
    ],
    "fields": [],
    "tabs": [],
@@ -1212,7 +1272,7 @@
    "slug": "sicherungen",
    "title": "Backups",
    "activeTab": "Status",
-   "intro": "7 backups · 436 B",
+   "intro": "6 backups · 414 B",
    "areas": [
     "Needs you"
    ],
@@ -1241,10 +1301,9 @@
      "actions": [
       "Back up everything now",
       "Clean up old ones",
-      "Hostwerk Time machine 2 backups · newest 20/11/2026, 13:22 (auto)",
-      "Office Extensions 1 backup · 22 B · newest 20/11/2026, 13:14 (auto)",
-      "E-mail accounts Extensions 1 backup · 408 B · newest 20/11/2026, 13:13 (auto)",
-      "Sample MC Minecraft servers 3 backups · 6 B · newest 20/11/2026, 13:12",
+      "Hostwerk Time machine 2 backups · newest 20/11/2026, 19:24 (auto)",
+      "E-mail accounts Extensions 1 backup · 408 B · newest 20/11/2026, 19:16 (auto)",
+      "Sample MC Minecraft servers 3 backups · 6 B · newest 20/11/2026, 19:15",
       "Back up now"
      ],
      "fields": [],
@@ -1552,7 +1611,9 @@
       "What extensions may never do",
       "Add",
       "Filter",
-      "39 extensions already installed – under “My extensions”"
+      "Install",
+      "Office – more actions",
+      "38 extensions already installed – under “My extensions”"
      ],
      "fields": [],
      "tipTexts": [
@@ -1631,6 +1692,7 @@
     "Notifications",
     "Keyboard shortcuts",
     "Move & share",
+    "Discord status",
     "Updates",
     "Advanced",
     "Privacy",
@@ -1671,6 +1733,7 @@
     "Notifications",
     "Keyboard shortcuts",
     "Move & share",
+    "Discord status",
     "Updates",
     "Advanced",
     "Privacy",
@@ -1702,7 +1765,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1749,7 +1811,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1777,7 +1838,8 @@
       "Move “Certificate watch” down",
       "More for “Certificate watch”",
       "Move “DNS” up",
-      "Move “DNS” down"
+      "Move “DNS” down",
+      "More for “DNS”"
      ],
      "fields": [],
      "tipTexts": [
@@ -1804,7 +1866,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1847,7 +1908,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1888,16 +1948,15 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
       "Privacy",
       "About Hostwerk",
       "Press shortcut",
-      "All 44",
+      "All 39",
       "Changed 0",
-      "Off 6",
+      "Off 2",
       "conflicts 3",
       "Ctrl K",
       "Switch off shortcut for “Search & commands (projects, servers, actions)”",
@@ -1916,7 +1975,8 @@
       "Alt →",
       "Switch off shortcut for “Forward to the next page”",
       "Ctrl R",
-      "Switch off shortcut for “Reload the interface (services keep running)”"
+      "Switch off shortcut for “Reload the interface (services keep running)”",
+      "Ctrl ⇧ R"
      ],
      "fields": [],
      "tipTexts": [],
@@ -1943,7 +2003,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1979,7 +2038,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -2020,14 +2078,13 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
       "Privacy",
       "About Hostwerk",
       "Open",
-      "Delete 623,4 KB",
+      "Delete 755,5 KB",
       "Measure again",
       "Clean up now",
       "Reload",
@@ -2037,7 +2094,6 @@
      "fields": [
       "Hostwerk folder",
       "Open in browser",
-      "Office",
       "Reload interface"
      ],
      "tipTexts": [
@@ -2065,7 +2121,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -2098,7 +2153,6 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
-      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -2694,13 +2748,24 @@
       "Mark as favorite (then listed at the top)",
       "papermc.io",
       "Start",
-      "Root",
-      "New …",
-      "New folder",
+      "Back",
+      "Forward",
+      "Move up",
+      "Update",
+      "Top of this area",
+      "New",
+      "Upload",
+      "Cut",
+      "Copy",
+      "Paste",
+      "Rename",
+      "Move to …",
+      "Delete",
+      "Name",
       "Tiles",
       "More",
-      "Name",
-      "Changed",
+      "Date modified",
+      "Type",
       "Size"
      ],
      "fields": [],

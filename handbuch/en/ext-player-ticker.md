@@ -39,4 +39,4 @@ Who is playing right now and who plays the most – across all Minecraft and gam
 **What you can do here:** From the extension “Players” – info · Settings · Reload
 
 
-<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.3.0</sub>

@@ -18,7 +18,7 @@ Jede Seite und jeder Reiter von Hostwerk mit Bild und Erklärung – automatisch
 - [Mein Server-Teil](ext-my-backend.md) – Zählt Besuche im eigenen Server-Code, liest die Dienste mit den Rechten des Pakets und nimmt Webhooks an.
 - [Livebetrieb](live.md) – Was online ist, wer hineinkommt, wie es geschützt, überwacht und gesichert ist.
 - [Passwörter](passwoerter.md) – Eigener Tresor oder bestehender Passwort-Manager – mit Browser-Erweiterung, Sicherheitsprüfung und Import aus allen gäng…
-- [Sicherungen](sicherungen.md) – 6 Stände · 436 B
+- [Sicherungen](sicherungen.md) – 5 Stände · 414 B
 - [System](system.md) – Läuft dieser PC gut – und was hat sich verändert?
 - [Erweiterungen](ext.md) – Mehr Funktionen für Hostwerk – geprüft, abgeschottet oder als Teil von Hostwerk aus dem eigenen Katalog.
 - [Einstellungen](settings.md) – Hostwerk an deine Arbeitsweise anpassen.
@@ -64,11 +64,10 @@ Jede Seite und jeder Reiter von Hostwerk mit Bild und Erklärung – automatisch
 ## Weitere Seiten
 
 - [Mailserver (mail/server)](mail-server.md)
-- [Einstellungen → Updates (settings/updates)](settings-updates.md)
 - [Hostwerk-Verbund (server)](server.md)
 - [KI-Anbindung (claude)](claude.md)
 - [Sample Web → Übersicht (web/probe-web)](web-probe-web.md)
 - [Sample DB → Übersicht (dbs/probe-db)](dbs-probe-db.md)
 - [Sample MC → Übersicht (mc/probe-mc)](mc-probe-mc.md)
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

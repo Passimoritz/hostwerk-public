@@ -61,7 +61,7 @@ Mehr Funktionen für Hostwerk – geprüft, abgeschottet oder als Teil von Hostw
 
 > So sind Erweiterungen gebaut Erweiterungen aus anderen Quellen laufen abgeschottet: Seiten im Rahmen, eigener Server-Code in einem eigenen Prozess – ohne Zugriff auf Einstellungen, Passwörter, Schlüssel oder dein Heimnetz, Änderungen nur nach deiner Bestätigung. Erweiterungen mit dem Abzeichen „Teil von Hostwerk“ kommen aus dem Hostwerk-Katalog und sind per Prüfsumme festgelegt.
 
-**Was du hier tun kannst:** Was Erweiterungen nie dürfen · Hinzufügen · Filter · 39 Erweiterungen schon installiert – unter „Meine Erweiterungen“
+**Was du hier tun kannst:** Was Erweiterungen nie dürfen · Hinzufügen · Filter · Installieren · Office – weitere Aktionen · 38 Erweiterungen schon installiert – unter „Meine Erweiterungen“
 
 ### Ideen & Synergien
 
@@ -93,4 +93,4 @@ Mehr Funktionen für Hostwerk – geprüft, abgeschottet oder als Teil von Hostw
 **Was du hier tun kannst:** Was Erweiterungen nie dürfen · Hinzufügen · Neue Erweiterung · Anleitung Paket, SDK, Design, Rechte, Übersetzungen, Abhängigkeiten, native Erweiterungen, Prüfung. · Vorlage auf GitHub „Use this template“ – mit Prüf-Action und automatischem Release. · So wird geprüft … · Weitere Kataloge (Quellen) verwalten
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>

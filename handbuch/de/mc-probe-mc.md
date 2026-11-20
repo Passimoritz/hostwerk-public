@@ -73,7 +73,7 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 
 ![Dateien](img/mc-probe-mc--dateien.jpg)
 
-**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Wurzel · Neu … · Neuer Ordner · Kacheln · Mehr · Name · Geändert · Größe
+**Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten · Zurück · Vor · Nach oben · Aktualisieren · Wurzel des Bereichs · Neu · Hochladen · Ausschneiden · Kopieren · Einfügen · Umbenennen · Verschieben nach … · Löschen · Name · Kacheln · Mehr · Änderungsdatum · Typ · Größe
 
 ### Notizen
 
@@ -82,4 +82,4 @@ Paper 1.21.8 (Build 1) · Java 21 · 2,0 GB RAM · Port 25690 papermc.io
 **Was du hier tun kannst:** Bild ändern · Als Favorit markieren (steht dann in Listen oben) · papermc.io · Starten
 
 
-<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.3.0</sub>
