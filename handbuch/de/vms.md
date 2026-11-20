@@ -29,4 +29,4 @@ Ganze Computer im Fenster: fertiges Linux in einer Minute, Windows und jede ISO 
 **Was du hier tun kannst:** Neue VM … · Neu …
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

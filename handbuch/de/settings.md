@@ -31,6 +31,8 @@ Hostwerk an deine Arbeitsweise anpassen.
 - Benachrichtigungen
 - Tastenkürzel
 - Umziehen & teilen
+- Office
+- Discord-Status
 - Updates
 - Erweitert
 - Datenschutz
@@ -72,7 +74,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Bedienung
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Automatisch (VS Code) · Neu suchen (z. B. nach einer Installation) · Eigenes Programm als Editor hinzufügen · Oben links · Oben rechts · Unten links · Unten rechts · Öffnen
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Automatisch (VS Code) · Neu suchen (z. B. nach einer Installation) · Eigenes Programm als Editor hinzufügen · Oben links · Oben rechts · Unten links · Unten rechts · Öffnen
 
 ### Seitenleiste
 
@@ -83,7 +85,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Seitenleiste
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Standard · Bereich „Server“ nach oben · Bereich „Server“ nach unten · „Webserver“ nach oben · „Webserver“ nach unten · Mehr zu „Webserver“ · „Datenbanken“ nach oben · „Datenbanken“ nach unten · Mehr zu „Datenbanken“ · „Spiele-Server“ nach oben · „Spiele-Server“ nach unten · Mehr zu „Spiele-Server“ · „Minecraft“ nach oben · „Minecraft“ nach unten · Mehr zu „Minecraft“ · „Virtuelle Maschinen“ nach oben · „Virtuelle Maschinen“ nach unten · Mehr zu „Virtuelle Maschinen“ · „Zertifikats-Wache“ nach oben · „Zertifikats-Wache“ nach unten · Mehr zu „Zertifikats-Wache“ · „DNS“ nach oben · „DNS“ nach unten · Mehr zu „DNS“
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Standard · Bereich „Server“ nach oben · Bereich „Server“ nach unten · „Webserver“ nach oben · „Webserver“ nach unten · Mehr zu „Webserver“ · „Datenbanken“ nach oben · „Datenbanken“ nach unten · Mehr zu „Datenbanken“ · „Spiele-Server“ nach oben · „Spiele-Server“ nach unten · Mehr zu „Spiele-Server“ · „Minecraft“ nach oben · „Minecraft“ nach unten · Mehr zu „Minecraft“ · „Virtuelle Maschinen“ nach oben · „Virtuelle Maschinen“ nach unten · Mehr zu „Virtuelle Maschinen“ · „Zertifikats-Wache“ nach oben · „Zertifikats-Wache“ nach unten · Mehr zu „Zertifikats-Wache“ · „DNS“ nach oben · „DNS“ nach unten
 
 ### Start & Dienste
 
@@ -91,7 +93,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Beim Start von Hostwerk · Welche Dienste starten automatisch?
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Alle · Keine
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Alle · Keine
 
 ### Benachrichtigungen
 
@@ -101,7 +103,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Wann soll Hostwerk Bescheid geben? · Meldungen aufs Handy, per E-Mail oder Chat
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Von der Erweiterung „DNS-Verwaltung“ – Infos · Von der Erweiterung „E-Mail-Konten“ – Infos · Von der Erweiterung „Minecraft-Servernetzwerk“ – Infos · Von der Erweiterung „Spielebibliothek“ – Infos · Von der Erweiterung „Virtuelle Maschinen“ – Infos · Von der Erweiterung „VPN-Zugang“ – Infos · Von der Erweiterung „Schwachstellen-Wache“ – Infos · Von der Erweiterung „Zertifikats-Wache“ – Infos · Von der Erweiterung „KI-Anbindung“ – Infos · Von der Erweiterung „Laufwerke“ – Infos · Meldungen einstellen → Livebetrieb
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Von der Erweiterung „DNS-Verwaltung“ – Infos · Von der Erweiterung „E-Mail-Konten“ – Infos · Von der Erweiterung „Minecraft-Servernetzwerk“ – Infos · Von der Erweiterung „Spielebibliothek“ – Infos · Von der Erweiterung „Virtuelle Maschinen“ – Infos · Von der Erweiterung „VPN-Zugang“ – Infos · Von der Erweiterung „Schwachstellen-Wache“ – Infos · Von der Erweiterung „Zertifikats-Wache“ – Infos · Von der Erweiterung „KI-Anbindung“ – Infos · Von der Erweiterung „Laufwerke“ – Infos · Meldungen einstellen → Livebetrieb
 
 ### Tastenkürzel
 
@@ -109,7 +111,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Tastenkürzel
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Kürzel drücken · Alle 39 · Geändert 0 · Aus 2 · Konflikte 3 · Strg K · Kürzel für „Suchen & Befehle (Projekte, Server, Aktionen)“ ausschalten · Strg J · Kürzel für „KI fragen (Seitenfenster mit der aktuellen Seite)“ ausschalten · Strg N · Kürzel für „Neues Projekt aus Vorlage“ ausschalten · Strg ⇧ S · Kürzel für „Alle Dienste starten“ ausschalten · Strg ⇧ X · Kürzel für „Alle Dienste stoppen“ ausschalten · Strg , · Kürzel für „Einstellungen“ ausschalten · Alt ← · Kürzel für „Zurück zur vorigen Seite“ ausschalten · Alt → · Kürzel für „Vorwärts zur nächsten Seite“ ausschalten · Strg R · Kürzel für „Oberfläche neu laden (Dienste laufen weiter)“ ausschalten · Strg ⇧ R
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Kürzel drücken · Alle 44 · Geändert 0 · Aus 6 · Konflikte 3 · Strg K · Kürzel für „Suchen & Befehle (Projekte, Server, Aktionen)“ ausschalten · Strg J · Kürzel für „KI fragen (Seitenfenster mit der aktuellen Seite)“ ausschalten · Strg N · Kürzel für „Neues Projekt aus Vorlage“ ausschalten · Strg ⇧ S · Kürzel für „Alle Dienste starten“ ausschalten · Strg ⇧ X · Kürzel für „Alle Dienste stoppen“ ausschalten · Strg , · Kürzel für „Einstellungen“ ausschalten · Alt ← · Kürzel für „Zurück zur vorigen Seite“ ausschalten · Alt → · Kürzel für „Vorwärts zur nächsten Seite“ ausschalten · Strg R · Kürzel für „Oberfläche neu laden (Dienste laufen weiter)“ ausschalten
 
 ### Umziehen & teilen
 
@@ -117,7 +119,15 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Welcher Weg passt? · VON HIER MITNEHMEN · Setup-Datei · Als Docker-Compose exportieren · HIERHER ÜBERNEHMEN
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Setup exportieren · Alle (4) · Vorschau · ZIP herunterladen · Setup-Datei einlesen …
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Setup exportieren · Alle (4) · Vorschau · ZIP herunterladen · Setup-Datei einlesen …
+
+### Office
+
+![Office](img/settings--office.jpg)
+
+**Bereiche auf dieser Seite:** Hostwerk als Standard-App für Office-Dateien · Speichern · Schreiben · In „Dateien“
+
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Neu prüfen · Ordner & Speicher · Dokumente · Tabellen · Präsentationen · PDF · Umwandeln & Programme · Integrationen · Teilen · Auf Standard zurücksetzen
 
 ### Discord-Status
 
@@ -127,18 +137,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Einstellungen · So sieht es aus
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Bilder, eigener Knopf und eigene Anwendung
-
-### Erweitert
-
-![Erweitert](img/settings--erweitert.jpg)
-
-> Zwischenspeicher Alles hier lädt Hostwerk bei Bedarf neu. Projekte, Datenbanken, Sicherungen und Einstellungen bleiben unberührt.
-> Wartung Die Wartung läuft als eigenes Fenster und lädt keine Erweiterung – so kann keine sie stören. Dort schaltest du Erweiterungen aus, setzt sie zurück oder entfernst sie, aktualisierst, reparierst oder entfernst Hostwerk. Startet Hostwerk nicht mehr: Startmenü → „Hostwerk – Wartung“ oder beim Start F8 drücken.
-
-**Bereiche auf dieser Seite:** Speicherort & Zugriff · Java-Laufzeiten · Zwischenspeicher & temporäre Dateien · Hostwerk · Wartung & Installation
-
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Öffnen · 586,9 KB löschen · Neu messen · Jetzt aufräumen · Neu laden · Wartung öffnen · Nächster Start ohne Erweiterungen
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Bilder, eigener Knopf und eigene Anwendung
 
 ### Datenschutz
 
@@ -146,7 +145,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Offline-Modus · Dein Name · Verbindungen nach außen
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Ändern · Sperren
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Ändern · Sperren
 
 ### Über Hostwerk
 
@@ -156,7 +155,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 
 **Bereiche auf dieser Seite:** Lizenz · Drittanbieter
 
-**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Projektseite · 284 Drittanbieter-Pakete …
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Projektseite · 284 Drittanbieter-Pakete …
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

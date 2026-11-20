@@ -32,4 +32,4 @@ Own vault or an existing password manager – with browser extension, security c
 **What you can do here:** Add · Locking · Filling in · General · Vaults · Provider programs · Generator
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

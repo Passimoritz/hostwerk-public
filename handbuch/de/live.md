@@ -69,4 +69,4 @@ Was online ist, wer hineinkommt, wie es geschützt, überwacht und gesichert ist
 **Was du hier tun kannst:** 6 Videos · Notfall · Neuer Wächter · Bearbeiten: Sample shop · Entfernen: Sample shop · Bearbeiten: Sample count · Bearbeiten: Zertifikate · Entfernen: Zertifikate · Von der Erweiterung „disk-health“ – Infos · Bearbeiten: Festplatten-Gesundheit · Von der Erweiterung „vuln-watch“ – Infos · Bearbeiten: Schwachstellen
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

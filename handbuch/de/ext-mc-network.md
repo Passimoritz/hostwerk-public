@@ -16,4 +16,4 @@ Mehrere Server hinter einer Adresse, Java und Bedrock zusammen – hält sich se
 - Nur Bedrock
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

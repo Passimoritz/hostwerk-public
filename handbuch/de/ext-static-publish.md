@@ -13,4 +13,4 @@ Ein Projekt mit einem Klick online bringen – auf GitHub Pages, Cloudflare Page
 - Zugang hinzufügen
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

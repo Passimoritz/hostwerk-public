@@ -7,4 +7,4 @@ Was wann veröffentlicht wurde – mit Commit und Snapshot, und mit einem Klick 
 ![Deploy-Protokoll](img/ext-deploy-log.jpg)
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

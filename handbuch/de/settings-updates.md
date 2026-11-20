@@ -29,6 +29,7 @@ Hostwerk an deine Arbeitsweise anpassen.
 - Benachrichtigungen
 - Tastenkürzel
 - Umziehen & teilen
+- Office
 - Discord-Status
 - Updates
 - Erweitert
@@ -42,5 +43,18 @@ Hostwerk an deine Arbeitsweise anpassen.
 - Automatisch aktualisieren
 - Komponenten-Updates anzeigen
 
+## Reiter
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+### Erweitert
+
+![Erweitert](img/settings-updates--erweitert.jpg)
+
+> Zwischenspeicher Alles hier lädt Hostwerk bei Bedarf neu. Projekte, Datenbanken, Sicherungen und Einstellungen bleiben unberührt.
+> Wartung Die Wartung läuft als eigenes Fenster und lädt keine Erweiterung – so kann keine sie stören. Dort schaltest du Erweiterungen aus, setzt sie zurück oder entfernst sie, aktualisierst, reparierst oder entfernst Hostwerk. Startet Hostwerk nicht mehr: Startmenü → „Hostwerk – Wartung“ oder beim Start F8 drücken.
+
+**Bereiche auf dieser Seite:** Speicherort & Zugriff · Java-Laufzeiten · Dateien öffnen · Zwischenspeicher & temporäre Dateien · Hostwerk · Wartung & Installation
+
+**Was du hier tun kannst:** 3 Videos · Was habe ich geändert? · Exportieren · Importieren … · Allgemein · Bedienung · Seitenleiste · Start & Dienste · Benachrichtigungen · Tastenkürzel · Umziehen & teilen · Office · Discord-Status · Updates · Erweitert · Datenschutz · Über Hostwerk · Öffnen · 587,3 KB löschen · Neu messen · Jetzt aufräumen · Neu laden · Wartung öffnen · Nächster Start ohne Erweiterungen
+
+
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

@@ -61,7 +61,7 @@ More features for Hostwerk – checked, sandboxed or as part of Hostwerk from it
 
 > How extensions are built Extensions from other sources run sandboxed: pages in a frame, own server code in a separate process – without access to settings, passwords, keys or your home network, changes only after you confirm. Extensions with the badge “Part of Hostwerk” come from the Hostwerk catalog and are pinned by checksum.
 
-**What you can do here:** What extensions may never do · Add · Filter · 38 extensions already installed – under “My extensions”
+**What you can do here:** What extensions may never do · Add · Filter · 39 extensions already installed – under “My extensions”
 
 ### Ideas & synergies
 
@@ -93,4 +93,4 @@ More features for Hostwerk – checked, sandboxed or as part of Hostwerk from it
 **What you can do here:** What extensions may never do · Add · New extension · Guide Package, SDK, design, permissions, translations, dependencies, native extensions, check. · Template on GitHub “Use this template” – with a check action and automatic releases. · How it is checked … · Manage more catalogues (sources)
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

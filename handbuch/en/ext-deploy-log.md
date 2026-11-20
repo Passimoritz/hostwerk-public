@@ -7,4 +7,4 @@ What was published when – with commit and snapshot, and one click back to an e
 ![Deploy log](img/ext-deploy-log.jpg)
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

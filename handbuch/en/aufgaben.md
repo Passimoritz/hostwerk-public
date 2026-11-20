@@ -19,8 +19,8 @@ Scripts, commands, backups, checks and restarts on a schedule, on startup or as 
 - Error 0
 - Active 2
 - Pause all
-- Sample task Thu 03:00 · Open a web address
-- Second task Thu 04:00 · Open a web address
+- Sample task Sat 03:00 · Open a web address
+- Second task Sat 04:00 · Open a web address
 - Run now
 - Edit
 - Mark as favorite (then listed at the top)
@@ -43,4 +43,4 @@ Scripts, commands, backups, checks and restarts on a schedule, on startup or as 
 **What you can do here:** 2 videos · From the extension “Quick tasks” – info
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

@@ -40,4 +40,4 @@ Namen für diesen Anschluss – kostenlos oder mit eigener Domain – und alle E
 **Was du hier tun kannst:** Anbieter hinzufügen · Namen einrichten
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

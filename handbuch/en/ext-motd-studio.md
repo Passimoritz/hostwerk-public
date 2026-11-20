@@ -20,4 +20,4 @@ Design the description and icon in the server list – colours, templates, previ
 **What you can do here:** From the extension “MOTD studio” – info · Reload
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

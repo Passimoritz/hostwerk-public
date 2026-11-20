@@ -16,4 +16,4 @@ Visitors of your sites – from the web server logs, without cookies.
 - Set up …
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

@@ -33,4 +33,4 @@ Your own Discord bot: /status, /players, /start, /stop and /restart from your Di
 - Ask before starting too
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

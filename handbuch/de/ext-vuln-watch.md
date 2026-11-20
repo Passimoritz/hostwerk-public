@@ -35,4 +35,4 @@ Bekannte Schwachstellen von allem, was Hostwerk betreibt – passend zur install
 - Hoch 8.4 A flaw in Node.js Permission Model enforcement can over-grant filesystem access across radix-tree prefix boundaries. CVE-2026-58043
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

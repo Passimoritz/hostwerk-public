@@ -10,20 +10,19 @@ Your games from Steam, Epic, GOG and itch.io – with saves, deals and your acco
 
 - Read again
 - What should I play?
-- Games 24
-- On disk 683,0 GB
-- Playtime 2846 h
+- Games 23
+- On disk 540,6 GB
+- Playtime 4058 h
 - Not played yet 1
-- Updates ready 1
 - Downloading 1
-- Clive Barker's Hellraiser: Revival 12 h · 5 days ago
-- We Were Here Tomorrow 4.4 h · 6 days ago
-- PAYDAY 3 97 h · 10 days ago
-- Minecraft Dungeons II 26 h · 13 days ago
-- Overwatch® 880 h · 14 days ago
-- Dead by Daylight 1277 h · 28 days ago
-- PEAK 27 h · 40 days ago
-- The Witcher 3: Wild Hunt — Remastered 3.4 h · 42 days ago
+- Own server possible 1
+- Updating · 0 % Counter-Strike 2 1225 h · today
+- We Were Here Tomorrow 6.4 h · today
+- PAYDAY 3 97 h · 12 days ago
+- Minecraft Dungeons II 26 h · 15 days ago
+- Overwatch® 880 h · 16 days ago
+- Dead by Daylight 1277 h · 30 days ago
+- PEAK 27 h · 41 days ago
 - Generation Zero® 49 h · 2 months ago
 - Sunset Summit 4 h · 2 months ago
 - YAPYAP not played yet · 2 months ago
@@ -33,13 +32,13 @@ Your games from Steam, Epic, GOG and itch.io – with saves, deals and your acco
 - 007 First Light 18 h · 3 months ago
 - Big Walk 35 min · 3 months ago
 - Wallpaper Engine 89 h · 3 months ago
-- Update ready Deep Rock Galactic: Rogue Core 10 h · 4 months ago
+- Deep Rock Galactic: Rogue Core 10 h · 4 months ago
 - Just Shapes & Beats 16 h · 6 months ago
 - Supermarket Together 104 h · 7 months ago
 - John Carpenter's Toxic Commando 6.9 h · 7 months ago
 - s&box 3.5 h · 7 months ago
 - Dying Light: The Beast 7 min · 12 months ago
-- Updating · 50 % PAYDAY 2 201 h · 16 months ago
+- PAYDAY 2 201 h · 16 months ago
 
 ## Tabs
 
@@ -59,7 +58,7 @@ Your games from Steam, Epic, GOG and itch.io – with saves, deals and your acco
 
 **Areas on this page:** Backups
 
-**What you can do here:** Read again · What should I play? · Load now · Clive Barker's Hellraiser: Revival location unknown · We Were Here Tomorrow location unknown · PAYDAY 3 location unknown · Minecraft Dungeons II location unknown · Overwatch® location unknown · Dead by Daylight location unknown · PEAK location unknown · The Witcher 3: Wild Hunt — Remastered location unknown · Generation Zero® location unknown · Sunset Summit location unknown · YAPYAP location unknown · Dub Together location unknown · RV There Yet? location unknown · How to Fish location unknown · 007 First Light location unknown · Big Walk location unknown · Wallpaper Engine location unknown · Deep Rock Galactic: Rogue Core location unknown · Just Shapes & Beats location unknown · Supermarket Together location unknown · John Carpenter's Toxic Commando location unknown · s&box location unknown · Dying Light: The Beast location unknown · PAYDAY 2 location unknown · Back up now
+**What you can do here:** Read again · What should I play? · Load now · Counter-Strike 2 location unknown · We Were Here Tomorrow location unknown · PAYDAY 3 location unknown · Minecraft Dungeons II location unknown · Overwatch® location unknown · Dead by Daylight location unknown · PEAK location unknown · Generation Zero® location unknown · Sunset Summit location unknown · YAPYAP location unknown · Dub Together location unknown · RV There Yet? location unknown · How to Fish location unknown · 007 First Light location unknown · Big Walk location unknown · Wallpaper Engine location unknown · Deep Rock Galactic: Rogue Core location unknown · Just Shapes & Beats location unknown · Supermarket Together location unknown · John Carpenter's Toxic Commando location unknown · s&box location unknown · Dying Light: The Beast location unknown · PAYDAY 2 location unknown · Back up now
 
 ### Deals
 
@@ -92,4 +91,4 @@ Your games from Steam, Epic, GOG and itch.io – with saves, deals and your acco
 **What you can do here:** Read again · What should I play? · Sign in through Steam · Save · Update all now
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

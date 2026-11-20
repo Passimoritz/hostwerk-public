@@ -19,7 +19,7 @@ Webordner, Projekte, Minecraft-Server und eigene Ordner – mit Editor, Vorschau
 - Konfiguration
 - Papierkorb
 - Wurzel
-- Neue Datei
+- Neu …
 - Neuer Ordner
 - Kacheln
 - Mehr
@@ -28,4 +28,4 @@ Webordner, Projekte, Minecraft-Server und eigene Ordner – mit Editor, Vorschau
 - Größe
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

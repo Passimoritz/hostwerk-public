@@ -70,4 +70,4 @@ What is online, who gets in, and how it is protected, monitored and backed up.
 **What you can do here:** 6 videos · Emergency · New watcher · Edit: Sample shop · Remove: Sample shop · Edit: Sample count · Edit: Certificates · Remove: Certificates · From the extension “disk-health” – info · Edit: Drive health · From the extension “vuln-watch” – info · Edit: Vulnerabilities
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

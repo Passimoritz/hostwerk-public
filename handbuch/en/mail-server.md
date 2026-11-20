@@ -21,4 +21,4 @@ Real mailboxes for your domain – Stalwart or Apache James, set up and maintain
 - Name in Hostwerk
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

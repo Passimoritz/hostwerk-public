@@ -21,4 +21,4 @@ Echte Postfächer für deine Domain – Stalwart oder Apache James, eingerichtet
 - Name in Hostwerk
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

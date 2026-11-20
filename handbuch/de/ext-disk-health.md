@@ -24,4 +24,4 @@ Wie gesund und wie voll deine Laufwerke sind – regelmäßig geprüft.
 - 0000_0000_0000_0000_50C6_8E52_7150_2160
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

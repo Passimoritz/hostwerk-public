@@ -19,8 +19,8 @@ Skripte, Befehle, Sicherungen, Prüfungen und Neustarts nach Zeitplan, beim Star
 - Fehler 0
 - Aktiv 2
 - Alle anhalten
-- Sample task Do., 03:00 · Webadresse aufrufen
-- Second task Do., 04:00 · Webadresse aufrufen
+- Sample task Sa., 03:00 · Webadresse aufrufen
+- Second task Sa., 04:00 · Webadresse aufrufen
 - Jetzt ausführen
 - Bearbeiten
 - Als Favorit markieren (steht dann in Listen oben)
@@ -43,4 +43,4 @@ Skripte, Befehle, Sicherungen, Prüfungen und Neustarts nach Zeitplan, beim Star
 **Was du hier tun kannst:** 2 Videos · Von der Erweiterung „Schnell-Aufgaben“ – Infos
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

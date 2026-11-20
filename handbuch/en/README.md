@@ -18,7 +18,7 @@ Every page and tab of Hostwerk with a picture and an explanation – generated f
 - [My backend](ext-my-backend.md) – Counts visits in its own server code, reads the services with the package's permissions and accepts webhooks.
 - [Production](live.md) – What is online, who gets in, and how it is protected, monitored and backed up.
 - [Passwords](passwoerter.md) – Own vault or an existing password manager – with browser extension, security check and import from every common service.
-- [Backups](sicherungen.md) – 6 backups · 414 B
+- [Backups](sicherungen.md) – 7 backups · 436 B
 - [System](system.md) – Is this PC running well – and what has changed?
 - [Extensions](ext.md) – More features for Hostwerk – checked, sandboxed or as part of Hostwerk from its own catalogue.
 - [Settings](settings.md) – Adapt Hostwerk to the way you work.
@@ -70,4 +70,4 @@ Every page and tab of Hostwerk with a picture and an explanation – generated f
 - [Sample DB → Overview (dbs/probe-db)](dbs-probe-db.md)
 - [Sample MC → Overview (mc/probe-mc)](mc-probe-mc.md)
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

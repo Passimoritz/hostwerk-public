@@ -27,18 +27,11 @@ Apache, nginx or Caddy – several in parallel, with or without PHP.
 
 ![Import](img/web--import.jpg)
 
-**What you can do here:** 3 videos · New web server · Change image · Install
+> Import – take over existing services Is a web server already running on this PC – e.g. from XAMPP or as a Windows service? Hostwerk takes it over: where it is (nothing is moved) or copied 1:1, tested and with a way back. The same search for all kinds is under System → Foreign services.
 
-### Page check
+**Areas on this page:** Import from XAMPP · Existing Web servers on this PC
 
-![Page check](img/web--page-check.jpg)
-
-> Regular checks Hostwerk checks these addresses on its own and tells you when the score drops by 5 points or more.
-> Minimum score Publishing extensions (e.g. “Publish pages”) check the page first and stop below this score. 0 = off.
-
-**Areas on this page:** Regular checks · Before publishing
-
-**What you can do here:** 3 videos · New web server · From the extension “Page check” – info · Check · Sample Web · Save
+**What you can do here:** 3 videos · New web server · Folder · Search · Apply · Search again
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

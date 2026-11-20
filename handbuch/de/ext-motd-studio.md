@@ -20,4 +20,4 @@ Beschreibung und Symbol in der Serverliste gestalten – Farben, Vorlagen, Vorsc
 **Was du hier tun kannst:** Von der Erweiterung „MOTD-Studio“ – Infos · Neu laden
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

@@ -1,7 +1,7 @@
 {
  "lang": "en",
- "generated": "2026-11-18T20:19:56.383Z",
- "version": "3.2.1",
+ "generated": "2026-11-20T12:37:24.019Z",
+ "version": "3.2.2",
  "pages": [
   {
    "route": "",
@@ -12,9 +12,7 @@
    "areas": [
     "Web servers",
     "Database servers",
-    "Game servers",
     "Minecraft servers",
-    "Virtual machines",
     "Mail catcher",
     "Component updates"
    ],
@@ -24,8 +22,6 @@
     "Customize",
     "Arrange tiles",
     "Start all",
-    "Fix",
-    "Hide",
     "New",
     "All",
     "Change image",
@@ -34,9 +30,7 @@
     "Set up",
     "Start",
     "Inbox",
-    "Update all",
-    "Check again",
-    "Update"
+    "Check again"
    ],
    "fields": [],
    "tabs": [],
@@ -129,10 +123,7 @@
    "tabs": [
     "Server",
     "PHP versions",
-    "Import",
-    "Page check",
-    "Visitors",
-    "Vulnerabilities"
+    "Import"
    ],
    "tips": 0,
    "tipTexts": [],
@@ -156,37 +147,23 @@
     },
     {
      "label": "Import",
-     "areas": [],
-     "actions": [
-      "3 videos",
-      "New web server",
-      "Change image",
-      "Install"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/web--import.jpg"
-    },
-    {
-     "label": "Page check",
      "areas": [
-      "Regular checks",
-      "Before publishing"
+      "Import from XAMPP",
+      "Existing Web servers on this PC"
      ],
      "actions": [
       "3 videos",
       "New web server",
-      "From the extension “Page check” – info",
-      "Check",
-      "Sample Web",
-      "Save"
+      "Folder",
+      "Search",
+      "Apply",
+      "Search again"
      ],
      "fields": [],
      "tipTexts": [
-      "Regular checks Hostwerk checks these addresses on its own and tells you when the score drops by 5 points or more.",
-      "Minimum score Publishing extensions (e.g. “Publish pages”) check the page first and stop below this score. 0 = off."
+      "Import – take over existing services Is a web server already running on this PC – e.g. from XAMPP or as a Windows service? Hostwerk takes it over: where it is (nothing is moved) or copied 1:1, tested and with a way back. The same search for all kinds is under System → Foreign services."
      ],
-     "shot": "img/web--page-check.jpg"
+     "shot": "img/web--import.jpg"
     }
    ]
   },
@@ -232,14 +209,12 @@
     {
      "label": "Import",
      "areas": [
-      "Existing Databases on this PC",
-      "PostgreSQL 17.12"
+      "Existing Databases on this PC"
      ],
      "actions": [
       "2 videos",
       "New database server",
-      "Search again",
-      "Take over into Hostwerk …"
+      "Search again"
      ],
      "fields": [],
      "tipTexts": [
@@ -297,7 +272,9 @@
      ],
      "actions": [
       "Search a folder …",
-      "Search again"
+      "Search again",
+      "Take over",
+      "Copy into Hostwerk"
      ],
      "fields": [],
      "tipTexts": [
@@ -309,10 +286,14 @@
      "label": "Your games",
      "areas": [],
      "actions": [
-      "From the extension “Game library” – info"
+      "From the extension “Game library” – info",
+      "Start own server …",
+      "Play Counter-Strike 2"
      ],
      "fields": [],
-     "tipTexts": [],
+     "tipTexts": [
+      "Own server for your games Found by comparing your installed Steam games with the server tools from “Game servers”. One click sets up the server through SteamCMD; friends join with the address shown on the server page."
+     ],
      "shot": "img/spiele--your-games.jpg"
     },
     {
@@ -468,20 +449,19 @@
    "actions": [
     "Read again",
     "What should I play?",
-    "Games 24",
-    "On disk 683,0 GB",
-    "Playtime 2846 h",
+    "Games 23",
+    "On disk 540,6 GB",
+    "Playtime 4058 h",
     "Not played yet 1",
-    "Updates ready 1",
     "Downloading 1",
-    "Clive Barker's Hellraiser: Revival 12 h · 5 days ago",
-    "We Were Here Tomorrow 4.4 h · 6 days ago",
-    "PAYDAY 3 97 h · 10 days ago",
-    "Minecraft Dungeons II 26 h · 13 days ago",
-    "Overwatch® 880 h · 14 days ago",
-    "Dead by Daylight 1277 h · 28 days ago",
-    "PEAK 27 h · 40 days ago",
-    "The Witcher 3: Wild Hunt — Remastered 3.4 h · 42 days ago",
+    "Own server possible 1",
+    "Updating · 0 % Counter-Strike 2 1225 h · today",
+    "We Were Here Tomorrow 6.4 h · today",
+    "PAYDAY 3 97 h · 12 days ago",
+    "Minecraft Dungeons II 26 h · 15 days ago",
+    "Overwatch® 880 h · 16 days ago",
+    "Dead by Daylight 1277 h · 30 days ago",
+    "PEAK 27 h · 41 days ago",
     "Generation Zero® 49 h · 2 months ago",
     "Sunset Summit 4 h · 2 months ago",
     "YAPYAP not played yet · 2 months ago",
@@ -491,13 +471,13 @@
     "007 First Light 18 h · 3 months ago",
     "Big Walk 35 min · 3 months ago",
     "Wallpaper Engine 89 h · 3 months ago",
-    "Update ready Deep Rock Galactic: Rogue Core 10 h · 4 months ago",
+    "Deep Rock Galactic: Rogue Core 10 h · 4 months ago",
     "Just Shapes & Beats 16 h · 6 months ago",
     "Supermarket Together 104 h · 7 months ago",
     "John Carpenter's Toxic Commando 6.9 h · 7 months ago",
     "s&box 3.5 h · 7 months ago",
     "Dying Light: The Beast 7 min · 12 months ago",
-    "Updating · 50 % PAYDAY 2 201 h · 16 months ago"
+    "PAYDAY 2 201 h · 16 months ago"
    ],
    "fields": [],
    "tabs": [
@@ -539,14 +519,13 @@
       "Read again",
       "What should I play?",
       "Load now",
-      "Clive Barker's Hellraiser: Revival location unknown",
+      "Counter-Strike 2 location unknown",
       "We Were Here Tomorrow location unknown",
       "PAYDAY 3 location unknown",
       "Minecraft Dungeons II location unknown",
       "Overwatch® location unknown",
       "Dead by Daylight location unknown",
       "PEAK location unknown",
-      "The Witcher 3: Wild Hunt — Remastered location unknown",
       "Generation Zero® location unknown",
       "Sunset Summit location unknown",
       "YAPYAP location unknown",
@@ -656,8 +635,6 @@
     "Runtimes",
     "Tools",
     "API tester",
-    "Webhooks",
-    "Publish",
     "Deploy log",
     "Knowledge graph"
    ],
@@ -788,17 +765,6 @@
      "fields": [],
      "tipTexts": [],
      "shot": "img/projects--publish.jpg"
-    },
-    {
-     "label": "Deploy log",
-     "areas": [],
-     "actions": [
-      "3 videos",
-      "From the extension “Deploy log” – info"
-     ],
-     "fields": [],
-     "tipTexts": [],
-     "shot": "img/projects--deploy-log.jpg"
     }
    ]
   },
@@ -821,9 +787,7 @@
    "fields": [],
    "tabs": [
     "Mail catcher",
-    "Mail server",
     "Import",
-    "Mailboxes",
     "Statistics",
     "Notes"
    ],
@@ -871,33 +835,6 @@
      "shot": "img/mail--import.jpg"
     },
     {
-     "label": "Mailboxes",
-     "areas": [],
-     "actions": [
-      "2 videos",
-      "From the extension “E-mail accounts” – info",
-      "Connect an account"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
-     ],
-     "shot": "img/mail--mailboxes.jpg"
-    },
-    {
-     "label": "Statistics",
-     "areas": [],
-     "actions": [
-      "2 videos",
-      "From the extension “Mail statistics” – info"
-     ],
-     "fields": [],
-     "tipTexts": [
-      "Mail catcher or mail server? The Mail catcher is for development: it catches every mail a project sends (registration, order confirmation …) – you read it here, nothing leaves the PC. The Mail server is for real mailboxes like info@your-domain.com with IMAP and sending to the internet (Stalwart or Apache James)."
-     ],
-     "shot": "img/mail--statistics.jpg"
-    },
-    {
      "label": "Notes",
      "areas": [],
      "actions": [
@@ -929,8 +866,8 @@
     "Error 0",
     "Active 2",
     "Pause all",
-    "Sample task Thu 03:00 · Open a web address",
-    "Second task Thu 04:00 · Open a web address",
+    "Sample task Sat 03:00 · Open a web address",
+    "Second task Sat 04:00 · Open a web address",
     "Run now",
     "Edit",
     "Mark as favorite (then listed at the top)",
@@ -1035,26 +972,33 @@
    "title": "Files",
    "activeTab": "",
    "intro": "Web folders, projects, Minecraft servers and your own folders – with editor, preview and recycle bin.",
-   "areas": [],
+   "areas": [
+    "Office"
+   ],
    "actions": [
     "Video",
     "Collapse sidebar",
     "Web folder (Sample Web)",
     "Projects",
     "Minecraft-Server: Sample MC",
+    "Office documents",
     "Add folder …",
     "Backups",
     "Logs",
     "Configuration",
     "Trash",
     "Root",
-    "New file",
+    "New …",
     "New folder",
     "Tiles",
     "More",
-    "Name",
-    "Changed",
-    "Size"
+    "Office",
+    "From the extension “Office” – info",
+    "Document",
+    "Spreadsheet",
+    "Presentation",
+    "PDF",
+    "Template …"
    ],
    "fields": [],
    "tabs": [],
@@ -1268,7 +1212,7 @@
    "slug": "sicherungen",
    "title": "Backups",
    "activeTab": "Status",
-   "intro": "6 backups · 414 B",
+   "intro": "7 backups · 436 B",
    "areas": [
     "Needs you"
    ],
@@ -1297,9 +1241,10 @@
      "actions": [
       "Back up everything now",
       "Clean up old ones",
-      "Hostwerk Time machine 2 backups · newest 18/11/2026, 21:06 (auto)",
-      "E-mail accounts Extensions 1 backup · 408 B · newest 18/11/2026, 20:58 (auto)",
-      "Sample MC Minecraft servers 3 backups · 6 B · newest 18/11/2026, 20:57",
+      "Hostwerk Time machine 2 backups · newest 20/11/2026, 13:22 (auto)",
+      "Office Extensions 1 backup · 22 B · newest 20/11/2026, 13:14 (auto)",
+      "E-mail accounts Extensions 1 backup · 408 B · newest 20/11/2026, 13:13 (auto)",
+      "Sample MC Minecraft servers 3 backups · 6 B · newest 20/11/2026, 13:12",
       "Back up now"
      ],
      "fields": [],
@@ -1426,21 +1371,18 @@
     {
      "label": "Storage",
      "areas": [
-      "Drives",
+      "Condition",
       "Predator SSD GM7 2TB"
      ],
      "actions": [
       "3 videos",
       "Diagnostic report",
-      "Drives",
-      "From the extension “Drives” – info",
       "Check now",
       "Check with admin rights",
       "0000_0000_0000_0000_50C6_8E52_7150_2160"
      ],
      "fields": [],
      "tipTexts": [
-      "Drives Hostwerk reads the S.M.A.R.T. values of every drive – temperature, wear, errors – and tells you when something gets worse, and shows how full the drive is and who uses the space. Nothing on a drive is ever changed.",
       "Check regularly with admin rights Hostwerk sets up a Windows task that reads the values every hour with administrator rights. Windows asks for permission once. The task only reads and removes itself when you uninstall the extension.",
       "Why administrator rights? Without administrator rights Windows only shows whether a drive is healthy. Temperature, wear and error counters are read in a single check – Windows asks for permission once. Hostwerk itself keeps running without admin rights.",
       "Notifications Warnings go to Hostwerk’s notifications (push, Discord, ntfy, mail) and appear under Go live → Monitoring → Watchers."
@@ -1610,7 +1552,7 @@
       "What extensions may never do",
       "Add",
       "Filter",
-      "38 extensions already installed – under “My extensions”"
+      "39 extensions already installed – under “My extensions”"
      ],
      "fields": [],
      "tipTexts": [
@@ -1760,6 +1702,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1779,6 +1722,7 @@
       "Code editor",
       "Show tips",
       "Ask before stopping",
+      "Open links inside Hostwerk",
       "Show download speed",
       "Limit download speed",
       "Notification position",
@@ -1805,6 +1749,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1832,8 +1777,7 @@
       "Move “Certificate watch” down",
       "More for “Certificate watch”",
       "Move “DNS” up",
-      "Move “DNS” down",
-      "More for “DNS”"
+      "Move “DNS” down"
      ],
      "fields": [],
      "tipTexts": [
@@ -1860,6 +1804,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1902,6 +1847,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -1942,15 +1888,16 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
       "Privacy",
       "About Hostwerk",
       "Press shortcut",
-      "All 39",
+      "All 44",
       "Changed 0",
-      "Off 2",
+      "Off 6",
       "conflicts 3",
       "Ctrl K",
       "Switch off shortcut for “Search & commands (projects, servers, actions)”",
@@ -1969,8 +1916,7 @@
       "Alt →",
       "Switch off shortcut for “Forward to the next page”",
       "Ctrl R",
-      "Switch off shortcut for “Reload the interface (services keep running)”",
-      "Ctrl ⇧ R"
+      "Switch off shortcut for “Reload the interface (services keep running)”"
      ],
      "fields": [],
      "tipTexts": [],
@@ -1997,6 +1943,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -2032,6 +1979,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -2055,6 +2003,7 @@
      "areas": [
       "Location & access",
       "Java runtimes",
+      "Open Files",
       "Cache & temporary files",
       "Hostwerk",
       "Maintenance & installation"
@@ -2071,13 +2020,14 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
       "Privacy",
       "About Hostwerk",
       "Open",
-      "Delete 716,8 KB",
+      "Delete 623,4 KB",
       "Measure again",
       "Clean up now",
       "Reload",
@@ -2087,6 +2037,7 @@
      "fields": [
       "Hostwerk folder",
       "Open in browser",
+      "Office",
       "Reload interface"
      ],
      "tipTexts": [
@@ -2114,6 +2065,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -2146,6 +2098,7 @@
       "Notifications",
       "Keyboard shortcuts",
       "Move & share",
+      "Office",
       "Discord status",
       "Updates",
       "Advanced",
@@ -2742,7 +2695,7 @@
       "papermc.io",
       "Start",
       "Root",
-      "New file",
+      "New …",
       "New folder",
       "Tiles",
       "More",

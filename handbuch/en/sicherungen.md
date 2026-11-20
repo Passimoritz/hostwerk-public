@@ -2,7 +2,7 @@
 
 [← Back to the overview](README.md)
 
-6 backups · 414 B
+7 backups · 436 B
 
 ![Backups](img/sicherungen.jpg)
 
@@ -24,7 +24,7 @@
 
 **Areas on this page:** All versions
 
-**What you can do here:** Back up everything now · Clean up old ones · Hostwerk Time machine 2 backups · newest 18/11/2026, 21:06 (auto) · E-mail accounts Extensions 1 backup · 408 B · newest 18/11/2026, 20:58 (auto) · Sample MC Minecraft servers 3 backups · 6 B · newest 18/11/2026, 20:57 · Back up now
+**What you can do here:** Back up everything now · Clean up old ones · Hostwerk Time machine 2 backups · newest 20/11/2026, 13:22 (auto) · Office Extensions 1 backup · 22 B · newest 20/11/2026, 13:14 (auto) · E-mail accounts Extensions 1 backup · 408 B · newest 20/11/2026, 13:13 (auto) · Sample MC Minecraft servers 3 backups · 6 B · newest 20/11/2026, 13:12 · Back up now
 
 ### Schedule
 
@@ -56,4 +56,4 @@
 **What you can do here:** Back up everything now · Check all · Check
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

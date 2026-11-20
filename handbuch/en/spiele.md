@@ -44,13 +44,15 @@ Valheim, Palworld, Satisfactory, Rust, ARK and every other Steam server tool –
 
 **Areas on this page:** Game servers on this PC
 
-**What you can do here:** Search a folder … · Search again
+**What you can do here:** Search a folder … · Search again · Take over · Copy into Hostwerk
 
 ### Your games
 
 ![Your games](img/spiele--your-games.jpg)
 
-**What you can do here:** From the extension “Game library” – info
+> Own server for your games Found by comparing your installed Steam games with the server tools from “Game servers”. One click sets up the server through SteamCMD; friends join with the address shown on the server page.
+
+**What you can do here:** From the extension “Game library” – info · Start own server … · Play Counter-Strike 2
 
 ### Network
 
@@ -61,4 +63,4 @@ Valheim, Palworld, Satisfactory, Rust, ARK and every other Steam server tool –
 **What you can do here:** From the extension “Game servers” – info · New network · Create network
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

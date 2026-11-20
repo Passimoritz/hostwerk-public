@@ -64,11 +64,5 @@ Your projects from web folders, virtual hosts and apps – with Git, .env, packa
 
 **What you can do here:** 3 videos · From the extension “Publish static sites” – info · Accounts · New site · Add account
 
-### Deploy log
 
-![Deploy log](img/projects--deploy-log.jpg)
-
-**What you can do here:** 3 videos · From the extension “Deploy log” – info
-
-
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

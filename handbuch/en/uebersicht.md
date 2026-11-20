@@ -8,9 +8,7 @@
 
 - Web servers
 - Database servers
-- Game servers
 - Minecraft servers
-- Virtual machines
 - Mail catcher
 - Component updates
 
@@ -21,8 +19,6 @@
 - Customize
 - Arrange tiles
 - Start all
-- Fix
-- Hide
 - New
 - All
 - Change image
@@ -31,9 +27,7 @@
 - Set up
 - Start
 - Inbox
-- Update all
 - Check again
-- Update
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

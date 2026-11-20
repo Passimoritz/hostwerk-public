@@ -27,4 +27,4 @@ Describe it – Hostwerk creates the picture or video with the model you chose i
 - What should the picture show?
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

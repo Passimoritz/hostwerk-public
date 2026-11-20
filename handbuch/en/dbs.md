@@ -28,9 +28,9 @@ MariaDB, MySQL, PostgreSQL, MongoDB and Redis – as many as you like, in differ
 
 > Import – take over existing services Take over existing MySQL, MariaDB, PostgreSQL, MongoDB or Redis servers – where they are or as a copy with all data, tested and with a way back. The same search for all kinds is under System → Foreign services.
 
-**Areas on this page:** Existing Databases on this PC · PostgreSQL 17.12
+**Areas on this page:** Existing Databases on this PC
 
-**What you can do here:** 2 videos · New database server · Search again · Take over into Hostwerk …
+**What you can do here:** 2 videos · New database server · Search again
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

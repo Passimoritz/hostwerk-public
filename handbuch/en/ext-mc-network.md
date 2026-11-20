@@ -16,4 +16,4 @@ Several servers behind one address, Java and Bedrock together – kept up to dat
 - Bedrock only
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>

@@ -77,4 +77,4 @@ Deine Projekte aus Webordnern, virtuellen Hosts und Apps – mit Git, .env, Pake
 **Was du hier tun kannst:** 3 Videos · Von der Erweiterung „Wissensgraph“ – Infos
 
 
-<sub>Erzeugt am 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Erzeugt am 2026-11-20 · Hostwerk 3.2.2</sub>

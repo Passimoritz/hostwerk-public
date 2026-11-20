@@ -6,6 +6,10 @@ Web folders, projects, Minecraft servers and your own folders – with editor, p
 
 ![Files](img/files.jpg)
 
+### Areas on this page
+
+- Office
+
 ### What you can do here
 
 - Video
@@ -13,19 +17,24 @@ Web folders, projects, Minecraft servers and your own folders – with editor, p
 - Web folder (Sample Web)
 - Projects
 - Minecraft-Server: Sample MC
+- Office documents
 - Add folder …
 - Backups
 - Logs
 - Configuration
 - Trash
 - Root
-- New file
+- New …
 - New folder
 - Tiles
 - More
-- Name
-- Changed
-- Size
+- Office
+- From the extension “Office” – info
+- Document
+- Spreadsheet
+- Presentation
+- PDF
+- Template …
 
 
-<sub>Generated on 2026-11-18 · Hostwerk 3.2.1</sub>
+<sub>Generated on 2026-11-20 · Hostwerk 3.2.2</sub>
