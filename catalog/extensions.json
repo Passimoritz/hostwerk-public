@@ -6,11 +6,11 @@
       "en": "AI Connect"
     },
     "description": {
-      "de": "Jede KI mit Hostwerk verbinden – Cursor, VS Code, Windsurf, LM Studio, Claude, Codex, Gemini CLI und jede andere MCP-App: Gedächtnis je KI einstellen, App mit einem Klick bzw. passendem Weg anbinden, im Projekt loslegen, Tokens sparen, Tipps & Tricks. Steckt im KI-Helfer als Reiter „KI-Anbindung“.",
-      "en": "Connect any AI with Hostwerk – Cursor, VS Code, Windsurf, LM Studio, Claude, Codex, Gemini CLI and any other MCP app: set the memory each AI gets, connect your app in one click or the right way for it, get going in your project, save tokens, tips & tricks. Lives in the AI assistant as the “AI Connect” tab."
+      "de": "Jede KI mit Hostwerk verbinden – Cursor, VS Code, Windsurf, LM Studio, Claude, Codex, Gemini CLI und jede andere MCP-App: Gedächtnis je KI einstellen, App mit einem Klick bzw. passendem Weg anbinden, im Projekt loslegen, Tokens sparen, Tipps & Tricks. Steckt in KI → Einstellungen („Verbindungen“, Gedächtnis-Freigabe) und unter Projekte („Mit KI loslegen“).",
+      "en": "Connect any AI with Hostwerk – Cursor, VS Code, Windsurf, LM Studio, Claude, Codex, Gemini CLI and any other MCP app: set the memory each AI gets, connect your app in one click or the right way for it, get going in your project, save tokens, tips & tricks. Lives in AI → Settings (“Connections”, memory sharing) and under Projects (“Get going with AI”)."
     },
     "author": "Hostwerk",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -24,23 +24,23 @@
       "native",
       "extend:extensions"
     ],
-    "hostwerk": ">=2.9.0",
-    "sdkVersion": null,
+    "hostwerk": ">=3.1.0",
+    "sdkVersion": "3.10",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-claude",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.5.1/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-claude/releases/download/v1.5.1/claude-1.5.1.zip",
-    "sha256": "8c4a11db94b78179e4ba05204b2ff72fd768b9be51652e195cc95216a3013fdb",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.6.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-claude/releases/download/v1.6.0/claude-1.6.0.zip",
+    "sha256": "e80930f31baea9e58c0cc75daae42d161b651977fe5bc84193dd97dce97b09e7",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "ai",
     "color": "#d97757",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.5.1/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.6.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.5.1/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-claude/v1.6.0/CHANGELOG.md"
   },
   {
     "id": "api-tester",
@@ -53,7 +53,7 @@
       "en": "Build, send and save requests to your projects – like Postman, right inside Hostwerk: collections, variables like {{base}}, paste and copy curl, clear responses with time and size."
     },
     "author": "Hostwerk",
-    "version": "1.5.2",
+    "version": "1.5.3",
     "page": true,
     "widget": false,
     "service": false,
@@ -61,22 +61,22 @@
       "native"
     ],
     "hostwerk": ">=2.10.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-api-tester",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.5.2/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-api-tester/releases/download/v1.5.2/api-tester-1.5.2.zip",
-    "sha256": "d0ae7100bfd56967efd802c127d4af555aa6a83afcd892f1d4fc37fb5515a65f",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.5.3/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-api-tester/releases/download/v1.5.3/api-tester-1.5.3.zip",
+    "sha256": "20b87e72cab8e8a14f35d729db5ee34406ae746ad938e9a7fbd0ea8566ac26f7",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "developer",
     "color": "#0ea5e9",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.5.2/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.5.3/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.5.2/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-api-tester/v1.5.3/CHANGELOG.md"
   },
   {
     "id": "backup-calendar",
@@ -89,7 +89,7 @@
       "en": "How well is your data backed up? A traffic light per area, last and next backup, open failures with “Run again” – plus every planned backup as a timeline or month calendar, export and subscription (.ics). And Hostwerk’s external backup into the cloud as well: OneDrive, Google Drive, S3 (AWS, Cloudflare R2, Backblaze …), Nextcloud/WebDAV or SFTP – encrypted on this PC, with recovery key and restore probe."
     },
     "author": "Hostwerk",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -100,21 +100,21 @@
     "sdkVersion": "3.8",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v3.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar/releases/download/v3.0.0/backup-calendar-3.0.0.zip",
-    "sha256": "ac887feb3a6b463121b9d11cde88b631c7c7781094c42821605f92bcc4e47f83",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v3.1.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-backup-calendar/releases/download/v3.1.0/backup-calendar-3.1.0.zip",
+    "sha256": "d197579a2e9d680fd4226b3f7ec3a05bceb3ee09f9a5d5228bf80440d9c8292b",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "monitoring",
     "color": "#22c55e",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v3.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v3.1.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [
       "cloud-backup"
     ],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v3.0.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-backup-calendar/v3.1.0/CHANGELOG.md"
   },
   {
     "id": "cert-watch",
@@ -127,7 +127,7 @@
       "en": "All certificates at a glance: Hostwerk’s own and any host (mail server, router, other sites) – time left, issuer, names, chain and key, missing certificates with one button, alerts before they expire. With a dashboard tile."
     },
     "author": "Hostwerk",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -135,22 +135,22 @@
       "native"
     ],
     "hostwerk": ">=2.11.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-cert-watch",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v2.2.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-cert-watch/releases/download/v2.2.0/cert-watch-2.2.0.zip",
-    "sha256": "c81f3d55f5f73125b99dae92059ff62673250b01acf6363ca55099e57bf5a8dc",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v2.3.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-cert-watch/releases/download/v2.3.0/cert-watch-2.3.0.zip",
+    "sha256": "408fcf429de11e8292582b40c16e5d890758ec640f5f8c870cec8b40ac899b76",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "security",
     "color": "#0f766e",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v2.2.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v2.3.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v2.2.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-cert-watch/v2.3.0/CHANGELOG.md"
   },
   {
     "id": "discord-bot",
@@ -163,7 +163,7 @@
       "en": "Your own Discord bot for Hostwerk: /status, /players, /start, /stop and /restart right from your Discord server. You decide who may control services through Discord roles or your team – stop and restart are confirmed with a button."
     },
     "author": "Hostwerk",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -171,22 +171,22 @@
       "native"
     ],
     "hostwerk": ">=2.11.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-discord-bot",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.3.1/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-discord-bot/releases/download/v1.3.1/discord-bot-1.3.1.zip",
-    "sha256": "35be93c614614be123f85b16d6db32b77eb89eb552efc2f376b867bafcf9818e",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.4.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-discord-bot/releases/download/v1.4.0/discord-bot-1.4.0.zip",
+    "sha256": "7ab35621c1962c2f9327a9839831bbdff2dfcde14e9596f2c63146cbfaeb9c5b",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "communication",
     "color": "#4752c4",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.3.1/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.4.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.3.1/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-discord-bot/v1.4.0/CHANGELOG.md"
   },
   {
     "id": "discord-status",
@@ -238,7 +238,7 @@
       "en": "Free names for your connection (DuckDNS, deSEC, dynv6, FreeDNS, No-IP) or your own domain at Cloudflare, deSEC, Hetzner, INWX or IONOS – Hostwerk keeps them up to date without maintenance when IPv4 or IPv6 change. Plus all records (A, AAAA, CNAME, MX, TXT, SRV, CAA) with templates, checks, DNSSEC status and zone files. Other extensions use the service, e.g. the mail server and Let’s Encrypt for wildcard certificates (dns-01)."
     },
     "author": "Hostwerk",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -247,22 +247,22 @@
       "network"
     ],
     "hostwerk": ">=2.11.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-dns",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.3.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-dns/releases/download/v1.3.0/dns-1.3.0.zip",
-    "sha256": "199b62fab0ac1f45ed09342847569749b1cbff1aae59ee67f54addce293fd6ba",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.4.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-dns/releases/download/v1.4.0/dns-1.4.0.zip",
+    "sha256": "c3c38b8166358f4fca2e599aa64848a6091f4aabe1b6f4c83256e0ab7817267c",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "network",
     "color": "#0891b2",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.3.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.4.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.3.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-dns/v1.4.0/CHANGELOG.md"
   },
   {
     "id": "disk-health",
@@ -425,7 +425,7 @@
       "en": "Valheim, Palworld, Satisfactory, Rust, ARK and every other Steam server tool through SteamCMD – plus more than 100 games through LinuxGSM. One-step setup (Docker comes along when needed), taking over existing servers (Steam, SteamCMD, LinuxGSM, Docker), console, player list, map and version through the Steam query, updates, backups, schedule, resource limits, monitoring and port forwarding. Plus networks: game servers that belong together start together (with a readiness check), share a schedule, a password and player slots, with ports and router forwarding at a glance."
     },
     "author": "Hostwerk",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -436,24 +436,24 @@
     "sdkVersion": "3.8",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-game-servers",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-game-servers/releases/download/v2.0.0/game-servers-2.0.0.zip",
-    "sha256": "097ab67a9555b80b41b9fd0eb9ebd4c4eaf6b62e0b79a371cc90660a94ecaab3",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-game-servers/releases/download/v2.0.1/game-servers-2.0.1.zip",
+    "sha256": "96e38d83d725ecee212a25c55b5ba58af016fe5351c7b01c3cc5023f3c675475",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "games",
     "color": "#ea580c",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.1/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.0/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.0/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.1/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.1/docs/screenshot.de.png"
     ],
     "requires": {},
     "replaces": [
       "game-network"
     ],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-game-servers/v2.0.1/CHANGELOG.md"
   },
   {
     "id": "pwa",
@@ -466,7 +466,7 @@
       "en": "Hostwerk on your phone – as a web app for Android and iPhone, without an app store. Pair a phone with a QR code, keep an eye on paired devices and block them one by one, new devices only after approval on the PC. For you and for members from Team & roles, with their rights."
     },
     "author": "Hostwerk",
-    "version": "1.1.0",
+    "version": "1.2.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -478,19 +478,19 @@
     "sdkVersion": "3.4",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-pwa",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.1.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-pwa/releases/download/v1.1.0/pwa-1.1.0.zip",
-    "sha256": "9af53f197dad293637b24f72c77c392616b3e9dc8b7d91b5013fbca1a155c863",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.2.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-pwa/releases/download/v1.2.1/pwa-1.2.1.zip",
+    "sha256": "29d69e813bb40ef8bd152b71abe73940f3e1cf6dbfff2d632adccbe0d5c26fed",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "security",
     "color": "#ea580c",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.1.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.2.1/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.1.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-pwa/v1.2.1/CHANGELOG.md"
   },
   {
     "id": "hostwerk-network",
@@ -503,7 +503,7 @@
       "en": "Several machines as one network: pair laptop, home and rented servers, operate them from here and see all of them with load, services and backups at a glance. With Linux server setup over SSH, a machine switch in the title bar and a nightly backup to this PC."
     },
     "author": "Hostwerk",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "page": true,
     "widget": false,
     "service": false,
@@ -511,25 +511,25 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-hostwerk-network",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.4/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-hostwerk-network/releases/download/v1.2.4/hostwerk-network-1.2.4.zip",
-    "sha256": "afd975f9785b631bcdcf4e88fb1a56406e863a616f45916d66b9571cb62c6f88",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.5/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-hostwerk-network/releases/download/v1.2.5/hostwerk-network-1.2.5.zip",
+    "sha256": "73e8b0272fec23ac78167750b2099779b11c9facce642cd6c491e7147dfe50d4",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "network",
     "color": "#4f46e5",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.4/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.5/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.4/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.4/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.5/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.5/docs/screenshot.de.png"
     ],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.4/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-hostwerk-network/v1.2.5/CHANGELOG.md"
   },
   {
     "id": "ai-media",
@@ -538,11 +538,11 @@
       "en": "Image & video studio"
     },
     "description": {
-      "de": "Bilder und kurze Videos aus einer Beschreibung erzeugen – mit dem Modell, das du im KI-Helfer gewählt hast (OpenAI, Google, Replicate, fal, Stable Diffusion oder Hostwerks eigene lokale Bild-KI). Mit Monatsbudget, Mediathek und „als Ausgangspunkt nutzen“ für Bearbeitungen und Videos aus Bildern.",
-      "en": "Create pictures and short videos from a description – with the model you chose in the AI helper (OpenAI, Google, Replicate, fal, Stable Diffusion or Hostwerk's own local image AI). With monthly budget, media library and “use as a start” for edits and videos from pictures."
+      "de": "Bilder und kurze Videos aus einer Beschreibung erzeugen – mit dem Modell, das du im KI-Helfer gewählt hast (OpenAI, Google, Replicate, fal, Stable Diffusion oder Hostwerks eigene lokale Bild-KI). Mit Monatsbudget, Hostwerks Mediathek und „als Ausgangspunkt nutzen“ für Bearbeitungen und Videos aus Bildern.",
+      "en": "Create pictures and short videos from a description – with the model you chose in the AI helper (OpenAI, Google, Replicate, fal, Stable Diffusion or Hostwerk's own local image AI). With monthly budget, Hostwerk’s media library and “use as a start” for edits and videos from pictures."
     },
     "author": "Hostwerk",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -550,25 +550,25 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-ai-media",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.3.1/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-ai-media/releases/download/v1.3.1/ai-media-1.3.1.zip",
-    "sha256": "dce1f5e8a8e10c09a000a5bb843a103391ac747eaf95e6860730b8a1e57d145d",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.4.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-ai-media/releases/download/v1.4.0/ai-media-1.4.0.zip",
+    "sha256": "13f625718960144a442f5044749d25233e73ae092da1a1174ea3af42f4e61a22",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "ai",
     "color": "#c026d3",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.3.1/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.4.0/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.3.1/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.3.1/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.4.0/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.4.0/docs/screenshot.de.png"
     ],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.3.1/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-ai-media/v1.4.0/CHANGELOG.md"
   },
   {
     "id": "knowledge-graph",
@@ -581,7 +581,7 @@
       "en": "Turns your projects (code, docs, Obsidian notes) into a searchable knowledge graph – for you and for Claude. Claude queries the graph instead of searching files, learns along the way and can be disconnected again at any time without leaving traces."
     },
     "author": "Hostwerk",
-    "version": "1.5.3",
+    "version": "1.6.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -591,23 +591,23 @@
       "connect:claude",
       "storage"
     ],
-    "hostwerk": ">=2.9.0",
-    "sdkVersion": null,
+    "hostwerk": ">=3.1.0",
+    "sdkVersion": "3.10",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.5.3/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph/releases/download/v1.5.3/knowledge-graph-1.5.3.zip",
-    "sha256": "57513269ad91e3a5fc8f6c9d3b550f8bc1c0e9e46be55a0bc9658cbc3df549d2",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.6.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-knowledge-graph/releases/download/v1.6.0/knowledge-graph-1.6.0.zip",
+    "sha256": "d2efa59aaf7d008bd83dbfe3a93ed5f0d4cf42c2e14cd26c736cd685d8500c91",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "ai",
     "color": "#7c3aed",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.5.3/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.6.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.5.3/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-knowledge-graph/v1.6.0/CHANGELOG.md"
   },
   {
     "id": "mail-server",
@@ -736,7 +736,7 @@
       "en": "Minecraft servers with Paper, Purpur, Folia, Fabric, NeoForge, Forge, Velocity, Bedrock and modpacks: create or take over, console, players, plugins and mods from Modrinth and Hangar, plugin live update without restart, worlds with all dimensions, health in detail, backups, schedule, safe updates with a trial run."
     },
     "author": "Hostwerk",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "page": true,
     "widget": false,
     "service": false,
@@ -752,24 +752,24 @@
     "sdkVersion": "3.8",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-minecraft",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-minecraft/releases/download/v1.1.0/minecraft-1.1.0.zip",
-    "sha256": "a55bf1be39b2b62085fd2770d5480b43d924ba3aeb26ddedb10790ca9fe38e6b",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.1/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-minecraft/releases/download/v1.1.1/minecraft-1.1.1.zip",
+    "sha256": "29c822873920e7dde1d6e49a2424f9d6feaea21c4ca7fa1f47a24f4f925f56fb",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "games",
     "color": "#23964a",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.1/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.0/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.0/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.1/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.1/docs/screenshot.de.png"
     ],
     "requires": {},
     "replaces": [
       "motd-studio"
     ],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-minecraft/v1.1.1/CHANGELOG.md"
   },
   {
     "id": "office",
@@ -1059,11 +1059,11 @@
       "en": "Router & port forwarding"
     },
     "description": {
-      "de": "Macht deine Server aus dem Internet erreichbar – im Livebetrieb unter „Erreichbar machen“ und als Kachel auf der Übersicht: Portfreigaben per UPnP/NAT-PMP oder direkt über FRITZ!Box (TR-064), OpenWrt, MikroTik und UniFi, mit Besitzer jeder Freigabe, Konflikten und Prüfung von außen, IPv6 und DS-Lite – plus Geräte, WLAN mit Gast-QR-Code, neue IP und Neustart deines Routers.",
-      "en": "Makes your servers reachable from the internet – in Go live under “Make reachable” and as a dashboard tile: port forwarding via UPnP/NAT-PMP or directly through FRITZ!Box (TR-064), OpenWrt, MikroTik and UniFi, with the owner of every forwarding, conflicts and an outside check, IPv6 and DS-Lite – plus devices, Wi-Fi with guest QR code, new IP and reboot of your router."
+      "de": "Macht deine Server aus dem Internet erreichbar – im Livebetrieb unter „Online“ und als Kachel auf der Übersicht: Portfreigaben per UPnP/NAT-PMP oder direkt über FRITZ!Box (TR-064), OpenWrt, MikroTik und UniFi, mit Besitzer jeder Freigabe, Konflikten und Prüfung von außen, IPv6 und DS-Lite – plus Geräte, WLAN mit Gast-QR-Code, neue IP und Neustart deines Routers.",
+      "en": "Makes your servers reachable from the internet – in Go live under “Online” and as a dashboard tile: port forwarding via UPnP/NAT-PMP or directly through FRITZ!Box (TR-064), OpenWrt, MikroTik and UniFi, with the owner of every forwarding, conflicts and an outside check, IPv6 and DS-Lite – plus devices, Wi-Fi with guest QR code, new IP and reboot of your router."
     },
     "author": "Hostwerk",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -1074,22 +1074,22 @@
     "sdkVersion": null,
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-router",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.5.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-router/releases/download/v1.5.0/router-1.5.0.zip",
-    "sha256": "91e35a4f29ee3336414610b0de4d872ba91e49497b933817552f38cad727af1f",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.6.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-router/releases/download/v1.6.0/router-1.6.0.zip",
+    "sha256": "ec91b29885c7fca211da0022904ee94a3edbb3947caaecda72b7436e64957d37",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "network",
     "color": "#2563eb",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.5.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.6.0/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.5.0/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.5.0/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.6.0/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.6.0/docs/screenshot.de.png"
     ],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.5.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-router/v1.6.0/CHANGELOG.md"
   },
   {
     "id": "schematics-3d",
@@ -1137,11 +1137,11 @@
       "en": "Server profile"
     },
     "description": {
-      "de": "Alles Wichtige über diesen PC und seine Dienste als Reiter unter System – Zustand als Punktzahl, Prozessor, Speicher, Laufwerk, Netzwerk mit offenen Ports, Software-Versionen, Dienste, Zertifikate und was sich seit dem letzten Mal geändert hat. Teilen als Text, Markdown, JSON oder PDF – auf Wunsch ohne Adressen oder geschwärzt für den Support.",
-      "en": "Everything important about this PC and its services as a tab under System – health score, processor, memory, drive, network with open ports, software versions, services, certificates and what changed since last time. Share it as text, Markdown, JSON or PDF – without addresses or redacted for support if you like."
+      "de": "Alles Wichtige über diesen PC und seine Dienste als Abschnitt auf System → Lage – Zustand als Punktzahl, Prozessor, Speicher, Laufwerk, Netzwerk mit offenen Ports, Software-Versionen, Dienste, Zertifikate und was sich seit dem letzten Mal geändert hat. Teilen als Text, Markdown, JSON oder PDF – auf Wunsch ohne Adressen oder geschwärzt für den Support.",
+      "en": "Everything important about this PC and its services as a section on System → Status – health score, processor, memory, drive, network with open ports, software versions, services, certificates and what changed since last time. Share it as text, Markdown, JSON or PDF – without addresses or redacted for support if you like."
     },
     "author": "Hostwerk",
-    "version": "1.4.1",
+    "version": "1.5.0",
     "page": false,
     "widget": true,
     "service": false,
@@ -1153,22 +1153,22 @@
       "storage"
     ],
     "hostwerk": ">=2.9.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.12",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-server-card",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.4.1/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-server-card/releases/download/v1.4.1/server-card-1.4.1.zip",
-    "sha256": "fdc159882f91a6b3df5e585cd39055110cafe5fef6ffb2f9816cff465b97f8c3",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.5.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-server-card/releases/download/v1.5.0/server-card-1.5.0.zip",
+    "sha256": "d0343418e5847e5b91e5708204891e9150d99b48a5dcb09491820d2348ec0459",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "monitoring",
     "color": "#6366f1",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.4.1/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.5.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": false,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.4.1/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-server-card/v1.5.0/CHANGELOG.md"
   },
   {
     "id": "service-notes",
@@ -1219,7 +1219,7 @@
       "en": "All services big and colourful at a glance – game servers included, with reachability and a small CPU and memory history, start, stop and restart (asks first). Plus every uptime check with availability and response time, a public status page for your visitors and a kiosk wall with its own address for a second screen or a tablet on the wall."
     },
     "author": "Hostwerk",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "page": true,
     "widget": true,
     "service": false,
@@ -1236,21 +1236,21 @@
     "sdkVersion": "3.8",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-status-wall",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v2.0.0/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-status-wall/releases/download/v2.0.0/status-wall-2.0.0.zip",
-    "sha256": "121b0e997bd822ac05c1041f99bdec884bca97b02adcb6a01d283574b7691a36",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v2.1.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-status-wall/releases/download/v2.1.0/status-wall-2.1.0.zip",
+    "sha256": "d2e51e010d9a3906be9387c29651d2d4bf225db06f143f6b40be340ce4a27acf",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "monitoring",
     "color": "#0ea5e9",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v2.0.0/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v2.1.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [
       "uptime-wall"
     ],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v2.0.0/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-status-wall/v2.1.0/CHANGELOG.md"
   },
   {
     "id": "team",
@@ -1263,7 +1263,7 @@
       "en": "Friends and colleagues with their own sign-in for remote access – members only see and control what you share (services and areas like console, players, backups), for a limited time if you like. Invite by link instead of a password, a log of who did what, plus shared team setups from a shared folder."
     },
     "author": "Hostwerk",
-    "version": "1.3.2",
+    "version": "1.4.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -1271,25 +1271,25 @@
       "native"
     ],
     "hostwerk": ">=2.9.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-team",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.3.2/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-team/releases/download/v1.3.2/team-1.3.2.zip",
-    "sha256": "27658083e50d5f8895d71fee082204b5713b54b25b20663bac7bde02c4a0469e",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.4.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-team/releases/download/v1.4.0/team-1.4.0.zip",
+    "sha256": "dd84f8ff3c2a2dd010746cd659d363848ef01226ee35b211174c765abf276f9f",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "security",
     "color": "#db2777",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.3.2/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.4.0/banner.svg",
     "screenshots": [
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.3.2/docs/screenshot.png",
-      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.3.2/docs/screenshot.de.png"
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.4.0/docs/screenshot.png",
+      "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.4.0/docs/screenshot.de.png"
     ],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.3.2/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-team/v1.4.0/CHANGELOG.md"
   },
   {
     "id": "theme-pack",
@@ -1409,7 +1409,7 @@
       "en": "WireGuard access for your devices and friends – set up step by step (name, device, QR code or file with the right guide), per access “home only”, “all traffic through home” or only certain services, with an end date and lock. Runs maintenance-free: keeps the address and router forwarding up to date, locks expired accesses, checks connections and updates and reports problems in one go. Plus Tailscale (with Headscale), ZeroTier and NetBird at a glance."
     },
     "author": "Hostwerk",
-    "version": "1.2.2",
+    "version": "1.3.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -1417,22 +1417,22 @@
       "native"
     ],
     "hostwerk": ">=2.11.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-vpn",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.2.2/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-vpn/releases/download/v1.2.2/vpn-1.2.2.zip",
-    "sha256": "e950c27894e2c6f0f25eac0cb6837930c15a30d5d852a94c4dd01821dd86551c",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.3.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-vpn/releases/download/v1.3.0/vpn-1.3.0.zip",
+    "sha256": "6b5d87f88c6f112609814e2f3585478a87e43a3047f0f51f29ab1ed48a3347b6",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "network",
     "color": "#16a34a",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.2.2/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.3.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.2.2/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vpn/v1.3.0/CHANGELOG.md"
   },
   {
     "id": "vuln-watch",
@@ -1445,7 +1445,7 @@
       "en": "Every known vulnerability (CVE, CVSS) of your services at a glance – web servers, PHP, databases, runtimes, Docker images, Minecraft and project dependencies, matched to the installed version. With “actively exploited” (CISA KEV), likelihood of exploitation (EPSS), end of life, one-click updates, exceptions and alerts. Free sources without keys: OSV.dev, NVD, CISA, FIRST."
     },
     "author": "Hostwerk",
-    "version": "1.3.2",
+    "version": "1.4.0",
     "page": true,
     "widget": false,
     "service": false,
@@ -1462,19 +1462,19 @@
     "sdkVersion": "3.3",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-vuln-watch",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.3.2/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-vuln-watch/releases/download/v1.3.2/vuln-watch-1.3.2.zip",
-    "sha256": "f9eef8fb86a49ef6909a3c9e3cf7bf2c365728ae214a41913ccff448311b142a",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.4.0/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-vuln-watch/releases/download/v1.4.0/vuln-watch-1.4.0.zip",
+    "sha256": "0ffa7b2e25362735e47de4d7e6cc9a015311620d80b71ca100625591fcf2d983",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "security",
     "color": "#be123c",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.3.2/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.4.0/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.3.2/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-vuln-watch/v1.4.0/CHANGELOG.md"
   },
   {
     "id": "webhook-inbox",
@@ -1487,7 +1487,7 @@
       "en": "An address for the webhooks of Stripe, GitHub, Shopify, Slack & co. – public through Hostwerk's tunnel if you like. Every call with headers and body, check signatures, several paths with their own answer, forward to your project or replay."
     },
     "author": "Hostwerk",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "page": true,
     "widget": false,
     "service": false,
@@ -1495,21 +1495,21 @@
       "native"
     ],
     "hostwerk": ">=2.11.0",
-    "sdkVersion": null,
+    "sdkVersion": "3.16",
     "supportedFrom": null,
     "homepage": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox",
-    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.4.1/icon.svg",
-    "download": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox/releases/download/v1.4.1/webhook-inbox-1.4.1.zip",
-    "sha256": "37e814860e3b6c2c907c8563f8edb51574bc65a4e0f9ddeb571adbed0614e6b8",
+    "icon": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.4.2/icon.svg",
+    "download": "https://github.com/Passimoritz/hostwerk-ext-webhook-inbox/releases/download/v1.4.2/webhook-inbox-1.4.2.zip",
+    "sha256": "eb45628a3f00c88cd453788559c45487bc95f66539282152d8f09fbe55c1cc4d",
     "score": 100,
-    "released": "2026-10-25",
+    "released": "2026-11-22",
     "category": "developer",
     "color": "#d946ef",
-    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.4.1/banner.svg",
+    "banner": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.4.2/banner.svg",
     "screenshots": [],
     "requires": {},
     "replaces": [],
     "native": true,
-    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.4.1/CHANGELOG.md"
+    "changelog": "https://raw.githubusercontent.com/Passimoritz/hostwerk-ext-webhook-inbox/v1.4.2/CHANGELOG.md"
   }
 ]
